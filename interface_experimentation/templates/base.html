@@ -10,5 +10,8 @@
        {% endblock %}
        {% block content %}
        {%endblock%}
+       {%load static%}
+       <script src="{% static 'js/p5.min.js' %}"></script>
+       <script src="{% static 'js/test.js' %}"></script>
 </body>
 </html>
