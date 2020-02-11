@@ -2,8 +2,13 @@ let bug1; // Declare objects
 let bug2;
 let bug3;
 let bug4;
+let bug5;
+let bug6;
+let bug7;
+let bug8;
+let freeze = false;
+let new_app;
 
-var freeze = false;
 setInterval(freeze_app, 10000);
 function freeze_app(){
     freeze = true;
@@ -12,14 +17,16 @@ function freeze_app(){
 function setup() {
   createCanvas(710, 400);
   // Create object
-  bug1 = new Jitter('red');
-  bug2 = new Jitter('red');
-  bug3 = new Jitter('red');
-  bug4 = new Jitter('red');
-  bug5 = new Jitter('blue');
-  bug6 = new Jitter('blue');
-  bug7 = new Jitter('blue');
-  bug8 = new Jitter('blue');
+    new_app = new App(10,12, "red", "blue");
+    new_app.details();
+    bug1 = new Jitter('red');
+    bug2 = new Jitter('red');
+    bug3 = new Jitter('red');
+    bug4 = new Jitter('red');
+    bug5 = new Jitter('blue');
+    bug6 = new Jitter('blue');
+    bug7 = new Jitter('blue');
+    bug8 = new Jitter('blue');
 }
 
 function draw() {
@@ -65,6 +72,30 @@ function draw() {
             bug8.display();
 
         }
+}
+
+class App{
+    constructor(n_targets, n_distractors, target_color, distractor_color){
+        this.n_targets = n_targets;
+        this.n_distractors = n_distractors;
+        this.targets = [];
+        this.distractors = [];
+        for(let step = 0; step < this.n_targets; step++){
+            this.targets.push(new Jitter('red'))
+        }
+        for(let step = 0; step < this.n_distractors; step++){
+            this.targets.push(new Jitter('blue'))
+        }
+    }
+    details(){
+        console.log(Object.keys(this))
+    }
+    display_balls(){
+        // functions used to display all balls
+    }
+    move_balls(){
+        // function used to move all balls
+    }
 }
 
 // Jitter class
