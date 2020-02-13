@@ -1,2 +1,6 @@
 {% extends "base.html" %}
 {% block title %}TASK{% endblock %}
+{% block js%}
+{%load static%}
+<script src="{% static 'js/test.js' %}"></script>
+{% endblock %}
