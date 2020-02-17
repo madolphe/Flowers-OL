@@ -9,5 +9,11 @@ def home(request):
     return render(request, 'home.html', locals())
 
 
-def visual_task(request):
-    return render(request, 'task.html', locals())
+def visual_2d_task(request):
+    return render(request, 'app_2D.html', locals())
+
+
+def visual_3d_task(request):
+    return render(request, 'app_3D.html', locals())
+
+
