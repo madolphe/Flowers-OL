@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff728f1-de6e-4b6f-a0f1-6acb916659fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,11 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
-              <folding>
-                <element signature="n#App#0" />
-              </folding>
+            <state relative-caret-position="525">
+              <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -242,15 +231,6 @@
               <item name="Django-test" type="462c0819:PsiDirectoryNode" />
               <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
               <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="MOT-js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Django-test" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -264,13 +244,6 @@
               <item name="Django-test" type="462c0819:PsiDirectoryNode" />
               <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Django-test" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
@@ -349,12 +322,12 @@
       <workItem from="1581077278874" duration="11275000" />
       <workItem from="1581416212722" duration="2893000" />
       <workItem from="1581435709848" duration="1687000" />
-      <workItem from="1581949313901" duration="5242000" />
+      <workItem from="1581949313901" duration="6247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21097000" />
+    <option name="totallyTimeSpent" value="22102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -537,11 +510,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
-          <folding>
-            <element signature="n#App#0" />
-          </folding>
+        <state relative-caret-position="525">
+          <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
         </state>
       </provider>
     </entry>
