@@ -21,7 +21,8 @@ let back = false; // variable used by camera to get back to initial position
 sessionStorage.clear();
 
 class Ball{
-    constructor(color, radius_min, radius_max, speed, name, boxWidth, boxHeight, boxDepth, type){
+    constructor(color, radius_min, radius_max, speed, name, boxWidth, boxHeight, boxDepth, type, model){
+        this.model = model;
         this.boxDepth = boxDepth;
         this.boxWidth = boxWidth;
         this.boxHeight = boxHeight;
@@ -42,10 +43,9 @@ class Ball{
         this.name = name;
         this.hover = false;
         this.pressed = false;
-        this.type  = type;
+        this.type = type;
         sessionStorage.setItem(this.name, [this.pressed, this.type]);
     }
-
     position_on_screen(){
         let vect = createVector(this.x, this.y, this.z);
         let position = screenPosition(vect);
@@ -78,40 +78,69 @@ class Ball{
          }
     }
     add_hover(){
-        //this.color = 'red'
-        push();
-        fill(hover_color);
-        noStroke();
-        translate(this.x, this.y, this.z);
-        // 24 is recommended by the docs (number of polygons for 3D)
-        sphere(this.radius+10, 10, 10);
-        pop();
+        if(!this.model){
+            push();
+            fill(hover_color);
+            translate(this.x, this.y, this.z);
+            noStroke();
+            // 24 is recommended by the docs (number of polygons for 3D)
+            sphere(this.radius+10, 10, 10);
+            pop();
+        }
+        else{
+            push();
+            var squareColor = color("white");
+            squareColor.setAlpha(128 );
+            translate(this.x, this.y, this.z);
+            fill(squareColor); // For effect
+            noStroke();
+            scale(0.035*this.radius);
+            model(this.model);
+            pop()
+        }
     }
     display(X, Y){
         if(this.hover){
             if(this.pressed){
                 this.color = 'red';
-                if(abs(this.displayX-X)<0.4*this.radius && abs(this.displayY-Y)<0.4*this.radius) {
-                    this.add_hover();
+                if(this.model){
+                        if(abs(this.displayX-X)<1.5*this.radius && abs(this.displayY-Y)<1.5*this.radius) {
+                            this.add_hover();
+                        }
+                    }
+                else{
+                    if(abs(this.displayX-X)<0.4*this.radius && abs(this.displayY-Y)<0.4*this.radius){
+                            this.add_hover()
+                    }
                 }
-            }else{
+            }
+            else{
                 this.color = 'yellow';
                 if(abs(this.displayX-X)<0.4*this.radius && abs(this.displayY-Y)<0.4*this.radius) {
                     this.add_hover();
                 }
             }
         }
-        push();
-        fill(this.color);
-        translate(this.x, this.y, this.z);
-        // 24 is recommended by the docs (number of polygons for 3D)
-        // sphere(this.radius, 10, 10);
-        //fill(250, 100, 100); // For effect
-        noStroke();
-        ambientMaterial(175);
-        scale(0.1*this.radius);
-        model(virus);
-        pop()
+        if(this.model){
+            push();
+            fill(this.color);
+            translate(this.x, this.y, this.z);
+            // 24 is recommended by the docs (number of polygons for 3D)
+            // sphere(this.radius, 10, 10);
+            //fill(250, 100, 100); // For effect
+            noStroke();
+            ambientMaterial(this.color);
+            scale(0.03*this.radius);
+            model(virus);
+            pop()
+        }else{
+            push();
+            translate(this.x, this.y, this.z);
+            // 24 is recommended by the docs (number of polygons for 3D)
+            fill(this.color);
+            sphere(this.radius, 10, 8);
+            pop()
+        }
     }
     change_pos(){
         this.x += this.speedx;
@@ -136,16 +165,20 @@ class Ball{
         this.change_pos();
     }
     is_pressed(X, Y){
+        var scale_factor = 0.4;
         this.position_on_screen();
-        if(abs(this.displayX-X)<0.4*this.radius && abs(this.displayY-Y)<0.4*this.radius){
-            // on-off switch:
-            this.pressed = !this.pressed;
-            sessionStorage.setItem(this.name, [this.pressed, this.type]);
+        if(this.model){
+            scale_factor = 1.2;
         }
+        if(abs(this.displayX-X)<scale_factor*this.radius && abs(this.displayY-Y)<scale_factor*this.radius){
+        // on-off switch:
+        this.pressed = !this.pressed;
+        sessionStorage.setItem(this.name, [this.pressed, this.type]);}
     }
 }
 class App{
-    constructor(n_targets, n_distractors, target_color, distractor_color, boxWidth, boxHeight, boxDepth){
+    constructor(n_targets, n_distractors, target_color, distractor_color, boxWidth, boxHeight, boxDepth, model){
+        this.model = model;
         this.boxDepth = boxDepth;
         this.boxWith = boxWidth;
         this.boxHeight = boxHeight;
@@ -157,13 +190,22 @@ class App{
         this.turn = false;
         this.hover = false;
         this.phase = 'init';
+        var radius_min;
+        var radius_max;
+        if(!this.model){
+            radius_min = 30;
+            radius_max = 60
+        }else{
+            radius_min = 30;
+            radius_max = 60;
+        }
         for(let step = 0; step < this.n_targets; step++){
-            this.targets.push(new Ball(target_color, 10, 10, 3, step, boxWidth, boxHeight, boxDepth,
-                'target'))
+            this.targets.push(new Ball(target_color, radius_min, radius_max, 3, step, boxWidth, boxHeight, boxDepth,
+                'target', this.model))
         }
         for(let step = 0; step < this.n_distractors; step++){
-            this.distractors.push(new Ball(distractor_color, 10, 10, 3, step+this.n_targets,
-                boxWidth, boxHeight, boxDepth, 'distractor'))
+            this.distractors.push(new Ball(distractor_color, radius_min, radius_max, 3, step+this.n_targets,
+                boxWidth, boxHeight, boxDepth, 'distractor', this.model))
         }
         this.all_objects = this.targets.concat(this.distractors);
     }
@@ -207,12 +249,10 @@ class App{
         });
     }
 }
-
 function preload() {
   // Load model with normalise parameter set to true
   virus = loadModel('/static/js/microbe.obj', true);
 }
-
 function setup(){
     window_depth = 600;
     window_height = 0.9*windowHeight;
@@ -226,7 +266,10 @@ function setup(){
     canvas.parent('app_holder');
     addScreenPositionFunction();
     cam = createCamera();
-    app = new App(4, 4, 'yellow', 'red', boxWidth, boxHeight, boxDepth);
+    //app = new App(4, 4, 'yellow', 'red',
+    //               boxWidth, boxHeight, boxDepth, undefined);
+    app = new App(4, 4, 'yellow', 'red',
+                   boxWidth, boxHeight, boxDepth, virus);
     app.change_to_same_color();
     // check whether the timer could be incorporate to app!
     timer(app, 2000, 2000, 5000);
@@ -245,7 +288,8 @@ function draw(){
     push();
     translate(0,0,-boxDepth/2);
     strokeWeight(4);
-    stroke(250, 0, 0);
+    stroke(250, 0, 0); // for covid style
+    //stroke(0,0,0); // for ball style
     box(window_width, window_height, boxDepth);
     pop();
     if(app.frozen && app.phase=='fixation'){app.change_to_initial_color();}

@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff728f1-de6e-4b6f-a0f1-6acb916659fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/templates/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,18 +103,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1420">
-              <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
+            <state relative-caret-position="-145">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="n#Ball#0" />
+                <element signature="n#!!block;n#constructor#0;n#Ball#0" />
+                <element signature="n#!!block;n#position_on_screen#0;n#Ball#0" />
+                <element signature="n#!!block;n#contact#0;n#Ball#0" />
+                <element signature="n#!!block;n#add_hover#0;n#Ball#0" />
+                <element signature="e#3165#3189#0" />
+                <element signature="n#!!block;n#display#0;n#Ball#0" />
+                <element signature="n#!!block;n#change_pos#0;n#Ball#0" />
+                <element signature="n#!!block;n#move#0;n#Ball#0" />
+                <element signature="n#!!block;n#is_pressed#0;n#Ball#0" />
+                <element signature="n#App#0" />
                 <element signature="n#!!block;n#move_balls#0;n#App#0" />
                 <element signature="n#!!block;n#details#0;n#App#0" />
                 <element signature="n#!!block;n#check_collisions#0;n#App#0" />
                 <element signature="n#!!block;n#check_mouse_pressed#0;n#App#0" />
+                <element signature="n#!!block;n#preload#0" />
                 <element signature="n#!!block;n#mousePressed#0" />
                 <element signature="n#!!block;n#timer#0" />
                 <element signature="n#!!block;n#spatial_rotation#0" />
                 <element signature="n#!!block;n#windowResized#0" />
+                <element signature="n#!!block;n#show_button#0" />
+                <element signature="n#!!block;n#test#0" />
               </folding>
             </state>
           </provider>
@@ -338,12 +347,12 @@
       <workItem from="1582278865354" duration="3526000" />
       <workItem from="1583404007844" duration="12609000" />
       <workItem from="1583751839765" duration="8575000" />
-      <workItem from="1583918607901" duration="37977000" />
+      <workItem from="1583918607901" duration="42358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96897000" />
+    <option name="totallyTimeSpent" value="101278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -548,18 +557,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1420">
-          <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
+        <state relative-caret-position="-145">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="n#Ball#0" />
+            <element signature="n#!!block;n#constructor#0;n#Ball#0" />
+            <element signature="n#!!block;n#position_on_screen#0;n#Ball#0" />
+            <element signature="n#!!block;n#contact#0;n#Ball#0" />
+            <element signature="n#!!block;n#add_hover#0;n#Ball#0" />
+            <element signature="e#3165#3189#0" />
+            <element signature="n#!!block;n#display#0;n#Ball#0" />
+            <element signature="n#!!block;n#change_pos#0;n#Ball#0" />
+            <element signature="n#!!block;n#move#0;n#Ball#0" />
+            <element signature="n#!!block;n#is_pressed#0;n#Ball#0" />
+            <element signature="n#App#0" />
             <element signature="n#!!block;n#move_balls#0;n#App#0" />
             <element signature="n#!!block;n#details#0;n#App#0" />
             <element signature="n#!!block;n#check_collisions#0;n#App#0" />
             <element signature="n#!!block;n#check_mouse_pressed#0;n#App#0" />
+            <element signature="n#!!block;n#preload#0" />
             <element signature="n#!!block;n#mousePressed#0" />
             <element signature="n#!!block;n#timer#0" />
             <element signature="n#!!block;n#spatial_rotation#0" />
             <element signature="n#!!block;n#windowResized#0" />
+            <element signature="n#!!block;n#show_button#0" />
+            <element signature="n#!!block;n#test#0" />
           </folding>
         </state>
       </provider>
