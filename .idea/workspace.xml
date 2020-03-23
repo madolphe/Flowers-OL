@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff728f1-de6e-4b6f-a0f1-6acb916659fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="270">
               <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#38#74#0" expanded="true" />
@@ -61,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -78,25 +74,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="92" column="14" lean-forward="true" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+            <state relative-caret-position="754">
+              <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="n#!!block;n#constructor#0;n#App#0" />
+                <element signature="n#!!block;n#contact#0;n#Ball#0" />
                 <element signature="n#!!block;n#freeze_app#0;n#App#0" />
                 <element signature="n#!!block;n#move_balls#0;n#App#0" />
                 <element signature="n#!!block;n#details#0;n#App#0" />
-                <element signature="n#!!block;n#change_to_same_color#0;n#App#0" />
-                <element signature="n#!!block;n#change_to_initial_color#0;n#App#0" />
-                <element signature="n#!!block;n#display_balls#0;n#App#0" />
-                <element signature="n#!!block;n#enable_hover#0;n#App#0" />
+                <element signature="n#!!block;n#check_collisions#0;n#App#0" />
                 <element signature="n#!!block;n#preload#0" />
                 <element signature="n#!!block;n#mousePressed#0" />
-                <element signature="n#!!block;n#timer#0" />
                 <element signature="n#!!block;n#windowResized#0" />
-                <element signature="n#!!block;n#show_answer_button#0" />
                 <element signature="n#!!block;n#test#0" />
-                <element signature="n#!!block;n#answer_button_clicked#0" />
               </folding>
             </state>
           </provider>
@@ -105,7 +95,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="45">
               <caret line="4" column="6" selection-start-line="4" selection-end-line="5" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -135,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
+            <state relative-caret-position="2595">
               <caret line="273" column="23" selection-end-line="360" selection-end-column="1" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -218,9 +208,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="834" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -363,18 +353,19 @@
       <workItem from="1582278865354" duration="3526000" />
       <workItem from="1583404007844" duration="12609000" />
       <workItem from="1583751839765" duration="8575000" />
-      <workItem from="1583918607901" duration="53479000" />
+      <workItem from="1583918607901" duration="57338000" />
+      <workItem from="1584973304167" duration="1778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112399000" />
+    <option name="totallyTimeSpent" value="118036000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24391988" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24749643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -390,7 +381,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.20722891" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.13979591" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.13979591" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -499,47 +490,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/JSON/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="6" selection-start-line="4" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/JSON/test.json" />
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="270">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#38#74#0" expanded="true" />
@@ -550,9 +505,54 @@
     <entry file="file://$PROJECT_DIR$/interface_experimentation/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="4" column="6" selection-start-line="4" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
+        <state relative-caret-position="2595">
           <caret line="273" column="23" selection-end-line="360" selection-end-column="1" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -574,48 +574,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="92" column="14" lean-forward="true" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+        <state relative-caret-position="754">
+          <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#constructor#0;n#App#0" />
+            <element signature="n#!!block;n#contact#0;n#Ball#0" />
             <element signature="n#!!block;n#freeze_app#0;n#App#0" />
             <element signature="n#!!block;n#move_balls#0;n#App#0" />
             <element signature="n#!!block;n#details#0;n#App#0" />
-            <element signature="n#!!block;n#change_to_same_color#0;n#App#0" />
-            <element signature="n#!!block;n#change_to_initial_color#0;n#App#0" />
-            <element signature="n#!!block;n#display_balls#0;n#App#0" />
-            <element signature="n#!!block;n#enable_hover#0;n#App#0" />
+            <element signature="n#!!block;n#check_collisions#0;n#App#0" />
             <element signature="n#!!block;n#preload#0" />
             <element signature="n#!!block;n#mousePressed#0" />
-            <element signature="n#!!block;n#timer#0" />
             <element signature="n#!!block;n#windowResized#0" />
-            <element signature="n#!!block;n#show_answer_button#0" />
             <element signature="n#!!block;n#test#0" />
-            <element signature="n#!!block;n#answer_button_clicked#0" />
           </folding>
         </state>
       </provider>
