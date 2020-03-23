@@ -6,7 +6,8 @@ from datetime import datetime
 
 def home(request):
     """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
-    print(request)
+    print(request.POST)
+    print("return here")
     return render(request, 'home.html', locals())
 
 

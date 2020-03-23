@@ -296,16 +296,33 @@ function windowResized(){
 function show_answer_button(){
     document.getElementById("button_app").type = 'submit';
 }
-function test(){
-    let POST_request = '';
-    let tmp = document.getElementById("button_request").action;
-    document.getElementById("button_request").action = tmp + POST_request;
-}
 function answer_button_clicked(){
-    if(document.getElementById("button_app").value == 'Answer' ){
-        console.log("clicked");
-        app.phase = 'got_response';
-        app.frozen = true;
-        document.getElementById("button_app").value = 'Next episode';
+    if(document.getElementById("button_app").value == 'Next_episode' ){
+        let params = {test: 'aha'};
+        post('/', params, 'post')
+    }else{
+        if(document.getElementById("button_app").value == 'Answer' ){
+            console.log("clicked");
+            app.phase = 'got_response';
+            app.frozen = true;
+            document.getElementById("button_app").value = 'Next_episode';
+        }
     }
+}
+function post(path, params, method='post') {
+    // first create an hidden form:
+    let form = document.getElementById('request');
+    form.method = method;
+    form.action = path;
+    // Pass all parameters needed:
+    for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          const hiddenField = document.createElement('input');
+          hiddenField.type = 'hidden';
+          hiddenField.name = key;
+          hiddenField.value = params[key];
+          form.appendChild(hiddenField)}
+    }
+    document.body.appendChild(form);
+    form.submit();
 }
