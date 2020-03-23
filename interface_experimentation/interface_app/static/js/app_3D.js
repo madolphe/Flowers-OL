@@ -16,7 +16,7 @@ let hover_color;
 let app;
 let delta = 0; // camera angle for answering phase
 let back = false; // variable used by camera to get back to initial position
-
+let answer_phase = false;
 // clear session storage:
 sessionStorage.clear();
 
@@ -225,7 +225,7 @@ class App{
         this.all_objects.forEach(function (item){item.color = 'yellow'});
     }
     change_to_initial_color(){
-        this.targets.forEach(function(item){item.add_hover();item.color = 'red'});
+        this.targets.forEach(function(item){item.color = 'red'; item.add_hover();});
         this.distractors.forEach(function(item){item.color = 'yellow'});
     }
     display_balls(mouseX, mouseY){
@@ -292,7 +292,7 @@ function draw(){
     //stroke(0,0,0); // for ball style
     box(window_width, window_height, boxDepth);
     pop();
-    if(app.frozen && app.phase=='fixation'){app.change_to_initial_color();}
+    if(app.frozen && app.phase=='fixation'){app.change_to_initial_color()}
     app.check_collisions();
     app.display_balls(mouseX-(window_width/2), mouseY-(window_height/2));
     app.move_balls();
@@ -318,7 +318,7 @@ function timer(app, fixation_time, tracking_time, answer_time){
                 app.frozen = true;
                 app.turn = true;
                 app.enable_hover();
-                show_button();
+                show_answer_button();
                 },answer_time)
         }, tracking_time)
     }, fixation_time);
@@ -343,11 +343,19 @@ function spatial_rotation(app){
 function windowResized(){
       createCanvas(0.9*windowWidth, 0.9*windowHeight);
 }
-function show_button(){
+function show_answer_button(){
     document.getElementById("button_app").type = 'submit';
 }
 function test(){
     let POST_request = '';
     let tmp = document.getElementById("button_request").action;
     document.getElementById("button_request").action = tmp + POST_request;
+}
+function answer_button_clicked(){
+    if(document.getElementById("button_app").value == 'Answer' ){
+        console.log("clicked");
+        app.phase = 'fixation';
+        app.frozen = true;
+        document.getElementById("button_app").value = 'Next episode';
+    }
 }

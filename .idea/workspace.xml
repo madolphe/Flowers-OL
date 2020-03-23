@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff728f1-de6e-4b6f-a0f1-6acb916659fc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,17 +60,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="225">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="1" selection-start-line="11" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="225">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="92" column="14" lean-forward="true" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#!!block;n#constructor#0;n#App#0" />
+                <element signature="n#!!block;n#freeze_app#0;n#App#0" />
+                <element signature="n#!!block;n#move_balls#0;n#App#0" />
+                <element signature="n#!!block;n#details#0;n#App#0" />
+                <element signature="n#!!block;n#change_to_same_color#0;n#App#0" />
+                <element signature="n#!!block;n#change_to_initial_color#0;n#App#0" />
+                <element signature="n#!!block;n#display_balls#0;n#App#0" />
+                <element signature="n#!!block;n#enable_hover#0;n#App#0" />
+                <element signature="n#!!block;n#preload#0" />
+                <element signature="n#!!block;n#mousePressed#0" />
+                <element signature="n#!!block;n#timer#0" />
+                <element signature="n#!!block;n#windowResized#0" />
+                <element signature="n#!!block;n#show_answer_button#0" />
+                <element signature="n#!!block;n#test#0" />
+                <element signature="n#!!block;n#answer_button_clicked#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -100,25 +132,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-145">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="185">
+              <caret line="273" column="23" selection-end-line="360" selection-end-column="1" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="n#Ball#0" />
                 <element signature="n#!!block;n#constructor#0;n#Ball#0" />
                 <element signature="n#!!block;n#position_on_screen#0;n#Ball#0" />
                 <element signature="n#!!block;n#contact#0;n#Ball#0" />
                 <element signature="n#!!block;n#add_hover#0;n#Ball#0" />
-                <element signature="e#3165#3189#0" />
-                <element signature="n#!!block;n#display#0;n#Ball#0" />
-                <element signature="n#!!block;n#change_pos#0;n#Ball#0" />
-                <element signature="n#!!block;n#move#0;n#Ball#0" />
                 <element signature="n#!!block;n#is_pressed#0;n#Ball#0" />
-                <element signature="n#App#0" />
-                <element signature="n#!!block;n#move_balls#0;n#App#0" />
                 <element signature="n#!!block;n#details#0;n#App#0" />
                 <element signature="n#!!block;n#check_collisions#0;n#App#0" />
                 <element signature="n#!!block;n#check_mouse_pressed#0;n#App#0" />
@@ -127,18 +152,8 @@
                 <element signature="n#!!block;n#timer#0" />
                 <element signature="n#!!block;n#spatial_rotation#0" />
                 <element signature="n#!!block;n#windowResized#0" />
-                <element signature="n#!!block;n#show_button#0" />
                 <element signature="n#!!block;n#test#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -182,7 +197,6 @@
         <option value="$PROJECT_DIR$/interface_experimentation/static/js/test.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/task.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_other.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/init.js" />
@@ -196,14 +210,16 @@
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/JSON/test.json" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="1680" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="834" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
@@ -347,15 +363,15 @@
       <workItem from="1582278865354" duration="3526000" />
       <workItem from="1583404007844" duration="12609000" />
       <workItem from="1583751839765" duration="8575000" />
-      <workItem from="1583918607901" duration="42358000" />
+      <workItem from="1583918607901" duration="53479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101278000" />
+    <option name="totallyTimeSpent" value="112399000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24391988" />
@@ -504,20 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="1" selection-start-line="11" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -548,31 +550,17 @@
     <entry file="file://$PROJECT_DIR$/interface_experimentation/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="185">
+          <caret line="273" column="23" selection-end-line="360" selection-end-column="1" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="n#Ball#0" />
             <element signature="n#!!block;n#constructor#0;n#Ball#0" />
             <element signature="n#!!block;n#position_on_screen#0;n#Ball#0" />
             <element signature="n#!!block;n#contact#0;n#Ball#0" />
             <element signature="n#!!block;n#add_hover#0;n#Ball#0" />
-            <element signature="e#3165#3189#0" />
-            <element signature="n#!!block;n#display#0;n#Ball#0" />
-            <element signature="n#!!block;n#change_pos#0;n#Ball#0" />
-            <element signature="n#!!block;n#move#0;n#Ball#0" />
             <element signature="n#!!block;n#is_pressed#0;n#Ball#0" />
-            <element signature="n#App#0" />
-            <element signature="n#!!block;n#move_balls#0;n#App#0" />
             <element signature="n#!!block;n#details#0;n#App#0" />
             <element signature="n#!!block;n#check_collisions#0;n#App#0" />
             <element signature="n#!!block;n#check_mouse_pressed#0;n#App#0" />
@@ -581,8 +569,53 @@
             <element signature="n#!!block;n#timer#0" />
             <element signature="n#!!block;n#spatial_rotation#0" />
             <element signature="n#!!block;n#windowResized#0" />
-            <element signature="n#!!block;n#show_button#0" />
             <element signature="n#!!block;n#test#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="92" column="14" lean-forward="true" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!block;n#constructor#0;n#App#0" />
+            <element signature="n#!!block;n#freeze_app#0;n#App#0" />
+            <element signature="n#!!block;n#move_balls#0;n#App#0" />
+            <element signature="n#!!block;n#details#0;n#App#0" />
+            <element signature="n#!!block;n#change_to_same_color#0;n#App#0" />
+            <element signature="n#!!block;n#change_to_initial_color#0;n#App#0" />
+            <element signature="n#!!block;n#display_balls#0;n#App#0" />
+            <element signature="n#!!block;n#enable_hover#0;n#App#0" />
+            <element signature="n#!!block;n#preload#0" />
+            <element signature="n#!!block;n#mousePressed#0" />
+            <element signature="n#!!block;n#timer#0" />
+            <element signature="n#!!block;n#windowResized#0" />
+            <element signature="n#!!block;n#show_answer_button#0" />
+            <element signature="n#!!block;n#test#0" />
+            <element signature="n#!!block;n#answer_button_clicked#0" />
           </folding>
         </state>
       </provider>

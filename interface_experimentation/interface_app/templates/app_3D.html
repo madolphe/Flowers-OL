@@ -3,9 +3,9 @@
 {% block content%}
 <div id="app_holder" class="text-center app"><!-- app is going here--></div>
 <div class="text-center">
-    <form id="button_request" action="{% url "menu" %}">
-        <input class="btn btn-dark" id="button_app" type="hidden" value="Answer">
-    </form>
+    <!-- <form id="button_request" action="{% url "menu" %}"> -->
+        <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
+    <!-- </form> -->
 </div>
 {% endblock %}
 {% block js%}
