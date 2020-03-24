@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}TASK{% endblock %}
 {% block content%}
+{%load static%}
+<script src="{% static 'js/app_3D.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
+
 <div id="app_holder" class="text-center app"><!-- app is going here--></div>
 <div class="text-center">
     <!-- <form id="button_request" action="{% url "menu" %}"> -->
@@ -9,7 +14,3 @@
 </div>
 {% endblock %}
 {% block js%}
-{%load static%}
-<script src="{% static 'js/app_3D.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
