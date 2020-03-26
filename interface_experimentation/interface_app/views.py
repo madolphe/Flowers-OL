@@ -1,42 +1,64 @@
-from django.http import HttpResponse
+# @TODO: add logout button
+# @TODO: add sign_in directly on welcome page
+# @TODO: ajax n episodes
+# @TODO: test new design for frontend
+
 from django.shortcuts import render, redirect
-from .forms import UserForm, ParticipantProfileForm
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from .forms import UserForm, ParticipantProfileForm, SignInForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+
+
+def home(request):
+    """Render home page for all users"""
+    return render(request, 'home.html', locals())
 
 
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
     form_user = UserForm(request.POST or None)
     form_profile = ParticipantProfileForm(request.POST or None)
-    print('enter in sign_up')
     if form_user.is_valid() and form_profile.is_valid():
-        last_name = form_user.cleaned_data['last_name']
-        first_name = form_user.cleaned_data['first_name']
-        password = form_user.cleaned_data['password']
-        mail = form_user.cleaned_data['mail']
-        birth_date = form_profile.cleaned_data['birth_date']
-        # Add those information to user to create it:
-        user = User.objects.create_user(last_name=last_name,
-                                        first_name=first_name,
-                                        password=password,
-                                        email=mail,
-                                        )
+        # Get extra-info for user profile:
+        user = form_user.save(commit=False)
+        # Use set_password in order to hash password
+        user.set_password(form_user.cleaned_data['password'])
         user.save()
+        form_profile.save_profile(user)
         # Redirect to user homepage:
-        return redirect(home_user)
-    return render(request, 'sign_up.html', {'form_profile': form_profile, 'form_user': form_user})
+        login(request, user)
+        return redirect(reverse(home_user))
+    context = {'form_profile': form_profile, 'form_user': form_user}
+    return render(request, 'sign_up.html', context)
 
 
-def home(request):
-    """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
-    print(request.POST)
-    print("return here")
-    return render(request, 'home.html', locals())
+def sign_in(request):
+    # to delete when logout button will be add
+    if request.user.is_authenticated:
+        logout(request)
+    print(request.user.is_authenticated)
+    # First, init forms, if request is valid we check if the user exists
+    error = False
+    form_sign_in = SignInForm(request.POST or None)
+    if form_sign_in.is_valid():
+        username = form_sign_in.cleaned_data['username']
+        password = form_sign_in.cleaned_data['password']
+        user = authenticate(request, username=username, password=password)  # Check if datas are valid
+        if user:  # if user exists
+            login(request, user)  # connect user
+            return redirect(reverse(home_user))
+        else:  # sinon une erreur sera affichée
+            error = True
+    return render(request, 'sign_in.html', locals())
 
 
+@login_required
 def home_user(request):
-    return render(request, 'home.html', locals())
+    if request.user.is_authenticated:
+        print(request.user.get_username())
+        context = "Salut, {0} !".format(request.user.username)
+    return render(request, 'home_user.html', locals())
 
 
 def visual_2d_task(request):

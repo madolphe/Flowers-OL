@@ -9,11 +9,12 @@
 {% block nav%} {%endblock%}
 {% load crispy_forms_tags %}
 {% block content%}
-
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+{% endif %}
 <div class="row justify-content-center">
-        <form action="{% url "sign_up"%}" class="form" method="post">
-            {%crispy form_user%}
-            {%crispy form_profile%}
+        <form action="{% url "sign_in"%}" class="form" method="post">
+            {%crispy form_sign_in%}
         </form>
 </div>
 {% endblock %}

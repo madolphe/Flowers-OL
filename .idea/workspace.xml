@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff728f1-de6e-4b6f-a0f1-6acb916659fc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home_user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_in.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,61 +39,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#38#74#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/manage.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/wsgi.py">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="819">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
-                <element signature="e#241#250#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/urls.py">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_in.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="e#650#682#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="97" column="6" lean-forward="true" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -94,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="345">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -104,25 +94,51 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/apps.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_up.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home_user.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="6" selection-start-line="4" selection-end-line="5" />
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/tests.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -130,10 +146,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="Python Script" />
         <option value="HTML File" />
-        <option value="CSS File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -147,6 +163,7 @@
       <find>windowHeight</find>
       <find>windowDepth</find>
       <find>console.log</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -163,7 +180,6 @@
         <option value="$PROJECT_DIR$/interface_experimentation/static/js/test.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/task.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_other.html" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/init.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/lib/PixiTextInput.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/MOT.js" />
@@ -171,19 +187,26 @@
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/tools/keys.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/server.js" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D.js" />
-        <option value="$PROJECT_DIR$/interface_experimentation/templates/base.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/JSON/test.json" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/templates/base.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_signup.css" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/migrations/__init__.py" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_app/models.py" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/urls.py" />
         <option value="$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py" />
-        <option value="$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/home_user.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_up.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_in.html" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/forms.py" />
+        <option value="$PROJECT_DIR$/interface_experimentation/interface_app/views.py" />
       </list>
     </option>
   </component>
@@ -212,18 +235,20 @@
               <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
               <item name="Django-test" type="462c0819:PsiDirectoryNode" />
               <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
+              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
               <item name="Django-test" type="462c0819:PsiDirectoryNode" />
               <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
+              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Django-test" type="b2602c69:ProjectViewProjectNode" />
               <item name="Django-test" type="462c0819:PsiDirectoryNode" />
               <item name="interface_experimentation" type="462c0819:PsiDirectoryNode" />
+              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -306,17 +331,19 @@
       <workItem from="1583751839765" duration="8575000" />
       <workItem from="1583918607901" duration="57338000" />
       <workItem from="1584973304167" duration="9550000" />
+      <workItem from="1585004434400" duration="14654000" />
+      <workItem from="1585128542831" duration="13420000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125808000" />
+    <option name="totallyTimeSpent" value="153882000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21123321" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25335777" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -337,17 +364,13 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.027472528" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.031746034" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/date.html" />
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/addition.html" />
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_other.html" />
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/lib/charm.js" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/tools/parameters.js" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/lib/howler.js" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/MOT-js/lib/moments.js" />
@@ -392,13 +415,6 @@
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/asgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/JSON/test.json" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/test.js" />
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v0.js">
@@ -408,9 +424,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#241#250#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#650#682#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/css/style_signup.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/migrations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/Django-test-Ij8PDUKw/lib/python3.8/site-packages/django/db/models/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2595">
+        <state relative-caret-position="753">
           <caret line="273" column="23" selection-end-line="360" selection-end-column="1" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -432,24 +521,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/static/js/app_2D_v1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="263" column="13" lean-forward="true" selection-start-line="263" selection-start-column="13" selection-end-line="263" selection-end-column="13" />
+        <state relative-caret-position="648">
+          <caret line="324" column="5" lean-forward="true" selection-start-line="324" selection-start-column="5" selection-end-line="324" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="n#Ball#0" />
@@ -469,98 +544,89 @@
             <element signature="n#!!block;n#setup#0" />
             <element signature="n#!!block;n#mousePressed#0" />
             <element signature="n#!!block;n#windowResized#0" />
-            <element signature="n#!!block;n#post#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state>
+          <caret selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_2D.html">
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="450">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/home_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/app_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_in.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/templates/sign_up.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="6" selection-start-line="4" selection-end-line="5" />
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
-            <element signature="e#38#74#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#241#250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#650#682#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_experimentation/interface_experimentation/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="97" column="6" lean-forward="true" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
         </state>
       </provider>
     </entry>

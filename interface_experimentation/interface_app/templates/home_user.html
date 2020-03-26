@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
+    {{context}}
     <div class="row justify-content-center">
         <button>
-            <a href="{% url "sign_up" %}">Link to sign up</a>
+            <a href="{% url "app_2D" %}">Link to app 2D</a>
         </button>
     </div>
     <div class="row justify-content-center">
         <button>
-            <a href="{% url "sign_in" %}">Link to sign in</a>
+            <a href="{% url "app_3D" %}">Link to app 3D</a>
         </button>
     </div>
 </div>
