@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}TASK{% endblock %}
-
-{% block js%}
 {%load static%}
-<script src="{% static 'js/app_3D.js' %}"></script>
+{% block css %}
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 {% endblock %}
 
 {% block content%}
 <div id="app_holder" class="text-center app">
     <div class="text-center">
-        <!-- <form id="button_request" action="{% url "menu" %}"> -->
             <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
-        <!-- </form> -->
     </div>
 </div>
+{% endblock %}
+
+{% block js%}
+<script src="{% static 'js/app_3D.js' %}"></script>
 {% endblock %}

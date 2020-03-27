@@ -6,10 +6,18 @@
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 {% endblock %}
 {% block content%}
-<div id="app_holder" class="text-center app"><!-- app is going here--></div>
-<div class="text-center">
-    <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
-    <form id="request">{% csrf_token %}</form>
-</div>
+    <div class="row justify-content-center">
+            <div id="app_holder" class="text-center app"><!-- app is going here--></div>
+    </div>
+    <div class="row text-center">
+        <div class="button col-md-4 offset-md-4">
+            <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
+        </div>
+        <div class="col-md-4 offset-md-8" id="button_quit">
+            <input onclick="quit_game()" class="btn btn-dark" type="submit" value="Exit">
+        </div>
+        <form id="request">{% csrf_token %}</form>
+    </div>
+
 {% endblock %}
 

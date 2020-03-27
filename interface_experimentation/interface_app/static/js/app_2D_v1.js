@@ -293,14 +293,19 @@ function timer(app, fixation_time, tracking_time, answer_time){
 function windowResized(){
       createCanvas(0.9*windowWidth, 0.9*windowHeight);
 }
+
+
 function show_answer_button(){
     document.getElementById("button_app").type = 'submit';
+    document.getElementById("button_quit").classList.remove('offset-md-8');
 }
+
 function answer_button_clicked(){
     if(document.getElementById("button_app").value == 'Next_episode' ){
         let params = {test: 'aha'};
-        post('/', params, 'post')
-    }else{
+        post('home_user', params, 'post')
+    }
+    else{
         if(document.getElementById("button_app").value == 'Answer' ){
             console.log("clicked");
             app.phase = 'got_response';
@@ -309,7 +314,14 @@ function answer_button_clicked(){
         }
     }
 }
+function quit_game(){
+        // put here current results !
+        let params = {test: 'aha'};
+        post('home_user', params, 'post')
+}
+
 function post(path, params, method='post') {
+    // Function to ask for parameters of new episode
     // first create an hidden form:
     let form = document.getElementById('request');
     form.method = method;

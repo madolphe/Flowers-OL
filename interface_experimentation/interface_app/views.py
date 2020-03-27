@@ -10,11 +10,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 
-def home(request):
-    """Render home page for all users"""
-    return render(request, 'home.html', locals())
-
-
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
     form_user = UserForm(request.POST or None)
@@ -33,12 +28,9 @@ def sign_up(request):
     return render(request, 'sign_up.html', context)
 
 
-def sign_in(request):
-    # to delete when logout button will be add
-    if request.user.is_authenticated:
-        logout(request)
-    print(request.user.is_authenticated)
+def home(request):
     # First, init forms, if request is valid we check if the user exists
+    print(request)
     error = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
@@ -50,15 +42,21 @@ def sign_in(request):
             return redirect(reverse(home_user))
         else:  # sinon une erreur sera affichée
             error = True
-    return render(request, 'sign_in.html', locals())
+    return render(request, 'home.html', locals())
 
 
 @login_required
 def home_user(request):
     if request.user.is_authenticated:
-        print(request.user.get_username())
         context = "Salut, {0} !".format(request.user.username)
     return render(request, 'home_user.html', locals())
+
+
+@login_required
+def user_logout(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect(reverse(home))
 
 
 def visual_2d_task(request):
