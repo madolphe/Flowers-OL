@@ -15,9 +15,9 @@ class ParticipantProfile(models.Model):
 
 
 class Episode(models.Model):
-    date = models.DateTimeField(datetime.date.today)
+    date = models.DateTimeField(default=datetime.date.today)
     participant = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.IntegerField()
+    score = models.CharField(max_length=20, default='[x,x]')
     # avoid creating session model:
-    # id_session = models.IntegerField()
+    id_session = models.IntegerField(default=0)
 

@@ -251,7 +251,7 @@ class App{
 }
 function preload() {
   // Load model with normalise parameter set to true
-  virus = loadModel('/static/js/microbe.obj', true);
+  virus = loadModel('/static/js/app_3D/microbe.obj', true);
 }
 function setup(){
     window_depth = 600;

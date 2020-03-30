@@ -9,4 +9,5 @@ urlpatterns = [
     path('sign_up', views.sign_up, name='sign_up'),
     path('app_2D', views.visual_2d_task, name='app_2D'),
     path('app_3D', views.visual_3d_task, name='app_3D'),
+    path('next_episode', views.next_episode, name='next_episode')
 ]

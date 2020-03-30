@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %}TASK{% endblock %}
-{% block js%}
 {%load static%}
-<script src="{% static 'js/app_2D_v1.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 {% endblock %}
+
 {% block content%}
     <div class="row justify-content-center">
             <div id="app_holder" class="text-center app"><!-- app is going here--></div>
@@ -18,6 +18,11 @@
         </div>
         <form id="request">{% csrf_token %}</form>
     </div>
-
 {% endblock %}
 
+{% block js%}
+    <script src="{% static 'js/app_2D/ball_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/mot_balls_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/app_2D.js' %}"></script>
+    <script> parameter_dict = {{parameters}}</script>
+{% endblock %}
