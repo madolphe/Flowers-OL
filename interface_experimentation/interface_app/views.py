@@ -1,6 +1,8 @@
-# @TODO: add new episode linked to user + session
+# @TODO: print number of episode restant
+# @TODO: print score
 # @TODO: test new design for frontend
 # @TODO: refacto code --> mainly js + comments
+
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
 from django.contrib.auth.decorators import login_required
@@ -10,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
 from .models import Episode
+
 
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
@@ -66,8 +69,8 @@ def visual_2d_task(request):
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 4, 'n_distractors': 4, 'target_color': 'red', 'distractor_color': 'yellow',
-                  'radius_min': 90, 'radius_max': 120, 'speed_min': 4, 'speed_max': 6, 'episode_number': 0,
+    parameters = {'n_targets': 1, 'n_distractors': 4, 'target_color': 'red', 'distractor_color': 'yellow',
+                  'radius_min': 90, 'radius_max': 120, 'speed_min': 2, 'speed_max': 2, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:

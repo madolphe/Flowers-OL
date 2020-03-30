@@ -7,16 +7,14 @@ let app;
 let delta = 0; // camera angle for answering phase
 let back = false; // variable used by camera to get back to initial position
 let answer_phase = false;
-// "default parameter dict":
-//let parameter_dict = {n_targets:4, n_distractors:4,
-//    target_color: 'red', distractor_color:'yellow',
-//    radius_min:90, radius_max:120, speed_min:4, speed_max:6,
-//    episode_number:0, nb_retrieved: [0,0]
-//};
 let background_img;
 let shark_img;
+let fish_left_img;
+let fish_right_img;
+let img_width, img_height;
 let parameter_dict = {};
 let results = {};
+let numbers = [];
 // clear session storage:
 sessionStorage.clear();
 
@@ -24,12 +22,26 @@ sessionStorage.clear();
 function preload() {
   // Load model with normalise parameter set to true
     // background_img = loadImage('/static/images/starBackground.png');
-    background_img = loadImage('/static/images/maxresdefault.jpg');
-    shark_img = loadImage('/static/images/sha1.png')
+    // background_img = loadImage('/static/images/ggj/krakee.png');
+    //shark_img = loadImage('/static/images/ggj/shark1.png');
+    // fish_left_img = loadImage('/static/images/ggj/f1_left.png');
+    // fish_right_img = loadImage('/static/images/ggj/f1_right.png');
 }
 function setup(){
-    window_height = 0.9*windowHeight;
-    window_width = 0.9*windowWidth;
+    let i;
+    for(i = 1; i<9; i++){
+        path = '/static/images/kenney_fishPack/PNG/Retina/'+str(i)+'.png';
+        numbers.push(loadImage(path))
+    }
+    numbers.push(loadImage('/static/images/kenney_fishPack/PNG/Retina/double_point.png'));
+    background_img = loadImage('/static/images/ggj/krakee.png');
+    fish_left_img = loadImage('/static/images/ggj/f1_left.png');
+    fish_right_img = loadImage('/static/images/ggj/f1_right.png');
+    console.log(fish_right_img, fish_left_img);
+    img_width = fish_left_img.width;
+    img_height = fish_left_img.height;
+    window_height = 0.6*windowHeight;
+    window_width = 0.6*windowWidth;
     canvas = createCanvas(window_width, window_height);
     canvas.parent('app_holder');
     hover_color = color(255, 255, 255);
@@ -44,6 +56,15 @@ function draw(){
     app.display_balls(mouseX, mouseY);
     app.check_collisions();
     app.move_balls();
+    push();
+    scale(0.4);
+    image(numbers[parameter_dict['episode_number']], 0, 0);
+    pop();
+    push();
+    scale(0.4);
+    image(numbers[7], 110, 0);
+    image(numbers[8], 50, 0);
+    pop();
 }
 function mousePressed(event) {
    // First test if objects are in "clickable mode"
@@ -74,11 +95,13 @@ function windowResized(){
 
 // Additional functions to interract with user:
 function start_episode(){
+    update_episode_number();
     if(parameter_dict['episode_number']<8){
-        app = new App(parameter_dict['n_targets'], parameter_dict['n_distractors'],
+        app = new Space_App(parameter_dict['n_targets'], parameter_dict['n_distractors'],
                     parameter_dict['target_color'], parameter_dict['distractor_color'],
                     window_width, window_height, parameter_dict['radius_min'], parameter_dict['radius_max'],
-                    parameter_dict['speed_min'], parameter_dict['speed_max'], hover_color);
+                    parameter_dict['speed_min'], parameter_dict['speed_max'], hover_color, fish_left_img,
+                    fish_right_img, img_width, img_height);
         app.change_to_same_color();
         // check whether the timer could be incorporate to app!
         timer(app, 2000, 2000, 5000);
@@ -88,7 +111,7 @@ function start_episode(){
 }
 function show_answer_button(){
     document.getElementById("button_app").type = 'submit';
-    document.getElementById("button_quit").classList.remove('offset-md-8');
+    document.getElementById("button_quit").classList.remove('offset-md-4');
 }
 function answer_button_clicked(){
     if(document.getElementById("button_app").value == 'Next_episode' ){
@@ -145,4 +168,7 @@ function next_episode(){
         }
     });
     start_episode();
+}
+function update_episode_number(){
+    //document.getElementById("episode_number").innerHTML = parameter_dict['episode_number'];
 }
