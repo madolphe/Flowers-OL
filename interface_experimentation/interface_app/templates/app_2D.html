@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 {% block title %}TASK{% endblock %}
-{% block js%}
 {%load static%}
-<script src="{% static 'js/app_2D.js' %}"></script>
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
+
+{% block content%}
+    <div class="row justify-content-center">
+            <div id="app_holder" class="text-center app"><!-- app is going here--></div>
+    </div>
+    <div class="row text-center">
+        <div class="button col-md-4 offset-md-4">
+            <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
+        </div>
+        <div class="col-md-4 offset-md-8" id="button_quit">
+            <input onclick="quit_game()" class="btn btn-dark" type="hidden" value="Exit">
+        </div>
+        <form id="request">{% csrf_token %}</form>
+    </div>
+{% endblock %}
+
+{% block js%}
+    <!-- <script src="{% static 'js/app_2D/ball_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/mot_balls_script.js' %}"></script> -->
+    <script src="{% static 'js/app_2D/mot_fish_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/fish_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/app_fish_2D.js' %}"></script>
+    <script> parameter_dict = {{parameters}}</script>
 {% endblock %}

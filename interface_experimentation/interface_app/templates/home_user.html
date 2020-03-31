@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    {{context}}
+    <div class="row justify-content-center">
+        <button>
+            <a href="{% url "app_2D" %}">Link to app 2D</a>
+        </button>
+        <button>
+            <a href="{% url "app_3D" %}">Link to app 3D</a>
+        </button>
+        <button>
+            <a href="{% url "user_logout" %}">Logout</a>
+        </button>
+    </div>
+</div>
+{%endblock%}

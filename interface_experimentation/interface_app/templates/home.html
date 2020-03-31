@@ -1,10 +1,29 @@
 {% extends "base.html" %}
-{% block content %}
-<a href="{% url "app_2D" %}">
-Link to 2D visual task
-</a>
-<br>
-<a href="{% url "app_3D" %}">
-Link to 3D visual task
-</a>
-{%endblock%}
+{% block title %}{% endblock %}
+{% block js%}
+{% endblock %}
+{% block css %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
+{% endblock %}
+{% block nav%} {%endblock%}
+{% load crispy_forms_tags %}
+{% block content%}
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+{% endif %}
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+        <form action="{% url "home"%}" class="form" method="post">
+        {%crispy form_sign_in%}
+    </form>
+    </div>
+    <div class="row justify-content-center">
+        <button>
+            <a href="{% url "sign_up" %}">Link to sign up</a>
+        </button>
+    </div>
+</div>
+
+{% endblock %}
+
