@@ -15,6 +15,7 @@ let img_width, img_height;
 let parameter_dict = {};
 let results = {};
 let numbers = [];
+let exit;
 // clear session storage:
 sessionStorage.clear();
 
@@ -33,6 +34,7 @@ function setup(){
         path = '/static/images/kenney_fishPack/PNG/Retina/'+str(i)+'.png';
         numbers.push(loadImage(path))
     }
+    exit = loadImage('/static/images/kenney_fishPack/PNG/Retina/exit.png');
     numbers.push(loadImage('/static/images/kenney_fishPack/PNG/Retina/double_point.png'));
     background_img = loadImage('/static/images/ggj/krakee.png');
     fish_left_img = loadImage('/static/images/ggj/f1_left.png');
@@ -59,14 +61,19 @@ function draw(){
     push();
     scale(0.4);
     image(numbers[parameter_dict['episode_number']], 0, 0);
-    pop();
-    push();
-    scale(0.4);
     image(numbers[7], 110, 0);
     image(numbers[8], 50, 0);
     pop();
+    push();
+    imageMode(CENTER);
+    // scale(0.9);
+    image(exit, canvas.width-35, 35, exit.width*0.85, exit.height*0.85);
+    pop();
 }
 function mousePressed(event) {
+    if((mouseX > canvas.width-40)&&(mouseY<40)){quit_game()}
+    console.log(mouseX, mouseY);
+    console.log(canvas.width);
    // First test if objects are in "clickable mode"
    if (app.distractors[0].hover) {
        app.check_mouse_pressed(mouseX, mouseY);
