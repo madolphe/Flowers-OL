@@ -6,25 +6,20 @@
 {% endblock %}
 
 {% block content%}
-    <div class="row justify-content-center">
-            <div id="app_holder" class="text-center app"><!-- app is going here--></div>
-    </div>
-    <div class="row text-center">
-        <div class="button col-md-4 offset-md-4">
-            <input onclick="answer_button_clicked()" class="btn btn-dark" id="button_app" type="hidden" value="Answer">
-        </div>
-        <div class="col-md-4 offset-md-8" id="button_quit">
-            <input onclick="quit_game()" class="btn btn-dark" type="hidden" value="Exit">
-        </div>
-        <form id="request">{% csrf_token %}</form>
-    </div>
+    <div id="app_holder" class="app"><!-- app is going here--></div>
+    <form id="request">{% csrf_token %}</form>
 {% endblock %}
 
 {% block js%}
     <!-- <script src="{% static 'js/app_2D/ball_script.js' %}"></script>
     <script src="{% static 'js/app_2D/mot_balls_script.js' %}"></script> -->
-    <script src="{% static 'js/app_2D/mot_fish_script.js' %}"></script>
-    <script src="{% static 'js/app_2D/fish_script.js' %}"></script>
-    <script src="{% static 'js/app_2D/app_fish_2D.js' %}"></script>
+    <script src="{% static 'js/app_mot/params.js' %}"></script>
+    <script src="{% static 'js/app_mot/utils.js' %}"></script>
+    <script src="{% static 'js/app_mot/quit_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/play_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/launch_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/tracked_objects.js' %}"></script>
+    <script src="{% static 'js/app_mot/MOT.js' %}"></script>
+    <script src="{% static 'js/app_mot/app.js' %}"></script>
     <script> parameter_dict = {{parameters}}</script>
 {% endblock %}
