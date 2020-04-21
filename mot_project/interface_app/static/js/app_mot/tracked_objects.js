@@ -1,5 +1,3 @@
-// @ TODO : recode speed init!
-
 class Tracked_Object{
     constructor(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius){
         this.radius = radius; // in pixels
@@ -10,11 +8,6 @@ class Tracked_Object{
         this.speed = createVector(this.speedx, this.speedy);
         this.base_vect = createVector(1,0);
         this.angle_speed = this.base_vect.angleBetween(this.speed);
-        this.norm_speed = norm(this.speed);
-
-        //this.angle_speed = Math.sign(this.y>0) ?
-        //    Math.round((Math.acos(this.speedx/Math.sqrt(this.speedx**2+this.speedy**2)))) :
-        //    Math.PI*2 - Math.round((Math.acos(this.speedx/Math.sqrt(this.speedx**2+this.speedy**2))));
 
         // Boundaries:
         this.area_min = area_min; // in pixels
@@ -97,14 +90,10 @@ class Tracked_Object{
     }
 
     display(X, Y){
-        this.event_display(X, Y);
+        //this.event_display(X, Y);
         push();
         strokeWeight(2);
-        if(this.type=='target'){
-            stroke('green');
-        }else{
-            stroke('red')
-        }
+        stroke('white');
         noFill();
         // Poisition isn't translated to the center of the canvas, we do it when displaying:
         line(this.pos.x - this.radius/2 + windowWidth/2,
@@ -138,10 +127,9 @@ class Tracked_Object{
         text('ang speed:   '+(degrees(this.angle_speed).toFixed(2)).toString(),
             this.pos.x-22+windowWidth/2, this.pos.y-55+windowHeight/2);
 
-        text('R:   '+Math.round(this.r).toString(),
+        text('R:   '+Math.round(this.pos.mag()).toString(),
             this.pos.x-22+windowWidth/2, this.pos.y-45+windowHeight/2);
-
-        text('Theta:   '+(degrees(this.pos.heading()).toFixed(2)).toString(),
+        text('Theta:   '+((degrees(this.base_vect.angleBetween(this.pos))%360).toFixed(2)).toString(),
             this.pos.x-22+windowWidth/2, this.pos.y-35+windowHeight/2);
 
         text('Speedx:  '+this.speed.x.toFixed(2).toString(),
@@ -150,22 +138,13 @@ class Tracked_Object{
         text('Speedy:  '+this.speed.y.toFixed(2).toString(),
             this.pos.x-22+windowWidth/2, this.pos.y-15+windowHeight/2);
         pop();
-        push();
-        strokeWeight(5);
-        angleMode(DEGREES);
-        translate(this.pos.x+windowWidth/2, this.pos.y+windowHeight/2);
-        rotate(degrees(this.angle_speed));
-        // line(0, 0, 10*this.speedx, 10*this.speedy);
-        pop();
+        let disp_pos = this.pos.copy();
+        disp_pos.normalize();
+        // display
+        this.drawArrow(this.pos, disp_pos, 'red');
         // display theta direction:
-        push();
-        strokeWeight(5);
-        stroke('white');
-        translate(this.pos.x+windowWidth/2, this.pos.y+windowHeight/2);
-        angleMode(DEGREES);
-        rotate(degrees(this.theta));
-        // line(0, 0, 40, 0);
-        pop();
+        this.drawArrow(this.pos, this.speed, 'green');
+        // display trajectories:
         pop();
         if(this.impact.length>2){
             let i = 0;
@@ -173,8 +152,8 @@ class Tracked_Object{
                 fill('red');
                 ellipse(this.impact[i][0]+windowWidth/2, this.impact[i][1]+windowHeight/2, 10);
                 stroke('white');
-                //line(this.impact[i][0]+windowWidth/2, this.impact[i][1]+windowHeight/2,
-                //    this.impact[i+1][0]+windowWidth/2, this.impact[i+1][1]+windowHeight/2);
+                line(this.impact[i][0]+windowWidth/2, this.impact[i][1]+windowHeight/2,
+                    this.impact[i+1][0]+windowWidth/2, this.impact[i+1][1]+windowHeight/2);
                 i++;
                 }
             }
@@ -221,65 +200,30 @@ class Tracked_Object{
     }
 
     change_pos(){
-        // this.x = Math.round(this.x+this.speedx);
-        // this.y = Math.round(this.y+this.speedy);
-        // this.r = Math.sqrt(this.x**2 + this.y**2);
-        //this.pos.x = Math.round(this.pos.x+this.speed.x);
-        //this.pos.y = Math.round(this.pos.y+this.speed.y);
-        //this.pos.set(Math.round(this.pos.x+this.speed.x), Math.round(this.pos.y+this.speed.y));
+        this.angle_speed = this.base_vect.angleBetween(this.speed);
+        let deviation = randomGaussian(this.angle_speed, 0.15);
+        this.speed.rotate(this.angle_speed-deviation);
         this.pos.add(this.speed);
-        //this.theta = this.base_vect.angleBetween(this.pos);
-        this.theta = this.pos.heading();
-
-        //this.theta = ( Math.sign(this.y) > 0)?
-        //    Math.acos(this.x/this.r) :
-        //    Math.PI*2 - (Math.acos(this.x/this.r));
-
-        // this.norm_speed = Math.sqrt(this.speedx**2+this.speedy**2);
-        // this.norm_speed = norm(this.speed);
-
-        //this.angle_speed = (Math.sign(this.speedy) >0) ?
-        //     Math.acos(this.speedx/this.norm_speed) :
-        //     Math.PI*2 - Math.acos(this.speedx/this.norm_speed);
-        // this.angle_speed = angleBetween(this.base_vect, this.speed)
+        this.theta = this.base_vect.angleBetween(this.pos);
     }
 
     move(){
         // Function to change direction (constraints on motion)
-        // if(this.r + this.radius> this.area_max){
-        if(this.pos.mag() + this.radius> this.area_max){
-            // this.theta gives normal to impact location
-            // rotation of PI/2 gives the angle of reflection (of the circle's tangeante at this exact location)
-            // if angle_speed is substracted, it gives alpha : angle
-            // let alpha = this.theta + Math.PI / 2 - this.angle_speed;
-            // this.angle_speed = this.theta + Math.PI/2 + alpha
-            this.reflect_speed(true);
-        }
-        // else if (this.r - this.radius < this.area_min){
-        else if (this.pos.mag() - this.radius < this.area_min){
-            this.reflect_speed(false);
+        if(this.pos.mag() + this.radius/2> this.area_max || this.pos.mag() - this.radius/2 < this.area_min){
+            this.reflect_speed();
         }
         this.change_pos();
     }
 
-    reflect_speed(out){
-        this.impact.push([this.pos.x, this.pos.y]);
+    reflect_speed(){
+        // this.impact.push([this.pos.x, this.pos.y]);
         // get speed before reflection:
         this.norm_speed = this.speed.mag();
-        // to be changed:
-        //out ?
-        //    this.angle_speed = 2*(this.theta + Math.PI/2) - this.angle_speed :
-        //    this.angle_speed =  (2*(this.theta + Math.PI/2) - this.angle_speed);
-        // let normal = this.pos.copy();
         // Get the normal of reflect:
         let normal = this.pos.copy();
         normal.mult(-1);
         normal.normalize();
         this.speed.reflect(normal);
-        //this.speed.set(r);
-        //this.speed.x = this.norm_speed*Math.cos(this.angle_speed);
-        //this.speed.y = this.norm_speed*Math.sin(this.angle_speed);
-        // this.angle_speed = angleBetween(this.base_vect, this.speed)
     }
 
     is_pressed(X, Y){
@@ -288,8 +232,19 @@ class Tracked_Object{
         this.pressed = !this.pressed;
         }
     }
+    // draw an arrow for a vector at a given base position
+    drawArrow(base, vec, myColor){
+      push();
+      stroke(myColor);
+      strokeWeight(3);
+      fill(myColor);
+      translate(base.x+windowWidth/2, base.y+windowHeight/2);
+      line(0, 0, 20*vec.x, 20*vec.y);
+      rotate(this.base_vect.angleBetween(vec)%(Math.PI*2));
+      let arrowSize = 7;
+      translate(20*vec.mag(), 0);
+      triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+      pop();
+    }
 }
-p5.Vector.prototype.reflect = function reflect(surfaceNormal) {
-  surfaceNormal.normalize();
-  return this.sub(surfaceNormal.mult(2 * this.dot(surfaceNormal)));
-};
+

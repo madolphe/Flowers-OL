@@ -43,7 +43,7 @@ function display_fixation_cross(cross_length){
 function start_episode(){
     update_episode_number();
     if(parameter_dict['episode_number']<8){
-        app = new MOT(1,0, Math.round(ppd*9), Math.round(ppd*3), 70, 0.5, 0.5);
+        app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
         console.log('init app');
         //app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'],
         //            parameter_dict['target_color'], parameter_dict['distractor_color'],

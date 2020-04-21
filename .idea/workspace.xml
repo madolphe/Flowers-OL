@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae28545d-62cf-45ea-99d9-c126f7366014" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/images/bavelier_lab/arena.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/images/bavelier_lab/gaurd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/images/bavelier_lab/goblin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/mot_db" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,23 +60,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+            <state relative-caret-position="315">
+              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
               <folding>
                 <element signature="n#!!block;n#display_game_zone#0" />
                 <element signature="n#!!block;n#display_fixation_cross#0" />
-                <element signature="n#!!block;n#start_episode#0" />
                 <element signature="n#!!block;n#show_answer_button#0" />
                 <element signature="n#!!block;n#answer_button_clicked#0" />
                 <element signature="n#!!block;n#next_episode#0" />
@@ -126,15 +106,28 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="231" column="31" selection-start-line="231" selection-start-column="31" selection-end-line="231" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
               <folding>
+                <element signature="n#!!block;n#constructor#0;n#Tracked_Object#0" />
                 <element signature="n#!!block;n#initial_position#0;n#Tracked_Object#0" />
+                <element signature="n#!!block;n#update_next_boundaries#0;n#Tracked_Object#0" />
+                <element signature="n#!!block;n#check_initial_contact#0;n#Tracked_Object#0" />
+                <element signature="n#!!block;n#check_collision#0;n#Tracked_Object#0" />
                 <element signature="n#!!block;n#contact#0;n#Tracked_Object#0" />
                 <element signature="n#!!block;n#add_hover#0;n#Tracked_Object#0" />
-                <element signature="n#!!block;n#display#0;n#Tracked_Object#0" />
+                <element signature="n#!!block;n#display_speed#0;n#Tracked_Object#0" />
                 <element signature="n#!!block;n#event_display#0;n#Tracked_Object#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -179,15 +172,15 @@
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/engine.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" />
       </list>
     </option>
@@ -342,12 +335,12 @@
       <workItem from="1586165878679" duration="94000" />
       <workItem from="1586166261705" duration="344000" />
       <workItem from="1586264763673" duration="28489000" />
-      <workItem from="1586938466726" duration="23390000" />
+      <workItem from="1586938466726" duration="28724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52317000" />
+    <option name="totallyTimeSpent" value="57651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="989" extended-state="0" />
@@ -356,6 +349,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1971917" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection Results" weight="0.32998884" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32998884" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -445,13 +439,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_2D/app_fish_2D.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -494,22 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#display_game_zone#0" />
-            <element signature="n#!!block;n#display_fixation_cross#0" />
-            <element signature="n#!!block;n#start_episode#0" />
-            <element signature="n#!!block;n#show_answer_button#0" />
-            <element signature="n#!!block;n#answer_button_clicked#0" />
-            <element signature="n#!!block;n#next_episode#0" />
-            <element signature="n#!!block;n#update_episode_number#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -540,15 +511,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+          <folding>
+            <element signature="n#!!block;n#display_game_zone#0" />
+            <element signature="n#!!block;n#display_fixation_cross#0" />
+            <element signature="n#!!block;n#show_answer_button#0" />
+            <element signature="n#!!block;n#answer_button_clicked#0" />
+            <element signature="n#!!block;n#next_episode#0" />
+            <element signature="n#!!block;n#update_episode_number#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="231" column="31" selection-start-line="231" selection-start-column="31" selection-end-line="231" selection-end-column="31" />
+        <state relative-caret-position="270">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
           <folding>
+            <element signature="n#!!block;n#constructor#0;n#Tracked_Object#0" />
             <element signature="n#!!block;n#initial_position#0;n#Tracked_Object#0" />
+            <element signature="n#!!block;n#update_next_boundaries#0;n#Tracked_Object#0" />
+            <element signature="n#!!block;n#check_initial_contact#0;n#Tracked_Object#0" />
+            <element signature="n#!!block;n#check_collision#0;n#Tracked_Object#0" />
             <element signature="n#!!block;n#contact#0;n#Tracked_Object#0" />
             <element signature="n#!!block;n#add_hover#0;n#Tracked_Object#0" />
-            <element signature="n#!!block;n#display#0;n#Tracked_Object#0" />
+            <element signature="n#!!block;n#display_speed#0;n#Tracked_Object#0" />
             <element signature="n#!!block;n#event_display#0;n#Tracked_Object#0" />
           </folding>
         </state>

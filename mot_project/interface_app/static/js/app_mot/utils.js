@@ -35,3 +35,8 @@ function post(path, params, method='post') {
     document.body.appendChild(form);
     form.submit();
 }
+p5.Vector.prototype.reflect = function reflect(surfaceNormal) {
+  surfaceNormal.normalize();
+  return this.sub(surfaceNormal.mult(2 * this.dot(surfaceNormal)));
+};
+
