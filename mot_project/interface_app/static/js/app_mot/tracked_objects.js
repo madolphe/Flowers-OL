@@ -26,7 +26,6 @@ class Tracked_Object{
         this.type = type;
         this.pos_next = createVector(0,0);
         this.impact = [[this.x, this.y]];
-        sessionStorage.setItem(this.name, 0);
         // All objects (target or distractors) are init in white
         this.color = 'white';
     }

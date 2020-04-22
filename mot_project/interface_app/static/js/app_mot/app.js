@@ -7,6 +7,8 @@
 // p5.js functions to display the game:
 function preload() {
     arena_background = loadImage('/static/images/bavelier_lab/arena.png');
+    guard_image = loadImage('/static/images/bavelier_lab/guard.png');
+    goblin_image = loadImage('/static/images/bavelier_lab/goblin.png');
 }
 function setup(){
     mode = 'start';
@@ -29,7 +31,7 @@ function draw(){
     if(mode=='start'){
         start_mode();
     }else if (mode =='play') {
-        play(true);
+        play(false);
     }
     pop();
 }

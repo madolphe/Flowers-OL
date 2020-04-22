@@ -41,13 +41,19 @@ function display_fixation_cross(cross_length){
 }
 
 function start_episode(){
-    update_episode_number();
     if(parameter_dict['episode_number']<8){
         //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
         console.log('init app');
-        app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
-                      Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
-                      parameter_dict['speed_max']);
+        if(parameter_dict['debug']==1){
+             app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
+                  Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
+                  parameter_dict['speed_max']);
+        }else{
+             app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
+                  Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
+                  parameter_dict['speed_max'], goblin_image, guard_image);
+        }
+        app.change_target_color();
         // timer(app, 2000, 2000, 10000);
         timer(app, parameter_dict['presentation_time'],
             parameter_dict['fixation_time'],
@@ -63,7 +69,6 @@ function timer(app, presentation_time, fixation_time, tracking_time){
         // app.phase changes to fixation
         app.phase = 'fixation';
         app.frozen = true;
-        app.change_target_color();
         // and stay in this frozen mode for fixation_time ms
         setTimeout(function(){
             // after fixation_time ms
@@ -91,10 +96,14 @@ function show_answer_button(){
 }
 
 function answer_button_clicked(){
+    button_answer.hide();
+    let res = app.get_results();
+    parameter_dict['nb_target_retrieved'] = res[0];
+    parameter_dict['nb_distract_retrieved'] = res[1];
     app.phase = 'got_response';
     app.change_to_same_color();
     app.change_target_color();
-    app.all_objects.forEach(function(item){item.interact_phase = false;})
+    app.all_objects.forEach(function(item){item.interact_phase = false;});
     button_next_episode = createButton('NEXT EPISODE');
     button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_next_episode.size(120,60);
@@ -103,6 +112,7 @@ function answer_button_clicked(){
 
 function next_episode(){
     //console.log(parameter_dict);
+    button_next_episode.hide();
     $.ajax({
     async: false,
     type: "POST",

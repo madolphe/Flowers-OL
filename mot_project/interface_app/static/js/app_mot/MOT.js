@@ -13,6 +13,11 @@ class MOT{
         this.speed_min = speed_min;
         this.speed_max = speed_max;
         this.radius = radius;
+        this.init_lists();
+        this.all_objects = this.targets.concat(this.distractors);
+    }
+    init_lists(){
+        // to be overwritten if non primitive objects are used
         for(let step = 0; step < this.n_targets; step++){
             this.targets.push(new Tracked_Object(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
                 'target', this.targets, this.radius))
@@ -21,8 +26,8 @@ class MOT{
             this.distractors.push(new Tracked_Object(this.speed_min, this.speed_max,step+this.n_targets,
                 this.area_min, this.area_max, 'distractor', this.targets.concat(this.distractors), this.radius));
         }
-        this.all_objects = this.targets.concat(this.distractors);
     }
+
     freeze_app(){
         this.frozen = !this.frozen;
     }
