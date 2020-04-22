@@ -36,22 +36,21 @@ class MOT{
         console.log(this.frozen)
     }
     change_to_same_color(){
-        this.all_objects.forEach(function (item){item.color = 'yellow'});
+        this.all_objects.forEach(function (item){item.color = 'white'});
     }
-    change_to_initial_color(){
-        if(this.phase=='got_response'){this.unselect_objects()} //all objects are getting unselected}
+    change_target_color(){
+        // if(this.phase=='got_response'){this.unselect_objects()} //all objects are getting unselected}
         this.targets.forEach(function(item){
-            //item.color = 'green';
-            item.add_hover();
+            item.color = 'green';
         });
-        this.distractors.forEach(function(item){item.color = 'yellow'});
+        // this.distractors.forEach(function(item){item.color = 'yellow'});
     }
     display_objects(mouseX, mouseY){
         // function used to display all balls
         this.all_objects.forEach(function (item){item.display(mouseX, mouseY)});
     }
-    enable_hover(){
-        this.all_objects.forEach(function (item){item.hover = true});
+    enable_interact(){
+        this.all_objects.forEach(function (item){item.interact_phase = true});
     }
     check_collisions(){
         for(let i =0; i< this.all_objects.length; i++){
@@ -63,7 +62,8 @@ class MOT{
         }
     }
     check_mouse_pressed(mouseX, mouseY){
-        if(app.phase != 'got_response'){this.all_objects.forEach(function (item){item.is_pressed(mouseX, mouseY)})}
+        //if(app.phase != 'got_response'){this.all_objects.forEach(function (item){item.is_pressed(mouseX, mouseY)})}
+        this.all_objects.forEach(function (item){item.is_pressed(mouseX, mouseY)})
     }
     unselect_objects(){
         // this.all_objects.forEach(function (item){item.pressed = false});

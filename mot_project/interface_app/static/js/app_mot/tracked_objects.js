@@ -17,13 +17,18 @@ class Tracked_Object{
         this.initial_position(forbidden_loc);
 
         this.name = name;
-        this.hover = false;
+        // bool to check if user can start interracting with object:
+        this.interact_phase = false;
+        // bool to save if an object has been selected:
         this.pressed = false;
+
         this.answer = false;
         this.type = type;
         this.pos_next = createVector(0,0);
         this.impact = [[this.x, this.y]];
         sessionStorage.setItem(this.name, 0);
+        // All objects (target or distractors) are init in white
+        this.color = 'white';
     }
 
     initial_position(forbidden_loc){
@@ -90,10 +95,10 @@ class Tracked_Object{
     }
 
     display(X, Y){
-        //this.event_display(X, Y);
+        this.event_display(X, Y);
         push();
         strokeWeight(2);
-        stroke('white');
+        stroke(this.color);
         noFill();
         // Poisition isn't translated to the center of the canvas, we do it when displaying:
         line(this.pos.x - this.radius/2 + windowWidth/2,
@@ -106,24 +111,25 @@ class Tracked_Object{
             this.pos.y + this.radius/2 + windowHeight/2);
         ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, this.radius);
         pop();
-        push();
-        fill('white');
-        rectMode(CENTER);
-        textSize(12);
-        text(this.name, this.pos.x+ 12+windowWidth/2, this.pos.y+12+windowHeight/2);
-        pop();
-        this.display_speed();
+        //this.display_speed();
     }
 
     display_speed(){
         // theta between 0 and 2PI
+        // this.event_display(X, Y);
         push();
-        stroke('white');
+        fill(this.color);
+        rectMode(CENTER);
+        textSize(12);
+        text(this.name, this.pos.x+ 12+windowWidth/2, this.pos.y+12+windowHeight/2);
+        pop();
+        push();
+        stroke(this.color);
         strokeWeight(3);
         pop();
         push();
         textSize(11);
-        fill('white');
+        fill(this.color);
         text('ang speed:   '+(degrees(this.angle_speed).toFixed(2)).toString(),
             this.pos.x-22+windowWidth/2, this.pos.y-55+windowHeight/2);
 
@@ -161,40 +167,14 @@ class Tracked_Object{
     }
 
     event_display(X, Y){
-        if(this.hover){
+        if(this.interact_phase){
             if(this.pressed){
-                if(!this.answer){
-                    // Not the time to reveal yet:
-                    // this.color = 'green';
-                    this.add_hover();
-                }else{
-                    // Time to show answer!
-                    if(this.type == 'target'){
-                        // user has clicked, well done
-                        this.add_hover();
-                    }else{
-                        // user should have clicked but missed
-                        // this.add_hover();
-                    }
-                }
+                this.color = 'green';
             }
             else{
-                if(!this.answer){
-                    // If this is not reveal time:
-                    this.color = 'white';
-                    if(abs(this.x-X)<this.image_width && abs(this.y-Y)<this.image_height) {
-                        this.add_hover();
-                    }
-                }else{
-                    // Time to show answer:
-                    if(this.type=='target'){
-                        // user should have clicked on this one but missed it:
-                        this.color = 'white';
-                        //this.add_hover();
-                    }else{
-                        this.color = 'white';
-                    }
-                }
+                this.color ='white';
+                if(abs((this.pos.x+windowWidth/2)-X)<this.radius/2 && abs((this.pos.y+windowHeight/2)-Y)<this.radius/2){
+                this.color = 'green'}
             }
         }
     }
@@ -227,11 +207,13 @@ class Tracked_Object{
     }
 
     is_pressed(X, Y){
-        if(abs(this.pos.x-X)<this.radius && abs(this.pos.y-Y)<this.radius){
-        // on-off switch:
-        this.pressed = !this.pressed;
+        // function called each time user press
+        if(abs((this.pos.x+windowWidth/2)-X)<this.radius/2 && abs((this.pos.y+windowHeight/2)-Y)<this.radius/2){
+            // on-off switch:
+            this.pressed = !this.pressed;
         }
     }
+
     // draw an arrow for a vector at a given base position
     drawArrow(base, vec, myColor){
       push();

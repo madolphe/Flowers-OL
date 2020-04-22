@@ -82,7 +82,7 @@ DATABASES = {
   'default':{
 	'ENGINE': 'django.db.backends.sqlite3',
 	'NAME': 'mot_db',	
-   },
+   }
 }
 
 

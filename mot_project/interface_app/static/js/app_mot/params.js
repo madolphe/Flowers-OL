@@ -28,7 +28,7 @@ let results = {};
 let numbers = [];
 let exit;
 let mode;
-let arena_background, button_play, button_tuto, button_exit, button_pause;
+let arena_background, button_play, button_tuto, button_exit, button_pause, button_answer, button_next_episode;
 let screen_params = false;
 
 // clear session storage:

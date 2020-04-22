@@ -38,7 +38,9 @@ function mousePressed(event) {
     console.log(mouseX, mouseY);//console.log(canvas.width);
    // First test if objects are in "clickable mode"
    //if (app.distractors[0].hover) {
-   //    app.check_mouse_pressed(mouseX, mouseY);
+    if(app.phase=='answer'){
+        app.check_mouse_pressed(mouseX, mouseY);
+    }
    //}
 }
 function windowResized(){

@@ -43,63 +43,62 @@ function display_fixation_cross(cross_length){
 function start_episode(){
     update_episode_number();
     if(parameter_dict['episode_number']<8){
-        app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
+        //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
         console.log('init app');
-        //app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'],
-        //            parameter_dict['target_color'], parameter_dict['distractor_color'],
-        //            500, 0, parameter_dict['radius_min'], parameter_dict['radius_max'],
-        //            parameter_dict['speed_min'], parameter_dict['speed_max'], hover_color, fish_left_img,
-        //            fish_right_img, img_width, img_height);
-        console.log(app);
-        // app.change_to_same_color();
-        // check whether the timer could be incorporate to app!
-        timer(app, 2000, 2000, 1000000);
+        app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
+                      Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
+                      parameter_dict['speed_max']);
+        // timer(app, 2000, 2000, 10000);
+        timer(app, parameter_dict['presentation_time'],
+            parameter_dict['fixation_time'],
+            parameter_dict['tracking_time']);
     }else{
         quit_game();
     }
 }
 
-function timer(app, fixation_time, tracking_time, answer_time){
+function timer(app, presentation_time, fixation_time, tracking_time){
     setTimeout(function () {
+        // after presention_time ms
+        // app.phase changes to fixation
         app.phase = 'fixation';
         app.frozen = true;
+        app.change_target_color();
+        // and stay in this frozen mode for fixation_time ms
         setTimeout(function(){
+            // after fixation_time ms
+            // app.phase change to tracking mode
             app.phase = 'tracking';
             app.frozen = false;
             app.change_to_same_color();
+            // and stay in this mode for tracking_time ms
             setTimeout(function(){
+                // after tracking_time ms, app changes to answer phase
                 app.phase = 'answer';
                 app.frozen = true;
-                app.enable_hover();
-                show_answer_button();
-                },answer_time)
-        }, tracking_time)
-    }, fixation_time);
+                app.enable_interact();
+                show_answer_button(); },
+                tracking_time)},
+            fixation_time)
+    }, presentation_time);
 }
 
 function show_answer_button(){
-    document.getElementById("button_app").type = 'submit';
-    document.getElementById("button_quit").classList.remove('offset-md-4');
+    button_answer = createButton('ANSWER');
+    button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
+    button_answer.size(120,60);
+    button_answer.mousePressed(answer_button_clicked);
 }
 
 function answer_button_clicked(){
-    if(document.getElementById("button_app").value == 'Next_episode' ){
-        document.getElementById("button_app").type = 'hidden';
-        document.getElementById("button_app").value = 'Answer';
-        document.getElementById("button_quit").classList.add('offset-md-8');
-        next_episode();
-    }
-    else{
-        results = app.get_results();
-        parameter_dict['nb_target_retrieved'] = results[0];
-        parameter_dict['nb_distract_retrieved'] = results[1];
-        if(document.getElementById("button_app").value == 'Answer' ){
-            console.log("clicked");
-            app.phase = 'got_response';
-            app.frozen = true;
-            document.getElementById("button_app").value = 'Next_episode';
-        }
-    }
+    app.phase = 'got_response';
+    app.change_to_same_color();
+    app.change_target_color();
+    app.all_objects.forEach(function(item){item.interact_phase = false;})
+    button_next_episode = createButton('NEXT EPISODE');
+    button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
+    button_next_episode.size(120,60);
+    button_next_episode.mousePressed(next_episode);
 }
 
 function next_episode(){
@@ -116,10 +115,6 @@ function next_episode(){
         }
     });
     start_episode();
-}
-
-function update_episode_number(){
-    //document.getElementById("episode_number").innerHTML = parameter_dict['episode_number'];
 }
 
 
