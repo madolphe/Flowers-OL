@@ -55,8 +55,8 @@ function start_episode(){
                   parameter_dict['speed_max'], goblin_image, guard_image);
         }
         if(parameter_dict['secondary_task']!='none'){
-            sec_task = new Secondary_Task(leaf_image, 'detection', 1000, 2000, parameter_dict['tracking_time'],
-                0, app.all_objects)
+            sec_task = new Secondary_Task(leaf_image, 'detection', 500, 4000, parameter_dict['tracking_time'],
+                60, app.all_objects)
         }
         app.change_target_color();
         // timer(app, 2000, 2000, 10000);
