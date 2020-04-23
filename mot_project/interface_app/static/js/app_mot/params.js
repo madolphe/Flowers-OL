@@ -29,7 +29,8 @@ let numbers = [];
 let exit;
 let mode;
 let arena_background, button_play, button_tuto, button_exit, button_pause,
-    button_answer, button_next_episode, guard_image, goblin_image;
+    button_answer, button_next_episode, guard_image, goblin_image, leaf_image,
+    sec_task;
 let screen_params = false;
 
 // clear session storage:

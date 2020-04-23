@@ -10,6 +10,7 @@ function play(disp_zone){
     app.display_objects(mouseX, mouseY);
     app.check_collisions();
     app.move_objects();
+    sec_task.display_task();
 }
 
 function display_game_zone(){
@@ -53,6 +54,10 @@ function start_episode(){
                   Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
                   parameter_dict['speed_max'], goblin_image, guard_image);
         }
+        if(parameter_dict['secondary_task']!='none'){
+            sec_task = new Secondary_Task(leaf_image, 'detection', 1000, 2000, parameter_dict['tracking_time'],
+                0, app.all_objects)
+        }
         app.change_target_color();
         // timer(app, 2000, 2000, 10000);
         timer(app, parameter_dict['presentation_time'],
@@ -73,6 +78,7 @@ function timer(app, presentation_time, fixation_time, tracking_time){
         setTimeout(function(){
             // after fixation_time ms
             // app.phase change to tracking mode
+            sec_task.timer_pause();
             app.phase = 'tracking';
             app.frozen = false;
             app.change_to_same_color();

@@ -9,6 +9,7 @@ function preload() {
     arena_background = loadImage('/static/images/bavelier_lab/arena.png');
     guard_image = loadImage('/static/images/bavelier_lab/guard.png');
     goblin_image = loadImage('/static/images/bavelier_lab/goblin.png');
+    leaf_image = loadImage('/static/images/bavelier_lab/leaf.png');
 }
 function setup(){
     mode = 'start';
