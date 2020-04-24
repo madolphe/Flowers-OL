@@ -56,7 +56,7 @@ function start_episode(){
         }
         if(parameter_dict['secondary_task']!='none'){
             sec_task = new Secondary_Task(leaf_image, 'detection', 500, 4000, parameter_dict['tracking_time'],
-                60, app.all_objects)
+                70, app.all_objects)
         }
         app.change_target_color();
         // timer(app, 2000, 2000, 10000);

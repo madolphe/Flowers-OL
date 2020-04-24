@@ -1,5 +1,4 @@
 // @TODO : get keyboard press for detection
-// @TODO : display proper delta orientation --> get size of each line
 
 class Secondary_Task{
     constructor(image, type, SRI_max, RSI, tracking_time, delta_orientation, other_objects){
@@ -18,6 +17,7 @@ class Secondary_Task{
         // mode
         this.display = false;
         this.other_objects = other_objects;
+        this.in_img_scaling = 0.1;
     }
     find_position(){
         do {
@@ -26,7 +26,6 @@ class Secondary_Task{
             this.theta = random(0,2*Math.PI);
             this.x = Math.round(this.r*Math.cos(this.theta));
             this.y = Math.round(this.r*Math.sin(this.theta));
-            console.log(this.r,this.theta, this.x, this.y)
         } while(!this.is_free_position())
     }
     is_free_position(){
@@ -43,7 +42,7 @@ class Secondary_Task{
             push();
             imageMode(CENTER);
             translate(this.x + windowWidth/2, this.y + windowHeight/2);
-            scale(0.1);
+            scale(0.15);
             image(this.image, 0, 0);
             pop();
 
@@ -51,25 +50,39 @@ class Secondary_Task{
             stroke('gold');
             strokeWeight(30);
             translate(this.x+ windowWidth/2,  this.y + windowHeight/2);
-            scale(0.07);
+            scale(this.in_img_scaling);
             line(0,- this.image.height/2, 0, this.image.height/2);
             pop();
-            for(let i= 0; i<5; i++){
+            // space btween branch is set to 1/6 of the image
+            let space = this.in_img_scaling*this.image.height/6;
+            let hypo = (this.in_img_scaling*this.image.width/4)*(1/Math.cos(radians(this.delta_orientation)));
+            let opp = hypo*(Math.sin(radians(this.delta_orientation)));
+            for(let i=0; i<5; i++){
+                if((2-i)*space - opp < -this.in_img_scaling*this.image.height/2){
+                    console.log("line to long", i, (2-i)*space - opp + this.in_img_scaling*this.image.height/2);
+                    opp = -( -this.in_img_scaling*this.image.height/2 - (2-i)*space );
+                    hypo = opp/(Math.sin(radians(this.delta_orientation)));
+                }else{
+                    hypo = (this.in_img_scaling*this.image.width/4)*(1/Math.cos(radians(this.delta_orientation)));
+                    opp = hypo*(Math.sin(radians(this.delta_orientation)));
+                }
                 push();
                 stroke('gold');
-                strokeWeight(30);
-                translate(this.x+ windowWidth/2,  this.y + windowHeight/2 - i*8);
+                strokeWeight(2);
+                translate(this.x+ windowWidth/2,  this.y + windowHeight/2 + (2-i)*space);
                 rotate(-radians(this.delta_orientation));
-                scale(0.07);
-                line(0, 0, this.image.width/2, 0);
+                // scale(0.07);
+                line(0, 0, hypo, 0);
                 pop();
+
+
                 push();
                 stroke('gold');
-                strokeWeight(30);
-                translate(this.x+ windowWidth/2,  this.y + windowHeight/2 - i*8);
+                strokeWeight(2);
+                translate(this.x+ windowWidth/2,  this.y + windowHeight/2 + (2-i)*space);
                 rotate(radians(this.delta_orientation));
-                scale(0.07);
-                line(-this.image.width/2, 0, 0, 0);
+                // scale(0.07);
+                line(-hypo, 0, 0, 0);
                 pop();
             }
         }
