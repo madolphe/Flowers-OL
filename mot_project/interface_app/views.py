@@ -90,7 +90,7 @@ def MOT_task(request):
     parameters = {'n_targets': 3, 'n_distractors': 3, 'angle_max': 9, 'angle_min': 3,
                   'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
-                  'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 8000,
+                  'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 12000,
                   'debug': 0, 'secondary_task': 'detection'}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:

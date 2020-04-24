@@ -18,6 +18,7 @@ class Secondary_Task{
         this.display = false;
         this.other_objects = other_objects;
         this.in_img_scaling = 0.1;
+        this.results = []
     }
     find_position(){
         do {
@@ -59,7 +60,6 @@ class Secondary_Task{
             let opp = hypo*(Math.sin(radians(this.delta_orientation)));
             for(let i=0; i<5; i++){
                 if((2-i)*space - opp < -this.in_img_scaling*this.image.height/2){
-                    console.log("line to long", i, (2-i)*space - opp + this.in_img_scaling*this.image.height/2);
                     opp = -( -this.in_img_scaling*this.image.height/2 - (2-i)*space );
                     hypo = opp/(Math.sin(radians(this.delta_orientation)));
                 }else{
@@ -75,7 +75,6 @@ class Secondary_Task{
                 line(0, 0, hypo, 0);
                 pop();
 
-
                 push();
                 stroke('gold');
                 strokeWeight(2);
@@ -88,12 +87,20 @@ class Secondary_Task{
         }
     }
     timer_display(){
-        setTimeout(this.restart.bind(this), this.RSI)
+        this.time_start_display = Date.now();
+        this.timer_disp_id = setTimeout(this.restart.bind(this), this.RSI);
     }
     timer_pause(){
-        setTimeout(this.start_display.bind(this), this.SRI_max)
+        this.timer_pause_id = setTimeout(this.start_display.bind(this), this.SRI_max)
     }
     keyboard_pressed(key_value){
+        if(key_value==32){
+            this.display = false;
+            this.results.push([this.delta_orientation, Date.now() - this.time_start_display]);
+            clearTimeout(this.timer_disp_id);
+            this.available_time -= Date.now() - this.time_start_display;
+            this.restart();
+        }
     }
     start_display(){
         this.available_time -= this.SRI_max;
@@ -115,11 +122,6 @@ class Secondary_Task{
             this.available_time -= this.RSI;
             this.timer_pause();
         }
-    }
-    display_lines(){
-        push();
-        line(this.x, this.y - this.image.height, this.x, this.y + image.height);
-        pop();
     }
 }
 

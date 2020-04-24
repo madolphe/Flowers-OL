@@ -50,4 +50,9 @@ function windowResized(){
       canvas = createCanvas(windowWidth, windowHeight);
 }
 
+function keyPressed(){
+    if(sec_task instanceof Secondary_Task){
+        sec_task.keyboard_pressed(keyCode);
+    }
+}
 
