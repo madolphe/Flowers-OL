@@ -33,6 +33,12 @@ let arena_background, button_play, button_tuto, button_exit, button_pause,
     sec_task;
 let screen_params = false;
 
+// inputs for params pannel:
+let screen_params_input, angle_max_input, angle_min_input,debug_input, activity_type_input,
+    n_targets_input, n_distractors_input, speed_max_input, speed_min_input, radius_input,
+    presentation_time_input, fixation_time_input, tracking_time_input, SRI_max_input, RSI_input,
+    delta_orientation_input, step;
+
 // clear session storage:
 sessionStorage.clear();
 

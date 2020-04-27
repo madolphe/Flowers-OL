@@ -22,6 +22,7 @@ function setup(){
     button_exit = createButton('EXIT');
     button_pause = createButton('PAUSE');
     textAlign(CENTER, CENTER);
+    init_pannel();
 }
 function draw(){
     push();
@@ -48,6 +49,7 @@ function mousePressed(event) {
 }
 function windowResized(){
       canvas = createCanvas(windowWidth, windowHeight);
+      position_inputs();
 }
 
 function keyPressed(){

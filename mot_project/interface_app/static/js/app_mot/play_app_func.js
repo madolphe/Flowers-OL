@@ -11,6 +11,7 @@ function play(disp_zone){
     app.check_collisions();
     app.move_objects();
     sec_task.display_task();
+    display_pannel();
 }
 
 function display_game_zone(){
@@ -44,7 +45,6 @@ function display_fixation_cross(cross_length){
 function start_episode(){
     if(parameter_dict['episode_number']<8){
         //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
-        console.log('init app');
         if(parameter_dict['debug']==1){
              app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
                   Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_min'],
@@ -63,6 +63,7 @@ function start_episode(){
         timer(app, parameter_dict['presentation_time'],
             parameter_dict['fixation_time'],
             parameter_dict['tracking_time']);
+        show_inputs();
     }else{
         quit_game();
     }
