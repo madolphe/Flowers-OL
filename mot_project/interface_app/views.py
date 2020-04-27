@@ -69,7 +69,7 @@ def visual_2d_task(request):
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 1, 'n_distractors': 4, 'target_color': 'red', 'distractor_color': 'yellow',
+    parameters = {'n_targets': 3, 'n_distractors': 3, 'target_color': 'red', 'distractor_color': 'yellow',
                   'radius_min': 90, 'radius_max': 120, 'speed_min': 2, 'speed_max': 2, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0}
     # As we don't have any seq manager, let's initialize to same parameters:
@@ -87,9 +87,11 @@ def MOT_task(request):
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 1, 'n_distractors': 4, 'target_color': 'red', 'distractor_color': 'yellow',
-                  'radius_min': 90, 'radius_max': 120, 'speed_min': 2, 'speed_max': 2, 'episode_number': 0,
-                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0}
+    parameters = {'n_targets': 3, 'n_distractors': 3, 'angle_max': 9, 'angle_min': 3,
+                  'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
+                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
+                  'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 12000,
+                  'debug': 0, 'secondary_task': 'detection'}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -97,6 +99,7 @@ def MOT_task(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = mark_safe(json.load(json_file))
     return render(request, 'app_MOT.html', locals())
+
 
 @login_required
 def visual_3d_task(request):
@@ -129,11 +132,16 @@ def increase_difficulty(params):
     params['speed_min'] = int(params['speed_min']) + 1
     params['episode_number'] = int(params['episode_number']) + 1
     params['n_distractors'] = int(params['n_distractors'])
-    params['radius_min'] = int(params['radius_min'])
-    params['radius_max'] = int(params['radius_max'])
+    params['radius'] = int(params['radius'])
+    params['presentation_time'] = int(params['presentation_time'])
+    params['fixation_time'] = int(params['fixation_time'])
+    params['tracking_time'] = int(params['tracking_time'])
+    params['angle_max'] = int(params['angle_max'])
+    params['angle_min'] = int(params['angle_min'])
     params['id_session'] = int(params['id_session'])
     params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
     params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
+    params['debug'] = int(params['debug'])
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
