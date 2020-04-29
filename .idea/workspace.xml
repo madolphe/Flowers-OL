@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ae28545d-62cf-45ea-99d9-c126f7366014" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/mot_db" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +34,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6046687">
+    <splitter split-orientation="horizontal" split-proportion="0.47667184">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -40,10 +46,32 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="380">
+                  <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+                  <folding>
+                    <element signature="n#!!block;n#display_game_zone#0" />
+                    <element signature="n#!!block;n#display_fixation_cross#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="641">
+                <state relative-caret-position="795">
                   <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
                   <folding>
                     <element signature="n#!!block;n#update_next_boundaries#0;n#Tracked_Object#0" />
@@ -55,24 +83,6 @@
                     <element signature="n#!!block;n#move#0;n#Tracked_Object#0" />
                     <element signature="n#!!block;n#reflect_speed#0;n#Tracked_Object#0" />
                     <element signature="n#!!block;n#drawArrow#0;n#Tracked_Object#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
-                  <caret line="118" selection-start-line="118" selection-end-line="118" />
-                  <folding>
-                    <element signature="n#!!block;n#find_position#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#is_free_position#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#display_task#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#timer_display#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#timer_pause#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#start_display#0;n#Secondary_Task#0" />
-                    <element signature="n#!!block;n#restart#0;n#Secondary_Task#0" />
                   </folding>
                 </state>
               </provider>
@@ -90,10 +100,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="453">
-                  <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
+                <state relative-caret-position="1807">
+                  <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
                   <folding>
                     <element signature="e#148#207#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="225">
+                  <caret line="15" selection-start-line="15" selection-end-line="15" />
+                  <folding>
+                    <element signature="e#0#28#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -106,28 +128,60 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="820">
-                  <caret line="57" selection-start-line="57" selection-end-line="57" />
+                <state relative-caret-position="780">
+                  <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="n#!!block;n#windowResized#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="57" column="69" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
+                <state relative-caret-position="420">
+                  <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1110">
+                  <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
                   <folding>
-                    <element signature="n#!!block;n#display_game_zone#0" />
-                    <element signature="n#!!block;n#display_fixation_cross#0" />
-                    <element signature="n#!!block;n#show_answer_button#0" />
-                    <element signature="n#!!block;n#answer_button_clicked#0" />
-                    <element signature="n#!!block;n#next_episode#0" />
+                    <element signature="n#!!block;n#display_pannel#0" />
+                    <element signature="n#!!block;n#old#0" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-21">
+                  <caret line="4" selection-start-line="4" selection-end-line="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -161,7 +215,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/home_user.html" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/urls.py" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/engine.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app.js" />
@@ -173,19 +226,21 @@
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_object_game.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/urls.py" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/views.py" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
+    <option name="width" value="834" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
@@ -193,7 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,6 +323,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -339,18 +394,19 @@
       <workItem from="1587645394873" duration="10502000" />
       <workItem from="1587717103610" duration="7452000" />
       <workItem from="1587756110096" duration="2800000" />
-      <workItem from="1587824100847" duration="3317000" />
+      <workItem from="1587824100847" duration="13384000" />
+      <workItem from="1588000002793" duration="5347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99720000" />
+    <option name="totallyTimeSpent" value="115134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1892552" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21489622" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -466,13 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_2D/fish_script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -480,27 +529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/MOT-app-Hw8zqjC-/lib/python3.8/site-packages/django/contrib/admin/static/admin/js/admin/DateTimeShortcuts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
           <caret line="155" column="12" selection-start-line="155" selection-start-column="12" selection-end-line="155" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -527,51 +559,21 @@
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/images/bavelier_lab/leaf.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="282" selection-start-column="282" selection-end-column="282" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="60">
+          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#windowResized#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
-          <folding>
-            <element signature="e#148#207#0" expanded="true" />
+            <element signature="n#Secondary_Task#0" />
+            <element signature="n#!!block;n#find_position#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#is_free_position#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#display_task#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#timer_display#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#timer_pause#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#keyboard_pressed#0;n#Secondary_Task#0" />
+            <element signature="e#3919#3943#0" />
+            <element signature="n#!!block;n#start_display#0;n#Secondary_Task#0" />
+            <element signature="n#!!block;n#restart#0;n#Secondary_Task#0" />
           </folding>
         </state>
       </provider>
@@ -585,7 +587,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
+        <state relative-caret-position="795">
           <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
           <folding>
             <element signature="n#!!block;n#update_next_boundaries#0;n#Tracked_Object#0" />
@@ -601,32 +603,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="57" column="69" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
+        <state>
+          <caret column="282" selection-start-column="282" selection-end-column="282" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/launch_app_func.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/quit_app_func.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="n#!!block;n#display_game_zone#0" />
-            <element signature="n#!!block;n#display_fixation_cross#0" />
-            <element signature="n#!!block;n#show_answer_button#0" />
-            <element signature="n#!!block;n#answer_button_clicked#0" />
-            <element signature="n#!!block;n#next_episode#0" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        <state relative-caret-position="780">
+          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
           <folding>
-            <element signature="n#!!block;n#find_position#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#is_free_position#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#display_task#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#timer_display#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#timer_pause#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#start_display#0;n#Secondary_Task#0" />
-            <element signature="n#!!block;n#restart#0;n#Secondary_Task#0" />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-21">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1807">
+          <caret line="187" lean-forward="true" selection-start-line="187" selection-end-line="187" />
+          <folding>
+            <element signature="e#148#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!block;n#display_game_zone#0" />
+            <element signature="n#!!block;n#display_fixation_cross#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+          <folding>
+            <element signature="n#!!block;n#display_pannel#0" />
+            <element signature="n#!!block;n#old#0" />
           </folding>
         </state>
       </provider>

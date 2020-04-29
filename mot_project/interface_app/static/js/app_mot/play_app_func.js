@@ -44,6 +44,7 @@ function display_fixation_cross(cross_length){
 
 function start_episode(){
     if(parameter_dict['episode_number']<8){
+        console.log(parameter_dict);
         //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
         if(parameter_dict['debug']==1){
              app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
@@ -55,7 +56,7 @@ function start_episode(){
                   parameter_dict['speed_max'], goblin_image, guard_image);
         }
         if(parameter_dict['secondary_task']!='none'){
-            sec_task = new Secondary_Task(leaf_image, 'discrimination', 2000, 1000, parameter_dict['tracking_time'],
+            sec_task = new Secondary_Task(leaf_image, 'discrimination', parameter_dict['SRI_max'], 1000, parameter_dict['tracking_time'],
                 70, app.all_objects)
         }
         app.change_target_color();
@@ -63,6 +64,7 @@ function start_episode(){
         timer(app, parameter_dict['presentation_time'],
             parameter_dict['fixation_time'],
             parameter_dict['tracking_time']);
+        update_parameters_values();
         show_inputs();
     }else{
         quit_game();
@@ -70,13 +72,13 @@ function start_episode(){
 }
 
 function timer(app, presentation_time, fixation_time, tracking_time){
-    setTimeout(function () {
+    pres_timer = setTimeout(function () {
         // after presention_time ms
         // app.phase changes to fixation
         app.phase = 'fixation';
         app.frozen = true;
         // and stay in this frozen mode for fixation_time ms
-        setTimeout(function(){
+        tracking_timer = setTimeout(function(){
             // after fixation_time ms
             // app.phase change to tracking mode
             sec_task.timer_pause();
@@ -84,7 +86,7 @@ function timer(app, presentation_time, fixation_time, tracking_time){
             app.frozen = false;
             app.change_to_same_color();
             // and stay in this mode for tracking_time ms
-            setTimeout(function(){
+           answer_timer = setTimeout(function(){
                 // after tracking_time ms, app changes to answer phase
                 app.phase = 'answer';
                 app.frozen = true;

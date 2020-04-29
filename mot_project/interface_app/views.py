@@ -91,7 +91,8 @@ def MOT_task(request):
                   'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
                   'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 12000,
-                  'debug': 0, 'secondary_task': 'detection'}
+                  'debug': 0, 'secondary_task': 'detection', 'SRI_max': 2000, 'RSI': 1000,
+                  'diagcm': 40, 'delta_orientation': 45}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -142,6 +143,45 @@ def increase_difficulty(params):
     params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
     params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
     params['debug'] = int(params['debug'])
+    params['RSI'] = int(params['RSI'])
+    params['SRI_max'] = int(params['SRI_max'])
+    params['diagcm'] = int(params['diagcm'])
+    params['delta_orientation'] = int(params['delta_orientation'])
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
+
+
+# Django security to treat ajax requests:
+@csrf_exempt
+def restart_episode(request):
+    params = request.POST.dict()
+    # Save episode and results:
+    episode = Episode()
+    episode.participant = request.user
+    # Same params parse correctly for python:
+    params['n_targets'] = int(params['n_targets'])
+    params['speed_max'] = int(params['speed_max'])
+    params['speed_min'] = int(params['speed_min'])
+    params['episode_number'] = int(params['episode_number'])
+    params['n_distractors'] = int(params['n_distractors'])
+    params['radius'] = int(params['radius'])
+    params['presentation_time'] = int(params['presentation_time'])
+    params['fixation_time'] = int(params['fixation_time'])
+    params['tracking_time'] = int(params['tracking_time'])
+    params['angle_max'] = int(params['angle_max'])
+    params['angle_min'] = int(params['angle_min'])
+    params['id_session'] = int(params['id_session'])
+    params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
+    params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
+    params['debug'] = int(params['debug'])
+    params['RSI'] = int(params['RSI'])
+    params['SRI_max'] = int(params['SRI_max'])
+    params['diagcm'] = int(params['diagcm'])
+    params['delta_orientation'] = int(params['delta_orientation'])
+    print(params)
+    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
+        json.dump(params, json_file)
+    with open('interface_app/static/JSON/parameters.json') as json_file:
+        parameters = json.load(json_file)
+    return HttpResponse(json.dumps(parameters))

@@ -50,6 +50,7 @@ function mousePressed(event) {
 function windowResized(){
       canvas = createCanvas(windowWidth, windowHeight);
       position_inputs();
+      size_inputs();
 }
 
 function keyPressed(){
