@@ -11,5 +11,6 @@ urlpatterns = [
     path('app_3D', views.visual_3d_task, name='app_3D'),
     path('app_MOT', views.MOT_task, name='app_MOT'),
     path('next_episode', views.next_episode, name='next_episode'),
-    path('restart_episode', views.restart_episode, name='restart_episode')
+    path('restart_episode', views.restart_episode, name='restart_episode'),
+    path('app_LL', views.LL_task, name='app_LL')
 ]
