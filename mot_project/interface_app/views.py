@@ -185,3 +185,21 @@ def restart_episode(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
+
+
+@login_required
+def LL_task(request):
+    """Initial call to Lunar Lander view"""
+    parameters = {}
+    # Initialize game same parameters:
+    with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
+        json.dump(parameters, json_file)
+
+    with open('interface_app/static/JSON/LL_params.json') as json_file:
+        parameters = mark_safe(json.load(json_file))
+    return render(request, 'app_LL.html', locals())
+
+
+@csrf_exempt
+def store_results_LL(request):
+    # add to database
