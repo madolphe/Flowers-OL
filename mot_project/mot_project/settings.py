@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'mot_project.wsgi.application'
 DATABASES = {
   'default':{
 	'ENGINE': 'django.db.backends.sqlite3',
-	'NAME': 'mot_db',	
+	'NAME': 'mot_db', 
    }
 }
 
