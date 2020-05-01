@@ -1,11 +1,10 @@
 const params = {
     gravity : 5,
-    wind : () => (0 + Math.random()-.5),
+    wind : () => (xparams.wind + Math.random()-.5),
     windDir : () => Math.random() < 0.5 ? -1 : 1,
     scale : 5,
-    landSite : 0,                               // 0 = left, 1 = center, 2 = right
-    startSite : 2,                              // 0 = left, 1 = center, 2 = right
-    platformType : 1,                           // -1 = pit, 0 = flat, 1 = hill
+    initDistance : xparams.dist,
+    platformType : xparams.plat,            // -1 = pit, 0 = flat, 1 = hill
     timeToWin: 5,
     lander : {
         startRandom : true,
@@ -22,13 +21,16 @@ const params = {
         footW : 8,
         footH : 2,
         footDensity : 0.005,
-        springFreq : 8,
-        springDamp : 6
+        springFreq : 6,
+        springDamp : 5,
+        friction : 1,
+        density: 0.8,
+        restitution: 0.0
     },
     floor : {
         chunks : 33,
         height : 100,
-        hillHeight: 50,
+        hillHeight: 80,
         fluctSize : .5,                         // Height fluctuation size of ground chunks (as fraction of hill height)
         friction : 0.8,
         restitution : 0.0,
@@ -46,15 +48,13 @@ const params = {
     },
     hyper : {
         logData : false,
-        debug : false,
-        timeLimit : 300,                          // in seconds (0 to remove time limit)
+        timeLimit : 0,                         // in seconds (0 to remove time limit)
         seed: false,
         updatePeriod : 1/80,                     // simulation step size (seconds)
         positionIterations : 3,
         velocityIterations : 8
     }
 };
-
 const scaled = (x) => {return x/params.scale};
 const unscaled = (x) => {return x*params.scale};
 const toDegrees = (angle_rad) => {return Math.abs((angle_rad/Math.PI*180) % 360)};
@@ -62,14 +62,13 @@ const toRadians = (angle_deg) => {return Math.PI*angle_deg/180};
 const getEuclidDistance = (u, w) => {return Math.sqrt((u[0]-w[0])**2+(u[1]-w[1])**2)};
 const inSec = (ms) => {return ms/1000};
 const rotate = (x, y, t) => {return [x*Math.cos(t)-y*Math.sin(t), x*Math.sin(t)+y*Math.cos(t)]};
+const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
+const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
 
-function runGame() {
+function runSessionLL() {
     const canvas = document.getElementById('mainCanvas');
     const context = canvas.getContext('2d');
     const stage = new createjs.Stage(canvas);
-    const debugCanvas = document.getElementById('debugCanvas');
-    const debugContext = debugCanvas.getContext('2d');
-    const debugStage = new createjs.Stage(debugCanvas);
     const floorChunkBodies = new Array();
     const chunkWidth = canvas.width / params.floor.chunks
     let world;
@@ -85,20 +84,35 @@ function runGame() {
     let footViews;
     let legViews;
 
+    let trialsCompleted = 0;
+    let sesStartTime = new Date().getTime();
     let lastUpdateTime;
     let trialStartTime;
     let accumulator = 0;
     let gamePaused = true;
-    let pauseMessage = new createjs.Text('Press \'SPACE\' to continue', '40px Arial', params.colors.pauseText);
+    const beginMsg = 'Spacecraft ready!'
+
+    let pauseMessage = new createjs.Text(beginMsg, '40px Arial', params.colors.pauseText);
     pauseMessage.x = canvas.width/2;
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
-    pauseMessage.textBaseline = 'middle';
+    pauseMessage.textBaseline = 'bottom';
+    const subMsg = 'Press \'Enter\' to begin'
+    const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
+    pauseSubMessage.x = canvas.width/2;
+    pauseSubMessage.y = canvas.height/2+20;
+    pauseSubMessage.textAlign = 'center';
+    pauseSubMessage.textBaseline = 'top';
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
+    const landedMsg = 'Spacecraft landed!'
+    const crashMsg = 'Spacecraft crashed!'
+    const offMsg = 'Spacecraft lost!'
 
+    let landSight, landerSight;
     let landPoint;
     let sensPoint;
+    let trueInitDistance;
     let distToLandPoint = NaN;
     let enterTime = false;
     let sinceEnter = 0;
@@ -107,6 +121,8 @@ function runGame() {
     let crash = false;
     let landed = false;
     let userReset = false;
+    let presses = 0;
+    let outcome;
 
     let collisionListener = new Box2D.Dynamics.b2ContactListener;
     collisionListener.BeginContact = onBeginContact;
@@ -139,28 +155,17 @@ function runGame() {
         tick();
     };
 
-    //Initialize Box2D debug
-    function initBox2DDebug() {
-        var debugDraw = new Box2D.Dynamics.b2DebugDraw();
-        debugDraw.SetSprite(debugContext);
-        debugDraw.SetDrawScale(params.scale);
-        debugDraw.SetFillAlpha(.1);
-        debugDraw.SetLineThickness(1);
-        debugDraw.SetFlags(Box2D.Dynamics.b2DebugDraw.e_shapeBit | Box2D.Dynamics.b2DebugDraw.e_jointBit);
-        world.SetDebugDraw(debugDraw);
-    };
-
     //Initializes keyboard events
     function initKeyboard() {
         document.addEventListener('keydown', function (event) {
-            if (38 == event.keyCode) {
+            if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = true;
-            } else if (37 == event.keyCode) {
+            } else if (49 == event.keyCode) {
                 landerBody.GetUserData().turningLeft = true;
-            } else if (39 == event.keyCode) {
+            } else if (48 == event.keyCode) {
                 landerBody.GetUserData().turningRight = true;
-            } else if (32 == event.keyCode) {
-                gamePaused = !gamePaused
+            } else if (13 == event.keyCode) {
+                if (gamePaused) {gamePaused = false};
             } else if (68 == event.keyCode) {
                 params.hyper.debug = !params.hyper.debug
             } else if (82 == event.keyCode) {
@@ -169,12 +174,15 @@ function runGame() {
         });
 
         document.addEventListener('keyup', function (event) {
-            if (38 == event.keyCode) {
+            if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = false;
-            } else if (37 == event.keyCode) {
+                presses++;
+            } else if (49 == event.keyCode) {
                 landerBody.GetUserData().turningLeft = false;
-            } else if (39 == event.keyCode) {
+                presses++;
+            } else if (48 == event.keyCode) {
                 landerBody.GetUserData().turningRight = false;
+                presses++;
             }
         });
     };
@@ -191,11 +199,18 @@ function runGame() {
             'thrust' : params.lander.thrust,
             'turning' : params.lander.turning,
         };
-        site = (canvas.width/3)*params.startSite
+        if (params.initDistance) {
+            landerSite = landSite==2 ? 0 : 2
+        } else {
+            if (landSite==0 || landSite==2) {landerSite = 1} else {landerSite = rSamp([0,2])};
+        }
+        site = (canvas.width/3)*landerSite
         const xPos = params.lander.startRandom ? site+canvas.width/3*Math.random() : site+canvas.width/3/2;
         const yPos = 40;
 
-        parts = getLanderParts(xPos, yPos, 1, 0.8, 0.0, world);
+        trueInitDistance = getEuclidDistance([xPos,yPos],landPoint)
+
+        parts = getLanderParts(xPos, yPos, params.lander.friction, params.lander.density, params.lander.restitution, world);
 
         landerBody = parts.bodies.lander;
         landerBody.SetUserData(landerData);
@@ -221,9 +236,10 @@ function runGame() {
             noise = Math.random()*params.floor.hillHeight*params.floor.fluctSize;
             flucts.push(params.floor.height+wave+noise);
         };
+        landSite = params.initDistance ? rSamp([0,2]) : rSamp([0,1,2])
 
-        const centroid = Math.floor(params.floor.chunks/3/2) + Math.floor(params.floor.chunks/3)*params.landSite
-        flucts[centroid] +=  params.floor.height*params.platformType
+        const centroid = Math.floor(params.floor.chunks/3/2) + Math.floor(params.floor.chunks/3)*landSite
+        flucts[centroid] +=  params.floor.hillHeight*params.platformType
         flucts[centroid-1] = flucts[centroid];
         flucts[centroid+1] = flucts[centroid];
         flucts[centroid+2] = flucts[centroid];
@@ -256,18 +272,10 @@ function runGame() {
         sensPoint = [chunkWidth*centroid+chunkWidth/2, depth-flucts[centroid+1]+10];
     };
 
-    // Init flag
-    function addFlag(x, y) {
-    //    const bitmap = new createjs.Bitmap("imagePath.jpg");
-        const h = 60;
-        flagPost = new createjs.Shape;
-        flagPost.graphics.beginFill('white').drawRect(x, y-h, 2, h);
-        flagPost.graphics.beginFill('white').drawRect(x+2, y-h, 30, 20);
-        stage.addChild(flagPost);
-    };
-
     // Reset episode
     function endTrial() {
+        saveTrialData();
+
         // Destroy world (by creating a new one)
         wind = params.wind() * params.windDir();
         world = new Box2D.Dynamics.b2World(
@@ -290,13 +298,16 @@ function runGame() {
         createjs.Ticker.useRAF = true;
         initFloor();
         initLander();
+        crash = false;
         enterTime = false;
         landed = false;
         gamePaused = true;
         pauseUnpause(gamePaused); // Add pause graphics after other objects to draw it first
         userReset = false;
         fuel = 0;
-        // $.ajax({})
+        presses = 0;
+
+
     };
 
     // Simulate physics for time period `dt`
@@ -377,14 +388,8 @@ function runGame() {
         }
     };
 
-    //Draw world and log game state
+    //Draw world
     function draw() {
-        if (params.hyper.debug) {
-            world.DrawDebugData();
-        } else {
-            debugContext.clearRect(0, 0, debugCanvas.width, debugCanvas.height)
-        }
-
         const lX = unscaled(landerBody.GetPosition().x);
         const lY = unscaled(landerBody.GetPosition().y);
 
@@ -405,28 +410,12 @@ function runGame() {
         stage.update()
     };
 
-    // Report game play variables
-    function report() {
-        metrics = {
-            'wind' : world.m_gravity.x.toFixed(2),
-            'x, y' : [unscaled(landerBody.GetPosition().x).toFixed(0), unscaled(landerBody.GetPosition().y).toFixed(0)],
-            'angle' : toDegrees(landerBody.GetAngle()).toFixed(0),
-            'distance' : distToLandPoint.toFixed(1),
-            'landed' : landed,
-            'since landed' : sinceEnter.toFixed(1),
-            'play time (s)': inSec(createjs.Ticker.getTime(true)).toFixed(1),
-            'fuel' : fuel,
-        }
-        logGame(metrics);
-    };
-
     // RequestAnimationFrame callback
     function tick() {
         currentTime = new Date().getTime();
             if (lastUpdateTime) {
                 update(inSec(currentTime - lastUpdateTime))
                 draw();
-                if (params.hyper.logData) {report()};
             }
             lastUpdateTime = currentTime;
             requestAnimationFrame(tick, canvas);
@@ -458,10 +447,12 @@ function runGame() {
             createjs.Ticker.paused = true;
             stage.addChild(pauseBackground);
             stage.addChild(pauseMessage);
+            stage.addChild(pauseSubMessage);
         } else {
             createjs.Ticker.paused = false;
             stage.removeChild(pauseBackground);
-            stage.removeChild(pauseMessage)
+            stage.removeChild(pauseMessage);
+            stage.removeChild(pauseSubMessage);
         };
     };
 
@@ -470,7 +461,52 @@ function runGame() {
         let kindA = contact.GetFixtureA().GetBody().GetUserData().kind;
         let kindB = contact.GetFixtureB().GetBody().GetUserData().kind;
         // console.log(`Collision: ${kindA}::${kindB}`);
-        if (kindA=='lander' || kindB=='lander') {let gameOver = true; endTrial()};
+        if (kindA=='lander' || kindB=='lander') {crash=true; endTrial()};
+    };
+
+    // Request to save data
+    function saveTrialData() {
+        landerX = unscaled(landerBody.GetPosition().x).toFixed(0);
+        landerY =  unscaled(landerBody.GetPosition().y).toFixed(0);
+        pauseSubMessage.text = 'Press \'Enter\' to continue'
+        if (landerX < 0 || landerX > canvas.width || landerY < 0) {
+            outcome='offscreen';
+            pauseMessage.text = offMsg;
+        } else if (sinceEnter >= params.timeToWin) {
+            outcome='success'
+            pauseMessage.text = landedMsg;
+        } else if (crash) {
+            outcome='crash'
+            pauseMessage.text = crashMsg;
+        } else {outcome='unknown'}
+        trialsCompleted++;
+        // The keys must correspond to model keys in the database
+        metrics = {
+            'trial' : trialsCompleted,
+            'time_trial' : inSec(createjs.Ticker.getTime(true)).toFixed(1),
+            'time_sess' : inSec(new Date().getTime() - sesStartTime).toFixed(1),
+            'outcome' : outcome,
+            'fuel' : round(fuel),
+            'presses' : round(presses),
+            'plat_site' : round(landSite),
+            'init_site' : round(landerSite),
+            'init_dist' : round(trueInitDistance, 2),
+            'wind' : round(wind, 2),
+            'end_dist' : round(distToLandPoint, 2),
+            // 'll_thrust' : round(params.lander.thrust, 2),
+            // 'll_turn' : round(params.lander.turning, 2),
+            // 'll_density' : round(params.lander.density, 2),
+            // 'll_spring_freq' : round(params.lander.springFreq, 2),
+            // 'll_spring_damp' : round(params.lander.springDamp, 2)
+        }
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: '/joldSaveTrial_LL',
+            dataType: "json",
+            traditional: true,
+            data: JSON.stringify(metrics)
+        });
     };
 };
 
