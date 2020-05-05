@@ -59,3 +59,8 @@ function keyPressed(){
     }
 }
 
+function mouseReleased() {
+    update_input_from_slider_value();
+    console.log('app');
+}
+

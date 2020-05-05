@@ -95,7 +95,7 @@ def MOT_task(request):
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
                   'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 12000,
                   'debug': 0, 'secondary_task': 'detection', 'SRI_max': 2000, 'RSI': 1000,
-                  'diagcm': 40, 'delta_orientation': 45}
+                  'diagcm': 40, 'delta_orientation': 45, 'screen_params': 39.5}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -131,25 +131,13 @@ def next_episode(request):
 
 # Hand crafted sequence manager:
 def increase_difficulty(params):
-    params['n_targets'] = int(params['n_targets']) + 1
-    params['speed_max'] = int(params['speed_max']) + 1
-    params['speed_min'] = int(params['speed_min']) + 1
-    params['episode_number'] = int(params['episode_number']) + 1
-    params['n_distractors'] = int(params['n_distractors'])
-    params['radius'] = int(params['radius'])
-    params['presentation_time'] = int(params['presentation_time'])
-    params['fixation_time'] = int(params['fixation_time'])
-    params['tracking_time'] = int(params['tracking_time'])
-    params['angle_max'] = int(params['angle_max'])
-    params['angle_min'] = int(params['angle_min'])
-    params['id_session'] = int(params['id_session'])
-    params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
-    params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
-    params['debug'] = int(params['debug'])
-    params['RSI'] = int(params['RSI'])
-    params['SRI_max'] = int(params['SRI_max'])
-    params['diagcm'] = int(params['diagcm'])
-    params['delta_orientation'] = int(params['delta_orientation'])
+    for key, value in params.items():
+        if key != 'secondary_task':
+            params[key] = float(params[key])
+    params['n_targets'] += 1
+    params['speed_max'] += 1
+    params['speed_min'] += 1
+    params['episode_number'] += 1
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
@@ -163,26 +151,10 @@ def restart_episode(request):
     episode = Episode()
     episode.participant = request.user
     # Same params parse correctly for python:
-    params['n_targets'] = int(params['n_targets'])
-    params['speed_max'] = int(params['speed_max'])
-    params['speed_min'] = int(params['speed_min'])
-    params['episode_number'] = int(params['episode_number'])
-    params['n_distractors'] = int(params['n_distractors'])
-    params['radius'] = int(params['radius'])
-    params['presentation_time'] = int(params['presentation_time'])
-    params['fixation_time'] = int(params['fixation_time'])
-    params['tracking_time'] = int(params['tracking_time'])
-    params['angle_max'] = int(params['angle_max'])
-    params['angle_min'] = int(params['angle_min'])
-    params['id_session'] = int(params['id_session'])
-    params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
-    params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
-    params['debug'] = int(params['debug'])
-    params['RSI'] = int(params['RSI'])
-    params['SRI_max'] = int(params['SRI_max'])
-    params['diagcm'] = int(params['diagcm'])
-    params['delta_orientation'] = int(params['delta_orientation'])
-    print(params)
+    for key, value in params.items():
+        # Just parse everything:
+        if key != 'secondary_task':
+            params[key] = float(params[key])
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:

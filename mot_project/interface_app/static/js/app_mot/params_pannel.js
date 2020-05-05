@@ -1,11 +1,27 @@
+// #TODO: foreach params test whether it is correctly changed when restart
+    // #TODO: screen params update
+    // #TODO: speed has to be converted to ppd
+// #TODO: add non gaming mode
+// #TODO: rethink how datas are sent and stored
+// #TODO: add attributes to models to store everything
+// #TODO: display number of sessions played and score
+// #TODO: comment everything
+// #TODO: add tuto
+
+// #TODO: add button to hide params // CHECK //
+// #TODO: add hover and description over each params // CHECK //
+
+
 function init_pannel(){
+    hidden_pannel = false;
     button_params = createButton('RESTART');
+    button_hide_params = createButton('HIDE');
 
     screen_params_input = createInput(diagcm);
     angle_max_input = createInput(parameter_dict['angle_max']);
     angle_min_input = createInput(parameter_dict['angle_max']);
-    debug_input = createInput(str(parameter_dict['debug']));
-    activity_type_input = createInput(parameter_dict['secondary_task']);
+    debug_input = createInput(parameter_dict['debug']);
+    secondary_task_input = createInput(parameter_dict['secondary_task']);
     n_targets_input = createInput(parameter_dict['n_targets']);
     n_distractors_input = createInput(parameter_dict['n_distractors']);
     speed_max_input = createInput(parameter_dict['speed_max']);
@@ -37,7 +53,7 @@ function init_pannel(){
     angle_max_description = "Maximum angle characterizing the \"outer\" limit of the scene (in deegres)";
     angle_min_description = "Minimum angle characterizing the \"inner\" limit of the scene (in deegres)";
     debug_description = "Debug mode (0 or 1, no or yes)";
-    activity_type_description = "Play the game with a secondary task (None, detection or discrimination)";
+    secondary_task_description = "Play the game with a secondary task (None, detection or discrimination)";
     n_targets_description = "Number of targets to track";
     n_distractors_description = "Number of distractors to track";
     speed_max_description = "Maximum speed (in deegres)";
@@ -50,26 +66,13 @@ function init_pannel(){
     RSI_description = "Duration of the display of one secondary task (in sec)";
     delta_orientation_description = "Orientation of leaves in the secondary task image (in degrees)";
 
-    // Dictionnary to store all objects in one:
-    labels_inputs = ["Parameters", "screen_params_input", "angle_max_input", "angle_min_input",
-        "debug_input","activity_type_input", "n_targets_input", "n_distractors_input", "speed_max_input",
-        "speed_min_input", "radius_input", "presentation_time_input", "fixation_time_input",
-        "tracking_time_input", "SRI_max_input", "RSI_input", "delta_orientation_input"];
-    key_val = [["screen_params_input", screen_params_input], ["angle_max_input",angle_max_input],
-        ["angle_min_input", angle_min_input], ["debug_input", debug_input],["activity_type_input", activity_type_input],
-        ["n_targets_input", n_targets_input], ["n_distractors_input", n_distractors_input],
-        ["speed_max_input", speed_max_input], ["speed_min_input", speed_min_input],
-        ["radius_input", radius_input], ["presentation_time_input", presentation_time_input],
-        ["fixation_time_input", fixation_time_input], ["tracking_time_input", tracking_time_input],
-        ["SRI_max_input", SRI_max_input], ["RSI_input", RSI_input], ["delta_orientation_input", delta_orientation_input]];
-    inputs_map = new Map(key_val);
-
+    // Dictionnary to store all objects in one
     dict_pannel =  {
         screen_params : {screen_params_input, screen_params_description},
         angle_max : {angle_max_input, angle_max_slider, angle_max_description},
         angle_min : {angle_min_input, angle_min_slider, angle_min_description},
         debug: {debug_input, debug_description},
-        activity_type: {activity_type_input, activity_type_description},
+        secondary_task: {secondary_task_input, secondary_task_description},
         n_targets: {n_targets_input, n_targets_slider, n_targets_description},
         n_distractors: {n_distractors_input, n_distractors_slider, n_distractors_description},
         speed_max: {speed_max_input, speed_max_slider, speed_max_description},
@@ -82,19 +85,11 @@ function init_pannel(){
         RSI: {RSI_input, RSI_slider, RSI_description},
         delta_orientation: {delta_orientation_input, delta_orientation_slider, delta_orientation_description}
     };
-    for(var key in dict_pannel){
-        if(parameter_dict.hasOwnProperty(key)){
-            if(dict_pannel[key].hasOwnProperty(key+'_slider')){
-                dict_pannel[key][key+'_input'].value(parameter_dict[key]);
-            }
-        }
-    }
     hide_inputs();
+    button_hide_params.hide();
 }
 function hide_inputs(){
-    //inputs_map.forEach(function(value, key, map){value.hide()});
     button_params.hide();
-    //n_targets_slider.hide();
     for (var key in dict_pannel) {
         // check if the property/key is defined in the object itself, not in parent
         if (dict_pannel.hasOwnProperty(key)) {
@@ -106,12 +101,11 @@ function hide_inputs(){
     }
 }
 function show_inputs(){
-    //inputs_map.forEach(function(value, key, map){value.show()});
+    button_hide_params.show();
+    button_hide_params.mousePressed(hide_pannel);
     button_params.show();
     button_params.mousePressed(restart);
-    //n_targets_slider.show();
     for (var key in dict_pannel) {
-        // check if the property/key is defined in the object itself, not in parent
         if (dict_pannel.hasOwnProperty(key)) {
             dict_pannel[key][key+'_input'].show();
                 if(dict_pannel[key].hasOwnProperty(key+'_slider')) {
@@ -121,7 +115,7 @@ function show_inputs(){
     }
 }
 function size_inputs(){
-    inputs_map.forEach(function(value, key, map){value.size(windowHeight/10, step*(2/3))});
+    //inputs_map.forEach(function(value, key, map){value.size(windowHeight/10, step*(2/3))});
     for (var key in dict_pannel) {
         // check if the property/key is defined in the object itself, not in parent
         if (dict_pannel.hasOwnProperty(key)) {
@@ -136,42 +130,94 @@ function position_inputs(){
     step = windowHeight/25;
     let start = 150;
     let i = 0;
-    //inputs_map.forEach(function(value, key){
-    //    value.position(start,  windowHeight - step * (labels_inputs.length - i+3));
-    //    i++;
-    //});
     for (var key in dict_pannel) {
         // check if the property/key is defined in the object itself, not in parent
         if (dict_pannel.hasOwnProperty(key)) {
-            dict_pannel[key][key+'_input'].position(start,  windowHeight - step * (labels_inputs.length - i+3));
-                if(dict_pannel[key].hasOwnProperty(key+'_slider')) {
-                dict_pannel[key][key+'_slider'].position(start+60,  windowHeight - step * (labels_inputs.length - i+3));
+            dict_pannel[key][key+'_input'].position(start,  windowHeight - step * (Object.keys(dict_pannel).length - i+3));
+            dict_pannel[key].position = (windowHeight - step * (Object.keys(dict_pannel).length - i+3));
+            if(dict_pannel[key].hasOwnProperty(key+'_slider')) {
+                dict_pannel[key][key+'_slider'].position(start+60,  windowHeight - step * (Object.keys(dict_pannel).length - i+3));
             }
         }
         i++;
     }
-    button_params.position(start/2, windowHeight - 3.5*step);
+    button_params.position(start/2, windowHeight - 3*step);
+    button_hide_params.position(start/2, windowHeight - 2*step)
 }
 function display_pannel(){
+    if(!hidden_pannel){
     push();
     fill('white');
     rectMode(CORNERS);
     textAlign(CENTER);
     let i = 1;
-    //for(let i = 1; i<labels_inputs.length; i++){
     for(var key in dict_pannel){
-        //text(labels_inputs[i], 0, windowHeight - step*(labels_inputs.length-(i-4)), 150, step)
-        text(key, 0, windowHeight - step*(labels_inputs.length-(i-4)), 150, step);
+        text(key, 0, windowHeight - step*(Object.keys(dict_pannel).length-(i-4)), 150, step);
         i ++;
     }
     pop();
+    add_hover();
     push();
     fill('white');
     rectMode(CORNERS);
     textAlign(CENTER);
     textSize(20);
-    text("Parameters:", 0, windowHeight - step * 21, 150, step);
+    textStyle(BOLD);
+    text("PARAMETERS:", 0, windowHeight - step * 20, 150, step);
     pop();
+    }
+}
+function hide_pannel(){
+    if(!hidden_pannel){
+        button_hide_params.elt.innerHTML = 'SHOW >>';
+        button_hide_params.position(10, windowHeight/2);
+        button_params.hide();
+        hide_inputs();
+    }else{
+        button_hide_params.elt.innerHTML = 'HIDE <<';
+        button_hide_params.position(75, windowHeight - 2*step);
+        button_params.show();
+        show_inputs();
+    }
+    hidden_pannel = !hidden_pannel;
+}
+
+function add_hover(){
+    for(var key in dict_pannel){
+        if(mouseX<350){
+            console.log(dict_pannel[key].position+step);
+            if(mouseY>dict_pannel[key].position){
+                if(mouseY<dict_pannel[key].position+step){
+                    console.log(key);
+                    push();
+                    strokeWeight(2);
+                    stroke('white');
+                    noFill();
+                    rectMode(CORNERS);
+                    rect(350, dict_pannel[key].position, 700, dict_pannel[key].position+step);
+                    pop();
+                    push();
+                    fill('white');
+                    textSize(14);
+                    textAlign(CENTER, CENTER);
+                    text(dict_pannel[key][key+'_description'], 350, dict_pannel[key].position, 350, step);
+                    //rect(10, dict_pannel[key].position-step, 140, step);
+                    pop();
+                }
+            }
+            }
+        }
+}
+function update_input_from_slider_value(){
+    // Function launch whenever a mouse is released
+    // Update input value depending on slider:
+    if(dict_pannel){
+        for(var key in dict_pannel){
+            if(dict_pannel[key].hasOwnProperty(key+'_slider')){
+                dict_pannel[key][key+'_input'].value(dict_pannel[key][key+'_slider'].value())
+            }
+        }
+    }
 }
 
 function update_parameters_values(){
@@ -187,6 +233,7 @@ function update_parameters_values(){
 }
 
 function restart(){
+    console.log('restart');
     for(var key in dict_pannel){
         if(parameter_dict.hasOwnProperty(key)){
             if(!dict_pannel[key].hasOwnProperty(key+'_slider')){
@@ -313,5 +360,17 @@ function old() {
     SRI_max_slider.value(parameter_dict['SRI_max']);
     RSI_slider.value(parameter_dict['RSI']);
     delta_orientation_slider.value(parameter_dict['delta_orientation']);
+    labels_inputs = ["Parameters", "screen_params_input", "angle_max_input", "angle_min_input",
+        "debug_input","activity_type_input", "n_targets_input", "n_distractors_input", "speed_max_input",
+        "speed_min_input", "radius_input", "presentation_time_input", "fixation_time_input",
+        "tracking_time_input", "SRI_max_input", "RSI_input", "delta_orientation_input"];
+    key_val = [["screen_params_input", screen_params_input], ["angle_max_input",angle_max_input],
+        ["angle_min_input", angle_min_input], ["debug_input", debug_input],["activity_type_input", activity_type_input],
+        ["n_targets_input", n_targets_input], ["n_distractors_input", n_distractors_input],
+        ["speed_max_input", speed_max_input], ["speed_min_input", speed_min_input],
+        ["radius_input", radius_input], ["presentation_time_input", presentation_time_input],
+        ["fixation_time_input", fixation_time_input], ["tracking_time_input", tracking_time_input],
+        ["SRI_max_input", SRI_max_input], ["RSI_input", RSI_input], ["delta_orientation_input", delta_orientation_input]];
+    inputs_map = new Map(key_val);
 }
 
