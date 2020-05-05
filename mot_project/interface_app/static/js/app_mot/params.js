@@ -38,7 +38,15 @@ let pres_timer, tracking_timer, answer_timer;
 let screen_params_input, angle_max_input, angle_min_input,debug_input, activity_type_input,
     n_targets_input, n_distractors_input, speed_max_input, speed_min_input, radius_input,
     presentation_time_input, fixation_time_input, tracking_time_input, SRI_max_input, RSI_input,
-    delta_orientation_input, step, labels_inputs, inputs_map, key_val, button_params;
+    delta_orientation_input, step, labels_inputs, inputs_map, key_val, button_params, n_targets_slider,
+    dict_pannel, angle_max_slider, angle_min_slider, n_distractors_slider, speed_max_slider,
+    speed_min_slider, radius_slider,
+    presentation_time_slider, fixation_time_slider, tracking_time_slider, SRI_max_slider, RSI_slider,
+    delta_orientation_slider, screen_params_description, angle_max_description
+    ,angle_min_description, debug_description, activity_type_description, n_targets_description,
+    n_distractors_description,speed_max_description,speed_min_description,radius_description,
+    presentation_time_description, fixation_time_description, tracking_time_description, SRI_max_description,
+    RSI_description, delta_orientation_description;
 
 // clear session storage:
 sessionStorage.clear();
