@@ -56,16 +56,19 @@ function start_episode(){
                   parameter_dict['speed_max'], goblin_image, guard_image);
         }
         if(parameter_dict['secondary_task']!='none'){
-            sec_task = new Secondary_Task(leaf_image, 'discrimination', parameter_dict['SRI_max'], 1000, parameter_dict['tracking_time'],
-                70, app.all_objects)
+            sec_task = new Secondary_Task(leaf_image, parameter_dict['secondary_task'], parameter_dict['SRI_max']*1000,
+                parameter_dict['RSI']*1000, parameter_dict['tracking_time']*1000, parameter_dict['delta_orientation'],
+                 app.all_objects)
         }
         app.change_target_color();
         // timer(app, 2000, 2000, 10000);
-        timer(app, parameter_dict['presentation_time'],
-            parameter_dict['fixation_time'],
-            parameter_dict['tracking_time']);
+        timer(app, 1000*parameter_dict['presentation_time'],
+            1000*parameter_dict['fixation_time'],
+            1000*parameter_dict['tracking_time']);
         update_parameters_values();
-        show_inputs();
+        if(!hidden_pannel){
+            show_inputs();
+        }
     }else{
         quit_game();
     }

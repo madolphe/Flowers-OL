@@ -2,8 +2,6 @@ function display_exit(){
     width = 100;
     height = 45;
     push();
-    // rect(windowWidth/2, windowHeight/2 - 50, 170, 70);
-    // rect(windowWidth/2, windowHeight/2 + 50, 170, 70);
     button_exit.position(windowWidth-(width*1.3), 50 - (height/2));
     button_exit.size(width,height);
     button_exit.mousePressed(quit_game);

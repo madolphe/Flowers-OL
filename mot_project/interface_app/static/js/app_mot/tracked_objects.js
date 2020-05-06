@@ -110,7 +110,7 @@ class Tracked_Object{
             this.pos.y + this.radius/2 + windowHeight/2);
         ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, this.radius);
         pop();
-        //this.display_speed();
+        this.display_speed();
     }
 
     display_speed(){

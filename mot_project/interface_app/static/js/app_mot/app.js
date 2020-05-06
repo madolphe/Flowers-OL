@@ -1,8 +1,7 @@
 // @TODO: add pannel to confirm exit (see text display)
 // @TODO: add pannel to play game when paused
 // @TODO: add css - hover on buttons
-// @TODO: play mode
-// @TODO: add admin panel
+
 
 // p5.js functions to display the game:
 function preload() {
@@ -29,11 +28,12 @@ function draw(){
     background(0);
     imageMode(CENTER);
     image(arena_background, windowWidth/2, windowHeight/2);
+    //always display exit button:
     display_exit();
     if(mode=='start'){
         start_mode();
     }else if (mode =='play') {
-        play(false);
+        play(parameter_dict['debug']);
     }
     pop();
 }

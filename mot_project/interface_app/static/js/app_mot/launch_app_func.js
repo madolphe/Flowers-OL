@@ -1,10 +1,8 @@
 function start_mode(){
-    width = 170;
-    height = 70;
+    let width = 170;
+    let height = 70;
     push();
     fill(hover_color);
-    // rect(windowWidth/2, windowHeight/2 - 50, 170, 70);
-    // rect(windowWidth/2, windowHeight/2 + 50, 170, 70);
     rectMode(CENTER);
     rect(windowWidth/2, windowHeight/2, windowWidth, 500);
 

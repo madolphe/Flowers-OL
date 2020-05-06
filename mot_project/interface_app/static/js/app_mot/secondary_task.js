@@ -22,6 +22,7 @@ class Secondary_Task{
     }
     find_position(){
         if(this.type == 'discrimination'){
+            console.log('change_or');
             this.delta_orientation = random(0, 80);
         }
         do {

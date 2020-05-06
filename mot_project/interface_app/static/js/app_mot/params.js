@@ -1,5 +1,6 @@
 // Screen params:
-let diagcm = 39.116;
+let diagcm;
+//let diagcm = 39.116;
 let res = 16/10;
 let viewer_dist = 50;
 // All params will be set up thx 2 "set_screen_params";
@@ -15,7 +16,7 @@ let cmpd;
 let ppd;
 
 
-// Params of MOT task:
+// Params of MOT task (to display debug mode):
 let max_angle = 18;
 let min_angle = 6;
 

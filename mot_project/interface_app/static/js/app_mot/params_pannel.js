@@ -1,21 +1,22 @@
-// #TODO: foreach params test whether it is correctly changed when restart
-    // #TODO: screen params update
-    // #TODO: speed has to be converted to ppd
-// #TODO: add non gaming mode
+
+// #TODO: speed has to be converted to ppd
 // #TODO: rethink how datas are sent and stored
 // #TODO: add attributes to models to store everything
 // #TODO: display number of sessions played and score
+
+// #TODO: add non gaming mode
 // #TODO: comment everything
 // #TODO: add tuto
 
 // #TODO: add button to hide params // CHECK //
 // #TODO: add hover and description over each params // CHECK //
-
+// #TODO: foreach params test whether it is correctly changed when restart // CHECK //
+// #TODO: screen params update // CHECK //
 
 function init_pannel(){
     hidden_pannel = false;
     button_params = createButton('RESTART');
-    button_hide_params = createButton('HIDE');
+    button_hide_params = createButton('HIDE <<');
 
     screen_params_input = createInput(diagcm);
     angle_max_input = createInput(parameter_dict['angle_max']);
@@ -40,7 +41,7 @@ function init_pannel(){
     n_distractors_slider = createSlider(0, 15, 1);
     speed_max_slider = createSlider(0.1, 5, 0.2);
     speed_min_slider = createSlider(0.1, 5, 0.2);
-    radius_slider = createSlider(1, 10, 1);
+    radius_slider = createSlider(20, 150, 5);
     presentation_time_slider = createSlider(0.5, 30, 0.5);
     fixation_time_slider = createSlider(0.5, 30, 0.5);
     tracking_time_slider = createSlider(0.5, 30, 0.5);
@@ -53,7 +54,7 @@ function init_pannel(){
     angle_max_description = "Maximum angle characterizing the \"outer\" limit of the scene (in deegres)";
     angle_min_description = "Minimum angle characterizing the \"inner\" limit of the scene (in deegres)";
     debug_description = "Debug mode (0 or 1, no or yes)";
-    secondary_task_description = "Play the game with a secondary task (None, detection or discrimination)";
+    secondary_task_description = "Play the game with a secondary task (none, detection or discrimination)";
     n_targets_description = "Number of targets to track";
     n_distractors_description = "Number of distractors to track";
     speed_max_description = "Maximum speed (in deegres)";
@@ -64,7 +65,7 @@ function init_pannel(){
     tracking_time_description = "Duration of tracking phase i.e objects are moving while displayed all the same (in sec)";
     SRI_max_description = "Maximum duration of interval between 2 secondary task (in sec)";
     RSI_description = "Duration of the display of one secondary task (in sec)";
-    delta_orientation_description = "Orientation of leaves in the secondary task image (in degrees)";
+    delta_orientation_description = "Orientation of leaves in the secondary task image only for detection mode (in degrees)";
 
     // Dictionnary to store all objects in one
     dict_pannel =  {
@@ -169,7 +170,7 @@ function display_pannel(){
 }
 function hide_pannel(){
     if(!hidden_pannel){
-        button_hide_params.elt.innerHTML = 'SHOW >>';
+        button_hide_params.elt.innerHTML = '>>';
         button_hide_params.position(10, windowHeight/2);
         button_params.hide();
         hide_inputs();
@@ -192,7 +193,7 @@ function add_hover(){
                     push();
                     strokeWeight(2);
                     stroke('white');
-                    noFill();
+                    fill(0,0,0,100);
                     rectMode(CORNERS);
                     rect(350, dict_pannel[key].position, 700, dict_pannel[key].position+step);
                     pop();
@@ -233,7 +234,6 @@ function update_parameters_values(){
 }
 
 function restart(){
-    console.log('restart');
     for(var key in dict_pannel){
         if(parameter_dict.hasOwnProperty(key)){
             if(!dict_pannel[key].hasOwnProperty(key+'_slider')){
@@ -254,6 +254,7 @@ function restart(){
             parameter_dict = data;
             }
         });
+    set_screen_params();
     clearTimeout(pres_timer);
     clearTimeout(tracking_timer);
     clearTimeout(answer_timer);
