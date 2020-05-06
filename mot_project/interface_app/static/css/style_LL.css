@@ -9,23 +9,11 @@ body {background-color: #3D3D3E}
     max-width: 100%;
     height: 600px;
     min-height: 600px;
+    margin: auto;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%)
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding: 0;
 }
-
-.log{
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%);
-    margin-top: 20px;
-    width: 780px;
-    background-color: black;
-    color: #05ff2f;
-    padding: 15px;
-    font-family: "Courier New", monospaced;
-};
