@@ -11,6 +11,8 @@ function preload() {
     leaf_image = loadImage('/static/images/bavelier_lab/leaf.png');
 }
 function setup(){
+    gill_font_light = loadFont('/static/font/gillsansstd/GillSansStd-Light.otf');
+    gill_font = loadFont('/static/font/gillsansstd/GillSansStd.otf');
     frameRate(60);
     mode = 'start';
     hover_color = color(255, 255, 255);

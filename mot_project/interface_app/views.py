@@ -168,9 +168,9 @@ def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
     user_params = JOLD_params_LL.objects.get(participant_id=request.user.id)
     xparams = { # make sure to keep difficulty constant for the same participant!
-        'wind' : user_params.wind,
-        'plat' : user_params.plat,
-        'dist' : user_params.dist
+        'wind': user_params.wind,
+        'plat': user_params.plat,
+        'dist': user_params.dist
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:

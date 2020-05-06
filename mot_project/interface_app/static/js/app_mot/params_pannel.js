@@ -18,7 +18,7 @@ function init_pannel(){
     button_params = createButton('RESTART');
     button_hide_params = createButton('HIDE <<');
 
-    screen_params_input = createInput(diagcm);
+    screen_params_input = createInput(parameter_dict['screen_params']);
     angle_max_input = createInput(parameter_dict['angle_max']);
     angle_min_input = createInput(parameter_dict['angle_max']);
     debug_input = createInput(parameter_dict['debug']);
@@ -142,8 +142,8 @@ function position_inputs(){
         }
         i++;
     }
-    button_params.position(start/2, windowHeight - 3*step);
-    button_hide_params.position(start/2, windowHeight - 2*step)
+    button_params.position(start/2, windowHeight - 2.8*step);
+    button_hide_params.position(2.5*start/2, windowHeight - 2.8*step)
 }
 function display_pannel(){
     if(!hidden_pannel){
@@ -151,6 +151,8 @@ function display_pannel(){
     fill('white');
     rectMode(CORNERS);
     textAlign(CENTER);
+    textFont(gill_font);
+    textSize(15);
     let i = 1;
     for(var key in dict_pannel){
         text(key, 0, windowHeight - step*(Object.keys(dict_pannel).length-(i-4)), 150, step);
@@ -160,6 +162,7 @@ function display_pannel(){
     add_hover();
     push();
     fill('white');
+    textFont(gill_font);
     rectMode(CORNERS);
     textAlign(CENTER);
     textSize(20);
@@ -176,7 +179,8 @@ function hide_pannel(){
         hide_inputs();
     }else{
         button_hide_params.elt.innerHTML = 'HIDE <<';
-        button_hide_params.position(75, windowHeight - 2*step);
+        //button_hide_params.position(75, windowHeight - 2*step);
+    button_hide_params.position(2.5*150/2, windowHeight - 2.8*step)
         button_params.show();
         show_inputs();
     }
@@ -199,10 +203,10 @@ function add_hover(){
                     pop();
                     push();
                     fill('white');
+                    textFont(gill_font);
                     textSize(14);
                     textAlign(CENTER, CENTER);
                     text(dict_pannel[key][key+'_description'], 350, dict_pannel[key].position, 350, step);
-                    //rect(10, dict_pannel[key].position-step, 140, step);
                     pop();
                 }
             }
