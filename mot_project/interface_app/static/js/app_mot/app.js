@@ -11,6 +11,7 @@ function preload() {
     leaf_image = loadImage('/static/images/bavelier_lab/leaf.png');
 }
 function setup(){
+    frameRate(60);
     mode = 'start';
     hover_color = color(255, 255, 255);
     hover_color.setAlpha(150);

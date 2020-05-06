@@ -4,6 +4,10 @@ class Tracked_Object{
         // initial speed
         this.speedx = Math.round(Math.random()) > 0 ? random(speed_min, speed_max) : random(-speed_min, -speed_max);
         this.speedy = Math.round(Math.random()) > 0 ? random(speed_min, speed_max) : random(-speed_min, -speed_max);
+        // speed_max and speed_min are given in deg par seconde
+        // As FPS = 60 and 1 deg = 1 ppd:
+        this.speedx = this.speedx * ppd / 60;
+        this.speedy = this.speedy * ppd / 60;
         // Create a velocity vector
         this.speed = createVector(this.speedx, this.speedy);
         this.base_vect = createVector(1,0);

@@ -1,5 +1,4 @@
 
-// #TODO: speed has to be converted to ppd
 // #TODO: rethink how datas are sent and stored
 // #TODO: add attributes to models to store everything
 // #TODO: display number of sessions played and score
@@ -12,6 +11,7 @@
 // #TODO: add hover and description over each params // CHECK //
 // #TODO: foreach params test whether it is correctly changed when restart // CHECK //
 // #TODO: screen params update // CHECK //
+// #TODO: speed has to be converted to ppd //CHECK//
 
 function init_pannel(){
     hidden_pannel = false;
@@ -39,8 +39,8 @@ function init_pannel(){
     angle_max_slider = createSlider(1,15, 1);
     angle_min_slider = createSlider(0,10, 1);
     n_distractors_slider = createSlider(0, 15, 1);
-    speed_max_slider = createSlider(0.1, 5, 0.2);
-    speed_min_slider = createSlider(0.1, 5, 0.2);
+    speed_max_slider = createSlider(0.5, 10, 0.2);
+    speed_min_slider = createSlider(0.5, 10, 0.2);
     radius_slider = createSlider(20, 150, 5);
     presentation_time_slider = createSlider(0.5, 30, 0.5);
     fixation_time_slider = createSlider(0.5, 30, 0.5);
@@ -57,9 +57,9 @@ function init_pannel(){
     secondary_task_description = "Play the game with a secondary task (none, detection or discrimination)";
     n_targets_description = "Number of targets to track";
     n_distractors_description = "Number of distractors to track";
-    speed_max_description = "Maximum speed (in deegres)";
-    speed_min_description = "Minimum speed (in deegres)";
-    radius_description = "Maximum distance around an object i.e distance for collision (in deegres)";
+    speed_max_description = "Maximum speed (in deegres per sec)";
+    speed_min_description = "Minimum speed (in deegres per sec)";
+    radius_description = "Maximum distance around an object i.e distance for collision (in pixels)";
     presentation_time_description = "Duration of presentation phase i.e objects are moving and displayed on their respective roles (in sec)";
     fixation_time_description = "Duration of fixation phase i.e objects are fixed and are displayed on their respective roles (in sec)";
     tracking_time_description = "Duration of tracking phase i.e objects are moving while displayed all the same (in sec)";
