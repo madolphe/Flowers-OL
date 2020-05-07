@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from django.urls import path
 from . import views
 
@@ -15,7 +16,10 @@ urlpatterns = [
     path('app_MOT', views.MOT_task, name='app_MOT'),
     path('next_episode', views.next_episode, name='next_episode'),
     path('restart_episode', views.restart_episode, name='restart_episode'),
-    ## JOLD urls below
+    ## JOLD urls
     path('app_LL', views.joldStartSess_LL, name='app_LL'),
-    path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='joldSaveTrial_LL')
+    path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='joldSaveTrial_LL'),
+    path('joldEndSess', views.joldEndSess, name='joldEndSess'),
+    path('joldConfidence', views.joldConfidence, name='joldConfidence'),
+    path('joldThanks', views.joldThanks, name='joldThanks'),
 ]

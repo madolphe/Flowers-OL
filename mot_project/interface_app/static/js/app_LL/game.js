@@ -1,4 +1,5 @@
 const params = {
+    verbose : true,
     gravity : 5,
     wind : () => (xparams.wind + Math.random()-.5),
     windDir : () => Math.random() < 0.5 ? -1 : 1,
@@ -44,7 +45,9 @@ const params = {
         floor : '#bdb69b',
         platform : '#ffffff',
         pauseBackground: '#2f3e59',
-        pauseText: '#f07a56'
+        pauseText: '#f07a56',
+        canvasBorder: '#252938',
+
     },
     hyper : {
         logData : false,
@@ -66,6 +69,7 @@ const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
 const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
 
 function runSessionLL() {
+    new p5();
     const canvas = document.getElementById('mainCanvas');
     const context = canvas.getContext('2d');
     const stage = new createjs.Stage(canvas);
@@ -84,7 +88,9 @@ function runSessionLL() {
     let footViews;
     let legViews;
 
+    let outOfTime = false;
     let trialsCompleted = 0;
+    let sessElapsedTime = 0;
     let sesStartTime = new Date().getTime();
     let lastUpdateTime;
     let trialStartTime;
@@ -97,17 +103,25 @@ function runSessionLL() {
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
     pauseMessage.textBaseline = 'bottom';
-    const subMsg = 'Press \'Enter\' to begin'
+    const subMsg = 'Press \'Enter\' to begin*'
     const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
     pauseSubMessage.x = canvas.width/2;
     pauseSubMessage.y = canvas.height/2+20;
     pauseSubMessage.textAlign = 'center';
     pauseSubMessage.textBaseline = 'top';
+    const pauseSubSubMessage = new createjs.Text('* fullscreen must be enabled', '18px Arial', params.colors.floor);
+    pauseSubSubMessage.x = canvas.width-50;
+    pauseSubSubMessage.y = canvas.height-50;
+    pauseSubSubMessage.textAlign = 'right';
+
+
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
     const landedMsg = 'Spacecraft landed!'
     const crashMsg = 'Spacecraft crashed!'
     const offMsg = 'Spacecraft lost!'
+    const shrunkMsg = 'Paused'
+    const timeMsg = 'End of session'
 
     let landSight, landerSight;
     let landPoint;
@@ -117,12 +131,16 @@ function runSessionLL() {
     let enterTime = false;
     let sinceEnter = 0;
     let fuel = 0;
+    let interruptions = 0;
 
     let crash = false;
     let landed = false;
     let userReset = false;
     let presses = 0;
     let outcome;
+
+    let toggleFullscreenButton;
+    let fullscreen = false;
 
     let collisionListener = new Box2D.Dynamics.b2ContactListener;
     collisionListener.BeginContact = onBeginContact;
@@ -134,6 +152,7 @@ function runSessionLL() {
     stage.addChild(background);
 
     if (params.hyper.seed) {Math.seedrandom('lunar-lander-random-seed')};
+    initButtons();
     init();
 
     // Run initializers
@@ -142,12 +161,9 @@ function runSessionLL() {
             new Box2D.Common.Math.b2Vec2(wind, params.gravity), true);
 
         world.SetContactListener(collisionListener);
+        // initKeyboard();
         initFloor();
         initLander();
-        if (params.hyper.debug) {
-            initBox2DDebug();
-        }
-        initKeyboard();
         trialStartTime = new Date().getTime();
         createjs.Ticker.addEventListener('tick', draw);
         createjs.Ticker.useRAF = true;
@@ -155,32 +171,45 @@ function runSessionLL() {
         tick();
     };
 
+    // Initialize HTML (p5) buttons
+    function initButtons() {
+        toggleFullscreenButton = createButton('Fullscreen');
+        toggleFullscreenButton.class('toggleFullscreen')
+        toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
+        terminateButton = createButton('End session');
+        terminateButton.class('terminate');
+        terminateButton.mousePressed(() => {terminate()});
+    };
+
     //Initializes keyboard events
     function initKeyboard() {
         document.addEventListener('keydown', function (event) {
             if (32 == event.keyCode) {
-                landerBody.GetUserData().thrusting = true;
-            } else if (49 == event.keyCode) {
-                landerBody.GetUserData().turningLeft = true;
-            } else if (48 == event.keyCode) {
-                landerBody.GetUserData().turningRight = true;
+                landerBody.GetUserData().thrusting = true && !gamePaused;
+            } else if (70 == event.keyCode) {
+                landerBody.GetUserData().turningLeft = true && !gamePaused;
+            } else if (74 == event.keyCode) {
+                landerBody.GetUserData().turningRight = true && !gamePaused;
             } else if (13 == event.keyCode) {
-                if (gamePaused) {gamePaused = false};
-            } else if (68 == event.keyCode) {
-                params.hyper.debug = !params.hyper.debug
-            } else if (82 == event.keyCode) {
-                userReset = !userReset
+                if (gamePaused && document.fullscreenElement && !outOfTime) {gamePaused = false};
+            } else if (68 == event.keyCode && event.shiftKey) {
+                params.verbose = !params.verbose
+            } else if (event.keyCode == 32 && event.target == document.body) {
+              event.preventDefault();
             }
+            // } else if (82 == event.keyCode) {
+            //     userReset = !userReset
+            // }
         });
 
         document.addEventListener('keyup', function (event) {
             if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = false;
                 presses++;
-            } else if (49 == event.keyCode) {
+            } else if (70 == event.keyCode) {
                 landerBody.GetUserData().turningLeft = false;
                 presses++;
-            } else if (48 == event.keyCode) {
+            } else if (74 == event.keyCode) {
                 landerBody.GetUserData().turningRight = false;
                 presses++;
             }
@@ -275,6 +304,7 @@ function runSessionLL() {
     // Reset episode
     function endTrial() {
         saveTrialData();
+        sessElapsedTime += createjs.Ticker.getTime(true)
 
         // Destroy world (by creating a new one)
         wind = params.wind() * params.windDir();
@@ -306,8 +336,6 @@ function runSessionLL() {
         userReset = false;
         fuel = 0;
         presses = 0;
-
-
     };
 
     // Simulate physics for time period `dt`
@@ -413,13 +441,15 @@ function runSessionLL() {
     // RequestAnimationFrame callback
     function tick() {
         currentTime = new Date().getTime();
-            if (lastUpdateTime) {
-                update(inSec(currentTime - lastUpdateTime))
-                draw();
-            }
-            lastUpdateTime = currentTime;
-            requestAnimationFrame(tick, canvas);
-        };
+        if (lastUpdateTime && !outOfTime) {
+            update(inSec(currentTime - lastUpdateTime))
+            draw();
+            printData();
+        }
+        lastUpdateTime = currentTime;
+        requestAnimationFrame(tick, canvas);
+        if (inSec(sessElapsedTime+createjs.Ticker.getTime(true)) >= xparams.time) {endSess()};
+    };
 
     // Check if lander is in land box
     function landerInBox(x, y, boxCenter) {
@@ -435,6 +465,11 @@ function runSessionLL() {
     function reportVisibilityChange() {
         if (document[hidden]) {
             document.title = 'Paused';
+            if (!gamePaused) {
+                pauseMessage.text = 'Session interrupted'
+                pauseSubMessage.text = 'Press \'Enter\' to continue*'
+                interruptions++;
+            };
             gamePaused = true;
             createjs.Ticker.paused = true;
             return true;
@@ -448,12 +483,27 @@ function runSessionLL() {
             stage.addChild(pauseBackground);
             stage.addChild(pauseMessage);
             stage.addChild(pauseSubMessage);
+            stage.addChild(pauseSubSubMessage);
         } else {
+            document.title = 'Lunar Lander';
             createjs.Ticker.paused = false;
             stage.removeChild(pauseBackground);
             stage.removeChild(pauseMessage);
             stage.removeChild(pauseSubMessage);
+            stage.removeChild(pauseSubSubMessage);
         };
+    };
+
+    // Button event to enter / exit fullscreen
+    function toggleFullscreen() {
+        bodyElement = document.getElementsByTagName('body')[0]
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+            return false;
+        } else {
+            bodyElement.requestFullscreen();
+            return true;
+        }
     };
 
     // Handle begin collision events
@@ -468,7 +518,7 @@ function runSessionLL() {
     function saveTrialData() {
         landerX = unscaled(landerBody.GetPosition().x).toFixed(0);
         landerY =  unscaled(landerBody.GetPosition().y).toFixed(0);
-        pauseSubMessage.text = 'Press \'Enter\' to continue'
+        pauseSubMessage.text = 'Press \'Enter\' to continue*'
         if (landerX < 0 || landerX > canvas.width || landerY < 0) {
             outcome='offscreen';
             pauseMessage.text = offMsg;
@@ -478,6 +528,8 @@ function runSessionLL() {
         } else if (crash) {
             outcome='crash'
             pauseMessage.text = crashMsg;
+        } else if (outOfTime) {
+            outcome='termination'
         } else {outcome='unknown'}
         trialsCompleted++;
         // The keys must correspond to model keys in the database
@@ -493,6 +545,8 @@ function runSessionLL() {
             'init_dist' : round(trueInitDistance, 2),
             'wind' : round(wind, 2),
             'end_dist' : round(distToLandPoint, 2),
+            'interruptions' : interruptions,
+            'sess_finished' : outOfTime,
             // 'll_thrust' : round(params.lander.thrust, 2),
             // 'll_turn' : round(params.lander.turning, 2),
             // 'll_density' : round(params.lander.density, 2),
@@ -508,6 +562,67 @@ function runSessionLL() {
             data: JSON.stringify(metrics)
         });
     };
+
+    // Stop session
+    function endSess() {
+        if (!outOfTime) {
+            outOfTime = true;
+            saveTrialData();
+            pauseMessage.text = timeMsg;
+            pauseSubMessage.text = 'Click the \'End session\' button to continue to the next phase'
+            pauseSubSubMessage.text = ''
+            gamePaused = true;
+            pauseUnpause(gamePaused);
+            stage.update()
+        }
+    };
+
+    // Request next template
+    function terminate() {
+        if (!gamePaused) {
+            pauseMessage.text = 'Session interrupted';
+            pauseSubMessage.text = 'Press \'Enter\' to continue*'
+            interruptions++;
+        };
+        gamePaused = true;
+        pauseUnpause(gamePaused);
+        setTimeout(function() {
+            if (confirm('Please confirm')) {
+                console.log('Signaling termination')
+                post('/joldEndSess', {sessComplete: outOfTime? 1:0})
+            } else {
+                console.log('Doing nothing');
+            }
+        }, 100);
+
+    };
+
+    // Print debug data on canvas
+    function printData() {
+        if (params.verbose) {
+            metrics = {
+                'wind' : world.m_gravity.x.toFixed(2),
+                'x' : unscaled(landerBody.GetPosition().x).toFixed(0),
+                'y' : unscaled(landerBody.GetPosition().y).toFixed(0),
+                'angle' : toDegrees(landerBody.GetAngle()).toFixed(0),
+                'distance' : distToLandPoint.toFixed(1),
+                'landed' : landed,
+                'since landed' : sinceEnter.toFixed(1),
+                'trial time (s)': inSec(createjs.Ticker.getTime(true)).toFixed(1),
+                'session time (s)': inSec(sessElapsedTime + createjs.Ticker.getTime(true)).toFixed(1),
+                'fuel' : fuel,
+                'user interruptions': interruptions,
+            }
+            let s = new String;
+            for (let [key, value] of Object.entries(metrics)) {
+                s = s.concat(`${key}: ${value}<br>`)
+            };
+            document.getElementById("debugDiv").innerHTML = s;
+        } else {
+            document.getElementById("debugDiv").innerHTML = '';
+        }
+    };
+
 };
 
 function addChunk(xPos, yPos, chunkWidth, chunkHeight, left, right, world, stg) {
@@ -678,3 +793,26 @@ function addLanderJoint(landerBody, footBody, pivLander, pivFoot, offset, side) 
     footJointDef.collideConnected = true;
     return footJointDef
 };
+
+function post(path, params, method='post') {
+
+  // The rest of this code assumes you are not using a library.
+  // It can be made less wordy if you use one.
+  const form = document.createElement('form');
+  form.method = method;
+  form.action = path;
+
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      const hiddenField = document.createElement('input');
+      hiddenField.type = 'hidden';
+      hiddenField.name = key;
+      hiddenField.value = params[key];
+
+      form.appendChild(hiddenField);
+    }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+}
