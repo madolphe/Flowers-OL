@@ -117,10 +117,8 @@ def next_episode(request):
     # Save episode and results:
     episode = Episode()
     episode.participant = request.user
-    print(params)
-    score = '['+str(params['nb_target_retrieved'])+','+str(params['nb_distract_retrieved'])+']'
-    episode.score = score
-    episode.id_session = params['id_session']
+    for key, val in params.items():
+        episode.__dict__[key] = val
     episode.save()
     # Function to be removed when the seq manager will be connected:
     increase_difficulty(params)

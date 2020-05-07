@@ -32,7 +32,7 @@ class ParticipantProfileForm(forms.ModelForm):
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date']
+        exclude = ['user', 'date', 'screen_params']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):

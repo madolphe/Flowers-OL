@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae28545d-62cf-45ea-99d9-c126f7366014" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/mot_db" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_db" afterDir="false" />
     </list>
@@ -32,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+            <state relative-caret-position="51">
+              <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
               <folding>
                 <element signature="n#!!block;n#old#0" />
               </folding>
@@ -58,13 +56,34 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3077">
-              <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
+            <state relative-caret-position="2444">
+              <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
               <folding>
                 <element signature="e#148#207#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.local/share/virtualenvs/MOT-app-Hw8zqjC-/lib/python3.8/site-packages/django/contrib/auth/decorators.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/alexfuncs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-94">
-              <caret line="60" column="33" lean-forward="true" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+            <state relative-caret-position="404">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
               <folding>
                 <element signature="n#!!block;n#display_fixation_cross#0" />
                 <element signature="n#!!block;n#timer#0" />
@@ -100,6 +119,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
               <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="58" column="6" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -149,11 +180,13 @@
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/secondary_task.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_objects.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/views.py" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/forms.py" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/models.py" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/views.py" />
       </list>
     </option>
   </component>
@@ -208,13 +241,6 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="app_mot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
@@ -309,12 +335,12 @@
       <workItem from="1588362082793" duration="834000" />
       <workItem from="1588585321920" duration="1233000" />
       <workItem from="1588685101660" duration="13719000" />
-      <workItem from="1588745425335" duration="6713000" />
+      <workItem from="1588745425335" duration="11429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141774000" />
+    <option name="totallyTimeSpent" value="146490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="989" extended-state="0" />
@@ -469,16 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/alexfuncs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="91" selection-start-line="15" selection-start-column="91" selection-end-line="15" selection-end-column="91" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -510,30 +526,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/mot_project/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -608,16 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3077">
-          <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
-          <folding>
-            <element signature="e#148#207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -627,13 +613,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -645,10 +624,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+          <folding>
+            <element signature="n#!!block;n#old#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/alexfuncs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/MOT-app-Hw8zqjC-/lib/python3.8/site-packages/django/contrib/auth/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-94">
-          <caret line="60" column="33" lean-forward="true" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+        <state relative-caret-position="404">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
           <folding>
             <element signature="n#!!block;n#display_fixation_cross#0" />
             <element signature="n#!!block;n#timer#0" />
@@ -656,12 +662,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+        <state relative-caret-position="495">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="58" column="6" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
           <folding>
-            <element signature="n#!!block;n#old#0" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2444">
+          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
+          <folding>
+            <element signature="e#148#207#0" expanded="true" />
           </folding>
         </state>
       </provider>
