@@ -56,26 +56,28 @@ class SecondaryTask(models.Model):
     answer_duration = models.FloatField(default=0)
 
 
-class JOLD_params_LL(models.Model):
-    participant = models.ForeignKey(User, on_delete=models.CASCADE)
-    wind = models.IntegerField()
-    plat = models.IntegerField()
-    dist = models.IntegerField()
+class JOLD_participant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    wind = models.IntegerField(null=True)
+    plat = models.IntegerField(null=True)
+    dist = models.IntegerField(null=True)
+    nb_sess_started = models.IntegerField(default=0)
+    nb_sess_finished = models.IntegerField(default=0)
 
 
 class JOLD_trial_LL(models.Model):
-    date = models.DateTimeField(default=datetime.date.today)
-    participant = models.ForeignKey(User, on_delete=models.CASCADE)
-    # avoid creating session model:
-    id_session = models.IntegerField(default=0)
-    trial = models.IntegerField()
+    date = models.DateTimeField(default=timezone.now)
+    participant = models.ForeignKey(JOLD_participant, on_delete=models.CASCADE)
+    sess_number = models.IntegerField(default=0)
+    trial = models.IntegerField(null=True)
     wind = models.DecimalField(decimal_places=2, max_digits=3)
-    init_site = models.IntegerField()
-    plat_site = models.IntegerField()
+    init_site = models.IntegerField(null=True)
+    plat_site = models.IntegerField(null=True)
     init_dist = models.DecimalField(decimal_places=2, max_digits=5)
     end_dist = models.DecimalField(decimal_places=2, max_digits=5)
     time_trial = models.DecimalField(decimal_places=1, max_digits=8)
     time_sess = models.DecimalField(decimal_places=1, max_digits=8)
-    fuel = models.IntegerField()
-    presses = models.IntegerField()
+    fuel = models.IntegerField(null=True)
+    presses = models.IntegerField(null=True)
     outcome = models.CharField(max_length=10)
+    interruptions = models.IntegerField(null=True)

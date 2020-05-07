@@ -1,0 +1,11 @@
+{% block title %} JOLD {% endblock %}
+{% load static %}
+<!-- {% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_LL.css' %}">
+{% endblock %} -->
+
+{% block content %}
+    <form id="request">{% csrf_token %}</form>
+    <h1>Rate your ability on the task</h1>
+    <p>[0] Could not be worse --------O--------- [100] Could not be better</p>
+{% endblock %}

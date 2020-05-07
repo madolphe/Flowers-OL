@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
-from .models import Episode, JOLD_trial_LL, JOLD_params_LL, SecondaryTask
+from .models import Episode, JOLD_trial_LL, SecondaryTask, JOLD_participant
 from .alexfuncs import assign_condition
 
 
@@ -23,8 +23,8 @@ def sign_up(request):
         user.set_password(form_user.cleaned_data['password'])
         user.save()
         form_profile.save_profile(user)
-        assign_condition(user, form_profile.data['study']) # Assign experimental condition to user
-        login(request, user) # Redirect to user homepage
+        assign_condition(user, form_profile.data['study'])      # Assign study conditions
+        login(request, user)                                    # Redirect to user homepage
         return redirect(reverse(home_user))
     context = {'form_profile': form_profile, 'form_user': form_user}
     return render(request, 'sign_up.html', context)
@@ -172,11 +172,14 @@ def restart_episode(request):
 @login_required
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
-    user_params = JOLD_params_LL.objects.get(participant_id=request.user.id)
+    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant.nb_sess_started += 1
+    participant.save()
     xparams = { # make sure to keep difficulty constant for the same participant!
-        'wind': user_params.wind,
-        'plat': user_params.plat,
-        'dist': user_params.dist
+        'wind': participant.wind,
+        'plat': participant.plat,
+        'dist': participant.dist,
+        'time': 10,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
@@ -189,11 +192,42 @@ def joldStartSess_LL(request):
 
 @csrf_exempt
 def joldSaveTrial_LL(request):
+    participant = JOLD_participant.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
     table = JOLD_trial_LL()
     for key, val in data.items():
         table.__dict__[key] = val
-    table.participant = request.user
+    table.participant = participant
+    table.sess_number = participant.nb_sess_started
     table.save()
     return HttpResponse(status=204) # 204 is a no-content response
+
+
+@csrf_exempt
+def joldEndSess(request):
+    participant = JOLD_participant.objects.get(user=request.user.id)
+    session_complete = int(list(dict(request.POST).values())[0][0])
+    # if session complete, redirect to confidence
+    if session_complete:
+        participant.nb_sess_finished += 1
+        participant.save()
+        print('Redirect to joldConfidence.html')
+        return redirect(reverse('joldConfidence'))
+    else:
+        print('Redirect to joldThanks.html')
+        return redirect(reverse('joldThanks'))
+
+
+@login_required
+def joldConfidence(request):
+    # check how many sessions user has completed, if insufficient,
+    return render(request, 'joldConfidence.html', locals())
+
+
+@login_required
+def joldThanks(request):
+    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant.nb_sess_finished
+    # check how many sessions user has completed, if insufficient, redirect to
+    return render(request, 'joldThanks.html', locals())
