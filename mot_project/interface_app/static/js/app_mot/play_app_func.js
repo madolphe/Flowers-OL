@@ -35,10 +35,11 @@ function display_game_zone(){
 
 function display_fixation_cross(cross_length){
     push();
-    stroke('red');
+    stroke('black');
     strokeWeight(2);
-    line((windowWidth/2)-cross_length,windowHeight/2, (windowWidth/2)+cross_length, windowHeight/2);
-    line(windowWidth/2,(windowHeight/2)-cross_length, windowWidth/2, (windowHeight/2)+cross_length);
+    rectMode(CENTER);
+    fill(10,10,10,100);
+    rect(windowWidth/2, windowHeight/2, 15, 15);
     pop();
 }
 
