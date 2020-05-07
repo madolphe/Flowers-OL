@@ -98,47 +98,54 @@ class Secondary_Task{
         setTimeout(this.start_display.bind(this), this.SRI_max);
     }
     keyboard_pressed(key_value){
-        if(this.type=="detection"){
-            if(key_value==32){
-            this.display = false;
-            this.results.push([this.delta_orientation, Date.now() - this.time_start_display]);
-            clearTimeout(this.timer_disp_id);
-            this.available_time -= (Date.now() - this.time_start_display);
-            this.timer_pause();
-            }
-        }else if (this.type=="discrimination"){
-            // if key == 'S':
-            if(key_value==83){
+        // if keyboard_press and the banner is displayed ->
+        if(this.display){
+            if(this.type=="detection"){
+                if(key_value==32){
                 this.display = false;
-                if(this.delta_orientation>30){
-                    // wrong key pressed:
-                    console.log("WRONG");
-                    this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
-                }else{
-                    // Correct key pressed:
-                    console.log("CORRECT");
-                    this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
-                }
+                this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
                 clearTimeout(this.timer_disp_id);
                 this.available_time -= (Date.now() - this.time_start_display);
                 this.timer_pause();
-            // else if key == 'f':
-            }else if (key_value==70){
-                this.display = false;
-                this.results.push([this.delta_orientation, Date.now() - this.time_start_display]);
-                if(this.delta_orientation>30){
-                    // correct key pressed:
-                    console.log("CORRECT");
-                    this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
-                }else{
-                    // wrong key pressed:
-                    console.log("WRONG");
-                    this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
                 }
-                clearTimeout(this.timer_disp_id);
-                this.available_time -= (Date.now() - this.time_start_display);
-                this.timer_pause();
+            }else if (this.type=="discrimination"){
+                // if key == 'S':
+                if(key_value==83){
+                    this.display = false;
+                    if(this.delta_orientation>30){
+                        // wrong key pressed:
+                        console.log("WRONG");
+                        this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
+                    }else{
+                        // Correct key pressed:
+                        console.log("CORRECT");
+                        this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
+                    }
+                    clearTimeout(this.timer_disp_id);
+                    this.available_time -= (Date.now() - this.time_start_display);
+                    this.timer_pause();
+                // else if key == 'f':
+                }else if (key_value==70){
+                    this.display = false;
+                    if(this.delta_orientation>30){
+                        // correct key pressed:
+                        console.log("CORRECT");
+                        this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
+                    }else{
+                        // wrong key pressed:
+                        console.log("WRONG");
+                        this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
+                    }
+                    clearTimeout(this.timer_disp_id);
+                    this.available_time -= (Date.now() - this.time_start_display);
+                    this.timer_pause();
+                }
             }
+        }else{
+            console.log("push incorrectly");
+            console.log(this.available_time);
+            // otherwise, the user press without asking for it:
+            this.results.push([0, 0, 0]);
         }
     }
     start_display(){

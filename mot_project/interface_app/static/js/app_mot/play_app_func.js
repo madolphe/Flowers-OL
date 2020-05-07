@@ -110,8 +110,10 @@ function show_answer_button(){
 function answer_button_clicked(){
     button_answer.hide();
     let res = app.get_results();
+    console.log("sec_task results", sec_task.results);
     parameter_dict['nb_target_retrieved'] = res[0];
     parameter_dict['nb_distract_retrieved'] = res[1];
+    parameter_dict['sec_task_results'] = JSON.stringify(sec_task.results);
     app.phase = 'got_response';
     app.change_to_same_color();
     app.change_target_color();

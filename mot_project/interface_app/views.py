@@ -1,7 +1,5 @@
 # @TODO: print number of episode restant
 # @TODO: print score
-# @TODO: test new design for frontend
-# @TODO: refacto code --> mainly js + comments
 
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
@@ -11,7 +9,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
-from .models import Episode, JOLD_trial_LL, JOLD_params_LL
+from .models import Episode, JOLD_trial_LL, JOLD_params_LL, SecondaryTask
 from .alexfuncs import assign_condition
 
 
@@ -68,6 +66,7 @@ def user_logout(request):
 
 @login_required
 def visual_2d_task(request):
+    # Function to be removed in the future
     """Initial call to app 2D view"""
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
@@ -118,8 +117,19 @@ def next_episode(request):
     episode = Episode()
     episode.participant = request.user
     for key, val in params.items():
-        episode.__dict__[key] = val
+        if key in episode.__dict__:
+            episode.__dict__[key] = val
     episode.save()
+    if params['secondary_task'] != 'none':
+        params['sec_task_results'] = eval(params['sec_task_results'])
+        for res in params['sec_task_results']:
+            sec_task = SecondaryTask()
+            sec_task.episode = episode
+            sec_task.type = params['secondary_task']
+            sec_task.delta_orientation = res[0]
+            sec_task.answer_duration = res[1]
+            sec_task.success = res[2]
+            sec_task.save()
     # Function to be removed when the seq manager will be connected:
     increase_difficulty(params)
     with open('interface_app/static/JSON/parameters.json') as json_file:
@@ -127,14 +137,14 @@ def next_episode(request):
     return HttpResponse(json.dumps(parameters))
 
 
-# Hand crafted sequence manager:
+# Hand crafted sequence manager, to be removed :
 def increase_difficulty(params):
     for key, value in params.items():
-        if key != 'secondary_task':
+        if key != 'secondary_task' and key != 'sec_task_results':
             params[key] = float(params[key])
     params['n_targets'] += 1
-    params['speed_max'] += 1
-    params['speed_min'] += 1
+    params['speed_max'] *= 1.2
+    params['speed_min'] *= 1.2
     params['episode_number'] += 1
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
