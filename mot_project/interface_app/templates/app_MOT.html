@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
+
+{% block content%}
+    <div id="app_holder" class="app"><!-- app is going here--></div>
+    <form id="request">{% csrf_token %}</form>
+{% endblock %}
+
+{% block js%}
+    <!-- <script src="{% static 'js/app_2D/ball_script.js' %}"></script>
+    <script src="{% static 'js/app_2D/mot_balls_script.js' %}"></script> -->
+    <script src="{% static 'js/app_mot/params.js' %}"></script>
+    <script src="{% static 'js/app_mot/utils.js' %}"></script>
+    <script src="{% static 'js/app_mot/quit_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/play_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/launch_app_func.js' %}"></script>
+    <script src="{% static 'js/app_mot/tracked_objects.js' %}"></script>
+    <script src="{% static 'js/app_mot/tracked_object_game.js' %}"></script>
+    <script src="{% static 'js/app_mot/MOT.js' %}"></script>
+    <script src="{% static 'js/app_mot/MOT_game.js' %}"></script>
+    <script src="{% static 'js/app_mot/secondary_task.js' %}"></script>
+    <script src="{% static 'js/app_mot/params_pannel.js' %}"></script>
+    <script src="{% static 'js/app_mot/app.js' %}"></script>
+    <script> parameter_dict = {{parameters}}</script>
+{% endblock %}

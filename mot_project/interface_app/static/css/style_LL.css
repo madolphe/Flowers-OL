@@ -1,0 +1,56 @@
+body {background-color: black}
+
+.canvas {
+    border: 5px solid #252938;
+    display: block;
+    position: fixed;
+    width: 800px;
+    min-width: 800px;
+    max-width: 100%;
+    height: 600px;
+    min-height: 600px;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding: 0;
+}
+
+.debugDiv {
+    color: white;
+    display: block;
+    position: fixed;
+    width: 800px;
+    min-width: 800px;
+    max-width: 100%;
+    height: 600px;
+    min-height: 600px;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding: 20px;
+}
+
+.toggleFullscreen {
+    background-color: #2f3e59;
+    font-size: 20px;
+    color: #f07a56;
+    border: 3px solid #252938;
+    position: fixed;
+    top: 2%
+}
+
+.terminate {
+    background-color: #f07a56;
+    font-size: 20px;
+    color: #2f3e59;
+    border: 3px solid #252938;
+    position: fixed;
+    top: 2%;
+    right: 0px;
+}

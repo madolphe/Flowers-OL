@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Lunar Lander Task {% endblock %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_LL.css' %}">
+{% endblock %}
+
+{% block content %}
+    <form id="request">{% csrf_token %}</form>
+    <canvas id="mainCanvas" class="canvas" width="800" height="600" ></canvas>
+    <div class="debugDiv" id="debugDiv">Debug data</div>
+{% endblock %}
+
+{% block js%}
+    <script>xparams = {{xparams}}</script>
+    <script src="{% static 'js/app_LL/utilities.js' %}"></script>
+    <script src="{% static 'js/app_LL/game.js' %}"></script>
+    <script>runSessionLL();</script>
+{% endblock %}
