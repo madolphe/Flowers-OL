@@ -32,7 +32,8 @@ class ParticipantProfileForm(forms.ModelForm):
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date']
+        exclude = ['user', 'date', 'screen_params']
+        widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
         """
@@ -54,4 +55,3 @@ class SignInForm(forms.Form):
         super(SignInForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Submit'))
-

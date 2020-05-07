@@ -2,7 +2,6 @@
 class MOT_Game extends MOT{
     constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_image, distract_image){
         super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max);
-        console.log("MOT GAME constructor", target_image);
         this.target_image = target_image;
         this.distract_image = distract_image;
         this.targets = [];
@@ -11,7 +10,6 @@ class MOT_Game extends MOT{
         this.all_objects = this.targets.concat(this.distractors);
     }
     init_lists() {
-        console.log("init list", this.target_image);
         for(let step = 0; step < this.n_targets; step++){
             this.targets.push(new Tracked_Object_Game(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
                 'target', this.targets, this.radius, this.target_image, this.distract_image))

@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now, verbose_name="Inscription Date")
-    birth_date = models.DateField(default=datetime.date.today, blank=True)
+    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='yyyy-mm-dd')
+    study = models.CharField(max_length=10, default='unk')
+    screen_params = models.FloatField(default=39.116)
 
     class Meta:
         verbose_name = 'Participant'
@@ -15,9 +17,65 @@ class ParticipantProfile(models.Model):
 
 
 class Episode(models.Model):
+    # Foreign key to user :
+    participant = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # Description of the task
+    date = models.DateTimeField(default=datetime.date.today)
+    secondary_task = models.CharField(max_length=20, default='none')
+    episode_number = models.IntegerField(default=0)
+
+    # Task parameters:
+    n_distractors = models.IntegerField(default=0)
+    n_targets = models.IntegerField(default=0)
+    angle_max = models.IntegerField(default=0)
+    angle_min = models.IntegerField(default=0)
+    radius = models.IntegerField(default=0)
+    speed_min = models.FloatField(default=0)
+    speed_max = models.FloatField(default=0)
+    RSI = models.FloatField(default=0)
+    SRI_max = models.FloatField(default=0)
+    presentation_time = models.FloatField(default=0)
+    fixation_time = models.FloatField(default=0)
+    tracking_time = models.FloatField(default=0)
+
+    # User Score:
+    nb_target_retrieved = models.IntegerField(default=0)
+    nb_distract_retrieved = models.IntegerField(default=0)
+
+    # To avoid creating session model but to be able to make joint queries:
+    id_session = models.IntegerField(default=0)
+    finished_session = models.BooleanField(default=False)
+
+
+class SecondaryTask(models.Model):
+    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
+    type = models.CharField(max_length=20, default='detection')
+    delta_orientation = models.FloatField(default=0)
+    success = models.BooleanField(default=False)
+    answer_duration = models.FloatField(default=0)
+
+
+class JOLD_params_LL(models.Model):
+    participant = models.ForeignKey(User, on_delete=models.CASCADE)
+    wind = models.IntegerField()
+    plat = models.IntegerField()
+    dist = models.IntegerField()
+
+
+class JOLD_trial_LL(models.Model):
     date = models.DateTimeField(default=datetime.date.today)
     participant = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.CharField(max_length=20, default='[x,x]')
     # avoid creating session model:
     id_session = models.IntegerField(default=0)
-
+    trial = models.IntegerField()
+    wind = models.DecimalField(decimal_places=2, max_digits=3)
+    init_site = models.IntegerField()
+    plat_site = models.IntegerField()
+    init_dist = models.DecimalField(decimal_places=2, max_digits=5)
+    end_dist = models.DecimalField(decimal_places=2, max_digits=5)
+    time_trial = models.DecimalField(decimal_places=1, max_digits=8)
+    time_sess = models.DecimalField(decimal_places=1, max_digits=8)
+    fuel = models.IntegerField()
+    presses = models.IntegerField()
+    outcome = models.CharField(max_length=10)
