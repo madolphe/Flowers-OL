@@ -165,7 +165,7 @@ class Secondary_Task{
             // user has found object so it's not displayed anymore:
             console.log("problem, timer hasn't been really reset")
         }else{
-            this.results.push([this.delta_orientation, this.RSI]);
+            this.results.push([this.delta_orientation, this.RSI, 0]);
             this.display = false;
             this.available_time -= this.RSI;
             this.timer_pause();

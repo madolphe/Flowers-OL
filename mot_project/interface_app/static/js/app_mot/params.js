@@ -29,11 +29,12 @@ let results = {};
 let numbers = [];
 let exit;
 let mode;
-let arena_background, button_play, button_tuto, button_exit, button_pause,
+let arena_background, button_play, button_tuto, button_exit, button_pause, button_keep,
     button_answer, button_next_episode, guard_image, goblin_image, leaf_image,
     sec_task, gill_font_light, gill_font;
 let screen_params = false;
 let pres_timer, tracking_timer, answer_timer;
+let paused = false;
 
 // inputs for params pannel:
 let screen_params_input, angle_max_input, angle_min_input,debug_input, activity_type_input,

@@ -23,6 +23,7 @@ function setup(){
     button_tuto = createButton('TUTO');
     button_exit = createButton('EXIT');
     button_pause = createButton('PAUSE');
+    button_keep = createButton('PLAY');
     textAlign(CENTER, CENTER);
     init_pannel();
 }

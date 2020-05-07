@@ -1,17 +1,6 @@
-
-// #TODO: rethink how datas are sent and stored
-// #TODO: add attributes to models to store everything
-// #TODO: display number of sessions played and score
-
 // #TODO: add non gaming mode
 // #TODO: comment everything
 // #TODO: add tuto
-
-// #TODO: add button to hide params // CHECK //
-// #TODO: add hover and description over each params // CHECK //
-// #TODO: foreach params test whether it is correctly changed when restart // CHECK //
-// #TODO: screen params update // CHECK //
-// #TODO: speed has to be converted to ppd //CHECK//
 
 function init_pannel(){
     hidden_pannel = false;

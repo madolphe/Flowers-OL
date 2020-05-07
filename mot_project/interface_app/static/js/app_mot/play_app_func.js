@@ -1,17 +1,22 @@
 let cross_length = 10;
 let radius;
 
+
 // main function used to display :
 function play(disp_zone){
     display_fixation_cross(cross_length);
     if(disp_zone){
         display_game_zone(3, 9);
     }
-    app.display_objects(mouseX, mouseY);
-    app.check_collisions();
-    app.move_objects();
-    sec_task.display_task();
-    display_pannel();
+    if(!paused){
+        app.display_objects(mouseX, mouseY);
+        app.check_collisions();
+        app.move_objects();
+        sec_task.display_task();
+        display_pannel();
+    }else{
+        display_transition()
+    }
 }
 
 function display_game_zone(){
@@ -39,12 +44,14 @@ function display_fixation_cross(cross_length){
     strokeWeight(2);
     rectMode(CENTER);
     fill(10,10,10,100);
-    rect(windowWidth/2, windowHeight/2, 15, 15);
+    rect(windowWidth/2, windowHeight/2, cross_length, cross_length);
     pop();
 }
 
 function start_episode(){
-    if(parameter_dict['episode_number']<8){
+    paused = false;
+    button_keep.hide();
+    if(parameter_dict['episode_number']<20){
         console.log(parameter_dict);
         //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
         if(parameter_dict['debug']==1){
@@ -139,7 +146,32 @@ function next_episode(){
         parameter_dict = data;
         }
     });
-    start_episode();
+    //start_episode();
+    paused = true;
+    button_keep.show();
+    hide_inputs();
+    button_hide_params.hide();
 }
 
-
+function display_transition(){
+    let trans_text = 'Great job, '+ str(parameter_dict['episode_number']) +' / 20' +' episode(s) have already been completed! \n'
+        + 'You have found ' + str(parameter_dict['nb_target_retrieved'] + '/' + parameter_dict['n_targets'] + ' targets on last trial... \n')
+        + 'Don\'t give up !';
+    let width = 170;
+    let height = 70;
+    push();
+    fill(250,250,250,210);
+    rectMode(CENTER);
+    rect(windowWidth/2, windowHeight/2, windowWidth, 500);
+    button_keep.position(windowWidth/2 - width/2, windowHeight/2 + height/2);
+    button_keep.size(width, height);
+    button_keep.mousePressed(start_episode);
+    textFont(gill_font_light);
+    textSize(25);
+    textStyle(BOLD);
+    fill('black');
+    textAlign(CENTER, TOP);
+    rectMode(CORNERS);
+    text(trans_text, 0, windowHeight/2 - height, windowWidth, 2*height);
+    pop();
+}

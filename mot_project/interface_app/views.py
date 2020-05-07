@@ -1,5 +1,3 @@
-# @TODO: print number of episode restant
-# @TODO: print score
 
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
@@ -161,7 +159,7 @@ def restart_episode(request):
     # Same params parse correctly for python:
     for key, value in params.items():
         # Just parse everything:
-        if key != 'secondary_task':
+        if key != 'secondary_task' and key != 'sec_task_results':
             params[key] = float(params[key])
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
