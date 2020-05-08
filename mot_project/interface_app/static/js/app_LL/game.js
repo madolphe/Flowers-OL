@@ -6,7 +6,7 @@ const params = {
     scale : 5,
     initDistance : xparams.dist,
     platformType : xparams.plat,            // -1 = pit, 0 = flat, 1 = hill
-    timeToWin: 5,
+    timeToWin: 3,
     lander : {
         startRandom : true,
         w : 10+(15-2)+25,                         // top vert + dome radius + foot offset
@@ -87,6 +87,7 @@ function runSessionLL() {
     let domeView;
     let footViews;
     let legViews;
+    let progBar, progFrame;
 
     let outOfTime = false;
     let trialsCompleted = 0;
@@ -251,6 +252,20 @@ function runSessionLL() {
         hullView = parts.views.lander[1];
         footViews = parts.views.feet;
         legViews = parts.views.legs;
+
+        // Add progbar
+        progFrame = new createjs.Shape();
+        progFrame.graphics.ss(2).s(params.colors.legs).r(0, 0, 50, 7);
+        progFrame.regY = 50;
+        progFrame.regX = 25;
+
+        progBar = new createjs.Shape();
+        progBar.graphics.f(params.colors.legs).r(0, 0, 1, 7);
+        progBar.regY = 50;
+        progBar.regX = 25;
+
+        stage.addChild(progFrame);
+        stage.addChild(progBar);
     };
 
     // Initialize terrain
@@ -317,6 +332,8 @@ function runSessionLL() {
         domeView.graphics.clear();
         floorView.graphics.clear();
         platformView.graphics.clear();
+        progFrame.graphics.clear();
+        progBar.graphics.clear();
         footViews.forEach(view => view.graphics.clear());
         legViews.forEach(view => view.graphics.clear());
         trialStartTime = new Date().getTime();
@@ -435,6 +452,21 @@ function runSessionLL() {
             footViews[i].rotation = feetBodies[i].GetAngle() * (180/Math.PI);
             legViews[i].graphics.clear().ss(3, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
         };
+
+        if (landed) {
+            progFrame.visible = true;
+            progBar.visible = true;
+            progFrame.x = lX;
+            progFrame.y = lY;
+            progBar.x = lX;
+            progBar.y = lY;
+            prog = sinceEnter/params.timeToWin
+            progBar.graphics.c().f(params.colors.legs).r(0,0,50*prog,7);
+        } else {
+            progFrame.visible = false;
+            progBar.visible = false;
+        };
+
         stage.update()
     };
 
