@@ -179,7 +179,7 @@ def joldStartSess_LL(request):
         'wind': participant.wind,
         'plat': participant.plat,
         'dist': participant.dist,
-        'time': 10,
+        'time': 2*60,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:

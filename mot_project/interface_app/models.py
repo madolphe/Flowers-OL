@@ -63,6 +63,7 @@ class JOLD_participant(models.Model):
     dist = models.IntegerField(null=True)
     nb_sess_started = models.IntegerField(default=0)
     nb_sess_finished = models.IntegerField(default=0)
+    nb_followups_finished = models.IntegerField(default=0)
 
 
 class JOLD_trial_LL(models.Model):
