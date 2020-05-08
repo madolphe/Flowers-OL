@@ -1,5 +1,5 @@
 const params = {
-    verbose : true,
+    verbose : false,
     gravity : 5,
     wind : () => (xparams.wind + Math.random()-.5),
     windDir : () => Math.random() < 0.5 ? -1 : 1,
@@ -67,6 +67,7 @@ const inSec = (ms) => {return ms/1000};
 const rotate = (x, y, t) => {return [x*Math.cos(t)-y*Math.sin(t), x*Math.sin(t)+y*Math.cos(t)]};
 const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
 const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
+const fmtMSS = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s};
 
 function runSessionLL() {
     new p5();
@@ -153,7 +154,7 @@ function runSessionLL() {
     stage.addChild(background);
 
     if (params.hyper.seed) {Math.seedrandom('lunar-lander-random-seed')};
-    initButtons();
+    initOuterElements();
     init();
 
     // Run initializers
@@ -173,13 +174,17 @@ function runSessionLL() {
     };
 
     // Initialize HTML (p5) buttons
-    function initButtons() {
+    function initOuterElements() {
         toggleFullscreenButton = createButton('Fullscreen');
         toggleFullscreenButton.class('toggleFullscreen')
         toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
+
         terminateButton = createButton('End session');
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
+
+        timePane = createDiv(fmtMSS(Math.ceil(xparams.time)))
+        timePane.class('timer')
     };
 
     //Initializes keyboard events
@@ -480,7 +485,9 @@ function runSessionLL() {
         }
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
-        if (inSec(sessElapsedTime+createjs.Ticker.getTime(true)) >= xparams.time) {endSess()};
+        timeElapsed = inSec(sessElapsedTime+createjs.Ticker.getTime(true))
+        timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))
+        if (timeElapsed > xparams.time) {endSess()};
     };
 
     // Check if lander is in land box
