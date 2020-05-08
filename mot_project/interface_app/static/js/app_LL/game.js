@@ -9,6 +9,7 @@ const params = {
     timeToWin: 3,
     lander : {
         startRandom : true,
+        startRandomMom : true,
         w : 10+(15-2)+25,                         // top vert + dome radius + foot offset
         h : 15*2,
         thrust : 10,
@@ -78,6 +79,7 @@ function runSessionLL() {
     const chunkWidth = canvas.width / params.floor.chunks
     let world;
     let wind = params.wind() * params.windDir();
+    let trialStart = true;
 
     let floorView = new createjs.Shape();
     let platformView = new createjs.Shape();
@@ -169,6 +171,7 @@ function runSessionLL() {
         trialStartTime = new Date().getTime();
         createjs.Ticker.addEventListener('tick', draw);
         createjs.Ticker.useRAF = true;
+        trialStart = true;
         pauseUnpause(gamePaused);
         tick();
     };
@@ -358,6 +361,7 @@ function runSessionLL() {
         userReset = false;
         fuel = 0;
         presses = 0;
+        trialStart = true;
     };
 
     // Simulate physics for time period `dt`
@@ -417,6 +421,18 @@ function runSessionLL() {
             impulse = new Box2D.Common.Math.b2Vec2(shipData.turning, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
         }
+
+        if (trialStart && params.lander.startRandomMom && !gamePaused) {
+            pluMinus = Math.random() < 0.5 ? -1 : 1;
+            steeringPoint = landerBody.GetWorldCenter().Copy();
+            impulse = new Box2D.Common.Math.b2Vec2(pluMinus*shipData.turning * 50, 0);
+            landerBody.ApplyImpulse(impulse, steeringPoint);
+            impulse = new Box2D.Common.Math.b2Vec2(Math.sin(landerBody.GetAngle()) * shipData.thrust,
+                -(Math.cos(landerBody.GetAngle()) * shipData.thrust * 10));
+            landerBody.ApplyImpulse(impulse, landerBody.GetWorldCenter());
+            trialStart = false;
+        }
+
         distToLandPoint = getEuclidDistance(
             u = landPoint,
             w = [landerXpx, landerYpx]);
