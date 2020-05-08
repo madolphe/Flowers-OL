@@ -9,21 +9,25 @@
 {% block nav%} {%endblock%}
 {% load crispy_forms_tags %}
 {% block content%}
-{% if error %}
-<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
-{% endif %}
-<div class="container justify-content-center">
-    <div class="row justify-content-center">
-        <form action="{% url "home"%}" class="form" method="post">
-        {%crispy form_sign_in%}
-    </form>
+<div class="sidenav">
+    <div class="login-main-text">
+       <h2>Application<br> Login Page</h2>
+       <p>Login or register from here to access.</p>
     </div>
-    <div class="row justify-content-center">
-        <button>
-            <a href="{% url "sign_up" %}">Link to sign up</a>
-        </button>
+ </div>
+ <div class="main">
+    <div class="col-md-7 col-sm-12">
+        <div class="login-form">
+            {% if error %}
+                <p><strong>Unknown username or password.</strong></p>
+            {% endif %}
+            <form action="{% url "home"%}" class="form" method="post">
+                {%crispy form_sign_in%}
+                <div>
+                    <p class="text-center register-link"><a href="{% url "sign_up" %}">Click here to register</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
 {% endblock %}
-
