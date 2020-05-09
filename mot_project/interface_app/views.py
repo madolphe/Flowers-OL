@@ -1,7 +1,3 @@
-# @TODO: print number of episode restant
-# @TODO: print score
-# @TODO: test new design for frontend
-# @TODO: refacto code --> mainly js + comments
 
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
@@ -11,7 +7,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
-from .models import Episode, JOLD_trial_LL, JOLD_participant
+from .models import Episode, JOLD_trial_LL, SecondaryTask, JOLD_participant
 from .alexfuncs import assign_condition
 
 
@@ -68,6 +64,7 @@ def user_logout(request):
 
 @login_required
 def visual_2d_task(request):
+    # Function to be removed in the future
     """Initial call to app 2D view"""
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
@@ -93,9 +90,9 @@ def MOT_task(request):
     parameters = {'n_targets': 3, 'n_distractors': 3, 'angle_max': 9, 'angle_min': 3,
                   'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
-                  'presentation_time': 1000, 'fixation_time': 1000, 'tracking_time': 12000,
-                  'debug': 0, 'secondary_task': 'detection', 'SRI_max': 2000, 'RSI': 1000,
-                  'diagcm': 40, 'delta_orientation': 45}
+                  'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
+                  'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
+                  'delta_orientation': 45, 'screen_params': 39.116}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -117,11 +114,20 @@ def next_episode(request):
     # Save episode and results:
     episode = Episode()
     episode.participant = request.user
-    print(params)
-    score = '['+str(params['nb_target_retrieved'])+','+str(params['nb_distract_retrieved'])+']'
-    episode.score = score
-    episode.id_session = params['id_session']
+    for key, val in params.items():
+        if key in episode.__dict__:
+            episode.__dict__[key] = val
     episode.save()
+    if params['secondary_task'] != 'none':
+        params['sec_task_results'] = eval(params['sec_task_results'])
+        for res in params['sec_task_results']:
+            sec_task = SecondaryTask()
+            sec_task.episode = episode
+            sec_task.type = params['secondary_task']
+            sec_task.delta_orientation = res[0]
+            sec_task.answer_duration = res[1]
+            sec_task.success = res[2]
+            sec_task.save()
     # Function to be removed when the seq manager will be connected:
     increase_difficulty(params)
     with open('interface_app/static/JSON/parameters.json') as json_file:
@@ -129,27 +135,15 @@ def next_episode(request):
     return HttpResponse(json.dumps(parameters))
 
 
-# Hand crafted sequence manager:
+# Hand crafted sequence manager, to be removed :
 def increase_difficulty(params):
-    params['n_targets'] = int(params['n_targets']) + 1
-    params['speed_max'] = int(params['speed_max']) + 1
-    params['speed_min'] = int(params['speed_min']) + 1
-    params['episode_number'] = int(params['episode_number']) + 1
-    params['n_distractors'] = int(params['n_distractors'])
-    params['radius'] = int(params['radius'])
-    params['presentation_time'] = int(params['presentation_time'])
-    params['fixation_time'] = int(params['fixation_time'])
-    params['tracking_time'] = int(params['tracking_time'])
-    params['angle_max'] = int(params['angle_max'])
-    params['angle_min'] = int(params['angle_min'])
-    params['id_session'] = int(params['id_session'])
-    params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
-    params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
-    params['debug'] = int(params['debug'])
-    params['RSI'] = int(params['RSI'])
-    params['SRI_max'] = int(params['SRI_max'])
-    params['diagcm'] = int(params['diagcm'])
-    params['delta_orientation'] = int(params['delta_orientation'])
+    for key, value in params.items():
+        if key != 'secondary_task' and key != 'sec_task_results':
+            params[key] = float(params[key])
+    params['n_targets'] += 1
+    params['speed_max'] *= 1.2
+    params['speed_min'] *= 1.2
+    params['episode_number'] += 1
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
@@ -163,26 +157,10 @@ def restart_episode(request):
     episode = Episode()
     episode.participant = request.user
     # Same params parse correctly for python:
-    params['n_targets'] = int(params['n_targets'])
-    params['speed_max'] = int(params['speed_max'])
-    params['speed_min'] = int(params['speed_min'])
-    params['episode_number'] = int(params['episode_number'])
-    params['n_distractors'] = int(params['n_distractors'])
-    params['radius'] = int(params['radius'])
-    params['presentation_time'] = int(params['presentation_time'])
-    params['fixation_time'] = int(params['fixation_time'])
-    params['tracking_time'] = int(params['tracking_time'])
-    params['angle_max'] = int(params['angle_max'])
-    params['angle_min'] = int(params['angle_min'])
-    params['id_session'] = int(params['id_session'])
-    params['nb_target_retrieved'] = int(params['nb_target_retrieved'])
-    params['nb_distract_retrieved'] = int(params['nb_distract_retrieved'])
-    params['debug'] = int(params['debug'])
-    params['RSI'] = int(params['RSI'])
-    params['SRI_max'] = int(params['SRI_max'])
-    params['diagcm'] = int(params['diagcm'])
-    params['delta_orientation'] = int(params['delta_orientation'])
-    print(params)
+    for key, value in params.items():
+        # Just parse everything:
+        if key != 'secondary_task' and key != 'sec_task_results':
+            params[key] = float(params[key])
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(params, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:
@@ -195,13 +173,13 @@ def restart_episode(request):
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
     participant = JOLD_participant.objects.get(user=request.user.id)
-    participant.nb_sess_started += 1;
+    participant.nb_sess_started += 1
     participant.save()
     xparams = { # make sure to keep difficulty constant for the same participant!
-        'wind' : participant.wind,
-        'plat' : participant.plat,
-        'dist' : participant.dist,
-        'time' : 10,
+        'wind': participant.wind,
+        'plat': participant.plat,
+        'dist': participant.dist,
+        'time': 2*60,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:

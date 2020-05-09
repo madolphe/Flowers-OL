@@ -1,4 +1,7 @@
 function set_screen_params(){
+    diagcm = parameter_dict['screen_params'];
+    max_angle = parameter_dict['angle_max']*2;
+    min_angle = parameter_dict['angle_min']*2;
     // screen size in pixels:
     screen_width_px = screen.availWidth;
     screen_height_px = screen.availHeight;

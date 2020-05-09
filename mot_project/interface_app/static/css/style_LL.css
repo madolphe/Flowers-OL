@@ -54,3 +54,20 @@ body {background-color: black}
     top: 2%;
     right: 0px;
 }
+
+.timer {
+    background-color: #2f3e59;
+    font-size: 27px;
+    color: #f07a56;
+    border: 3px solid #252938;
+    position: fixed;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 10%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

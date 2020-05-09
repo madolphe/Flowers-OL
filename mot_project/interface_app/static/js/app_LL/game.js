@@ -1,14 +1,15 @@
 const params = {
-    verbose : true,
+    verbose : false,
     gravity : 5,
     wind : () => (xparams.wind + Math.random()-.5),
     windDir : () => Math.random() < 0.5 ? -1 : 1,
     scale : 5,
     initDistance : xparams.dist,
     platformType : xparams.plat,            // -1 = pit, 0 = flat, 1 = hill
-    timeToWin: 5,
+    timeToWin: 3,
     lander : {
         startRandom : true,
+        startRandomMom : true,
         w : 10+(15-2)+25,                         // top vert + dome radius + foot offset
         h : 15*2,
         thrust : 10,
@@ -67,6 +68,7 @@ const inSec = (ms) => {return ms/1000};
 const rotate = (x, y, t) => {return [x*Math.cos(t)-y*Math.sin(t), x*Math.sin(t)+y*Math.cos(t)]};
 const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
 const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
+const fmtMSS = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s};
 
 function runSessionLL() {
     new p5();
@@ -77,6 +79,7 @@ function runSessionLL() {
     const chunkWidth = canvas.width / params.floor.chunks
     let world;
     let wind = params.wind() * params.windDir();
+    let trialStart = true;
 
     let floorView = new createjs.Shape();
     let platformView = new createjs.Shape();
@@ -87,6 +90,7 @@ function runSessionLL() {
     let domeView;
     let footViews;
     let legViews;
+    let progBar, progFrame;
 
     let outOfTime = false;
     let trialsCompleted = 0;
@@ -152,7 +156,7 @@ function runSessionLL() {
     stage.addChild(background);
 
     if (params.hyper.seed) {Math.seedrandom('lunar-lander-random-seed')};
-    initButtons();
+    initOuterElements();
     init();
 
     // Run initializers
@@ -167,18 +171,23 @@ function runSessionLL() {
         trialStartTime = new Date().getTime();
         createjs.Ticker.addEventListener('tick', draw);
         createjs.Ticker.useRAF = true;
+        trialStart = true;
         pauseUnpause(gamePaused);
         tick();
     };
 
     // Initialize HTML (p5) buttons
-    function initButtons() {
+    function initOuterElements() {
         toggleFullscreenButton = createButton('Fullscreen');
         toggleFullscreenButton.class('toggleFullscreen')
         toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
+
         terminateButton = createButton('End session');
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
+
+        timePane = createDiv(fmtMSS(Math.ceil(xparams.time)))
+        timePane.class('timer')
     };
 
     //Initializes keyboard events
@@ -251,6 +260,20 @@ function runSessionLL() {
         hullView = parts.views.lander[1];
         footViews = parts.views.feet;
         legViews = parts.views.legs;
+
+        // Add progbar
+        progFrame = new createjs.Shape();
+        progFrame.graphics.ss(2).s(params.colors.legs).r(0, 0, 50, 7);
+        progFrame.regY = 50;
+        progFrame.regX = 25;
+
+        progBar = new createjs.Shape();
+        progBar.graphics.f(params.colors.legs).r(0, 0, 1, 7);
+        progBar.regY = 50;
+        progBar.regX = 25;
+
+        stage.addChild(progFrame);
+        stage.addChild(progBar);
     };
 
     // Initialize terrain
@@ -317,6 +340,8 @@ function runSessionLL() {
         domeView.graphics.clear();
         floorView.graphics.clear();
         platformView.graphics.clear();
+        progFrame.graphics.clear();
+        progBar.graphics.clear();
         footViews.forEach(view => view.graphics.clear());
         legViews.forEach(view => view.graphics.clear());
         trialStartTime = new Date().getTime();
@@ -336,6 +361,7 @@ function runSessionLL() {
         userReset = false;
         fuel = 0;
         presses = 0;
+        trialStart = true;
     };
 
     // Simulate physics for time period `dt`
@@ -395,6 +421,18 @@ function runSessionLL() {
             impulse = new Box2D.Common.Math.b2Vec2(shipData.turning, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
         }
+
+        if (trialStart && params.lander.startRandomMom && !gamePaused) {
+            pluMinus = Math.random() < 0.5 ? -1 : 1;
+            steeringPoint = landerBody.GetWorldCenter().Copy();
+            impulse = new Box2D.Common.Math.b2Vec2(pluMinus*shipData.turning * 50, 0);
+            landerBody.ApplyImpulse(impulse, steeringPoint);
+            impulse = new Box2D.Common.Math.b2Vec2(Math.sin(landerBody.GetAngle()) * shipData.thrust,
+                -(Math.cos(landerBody.GetAngle()) * shipData.thrust * 10));
+            landerBody.ApplyImpulse(impulse, landerBody.GetWorldCenter());
+            trialStart = false;
+        }
+
         distToLandPoint = getEuclidDistance(
             u = landPoint,
             w = [landerXpx, landerYpx]);
@@ -435,6 +473,21 @@ function runSessionLL() {
             footViews[i].rotation = feetBodies[i].GetAngle() * (180/Math.PI);
             legViews[i].graphics.clear().ss(3, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
         };
+
+        if (landed) {
+            progFrame.visible = true;
+            progBar.visible = true;
+            progFrame.x = lX;
+            progFrame.y = lY;
+            progBar.x = lX;
+            progBar.y = lY;
+            prog = sinceEnter/params.timeToWin
+            progBar.graphics.c().f(params.colors.legs).r(0,0,50*prog,7);
+        } else {
+            progFrame.visible = false;
+            progBar.visible = false;
+        };
+
         stage.update()
     };
 
@@ -448,7 +501,9 @@ function runSessionLL() {
         }
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
-        if (inSec(sessElapsedTime+createjs.Ticker.getTime(true)) >= xparams.time) {endSess()};
+        timeElapsed = inSec(sessElapsedTime+createjs.Ticker.getTime(true))
+        timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))
+        if (timeElapsed > xparams.time) {endSess()};
     };
 
     // Check if lander is in land box

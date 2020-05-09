@@ -9,11 +9,16 @@ class UserForm(forms.ModelForm):
     """
     Class to generate user form : !!! CreateUserForm already exists and could be override !!!
     """
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'first name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'last name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
+
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.field_class = 'col-lg-8'
         pass
 
     class Meta:
@@ -27,12 +32,11 @@ class ParticipantProfileForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.form_tag = False
-        self.helper.field_class = 'col-lg-8'
         pass
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date']
+        exclude = ['user', 'date', 'screen_params']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
