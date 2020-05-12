@@ -21,7 +21,7 @@
             {% if error %}
                 <p><strong>Unknown username or password.</strong></p>
             {% endif %}
-            <form action="{% url "home"%}" class="form" method="post">
+            <form action="{% url url_%}" class="form" method="post">
                 {%crispy form_sign_in%}
                 <div>
                     <p class="text-center register-link"><a href="{% url "sign_up" %}">Click here to register</a></p>

@@ -1,9 +1,8 @@
-
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse
+from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
@@ -32,7 +31,7 @@ def sign_up(request):
 
 def home(request):
     # First, init forms, if request is valid we check if the user exists
-    # print(request)
+    url_ = resolve(request.path_info).url_name
     error = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
@@ -51,6 +50,7 @@ def home(request):
 def home_user(request):
     if request.user.is_authenticated:
         study = request.user.participantprofile.study
+        print(study)
         context = "Salut, {0} !".format(request.user.username)
     return render(request, 'home_user.html', locals())
 
