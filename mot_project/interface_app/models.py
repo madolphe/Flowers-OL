@@ -10,6 +10,8 @@ class ParticipantProfile(models.Model):
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='yyyy-mm-dd')
     study = models.CharField(max_length=10, default='unk')
     screen_params = models.FloatField(default=39.116)
+    nb_sess_started = models.IntegerField(default=0)
+    nb_sess_finished = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Participant'
@@ -61,8 +63,8 @@ class JOLD_participant(models.Model):
     wind = models.IntegerField(null=True)
     plat = models.IntegerField(null=True)
     dist = models.IntegerField(null=True)
-    nb_sess_started = models.IntegerField(default=0)
-    nb_sess_finished = models.IntegerField(default=0)
+    # nb_sess_started = models.IntegerField(default=0)
+    # nb_sess_finished = models.IntegerField(default=0)
     nb_followups_finished = models.IntegerField(default=0)
 
 
@@ -91,3 +93,4 @@ class DynamicProps(models.Model):
     task_url = models.CharField(max_length=50, default='')
     style = models.CharField(max_length=50, default='')
     instructions = models.CharField(max_length=50, default='')
+    nb_sess = models.IntegerField(default=5)
