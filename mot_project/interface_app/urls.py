@@ -18,9 +18,9 @@ urlpatterns = [
     path('next_episode', views.next_episode, name='next_episode'),
     path('restart_episode', views.restart_episode, name='restart_episode'),
     ## JOLD urls
-    path('app_LL', views.joldStartSess_LL, name='app_LL'),
-    path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='joldSaveTrial_LL'),
-    path('joldEndSess', views.joldEndSess, name='joldEndSess'),
-    path('joldConfidence', views.joldConfidence, name='joldConfidence'),
-    path('joldThanks', views.joldThanks, name='joldThanks'),
+    path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
+    path('joldEndSess', views.joldEndSess, name='JOLD_end_sess'),
+    path('JOLD/lunar_lander', views.joldStartSess_LL, name='JOLD_lunar_lander'),
+    path('JOLD/post_sess', views.joldPostSess, name='JOLD_post_sess'),
+    path('JOLD/thanks', views.joldThanks, name='JOLD_thanks'),
 ]
