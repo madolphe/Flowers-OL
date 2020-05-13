@@ -1,0 +1,74 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+.main-head{
+    height: 150px;
+    background: #FFF;
+}
+.sidenav {
+    position: fixed;
+    height: 100%;
+    background: black;
+    background-size: cover;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.main {
+    padding: 0px 27px;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+    .register-form{
+        margin-top: 10%;
+    }
+}
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%;
+    }
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+    .login-form{
+        margin-top: 70%;
+    }
+    .signup-form{
+        margin-top: 30%;
+    }
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-primary{
+    background-color: #000 !important;
+    color: #fff;
+    width: 100%;
+}
+
+.btn-primary:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.3);
+}
+
+.register-link a{
+    color: #000;
+}
