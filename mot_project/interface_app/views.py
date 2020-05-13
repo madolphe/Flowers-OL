@@ -6,7 +6,7 @@ from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
-from .models import Episode, JOLD_trial_LL, SecondaryTask, JOLD_participant
+from .models import *
 from .alexfuncs import assign_condition
 
 
@@ -50,8 +50,10 @@ def home(request):
 def home_user(request):
     if request.user.is_authenticated:
         study = request.user.participantprofile.study
-        print(study)
-        context = "Salut, {0} !".format(request.user.username)
+        if study == 'super':
+            return render(request, 'home_superuser.html', locals())
+        PAGE_PROPS = DynamicProps.objects.get(study=study)
+        GREETING = "Salut, {0} !".format(request.user.username)
     return render(request, 'home_user.html', locals())
 
 
@@ -187,7 +189,7 @@ def joldStartSess_LL(request):
 
     with open('interface_app/static/JSON/LL_params.json') as json_file:
         xparams = mark_safe(json.load(json_file))
-    return render(request, 'app_LL.html', locals())
+    return render(request, 'JOLD/lunar_lander.html', locals())
 
 
 @csrf_exempt
@@ -213,16 +215,16 @@ def joldEndSess(request):
         participant.nb_sess_finished += 1
         participant.save()
         print('Redirect to joldConfidence.html')
-        return redirect(reverse('joldConfidence'))
+        return redirect(reverse('JOLD_post_sess'))
     else:
         print('Redirect to joldThanks.html')
-        return redirect(reverse('joldThanks'))
+        return redirect(reverse('JOLD_thanks'))
 
 
 @login_required
-def joldConfidence(request):
+def joldPostSess(request):
     # check how many sessions user has completed, if insufficient,
-    return render(request, 'joldConfidence.html', locals())
+    return render(request, 'JOLD/post_sess.html', locals())
 
 
 @login_required
@@ -230,4 +232,4 @@ def joldThanks(request):
     participant = JOLD_participant.objects.get(user=request.user.id)
     participant.nb_sess_finished
     # check how many sessions user has completed, if insufficient, redirect to
-    return render(request, 'joldThanks.html', locals())
+    return render(request, 'JOLD/thanks.html', locals())
