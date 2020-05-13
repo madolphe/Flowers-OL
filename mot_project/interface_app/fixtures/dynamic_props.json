@@ -18,7 +18,8 @@
             "base_html"     : "base.html",
             "task_url"      : "JOLD_lunar_lander",
             "style"         : "css/jold_home.css",
-            "instructions"  : "JOLD/instructions.html"
+            "instructions"  : "JOLD/instructions.html",
+            "nb_sess"       : 3
         }
     },
     {
@@ -29,7 +30,8 @@
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/style_signup.css",
-            "instructions"  : "JOLD/instructions.html"
+            "instructions"  : "JOLD/instructions.html",
+            "nb_sess"       : 3
         }
     }
 ]
