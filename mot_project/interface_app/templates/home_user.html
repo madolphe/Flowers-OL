@@ -1,23 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container">
-    {{context}}
-    <div class="row justify-content-center">
-        <button>
-            <a href="{% url "app_MOT" %}">Link to MOT task</a>
-        </button>
-        <button>
-            <a href="{% url "app_2D" %}">Link to app fish_2D (app V1)</a>
-        </button>
-        <button>
-            <a href="{% url "app_3D" %}">Link to app 3D (app V0)</a>
-        </button>
-        <button>
-            <a href="{% url "app_LL" %}">Link to Lunar Lander</a>
-        </button>
-        <button>
-            <a href="{% url "user_logout" %}">Logout</a>
-        </button>
+{% extends PAGE_PROPS.base_html %}
+
+{% block title %} {% endblock %}
+{% block js%} {% endblock %}
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static PAGE_PROPS.style %}">
+{% endblock %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="sidenav">
+        <div class="login-main-text">
+           <h2>{{GREETING}}</h2>
+           <p>Here you can see your progression in the study</p>
+        </div>
+        <div>
+            <button>
+                <a href="{% url "user_logout" %}">Logout</a>
+            </button>
+        </div>
+     </div>
+     <div class="main">
+        <div class="col-md-7 col-sm-12">
+            <div class="login-form">
+                <div>
+                    {# <link rel="import" href="{% static PAGE_PROPS.instructions %}"> #}
+                    {% include PAGE_PROPS.instructions %}
+                    <p class="text-center register-link"><a href="{% url PAGE_PROPS.task_url %}">Click here to begin task</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-{%endblock%}
+{% endblock %}
