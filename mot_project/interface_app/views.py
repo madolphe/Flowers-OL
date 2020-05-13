@@ -25,7 +25,7 @@ def sign_up(request):
         assign_condition(user, form_profile.data['study'])      # Assign study conditions
         login(request, user)                                    # Redirect to user homepage
         return redirect(reverse(home_user))
-    context = {'form_profile': form_profile, 'form_user': form_user}
+    context = {'form_profile': form_profile, 'form_user': form_user, 'origin': 'home_'+study}
     return render(request, 'sign_up.html', context)
 
 
