@@ -66,7 +66,7 @@ class JOLD_participant(models.Model):
     nb_followups_finished = models.IntegerField(default=0)
 
 
-class JOLD_trial_LL(models.Model):
+class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
     participant = models.ForeignKey(JOLD_participant, on_delete=models.CASCADE)
     sess_number = models.IntegerField(default=0)
@@ -82,3 +82,12 @@ class JOLD_trial_LL(models.Model):
     presses = models.IntegerField(null=True)
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
+
+
+# A model to store dynamic data to display on Home Page
+class DynamicProps(models.Model):
+    study = models.CharField(max_length=10, default='')
+    base_html = models.CharField(max_length=50, default='')
+    task_url = models.CharField(max_length=50, default='')
+    style = models.CharField(max_length=50, default='')
+    instructions = models.CharField(max_length=50, default='')

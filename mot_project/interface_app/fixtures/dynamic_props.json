@@ -1,0 +1,35 @@
+[
+    {
+        "model": "interface_app.DynamicProps",
+        "pk": 1,
+        "fields": {
+            "study"         : "zpdes_mot",
+            "base_html"     : "base.html",
+            "task_url"      : "app_MOT",
+            "style"         : "css/style_signup.css",
+            "instructions"  : "zpdes_instructions.html"
+        }
+    },
+    {
+        "model": "interface_app.DynamicProps",
+        "pk": 2,
+        "fields": {
+            "study"         : "jold_ll",
+            "base_html"     : "base.html",
+            "task_url"      : "JOLD_lunar_lander",
+            "style"         : "css/jold_home.css",
+            "instructions"  : "JOLD/instructions.html"
+        }
+    },
+    {
+        "model": "interface_app.DynamicProps",
+        "pk": 3,
+        "fields": {
+            "study"         : "jold_mot",
+            "base_html"     : "base.html",
+            "task_url"      : "app_MOT",
+            "style"         : "css/style_signup.css",
+            "instructions"  : "JOLD/instructions.html"
+        }
+    }
+]
