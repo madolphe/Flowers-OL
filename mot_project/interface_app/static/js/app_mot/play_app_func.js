@@ -51,6 +51,7 @@ function display_fixation_cross(cross_length){
 function start_episode(){
     paused = false;
     button_keep.hide();
+    button_hide_params.show();
     if(parameter_dict['episode_number']<20){
         console.log(parameter_dict);
         //app = new MOT(3,3, Math.round(ppd*9), Math.round(ppd*3), 70, 2, 2);
