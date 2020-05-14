@@ -1,74 +1,97 @@
 body {
     font-family: "Lato", sans-serif;
 }
+br {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 15px; /* change this to whatever height you want it */
+}
 .main-head{
     height: 150px;
     background: #FFF;
 }
-.sidenav {
-    position: fixed;
+.info_container{
     height: 100%;
-    background: black;
-    background-size: cover;
+    margin-left: 30%;
+    position: absolute;
+    padding-top: 5%;
+    padding-left: 2%;
+}
+
+.sidenav{
+    color: white;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding: 5% 2% 5% 2%;
+    width: 30%;
+    background-color: black;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    height: 100%;
 }
-.main {
-    padding: 0px 27px;
-}
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-}
-@media screen and (max-width: 450px) {
-    .login-form{
-        margin-top: 10%;
-    }
-    .register-form{
-        margin-top: 10%;
-    }
-}
-@media screen and (min-width: 768px){
-    .main{
-        margin-left: 40%;
-    }
-    .sidenav{
-        width: 40%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-    }
-    .login-form{
-        margin-top: 70%;
-    }
-    .signup-form{
-        margin-top: 30%;
-    }
-    .register-form{
-        margin-top: 20%;
-    }
-}
-
-.login-main-text{
-    margin-top: 20%;
-    padding: 60px;
-    color: #fff;
-}
-
-.login-main-text h2{
+.sidenav-block h2{
     font-weight: 300;
 }
 
-.btn-primary{
-    background-color: #000 !important;
-    color: #fff;
-    width: 100%;
+.progress-list{}
+.progress-list li {
+    font-size: 18px;
+    position: relative;
+    margin: 1em 0;
+}
+.progress-list li.sess_incomplete {
+    color: #666666;
+}
+.progress-list li.sess_current {
+    color: white;
+}
+.progress-list li.sess_complete {
+    color: white;
+    text-decoration: line-through;
+
 }
 
-.btn-primary:hover{
-    box-shadow: 0 0 11px rgba(33,33,33,.3);
+.logout-continer{
+    margin: 0 auto;
 }
+.btn {
+  /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
 
-.register-link a{
-    color: #000;
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px white;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: black;
+  background-color: white;
+}
+/* old-school "down" effect on clic + color tweak */
+.btn:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+/* Firefox: removes the inner border shown on focus */
+.btn::-moz-focus-inner {
+  border: none;
+}
+/* inverse colors on hover */
+.btn:hover {
+  color: white;
+  border-color: currentColor;
+  background-color: black;
+}
+/* make sure we have a visible focus ring */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 216, 255, 0.5),
+    0 0 0 1.5px rgba(25, 216, 255, 0.5);
 }
