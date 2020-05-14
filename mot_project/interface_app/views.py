@@ -1,20 +1,19 @@
-
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm, ParticipantProfileForm, SignInForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse
+from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.html import mark_safe
-from .models import Episode, JOLD_trial_LL, SecondaryTask, JOLD_participant
+from .models import *
 from .alexfuncs import assign_condition
 
 
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
     form_user = UserForm(request.POST or None)
-    study = request.META['HTTP_REFERER'].split('/')[-1] # either jold_ll, jold_mot, or zpdes_mot
+    study = request.session['study']
     form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
     if form_user.is_valid() and form_profile.is_valid():
         # Get extra-info for user profile:
@@ -32,8 +31,11 @@ def sign_up(request):
 
 def home(request):
     # First, init forms, if request is valid we check if the user exists
-    # print(request)
-    error = False
+    extension = resolve(request.path_info).url_name.strip('home').strip('-')
+    if extension: request.session['study'] = extension # store 'study' extension only once
+    NO_EXT = 1 if 'study' not in request.session else 0
+
+    ERROR = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
         username = form_sign_in.cleaned_data['username']
@@ -43,7 +45,7 @@ def home(request):
             login(request, user)  # connect user
             return redirect(reverse(home_user))
         else:  # sinon une erreur sera affichée
-            error = True
+            ERROR = True
     return render(request, 'home.html', locals())
 
 
@@ -51,7 +53,11 @@ def home(request):
 def home_user(request):
     if request.user.is_authenticated:
         study = request.user.participantprofile.study
-        context = "Salut, {0} !".format(request.user.username)
+        if study == 'super':
+            return render(request, 'home_superuser.html', locals())
+        PAGE_PROPS = DynamicProps.objects.get(study=study)
+        GREETING = "Salut, {0} !".format(request.user.username)
+        CURRENT_SESS = request.user.participantprofile.nb_sess_finished + 1
     return render(request, 'home_user.html', locals())
 
 
@@ -172,14 +178,14 @@ def restart_episode(request):
 @login_required
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_started += 1
     participant.save()
     xparams = { # make sure to keep difficulty constant for the same participant!
         'wind': participant.wind,
         'plat': participant.plat,
         'dist': participant.dist,
-        'time': 2*60,
+        'time': .2*60,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
@@ -187,12 +193,12 @@ def joldStartSess_LL(request):
 
     with open('interface_app/static/JSON/LL_params.json') as json_file:
         xparams = mark_safe(json.load(json_file))
-    return render(request, 'app_LL.html', locals())
+    return render(request, 'JOLD/lunar_lander.html', locals())
 
 
 @csrf_exempt
 def joldSaveTrial_LL(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
     table = JOLD_trial_LL()
@@ -206,28 +212,28 @@ def joldSaveTrial_LL(request):
 
 @csrf_exempt
 def joldEndSess(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     session_complete = int(list(dict(request.POST).values())[0][0])
     # if session complete, redirect to confidence
     if session_complete:
         participant.nb_sess_finished += 1
         participant.save()
         print('Redirect to joldConfidence.html')
-        return redirect(reverse('joldConfidence'))
+        return redirect(reverse('JOLD_post_sess'))
     else:
         print('Redirect to joldThanks.html')
-        return redirect(reverse('joldThanks'))
+        return redirect(reverse('JOLD_thanks'))
 
 
 @login_required
-def joldConfidence(request):
+def joldPostSess(request):
     # check how many sessions user has completed, if insufficient,
-    return render(request, 'joldConfidence.html', locals())
+    return render(request, 'JOLD/post_sess.html', locals())
 
 
 @login_required
 def joldThanks(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_finished
     # check how many sessions user has completed, if insufficient, redirect to
-    return render(request, 'joldThanks.html', locals())
+    return render(request, 'JOLD/thanks.html', locals())

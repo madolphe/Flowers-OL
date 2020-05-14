@@ -1,10 +1,10 @@
 import random, warnings
-from .models import JOLD_participant
+from .models import ParticipantProfile
 
 def assign_condition(user, study):
     print(user, study)
     if study=='jold_ll':
-        pt_ll = JOLD_participant()
+        pt_ll = ParticipantProfile.objects.get(user=user.id)
         pt_ll.wind = random.sample([0,2,4], 1)[0]
         pt_ll.plat = random.sample([-1,0,1], 1)[0]
         pt_ll.dist = random.randint(0,1)

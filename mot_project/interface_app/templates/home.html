@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
-{% block js%}
-{% endblock %}
+{% block js%} {% endblock %}
 {% block css %}
 {%load static%}
 <link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
@@ -18,15 +17,19 @@
  <div class="main">
     <div class="col-md-7 col-sm-12">
         <div class="login-form">
-            {% if error %}
+            {% if ERROR %}
                 <p><strong>Unknown username or password.</strong></p>
             {% endif %}
             <form action="{% url "home"%}" class="form" method="post">
                 {%crispy form_sign_in%}
-                <div>
-                    <p class="text-center register-link"><a href="{% url "sign_up" %}">Click here to register</a></p>
-                </div>
+                {% if NO_EXT %} {% include "noextension.html" %}
+                {% else %}
+                    <div>
+                        <p class="text-center register-link"><a href="{% url "sign_up" %}">Click here to register</a></p>
+                    </div>
+                {% endif %}
             </form>
+
         </div>
     </div>
 </div>

@@ -10,6 +10,14 @@ class ParticipantProfile(models.Model):
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='yyyy-mm-dd')
     study = models.CharField(max_length=10, default='unk')
     screen_params = models.FloatField(default=39.116)
+    nb_sess_started = models.IntegerField(default=0)
+    nb_sess_finished = models.IntegerField(default=0)
+
+    # JOLD properties
+    wind = models.IntegerField(null=True)
+    plat = models.IntegerField(null=True)
+    dist = models.IntegerField(null=True)
+    nb_followups_finished = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Participant'
@@ -56,19 +64,9 @@ class SecondaryTask(models.Model):
     answer_duration = models.FloatField(default=0)
 
 
-class JOLD_participant(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    wind = models.IntegerField(null=True)
-    plat = models.IntegerField(null=True)
-    dist = models.IntegerField(null=True)
-    nb_sess_started = models.IntegerField(default=0)
-    nb_sess_finished = models.IntegerField(default=0)
-    nb_followups_finished = models.IntegerField(default=0)
-
-
-class JOLD_trial_LL(models.Model):
+class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
-    participant = models.ForeignKey(JOLD_participant, on_delete=models.CASCADE)
+    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     sess_number = models.IntegerField(default=0)
     trial = models.IntegerField(null=True)
     wind = models.DecimalField(decimal_places=2, max_digits=3)
@@ -82,3 +80,13 @@ class JOLD_trial_LL(models.Model):
     presses = models.IntegerField(null=True)
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
+
+
+# A model to store dynamic data to display on Home Page
+class DynamicProps(models.Model):
+    study = models.CharField(max_length=10, default='')
+    base_html = models.CharField(max_length=50, default='')
+    task_url = models.CharField(max_length=50, default='')
+    style = models.CharField(max_length=50, default='')
+    instructions = models.CharField(max_length=50, default='')
+    nb_sess = models.IntegerField(default=5)
