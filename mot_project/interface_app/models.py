@@ -13,6 +13,12 @@ class ParticipantProfile(models.Model):
     nb_sess_started = models.IntegerField(default=0)
     nb_sess_finished = models.IntegerField(default=0)
 
+    # JOLD properties
+    wind = models.IntegerField(null=True)
+    plat = models.IntegerField(null=True)
+    dist = models.IntegerField(null=True)
+    nb_followups_finished = models.IntegerField(default=0)
+
     class Meta:
         verbose_name = 'Participant'
         ordering = ['birth_date']
@@ -58,19 +64,9 @@ class SecondaryTask(models.Model):
     answer_duration = models.FloatField(default=0)
 
 
-class JOLD_participant(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    wind = models.IntegerField(null=True)
-    plat = models.IntegerField(null=True)
-    dist = models.IntegerField(null=True)
-    # nb_sess_started = models.IntegerField(default=0)
-    # nb_sess_finished = models.IntegerField(default=0)
-    nb_followups_finished = models.IntegerField(default=0)
-
-
 class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
-    participant = models.ForeignKey(JOLD_participant, on_delete=models.CASCADE)
+    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     sess_number = models.IntegerField(default=0)
     trial = models.IntegerField(null=True)
     wind = models.DecimalField(decimal_places=2, max_digits=3)

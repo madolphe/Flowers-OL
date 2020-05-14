@@ -54,6 +54,7 @@ def home_user(request):
             return render(request, 'home_superuser.html', locals())
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)
+        CURRENT_SESS = request.user.participantprofile.nb_sess_finished + 1
     return render(request, 'home_user.html', locals())
 
 
@@ -174,14 +175,14 @@ def restart_episode(request):
 @login_required
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_started += 1
     participant.save()
     xparams = { # make sure to keep difficulty constant for the same participant!
         'wind': participant.wind,
         'plat': participant.plat,
         'dist': participant.dist,
-        'time': 2*60,
+        'time': .2*60,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
@@ -194,7 +195,7 @@ def joldStartSess_LL(request):
 
 @csrf_exempt
 def joldSaveTrial_LL(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
     table = JOLD_trial_LL()
@@ -208,7 +209,7 @@ def joldSaveTrial_LL(request):
 
 @csrf_exempt
 def joldEndSess(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     session_complete = int(list(dict(request.POST).values())[0][0])
     # if session complete, redirect to confidence
     if session_complete:
@@ -229,7 +230,7 @@ def joldPostSess(request):
 
 @login_required
 def joldThanks(request):
-    participant = JOLD_participant.objects.get(user=request.user.id)
+    participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_finished
     # check how many sessions user has completed, if insufficient, redirect to
     return render(request, 'JOLD/thanks.html', locals())
