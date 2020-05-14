@@ -36,7 +36,8 @@ class ParticipantProfileForm(forms.ModelForm):
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date', 'screen_params']
+        exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
+                   'wind', 'dist', 'plat', 'nb_followups_finished']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
