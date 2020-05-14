@@ -4,11 +4,13 @@ from . import views
 
 urlpatterns = [
     # path('/<int:res>/<int:nb>', views.save_results)'
+    # it's important to separate `home` and `extension` by '-' !!!
+    path('super', views.home, name='home-super'),
+    path('jold_ll', views.home, name='home-jold_ll'),
+    path('jold_mot', views.home, name='home-jold_mot'),
+    path('zpdes_mot', views.home, name='home-zpdes_mot'),
+    
     path('', views.home, name='home'),
-    path('super', views.home, name='home_super'),
-    path('jold_ll', views.home, name='home_jold_ll'),
-    path('jold_mot', views.home, name='home_jold_mot'),
-    path('zpdes_mot', views.home, name='home_zpdes_mot'),
     path('home_user', views.home_user, name='home_user'),
     path('user_logout', views.user_logout, name='user_logout'),
     path('sign_up', views.sign_up, name='sign_up'),

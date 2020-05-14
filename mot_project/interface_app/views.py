@@ -13,7 +13,7 @@ from .alexfuncs import assign_condition
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
     form_user = UserForm(request.POST or None)
-    study = request.META['HTTP_REFERER'].split('/')[-1] # either jold_ll, jold_mot, or zpdes_mot
+    study = request.session['study']
     form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
     if form_user.is_valid() and form_profile.is_valid():
         # Get extra-info for user profile:
@@ -25,14 +25,17 @@ def sign_up(request):
         assign_condition(user, form_profile.data['study'])      # Assign study conditions
         login(request, user)                                    # Redirect to user homepage
         return redirect(reverse(home_user))
-    context = {'form_profile': form_profile, 'form_user': form_user, 'origin': 'home_'+study}
+    context = {'form_profile': form_profile, 'form_user': form_user}
     return render(request, 'sign_up.html', context)
 
 
 def home(request):
     # First, init forms, if request is valid we check if the user exists
-    url_ = resolve(request.path_info).url_name
-    error = False
+    extension = resolve(request.path_info).url_name.strip('home').strip('-')
+    if extension: request.session['study'] = extension # store 'study' extension only once
+    NO_EXT = 1 if 'study' not in request.session else 0
+
+    ERROR = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
         username = form_sign_in.cleaned_data['username']
@@ -42,7 +45,7 @@ def home(request):
             login(request, user)  # connect user
             return redirect(reverse(home_user))
         else:  # sinon une erreur sera affichée
-            error = True
+            ERROR = True
     return render(request, 'home.html', locals())
 
 
