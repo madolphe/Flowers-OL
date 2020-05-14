@@ -1,5 +1,4 @@
 {% extends PAGE_PROPS.base_html %}
-
 {% block title %} {% endblock %}
 {% block js%} {% endblock %}
 {% block css %}
@@ -8,25 +7,34 @@
 {% block nav%} {%endblock%}
 {% block content%}
     <div class="sidenav">
-        <div class="login-main-text">
+        <div class="sidenav-block">
            <h2>{{GREETING}}</h2>
            <p>Here you can see your progression in the study</p>
         </div>
-        <div>
-            <button>
-                <a href="{% url "user_logout" %}">Logout</a>
-            </button>
+        <div class="sidenav-block">
+            <ul class="progress-list">
+                {% with ''|center:PAGE_PROPS.nb_sess as range %}
+                    {% for _ in range %}
+                        {% if forloop.counter < CURRENT_SESS %}
+                          <li class="sess_complete">Session {{forloop.counter}}</li>
+                        {% elif forloop.counter == CURRENT_SESS %}
+                          <li class="sess_current">Session {{forloop.counter}}</li>
+                        {% elif forloop.counter > CURRENT_SESS %}
+                          <li class="sess_incomplete">Session {{forloop.counter}}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+            </ul>
         </div>
+        <div class='logout-container'> <a class="btn" href="{% url "user_logout" %}">Logout</a> </div>
      </div>
-     <div class="main">
-        <div class="col-md-7 col-sm-12">
-            <div class="login-form">
-                <div>
-                    {# <link rel="import" href="{% static PAGE_PROPS.instructions %}"> #}
-                    {% include PAGE_PROPS.instructions %}
-                    <p class="text-center register-link"><a href="{% url PAGE_PROPS.task_url %}">Click here to begin task</a></p>
-                </div>
-            </div>
+
+     <div class="info_container">
+        <div>
+            {# <link rel="import" href="{% static PAGE_PROPS.instructions %}"> #}
+            {% include PAGE_PROPS.instructions %}
+            <p class="text-center register-link"><a href="{% url PAGE_PROPS.task_url %}">Click here to begin task</a></p>
         </div>
     </div>
+
 {% endblock %}
