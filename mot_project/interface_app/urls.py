@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
     # path('/<int:res>/<int:nb>', views.save_results)'
     # it's important to separate `home` and `extension` by '-' !!!
-    path('super', views.home, name='home-super'),
     path('jold_ll', views.home, name='home-jold_ll'),
     path('jold_mot', views.home, name='home-jold_mot'),
     path('zpdes_mot', views.home, name='home-zpdes_mot'),

@@ -52,9 +52,9 @@ def home(request):
 @login_required
 def home_user(request):
     if request.user.is_authenticated:
-        study = request.user.participantprofile.study
-        if study == 'super':
+        if request.user.is_superuser:
             return render(request, 'home_superuser.html', locals())
+        study = request.user.participantprofile.study
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)
         CURRENT_SESS = request.user.participantprofile.nb_sess_finished + 1
