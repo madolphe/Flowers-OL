@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05971a0c-5bb8-412a-abd1-1f7641c685c8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mot_project/interface_app/templates/ZPDES/zpdes_instructions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.Gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/fixtures/dynamic_props.json" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/fixtures/dynamic_props.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/mot_db" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,107 +15,104 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home_user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="898">
-              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="720">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/admin.py">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_3D.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="453">
+              <caret line="179" column="35" lean-forward="true" selection-start-line="179" selection-start-column="35" selection-end-line="179" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/forms.py">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/fixtures/dynamic_props.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="14" selection-end-line="32" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/sign_up.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="220">
+              <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
+        <entry file="file://$PROJECT_DIR$/.Gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="60">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/css/style_signup.css">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/ZPDES/zpdes_instructions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="1" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/alexfuncs.py">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/instructions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/templates/joldbase.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -125,10 +126,14 @@
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/home.html" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/forms.py" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/sign_up.html" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/templates/ZPDES/zpdes_instructions.html" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/fixtures/dynamic_props.json" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/templates/home_user.html" />
+        <option value="$PROJECT_DIR$/.Gitignore" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="989" />
@@ -150,56 +155,6 @@
               <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
               <item name="mot_project" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="interface_app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
-              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -208,6 +163,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
@@ -241,17 +197,18 @@
       <workItem from="1588880116581" duration="2166000" />
       <workItem from="1588950095763" duration="810000" />
       <workItem from="1589891650860" duration="968000" />
+      <workItem from="1590500576964" duration="888000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3967000" />
+    <option name="totallyTimeSpent" value="4855000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="989" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="989" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25885227" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26190478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -271,7 +228,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32967034" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +248,19 @@
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/joldConfidence.html" />
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/joldThanks.html" />
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_LL.html" />
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/css/style_app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -298,10 +268,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home.html">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="14" selection-end-line="32" selection-end-column="14" />
+        <state relative-caret-position="795">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -322,16 +295,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/sign_up.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="560">
           <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
@@ -339,33 +305,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/forms.py">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/noextension.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/models.py">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/sign_up.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="898">
-          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home_superuser.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_2D.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_3D.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/templates/joldbase.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/instructions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/ZPDES/zpdes_instructions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="453">
+          <caret line="179" column="35" lean-forward="true" selection-start-line="179" selection-start-column="35" selection-end-line="179" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/home_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/fixtures/dynamic_props.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.Gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
