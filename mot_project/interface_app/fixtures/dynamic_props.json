@@ -7,7 +7,7 @@
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/style_signup.css",
-            "instructions"  : "zpdes_instructions.html"
+            "instructions"  : "JOLD/instructions.html"
         }
     },
     {
