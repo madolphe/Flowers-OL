@@ -10,6 +10,7 @@ django = "*"
 mysqlclient = "==1.3.13"
 pymysql = "*"
 django-crispy-forms = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
