@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import UserForm, ParticipantProfileForm, SignInForm
+from .forms import UserForm, ParticipantProfileForm, SignInForm, JOLDPostSessForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import CreateView
 import json
 from django.utils.html import mark_safe
 from .models import *
@@ -13,8 +14,7 @@ from .alexfuncs import assign_condition
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
     form_user = UserForm(request.POST or None)
-    study = request.session['study']
-    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': request.session['study']})
     if form_user.is_valid() and form_profile.is_valid():
         # Get extra-info for user profile:
         user = form_user.save(commit=False)
@@ -63,6 +63,7 @@ def home_user(request):
 
 @login_required
 def user_logout(request):
+    # TODO check if user exists before showing the warning message!!
     if request.user.is_authenticated:
         logout(request)
         return redirect(reverse(home))
@@ -185,7 +186,7 @@ def joldStartSess_LL(request):
         'wind': participant.wind,
         'plat': participant.plat,
         'dist': participant.dist,
-        'time': .2*60,
+        'time': 5,
     }
     # Initialize game same parameters:
     with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
@@ -201,7 +202,7 @@ def joldSaveTrial_LL(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
-    table = JOLD_trial_LL()
+    table = JOLD_LL_trial()
     for key, val in data.items():
         table.__dict__[key] = val
     table.participant = participant
@@ -210,6 +211,7 @@ def joldSaveTrial_LL(request):
     return HttpResponse(status=204) # 204 is a no-content response
 
 
+@login_required
 @csrf_exempt
 def joldEndSess(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
@@ -218,17 +220,41 @@ def joldEndSess(request):
     if session_complete:
         participant.nb_sess_finished += 1
         participant.save()
-        print('Redirect to joldConfidence.html')
+        print('Redirect to JOLD_post_sessl')
         return redirect(reverse('JOLD_post_sess'))
     else:
-        print('Redirect to joldThanks.html')
+        print('Redirect to JOLD_thanks')
         return redirect(reverse('JOLD_thanks'))
 
 
 @login_required
-def joldPostSess(request):
-    # check how many sessions user has completed, if insufficient,
-    return render(request, 'JOLD/post_sess.html', locals())
+def joldSavePostSessData(request):
+    print(request)
+    return redirect(reverse(home_user))
+
+
+@csrf_exempt
+def joldPostSess(request, num=0):
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    sess = participant.nb_sess_finished
+    instruments = QBank.objects.values_list('instrument', flat=True).distinct()
+    questions = QBank.objects.filter(
+        sessions__regex='(^|,){}(,|$)'.format(sess),
+        instrument__exact=instruments[num])
+    form = JOLDPostSessForm(questions, num, request.POST or None)
+    if form.is_valid():
+        r = Responses()
+        r.participant = participant
+        r.sess = sess
+        for q in questions:
+            r.question = q
+            r.answer = form.cleaned_data[q.handle]
+        # r.save()
+        if form.index == len(instruments) - 1:
+            return redirect(reverse(joldThanks))
+        return redirect('JOLD_post_sess', num=num+1)
+    else:
+        return render(request, 'JOLD/post_sess.html', {'FORM': form})
 
 
 @login_required

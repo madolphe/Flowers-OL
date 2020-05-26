@@ -9,7 +9,7 @@ urlpatterns = [
     path('jold_ll', views.home, name='home-jold_ll'),
     path('jold_mot', views.home, name='home-jold_mot'),
     path('zpdes_mot', views.home, name='home-zpdes_mot'),
-    
+
     path('', views.home, name='home'),
     path('home_user', views.home_user, name='home_user'),
     path('user_logout', views.user_logout, name='user_logout'),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
     path('joldEndSess', views.joldEndSess, name='JOLD_end_sess'),
     path('JOLD/lunar_lander', views.joldStartSess_LL, name='JOLD_lunar_lander'),
-    path('JOLD/post_sess', views.joldPostSess, name='JOLD_post_sess'),
-    path('JOLD/thanks', views.joldThanks, name='JOLD_thanks'),
+    path('JOLD/post_sess/', views.joldPostSess, name='JOLD_post_sess'),
+    path('JOLD/post_sess/<int:num>/', views.joldPostSess, name='JOLD_post_sess'),
+    path('JOLD/thanks', views.joldThanks, name='JOLD_thanks')
 ]

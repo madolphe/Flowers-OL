@@ -1,10 +1,20 @@
-{% block title %} JOLD {% endblock %}
-{% load static %}
-<!-- {% block css %}
-    <link rel="stylesheet" href="{% static 'css/style_LL.css' %}">
-{% endblock %} -->
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+{% block js%} {% endblock %}
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="sidenav">
+        <div class="sidenav-block">
+           <h1>Thank you!</h1>
+           <p> We appreciate your contribution to science </p>
+        </div>
+        <div class='logout-container'> <a class="btn" href="{% url "user_logout" %}">Logout</a> </div>
+     </div>
 
-{% block content %}
-    <form id="request">{% csrf_token %}</form>
-    <h1>Thank you for participation!</h1>
+     <div class="info_container"></div>
+
 {% endblock %}
