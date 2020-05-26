@@ -8,11 +8,11 @@
             "component": "Long-term",
             "handle": "jold1",
             "order": 1,
-            "prompt": "How much do you feel you have improved since the beginning of the experiment ?",
+            "prompt": "Rate the quality of your improvement since the beginning of the experiment",
             "min_val": 1,
             "max_val": 100,
             "step": 1,
-            "annotations": "I have not improved at all",
+            "annotations": "Very poor~Poor~Fair~Good~Excellent",
             "widget": "range",
             "sessions": "3"}
     },
@@ -25,11 +25,11 @@
             "component": "Short-term",
             "handle": "jold2",
             "order": 2,
-            "prompt": "How much do you feel you have improved since the last session ?",
+            "prompt": "Rate the quality of your improvement since the last session",
             "min_val": 1,
             "max_val": 100,
             "step": 1,
-            "annotations": "I have not improved at all",
+            "annotations": "Very poor~Poor~Fair~Good~Excellent",
             "widget": "range",
             "sessions": "2,3"
         }
@@ -43,11 +43,11 @@
             "component": "Recent",
             "handle": "jold3",
             "order": 3,
-            "prompt": "How much do you feel you have improved since the beginning of today's session ?",
+            "prompt": "Rate the quality of your improvement since the beginning of today's session",
             "min_val": 1,
             "max_val": 100,
             "step": 1,
-            "annotations": "I have not improved at all",
+            "annotations": "Very poor~Poor~Fair~Good~Excellent",
             "widget": "range",
             "sessions": "1,2,3"
         }
@@ -66,7 +66,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
         }
     },
@@ -84,7 +84,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
         }
     },
@@ -102,7 +102,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
         }
     },
@@ -120,7 +120,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
         }
     },
@@ -138,7 +138,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
             }
     },
@@ -156,7 +156,7 @@
             "max_val": 20,
             "step": 1,
             "annotations": "Very low~Very high",
-            "widget": "likert",
+            "widget": "polar",
             "sessions": "1,2,3"
             }
     },
