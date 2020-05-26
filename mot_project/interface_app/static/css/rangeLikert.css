@@ -1,0 +1,103 @@
+:root {
+  --min-width: 150px;
+  --slider-width: 100%;
+  --thumb-height: 15px;
+  --thumb-width: 40px;
+  --thumb-rad: 15px;
+  --thumb-margin-top: -5.25px;
+  --track-height: 2px;
+}
+.widget {
+  background-color: white;
+  width: 100%;
+  margin: 10 auto;
+}
+
+input[type=range].slider {
+  -webkit-appearance: none;
+  width: var(--slider-width);
+}
+input[type=range].slider:focus {
+  outline: none;
+}
+input[type=range].slider::-webkit-slider-runnable-track {
+  width: var(--slider-width);
+  height: var(--track-height);
+  min-width: var(--min-width);
+  cursor: pointer;
+  background: #2e2e2e;
+}
+input[type=range].slider::-webkit-slider-thumb {
+  border: 2px solid #2e2e2e;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
+  border-radius: var(--thumb-rad);
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: var(--thumb-margin-top);
+}
+input[type=range].slider:focus::-webkit-slider-runnable-track {
+  background: #a3a3a3;
+}
+input[type=range].slider::-moz-range-track {
+  width: var(--slider-width);
+  height: var(--track-height);
+  min-width: var(--min-width);
+  cursor: pointer;
+  background: #2e2e2e;
+}
+input[type=range].slider::-moz-range-thumb {
+  border: 2px solid #2e2e2e;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
+  border-radius: var(--thumb-rad);
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range].slider::-ms-track {
+  width: var(--slider-width);
+  height: var(--track-height);
+  min-width: var(--min-width);
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].slider::-ms-fill-lower {
+  background: #000000;
+}
+input[type=range].slider::-ms-fill-upper {
+  background: #2e2e2e;
+}
+input[type=range].slider::-ms-thumb {
+  border: 2px solid #2e2e2e;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
+  border-radius: var(--thumb-rad);
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range].slider:focus::-ms-fill-lower {
+  background: #2e2e2e;
+}
+input[type=range].slider:focus::-ms-fill-upper {
+  background: #a3a3a3;
+}
+
+.ticks {
+  display: flex;
+  text-align:center;
+  min-width: var(--min-width);
+}
+
+.tick {
+  display: inline-block;
+  vertical-align: top;
+  border-right:2px solid black;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 0.5em;
+  position: relative;
+}
+.tick:last-child {border-right:0px;}

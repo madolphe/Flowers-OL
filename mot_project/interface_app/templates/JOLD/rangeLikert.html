@@ -1,0 +1,15 @@
+<div class="widget">
+    <div class="ticks">
+        {% for a in widget.attrs.annotations %}
+            <div class="tick" style="width:calc(100%/{{widget.attrs.annotations|length}})">{{a}}</div>
+        {% endfor %}
+    </div>
+    <input class = "slider"
+           type = "range"
+           name = {{widget.name}}
+           value = {{widget.value}}
+           min = {{widget.attrs.min_}}
+           max = {{widget.attrs.max_}}
+           step = {{widget.attrs.step}}
+    />
+</div>
