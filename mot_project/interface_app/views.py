@@ -179,21 +179,30 @@ def restart_episode(request):
 @login_required
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
-    participant = ParticipantProfile.objects.get(user=request.user.id)
-    participant.nb_sess_started += 1
-    participant.save()
-    xparams = { # make sure to keep difficulty constant for the same participant!
-        'wind': participant.wind,
-        'plat': participant.plat,
-        'dist': participant.dist,
-        'time': 5,
-    }
-    # Initialize game same parameters:
-    with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
-        json.dump(xparams, json_file)
-
-    with open('interface_app/static/JSON/LL_params.json') as json_file:
-        xparams = mark_safe(json.load(json_file))
+    if not request.user.is_superuser:
+        participant = ParticipantProfile.objects.get(user=request.user.id)
+        participant.nb_sess_started += 1
+        participant.save()
+        xparams = { # make sure to keep difficulty constant for the same participant!
+            'wind': participant.wind,
+            'plat': participant.plat,
+            'dist': participant.dist,
+            'time': 5,
+        }
+    else:
+        xparams = { # make sure to keep difficulty constant for the same participant!
+            'wind': "0",
+            'plat': "0",
+            'dist': "2",
+            'time': "5",
+        }
+    # # Initialize game same parameters:
+    # with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
+    #     json.dump(xparams, json_file)
+    #
+    # with open('interface_app/static/JSON/LL_params.json') as json_file:
+    #     xparams = mark_safe(json.load(json_file))
+    xparams = json.dumps(xparams)
     return render(request, 'JOLD/lunar_lander.html', locals())
 
 

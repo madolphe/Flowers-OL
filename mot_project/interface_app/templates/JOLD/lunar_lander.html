@@ -11,8 +11,8 @@
     <div class="debugDiv" id="debugDiv">Debug data</div>
 {% endblock %}
 
-{% block js%}
-    <script>xparams = {{xparams}}</script>
+{% block js %}
+    <script> xparams = {% autoescape off %}{{ xparams }}{% endautoescape %} </script>
     <script src="{% static 'js/app_LL/utilities.js' %}"></script>
     <script src="{% static 'js/app_LL/game.js' %}"></script>
     <script>runSessionLL();</script>
