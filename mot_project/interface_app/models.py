@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 import datetime
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 
 class ParticipantProfile(models.Model):
@@ -12,12 +13,12 @@ class ParticipantProfile(models.Model):
     screen_params = models.FloatField(default=39.116)
     nb_sess_started = models.IntegerField(default=0)
     nb_sess_finished = models.IntegerField(default=0)
+    nb_followups_finished = models.IntegerField(default=0)
 
     # JOLD properties
     wind = models.IntegerField(null=True)
     plat = models.IntegerField(null=True)
     dist = models.IntegerField(null=True)
-    nb_followups_finished = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Participant'
@@ -90,3 +91,25 @@ class DynamicProps(models.Model):
     style = models.CharField(max_length=50, default='')
     instructions = models.CharField(max_length=50, default='')
     nb_sess = models.IntegerField(default=5)
+
+
+class QBank(models.Model):
+    instrument = models.CharField(max_length=100, null=True)
+    scale = models.CharField(max_length=100, null=True)
+    component = models.CharField(max_length=100, null=True)
+    handle = models.CharField(max_length=10, null=True)
+    order = models.IntegerField(null=True)
+    prompt = models.CharField(max_length=300, null=True)
+    min_val = models.IntegerField(null=1)
+    max_val = models.IntegerField(null=1)
+    step = models.IntegerField(null=1)
+    annotations = models.CharField(max_length=200, null=True)
+    widget = models.CharField(max_length=30, null=True)
+    sessions = models.CharField(max_length=20, null=True)
+
+
+class Responses(models.Model):
+    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
+    question = models.ForeignKey(QBank, on_delete=models.PROTECT)
+    answer = models.IntegerField(null=True)
+    sess = models.IntegerField(null=True)
