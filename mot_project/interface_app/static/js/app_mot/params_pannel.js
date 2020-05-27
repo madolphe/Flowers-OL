@@ -5,6 +5,7 @@
 function init_pannel(){
     hidden_pannel = false;
     button_params = createButton('RESTART');
+    button_raz_params = createButton('DEFAULT');
     button_hide_params = createButton('HIDE <<');
 
     screen_params_input = createInput(parameter_dict['screen_params']);
@@ -23,6 +24,7 @@ function init_pannel(){
     SRI_max_input = createInput(parameter_dict['SRI_max']);
     RSI_input = createInput(parameter_dict['RSI']);
     delta_orientation_input = createInput(parameter_dict['delta_orientation']);
+    gaming_input = createInput(parameter_dict['gaming']);
 
     n_targets_slider = createSlider(0,15,1);
     angle_max_slider = createSlider(1,15, 1);
@@ -37,7 +39,6 @@ function init_pannel(){
     SRI_max_slider = createSlider(0.5, 30, 0.5);
     RSI_slider = createSlider(0.1, 10, 0.1);
     delta_orientation_slider = createSlider(0,85, 1);
-
 
     screen_params_description = "Dimension of your screen diagonal (in cm)";
     angle_max_description = "Maximum angle characterizing the \"outer\" limit of the scene (in deegres)";
@@ -55,9 +56,11 @@ function init_pannel(){
     SRI_max_description = "Maximum duration of interval between 2 secondary task (in sec)";
     RSI_description = "Duration of the display of one secondary task (in sec)";
     delta_orientation_description = "Orientation of leaves in the secondary task image only for detection mode (in degrees)";
+    gaming_description = "Choose to play in a gaming mode (1 or 0)";
 
     // Dictionnary to store all objects in one
     dict_pannel =  {
+        gaming : {gaming_input, gaming_description},
         screen_params : {screen_params_input, screen_params_description},
         angle_max : {angle_max_input, angle_max_slider, angle_max_description},
         angle_min : {angle_min_input, angle_min_slider, angle_min_description},
@@ -80,6 +83,7 @@ function init_pannel(){
 }
 function hide_inputs(){
     button_params.hide();
+    button_raz_params.hide();
     for (var key in dict_pannel) {
         // check if the property/key is defined in the object itself, not in parent
         if (dict_pannel.hasOwnProperty(key)) {
@@ -92,7 +96,9 @@ function hide_inputs(){
 }
 function show_inputs(){
     button_hide_params.show();
+    button_raz_params.show();
     button_hide_params.mousePressed(hide_pannel);
+    button_raz_params.mousePressed(raz);
     button_params.show();
     button_params.mousePressed(restart);
     for (var key in dict_pannel) {
@@ -131,8 +137,9 @@ function position_inputs(){
         }
         i++;
     }
-    button_params.position(start/2, windowHeight - 2.8*step);
-    button_hide_params.position(2.5*start/2, windowHeight - 2.8*step)
+    button_params.position(start/4, windowHeight - 2.8*step);
+    button_raz_params.position(4*start/4, windowHeight - 2.8*step);
+    button_hide_params.position(7*start/4, windowHeight - 2.8*step);
 }
 function display_pannel(){
     if(!hidden_pannel){
@@ -156,7 +163,7 @@ function display_pannel(){
     textAlign(CENTER);
     textSize(20);
     textStyle(BOLD);
-    text("PARAMETERS:", 0, windowHeight - step * 20, 150, step);
+    text("PARAMETERS:", 0, windowHeight - step * 21, 150, step);
     pop();
     }
 }
@@ -169,7 +176,9 @@ function hide_pannel(){
     }else{
         button_hide_params.elt.innerHTML = 'HIDE <<';
         //button_hide_params.position(75, windowHeight - 2*step);
-    button_hide_params.position(2.5*150/2, windowHeight - 2.8*step)
+        //button_hide_params.position(2.5*150/2, windowHeight - 2.8*step);
+        button_hide_params.position(7*150/4, windowHeight - 2.8*step);
+
         button_params.show();
         show_inputs();
     }
@@ -243,6 +252,39 @@ function restart(){
         dataType: "json",
         traditional: true,
         data: parameter_dict,
+        success: function(data) {
+            parameter_dict = data;
+            }
+        });
+    set_screen_params();
+    clearTimeout(pres_timer);
+    clearTimeout(tracking_timer);
+    clearTimeout(answer_timer);
+    if(button_next_episode){
+        button_next_episode.hide();
+    }
+    if(button_answer){
+        button_answer.hide();
+    }
+    start_episode();
+}
+
+function raz(){
+    default_params = {
+        n_targets: 3, n_distractors: 3, angle_max: 9, angle_min: 3,
+        radius: 90, speed_min: 4, speed_max: 4, episode_number: 0,
+        nb_target_retrieved: 0, nb_distract_retrieved: 0,  id_session: 0,
+        presentation_time: 1, fixation_time: 1, tracking_time: 10,
+        debug: 0, secondary_task: 'discrimination', SRI_max: 2, RSI: 1,
+        delta_orientation: 45, screen_params: 39.116, gaming: 1
+    };
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/restart_episode",
+        dataType: "json",
+        traditional: true,
+        data: default_params,
         success: function(data) {
             parameter_dict = data;
             }
