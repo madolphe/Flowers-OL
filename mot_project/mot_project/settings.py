@@ -25,7 +25,7 @@ SECRET_KEY = 'mc9e-tp)bkt0+0d^fj&dowldv_vvl5ekdzw#y(cnab5+ne=x-c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', "127.0.0.1", "flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
 
 LOGIN_URL = '/sign_up/'
 

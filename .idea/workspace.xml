@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05971a0c-5bb8-412a-abd1-1f7641c685c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/JSON/parameters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/interface_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mot_project/mot_db" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/mot_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/mot_project/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/mot_project/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/css/joldbase.css" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/css/joldbase.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/Box2d.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/JOLD/Box2d.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/Box2d.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/JOLD/Box2d.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/addScreenPositionFunction.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/addScreenPositionFunction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/easeljs.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/JOLD/easeljs.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/jquery-3.4.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/jquery-3.4.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/p5.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/p5.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/static/js/seedrandom.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/interface_app/static/js/JOLD/seedrandom.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mot_project/templates/joldbase.html" beforeDir="false" afterPath="$PROJECT_DIR$/mot_project/templates/joldbase.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,93 +42,77 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game_Light/MOT_game_light.js">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/instructions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/lunar_lander.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" column="66" lean-forward="true" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game_Light/tracked_object_game_light.js">
+        <entry file="file://$PROJECT_DIR$/mot_project/templates/joldbase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="405">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="301" column="1" lean-forward="true" selection-start-line="301" selection-start-column="1" selection-end-line="301" selection-end-column="1" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="44" column="92" selection-start-line="44" selection-start-column="92" selection-end-line="44" selection-end-column="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="796">
-              <caret line="165" column="30" lean-forward="true" selection-start-line="165" selection-start-column="30" selection-end-line="165" selection-end-column="30" />
+            <state relative-caret-position="2370">
+              <caret line="158" column="30" lean-forward="true" selection-start-line="158" selection-start-column="30" selection-end-line="158" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_base/tracked_objects.js">
+        <entry file="file://$PROJECT_DIR$/mot_project/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2424" />
+            <state relative-caret-position="420">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_base/MOT.js">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/post_sess.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/thanks.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-500" />
+            <state relative-caret-position="405">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="102" column="77" lean-forward="true" selection-start-line="102" selection-start-column="77" selection-end-line="102" selection-end-column="77" />
+            <state relative-caret-position="1700">
+              <caret line="100" column="79" selection-start-line="100" selection-start-column="79" selection-end-line="100" selection-end-column="79" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -157,12 +153,15 @@
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/tracked_object_game_light.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/templates/app_MOT.html" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game_Light/tracked_object_game_light.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game_Light/MOT_game_light.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/app.js" />
-        <option value="$PROJECT_DIR$/mot_project/interface_app/views.py" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params.js" />
         <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js" />
+        <option value="$PROJECT_DIR$/mot_project/mot_project/wsgi.py" />
+        <option value="$PROJECT_DIR$/mot_project/mot_project/settings.py" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/views.py" />
+        <option value="$PROJECT_DIR$/mot_project/templates/joldbase.html" />
+        <option value="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js" />
       </list>
     </option>
   </component>
@@ -226,6 +225,24 @@
               <item name="interface_app" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
+              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
+              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
+              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MOT-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MOT-app" type="462c0819:PsiDirectoryNode" />
+              <item name="mot_project" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -240,10 +257,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mot_project/interface_app/static/js" />
+      <recent name="$PROJECT_DIR$/mot_project/interface_app/static/js/JOLD" />
+      <recent name="$PROJECT_DIR$/mot_project/interface_app/static/css" />
       <recent name="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game_Light" />
       <recent name="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_base" />
-      <recent name="$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/MOT_Game" />
-      <recent name="$PROJECT_DIR$/mot_project/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -272,12 +290,12 @@
       <workItem from="1588880116581" duration="2166000" />
       <workItem from="1588950095763" duration="810000" />
       <workItem from="1589891650860" duration="968000" />
-      <workItem from="1590500576964" duration="8548000" />
+      <workItem from="1590500576964" duration="10273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12515000" />
+    <option name="totallyTimeSpent" value="14240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1680" height="989" extended-state="0" />
@@ -376,33 +394,10 @@
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/app_3D.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/templates/joldbase.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/.Gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/instructions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -524,30 +519,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="796">
-          <caret line="165" column="30" lean-forward="true" selection-start-line="165" selection-start-column="30" selection-end-line="165" selection-end-column="30" />
+        <state relative-caret-position="1185">
+          <caret line="79" column="6" lean-forward="true" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/mot_project/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/mot_project/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/instructions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/post_sess.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/thanks.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/mot_project/interface_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="102" column="77" lean-forward="true" selection-start-line="102" selection-start-column="77" selection-end-line="102" selection-end-column="77" />
+        <state relative-caret-position="1700">
+          <caret line="100" column="79" selection-start-line="100" selection-start-column="79" selection-end-line="100" selection-end-column="79" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/params_pannel.js">
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="301" column="1" lean-forward="true" selection-start-line="301" selection-start-column="1" selection-end-line="301" selection-end-column="1" />
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/templates/JOLD/lunar_lander.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="66" lean-forward="true" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/templates/joldbase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/addScreenPositionFunction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mot_project/interface_app/static/js/app_mot/play_app_func.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="158" column="30" lean-forward="true" selection-start-line="158" selection-start-column="30" selection-end-line="158" selection-end-column="30" />
         </state>
       </provider>
     </entry>

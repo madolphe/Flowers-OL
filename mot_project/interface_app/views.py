@@ -98,7 +98,7 @@ def MOT_task(request):
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
                   'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
                   'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
-                  'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 0}
+                  'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
