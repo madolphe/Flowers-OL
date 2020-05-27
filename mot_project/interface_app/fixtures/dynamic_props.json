@@ -6,7 +6,7 @@
             "study"         : "zpdes_mot",
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
-            "style"         : "css/style_signup.css",
+            "style"         : "css/zpdes_home.css",
             "instructions"  : "ZPDES/zpdes_instructions.html"
         }
     },
