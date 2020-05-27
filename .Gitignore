@@ -1,7 +1,4 @@
-interface_experimentation/interface_app/static/js/MOT-js
-interface_experimentation/interface_app/static/images/ggj
-interface_experimentation/interface_app/static/images/kenney_fishPack
-interface_experimentation/interface_app/static/images/Space
-interface_experimentation/mot_db
+mot_project/mot_db
 interface_experimentation/db.sqlite3
 *.pyc
+.idea
