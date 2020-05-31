@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import UserForm, ParticipantProfileForm, SignInForm, JOLDPostSessForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView
 import json
 from django.utils.html import mark_safe
 from .models import *
+from .forms import *
 from .alexfuncs import assign_condition
 
 
@@ -243,27 +244,28 @@ def joldSavePostSessData(request):
 
 
 @csrf_exempt
+@never_cache
 def joldPostSess(request, num=0):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     sess = participant.nb_sess_finished
-    instruments = QBank.objects.values_list('instrument', flat=True).distinct()
-    questions = QBank.objects.filter(
-        sessions__regex='(^|,){}(,|$)'.format(sess),
-        instrument__exact=instruments[num])
+    questions = QBank.objects.filter(sessions__regex='(^|,){}(,|$)'.format(sess))
+    groups = questions.values_list('group', flat=True).distinct()
+    questions = questions.filter(group__exact=groups[num])
     form = JOLDPostSessForm(questions, num, request.POST or None)
     if form.is_valid():
-        r = Responses()
-        r.participant = participant
-        r.sess = sess
         for q in questions:
+            r = Responses()
+            r.participant = participant
+            r.sess = sess
             r.question = q
             r.answer = form.cleaned_data[q.handle]
-        # r.save()
-        if form.index == len(instruments) - 1:
+            r.save()
+        if form.index == len(groups) - 1:
             return redirect(reverse(joldThanks))
         return redirect('JOLD_post_sess', num=num+1)
     else:
-        return render(request, 'JOLD/post_sess.html', {'FORM': form})
+        context = {'FORM': form, 'STAGE': num+1, 'NSTAGES': len(groups)}
+        return render(request, 'JOLD/post_sess.html', context)
 
 
 @login_required

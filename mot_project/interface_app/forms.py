@@ -1,11 +1,9 @@
 from django import forms
 from .models import ParticipantProfile, QBank
-from .widgets import rangeLikert
+from .widgets import get_custom_Likert_widget
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
-from django.shortcuts import render, redirect, HttpResponse
-
+from crispy_forms.layout import Layout, Submit, Row, Column, Div, Field
 
 
 class UserForm(forms.ModelForm):
@@ -65,24 +63,47 @@ class SignInForm(forms.Form):
         self.helper.add_input(Submit('submit', 'Submit'))
 
 
+def validate_checked(value):
+    if not value:
+        print('No value')
+        raise ValidationError(
+            _('%(value)s'),
+            params={'value': value},
+        )
+
 class JOLDPostSessForm(forms.Form):
     def __init__(self, questions, index, *args, **kwargs):
         super(JOLDPostSessForm, self).__init__(*args, **kwargs)
+        validator_ = False
         self.rows = []
         self.index = index
         for i, q in enumerate(questions, 1):
-            if q.widget == 'range' or q.widget == 'likert':
-                self.fields[q.handle] = forms.IntegerField(
-                    widget = rangeLikert(attrs={'annotations': q.annotations.split('~'),
-                                                'min_': q.min_val,
-                                                'max_': q.max_val,
-                                                'step': q.step}),
-                    label = '{}. {}'.format(i, q.prompt))
-                self.fields[q.handle+'_validator'] = forms.BooleanField(label = '')
+            self.fields[q.handle] = forms.IntegerField(
+                label = '',
+                validators = [validate_checked])
+            self.fields[q.handle].widget = get_custom_Likert_widget(q, index=i)
+            if self.fields[q.handle].widget.needs_validator:
+                self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
                 self.rows.append(
-                    Row(Column(q.handle, css_class='form-group col-10'),
-                        Column(q.handle+'_validator', css_class='form-group col-2')))
+                    Row(Column(q.handle, css_class='form-group col-11'),
+                        Column(q.handle+'_validator', css_class='form-group col-1'))
+                )
+            else:
+                self.rows.append(
+                    Row(Column(q.handle, css_class='form-group col-12'), css_class='likert-form-row'))
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(*self.rows)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        missing_data = False
+        for handle in sorted(list(self.fields.keys())):
+            if not cleaned_data.get(handle):
+                self.helper[handle].wrap(Div, css_class='empty-row')
+                missing_data = True
+            else:
+                self.fields[handle].widget.attrs['checked'] = cleaned_data[handle]
+        if missing_data:
+            raise forms.ValidationError('Oops, looks like you have missed some fields.')
