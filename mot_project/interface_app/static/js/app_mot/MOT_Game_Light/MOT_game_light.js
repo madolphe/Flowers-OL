@@ -1,9 +1,8 @@
-
-class MOT_Game extends MOT{
-    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_image, distract_image){
+class MOT_Game_Light extends MOT{
+    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_color, distract_color){
         super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max);
-        this.target_image = target_image;
-        this.distract_image = distract_image;
+        this.target_color = target_color;
+        this.distract_color = distract_color;
         this.targets = [];
         this.distractors = [];
         this.init_lists();
@@ -11,13 +10,13 @@ class MOT_Game extends MOT{
     }
     init_lists() {
         for(let step = 0; step < this.n_targets; step++){
-            this.targets.push(new Tracked_Object_Game(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
-                'target', this.targets, this.radius, this.target_image, this.distract_image))
+            this.targets.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
+                'target', this.targets, this.radius, this.target_color, this.distract_color))
         }
         for(let step = 0; step < this.n_distractors; step++){
-            this.distractors.push(new Tracked_Object_Game(this.speed_min, this.speed_max,step+this.n_targets,
+            this.distractors.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max,step+this.n_targets,
                 this.area_min, this.area_max, 'distractor', this.targets.concat(this.distractors), this.radius,
-                this.target_image, this.distract_image));
+                this.target_color, this.distract_color));
         }
     }
     freeze_app() {
@@ -25,6 +24,22 @@ class MOT_Game extends MOT{
     }
 
     display_objects(mouseX, mouseY) {
+        push();
+        ellipseMode(CENTER);
+        stroke('white');
+        noFill();
+        strokeWeight(4);
+        radius = Math.round(ppd*max_angle);
+        ellipse(windowWidth/2, windowHeight/2, radius);
+        pop();
+        push();
+        ellipseMode(CENTER);
+        stroke('white');
+        noFill();
+        strokeWeight(2);
+        radius = Math.round(ppd*min_angle);
+        ellipse(windowWidth/2, windowHeight/2, radius);
+        pop();
         super.display_objects(mouseX, mouseY);
     }
     check_collisions() {
@@ -36,16 +51,16 @@ class MOT_Game extends MOT{
     change_target_color() {
         //super.change_target_color();
         this.targets.forEach(function(item){
-            item.actual_image = item.target_image;
+            item.actual_color = item.target_color;
         });
         this.distractors.forEach(function(item){
-            item.actual_image = item.distract_image;
+            item.actual_color = item.distract_color;
         })
     }
     change_to_same_color() {
         //super.change_to_same_color();
         this.all_objects.forEach(function(item){
-            item.actual_image = item.distract_image;
+            item.actual_color = item.distract_color;
         })
     }
     enable_interact() {

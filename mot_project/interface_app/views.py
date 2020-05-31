@@ -100,7 +100,7 @@ def MOT_task(request):
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
                   'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
                   'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
-                  'delta_orientation': 45, 'screen_params': 39.116}
+                  'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -127,15 +127,16 @@ def next_episode(request):
             episode.__dict__[key] = val
     episode.save()
     if params['secondary_task'] != 'none':
-        params['sec_task_results'] = eval(params['sec_task_results'])
-        for res in params['sec_task_results']:
-            sec_task = SecondaryTask()
-            sec_task.episode = episode
-            sec_task.type = params['secondary_task']
-            sec_task.delta_orientation = res[0]
-            sec_task.answer_duration = res[1]
-            sec_task.success = res[2]
-            sec_task.save()
+        if params['gaming'] == 1:
+            params['sec_task_results'] = eval(params['sec_task_results'])
+            for res in params['sec_task_results']:
+                sec_task = SecondaryTask()
+                sec_task.episode = episode
+                sec_task.type = params['secondary_task']
+                sec_task.delta_orientation = res[0]
+                sec_task.answer_duration = res[1]
+                sec_task.success = res[2]
+                sec_task.save()
     # Function to be removed when the seq manager will be connected:
     increase_difficulty(params)
     with open('interface_app/static/JSON/parameters.json') as json_file:
@@ -149,8 +150,8 @@ def increase_difficulty(params):
         if key != 'secondary_task' and key != 'sec_task_results':
             params[key] = float(params[key])
     params['n_targets'] += 1
-    params['speed_max'] *= 1.2
-    params['speed_min'] *= 1.2
+    params['speed_max'] *= 1.05
+    params['speed_min'] *= 1.05
     params['episode_number'] += 1
     # To be coherent with how seq manager will work:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:

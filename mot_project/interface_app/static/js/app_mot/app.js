@@ -30,8 +30,10 @@ function setup(){
 function draw(){
     push();
     background(0);
-    imageMode(CENTER);
-    image(arena_background, windowWidth/2, windowHeight/2);
+    if(parameter_dict['gaming']==1){
+        imageMode(CENTER);
+        image(arena_background, windowWidth/2, windowHeight/2);
+    }
     //always display exit button:
     display_exit();
     if(mode=='start'){
