@@ -12,23 +12,25 @@
 {% block css %}
     {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
     {%load static%} <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/polarLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block nav%} {%endblock%}
 {% block content%}
-    <div class="sidenav">
-        <div class="sidenav-block">
-           <h2>Questionnaire</h2>
-           <p> Set n of N</p>
+    <div class="side-panel">
+        <div class="side-info">
+           <h2>Post-session questionnaire</h2>
+           <p> Page {{STAGE}} of {{NSTAGES}} </p>
         </div>
-        <div class='logout-container'> <a class="btn" href="{% url "user_logout" %}">Logout</a> </div>
-     </div>
+        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Logout</a> </div>
+    </div>
 
-     <div class="info_container">
-            <div class="signup-form">
-                <form action="." class="form" method="post">
-                    {% crispy FORM %}
-                </form>
-        </div>
+    <div class="main-panel">
+        <div class="signup-form">
+            <form action="." class="form" method="post">
+                {% crispy FORM %}
+            </form>
+    </div>
 
 {% endblock %}

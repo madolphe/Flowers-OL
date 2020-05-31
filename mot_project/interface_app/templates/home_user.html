@@ -6,7 +6,7 @@
 {% endblock %}
 {% block nav%} {%endblock%}
 {% block content%}
-    <div class="sidenav">
+    <div class="side-panel">
         <div class="sidenav-block">
            <h2>{{GREETING}}</h2>
            <p>Here you can see your progression in the study</p>
@@ -29,10 +29,12 @@
         <div class='logout-container'> <a class="btn" href="{% url "user_logout" %}">Logout</a> </div>
      </div>
 
-     <div class="info_container">
+     <div class="main-panel">
         <div>
             {% include PAGE_PROPS.instructions %}
-            <p class="text-center register-link"><a href="{% url PAGE_PROPS.task_url %}">Click here to begin task</a></p>
+            <p class="text-center register-link">
+                <a class="btn" href="{% url PAGE_PROPS.task_url %}">Click here to begin task</a>
+            </p>
         </div>
     </div>
 

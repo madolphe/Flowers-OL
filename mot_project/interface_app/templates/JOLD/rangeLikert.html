@@ -1,4 +1,5 @@
-<div class="widget">
+<div class="prompt"> {{widget.attrs.prompt}} </div>
+<div class="range-likert-widget">
     <div class="ticks">
         {% for a in widget.attrs.annotations %}
             <div class="tick" style="width:calc(100%/{{widget.attrs.annotations|length}})">{{a}}</div>
