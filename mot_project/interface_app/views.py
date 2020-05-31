@@ -262,6 +262,8 @@ def joldPostSess(request, num=0):
             r.answer = form.cleaned_data[q.handle]
             r.save()
         if form.index == len(groups) - 1:
+            participant.nb_followups_finished += 1
+            participant.save()
             return redirect(reverse(joldThanks))
         return redirect('JOLD_post_sess', num=num+1)
     else:
