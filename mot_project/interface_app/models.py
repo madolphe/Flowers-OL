@@ -95,11 +95,12 @@ class DynamicProps(models.Model):
 
 class QBank(models.Model):
     instrument = models.CharField(max_length=100, null=True)
-    scale = models.CharField(max_length=100, null=True)
     component = models.CharField(max_length=100, null=True)
+    group = models.CharField(max_length=100, null=True)
     handle = models.CharField(max_length=10, null=True)
     order = models.IntegerField(null=True)
     prompt = models.CharField(max_length=300, null=True)
+    reverse = models.BooleanField(null=True)
     min_val = models.IntegerField(null=1)
     max_val = models.IntegerField(null=1)
     step = models.IntegerField(null=1)
