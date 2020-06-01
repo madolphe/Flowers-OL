@@ -51,6 +51,11 @@ def home(request):
 
 
 @login_required
+def get_concent(request):
+    pass
+
+
+@login_required
 def home_user(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
