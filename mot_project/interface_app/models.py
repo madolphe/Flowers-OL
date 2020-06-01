@@ -14,6 +14,7 @@ class ParticipantProfile(models.Model):
     nb_sess_started = models.IntegerField(default=0)
     nb_sess_finished = models.IntegerField(default=0)
     nb_followups_finished = models.IntegerField(default=0)
+    consent = models.BooleanField(default=False)
 
     # JOLD properties
     wind = models.IntegerField(null=True)
@@ -90,6 +91,7 @@ class DynamicProps(models.Model):
     task_url = models.CharField(max_length=50, default='')
     style = models.CharField(max_length=50, default='')
     instructions = models.CharField(max_length=50, default='')
+    consent_text = models.CharField(max_length=50, default='')
     nb_sess = models.IntegerField(default=5)
 
 

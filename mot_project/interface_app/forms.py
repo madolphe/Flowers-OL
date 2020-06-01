@@ -38,7 +38,7 @@ class ParticipantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
-                   'wind', 'dist', 'plat', 'nb_followups_finished']
+                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -63,6 +63,23 @@ class SignInForm(forms.Form):
         self.helper.add_input(Submit('submit', 'Submit'))
 
 
+class ConsentForm(forms.Form):
+    understood = forms.BooleanField(label='I have read and understood the terms of participation')
+    agreed = forms.CharField(label='Informed consent', help_text='Type \"I consent\" into the box')
+    fields = ['understood', 'agreed']
+
+    def __init__(self, *args, **kwargs):
+        super(ConsentForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+
+    def clean_agreed(self):
+        user_input = self.cleaned_data['agreed'].lower().strip('\"')
+        if user_input != 'i consent':
+            raise forms.ValidationError('Please provide your explicit informed consent by typing "I consent"')
+        return user_input
+
+
 def validate_checked(value):
     if not value:
         print('No value')
@@ -70,6 +87,7 @@ def validate_checked(value):
             _('%(value)s'),
             params={'value': value},
         )
+
 
 class JOLDPostSessForm(forms.Form):
     def __init__(self, questions, index, *args, **kwargs):

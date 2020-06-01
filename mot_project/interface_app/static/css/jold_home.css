@@ -121,3 +121,9 @@ div.prompt {
     font-size: 18px;
     margin-bottom: 1em;
 }
+
+mark.highlight {
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: inherit;
+}

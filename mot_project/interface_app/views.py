@@ -24,8 +24,8 @@ def sign_up(request):
         user.save()
         form_profile.save_profile(user)
         assign_condition(user, form_profile.data['study'])      # Assign study conditions
-        login(request, user)                                    # Redirect to user homepage
-        return redirect(reverse(home_user))
+        login(request, user)
+        return redirect(reverse(home_user))                  # Redirect to consent form
     context = {'form_profile': form_profile, 'form_user': form_user}
     return render(request, 'sign_up.html', context)
 
@@ -51,8 +51,21 @@ def home(request):
 
 
 @login_required
-def get_concent(request):
-    pass
+def consent_page(request):
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    study = participant.study
+    person = request.user.last_name.upper() + ' ' + request.user.first_name.capitalize()
+    greeting = "Salut, {0} !".format(request.user.username)
+    consent_text = DynamicProps.objects.get(study=study).consent_text
+    form = ConsentForm(request.POST or None)
+    if form.is_valid():
+        participant.consent = True
+        participant.save()
+        return redirect(reverse(home_user))
+    context = {
+        'FORM': form, 'GREETING': greeting,
+        'TEXT': consent_text, 'PERSON': person, 'STUDY': study}
+    return render(request, 'consentTemplate.html', context)
 
 
 @login_required
@@ -60,6 +73,8 @@ def home_user(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             return render(request, 'home_superuser.html', locals())
+        if not ParticipantProfile.objects.get(user=request.user.id).consent:
+            return redirect(reverse(consent_page))
         study = request.user.participantprofile.study
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)
@@ -268,7 +283,7 @@ def joldPostSess(request, num=0):
 
 
 # Render the terminal page
-@login_required
+# @login_required
 def joldThanks(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_finished
