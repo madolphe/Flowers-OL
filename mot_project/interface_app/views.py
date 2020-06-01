@@ -177,7 +177,7 @@ def restart_episode(request):
     return HttpResponse(json.dumps(parameters))
 
 
-# view for requested Lunar Lander session (i.e. practice block)
+# Start a Lunar Lander session
 @login_required
 def joldStartSess_LL(request):
     """Call to Lunar Lander view"""
@@ -198,16 +198,11 @@ def joldStartSess_LL(request):
             'dist': "2",
             'time': "5",
         }
-    # # Initialize game same parameters:
-    # with open('interface_app/static/JSON/LL_params.json', 'w') as json_file:
-    #     json.dump(xparams, json_file)
-    #
-    # with open('interface_app/static/JSON/LL_params.json') as json_file:
-    #     xparams = mark_safe(json.load(json_file))
     xparams = json.dumps(xparams)
     return render(request, 'JOLD/lunar_lander.html', locals())
 
 
+# Save data from lunar lander trial
 @csrf_exempt
 def joldSaveTrial_LL(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
@@ -222,6 +217,7 @@ def joldSaveTrial_LL(request):
     return HttpResponse(status=204) # 204 is a no-content response
 
 
+# Close lunar lander session redirect to post-sess questionnaire or the thanks page
 @login_required
 @csrf_exempt
 def joldEndSess(request):
@@ -231,19 +227,14 @@ def joldEndSess(request):
     if session_complete:
         participant.nb_sess_finished += 1
         participant.save()
-        print('Redirect to JOLD_post_sessl')
+        print('Redirect to JOLD_post_sess')
         return redirect(reverse('JOLD_post_sess'))
     else:
         print('Redirect to JOLD_thanks')
         return redirect(reverse('JOLD_thanks'))
 
 
-@login_required
-def joldSavePostSessData(request):
-    print(request)
-    return redirect(reverse(home_user))
-
-
+# Construct a post-sess questionnaire and render question groups on different pages
 @csrf_exempt
 @never_cache
 def joldPostSess(request, num=0):
@@ -271,6 +262,7 @@ def joldPostSess(request, num=0):
         return render(request, 'JOLD/post_sess.html', context)
 
 
+# Render the terminal page
 @login_required
 def joldThanks(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
