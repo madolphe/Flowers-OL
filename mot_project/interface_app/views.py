@@ -54,17 +54,22 @@ def home(request):
 def consent_page(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     study = participant.study
-    person = request.user.last_name.upper() + ' ' + request.user.first_name.capitalize()
+    person = [request.user.first_name.capitalize(), request.user.last_name.upper()]
     greeting = "Salut, {0} !".format(request.user.username)
     consent_text = DynamicProps.objects.get(study=study).consent_text
+    project = DynamicProps.objects.get(study=study).project
     form = ConsentForm(request.POST or None)
     if form.is_valid():
+        request.user.first_name = request.POST['nom']
+        request.user.last_name = request.POST['prenom']
+        request.user.save()
         participant.consent = True
         participant.save()
-        return redirect(reverse(home_user))
+        # return redirect(reverse(home_user))
+    if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
     context = {
         'FORM': form, 'GREETING': greeting,
-        'TEXT': consent_text, 'PERSON': person, 'STUDY': study}
+        'TEXT': consent_text, 'PERSON': person, 'PROJECT': project}
     return render(request, 'consentTemplate.html', context)
 
 
