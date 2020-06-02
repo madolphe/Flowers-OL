@@ -6,13 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    <form id="request">{% csrf_token %}</form>
-    <canvas id="mainCanvas" class="canvas" width="800" height="600" ></canvas>
-    <div class="debugDiv" id="debugDiv">Debug data</div>
+    <form method='post'>
+        {% csrf_token %}
+        <canvas id="mainCanvas" class="canvas" width="800" height="600" ></canvas>
+        <div class="debugDiv" id="debugDiv">Debug data</div>
+    </form>
 {% endblock %}
 
 {% block js %}
-    <script> xparams = {% autoescape off %}{{ xparams }}{% endautoescape %} </script>
+    <script> xparams = {% autoescape off %}{{ XPARAMS }}{% endautoescape %} </script>
     <script src="{% static 'js/app_LL/utilities.js' %}"></script>
     <script src="{% static 'js/app_LL/game.js' %}"></script>
     <script>runSessionLL();</script>
