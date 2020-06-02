@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, resolve
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView
 import json
@@ -65,7 +66,7 @@ def consent_page(request):
         request.user.save()
         participant.consent = True
         participant.save()
-        # return redirect(reverse(home_user))
+        return redirect(reverse(home_user))
     if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
     context = {
         'FORM': form, 'GREETING': greeting,
@@ -204,7 +205,7 @@ def restart_episode(request):
 
 # Start a Lunar Lander session
 @login_required
-def joldStartSess_LL(request):
+def joldStartSess_LL(request, forced=True):
     """Call to Lunar Lander view"""
     if not request.user.is_superuser:
         participant = ParticipantProfile.objects.get(user=request.user.id)
@@ -214,7 +215,8 @@ def joldStartSess_LL(request):
             'wind': participant.wind,
             'plat': participant.plat,
             'dist': participant.dist,
-            'time': 5,
+            'time': 5 if bool(forced) else 5*60,
+            'forced': bool(forced),
         }
     else:
         xparams = { # make sure to keep difficulty constant for the same participant!
@@ -224,11 +226,11 @@ def joldStartSess_LL(request):
             'time': "5",
         }
     xparams = json.dumps(xparams)
-    return render(request, 'JOLD/lunar_lander.html', locals())
+    return render(request, 'JOLD/lunar_lander.html', {'XPARAMS': xparams})
 
 
 # Save data from lunar lander trial
-@csrf_exempt
+# @csrf_exempt
 def joldSaveTrial_LL(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
@@ -244,23 +246,22 @@ def joldSaveTrial_LL(request):
 
 # Close lunar lander session redirect to post-sess questionnaire or the thanks page
 @login_required
-@csrf_exempt
+@ensure_csrf_cookie
 def joldEndSess(request):
-    participant = ParticipantProfile.objects.get(user=request.user.id)
-    session_complete = int(list(dict(request.POST).values())[0][0])
-    # if session complete, redirect to confidence
-    if session_complete:
-        participant.nb_sess_finished += 1
-        participant.save()
-        print('Redirect to JOLD_post_sess')
-        return redirect(reverse('JOLD_post_sess'))
-    else:
-        print('Redirect to JOLD_thanks')
-        return redirect(reverse('JOLD_thanks'))
+    if request.is_ajax():
+        participant = ParticipantProfile.objects.get(user=request.user.id)
+        session_complete = int(request.POST.get('sessComplete'))
+        forced = int(request.POST.get('forced'))
+        # if session complete, redirect to post-sess QA
+        if session_complete & forced:
+            participant.nb_sess_finished += 1
+            participant.save()
+            return JsonResponse({'success': True, 'url': reverse('JOLD_post_sess')})
+        else:
+            return JsonResponse({'success': True, 'url': reverse('JOLD_thanks')})
 
 
 # Construct a post-sess questionnaire and render question groups on different pages
-@csrf_exempt
 @never_cache
 def joldPostSess(request, num=0):
     participant = ParticipantProfile.objects.get(user=request.user.id)
