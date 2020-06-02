@@ -602,6 +602,7 @@ function runSessionLL() {
             'end_dist' : round(distToLandPoint, 2),
             'interruptions' : interruptions,
             'sess_finished' : outOfTime,
+            'forced' : xparams.forced
             // 'll_thrust' : round(params.lander.thrust, 2),
             // 'll_turn' : round(params.lander.turning, 2),
             // 'll_density' : round(params.lander.density, 2),

@@ -287,6 +287,7 @@ def joldPostSess(request, num=0):
         return render(request, 'JOLD/post_sess.html', context)
 
 
+        page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
 # Render the terminal page
 # @login_required
 def joldThanks(request):

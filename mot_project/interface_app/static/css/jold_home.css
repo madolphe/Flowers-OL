@@ -90,6 +90,7 @@ br {
   /* make sure colors have enough contrast! */
   color: black;
   background-color: white;
+  width: 150px;
 }
 /* old-school "down" effect on clic + color tweak */
 .btn:active {

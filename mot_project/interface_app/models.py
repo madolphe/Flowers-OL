@@ -82,6 +82,7 @@ class JOLD_LL_trial(models.Model):
     presses = models.IntegerField(null=True)
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
+    forced = models.BooleanField(default=True)
 
 
 # A model to store dynamic data to display on Home Page
