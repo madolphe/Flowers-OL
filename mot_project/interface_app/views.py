@@ -276,18 +276,27 @@ def joldPostSess(request, num=0):
             r.sess = sess
             r.question = q
             r.answer = form.cleaned_data[q.handle]
-            r.save()
+            # r.save()
         if form.index == len(groups) - 1:
             participant.nb_followups_finished += 1
             participant.save()
-            return redirect(reverse(joldThanks))
+            return redirect(reverse(joldFreeChoice))
         return redirect('JOLD_post_sess', num=num+1)
     else:
         context = {'FORM': form, 'STAGE': num+1, 'NSTAGES': len(groups)}
         return render(request, 'JOLD/post_sess.html', context)
 
 
+@login_required
+def joldFreeChoice(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return render(request, 'home_superuser.html', locals())
         page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
+        current_sess = request.user.participantprofile.nb_sess_finished
+        return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
+
+
 # Render the terminal page
 # @login_required
 def joldThanks(request):
