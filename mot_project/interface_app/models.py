@@ -86,12 +86,13 @@ class JOLD_LL_trial(models.Model):
 
 # A model to store dynamic data to display on Home Page
 class DynamicProps(models.Model):
-    study = models.CharField(max_length=10, default='')
-    base_html = models.CharField(max_length=50, default='')
-    task_url = models.CharField(max_length=50, default='')
-    style = models.CharField(max_length=50, default='')
-    instructions = models.CharField(max_length=50, default='')
-    consent_text = models.CharField(max_length=50, default='')
+    study = models.CharField(max_length=10, null=True)
+    project = models.CharField(max_length=20, null=True)
+    base_html = models.CharField(max_length=50, null=True)
+    task_url = models.CharField(max_length=50, null=True)
+    style = models.CharField(max_length=50, null=True)
+    instructions = models.CharField(max_length=50, null=True)
+    consent_text = models.CharField(max_length=50, null=True)
     nb_sess = models.IntegerField(default=5)
 
 

@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "study"         : "zpdes_mot",
+            "project"       : "ZPDES-MOT",
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/zpdes_home.css",
@@ -15,6 +16,7 @@
         "pk": 2,
         "fields": {
             "study"         : "jold_ll",
+            "project"       : "Judgments of learning dynamics",
             "base_html"     : "base.html",
             "task_url"      : "JOLD_lunar_lander",
             "style"         : "css/jold_home.css",
@@ -28,6 +30,7 @@
         "pk": 3,
         "fields": {
             "study"         : "jold_mot",
+            "project"       : "Judgments of learning dynamics",
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/style_signup.css",
