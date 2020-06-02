@@ -502,7 +502,7 @@ function runSessionLL() {
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
         timeElapsed = inSec(sessElapsedTime+createjs.Ticker.getTime(true))
-        timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))
+        if (!gamePaused) {timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))}
         if (timeElapsed > xparams.time) {endSess()};
     };
 
@@ -629,6 +629,7 @@ function runSessionLL() {
             pauseSubSubMessage.text = ''
             gamePaused = true;
             pauseUnpause(gamePaused);
+            timePane.html('0:00')
             stage.update()
         }
     };
@@ -642,15 +643,19 @@ function runSessionLL() {
         };
         gamePaused = true;
         pauseUnpause(gamePaused);
-        setTimeout(function() {
-            if (confirm('Please confirm')) {
-                console.log('Signaling termination')
-                post('/joldEndSess', {sessComplete: outOfTime? 1:0})
-            } else {
-                console.log('Doing nothing');
-            }
-        }, 100);
-
+        if (confirm('Please confirm')) {
+            $.ajax({
+                async: true,
+                type: 'POST',
+                url: '/joldEndSess',
+                dataType: "json",
+                traditional: true,
+                data: {sessComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},
+                success: function(response) {
+                    window.location.href = response.url
+                }
+            })
+        };
     };
 
     // Print debug data on canvas
@@ -852,23 +857,22 @@ function addLanderJoint(landerBody, footBody, pivLander, pivFoot, offset, side) 
 
 function post(path, params, method='post') {
 
-  // The rest of this code assumes you are not using a library.
-  // It can be made less wordy if you use one.
-  const form = document.createElement('form');
-  form.method = method;
-  form.action = path;
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    const form = document.createElement('form');
+    form.method = method;
+    form.action = path;
+    for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = key;
+            hiddenField.value = params[key];
 
-  for (const key in params) {
-    if (params.hasOwnProperty(key)) {
-      const hiddenField = document.createElement('input');
-      hiddenField.type = 'hidden';
-      hiddenField.name = key;
-      hiddenField.value = params[key];
-
-      form.appendChild(hiddenField);
+            form.appendChild(hiddenField);
+        }
     }
-  }
 
-  document.body.appendChild(form);
-  form.submit();
-}
+    document.body.appendChild(form);
+    form.submit();
+    }
