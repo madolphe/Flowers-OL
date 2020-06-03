@@ -230,7 +230,6 @@ def joldStartSess_LL(request, forced=True):
 
 
 # Save data from lunar lander trial
-# @csrf_exempt
 def joldSaveTrial_LL(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
@@ -277,7 +276,7 @@ def joldPostSess(request, num=0):
             r.sess = sess
             r.question = q
             r.answer = form.cleaned_data[q.handle]
-            # r.save()
+            r.save()
         if form.index == len(groups) - 1:
             participant.nb_followups_finished += 1
             participant.save()

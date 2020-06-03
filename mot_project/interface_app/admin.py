@@ -4,4 +4,4 @@ from .models import *
 # Register your models here
 admin.site.register(DynamicProps)
 admin.site.register(QBank)
-admin.site.register(Responses)
+admin.site.register(ParticipantProfile)
