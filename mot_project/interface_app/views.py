@@ -251,13 +251,20 @@ def joldEndSess(request):
         participant = ParticipantProfile.objects.get(user=request.user.id)
         session_complete = int(request.POST.get('sessComplete'))
         forced = int(request.POST.get('forced'))
-        # if session complete, redirect to post-sess QA
+        # if session complete, redirect to transition to post-sess Q&A
         if session_complete & forced:
             participant.nb_sess_finished += 1
             participant.save()
-            return JsonResponse({'success': True, 'url': reverse('JOLD_post_sess')})
+            return JsonResponse({'success': True, 'url': reverse('JOLD_transition')})
         else:
             return JsonResponse({'success': True, 'url': reverse('JOLD_thanks')})
+
+
+@login_required
+def joldTransition(request):
+    page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
+    current_sess = request.user.participantprofile.nb_sess_finished
+    return render(request, 'JOLD/transition.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
 
 # Construct a post-sess questionnaire and render question groups on different pages
@@ -290,15 +297,13 @@ def joldPostSess(request, num=0):
 @login_required
 def joldFreeChoice(request):
     if request.user.is_authenticated:
-        if request.user.is_superuser:
-            return render(request, 'home_superuser.html', locals())
         page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
         current_sess = request.user.participantprofile.nb_sess_finished
         return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
 
 # Render the terminal page
-# @login_required
+@login_required
 def joldThanks(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_finished

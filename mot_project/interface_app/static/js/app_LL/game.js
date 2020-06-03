@@ -612,7 +612,7 @@ function runSessionLL() {
         $.ajax({
             async: true,
             type: 'POST',
-            url: '/joldSaveTrial_LL',
+            url: '/JOLD/SaveTrial_LL',
             dataType: "json",
             traditional: true,
             data: JSON.stringify(metrics)
@@ -647,7 +647,7 @@ function runSessionLL() {
             $.ajax({
                 async: true,
                 type: 'POST',
-                url: '/joldEndSess',
+                url: '/JOLD/EndSess',
                 dataType: "json",
                 traditional: true,
                 data: {sessComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},

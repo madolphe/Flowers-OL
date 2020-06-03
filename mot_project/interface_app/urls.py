@@ -20,8 +20,9 @@ urlpatterns = [
     path('restart_episode', views.restart_episode, name='restart_episode'),
 
     ## JOLD urls
-    path('joldSaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
-    path('joldEndSess', views.joldEndSess, name='JOLD_end_sess'),
+    path('JOLD/SaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
+    path('JOLD/EndSess', views.joldEndSess, name='JOLD_end_sess'),
+    path('JOLD/Transition', views.joldTransition, name='JOLD_transition'),
     path('JOLD/lunar_lander', views.joldStartSess_LL, name='JOLD_lunar_lander'),
     path('JOLD/lunar_lander/<int:forced>/', views.joldStartSess_LL, name='JOLD_lunar_lander'),
     path('JOLD/post_sess/', views.joldPostSess, name='JOLD_post_sess'),

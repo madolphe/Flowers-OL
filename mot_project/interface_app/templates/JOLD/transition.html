@@ -3,13 +3,25 @@
 {% block js%} {% endblock %}
 {% block css %}
     {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/polarLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
+    <style>
+        .example-box {
+            padding: 2% 5%;
+            max-height: 50%;
+            overflow-y: scroll;
+            box-shadow: 0 0 15px #777;
+            margin: 5% auto;
+        }
+    </style>
 {% endblock %}
 {% block nav%} {%endblock%}
 
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h2>That's it for today!</h2>
+           <h2>Session complete</h2>
            <ul class="progress-list">
                {% with ''|center:PAGE_PROPS.nb_sess as range %}
                    {% for _ in range %}
@@ -26,14 +38,13 @@
     </div>
 
     <div class="main-panel">
-        <h2> Thank you very much for participating in our study!</h2>
-        <p>
-            We really hope you can come back for the next session scheduled for DATE-OF-NEXT-SESS>.
-            You can practice more today, if you would like, clicking on the "play more" button below.
-        </p>
+        <h1>Next up...</h1>
+        <p>Now, we are going to ask you to answer some questions about the task and how you felt while doing it. The questions can be answered by interacting with responsive widgets, for example:</p>
+        {% include "JOLD/example_widgets.html" %}
+        <p><b>You have as much time to answer each question as you need. Try to answer the questions as accurately as you can.</b>. When you are ready to begin the questionnaire, use the button below</p>
+
         <div class="btn-box">
-            <a class="btn" href="{% url PAGE_PROPS.task_url %}/0/">Play more</a>
-            <a class="btn" href="{% url "user_logout" %}"> Exit</a>
+            <a class="btn" href="{% url "JOLD_post_sess" %}">Begin questionnaire</a>
         </div>
     </div>
 {% endblock %}
