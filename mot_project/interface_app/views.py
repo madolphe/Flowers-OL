@@ -71,7 +71,7 @@ def consent_page(request):
     context = {
         'FORM': form, 'GREETING': greeting,
         'TEXT': consent_text, 'PERSON': person, 'PROJECT': project}
-    return render(request, 'consentTemplate.html', context)
+    return render(request, 'consent_form.html', context)
 
 
 @login_required
@@ -215,7 +215,7 @@ def joldStartSess_LL(request, forced=True):
             'wind': participant.wind,
             'plat': participant.plat,
             'dist': participant.dist,
-            'time': 5 if bool(forced) else 5*60,
+            'time': 10 if bool(forced) else 5*60,
             'forced': bool(forced),
         }
     else:
