@@ -23,18 +23,13 @@
                     {% endfor %}
                 {% endwith %}
             </ul>
-            <div class="btn-box logout"><a class="btn logout" href="{% url "user_logout" %}">Logout</a></div>
+
         </div>
+        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
     </div>
 
     <div class="main-panel">
-        <div>
-            {% include PAGE_PROPS.instructions %}
-            <div class="btn-box">
-                <a class="btn" href="{% url PAGE_PROPS.task_url %}">Begin session</a>
-            </div>
-        </div>
+        {% include PAGE_PROPS.instructions %}
+        <a class="btn" href="{% url PAGE_PROPS.task_url %}">Begin session</a>
     </div>
-
-
 {% endblock %}
