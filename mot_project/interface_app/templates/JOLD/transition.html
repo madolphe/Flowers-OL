@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% block title %} {% endblock %}
-{% block js%} {% endblock %}
+{% block js%}
+    <script type="text/javascript">
+        function showHide(id) {
+           var e = document.getElementById(id);
+           if(e.style.display == 'block')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+    </script>
+{% endblock %}
 {% block css %}
     {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
     {%load static%} <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
@@ -8,6 +18,7 @@
     {%load static%} <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
     <style>
         .example-box {
+            display: none;
             padding: 2% 5%;
             max-height: 50%;
             overflow-y: scroll;
@@ -34,17 +45,26 @@
                {% endwith %}
            </ul>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Logout</a> </div>
+        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
     </div>
-
     <div class="main-panel">
-        <h1>Next up...</h1>
-        <p>Now, we are going to ask you to answer some questions about the task and how you felt while doing it. The questions can be answered by interacting with responsive widgets, for example:</p>
-        {% include "JOLD/example_widgets.html" %}
-        <p><b>You have as much time to answer each question as you need. Try to answer the questions as accurately as you can.</b>. When you are ready to begin the questionnaire, use the button below</p>
 
-        <div class="btn-box">
-            <a class="btn" href="{% url "JOLD_post_sess" %}">Begin questionnaire</a>
+        <div class="todo">
+            <h4> May be: </h4>
+            Alternative page headers:
+            <ul>
+                <li>Don't go just yet...</li>
+                <li>Don't forget to answer the questionnaire!</li>
+            </ul>
         </div>
+
+        <h1>You are almost done...</h1>
+        <p>Next, we are going to ask you to answer some questions about the task and how you felt while doing it. The questions can be answered by interacting with responsive widgets <code class="show-hide" onclick="showHide('id-example-box')">[show example]</code>.</p>
+
+        {% include "JOLD/example_widgets.html" %}
+
+        <p><b>Try to answer the questions as accurately as you can.</b> Click the button below to start the questionnaire. </p>
+
+        <a class="btn" href="{% url "JOLD_post_sess" %}">Begin questionnaire</a>
     </div>
 {% endblock %}
