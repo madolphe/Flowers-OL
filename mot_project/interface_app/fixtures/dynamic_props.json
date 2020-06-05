@@ -8,7 +8,8 @@
             "base_html"     : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/zpdes_home.css",
-            "instructions"  : "ZPDES/zpdes_instructions.html"
+            "instructions"  : "ZPDES/zpdes_instructions.html",
+            "tutorial"      : ""
         }
     },
     {
@@ -22,6 +23,7 @@
             "style"         : "css/jold_home.css",
             "instructions"  : "JOLD/instructions.html",
             "consent_text"  : "JOLD/consentText.html",
+            "tutorial"      : "js/app_LL/tutorial.js",
             "nb_sess"       : 3
         }
     },
@@ -36,6 +38,7 @@
             "style"         : "css/style_signup.css",
             "instructions"  : "JOLD/instructions.html",
             "consent_text"  : "JOLD/consentText.html",
+            "tutorial"      : "",
             "nb_sess"       : 3
         }
     }
