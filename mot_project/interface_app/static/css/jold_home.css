@@ -71,32 +71,34 @@ br {
 
 .btn-box{display: flex}
 .btn {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  align-self: center;
-  margin: 15px auto;
-  border: solid 1px black;
-  border-radius: .25em;
-  padding: 0.5em 1em;
-  color: black;
-  background-color: white;
-  min-width: 150px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    align-self: center;
+    margin: 15px auto;
+    border: solid 1px black;
+    border-radius: .25em;
+    padding: 0.5em 1em;
+    color: black;
+    background-color: white;
+    min-width: 150px;
 }
 /* old-school "down" effect on clic + color tweak */
 .btn:active {
-  transform: translateY(1px);
-  filter: saturate(150%);
+    transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    -moz-transofrm:  translateY(1px);
+    filter: saturate(150%);
 }
 /* Firefox: removes the inner border shown on focus */
 .btn::-moz-focus-inner {
-  border: none;
+    border: none;
 }
 /* inverse colors on hover */
 .btn:hover {
-  color: white;
-  border-color: currentColor;
-  background-color: black;
+    color: white;
+    border-color: currentColor;
+    background-color: black;
 }
 /* make sure we have a visible focus ring */
 .btn:focus {
@@ -142,6 +144,8 @@ span.consent-form > span > label {
     color: gray;
     font-size: .5em;
     transform: translate(100%, 10px);
+    -webkit-transform: translate(100%, 10px);
+    -moz-transofrm:  translate(100%, 10px);
     bottom: 0;
     background-color: white;
     padding: 0 3px 0 3px;
@@ -151,3 +155,27 @@ span.consent-form > input[type=text]:focus + label {
 }
 
 .show-hide:hover {cursor: pointer;}
+
+.tutorial-box {
+    display: flex;
+    justify-content: center;
+}
+.tutorial-canvas {
+    border: 5px solid black;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+kbd#fullscreen {
+    background-color: #2f3e59;
+    color: #f07a56;
+    border: 2px solid #252938;
+    border-radius: 0;
+}
+
+kbd#terminate {
+    background-color: #f07a56;
+    color: #2f3e59;
+    border: 2px solid #252938;
+    border-radius: 0;
+}

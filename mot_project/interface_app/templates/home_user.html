@@ -1,8 +1,10 @@
 {% extends PAGE_PROPS.base_html %}
-{% block title %} {% endblock %}
-{% block js%} {% endblock %}
+{% block title %}{% endblock %}
+{%load static%}
+{% block js%}
+{% endblock %}
 {% block css %}
-    {%load static%} <link rel="stylesheet" href="{% static PAGE_PROPS.style %}">
+    <link rel="stylesheet" href="{% static PAGE_PROPS.style %}">
 {% endblock %}
 {% block nav%} {%endblock%}
 {% block content%}
@@ -27,7 +29,6 @@
         </div>
         <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
     </div>
-
     <div class="main-panel">
         {% include PAGE_PROPS.instructions %}
         <a class="btn" href="{% url PAGE_PROPS.task_url %}">Begin session</a>

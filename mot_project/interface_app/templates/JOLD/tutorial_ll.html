@@ -1,0 +1,11 @@
+<div class="tutorial-box">
+    <canvas id="id-tutorial-canvas" class="tutorial-canvas" width="300" height="200" ></canvas>
+</div>
+{% block js%}
+    {% load static %}
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/JOLD/seedrandom.min.js' %}"></script>
+    <script src="{% static 'js/JOLD/Box2d.js' %}"></script>
+    <script src="{% static 'js/JOLD/easeljs.min.js' %}"></script>
+    <script src="{% static 'js/app_LL/tutorial.js' %}"></script>
+{% endblock %}
