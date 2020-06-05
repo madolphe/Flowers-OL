@@ -3,7 +3,7 @@ from .models import ParticipantProfile, QBank
 from .widgets import get_custom_Likert_widget
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column, Div, Field
+from crispy_forms.layout import Layout, Submit, Row, Column, Div
 
 
 class UserForm(forms.ModelForm):
@@ -38,7 +38,9 @@ class ParticipantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
-                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
+                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent', 'sexe', 'job'
+                   , 'video_game_start', 'game_habit', 'driver', 'driving_start', 'attention_training'
+                   , 'online_training']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -64,8 +66,10 @@ class SignInForm(forms.Form):
 
 
 class ConsentForm(forms.Form):
-    understood = forms.BooleanField(label='I have read and understood the terms of participation')
-    agreed = forms.CharField(label='Informed consent', help_text='Type \"I consent\" into the box')
+    # understood = forms.BooleanField(label='I have read and understood the terms of participation')
+    understood = forms.BooleanField(label='J\'ai lu et compris les termes de la participation')
+    # agreed = forms.CharField(label='Informed consent', help_text='Type \"I consent\" into the box')
+    agreed = forms.CharField(label='Informez le consentement', help_text='Écrire, \"Je consens\" dans l\'espace dédié')
     fields = ['understood', 'agreed']
 
     def __init__(self, *args, **kwargs):
@@ -75,8 +79,11 @@ class ConsentForm(forms.Form):
 
     def clean_agreed(self):
         user_input = self.cleaned_data['agreed'].lower().strip('\"')
-        if user_input != 'i consent':
-            raise forms.ValidationError('Please provide your explicit informed consent by typing "I consent"')
+        print(user_input)
+        # if user_input != 'i consent':
+        #    raise forms.ValidationError('Please provide your explicit informed consent by typing "I consent"')
+        if user_input != 'je consens':
+            raise forms.ValidationError('S\'il vous plaît, exprimez votre consentement en écrivant "Je consens"')
         return user_input
 
 
@@ -125,3 +132,19 @@ class JOLDPostSessForm(forms.Form):
                 self.fields[handle].widget.attrs['checked'] = cleaned_data[handle]
         if missing_data:
             raise forms.ValidationError('Oops, looks like you have missed some fields.')
+
+
+class ZPDESGetProfilForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ZPDESGetProfilForm).__init__(*args,**kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.form_tag = False
+        pass
+
+    class Meta:
+        model = ParticipantProfile
+        exclude = ['user', 'date', 'birth_date', 'study', 'nb_sess_started', 'nb_sess_finished',
+                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
+        widgets = {'study': forms.HiddenInput()}

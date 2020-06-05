@@ -6,20 +6,40 @@ from django.forms import ModelForm
 
 
 class ParticipantProfile(models.Model):
+    # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now, verbose_name="Inscription Date")
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='yyyy-mm-dd')
     study = models.CharField(max_length=10, default='unk')
-    screen_params = models.FloatField(default=39.116)
     nb_sess_started = models.IntegerField(default=0)
     nb_sess_finished = models.IntegerField(default=0)
     nb_followups_finished = models.IntegerField(default=0)
     consent = models.BooleanField(default=False)
 
-    # JOLD properties
+    # JOLD properties:
     wind = models.IntegerField(null=True)
     plat = models.IntegerField(null=True)
     dist = models.IntegerField(null=True)
+
+    # ZPDES-exp extra infos:
+    screen_params = models.FloatField(null=True)
+    sexe = models.CharField(max_length=20, choices=(("Femme", "Femme"), ("Homme", "Homme"), ("Autre", "Autre")), null=True)
+    job = models.CharField(max_length=40, null=True)
+    # Frequency of video games practice is a Response model
+    video_game_start = models.IntegerField(null=True)
+    game_choices = (
+        ("action", "Aventure (ex: \"Zelda\""),
+        ("strat", "Sport (ex: \"Fifa\")"),
+        ("fps", "FPS (ex: \"Call of Duty\")"),
+        ("RPG", "RPG (ex: \"Final fantasy\")"),
+        ("MMO", "MMO (ex: \"World of warcraft\")"),
+    )
+    game_habit = models.CharField(max_length=40, choices=game_choices, null=True)
+    # Frequency of driving is a Response model
+    driver = models.BooleanField(null=True)
+    driving_start = models.IntegerField(null=True)
+    attention_training = models.BooleanField(null=True)
+    online_training = models.BooleanField(null=True)
 
     class Meta:
         verbose_name = 'Participant'

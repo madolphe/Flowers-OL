@@ -53,12 +53,16 @@ def home(request):
 
 @login_required
 def consent_page(request):
+    # First, identify user id and study
     participant = ParticipantProfile.objects.get(user=request.user.id)
     study = participant.study
     person = [request.user.first_name.capitalize(), request.user.last_name.upper()]
     greeting = "Salut, {0} !".format(request.user.username)
+    # Depending on study, consent_form could be different:
+    # Look for correct datas in DynamicProps model:
     consent_text = DynamicProps.objects.get(study=study).consent_text
     project = DynamicProps.objects.get(study=study).project
+    # Check for form validation:
     form = ConsentForm(request.POST or None)
     if form.is_valid():
         request.user.first_name = request.POST['nom']
@@ -67,11 +71,22 @@ def consent_page(request):
         participant.consent = True
         participant.save()
         return redirect(reverse(home_user))
-    if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
+    # Form is not valid yet:
+    # A way to get participant name/firstname is to use django current request
+    # (thank to @login_required)
+    if request.method == 'POST':
+        person = [request.POST['nom'], request.POST['prenom']]
     context = {
         'FORM': form, 'GREETING': greeting,
         'TEXT': consent_text, 'PERSON': person, 'PROJECT': project}
     return render(request, 'consent_form.html', context)
+
+@login_required
+def get_profil(request):
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    study = participant.study
+    
+
 
 
 @login_required
@@ -79,8 +94,10 @@ def home_user(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             return render(request, 'home_superuser.html', locals())
-        if not ParticipantProfile.objects.get(user=request.user.id).consent:
+        elif not ParticipantProfile.objects.get(user=request.user.id).consent:
             return redirect(reverse(consent_page))
+        elif ParticipantProfile.objects.get(user=request.user.id).study == 'zpdes_mot':
+            return redirect(reverse(get_profil))
         study = request.user.participantprofile.study
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)
