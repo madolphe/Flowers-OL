@@ -206,9 +206,6 @@ function runSessionLL() {
             } else if (event.keyCode == 32 && event.target == document.body) {
               event.preventDefault();
             }
-            // } else if (82 == event.keyCode) {
-            //     userReset = !userReset
-            // }
         });
 
         document.addEventListener('keyup', function (event) {
@@ -423,9 +420,9 @@ function runSessionLL() {
         }
 
         if (trialStart && params.lander.startRandomMom && !gamePaused) {
-            pluMinus = Math.random() < 0.5 ? -1 : 1;
+            plusMinus = Math.random() < 0.5 ? -1 : 1;
             steeringPoint = landerBody.GetWorldCenter().Copy();
-            impulse = new Box2D.Common.Math.b2Vec2(pluMinus*shipData.turning * 50, 0);
+            impulse = new Box2D.Common.Math.b2Vec2(plusMinus*shipData.turning * 50, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
             impulse = new Box2D.Common.Math.b2Vec2(Math.sin(landerBody.GetAngle()) * shipData.thrust,
                 -(Math.cos(landerBody.GetAngle()) * shipData.thrust * 10));
