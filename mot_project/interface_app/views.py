@@ -12,6 +12,12 @@ from .models import *
 from .forms import *
 from .alexfuncs import assign_condition
 
+# @TODO: change description of questions
+# @TODO: add get_profil status
+# @TODO: change screen params field
+# @TODO: add lickert widget for scale things
+# @TODO: multiple choices for game habit
+
 
 def sign_up(request):
     # First, init forms, if request is valid we can create the user
@@ -81,11 +87,20 @@ def consent_page(request):
         'TEXT': consent_text, 'PERSON': person, 'PROJECT': project}
     return render(request, 'consent_form.html', context)
 
+
 @login_required
 def get_profil(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     study = participant.study
-    
+    questions = QBank.objects.filter(sessions="0")
+    groups = questions.values_list('group', flat=True).distinct()
+    questions = questions.filter(group__exact="MOT-profil")
+    form = ZPDESGetProfilForm(questions, request.POST or None)
+    if form.is_valid():
+        print(request.POST)
+        return redirect(reverse(home_user))
+    context = {'FORM': form, 'Username': participant.user.username}
+    return render(request, 'ZPDES/get_profil_form.html', context)
 
 
 
@@ -219,6 +234,10 @@ def restart_episode(request):
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
 
+# Display forms after session
+@login_required
+def mot_post_sess(request):
+    pass
 
 # Start a Lunar Lander session
 @login_required

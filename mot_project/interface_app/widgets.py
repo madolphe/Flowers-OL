@@ -46,6 +46,19 @@ class basicLikert(rangeLikert):
         return context
 
 
+class Categories(rangeLikert):
+    template_name = 'ZPDES/categories.html'
+    input_type = 'radio'
+    needs_validator = False
+
+    def get_context(self, name, value, attrs):
+        context = super(rangeLikert, self).get_context(name, value, attrs)
+        context['widget']['attrs']['header'] = self.attrs['header']
+        context['widget']['attrs']['options'] = self.attrs['options']
+        context['widget']['attrs']['checked'] = self.attrs['checked']
+        return context
+
+
 def get_custom_Likert_widget(question_object, index=False):
     pre = '{}. '.format(index) if index else ''
     odd = False
@@ -72,6 +85,17 @@ def get_custom_Likert_widget(question_object, index=False):
         annotations = []
         for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
         return basicLikert(attrs={
+            'prompt': pre + question_object.prompt,
+            'annotations': annotations,
+            'header': True if question_object.order==1 else False,
+            'options': list(range(question_object.min_val, question_object.max_val+1)),
+            'checked': None,
+            'handle': question_object.handle,
+            'odd': odd})
+    if question_object.widget == 'categories':
+        annotations = []
+        for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
+        return Categories(attrs={
             'prompt': pre + question_object.prompt,
             'annotations': annotations,
             'header': True if question_object.order==1 else False,

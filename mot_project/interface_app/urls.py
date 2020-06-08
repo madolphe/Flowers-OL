@@ -13,13 +13,16 @@ urlpatterns = [
     path('user_logout', views.user_logout, name='user_logout'),
     path('sign_up', views.sign_up, name='sign_up'),
     path('consent_page', views.consent_page, name='consent_page'),
+
+    # ZPDES urls
+    path('get_profil', views.get_profil, name='profil'),
     path('app_2D', views.visual_2d_task, name='app_2D'),
     path('app_3D', views.visual_3d_task, name='app_3D'),
     path('app_MOT', views.MOT_task, name='app_MOT'),
     path('next_episode', views.next_episode, name='next_episode'),
     path('restart_episode', views.restart_episode, name='restart_episode'),
 
-    ## JOLD urls
+    # JOLD urls
     path('JOLD/SaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
     path('JOLD/EndSess', views.joldEndSess, name='JOLD_end_sess'),
     path('JOLD/Transition', views.joldTransition, name='JOLD_transition'),

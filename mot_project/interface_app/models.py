@@ -23,21 +23,25 @@ class ParticipantProfile(models.Model):
 
     # ZPDES-exp extra infos:
     screen_params = models.FloatField(null=True)
-    sexe = models.CharField(max_length=20, choices=(("Femme", "Femme"), ("Homme", "Homme"), ("Autre", "Autre")), null=True)
+    sexe = models.CharField(max_length=20, choices=(("Femme", "Femme"), ("Homme", "Homme"), ("Autre", "Autre")),
+                            null=True)
     job = models.CharField(max_length=40, null=True)
     # Frequency of video games practice is a Response model
     video_game_start = models.IntegerField(null=True)
-    game_choices = (
-        ("action", "Aventure (ex: \"Zelda\""),
-        ("strat", "Sport (ex: \"Fifa\")"),
-        ("fps", "FPS (ex: \"Call of Duty\")"),
-        ("RPG", "RPG (ex: \"Final fantasy\")"),
-        ("MMO", "MMO (ex: \"World of warcraft\")"),
-    )
-    game_habit = models.CharField(max_length=40, choices=game_choices, null=True)
-    # Frequency of driving is a Response model
+    # For vide_game_freq, vid_game_habit and driving_freq, custom widget would be used
+    # ( a question object is passed to ModelForm and the widget is set up )
+    video_game_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, often, daily"
+    # game_choices = (
+    #    ("action", "Aventure (ex: \"Zelda\""),
+    #    ("strat", "Sport (ex: \"Fifa\")"),
+    #    ("fps", "FPS (ex: \"Call of Duty\")"),
+    #    ("RPG", "RPG (ex: \"Final fantasy\")"),
+    #    ("MMO", "MMO (ex: \"World of warcraft\")"),
+    # )
+    video_game_habit = models.CharField(max_length=40, null=True) # range : "Action, Sport, FPS, RPG, MMO"
     driver = models.BooleanField(null=True)
     driving_start = models.IntegerField(null=True)
+    driving_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, once a week, daily"
     attention_training = models.BooleanField(null=True)
     online_training = models.BooleanField(null=True)
 

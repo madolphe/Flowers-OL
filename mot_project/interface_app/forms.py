@@ -103,6 +103,7 @@ class JOLDPostSessForm(forms.Form):
         self.rows = []
         self.index = index
         for i, q in enumerate(questions, 1):
+            print(q.__dict__)
             self.fields[q.handle] = forms.IntegerField(
                 label = '',
                 validators = [validate_checked])
@@ -136,15 +137,65 @@ class JOLDPostSessForm(forms.Form):
 
 class ZPDESGetProfilForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super(ZPDESGetProfilForm).__init__(*args,**kwargs)
+    def __init__(self, questions, *args, **kwargs):
+        super(ZPDESGetProfilForm, self).__init__(*args, **kwargs)
+        self.choice_questions = questions
+        self.rows = []
+        self.names = {}
+        for key, value in enumerate(questions, 1):
+            self.names[value.handle] = key - 1
+            self.fields[value.handle] = forms.IntegerField(label='',
+                                                           validators=[validate_checked])
+            self.fields[value.handle].widget = get_custom_Likert_widget(value)
+            if self.fields[value.handle].widget.needs_validator:
+                self.fields[value.handle+'_validator'] = forms.BooleanField(label='')
+                self.rows.append(
+                    Row(Column(value.handle, css_class='form-group col-11'),
+                        Column(value.handle+'_validator', css_class='form-group col-1'))
+                )
+                # Set validator value to absurd value
+                self.names[value.handle+'_validator'] = -1
+            else:
+                self.rows.append(
+                    Row(Column(value.handle, css_class='form-group col-12'), css_class='likert-form-row'))
+        # Build layout according to self.fields:
+        self.layout = []
+        for obj in self.fields:
+            if obj in self.names:
+                # if this is not a validator object:
+                if self.names[obj] != -1:
+                    self.layout.append(self.rows[self.names[obj]])
+            else:
+                self.layout.append(Row(Column(obj, css_class='form-group col-12')))
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.form_tag = False
-        pass
+        self.helper.add_layout(Layout(*self.layout))
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date', 'birth_date', 'study', 'nb_sess_started', 'nb_sess_finished',
-                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
-        widgets = {'study': forms.HiddenInput()}
+        fields = ['sexe', 'screen_params', 'job', 'video_game_start', 'video_game_freq', 'driver', 'driving_start',
+                  'driving_freq', 'attention_training', 'online_training', 'video_game_habit']
+        labels = {'screen_params': 'Diagonale de l\'écran (en cm)', 'sexe': 'Genre', 'job': 'Activité professionnelle',
+                  'video_game_start': 'Début de la pratique des jeux vidéos',
+                  'game_habit': 'Quels types de jeu pratiquez vous ?',
+                  'driver': 'Permis de conduire', 'driving_start': 'Depuis combien d\'années conduisez-vous?',
+                  'attention_training':'Avez-vous déjà suivi un protocole d\'entraînement de l\'attention?',
+                  'online_training':'Avez-vous déjà suivi des formations en ligne? '}
+        help_texts = {'screen_params': 'Cette information peut être récupérée dans les paramètres d\'écran.'}
+
+    def save_p(self, *args, **kwargs):
+        super(ZPDESGetProfilForm).save(self)
+        pass
+
+    def clean(self):
+        cleaned_data = super().clean()
+        missing_data = False
+        for handle in sorted(list(self.fields.keys())):
+            if not cleaned_data.get(handle):
+                self.helper[handle].wrap(Div, css_class='empty-row')
+                missing_data = True
+            else:
+                self.fields[handle].widget.attrs['checked'] = cleaned_data[handle]
+        if missing_data:
+            raise forms.ValidationError('Oops, looks like you have missed some fields.')
