@@ -13,10 +13,7 @@ from .forms import *
 from .alexfuncs import assign_condition
 
 # @TODO: change description of questions
-# @TODO: add get_profil status
-# @TODO: change screen params field
-# @TODO: add lickert widget for scale things
-# @TODO: multiple choices for game habit
+# @TODO: add Attention / NASA_TLX / tuto
 
 
 def sign_up(request):
@@ -91,18 +88,39 @@ def consent_page(request):
 @login_required
 def get_profil(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    study = participant.study
     questions = QBank.objects.filter(sessions="0")
-    groups = questions.values_list('group', flat=True).distinct()
     questions = questions.filter(group__exact="MOT-profil")
     form = ZPDESGetProfilForm(questions, request.POST or None, instance=participant)
     if form.is_valid():
         form.save()
         participant.general_profil = True
         participant.save()
-        return redirect(reverse(home_user))
+        return redirect(reverse(get_attention))
     context = {'FORM': form, 'Username': participant.user.username.capitalize()}
     return render(request, 'ZPDES/get_profil_form.html', context)
+
+
+@login_required
+def get_attention(request):
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    questions = QBank.objects.filter(sessions="0")
+    questions = questions.filter(group__exact="MOT-attention")
+    form = JOLDPostSessForm(questions, 0, request.POST or None)
+    print(request.POST or None)
+    if form.is_valid():
+        for q in questions:
+            r = Responses()
+            r.participant = participant
+            r.sess = 0
+            r.question = q
+            r.answer = form.cleaned_data[q.handle]
+            r.save()
+        participant.attention_profil = True
+        participant.save()
+        return redirect(reverse(home_user))
+    else:
+        context = {'FORM': form}
+        return render(request, 'ZPDES/get_attention.html', context)
 
 
 @login_required
@@ -115,6 +133,8 @@ def home_user(request):
         elif ParticipantProfile.objects.get(user=request.user.id).study == 'zpdes_mot':
             if not ParticipantProfile.objects.get(user=request.user.id).general_profil:
                 return redirect(reverse(get_profil))
+            if not ParticipantProfile.objects.get(user=request.user.id).attention_profil:
+                return redirect(reverse(get_attention))
         study = request.user.participantprofile.study
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)

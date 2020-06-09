@@ -4,9 +4,8 @@ from .widgets import get_custom_Likert_widget
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Div
+from django.core.exceptions import *
 
-# @TODO: get all checked categories
-# @TODO: Submission / save / redirect
 # @TODO: form for attention
 # @TODO: add to condition ==> connect to ZPDES/baseline
 # @TODO: add NASA TLX (french version)
@@ -46,7 +45,8 @@ class ParticipantProfileForm(forms.ModelForm):
         exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
                    'wind', 'dist', 'plat', 'nb_followups_finished', 'consent', 'sexe', 'job'
                    , 'video_game_start', 'game_habit', 'driver', 'driving_start', 'attention_training'
-                   , 'online_training', 'video_game_habit', 'video_game_freq', 'driving_freq']
+                   , 'online_training', 'video_game_habit', 'video_game_freq', 'driving_freq', 'general_profil',
+                   'attention_profil']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -97,7 +97,7 @@ def validate_checked(value):
     if not value:
         print('No value')
         raise ValidationError(
-            _('%(value)s'),
+            ('%(value)s'),
             params={'value': value},
         )
 
@@ -109,7 +109,6 @@ class JOLDPostSessForm(forms.Form):
         self.rows = []
         self.index = index
         for i, q in enumerate(questions, 1):
-            print(q.__dict__)
             self.fields[q.handle] = forms.IntegerField(
                 label = '',
                 validators = [validate_checked])
@@ -130,6 +129,7 @@ class JOLDPostSessForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
+        print(cleaned_data)
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
             if not cleaned_data.get(handle):

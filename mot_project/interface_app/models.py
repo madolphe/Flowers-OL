@@ -16,6 +16,7 @@ class ParticipantProfile(models.Model):
     nb_followups_finished = models.IntegerField(default=0)
     consent = models.BooleanField(default=False)
     general_profil = models.BooleanField(null=True, default=False)
+    attention_profil = models.BooleanField(null=True, default=False)
 
     # JOLD properties:
     wind = models.IntegerField(null=True)
