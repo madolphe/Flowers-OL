@@ -95,13 +95,14 @@ def get_profil(request):
     questions = QBank.objects.filter(sessions="0")
     groups = questions.values_list('group', flat=True).distinct()
     questions = questions.filter(group__exact="MOT-profil")
-    form = ZPDESGetProfilForm(questions, request.POST or None)
+    form = ZPDESGetProfilForm(questions, request.POST or None, instance=participant)
     if form.is_valid():
-        print(request.POST)
+        form.save()
+        participant.general_profil = True
+        participant.save()
         return redirect(reverse(home_user))
-    context = {'FORM': form, 'Username': participant.user.username}
+    context = {'FORM': form, 'Username': participant.user.username.capitalize()}
     return render(request, 'ZPDES/get_profil_form.html', context)
-
 
 
 @login_required
@@ -112,7 +113,8 @@ def home_user(request):
         elif not ParticipantProfile.objects.get(user=request.user.id).consent:
             return redirect(reverse(consent_page))
         elif ParticipantProfile.objects.get(user=request.user.id).study == 'zpdes_mot':
-            return redirect(reverse(get_profil))
+            if not ParticipantProfile.objects.get(user=request.user.id).general_profil:
+                return redirect(reverse(get_profil))
         study = request.user.participantprofile.study
         PAGE_PROPS = DynamicProps.objects.get(study=study)
         GREETING = "Salut, {0} !".format(request.user.username)

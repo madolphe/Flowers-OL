@@ -15,6 +15,7 @@ class ParticipantProfile(models.Model):
     nb_sess_finished = models.IntegerField(default=0)
     nb_followups_finished = models.IntegerField(default=0)
     consent = models.BooleanField(default=False)
+    general_profil = models.BooleanField(null=True, default=False)
 
     # JOLD properties:
     wind = models.IntegerField(null=True)
@@ -31,19 +32,12 @@ class ParticipantProfile(models.Model):
     # For vide_game_freq, vid_game_habit and driving_freq, custom widget would be used
     # ( a question object is passed to ModelForm and the widget is set up )
     video_game_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, often, daily"
-    # game_choices = (
-    #    ("action", "Aventure (ex: \"Zelda\""),
-    #    ("strat", "Sport (ex: \"Fifa\")"),
-    #    ("fps", "FPS (ex: \"Call of Duty\")"),
-    #    ("RPG", "RPG (ex: \"Final fantasy\")"),
-    #    ("MMO", "MMO (ex: \"World of warcraft\")"),
-    # )
     video_game_habit = models.CharField(max_length=40, null=True) # range : "Action, Sport, FPS, RPG, MMO"
-    driver = models.BooleanField(null=True)
+    driver = models.BooleanField(null=False, default=True, choices=((True, "Oui"), (False, "Non")))
     driving_start = models.IntegerField(null=True)
     driving_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, once a week, daily"
-    attention_training = models.BooleanField(null=True)
-    online_training = models.BooleanField(null=True)
+    attention_training = models.BooleanField(null=True, default=True, choices=((True, "Oui"), (False, "Non")))
+    online_training = models.BooleanField(null=True, default=True, choices=((True, "Oui"), (False, "Non")))
 
     class Meta:
         verbose_name = 'Participant'

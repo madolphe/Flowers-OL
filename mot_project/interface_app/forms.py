@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Div
 
+# @TODO: get all checked categories
+# @TODO: Submission / save / redirect
+# @TODO: form for attention
+# @TODO: add to condition ==> connect to ZPDES/baseline
+# @TODO: add NASA TLX (french version)
+
 
 class UserForm(forms.ModelForm):
     """
@@ -40,7 +46,7 @@ class ParticipantProfileForm(forms.ModelForm):
         exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
                    'wind', 'dist', 'plat', 'nb_followups_finished', 'consent', 'sexe', 'job'
                    , 'video_game_start', 'game_habit', 'driver', 'driving_start', 'attention_training'
-                   , 'online_training']
+                   , 'online_training', 'video_game_habit', 'video_game_freq', 'driving_freq']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -144,8 +150,12 @@ class ZPDESGetProfilForm(forms.ModelForm):
         self.names = {}
         for key, value in enumerate(questions, 1):
             self.names[value.handle] = key - 1
-            self.fields[value.handle] = forms.IntegerField(label='',
-                                                           validators=[validate_checked])
+            # Check what kind of field (either integer if range or charfield if categories)
+            if value.handle == 'video_game_habit':
+                self.fields[value.handle] = forms.CharField(label='', validators=[validate_checked])
+            else:
+                self.fields[value.handle] = forms.IntegerField(label='',
+                                                               validators=[validate_checked])
             self.fields[value.handle].widget = get_custom_Likert_widget(value)
             if self.fields[value.handle].widget.needs_validator:
                 self.fields[value.handle+'_validator'] = forms.BooleanField(label='')
@@ -180,22 +190,22 @@ class ZPDESGetProfilForm(forms.ModelForm):
                   'video_game_start': 'Début de la pratique des jeux vidéos',
                   'game_habit': 'Quels types de jeu pratiquez vous ?',
                   'driver': 'Permis de conduire', 'driving_start': 'Depuis combien d\'années conduisez-vous?',
-                  'attention_training':'Avez-vous déjà suivi un protocole d\'entraînement de l\'attention?',
-                  'online_training':'Avez-vous déjà suivi des formations en ligne? '}
+                  'attention_training': 'Avez-vous déjà suivi un protocole d\'entraînement de l\'attention?',
+                  'online_training': 'Avez-vous déjà suivi des formations en ligne? '}
         help_texts = {'screen_params': 'Cette information peut être récupérée dans les paramètres d\'écran.'}
 
-    def save_p(self, *args, **kwargs):
-        super(ZPDESGetProfilForm).save(self)
-        pass
+    def clean_video_game_habit(self):
+        game_habit = ['FPS', 'Action', 'Sport', 'MMO', 'RPG']
+        return [game_habit[int(elt)] for elt in self.data.getlist('video_game_habit')]
 
     def clean(self):
         cleaned_data = super().clean()
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
-            if not cleaned_data.get(handle):
+            if handle not in cleaned_data:
                 self.helper[handle].wrap(Div, css_class='empty-row')
                 missing_data = True
             else:
                 self.fields[handle].widget.attrs['checked'] = cleaned_data[handle]
         if missing_data:
-            raise forms.ValidationError('Oops, looks like you have missed some fields.')
+            raise forms.ValidationError('Oops, veuillez compléter tous les champs s\'il vous plaît.')

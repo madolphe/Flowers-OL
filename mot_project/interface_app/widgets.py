@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-
+from django.forms.widgets import Select
 
 class rangeLikert(forms.Widget):
     template_name = 'JOLD/rangeLikert.html'
@@ -46,17 +46,23 @@ class basicLikert(rangeLikert):
         return context
 
 
-class Categories(rangeLikert):
+class Categories(Select):
     template_name = 'ZPDES/categories.html'
-    input_type = 'radio'
+    input_type = 'checkbox'
     needs_validator = False
 
     def get_context(self, name, value, attrs):
-        context = super(rangeLikert, self).get_context(name, value, attrs)
+        # print(self.attrs)
+        context = super(Select, self).get_context(name, value, attrs)
         context['widget']['attrs']['header'] = self.attrs['header']
         context['widget']['attrs']['options'] = self.attrs['options']
         context['widget']['attrs']['checked'] = self.attrs['checked']
         return context
+
+    def render(self, name, value, attrs, renderer=None):
+        context = self.get_context(name, value, attrs)
+        template = loader.get_template(self.template_name).render(context)
+        return mark_safe(template)
 
 
 def get_custom_Likert_widget(question_object, index=False):
