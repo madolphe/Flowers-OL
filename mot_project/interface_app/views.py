@@ -117,6 +117,7 @@ def get_attention(request):
             r.save()
         participant.attention_profil = True
         participant.save()
+        assign_condition(request.user, 'zpdes-mot')
         return redirect(reverse(home_user))
     else:
         context = {'FORM': form}

@@ -17,6 +17,7 @@ class ParticipantProfile(models.Model):
     consent = models.BooleanField(default=False)
     general_profil = models.BooleanField(null=True, default=False)
     attention_profil = models.BooleanField(null=True, default=False)
+    condition = models.CharField(max_length=50, null=True, default='None')
 
     # JOLD properties:
     wind = models.IntegerField(null=True)
