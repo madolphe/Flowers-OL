@@ -9,7 +9,7 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h2>That's it for today!</h2>
+           <h2>C'est terminé pour aujourd'hui !</h2>
            <ul class="progress-list">
                {% with ''|center:PAGE_PROPS.nb_sess as range %}
                    {% for _ in range %}
@@ -22,18 +22,17 @@
                {% endwith %}
            </ul>
         </div>
-        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
+        <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a>
     </div>
 
     <div class="main-panel">
-        <h2>We appreciate your participation</h2>
+        <h2>Merci pour votre participation !</h2>
         <p>
-            We really hope you can come back for the next session scheduled for >DATE-OF-NEXT-SESS<.
-            You can practice more today, if you feel like it, but no longer than for 5 minutes.
+            La session d'aujourd'hui est terminée ! La prochaine session est prévue pour \{\{date-of-next-sess\}\}. Vous pouvez maintenant quitter la page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 minutes (Vous pourrez stopper à tout moment en cliquant sur le bouton terminer).
         </p>
         <div class="btn-box">
-            <a class="btn" href="{% url PAGE_PROPS.task_url %}/0/">Play more</a>
-            <a class="btn" href="{% url "user_logout" %}"> Exit</a>
+            <a class="btn" href="{% url PAGE_PROPS.task_url %}/0/">Continuer à jouer</a>
+            <a class="btn" href="{% url "user_logout" %}">Quitter</a>
         </div>
     </div>
 {% endblock %}

@@ -11,7 +11,7 @@
     <div class="side-panel">
         <div class="side-info">
            <h2>{{GREETING}}</h2>
-           <p>Here you can see your progression in the study</p>
+           <p>Ici, vous pouvez voir votre progression dans l'expérience</p>
             <ul class="progress-list">
                 {% with ''|center:PAGE_PROPS.nb_sess as range %}
                     {% for _ in range %}
@@ -27,10 +27,10 @@
             </ul>
 
         </div>
-        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
+        <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a>
     </div>
     <div class="main-panel">
         {% include PAGE_PROPS.instructions %}
-        <a class="btn" href="{% url PAGE_PROPS.task_url %}">Begin session</a>
+        <a class="btn" href="{% url PAGE_PROPS.task_url %}">Commencer la session</a>
     </div>
 {% endblock %}

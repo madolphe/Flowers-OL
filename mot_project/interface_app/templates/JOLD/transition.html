@@ -45,26 +45,20 @@
                {% endwith %}
            </ul>
         </div>
-        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
+        <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a>
     </div>
     <div class="main-panel">
 
-        <div class="todo">
-            <h4> May be: </h4>
-            Alternative page headers:
-            <ul>
-                <li>Don't go just yet...</li>
-                <li>Don't forget to answer the questionnaire!</li>
-            </ul>
-        </div>
-
-        <h1>You are almost done...</h1>
-        <p>Next, we are going to ask you to answer some questions about the task and how you felt while doing it. The questions can be answered by interacting with responsive widgets <code class="show-hide" onclick="showHide('id-example-box')">[show example]</code>.</p>
-
+        <h1>Ce n'est pas terminé ...</h1>
+        <p>
+            A partir de maintenant, nous allons vous demander de répondre à différentes questions en rapport avec le jeu et ce que vous avez ressenti durant celui-ci. Vous serez amenés à répondre de différentes manières.
+        </p>
+        <code class="show-hide" onclick="showHide('id-example-box')">Cliquez pour voir quelques exemples</code>
+        <br/>
         {% include "JOLD/example_widgets.html" %}
 
-        <p><b>Try to answer the questions as accurately as you can.</b> Click the button below to start the questionnaire. </p>
+        <p><b>Essayez de répondre aux questions le plus précisément possible.</b></p>
 
-        <a class="btn" href="{% url "JOLD_post_sess" %}">Begin questionnaire</a>
+        <a class="btn" href="{% url "JOLD_post_sess" %}">Commencer le questionnaire</a>
     </div>
 {% endblock %}

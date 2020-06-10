@@ -215,7 +215,7 @@ def joldStartSess_LL(request, forced=True):
             'wind': participant.wind,
             'plat': participant.plat,
             'dist': participant.dist,
-            'time': 10 if bool(forced) else 5*60,
+            'time': 60 if bool(forced) else 5*60,
             'forced': bool(forced),
         }
     else:

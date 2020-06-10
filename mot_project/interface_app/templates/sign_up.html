@@ -11,8 +11,7 @@
 {% block content%}
 <div class="sidenav">
     <div class="login-main-text">
-       <h2>Application<br> Login Page</h2>
-       <p>Login or register from here to access.</p>
+       <h2>Page d'inscription</h2>
     </div>
  </div>
  <div class="main">
@@ -22,7 +21,7 @@
                 {%crispy form_user%}
                 {%crispy form_profile%}
                 <div>
-                    <p class="text-center register-link"><a href="{% url "home"%}">Click here to sign in</a></p>
+                    <p class="text-center register-link"><a href="{% url "home"%}">Cliquez ici pour se connecter</a></p>
                 </div>
             </form>
         </div>

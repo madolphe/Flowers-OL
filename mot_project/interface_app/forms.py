@@ -10,11 +10,11 @@ class UserForm(forms.ModelForm):
     """
     Class to generate user form : !!! CreateUserForm already exists and could be override !!!
     """
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'last name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
+    password = forms.CharField(label= 'Mot de passe', widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
+    first_name = forms.CharField(label='Prénom', widget=forms.TextInput(attrs={'placeholder': 'Prénom'}))
+    last_name = forms.CharField(label='Nom de famille', widget=forms.TextInput(attrs={'placeholder': 'Nom de famille'}))
+    email = forms.CharField(label= 'E-mail', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
@@ -31,8 +31,10 @@ class ParticipantProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ParticipantProfileForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.form_tag = False
+        self.fields['birth_date'].label = 'Date de naissance'
+        print('Hello world')
         pass
 
     class Meta:
@@ -53,30 +55,30 @@ class ParticipantProfileForm(forms.ModelForm):
 
 
 class SignInForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
     fields = ['username', 'password']
 
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', 'Se connecter'))
 
 
 class ConsentForm(forms.Form):
-    understood = forms.BooleanField(label='I have read and understood the terms of participation')
-    agreed = forms.CharField(label='Informed consent', help_text='Type \"I consent\" into the box')
+    understood = forms.BooleanField(label="J'ai lu et compris les termes de cette étude")
+    agreed = forms.CharField(label='Consentement', help_text='Ecrire \"Je consens\" dans la barre')
     fields = ['understood', 'agreed']
 
     def __init__(self, *args, **kwargs):
         super(ConsentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', 'Valider'))
 
     def clean_agreed(self):
         user_input = self.cleaned_data['agreed'].lower().strip('\"')
-        if user_input != 'i consent':
-            raise forms.ValidationError('Please provide your explicit informed consent by typing "I consent"')
+        if user_input != 'je consens':
+            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" pour valider votre participation')
         return user_input
 
 
@@ -111,7 +113,7 @@ class JOLDPostSessForm(forms.Form):
                     Row(Column(q.handle, css_class='form-group col-12'), css_class='likert-form-row'))
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.layout = Layout(*self.rows)
 
     def clean(self):
@@ -124,4 +126,4 @@ class JOLDPostSessForm(forms.Form):
             else:
                 self.fields[handle].widget.attrs['checked'] = cleaned_data[handle]
         if missing_data:
-            raise forms.ValidationError('Oops, looks like you have missed some fields.')
+            raise forms.ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')

@@ -100,20 +100,20 @@ function runSessionLL() {
     let trialStartTime;
     let accumulator = 0;
     let gamePaused = true;
-    const beginMsg = 'Spacecraft ready!'
+    const beginMsg = 'Vaisseau prêt!'
 
     let pauseMessage = new createjs.Text(beginMsg, '40px Arial', params.colors.pauseText);
     pauseMessage.x = canvas.width/2;
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
     pauseMessage.textBaseline = 'bottom';
-    const subMsg = 'Press \'Enter\' to begin*'
+    const subMsg = 'Appuyer sur \'Entrer\' pour commencer'
     const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
     pauseSubMessage.x = canvas.width/2;
     pauseSubMessage.y = canvas.height/2+20;
     pauseSubMessage.textAlign = 'center';
     pauseSubMessage.textBaseline = 'top';
-    const pauseSubSubMessage = new createjs.Text('* fullscreen must be enabled', '18px Arial', params.colors.floor);
+    const pauseSubSubMessage = new createjs.Text('* le mode plein écran doit être activé', '18px Arial', params.colors.floor);
     pauseSubSubMessage.x = canvas.width-50;
     pauseSubSubMessage.y = canvas.height-50;
     pauseSubSubMessage.textAlign = 'right';
@@ -121,11 +121,11 @@ function runSessionLL() {
 
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
-    const landedMsg = 'Spacecraft landed!'
-    const crashMsg = 'Spacecraft crashed!'
-    const offMsg = 'Spacecraft lost!'
-    const shrunkMsg = 'Paused'
-    const timeMsg = 'End of session'
+    const landedMsg = 'Le vaisseau a atterri!'
+    const crashMsg = 'Le vaisseau s\'est écrasé'
+    const offMsg = 'Le vaisseau s\'est perdu'
+    const shrunkMsg = 'En pause'
+    const timeMsg = 'Fin de la session'
 
     let landSight, landerSight;
     let landPoint;
@@ -178,11 +178,11 @@ function runSessionLL() {
 
     // Initialize HTML (p5) buttons
     function initOuterElements() {
-        toggleFullscreenButton = createButton('Fullscreen');
+        toggleFullscreenButton = createButton('Plein écran');
         toggleFullscreenButton.class('toggleFullscreen')
         toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
 
-        terminateButton = createButton('End session');
+        terminateButton = createButton('Terminer');
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
 
@@ -518,8 +518,8 @@ function runSessionLL() {
         if (document[hidden]) {
             document.title = 'Paused';
             if (!gamePaused) {
-                pauseMessage.text = 'Session interrupted'
-                pauseSubMessage.text = 'Press \'Enter\' to continue*'
+                pauseMessage.text = 'Session interrompue'
+                pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
                 interruptions++;
             };
             gamePaused = true;
@@ -570,7 +570,7 @@ function runSessionLL() {
     function saveTrialData() {
         landerX = unscaled(landerBody.GetPosition().x).toFixed(0);
         landerY =  unscaled(landerBody.GetPosition().y).toFixed(0);
-        pauseSubMessage.text = 'Press \'Enter\' to continue*'
+        pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
         if (landerX < 0 || landerX > canvas.width || landerY < 0) {
             outcome='offscreen';
             pauseMessage.text = offMsg;
@@ -622,7 +622,7 @@ function runSessionLL() {
             outOfTime = true;
             saveTrialData();
             pauseMessage.text = timeMsg;
-            pauseSubMessage.text = 'Click the \'End session\' button to continue to the next phase'
+            pauseSubMessage.text = 'Cliquez sur \'Terminer\' pour continuer l\'expérience'
             pauseSubSubMessage.text = ''
             gamePaused = true;
             pauseUnpause(gamePaused);
@@ -640,7 +640,7 @@ function runSessionLL() {
         };
         gamePaused = true;
         pauseUnpause(gamePaused);
-        if (confirm('Please confirm')) {
+        if (confirm('Confirmer ?')) {
             $.ajax({
                 async: true,
                 type: 'POST',
