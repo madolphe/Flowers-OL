@@ -6,8 +6,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Div
 from django.core.exceptions import *
 
-# @TODO: form for attention
 # @TODO: add to condition ==> connect to ZPDES/baseline
+    # @TODO: install kidlib
+    # @TODO: install connect and see what has to be saved
 # @TODO: add NASA TLX (french version)
 
 
@@ -46,7 +47,7 @@ class ParticipantProfileForm(forms.ModelForm):
                    'wind', 'dist', 'plat', 'nb_followups_finished', 'consent', 'sexe', 'job'
                    , 'video_game_start', 'game_habit', 'driver', 'driving_start', 'attention_training'
                    , 'online_training', 'video_game_habit', 'video_game_freq', 'driving_freq', 'general_profil',
-                   'attention_profil']
+                   'attention_profil', 'condition']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):

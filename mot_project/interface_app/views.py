@@ -11,9 +11,10 @@ from django.utils.html import mark_safe
 from .models import *
 from .forms import *
 from .alexfuncs import assign_condition
+from .utils.seq_manager import SeqManager
 
 # @TODO: change description of questions
-# @TODO: add Attention / NASA_TLX / tuto
+# @TODO: NASA_TLX
 
 
 def sign_up(request):
@@ -172,7 +173,15 @@ def visual_2d_task(request):
 
 @login_required
 def MOT_task(request):
-    """Initial call to app 2D view"""
+    """Initial call to mot-app"""
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    condition = participant.condition
+    participant.nb_sess_started += 1
+    user_episodes = []
+    # Check if any session has already been finished:
+    if participant.nb_sess_finished > 0:
+        # Retrieve every episodes that belong to finished session:
+        user_episodes = Episode.objects.filter(participant=participant, finished_session=True)
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
@@ -182,12 +191,17 @@ def MOT_task(request):
                   'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
                   'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
                   'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
+
+    # Create seq manager and put it in request
+    request.session['seq_manager'] = SeqManager(condition, user_episodes)
+    parameters = request.session['seq_manager'].sample_task()
+
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
-
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = mark_safe(json.load(json_file))
+
     return render(request, 'app_MOT.html', locals())
 
 
@@ -257,10 +271,12 @@ def restart_episode(request):
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
 
+
 # Display forms after session
 @login_required
 def mot_post_sess(request):
     pass
+
 
 # Start a Lunar Lander session
 @login_required
