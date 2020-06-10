@@ -1,5 +1,14 @@
-body {
+:root {
+    --main-panel-width: 70%;
+}
+
+html, body {
     font-family: "Lato", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    min-height: 100%;
+
 }
 br {
     display: block; /* makes it have a width */
@@ -10,26 +19,34 @@ br {
     height: 150px;
     background: #FFF;
 }
-.info_container{
+.main-panel{
     height: 100%;
     margin-left: 30%;
+    width: 70%;
     position: absolute;
-    padding-top: 5%;
-    padding-left: 2%;
+    padding: 5%;
+    overflow-y: scroll;
 }
 
-.sidenav{
-    color: white;
+.side-panel{
     overflow-x: hidden;
-    padding: 5% 2% 5% 2%;
+    padding: 5%;
     width: 30%;
-    background-color: black;
-    position: fixed;
-    z-index: 1;
-    top: 0;
     height: 100%;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
 }
-.sidenav-block h2{
+.side-panel .side-info {
+    flex: 1;
+}
+
+.side-panel .info h2{
     font-weight: 300;
 }
 
@@ -44,6 +61,7 @@ br {
 }
 .progress-list li.sess_current {
     color: white;
+    font-size: 1.5em;
 }
 .progress-list li.sess_complete {
     color: white;
@@ -51,47 +69,113 @@ br {
 
 }
 
-.logout-continer{
-    margin: 0 auto;
-}
+.btn-box{display: flex}
 .btn {
-  /* default for <button>, but useful for <a> */
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-
-  /* create a small space when buttons wrap on 2 lines */
-  margin: 2px 0;
-
-  /* invisible border (will be colored on hover/focus) */
-  border: solid 1px white;
-  border-radius: 4px;
-
-  /* size comes from text & padding (no width/height) */
-  padding: 0.5em 1em;
-
-  /* make sure colors have enough contrast! */
-  color: black;
-  background-color: white;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    align-self: center;
+    margin: 15px auto;
+    border: solid 1px black;
+    border-radius: .25em;
+    padding: 0.5em 1em;
+    color: black;
+    background-color: white;
+    min-width: 150px;
 }
 /* old-school "down" effect on clic + color tweak */
 .btn:active {
-  transform: translateY(1px);
-  filter: saturate(150%);
+    transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    -moz-transofrm:  translateY(1px);
+    filter: saturate(150%);
 }
 /* Firefox: removes the inner border shown on focus */
 .btn::-moz-focus-inner {
-  border: none;
+    border: none;
 }
 /* inverse colors on hover */
 .btn:hover {
-  color: white;
-  border-color: currentColor;
-  background-color: black;
+    color: white;
+    border-color: currentColor;
+    background-color: black;
 }
 /* make sure we have a visible focus ring */
 .btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(25, 216, 255, 0.5),
     0 0 0 1.5px rgba(25, 216, 255, 0.5);
+}
+.btn.btn-primary {
+    margin-top: 30px;
+}
+
+.logout {
+    margin: auto;
+}
+
+div.prompt {
+    font-size: 18px;
+    margin-bottom: 1em;
+}
+
+mark.highlight {
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: inherit;
+    margin-left: .8em;
+}
+
+span.consent-form {
+    position: relative;
+    margin-right: 0;
+}
+span.consent-form > input[type=text] {
+    border: none;
+    border-bottom: 1px solid gray;
+    text-align: center;
+    width: 200px;
+}
+span.consent-form > input[type=text]:focus {
+    outline: none;
+    border-bottom: 1.5px solid black;
+}
+span.consent-form > span > label {
+    color: gray;
+    font-size: .5em;
+    transform: translate(100%, 10px);
+    -webkit-transform: translate(100%, 10px);
+    -moz-transofrm:  translate(100%, 10px);
+    bottom: 0;
+    background-color: white;
+    padding: 0 3px 0 3px;
+}
+span.consent-form > input[type=text]:focus + label {
+    color: black;
+}
+
+.show-hide:hover {cursor: pointer;}
+
+.tutorial-box {
+    display: flex;
+    justify-content: center;
+}
+.tutorial-canvas {
+    border: 5px solid black;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+kbd#fullscreen {
+    background-color: #2f3e59;
+    color: #f07a56;
+    border: 2px solid #252938;
+    border-radius: 0;
+}
+
+kbd#terminate {
+    background-color: #f07a56;
+    color: #2f3e59;
+    border: 2px solid #252938;
+    border-radius: 0;
 }

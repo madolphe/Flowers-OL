@@ -10,7 +10,8 @@
             "style"         : "css/zpdes_home.css",
             "instructions"  : "ZPDES/zpdes_instructions.html",
             "consent_text"  : "ZPDES/consentText.html",
-            "tutorial"      : ""
+            "tutorial"      : "",
+            "nb_sess"       : 3
         }
     },
     {
