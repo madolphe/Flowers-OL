@@ -203,10 +203,9 @@ def restart_episode(request):
     return HttpResponse(json.dumps(parameters))
 
 
-# Start a Lunar Lander session
 @login_required
 def joldStartSess_LL(request, forced=True):
-    """Call to Lunar Lander view"""
+    """Start a Lunar Lander session"""
     if not request.user.is_superuser:
         participant = ParticipantProfile.objects.get(user=request.user.id)
         participant.nb_sess_started += 1
@@ -229,8 +228,8 @@ def joldStartSess_LL(request, forced=True):
     return render(request, 'JOLD/lunar_lander.html', {'XPARAMS': xparams})
 
 
-# Save data from lunar lander trial
 def joldSaveTrial_LL(request):
+    """Save data from lunar lander trial"""
     participant = ParticipantProfile.objects.get(user=request.user.id)
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
@@ -243,10 +242,10 @@ def joldSaveTrial_LL(request):
     return HttpResponse(status=204) # 204 is a no-content response
 
 
-# Close lunar lander session redirect to post-sess questionnaire or the thanks page
 @login_required
 @ensure_csrf_cookie
 def joldEndSess(request):
+    """Close lunar lander session redirect to post-sess questionnaire or the thanks page"""
     if request.is_ajax():
         participant = ParticipantProfile.objects.get(user=request.user.id)
         session_complete = int(request.POST.get('sessComplete'))
@@ -267,14 +266,14 @@ def joldTransition(request):
     return render(request, 'JOLD/transition.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
 
-# Construct a post-sess questionnaire and render question groups on different pages
 @never_cache
 def joldPostSess(request, num=0):
+    """Construct a post-sess questionnaire and render question groups on different pages"""
     participant = ParticipantProfile.objects.get(user=request.user.id)
     sess = participant.nb_sess_finished
     questions = QBank.objects.filter(sessions__regex='(^|,){}(,|$)'.format(sess))
-    groups = questions.values_list('group', flat=True).distinct()
-    questions = questions.filter(group__exact=groups[num])
+    groups = sorted(list(questions.values_list('group', flat=True).distinct()))
+    questions = questions.filter(group__exact=groups[num]).order_by('order')
     form = JOLDPostSessForm(questions, num, request.POST or None)
     if form.is_valid():
         for q in questions:
@@ -302,9 +301,9 @@ def joldFreeChoice(request):
         return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
 
-# Render the terminal page
 @login_required
 def joldThanks(request):
+    """Render the terminal page"""
     participant = ParticipantProfile.objects.get(user=request.user.id)
     participant.nb_sess_finished
     # check how many sessions user has completed, if insufficient, redirect to
