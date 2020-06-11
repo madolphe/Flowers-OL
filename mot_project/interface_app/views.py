@@ -208,7 +208,7 @@ def joldStartSess_LL(request, forced=True):
     """Start a Lunar Lander session"""
     if not request.user.is_superuser:
         participant = ParticipantProfile.objects.get(user=request.user.id)
-        participant.nb_sess_started += 1
+        participant.nb_sess_started += int(forced)
         participant.save()
         xparams = { # make sure to keep difficulty constant for the same participant!
             'wind': participant.wind,
@@ -294,7 +294,20 @@ def joldPostSess(request, num=0):
 
 
 @login_required
+@ensure_csrf_cookie
 def joldFreeChoice(request):
+    if request.method == 'POST':
+        choice = int(request.POST.dict().get('choice'))
+        participant = ParticipantProfile.objects.get(user=request.user.id)
+        r = Responses()
+        r.participant = participant
+        r.sess = participant.nb_sess_finished
+        r.question = QBank.objects.get(handle='jold-0')
+        r.answer = choice
+        r.save()
+        url = 'JOLD_lunar_lander' if choice==1 else 'JOLD_thanks'
+        args = [0] if choice else None
+        return JsonResponse({'success': True, 'url': reverse(url, args=args)})
     if request.user.is_authenticated:
         page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
         current_sess = request.user.participantprofile.nb_sess_finished
