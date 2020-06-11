@@ -4,40 +4,12 @@
         <meta charset="UTF-8">
         <title>{% block title %} APP_INTERFACE {% endblock %}</title>
         {%load static%}
+        <script src="{% static 'js/csrfControl.js' %}"></script>
         <script src="{% static 'js/p5.min.js' %}"></script>
         <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
         <script src="{% static 'js/JOLD/seedrandom.min.js' %}"></script>
         <script src="{% static 'js/JOLD/Box2d.js' %}"></script>
         <script src="{% static 'js/JOLD/easeljs.min.js' %}"></script>
-        <script>
-            console.log('CSRF controls are set')
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = cookies[i].trim();
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            };
-            function csrfSafeMethod(method) {
-                // these HTTP methods do not require CSRF protection
-                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-            }
-            $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                    }
-                }
-            });
-        </script>
         {% block css %}
             <link rel="stylesheet" href="{% static 'css/joldbase.css' %}">
         {% endblock %}
