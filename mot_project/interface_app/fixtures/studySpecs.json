@@ -1,6 +1,6 @@
 [
     {
-        "model": "interface_app.DynamicProps",
+        "model": "interface_app.StudySpecs",
         "pk": 1,
         "fields": {
             "study"         : "zpdes_mot",
@@ -13,7 +13,7 @@
         }
     },
     {
-        "model": "interface_app.DynamicProps",
+        "model": "interface_app.StudySpecs",
         "pk": 2,
         "fields": {
             "study"         : "jold_ll",
@@ -28,7 +28,7 @@
         }
     },
     {
-        "model": "interface_app.DynamicProps",
+        "model": "interface_app.StudySpecs",
         "pk": 3,
         "fields": {
             "study"         : "jold_mot",

@@ -86,7 +86,7 @@ class JOLD_LL_trial(models.Model):
 
 
 # A model to store dynamic data to display on Home Page
-class DynamicProps(models.Model):
+class StudySpecs(models.Model):
     study = models.CharField(max_length=10, null=True)
     project = models.CharField(max_length=100, null=True)
     base_html = models.CharField(max_length=50, null=True)

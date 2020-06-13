@@ -57,8 +57,8 @@ def consent_page(request):
     study = participant.study
     person = [request.user.first_name.capitalize(), request.user.last_name.upper()]
     greeting = "Salut, {0} !".format(request.user.username)
-    consent_text = DynamicProps.objects.get(study=study).consent_text
-    project = DynamicProps.objects.get(study=study).project
+    consent_text = StudySpecs.objects.get(study=study).consent_text
+    project = StudySpecs.objects.get(study=study).project
     form = ConsentForm(request.POST or None)
     if form.is_valid():
         request.user.first_name = request.POST['nom']
@@ -261,7 +261,7 @@ def joldEndSess(request):
 
 @login_required
 def joldTransition(request):
-    page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
+    page_props = StudySpecs.objects.get(study=request.user.participantprofile.study)
     current_sess = request.user.participantprofile.nb_sess_finished
     return render(request, 'JOLD/transition.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
@@ -309,7 +309,7 @@ def joldFreeChoice(request):
         args = [0] if choice else None
         return JsonResponse({'success': True, 'url': reverse(url, args=args)})
     if request.user.is_authenticated:
-        page_props = DynamicProps.objects.get(study=request.user.participantprofile.study)
+        page_props = StudySpecs.objects.get(study=request.user.participantprofile.study)
         current_sess = request.user.participantprofile.nb_sess_finished
         return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
 
