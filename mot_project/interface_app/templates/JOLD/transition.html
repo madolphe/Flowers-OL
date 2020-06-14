@@ -32,12 +32,14 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h2>Session complete</h2>
+           <h2>Progression</h2>
            <ul class="progress-list">
                {% with ''|center:PAGE_PROPS.nb_sess as range %}
                    {% for _ in range %}
-                       {% if forloop.counter <= CURRENT_SESS %}
+                       {% if forloop.counter < CURRENT_SESS %}
                          <li class="sess_complete">Session {{forloop.counter}}</li>
+                       {% elif forloop.counter == CURRENT_SESS %}
+                         <li class="sess_current">Session {{forloop.counter}}</li>
                        {% elif forloop.counter > CURRENT_SESS %}
                          <li class="sess_incomplete">Session {{forloop.counter}}</li>
                        {% endif %}
@@ -59,6 +61,6 @@
 
         <p><b>Essayez de répondre aux questions le plus précisément possible.</b></p>
 
-        <a class="btn" href="{% url "JOLD_post_sess" %}">Commencer le questionnaire</a>
+        <a class="btn" href="{% url "JOLD_question_block" %}">Commencer le questionnaire</a>
     </div>
 {% endblock %}
