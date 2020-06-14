@@ -1,5 +1,5 @@
 from django import forms
-from .models import ParticipantProfile, QBank
+from .models import ParticipantProfile
 from .widgets import get_custom_Likert_widget
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper

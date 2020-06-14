@@ -67,6 +67,15 @@ class SecondaryTask(models.Model):
     answer_duration = models.FloatField(default=0)
 
 
+class ExperimentSession(models.Model):
+    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
+    date = models.DateField(null=True)
+    num = models.IntegerField(default=1)
+    practice_finished = models.BooleanField(default=False)
+    questions_finished = models.BooleanField(null=True)
+    is_finished = models.BooleanField(default=False)
+
+
 class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
@@ -84,9 +93,9 @@ class JOLD_LL_trial(models.Model):
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
     forced = models.BooleanField(default=True)
-            
 
-class StudySpecs(models.Model):
+
+class StudySpec(models.Model):
     """ A model to store dynamic data to display on Home Page """
     study = models.CharField(max_length=10, null=True)
     project = models.CharField(max_length=100, null=True)
@@ -95,12 +104,12 @@ class StudySpecs(models.Model):
     style = models.CharField(max_length=50, null=True)
     instructions = models.CharField(max_length=50, null=True)
     consent_text = models.CharField(max_length=50, null=True)
-    nb_sess = models.IntegerField(default=5)
+    nb_sessions = models.IntegerField(default=5)
     spacing = models.CharField(max_length=100, default='[1]', validators=[validate_comma_separated_integer_list])
     tutorial = models.CharField(max_length=50, default='')
 
 
-class QBank(models.Model):
+class Question(models.Model):
     instrument = models.CharField(max_length=100, null=True)
     component = models.CharField(max_length=100, null=True)
     group = models.IntegerField(null=True)
@@ -113,20 +122,11 @@ class QBank(models.Model):
     step = models.IntegerField(null=1)
     annotations = models.CharField(max_length=200, null=True)
     widget = models.CharField(max_length=30, null=True)
-    sessions = models.CharField(max_length=20, default='', validators=[validate_comma_separated_integer_list])
+    session_list = models.CharField(max_length=20, default='', validators=[validate_comma_separated_integer_list])
 
 
-class Responses(models.Model):
+class Answer(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
-    question = models.ForeignKey(QBank, on_delete=models.PROTECT)
+    question = models.ForeignKey(Question, on_delete=models.PROTECT)
     answer = models.IntegerField(null=True)
-    sess_num = models.IntegerField(null=True)
-
-
-class Schedule(models.Model):
-    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
-    sess_date = models.DateField(null=True)
-    sess_num = models.IntegerField(default=1)
-    practice_finished = models.BooleanField(default=False)
-    questions_finished = models.BooleanField(null=True)
-    finished = models.BooleanField(default=False)
+    session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
