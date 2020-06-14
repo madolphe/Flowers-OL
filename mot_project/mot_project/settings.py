@@ -21,6 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'mc9e-tp)bkt0+0d^fj&dowldv_vvl5ekdzw#y(cnab5+ne=x-c'
+# SECURE_HSTS_SECONDS = 3600*24*30
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+SECURE_REFERRER_POLICY = 'same-origin'
+# CSRF_COOKIE_SECURE = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djdev_panel.middleware.DebugMiddleware',
 ]
 
 ROOT_URLCONF = 'mot_project.urls'
