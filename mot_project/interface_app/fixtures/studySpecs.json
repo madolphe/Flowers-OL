@@ -1,6 +1,6 @@
 [
     {
-        "model": "interface_app.StudySpecs",
+        "model": "interface_app.StudySpec",
         "pk": 1,
         "fields": {
             "study"         : "zpdes_mot",
@@ -13,7 +13,7 @@
         }
     },
     {
-        "model": "interface_app.StudySpecs",
+        "model": "interface_app.StudySpec",
         "pk": 2,
         "fields": {
             "study"         : "jold_ll",
@@ -24,12 +24,12 @@
             "instructions"  : "JOLD/instructions.html",
             "consent_text"  : "JOLD/consentText.html",
             "tutorial"      : "js/app_LL/tutorial.js",
-            "nb_sess"       : 3,
+            "nb_sessions"   : 3,
             "spacing"       : "[0,1,3]"
         }
     },
     {
-        "model": "interface_app.StudySpecs",
+        "model": "interface_app.StudySpec",
         "pk": 3,
         "fields": {
             "study"         : "jold_mot",
@@ -40,7 +40,7 @@
             "instructions"  : "JOLD/instructions.html",
             "consent_text"  : "JOLD/consentText.html",
             "tutorial"      : "",
-            "nb_sess"       : 3
+            "nb_sessions"   : 3
         }
     }
 ]
