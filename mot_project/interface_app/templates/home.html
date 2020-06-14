@@ -17,12 +17,12 @@
  <div class="main">
     <div class="col-md-7 col-sm-12">
         <div class="login-form">
-            {% if ERROR %}
+            {% if CONTEXT.error %}
                 <p><strong>Nom d'utilisateur ou mot de passe inconnu.</strong></p>
             {% endif %}
             <form action="{% url "home"%}" class="form" method="post">
-                {%crispy form_sign_in%}
-                {% if NO_EXT %} {% include "noextension.html" %}
+                {%crispy CONTEXT.form %}
+                {% if not CONTEXT.study %} {% include "noextension.html" %}
                 {% else %}
                     <div>
                         <p class="text-center register-link"><a href="{% url "sign_up" %}">Cliquez ici pour s'inscrire</a></p>

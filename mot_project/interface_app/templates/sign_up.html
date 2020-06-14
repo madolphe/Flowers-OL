@@ -18,8 +18,8 @@
     <div class="col-md-7 col-sm-12">
         <div class="signup-form">
             <form action="{% url "sign_up"%}" class="form" method="post">
-                {%crispy form_user%}
-                {%crispy form_profile%}
+                {%crispy CONTEXT.form_user%}
+                {%crispy CONTEXT.form_profile%}
                 <div>
                     <p class="text-center register-link"><a href="{% url "home"%}">Cliquez ici pour se connecter</a></p>
                 </div>

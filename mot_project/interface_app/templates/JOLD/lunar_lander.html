@@ -17,5 +17,8 @@
     <script> xparams = {% autoescape off %}{{ XPARAMS }}{% endautoescape %} </script>
     <script src="{% static 'js/app_LL/utilities.js' %}"></script>
     <script src="{% static 'js/app_LL/game.js' %}"></script>
-    <script>runSessionLL();</script>
+    <script>
+        history.replaceState(null, '', 'home_user');
+        runBlockLL();
+    </script>
 {% endblock %}

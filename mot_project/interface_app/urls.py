@@ -1,14 +1,10 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
-urlpatterns = [
-    # path('/<int:res>/<int:nb>', views.save_results)'
-    # it's important to separate `home` and `extension` by '-' !!!
-    path('jold_ll', views.home, name='home-jold_ll'),
-    path('jold_mot', views.home, name='home-jold_mot'),
-    path('zpdes_mot', views.home, name='home-zpdes_mot'),
 
+urlpatterns = [
     path('', views.home, name='home'),
+    re_path(r'^study=(.*)$', views.home, name='home'), # Still not sure how this works, but it prevents the login page warning if user logs out from interface
     path('home_user', views.home_user, name='home_user'),
     path('user_logout', views.user_logout, name='user_logout'),
     path('sign_up', views.sign_up, name='sign_up'),
@@ -20,13 +16,14 @@ urlpatterns = [
     path('restart_episode', views.restart_episode, name='restart_episode'),
 
     ## JOLD urls
-    path('JOLD/SaveTrial_LL', views.joldSaveTrial_LL, name='JOLD_save_trial_LL'),
-    path('JOLD/EndSess', views.joldEndSess, name='JOLD_end_sess'),
+    path('JOLD/home_user', views.home_user, name='home_user'),
+    path('JOLD/StartPracticeBlockLL', views.joldStartPracticeBlockLL, name='JOLD_start_practice_block_ll'),
+    path('JOLD/StartPracticeBlockLL/<int:forced>/', views.joldStartPracticeBlockLL, name='JOLD_start_practice_block_ll'),
+    path('JOLD/SaveTrialLL', views.joldSaveTrialLL, name='JOLD_save_trial_LL'),
+    path('JOLD/ClosePracticeBlock', views.joldClosePracticeBlock, name='JOLD_close_practice_block'),
     path('JOLD/Transition', views.joldTransition, name='JOLD_transition'),
-    path('JOLD/lunar_lander', views.joldStartSess_LL, name='JOLD_lunar_lander'),
-    path('JOLD/lunar_lander/<int:forced>/', views.joldStartSess_LL, name='JOLD_lunar_lander'),
-    path('JOLD/post_sess/', views.joldPostSess, name='JOLD_post_sess'),
-    path('JOLD/post_sess/<int:num>/', views.joldPostSess, name='JOLD_post_sess'),
-    path('JOLD/free_choice', views.joldFreeChoice, name='JOLD_free_choice'),
-    path('JOLD/thanks', views.joldThanks, name='JOLD_thanks')
+    path('JOLD/QuestionBlock/', views.joldQuestionBlock, name='JOLD_question_block'),
+    path('JOLD/QuestionBlock/<int:num>/', views.joldQuestionBlock, name='JOLD_question_block'),
+    path('JOLD/EndOfSession', views.joldEndOfSession, name='JOLD_end_of_session'),
+    path('JOLD/Thanks', views.joldThanks, name='JOLD_thanks')
 ]

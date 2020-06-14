@@ -3,17 +3,18 @@ from django.utils import timezone
 import datetime
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django.core.validators import validate_comma_separated_integer_list
 
 
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now, verbose_name="Inscription Date")
-    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='yyyy-mm-dd')
+    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
     study = models.CharField(max_length=10, default='unk')
     screen_params = models.FloatField(default=39.116)
-    nb_sess_started = models.IntegerField(default=0)
-    nb_sess_finished = models.IntegerField(default=0)
-    nb_followups_finished = models.IntegerField(default=0)
+    nb_practice_blocks_started = models.IntegerField(default=0)
+    nb_practice_blocks_finished = models.IntegerField(default=0)
+    nb_question_blocks_finished = models.IntegerField(default=0)
     consent = models.BooleanField(default=False)
 
     # JOLD properties
@@ -77,16 +78,16 @@ class JOLD_LL_trial(models.Model):
     init_dist = models.DecimalField(decimal_places=2, max_digits=5)
     end_dist = models.DecimalField(decimal_places=2, max_digits=5)
     time_trial = models.DecimalField(decimal_places=1, max_digits=8)
-    time_sess = models.DecimalField(decimal_places=1, max_digits=8)
+    time_block = models.DecimalField(decimal_places=1, max_digits=8)
     fuel = models.IntegerField(null=True)
     presses = models.IntegerField(null=True)
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
     forced = models.BooleanField(default=True)
+            
 
-
-# A model to store dynamic data to display on Home Page
 class StudySpecs(models.Model):
+    """ A model to store dynamic data to display on Home Page """
     study = models.CharField(max_length=10, null=True)
     project = models.CharField(max_length=100, null=True)
     base_html = models.CharField(max_length=50, null=True)
@@ -95,6 +96,7 @@ class StudySpecs(models.Model):
     instructions = models.CharField(max_length=50, null=True)
     consent_text = models.CharField(max_length=50, null=True)
     nb_sess = models.IntegerField(default=5)
+    spacing = models.CharField(max_length=100, default='[1]', validators=[validate_comma_separated_integer_list])
     tutorial = models.CharField(max_length=50, default='')
 
 
@@ -111,11 +113,20 @@ class QBank(models.Model):
     step = models.IntegerField(null=1)
     annotations = models.CharField(max_length=200, null=True)
     widget = models.CharField(max_length=30, null=True)
-    sessions = models.CharField(max_length=20, null=True)
+    sessions = models.CharField(max_length=20, default='', validators=[validate_comma_separated_integer_list])
 
 
 class Responses(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     question = models.ForeignKey(QBank, on_delete=models.PROTECT)
     answer = models.IntegerField(null=True)
-    sess = models.IntegerField(null=True)
+    sess_num = models.IntegerField(null=True)
+
+
+class Schedule(models.Model):
+    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
+    sess_date = models.DateField(null=True)
+    sess_num = models.IntegerField(default=1)
+    practice_finished = models.BooleanField(default=False)
+    questions_finished = models.BooleanField(null=True)
+    finished = models.BooleanField(default=False)

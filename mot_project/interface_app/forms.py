@@ -25,6 +25,7 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined']
+    field_order = ['username', 'password', 'first_name', 'last_name', 'email']
 
 
 class ParticipantProfileForm(forms.ModelForm):
@@ -34,13 +35,11 @@ class ParticipantProfileForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.form_tag = False
         self.fields['birth_date'].label = 'Date de naissance'
-        print('Hello world')
-        pass
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
-                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
+        exclude = ['user', 'date', 'screen_params', 'nb_practice_blocks_started', 'nb_practice_blocks_finished',
+                   'nb_question_blocks_finished', 'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -91,9 +90,9 @@ def validate_checked(value):
         )
 
 
-class JOLDPostSessForm(forms.Form):
+class JOLDQuestionBlockForm(forms.Form):
     def __init__(self, questions, index, *args, **kwargs):
-        super(JOLDPostSessForm, self).__init__(*args, **kwargs)
+        super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
         self.index = index

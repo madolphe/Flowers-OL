@@ -19,12 +19,13 @@
             "study"         : "jold_ll",
             "project"       : "Judgments of learning dynamics",
             "base_html"     : "base.html",
-            "task_url"      : "JOLD_lunar_lander",
+            "task_url"      : "JOLD_start_practice_block_ll",
             "style"         : "css/jold_home.css",
             "instructions"  : "JOLD/instructions.html",
             "consent_text"  : "JOLD/consentText.html",
             "tutorial"      : "js/app_LL/tutorial.js",
-            "nb_sess"       : 3
+            "nb_sess"       : 3,
+            "spacing"       : "[0,1,3]"
         }
     },
     {

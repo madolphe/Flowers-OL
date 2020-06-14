@@ -6,7 +6,7 @@
             $.ajax({
                 async: true,
                 type: 'POST',
-                url: '/JOLD/free_choice',
+                url: '/JOLD/EndOfSession',
                 dataType: "json",
                 traditional: true,
                 data: {choice: choice},
@@ -46,12 +46,6 @@
         <p>
             La session d'aujourd'hui est terminée ! La prochaine session est prévue pour \{\{date-of-next-sess\}\}. Vous pouvez maintenant quitter la page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 minutes (Vous pourrez stopper à tout moment en cliquant sur le bouton terminer).
         </p>
-        {% comment %}
-        <div class="btn-box">
-            <a class="btn" href="{% url PAGE_PROPS.task_url %}/0/">Continuer à jouer</a>
-            <a class="btn" href="{% url "user_logout" %}">Quitter</a>
-
-        {% endcomment %}
         <form class="form" method="post">
             <div class="btn-box">
                 <input class="btn" type="button" value="Continuer à jouer" onclick="postChoice(1)">

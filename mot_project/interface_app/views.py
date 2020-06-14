@@ -6,7 +6,7 @@ from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView
-import json
+import json, datetime
 from django.utils.html import mark_safe
 from .models import *
 from .forms import *
@@ -27,17 +27,22 @@ def sign_up(request):
         assign_condition(user, form_profile.data['study'])      # Assign study conditions
         login(request, user)
         return redirect(reverse(home_user))                  # Redirect to consent form
-    context = {'form_profile': form_profile, 'form_user': form_user}
-    return render(request, 'sign_up.html', context)
+    return render(request, 'sign_up.html', {'CONTEXT': {
+        'form_profile': form_profile,
+        'form_user': form_user
+    } })
 
 
-def home(request):
-    # First, init forms, if request is valid we check if the user exists
-    extension = resolve(request.path_info).url_name.strip('home').strip('-')
-    if extension: request.session['study'] = extension # store 'study' extension only once
-    NO_EXT = 1 if 'study' not in request.session else 0
+def home(request, study=''):
+    if 'study' in request.session: study = request.session.get('study')
+    if 'study' in request.GET.dict(): study = request.GET.dict().get('study')
+    print(request.session, request.GET.dict())
+    print(study)
+    valid_study_title = bool(StudySpecs.objects.filter(study=study).count())
+    if valid_study_title:
+        request.session['study'] = study # store 'study' extension only once per session
+    error = False
 
-    ERROR = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
         username = form_sign_in.cleaned_data['username']
@@ -46,14 +51,18 @@ def home(request):
         if user:  # if user exists
             login(request, user)  # connect user
             return redirect(reverse(home_user))
-        else:  # sinon une erreur sera affichée
-            ERROR = True
-    return render(request, 'home.html', locals())
+        else:  # show error if user not in DB
+            error = True
+    return render(request, 'home.html', {'CONTEXT': {
+        'study': valid_study_title,
+        'error': error,
+        'form': form_sign_in
+    }})
 
 
 @login_required
 def consent_page(request):
-    participant = ParticipantProfile.objects.get(user=request.user.id)
+    participant = request.user.participantprofile
     study = participant.study
     person = [request.user.first_name.capitalize(), request.user.last_name.upper()]
     greeting = "Salut, {0} !".format(request.user.username)
@@ -66,34 +75,49 @@ def consent_page(request):
         request.user.save()
         participant.consent = True
         participant.save()
+        nb_sess = StudySpecs.objects.get(study=study).nb_sess
+        spacing = StudySpecs.objects.get(study=study).spacing.strip('[]').split(',')
+        if (nb_sess > len(spacing)): spacing += [spacing[0] for s in range(nb_sess)]
+        for i, day_delta in enumerate(spacing):
+            schedule = Schedule()
+            schedule.participant = participant
+            schedule.sess_date = datetime.date.today() + datetime.timedelta(days=int(day_delta))
+            schedule.sess_num = i
+            schedule.save()
         return redirect(reverse(home_user))
     if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
-    context = {
-        'FORM': form, 'GREETING': greeting,
-        'TEXT': consent_text, 'PERSON': person, 'PROJECT': project}
-    return render(request, 'consent_form.html', context)
+    return render(request, 'consent_form.html', {'CONTEXT': {
+        'form': form,
+        'greeting': greeting,
+        'text': consent_text,
+        'person': person,
+        'project': project}})
 
 
 @login_required
 def home_user(request):
     if request.user.is_authenticated:
+        participant = request.user.participantprofile
         if request.user.is_superuser:
-            return render(request, 'home_superuser.html', locals())
-        if not ParticipantProfile.objects.get(user=request.user.id).consent:
+            return render(request, 'home_superuser.html')
+        if not participant.consent:
             return redirect(reverse(consent_page))
-        study = request.user.participantprofile.study
-        PAGE_PROPS = DynamicProps.objects.get(study=study)
-        GREETING = "Salut, {0} !".format(request.user.username)
-        CURRENT_SESS = request.user.participantprofile.nb_sess_finished + 1
-    return render(request, 'home_user.html', locals())
+        study = participant.study
+        page_props = StudySpecs.objects.get(study=study)
+        greeting = "Salut, {0} !".format(request.user.username)
+        current_sess = Schedule.objects.get(participant=participant, sess_date=datetime.date.today()).sess_num + 1
+    return render(request, 'home_user.html', {'CONTEXT': {
+        'page_props':page_props,
+        'greeting': greeting,
+        'current_sess': current_sess} })
 
 
 @login_required
 def user_logout(request):
-    # TODO check if user exists before showing the warning message!!
+    study = request.user.participantprofile.study
     if request.user.is_authenticated:
         logout(request)
-        return redirect(reverse(home))
+        return redirect(reverse('home', args=[study]))
 
 
 @login_required
@@ -204,17 +228,19 @@ def restart_episode(request):
 
 
 @login_required
-def joldStartSess_LL(request, forced=True):
-    """Start a Lunar Lander session"""
+def joldStartPracticeBlockLL(request, forced=True):
+    """Start a Lunar Lander practice block if not finished"""
     if not request.user.is_superuser:
-        participant = ParticipantProfile.objects.get(user=request.user.id)
-        participant.nb_sess_started += int(forced)
+        participant = request.user.participantprofile
+        if Schedule.objects.get(participant=participant, sess_date=datetime.date.today()).practice_finished:
+            return redirect(reverse(request.session['checkpoint']['url'], args=request.session['checkpoint']['args']))
+        participant.nb_practice_blocks_started += int(forced)
         participant.save()
         xparams = { # make sure to keep difficulty constant for the same participant!
             'wind': participant.wind,
             'plat': participant.plat,
             'dist': participant.dist,
-            'time': 60 if bool(forced) else 5*60,
+            'time': 2 if bool(forced) else 5*60,
             'forced': bool(forced),
         }
     else:
@@ -228,32 +254,35 @@ def joldStartSess_LL(request, forced=True):
     return render(request, 'JOLD/lunar_lander.html', {'XPARAMS': xparams})
 
 
-def joldSaveTrial_LL(request):
+def joldSaveTrialLL(request):
     """Save data from lunar lander trial"""
-    participant = ParticipantProfile.objects.get(user=request.user.id)
+    participant = request.user.participantprofile
     json_string_data = list(request.POST.dict().keys()).pop()
     data = json.loads(json_string_data)
     table = JOLD_LL_trial()
     for key, val in data.items():
         table.__dict__[key] = val
     table.participant = participant
-    table.sess_number = participant.nb_sess_started
+    table.sess_number = Schedule.objects.get(participant=participant, sess_date=datetime.date.today()).sess_num
     table.save()
     return HttpResponse(status=204) # 204 is a no-content response
 
 
 @login_required
 @ensure_csrf_cookie
-def joldEndSess(request):
+def joldClosePracticeBlock(request):
     """Close lunar lander session redirect to post-sess questionnaire or the thanks page"""
     if request.is_ajax():
-        participant = ParticipantProfile.objects.get(user=request.user.id)
-        session_complete = int(request.POST.get('sessComplete'))
+        participant = request.user.participantprofile
+        block_complete = int(request.POST.get('blockComplete'))
         forced = int(request.POST.get('forced'))
         # if session complete, redirect to transition to post-sess Q&A
-        if session_complete & forced:
-            participant.nb_sess_finished += 1
+        if block_complete & forced:
+            participant.nb_practice_blocks_finished += 1
             participant.save()
+            session = Schedule.objects.get(participant=participant, sess_date=datetime.date.today())
+            session.practice_finished = True
+            session.save()
             return JsonResponse({'success': True, 'url': reverse('JOLD_transition')})
         else:
             return JsonResponse({'success': True, 'url': reverse('JOLD_thanks')})
@@ -261,63 +290,71 @@ def joldEndSess(request):
 
 @login_required
 def joldTransition(request):
+    participant = request.user.participantprofile
+    request.session['checkpoint'] = {'url':'JOLD_transition', 'args': None}
     page_props = StudySpecs.objects.get(study=request.user.participantprofile.study)
-    current_sess = request.user.participantprofile.nb_sess_finished
-    return render(request, 'JOLD/transition.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
+    session = Schedule.objects.get(participant=participant, sess_date=datetime.date.today())
+    return render(request, 'JOLD/transition.html', {'CURRENT_SESS': session.sess_num+1, 'PAGE_PROPS': page_props})
 
 
 @never_cache
-def joldPostSess(request, num=0):
-    """Construct a post-sess questionnaire and render question groups on different pages"""
-    participant = ParticipantProfile.objects.get(user=request.user.id)
-    sess = participant.nb_sess_finished
-    questions = QBank.objects.filter(sessions__regex='(^|,){}(,|$)'.format(sess))
+def joldQuestionBlock(request, num=0):
+    """Construct a questionnaire block and render question groups on different pages"""
+    request.session['checkpoint'] = {'url':'JOLD_question_block', 'args': [num]}
+    participant = request.user.participantprofile
+    session = Schedule.objects.get(participant=participant, sess_date=datetime.date.today()).sess_num + 1
+    questions = QBank.objects.filter(sessions__regex='(^|,|\[){}(,|$|\])'.format(sess))
     groups = sorted(list(questions.values_list('group', flat=True).distinct()))
     questions = questions.filter(group__exact=groups[num]).order_by('order')
-    form = JOLDPostSessForm(questions, num, request.POST or None)
+    form = JOLDQuestionBlockForm(questions, num, request.POST or None)
     if form.is_valid():
         for q in questions:
             r = Responses()
             r.participant = participant
-            r.sess = sess
+            r.sess = session
             r.question = q
             r.answer = form.cleaned_data[q.handle]
             r.save()
         if form.index == len(groups) - 1:
-            participant.nb_followups_finished += 1
+            participant.nb_question_blocks_finished += 1
             participant.save()
-            return redirect(reverse(joldFreeChoice))
-        return redirect('JOLD_post_sess', num=num+1)
+            schedule = Schedule.objects.get(participant=participant, sess_date=datetime.date.today())
+            schedule.questions_finished = True
+            schedule.save()
+            return redirect(reverse(joldEndOfSession))
+        return redirect('JOLD_question_block', num=num+1)
     else:
         context = {'FORM': form, 'STAGE': num+1, 'NSTAGES': len(groups)}
-        return render(request, 'JOLD/post_sess.html', context)
+        return render(request, 'JOLD/question_block.html', context)
 
 
 @login_required
 @ensure_csrf_cookie
-def joldFreeChoice(request):
+def joldEndOfSession(request):
+    request.session['checkpoint'] = {'url':'JOLD_end_of_session', 'args': None}
+    participant = request.user.participantprofile
     if request.method == 'POST':
         choice = int(request.POST.dict().get('choice'))
-        participant = ParticipantProfile.objects.get(user=request.user.id)
         r = Responses()
         r.participant = participant
-        r.sess = participant.nb_sess_finished
+        r.sess = participant.nb_practice_blocks_finished
         r.question = QBank.objects.get(handle='jold-0')
         r.answer = choice
         r.save()
-        url = 'JOLD_lunar_lander' if choice==1 else 'JOLD_thanks'
+        url = 'JOLD_start_practice_block_ll' if choice==1 else 'JOLD_thanks'
         args = [0] if choice else None
         return JsonResponse({'success': True, 'url': reverse(url, args=args)})
     if request.user.is_authenticated:
-        page_props = StudySpecs.objects.get(study=request.user.participantprofile.study)
-        current_sess = request.user.participantprofile.nb_sess_finished
-        return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': current_sess, 'PAGE_PROPS': page_props})
+        page_props = StudySpecs.objects.get(study=participant.study)
+        session = Schedule.objects.get(participant=participant, sess_date=datetime.date.today())
+        tasks = [session.practice_finished]
+        if session.questions_finished is not None: tasks.append(session.questions_finished)
+        session.finished = all(tasks)
+        return render(request, 'JOLD/free_choice.html', {'CURRENT_SESS': session.sess_num+1, 'PAGE_PROPS': page_props})
 
 
 @login_required
 def joldThanks(request):
     """Render the terminal page"""
-    participant = ParticipantProfile.objects.get(user=request.user.id)
-    participant.nb_sess_finished
     # check how many sessions user has completed, if insufficient, redirect to
     return render(request, 'JOLD/thanks.html', locals())
