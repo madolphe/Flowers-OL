@@ -6,11 +6,25 @@ from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
 
 
+class Study(models.Model):
+    """ Study model specifies various attributes of a study needed to run it """
+    name = models.CharField(max_length=10, null=True)
+    project = models.CharField(max_length=100, null=True)
+    base_template = models.CharField(max_length=50, default='base.html')
+    task_url = models.CharField(max_length=50, null=True)
+    style = models.CharField(max_length=50, null=True)
+    instructions = models.CharField(max_length=50, null=True)
+    tutorial = models.CharField(max_length=50, default='')
+    consent_text = models.CharField(max_length=50, null=True)
+    nb_sessions = models.IntegerField(default=5)
+    spacing = models.CharField(max_length=100, default='[1]', validators=[validate_comma_separated_integer_list])
+
+
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now, verbose_name="Inscription Date")
+    date = models.DateTimeField(default=timezone.now, verbose_name="Registration Date")
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
-    study = models.CharField(max_length=10, default='unk')
+    study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     screen_params = models.FloatField(default=39.116)
     nb_practice_blocks_started = models.IntegerField(default=0)
     nb_practice_blocks_finished = models.IntegerField(default=0)
@@ -79,7 +93,7 @@ class ExperimentSession(models.Model):
 class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
-    sess_number = models.IntegerField(default=0)
+    session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
     trial = models.IntegerField(null=True)
     wind = models.DecimalField(decimal_places=2, max_digits=3)
     init_site = models.IntegerField(null=True)
@@ -93,20 +107,6 @@ class JOLD_LL_trial(models.Model):
     outcome = models.CharField(max_length=10)
     interruptions = models.IntegerField(null=True)
     forced = models.BooleanField(default=True)
-
-
-class StudySpec(models.Model):
-    """ A model to store dynamic data to display on Home Page """
-    study = models.CharField(max_length=10, null=True)
-    project = models.CharField(max_length=100, null=True)
-    base_html = models.CharField(max_length=50, null=True)
-    task_url = models.CharField(max_length=50, null=True)
-    style = models.CharField(max_length=50, null=True)
-    instructions = models.CharField(max_length=50, null=True)
-    consent_text = models.CharField(max_length=50, null=True)
-    nb_sessions = models.IntegerField(default=5)
-    spacing = models.CharField(max_length=100, default='[1]', validators=[validate_comma_separated_integer_list])
-    tutorial = models.CharField(max_length=50, default='')
 
 
 class Question(models.Model):
@@ -128,5 +128,5 @@ class Question(models.Model):
 class Answer(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.PROTECT)
-    answer = models.IntegerField(null=True)
     session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
+    value = models.IntegerField(null=True)

@@ -1,10 +1,10 @@
-{% extends CONTEXT.page_props.base_html %}
+{% extends CONTEXT.study_specs.base_template %}
 {% block title %}{% endblock %}
 {%load static%}
 {% block js%}
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="{% static CONTEXT.page_props.style %}">
+    <link rel="stylesheet" href="{% static CONTEXT.study_specs.style %}">
 {% endblock %}
 {% block nav%} {%endblock%}
 {% block content%}
@@ -13,7 +13,7 @@
            <h2>{{CONTEXT.greeting}}</h2>
            <p>Ici, vous pouvez voir votre progression dans l'expérience</p>
            <ul class="progress-list">
-               {% with ''|center:CONTEXT.page_props.nb_sess as range %}
+               {% with ''|center:CONTEXT.study_specs.nb_sessions as range %}
                    {% for _ in range %}
                        {% if forloop.counter < CONTEXT.current_sess %}
                          <li class="sess_complete">Session {{forloop.counter}}</li>
@@ -30,7 +30,7 @@
         <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a>
     </div>
     <div class="main-panel">
-        {% include CONTEXT.page_props.instructions %}
-        <a class="btn" href="{% url CONTEXT.page_props.task_url %}">Continuer</a>
+        {% include CONTEXT.study_specs.instructions %}
+        <a class="btn" href="{% url CONTEXT.study_specs.task_url %}">Continuer</a>
     </div>
 {% endblock %}

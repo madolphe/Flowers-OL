@@ -1,11 +1,11 @@
 [
     {
-        "model": "interface_app.StudySpec",
+        "model": "interface_app.Study",
         "pk": 1,
         "fields": {
-            "study"         : "zpdes_mot",
+            "name"          : "zpdes_mot",
             "project"       : "ZPDES-MOT",
-            "base_html"     : "base.html",
+            "base_template" : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/zpdes_home.css",
             "instructions"  : "ZPDES/zpdes_instructions.html",
@@ -13,12 +13,12 @@
         }
     },
     {
-        "model": "interface_app.StudySpec",
+        "model": "interface_app.Study",
         "pk": 2,
         "fields": {
-            "study"         : "jold_ll",
+            "name"          : "jold_ll",
             "project"       : "Judgments of learning dynamics",
-            "base_html"     : "base.html",
+            "base_template" : "base.html",
             "task_url"      : "JOLD_start_practice_block_ll",
             "style"         : "css/jold_home.css",
             "instructions"  : "JOLD/instructions.html",
@@ -29,12 +29,12 @@
         }
     },
     {
-        "model": "interface_app.StudySpec",
+        "model": "interface_app.Study",
         "pk": 3,
         "fields": {
-            "study"         : "jold_mot",
+            "name"          : "jold_mot",
             "project"       : "Judgments of learning dynamics",
-            "base_html"     : "base.html",
+            "base_template" : "base.html",
             "task_url"      : "app_MOT",
             "style"         : "css/style_signup.css",
             "instructions"  : "JOLD/instructions.html",

@@ -25,7 +25,7 @@
     <div class="main-panel">
         {% load crispy_forms_tags %}
         <form class="form" method="post">
-            {% include CONTEXT.text with person=CONTEXT.person project=CONTEXT.project%}
+            {% include CONTEXT.study_specs.consent_text with person=CONTEXT.person project=CONTEXT.study_specs.project%}
             {% crispy CONTEXT.form %}
         </form>
     </div>
