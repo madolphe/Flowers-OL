@@ -329,6 +329,13 @@ def joldQuestionBlock(request, num=0):
             participant.save()
             session.questions_finished = True
             session.save()
+            answer = Answer() # Last answer for the free-choice question, 0 by default
+            answer.participant = participant
+            answer.session = session
+            answer.question = Question.objects.get(handle='jold-0')
+            answer.value = 0
+            answer.save()
+            request.session['free_choice_answer_id'] = answer.pk
             return redirect(reverse(joldEndOfSession))
         return redirect('JOLD_question_block', num=num+1)
     else:
@@ -342,19 +349,14 @@ def joldEndOfSession(request):
     request.session['checkpoint'] = {'url':'JOLD_end_of_session', 'args': None}
     participant = request.user.participantprofile
     session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-    answer = Answer()
-    answer.participant = participant
-    answer.sess = session
-    answer.question = Question.objects.get(handle='jold-0')
     if request.method == 'POST':
         choice = int(request.POST.dict().get('choice'))
+        answer = Answer.objects.get(pk=request.session['free_choice_answer_id'])
         answer.value = choice
         answer.save()
         url = 'JOLD_start_practice_block_ll' if choice==1 else 'JOLD_thanks'
         args = [0] if choice else None
         return JsonResponse({'success': True, 'url': reverse(url, args=args)})
-    answer.value = 0
-    answer.save()
     study_specs = participant.study
     tasks = [session.practice_finished]
     if session.questions_finished is not None: tasks.append(session.questions_finished)
