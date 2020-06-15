@@ -232,11 +232,13 @@ def restart_episode(request):
 
 
 @login_required
+@never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
 def joldStartPracticeBlockLL(request, forced=True):
     """Start a Lunar Lander practice block if not finished"""
     if not request.user.is_superuser:
         participant = request.user.participantprofile
-        if ExperimentSession.objects.get(participant=participant, date=datetime.date.today()).practice_finished:
+        session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
+        if session.practice_finished & forced:
             return redirect(reverse(request.session['checkpoint']['url'], args=request.session['checkpoint']['args']))
         participant.nb_practice_blocks_started += int(forced)
         participant.save()
