@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+{% block js%} {% endblock %}
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+           <h1>Merci !</h1>
+           <p>Nous vous remercions pour votre contribution à la science !</p>
+        </div>
+        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
+     </div>
+
+     <div class="main-panel">
+         <h1>You have no sessions to complete today</h1>
+         {% comment %}
+            {% if CONTEXT.nb_sess_left %}
+            {% else %}
+         {% endcomment %}
+            <p>Next session is then and then</p>
+     </div>
+
+{% endblock %}

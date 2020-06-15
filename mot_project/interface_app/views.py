@@ -103,6 +103,14 @@ def home_user(request):
         greeting = "Salut, {0} !".format(request.user.username)
         sess_num = ExperimentSession.objects.get(participant=participant, date=datetime.date.today()).num
     return render(request, 'home_user.html', {'CONTEXT': {
+        'study_specs': study_specs,
+        'greeting': greeting,
+        'current_sess': sess_num} })
+
+
+@login_required
+def off_session(request):
+    return render(request, 'off_session.html', {'CONTEXT': {
         'page_props':page_props,
         'greeting': greeting,
         'current_sess': current_sess} })

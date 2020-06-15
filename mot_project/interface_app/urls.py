@@ -9,6 +9,7 @@ urlpatterns = [
     path('user_logout', views.user_logout, name='user_logout'),
     path('sign_up', views.sign_up, name='sign_up'),
     path('consent_page', views.consent_page, name='consent_page'),
+    path('off_session', views.off_session, name='off_session'),
     path('app_2D', views.visual_2d_task, name='app_2D'),
     path('app_3D', views.visual_3d_task, name='app_3D'),
     path('app_MOT', views.MOT_task, name='app_MOT'),
