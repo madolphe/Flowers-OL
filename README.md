@@ -14,8 +14,3 @@ To be hosted on : http://flowers-mot.bordeaux.inria.fr/
 1. Before serving the application, it is important to populate the database with some hand-coded data. This data is stored inside interface_app/fixtures as Django fixture files (JSON). To load the fixtures, run `$python manage.py loaddata <filename>`.
 
 2. The database must conform to the models as defined in `interface_app/models.py`. To make sure this is satisfied, you can hard-reset the database entirely and remove all migration files, including the 0001_initial.py one. Then, using `django-extensions` (included in the `Pipfile` and setup in `settings.py`), run `python manage.py reset_db` to hard-reset the database, . After performing the hard-reset, create a new initial migration and run the server. You will need to repeat the step in the previous note to re-populate the refreshed DB with hand-coded data.
-
-3. Proposed conventions:
-    - **Practice block**. A period of time inside a session during which a user performs a learning task (e.g. Lunar lander game, MOT task). Composed of a number of **trials**.
-    - **Question block**. A period of time inside a session during which a user answers questionnaires. Composed of a number of question **groups**.
-    - **Session**. A discrete period of time during which a user goes through a sequence of practice and question blocks. Not to be confused with Django session, which unfortunately has the same name.

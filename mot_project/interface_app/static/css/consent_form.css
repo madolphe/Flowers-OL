@@ -1,0 +1,27 @@
+span.consent-form {
+    position: relative;
+    margin-right: 0;
+}
+span.consent-form > input[type=text] {
+    border: none;
+    border-bottom: 1px solid gray;
+    text-align: center;
+    width: 200px;
+}
+span.consent-form > input[type=text]:focus {
+    outline: none;
+    border-bottom: 1.5px solid black;
+}
+span.consent-form > span > label {
+    color: gray;
+    font-size: .5em;
+    transform: translate(100%, 10px);
+    -webkit-transform: translate(100%, 10px);
+    -moz-transofrm:  translate(100%, 10px);
+    bottom: 0;
+    background-color: white;
+    padding: 0 3px 0 3px;
+}
+span.consent-form > input[type=text]:focus + label {
+    color: black;
+}

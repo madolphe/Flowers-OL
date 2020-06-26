@@ -5,10 +5,10 @@ const params = {
     lander : {
         w : 120,
         h : 90,
-        damping : .8,
-        density : .05,
-        thrust : 8,
-        turning : 2,
+        damping : 10,
+        density : .01,
+        thrust : 30,
+        turning : 10,
     },
     colors : {
         sky : '#2f3e59',
@@ -63,7 +63,7 @@ function runTutorial() {
 
     //Initializes keyboard events
     function initKeyboard() {
-        document.addEventListener('keydown', function (event) {
+        canvas.addEventListener('keydown', function (event) {
             if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = true;
             } else if (70 == event.keyCode) {
@@ -75,7 +75,7 @@ function runTutorial() {
             }
         });
 
-        document.addEventListener('keyup', function (event) {
+        canvas.addEventListener('keyup', function (event) {
             if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = false;
             } else if (70 == event.keyCode) {
@@ -117,7 +117,6 @@ function runTutorial() {
         landerBody.SetLinearDamping(params.lander.damping)
         landerBody.SetAngularDamping(params.lander.damping)
         let hullFixt = landerBody.CreateFixture(hullFixtDef);
-        console.log(landerBody)
 
         hullView = new createjs.Bitmap("../static/images/lunar_lander/lander.png");
         hullView.scaleY = 9/12
@@ -139,16 +138,22 @@ function runTutorial() {
         }
 
         if (shipData.turningLeft || shipData.turningRight) {
-            steeringPoint = landerBody.GetWorldCenter().Copy();
-            steeringPoint.y -= (shipData.height / 2 + 1) / params.scale;
+            steeringPoint1 = landerBody.GetWorldCenter().Copy();
+            steeringPoint1.y -= scaled(shipData.height/2);
+            steeringPoint2 = landerBody.GetWorldCenter().Copy();
+            steeringPoint2.y += scaled(shipData.height/2);
         }
         if (shipData.turningLeft) {
             impulse = new Box2D.Common.Math.b2Vec2(-shipData.turning, 0);
-            landerBody.ApplyImpulse(impulse, steeringPoint);
+            landerBody.ApplyImpulse(impulse, steeringPoint1);
+            impulse = new Box2D.Common.Math.b2Vec2(shipData.turning, 0);
+            landerBody.ApplyImpulse(impulse, steeringPoint2);
         }
         if (shipData.turningRight) {
             impulse = new Box2D.Common.Math.b2Vec2(shipData.turning, 0);
-            landerBody.ApplyImpulse(impulse, steeringPoint);
+            landerBody.ApplyImpulse(impulse, steeringPoint1);
+            impulse = new Box2D.Common.Math.b2Vec2(-shipData.turning, 0);
+            landerBody.ApplyImpulse(impulse, steeringPoint2);
         }
 
         margin = params.lander.w/3

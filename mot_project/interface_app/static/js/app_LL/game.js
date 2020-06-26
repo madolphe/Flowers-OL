@@ -70,7 +70,7 @@ const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
 const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
 const fmtMSS = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s};
 
-function runSessionLL() {
+function runBlockLL() {
     new p5();
     const canvas = document.getElementById('mainCanvas');
     const context = canvas.getContext('2d');
@@ -94,8 +94,8 @@ function runSessionLL() {
 
     let outOfTime = false;
     let trialsCompleted = 0;
-    let sessElapsedTime = 0;
-    let sesStartTime = new Date().getTime();
+    let blockElapsedTime = 0;
+    let blockStartTime = new Date().getTime();
     let lastUpdateTime;
     let trialStartTime;
     let accumulator = 0;
@@ -324,7 +324,7 @@ function runSessionLL() {
     // Reset episode
     function endTrial() {
         saveTrialData();
-        sessElapsedTime += createjs.Ticker.getTime(true)
+        blockElapsedTime += createjs.Ticker.getTime(true)
 
         // Destroy world (by creating a new one)
         wind = params.wind() * params.windDir();
@@ -468,7 +468,7 @@ function runSessionLL() {
             footViews[i].x = fX;
             footViews[i].y = fY;
             footViews[i].rotation = feetBodies[i].GetAngle() * (180/Math.PI);
-            legViews[i].graphics.clear().ss(3, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
+            legViews[i].graphics.clear().ss(4, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
         };
 
         if (landed) {
@@ -498,9 +498,9 @@ function runSessionLL() {
         }
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
-        timeElapsed = inSec(sessElapsedTime+createjs.Ticker.getTime(true))
+        timeElapsed = inSec(blockElapsedTime+createjs.Ticker.getTime(true))
         if (!gamePaused) {timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))}
-        if (timeElapsed > xparams.time) {endSess()};
+        if (timeElapsed > xparams.time) {closeBlock()};
     };
 
     // Check if lander is in land box
@@ -516,7 +516,7 @@ function runSessionLL() {
     // If the page is hidden, pause physics, else continue
     function reportVisibilityChange() {
         if (document[hidden]) {
-            document.title = 'Paused';
+            document.title = 'Lunar Lander | Paused';
             if (!gamePaused) {
                 pauseMessage.text = 'Session interrompue'
                 pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
@@ -588,7 +588,7 @@ function runSessionLL() {
         metrics = {
             'trial' : trialsCompleted,
             'time_trial' : inSec(createjs.Ticker.getTime(true)).toFixed(1),
-            'time_sess' : inSec(new Date().getTime() - sesStartTime).toFixed(1),
+            'time_block' : inSec(new Date().getTime() - blockStartTime).toFixed(1),
             'outcome' : outcome,
             'fuel' : round(fuel),
             'presses' : round(presses),
@@ -598,7 +598,6 @@ function runSessionLL() {
             'wind' : round(wind, 2),
             'end_dist' : round(distToLandPoint, 2),
             'interruptions' : interruptions,
-            'sess_finished' : outOfTime,
             'forced' : xparams.forced
             // 'll_thrust' : round(params.lander.thrust, 2),
             // 'll_turn' : round(params.lander.turning, 2),
@@ -609,15 +608,15 @@ function runSessionLL() {
         $.ajax({
             async: true,
             type: 'POST',
-            url: '/JOLD/SaveTrial_LL',
+            url: '/JOLD/SaveTrialLL',
             dataType: "json",
             traditional: true,
             data: JSON.stringify(metrics)
         });
     };
 
-    // Stop session
-    function endSess() {
+    // Close block
+    function closeBlock() {
         if (!outOfTime) {
             outOfTime = true;
             saveTrialData();
@@ -634,20 +633,24 @@ function runSessionLL() {
     // Request next template
     function terminate() {
         if (!gamePaused) {
-            pauseMessage.text = 'Session interrupted';
-            pauseSubMessage.text = 'Press \'Enter\' to continue*'
+            pauseMessage.text = 'Session interrompue'
+            pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
             interruptions++;
         };
+        let confirmMessage = 'Continuer ?'
+        if (!outOfTime && xparams.forced) {
+            confirmMessage = 'Cette session n\'est pas encore terminée. Nous ne serons pas en mesure d\'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de vouloir quitter ?'
+        }
         gamePaused = true;
         pauseUnpause(gamePaused);
-        if (confirm('Confirmer ?')) {
+        if (confirm(confirmMessage)) {
             $.ajax({
                 async: true,
                 type: 'POST',
-                url: '/JOLD/EndSess',
+                url: '/JOLD/ClosePracticeBlock',
                 dataType: "json",
                 traditional: true,
-                data: {sessComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},
+                data: {blockComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},
                 success: function(response) {
                     window.location.href = response.url
                 }
@@ -667,7 +670,7 @@ function runSessionLL() {
                 'landed' : landed,
                 'since landed' : sinceEnter.toFixed(1),
                 'trial time (s)': inSec(createjs.Ticker.getTime(true)).toFixed(1),
-                'session time (s)': inSec(sessElapsedTime + createjs.Ticker.getTime(true)).toFixed(1),
+                'block time (s)': inSec(blockElapsedTime + createjs.Ticker.getTime(true)).toFixed(1),
                 'fuel' : fuel,
                 'user interruptions': interruptions,
             }
@@ -676,7 +679,7 @@ function runSessionLL() {
                 s = s.concat(`${key}: ${value}<br>`)
             };
             document.getElementById("debugDiv").innerHTML = s;
-        } else {
+        } else if (document.getElementById("debugDiv")) {
             document.getElementById("debugDiv").innerHTML = '';
         }
     };

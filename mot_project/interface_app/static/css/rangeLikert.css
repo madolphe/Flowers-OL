@@ -1,11 +1,11 @@
 :root {
   --min-width-rngL: 150px;
   --slider-width-rngL: 100%;
-  --thumb-height-rngL: 15px;
+  --thumb-height-rngL: 20px;
   --thumb-width-rngL: 40px;
-  --thumb-rad-rngL: 15px;
-  --thumb-margin-top-rngL: -3.5px;
-  --track-height-rngL: 7.5px;
+  --thumb-rad-rngL: 10px;
+  --thumb-margin-top-rngL: -3px;
+  --track-height-rngL: 14px;
   --track-shadow-rngL: 0px 0px 3px 3px #57a8ff, 0px 0px 5px 5px white;
 }
 .range-likert-widget {

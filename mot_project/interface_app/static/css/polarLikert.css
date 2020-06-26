@@ -3,9 +3,9 @@
   --slider-width-plrL: 100%;
   --thumb-height-plrL: 30px;
   --thumb-width-plrL: 15px;
-  --thumb-rad-plrL: 15px;
+  --thumb-rad-plrL: 14px;
   --thumb-margin-top-plrL: -11.25px;
-  --track-height-plrL: 7.5px;
+  --track-height-plrL: 15px;
   --track-shadow-plrL: 0px 0px 3px 3px #57a8ff, 0px 0px 5px 5px white;
 }
 

@@ -11,12 +11,11 @@
             </div>
         </div>
     {% endif %}
-
-        {% if widget.attrs.odd %}
-            <div class="likert-row odd-row">
-        {% else %}
-            <div class="likert-row">
-        {% endif %}
+    {% if widget.attrs.odd %}
+    <div class="likert-row odd-row">
+    {% else %}
+    <div class="likert-row">
+    {% endif %}
         <div class="row-prompt"> {{widget.attrs.prompt}} </div>
         <div class="row-input">
 

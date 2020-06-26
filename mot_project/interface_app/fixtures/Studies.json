@@ -1,0 +1,35 @@
+[
+    {
+        "model": "interface_app.Study",
+        "pk": 1,
+        "fields": {
+            "name"          : "zpdes_mot",
+            "project"       : "ZPDES-MOT",
+            "base_template" : "base.html",
+            "style"         : "css/zpdes_home.css",
+            "briefing_template"  : "JOLD/consent_form.html"
+        }
+    },
+    {
+        "model": "interface_app.Study",
+        "pk": 2,
+        "fields": {
+            "name"          : "jold_ll",
+            "project"       : "Judgments of learning dynamics",
+            "base_template" : "base.html",
+            "style"         : "css/jold_home.css",
+            "briefing_template"  : "JOLD/consent_form.html"
+        }
+    },
+    {
+        "model": "interface_app.Study",
+        "pk": 3,
+        "fields": {
+            "name"          : "jold_mot",
+            "project"       : "Judgments of learning dynamics",
+            "base_template" : "base.html",
+            "style"         : "css/jold_home.css",
+            "briefing_template"  : "JOLD/consent_form.html"
+        }
+    }
+]

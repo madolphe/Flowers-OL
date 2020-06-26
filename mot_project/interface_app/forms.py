@@ -1,5 +1,5 @@
 from django import forms
-from .models import ParticipantProfile, QBank
+from .models import ParticipantProfile
 from .widgets import get_custom_Likert_widget
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
@@ -25,6 +25,7 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined']
+    field_order = ['username', 'password', 'first_name', 'last_name', 'email']
 
 
 class ParticipantProfileForm(forms.ModelForm):
@@ -34,13 +35,10 @@ class ParticipantProfileForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.form_tag = False
         self.fields['birth_date'].label = 'Date de naissance'
-        print('Hello world')
-        pass
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date', 'screen_params', 'nb_sess_started', 'nb_sess_finished',
-                   'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
+        fields = ['birth_date', 'study']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -91,12 +89,11 @@ def validate_checked(value):
         )
 
 
-class JOLDPostSessForm(forms.Form):
-    def __init__(self, questions, index, *args, **kwargs):
-        super(JOLDPostSessForm, self).__init__(*args, **kwargs)
+class JOLDQuestionBlockForm(forms.Form):
+    def __init__(self, questions, *args, **kwargs):
+        super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
-        self.index = index
         for i, q in enumerate(questions, 1):
             self.fields[q.handle] = forms.IntegerField(
                 label = '',

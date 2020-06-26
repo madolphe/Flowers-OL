@@ -1,3 +1,9 @@
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/polarLikert.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
+{% endblock %}
 <div class="example-box" id="id-example-box">
     <div class="prompt"> 1. La réponse à cette question correspond à la position du curseur: </div>
     <div class="range-likert-widget">
