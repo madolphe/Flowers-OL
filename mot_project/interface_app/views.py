@@ -89,16 +89,24 @@ def home(request):
     if not participant.consent:
         return redirect(reverse(consent_page))
     participant.set_current_session() # If there is no current session, set new session as current
-    if participant.current_session: request.session['active_session'] = True
+    if participant.current_session: request.session['active_session'] = json.dumps(True)
     if participant.current_session and not participant.current_task: # Checks if current session is empty
         'remove current session from stack so that the next if statement is true'
-        request.session['active_session'] = False
+        request.session['active_session'] = json.dumps(False)
     if participant.sessions.count() == 0 or participant.current_session is None:
         return redirect(reverse(joldThanks)) # Should redirect to some "off session" page
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
     return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant} })
+
+
+@login_required
+def off_session(request):
+    return render(request, 'off_session.html', {'CONTEXT': {
+        'page_props':page_props,
+        'greeting': greeting,
+        'current_sess': current_sess} })
 
 
 @login_required
