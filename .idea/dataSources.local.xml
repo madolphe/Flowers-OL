@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="mot_db" uuid="92e1c558-86d5-4f98-96cf-6b3a2a3b2dc3">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
-      <auth-required>false</auth-required>
-    </data-source>
-  </component>
-</project>

@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-
+from django.forms.widgets import Select
 
 class rangeLikert(forms.Widget):
     template_name = 'includes/rangeLikert.html'
@@ -46,6 +46,25 @@ class basicLikert(rangeLikert):
         return context
 
 
+class Categories(Select):
+    template_name = 'ZPDES/categories.html'
+    input_type = 'checkbox'
+    needs_validator = False
+
+    def get_context(self, name, value, attrs):
+        # print(self.attrs)
+        context = super(Select, self).get_context(name, value, attrs)
+        context['widget']['attrs']['header'] = self.attrs['header']
+        context['widget']['attrs']['options'] = self.attrs['options']
+        context['widget']['attrs']['checked'] = self.attrs['checked']
+        return context
+
+    def render(self, name, value, attrs, renderer=None):
+        context = self.get_context(name, value, attrs)
+        template = loader.get_template(self.template_name).render(context)
+        return mark_safe(template)
+
+
 def get_custom_Likert_widget(question_object, index=False):
     pre = '{}. '.format(index) if index else ''
     odd = False
@@ -75,6 +94,17 @@ def get_custom_Likert_widget(question_object, index=False):
             'prompt': pre + question_object.prompt,
             'annotations': annotations,
             'header': True if index==1 else False,
+            'options': list(range(question_object.min_val, question_object.max_val+1)),
+            'checked': None,
+            'handle': question_object.handle,
+            'odd': odd})
+    if question_object.widget == 'categories':
+        annotations = []
+        for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
+        return Categories(attrs={
+            'prompt': pre + question_object.prompt,
+            'annotations': annotations,
+            'header': True if question_object.order==1 else False,
             'options': list(range(question_object.min_val, question_object.max_val+1)),
             'checked': None,
             'handle': question_object.handle,

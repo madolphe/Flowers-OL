@@ -74,6 +74,7 @@ class ExperimentSession(models.Model):
 
 
 class ParticipantProfile(models.Model):
+    # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     screen_params = models.FloatField(default=39.116)
     date = models.DateTimeField(default=timezone.now, verbose_name='Registration Date')
@@ -85,6 +86,23 @@ class ParticipantProfile(models.Model):
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
     extra_json = jsonfield.JSONField()
+
+    # ZPDES-exp extra infos:
+    screen_params = models.FloatField(null=True)
+    sexe = models.CharField(max_length=20, choices=(("Femme", "Femme"), ("Homme", "Homme"), ("Autre", "Autre")),
+                            null=True)
+    job = models.CharField(max_length=40, null=True)
+    # Frequency of video games practice is a Response model
+    video_game_start = models.IntegerField(null=True)
+    # For vide_game_freq, vid_game_habit and driving_freq, custom widget would be used
+    # ( a question object is passed to ModelForm and the widget is set up )
+    video_game_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, often, daily"
+    video_game_habit = models.CharField(max_length=40, null=True) # range : "Action, Sport, FPS, RPG, MMO"
+    driver = models.BooleanField(null=False, default=True, choices=((True, "Oui"), (False, "Non")))
+    driving_start = models.IntegerField(null=True)
+    driving_freq = models.CharField(max_length=40, null=True) # range : "Never, sometimes, once a week, daily"
+    attention_training = models.BooleanField(null=True, default=True, choices=((True, "Oui"), (False, "Non")))
+    online_training = models.BooleanField(null=True, default=True, choices=((True, "Oui"), (False, "Non")))
 
     class Meta:
         verbose_name = 'Participant'

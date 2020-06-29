@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+{%load static%}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+    <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
+    <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
+    <link rel="stylesheet" href="{% static "css/polarLikert.css" %}">
+{% endblock %}
+{% block js%}
+    <script src="{% static 'js/utils/slider.js' %}"></script>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+           <h2>Échelle d’autoévaluation du trouble déficitaire de l’attention avec / sans hyperactivité chez l’adulte</h2>
+            <p>Pour chacune des questions suivantes, cochez la case qui décrit le mieux ce que vous avez ressenti et comment
+                vous vous êtes comporté au cours des 6 derniers mois.</p>
+            <p>Pour valides réponses, appuyez sur le boutton submit</p>
+        </div>
+        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Logout</a> </div>
+    </div>
+    <div class="main-panel">
+        <div class="signup-form">
+            <form class="form" method="post">
+                {% crispy FORM %}
+            </form>
+    </div>
+{% endblock %}

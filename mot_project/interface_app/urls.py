@@ -11,6 +11,10 @@ urlpatterns = [
     path('consent_page', views.consent_page, name='consent_page'),
     path('start_task', views.start_task, name='start_task'),
     path('end_task', views.end_task, name='end_task'),
+
+    # ZPDES urls
+    path('get_profil', views.get_profil, name='profil'),
+    path('get_attention', views.get_attention, name='attention'),
     path('app_2D', views.visual_2d_task, name='app_2D'),
     path('app_3D', views.visual_3d_task, name='app_3D'),
     path('app_MOT', views.MOT_task, name='app_MOT'),
