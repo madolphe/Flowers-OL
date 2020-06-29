@@ -25,6 +25,5 @@ urlpatterns = [
     path('JOLD/ClosePracticeBlock', views.joldClosePracticeBlock, name='JOLD_close_practice_block'),
     path('JOLD/QuestionBlock/', views.joldQuestionBlock, name='JOLD_question_block'),
     path('JOLD/EndOfSession', views.joldEndOfSession, name='JOLD_end_of_session'),
-    path('JOLD/EndOfSession/<int:choice>/', views.joldEndOfSession, name='JOLD_end_of_session'),
-    path('JOLD/Thanks', views.joldThanks, name='JOLD_thanks')
+    path('JOLD/EndOfSession/<int:choice>/', views.joldEndOfSession, name='JOLD_end_of_session')
 ]
