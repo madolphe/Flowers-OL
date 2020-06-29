@@ -83,6 +83,11 @@ def consent_page(request):
 
 
 @login_required
+def off_session_page(request):
+    return
+
+
+@login_required
 @never_cache
 def home(request):
     participant = request.user.participantprofile
