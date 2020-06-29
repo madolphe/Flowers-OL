@@ -1,0 +1,12 @@
+<ul class="progress-list">
+{% for i in info %}
+    {% if i.current %} <li class="current"> {% else %} <li class="noncurrent"> {% endif %}
+        Session {{i.num}}
+        {% if i.current %} <ol class="current"> {% else %} <ol class="noncurrent"> {% endif %}
+            {% for task in i.tasks %}
+                <li>{{task}}</li>
+            {% endfor %}
+        </ol>
+    </li>
+{% endfor %}
+</ul>

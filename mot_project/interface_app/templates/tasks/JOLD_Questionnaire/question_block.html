@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} {% endblock %}
+{% block title %}JOLD Questionnaire{% endblock %}
 {% block js%}
     <script>
         let elements = document.getElementsByClassName("slider");
@@ -21,7 +21,7 @@
     <div class="side-panel">
         <div class="side-info">
            <h2>Questionnaire post-session</h2>
-           <p> Page {{STAGE}} sur {{NSTAGES}} </p>
+           <p> Page {{CONTEXT.current_page}} sur {{CONTEXT.nb_pages}} </p>
         </div>
         <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="main-panel">
         <div class="signup-form">
             <form class="form" method="post">
-                {% crispy FORM %}
+                {% crispy CONTEXT.form %}
             </form>
     </div>
 

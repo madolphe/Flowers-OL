@@ -1,0 +1,40 @@
+{% extends CONTEXT.participant.study.base_template %}
+{% load static %}
+{% block title %} Flowers OL | Home {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static CONTEXT.participant.study.style %}">
+{% endblock %}
+{% block js %}
+    <script>
+        const sessionActive = {{request.session.active_session}}
+        function confirm_logout() {
+            if (sessionActive && confirm('Current session is not finished, continue ?')) {
+                window.location.href = "user_logout"
+            }
+        }
+    </script>
+{% endblock %}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+           <h2>Salut, {{CONTEXT.participant.user.first_name}} !</h2>
+           <p>Ici, vous pouvez voir votre progression dans l'expérience</p>
+           {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}
+        </div>
+        <button id="logout-button" class="btn logout" onclick='confirm_logout()'>Se déconnecter</a>
+    </div>
+    <div class="main-panel">
+        {% if messages %}
+            {% include "includes/message.html" with ms=messages %}
+        {% endif %}
+
+        {% for i in CONTEXT.participant.current_task.info %}
+            {% include "includes/info_section.html" with info=i %}
+        {% endfor %}
+        {% if CONTEXT.participant.current_task.prompt %}
+            <a class="btn" href={% url "start_task" %}>
+                {{CONTEXT.participant.current_task.prompt}}
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

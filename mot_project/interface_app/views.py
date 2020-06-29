@@ -2,39 +2,20 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages as django_messages
 from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView
-import json, datetime
+import json, datetime, random, re
 from django.utils.html import mark_safe
 from .models import *
 from .forms import *
-from .alexfuncs import assign_condition
+from .utils import add_message
+from django.db.models import Count
 
 
-def sign_up(request):
-    # First, init forms, if request is valid we can create the user
-    form_user = UserForm(request.POST or None)
-    form_profile = ParticipantProfileForm(request.POST or None,
-        initial={'study': Study.objects.get(name=request.session['study'])})
-    if form_user.is_valid() and form_profile.is_valid():
-        # Get extra-info for user profile:
-        user = form_user.save(commit=False)
-        # Use set_password in order to hash password
-        user.set_password(form_user.cleaned_data['password'])
-        user.save()
-        form_profile.save_profile(user)
-        assign_condition(user, form_profile.data['study'])      # Assign study conditions
-        login(request, user)
-        return redirect(reverse(home_user))                  # Redirect to consent form
-    return render(request, 'sign_up.html', {'CONTEXT': {
-        'form_profile': form_profile,
-        'form_user': form_user
-    } })
-
-
-def home(request, study=''):
+def login_page(request, study=''):
     if 'study' in request.session: study = request.session.get('study')
     if 'study' in request.GET.dict(): study = request.GET.dict().get('study')
     valid_study_title = bool(Study.objects.filter(name=study).count())
@@ -48,24 +29,42 @@ def home(request, study=''):
         user = authenticate(request, username=username, password=password)  # Check if datas are valid
         if user:  # if user exists
             login(request, user)  # connect user
-            return redirect(reverse(home_user))
+            return redirect(reverse(home))
         else:  # show error if user not in DB
             error = True
-    return render(request, 'home.html', {'CONTEXT': {
+    return render(request, 'login_page.html', {'CONTEXT': {
         'study': valid_study_title,
         'error': error,
         'form': form_sign_in
     }})
 
 
+def signup_page(request):
+    # First, init forms, if request is valid we can create the user
+    study = Study.objects.get(name=request.session['study'])
+    form_user = UserForm(request.POST or None)
+    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+    if form_user.is_valid() and form_profile.is_valid():
+        # Get extra-info for user profile:
+        user = form_user.save(commit=False)
+        # Use set_password in order to hash password
+        user.set_password(form_user.cleaned_data['password'])
+        user.save()
+        form_profile.save_profile(user)
+        login(request, user)
+        return redirect(reverse(home))                  # Redirect to consent form
+    return render(request, 'signup_page.html', {'CONTEXT': {
+        'form_profile': form_profile,
+        'form_user': form_user
+    } })
+
+
 @login_required
 def consent_page(request):
     user = request.user
     participant = user.participantprofile
-    study_specs = participant.study
+    study = participant.study
     greeting = "Salut, {0} !".format(user.username)
-    consent_text = study_specs.consent_text
-    project = study_specs.project
     form = ConsentForm(request.POST or None)
     if form.is_valid():
         user.first_name = request.POST['nom']
@@ -73,39 +72,33 @@ def consent_page(request):
         user.save()
         participant.consent = True
         participant.save()
-        spacing = study_specs.spacing.strip('[]').split(',')
-        if study_specs.nb_sessions > len(spacing):
-            spacing += [spacing[0] for s in range(study_specs.nb_sessions)]
-        for i, day_delta in enumerate(spacing):
-            session = ExperimentSession()
-            session.participant = participant
-            session.date = datetime.date.today() + datetime.timedelta(days=int(day_delta))
-            session.num = i+1
-            session.save()
-        return redirect(reverse(home_user))
+        participant.assign_sessions()
+        return redirect(reverse(home))
     if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
-    return render(request, 'consent_form.html', {'CONTEXT': {
+    return render(request, 'consent_page.html', {'CONTEXT': {
         'greeting': greeting,
         'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
-        'study_specs': study_specs,
+        'study': study,
         'form': form} })
 
 
 @login_required
-def home_user(request):
-    if request.user.is_authenticated:
-        participant = request.user.participantprofile
-        if request.user.is_superuser:
-            return render(request, 'home_superuser.html')
-        if not participant.consent:
-            return redirect(reverse(consent_page))
-        study_specs = participant.study
-        greeting = "Salut, {0} !".format(request.user.username)
-        sess_num = ExperimentSession.objects.get(participant=participant, date=datetime.date.today()).num
-    return render(request, 'home_user.html', {'CONTEXT': {
-        'study_specs': study_specs,
-        'greeting': greeting,
-        'current_sess': sess_num} })
+@never_cache
+def home(request):
+    participant = request.user.participantprofile
+    if not participant.consent:
+        return redirect(reverse(consent_page))
+    participant.set_current_session() # If there is no current session, set new session as current
+    if participant.current_session: request.session['active_session'] = json.dumps(True)
+    if participant.current_session and not participant.current_task: # Checks if current session is empty
+        'remove current session from stack so that the next if statement is true'
+        request.session['active_session'] = json.dumps(False)
+    if participant.sessions.count() == 0 or participant.current_session is None:
+        return redirect(reverse(joldThanks)) # Should redirect to some "off session" page
+    if 'messages' in request.session:
+        for tag, content in request.session['messages'].items():
+            django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
+    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant} })
 
 
 @login_required
@@ -119,9 +112,29 @@ def off_session(request):
 @login_required
 def user_logout(request):
     study = request.user.participantprofile.study.name
-    if request.user.is_authenticated:
-        logout(request)
-        return redirect(reverse('home', args=[study]))
+    # if participant.current_session:
+    # if current session is incomplete, warn user
+    logout(request)
+    return redirect(reverse('login_page', args=[study]))
+
+
+@login_required
+def start_task(request):
+    if 'messages' in request.session:
+        del request.session['messages']
+    return redirect(reverse(request.user.participantprofile.current_task.view_name))
+
+
+@login_required
+def end_task(request):
+    request.user.participantprofile.pop_task()
+    return redirect(reverse(home))
+
+
+@login_required
+def super_home(request):
+    if request.user.is_authenticated & request.user.is_superuser:
+        return render(request, 'super_home_page.html')
 
 
 @login_required
@@ -233,31 +246,31 @@ def restart_episode(request):
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
-def joldStartPracticeBlockLL(request, forced=True):
-    """Start a Lunar Lander practice block if not finished"""
-    if not request.user.is_superuser:
-        participant = request.user.participantprofile
-        session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-        if session.practice_finished & forced:
-            return redirect(reverse(request.session['checkpoint']['url'], args=request.session['checkpoint']['args']))
-        participant.nb_practice_blocks_started += int(forced)
+def joldStartPracticeBlockLL(request):
+    """Starts a Lunar Lander practice block if not already finished"""
+    participant = request.user.participantprofile
+    task_name = participant.current_task.name
+    # Randomly assign LL condition
+    if 'game_params' not in participant.extra_json:
+        game_params = {
+            'wind' : random.sample([0,2,4], 1)[0],
+            'plat' : random.sample([-1,0,1], 1)[0],
+            'dist' : random.randint(0,1)}
+        participant.extra_json['game_params'] = game_params
         participant.save()
-        xparams = { # make sure to keep difficulty constant for the same participant!
-            'wind': participant.wind,
-            'plat': participant.plat,
-            'dist': participant.dist,
-            'time': 2 if bool(forced) else 5*60,
-            'forced': bool(forced),
-        }
+    if task_name == 'JOLD-ll-practice':
+        participant.extra_json['game_params']['forced'] = True
+        participant.extra_json['game_params']['time'] = 5
+        participant.save()
+    elif task_name == 'JOLD-free-choice':
+        participant.extra_json['game_params']['forced'] = False
+        participant.extra_json['game_params']['time'] = 5*60
+        participant.save()
     else:
-        xparams = { # make sure to keep difficulty constant for the same participant!
-            'wind': "0",
-            'plat': "0",
-            'dist': "2",
-            'time': "5",
-        }
-    xparams = json.dumps(xparams)
-    return render(request, 'JOLD/lunar_lander.html', {'XPARAMS': xparams})
+        return redirect(reverse(home))
+    return render(request, 'tasks/JOLD_LL/lunar_lander.html', {'CONTEXT': {
+        'game_params': json.dumps(participant.extra_json['game_params'])
+    }})
 
 
 def joldSaveTrialLL(request):
@@ -270,7 +283,7 @@ def joldSaveTrialLL(request):
         # Populate model fields with json data from POST request (keys in json object must correspond to model field keys)
         trial.__dict__[key] = val
     trial.participant = participant
-    trial.session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
+    trial.session = participant.current_session
     trial.save()
     return HttpResponse(status=204) # 204 is a no-content response
 
@@ -283,88 +296,98 @@ def joldClosePracticeBlock(request):
         participant = request.user.participantprofile
         block_complete = int(request.POST.get('blockComplete'))
         forced = int(request.POST.get('forced'))
-        # if session complete, redirect to transition to post-sess Q&A
+        # if block was completed, redirect to end task view
         if block_complete & forced:
-            participant.nb_practice_blocks_finished += 1
-            participant.save()
-            session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-            session.practice_finished = True
-            session.save()
-            return JsonResponse({'success': True, 'url': reverse('JOLD_transition')})
+            add_message(request, 'Vous avez terminé l\'entraînement de Lunar Lander', 'success')
+            add_message(request, 'Ne partez pas tout de suite ! Il y a un questionnaire à remplir.', 'warning')
+            return JsonResponse({'success': True, 'url': reverse('end_task')})
         else:
             return JsonResponse({'success': True, 'url': reverse('JOLD_thanks')})
 
 
 @login_required
-def joldTransition(request):
-    request.session['checkpoint'] = {'url':'JOLD_transition', 'args': None}
-    participant = request.user.participantprofile
-    study_specs = participant.study
-    session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-    return render(request, 'JOLD/transition.html', {'CONTEXT': {
-        'current_sess': session.num, 'study_specs': study_specs
-    }})
-
-
 @never_cache
-def joldQuestionBlock(request, num=0):
+def joldQuestionBlock(request):
     """Construct a questionnaire block and render question groups on different pages"""
-    request.session['checkpoint'] = {'url':'JOLD_question_block', 'args': [num]}
     participant = request.user.participantprofile
-    session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-    questions = Question.objects.filter(session_list__regex='(^|,|\[){}(,|$|\])'.format(session.num))
-    groups = sorted(list(questions.values_list('group', flat=True).distinct()))
-    questions = questions.filter(group__exact=groups[num]).order_by('order')
-    form = JOLDQuestionBlockForm(questions, num, request.POST or None)
+    if 'questions_extra' not in participant.extra_json:
+        # participant.save()
+        task_extra = participant.current_task.extra_json
+        questions = Question.objects.filter(
+            instrument__in = task_extra['instruments']
+        )
+        for k, v in task_extra.setdefault('exclude', {}).items():
+            questions = questions.exclude(**{k: v})
+        groups = [i for i in questions.values('instrument', 'group').annotate(size=Count('pk'))]
+        order = {k: v for v, k in enumerate(task_extra['instruments'])}
+        for d in groups:
+            d['order'] = order[d['instrument']]
+        groups = sorted(groups, key=lambda d: (d['order'], d['group']))
+        grouped_handles = []
+        for group in groups:
+            grouped_handles.append(
+                tuple(questions.filter(
+                    instrument__exact = group['instrument'],
+                    group__exact = group['group']
+                ).values_list('handle', flat=True))
+            )
+        participant.extra_json['questions_extra'] = {'grouped_handles': grouped_handles}
+        participant.extra_json['questions_extra']['ind'] = 0
+        participant.save()
+    questions_extra = participant.extra_json['questions_extra']
+    groups = questions_extra['grouped_handles']
+    ind = questions_extra['ind']
+    questions = Question.objects.filter(
+        handle__in = groups[ind]
+    )
+    form = JOLDQuestionBlockForm(questions, request.POST or None)
     if form.is_valid():
         for q in questions:
             answer = Answer()
             answer.participant = participant
-            answer.session = session
+            answer.session = participant.current_session
             answer.question = q
             answer.value = form.cleaned_data[q.handle]
             answer.save()
-        if form.index == len(groups) - 1:
-            participant.nb_question_blocks_finished += 1
+        participant.extra_json['questions_extra']['ind'] += 1
+        participant.save()
+        if participant.extra_json['questions_extra']['ind'] == len(groups):
+            del participant.extra_json['questions_extra']
             participant.save()
-            session.questions_finished = True
-            session.save()
-            answer = Answer() # Last answer for the free-choice question, 0 by default
-            answer.participant = participant
-            answer.session = session
+            add_message(request, 'Questionnaire is complete', 'success')
+            nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
+            wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
+            add_message(request, 'La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
+            answer = Answer()
             answer.question = Question.objects.get(handle='jold-0')
+            answer.participant = participant
+            answer.session = participant.current_session
             answer.value = 0
             answer.save()
-            request.session['free_choice_answer_id'] = answer.pk
-            return redirect(reverse(joldEndOfSession))
-        return redirect('JOLD_question_block', num=num+1)
-    else:
-        context = {'FORM': form, 'STAGE': num+1, 'NSTAGES': len(groups)}
-        return render(request, 'JOLD/question_block.html', context)
+            return redirect(reverse(end_task))
+        return redirect(reverse(joldQuestionBlock))
+    return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
+        'form': form,
+        'current_page': groups.index(groups[ind]) + 1,
+        'nb_pages': len(groups)
+    }})
 
 
 @login_required
 @ensure_csrf_cookie
-def joldEndOfSession(request):
-    request.session['checkpoint'] = {'url':'JOLD_end_of_session', 'args': None}
+def joldEndOfSession(request, choice=0):
     participant = request.user.participantprofile
-    session = ExperimentSession.objects.get(participant=participant, date=datetime.date.today())
-    if request.method == 'POST':
-        choice = int(request.POST.dict().get('choice'))
-        answer = Answer.objects.get(pk=request.session['free_choice_answer_id'])
-        answer.value = choice
-        answer.save()
-        url = 'JOLD_start_practice_block_ll' if choice==1 else 'JOLD_thanks'
-        args = [0] if choice else None
-        return JsonResponse({'success': True, 'url': reverse(url, args=args)})
-    study_specs = participant.study
-    tasks = [session.practice_finished]
-    if session.questions_finished is not None: tasks.append(session.questions_finished)
-    session.is_finished = all(tasks)
-    session.save()
-    return render(request, 'JOLD/free_choice.html', {'CONTEXT': {
-        'current_sess': session.num,
-        'study_specs': study_specs }})
+    question = Question.objects.get(handle='jold-0')
+    answer = Answer.objects.get(participant=participant, session=participant.current_session, question=question)
+    answer.participant = participant
+    answer.session = participant.current_session
+    answer.question = question
+    answer.value = choice
+    answer.save()
+    if choice:
+        return redirect(reverse(joldStartPracticeBlockLL))
+    else:
+        return redirect(reverse(end_task))
 
 
 @login_required

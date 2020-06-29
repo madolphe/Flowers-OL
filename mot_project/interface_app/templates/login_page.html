@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
-{% block js%} {% endblock %}
+{% block title %} Flowers OL | Sign-in{% endblock %}
+{% load static %}
 {% block css %}
-{%load static%}
-<link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
 {% endblock %}
-{% block nav%} {%endblock%}
 {% load crispy_forms_tags %}
-{% block content%}
+{% block content %}
 <div class="sidenav">
     <div class="login-main-text">
-       <h2>Expérience Flowers</h2>
+       <h1>Flowers Online Lab</h1>
        <p>Se connecter ou s'inscrire pour accéder à l'expérience.</p>
     </div>
  </div>
@@ -20,16 +18,18 @@
             {% if CONTEXT.error %}
                 <p><strong>Nom d'utilisateur ou mot de passe inconnu.</strong></p>
             {% endif %}
-            <form action="{% url "home"%}" class="form" method="post">
-                {%crispy CONTEXT.form %}
-                {% if not CONTEXT.study %} {% include "noextension.html" %}
+            <form class="form" method="post">
+                {% crispy CONTEXT.form %}
+                {% if not CONTEXT.study %}
+                    {% include "includes/noextension.html" %}
                 {% else %}
                     <div>
-                        <p class="text-center register-link"><a href="{% url "sign_up" %}">Cliquez ici pour s'inscrire</a></p>
+                        <p class="text-center register-link">
+                            <a href={% url "signup_page" %}>Cliquez ici pour s'inscrire</a>
+                        </p>
                     </div>
                 {% endif %}
             </form>
-
         </div>
     </div>
 </div>

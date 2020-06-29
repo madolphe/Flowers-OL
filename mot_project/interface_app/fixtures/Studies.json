@@ -6,10 +6,8 @@
             "name"          : "zpdes_mot",
             "project"       : "ZPDES-MOT",
             "base_template" : "base.html",
-            "task_url"      : "app_MOT",
             "style"         : "css/zpdes_home.css",
-            "instructions"  : "ZPDES/zpdes_instructions.html",
-            "tutorial"      : ""
+            "briefing_template"  : "JOLD/consent_form.html"
         }
     },
     {
@@ -19,13 +17,8 @@
             "name"          : "jold_ll",
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
-            "task_url"      : "JOLD_start_practice_block_ll",
             "style"         : "css/jold_home.css",
-            "instructions"  : "JOLD/instructions.html",
-            "consent_text"  : "JOLD/consentText.html",
-            "tutorial"      : "js/app_LL/tutorial.js",
-            "nb_sessions"   : 3,
-            "spacing"       : "[0,1,3]"
+            "briefing_template"  : "JOLD/consent_form.html"
         }
     },
     {
@@ -35,12 +28,8 @@
             "name"          : "jold_mot",
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
-            "task_url"      : "app_MOT",
-            "style"         : "css/style_signup.css",
-            "instructions"  : "JOLD/instructions.html",
-            "consent_text"  : "JOLD/consentText.html",
-            "tutorial"      : "",
-            "nb_sessions"   : 3
+            "style"         : "css/jold_home.css",
+            "briefing_template"  : "JOLD/consent_form.html"
         }
     }
 ]

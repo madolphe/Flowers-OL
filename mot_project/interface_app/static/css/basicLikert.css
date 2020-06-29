@@ -18,10 +18,9 @@
 }
 .basic-likert-widget .header-item {
     display: flex;
-    overflow-x: visible;
     text-align: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 1vw;
 }
 .basic-likert-widget .likert-row {
     padding: 1em 0 1em 0;

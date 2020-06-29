@@ -1,5 +1,5 @@
 {% extends "joldbase.html" %}
-{% block title %}Lunar Lander Task {% endblock %}
+{% block title %} Lunar Lander {% endblock %}
 {% load static %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/style_LL.css' %}">
@@ -9,12 +9,12 @@
     <form method='post'>
         {% csrf_token %}
         <canvas id="mainCanvas" class="canvas" width="800" height="600" ></canvas>
-        <div class="debugDiv" id="debugDiv">Debug data</div>
+        {# <div class="debugDiv" id="debugDiv">Debug data</div> #}
     </form>
 {% endblock %}
 
 {% block js %}
-    <script> xparams = {% autoescape off %}{{ XPARAMS }}{% endautoescape %} </script>
+    <script> xparams = {% autoescape off %}{{ CONTEXT.game_params }}{% endautoescape %} </script>
     <script src="{% static 'js/app_LL/utilities.js' %}"></script>
     <script src="{% static 'js/app_LL/game.js' %}"></script>
     <script>

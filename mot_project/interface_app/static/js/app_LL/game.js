@@ -468,7 +468,7 @@ function runBlockLL() {
             footViews[i].x = fX;
             footViews[i].y = fY;
             footViews[i].rotation = feetBodies[i].GetAngle() * (180/Math.PI);
-            legViews[i].graphics.clear().ss(3, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
+            legViews[i].graphics.clear().ss(4, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
         };
 
         if (landed) {
@@ -516,7 +516,7 @@ function runBlockLL() {
     // If the page is hidden, pause physics, else continue
     function reportVisibilityChange() {
         if (document[hidden]) {
-            document.title = 'Paused';
+            document.title = 'Lunar Lander | Paused';
             if (!gamePaused) {
                 pauseMessage.text = 'Session interrompue'
                 pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
@@ -637,9 +637,13 @@ function runBlockLL() {
             pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
             interruptions++;
         };
+        let confirmMessage = 'Continuer ?'
+        if (!outOfTime && xparams.forced) {
+            confirmMessage = 'Cette session n\'est pas encore terminée. Nous ne serons pas en mesure d\'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de vouloir quitter ?'
+        }
         gamePaused = true;
         pauseUnpause(gamePaused);
-        if (confirm('Confirmer ?')) {
+        if (confirm(confirmMessage)) {
             $.ajax({
                 async: true,
                 type: 'POST',
@@ -675,7 +679,7 @@ function runBlockLL() {
                 s = s.concat(`${key}: ${value}<br>`)
             };
             document.getElementById("debugDiv").innerHTML = s;
-        } else {
+        } else if (document.getElementById("debugDiv")) {
             document.getElementById("debugDiv").innerHTML = '';
         }
     };

@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', "127.0.0.1", "flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
 
-LOGIN_URL = '/sign_up/'
+LOGIN_URL = '/signup_page/'
 
 # Application definition
 
@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
     'interface_app',
+    'django_extensions',
     'crispy_forms'
 ]
 

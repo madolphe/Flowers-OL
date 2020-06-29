@@ -1,44 +1,167 @@
 from django.db import models
 from django.utils import timezone
-import datetime
+import datetime, uuid, json
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
-
+import jsonfield
 
 class Study(models.Model):
-    """ Study model specifies various attributes of a study needed to run it """
-    name = models.CharField(max_length=10, null=True)
-    project = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
+    project = models.CharField(max_length=100, default='')
     base_template = models.CharField(max_length=50, default='base.html')
-    task_url = models.CharField(max_length=50, null=True)
     style = models.CharField(max_length=50, null=True)
-    instructions = models.CharField(max_length=50, null=True)
-    tutorial = models.CharField(max_length=50, default='')
-    consent_text = models.CharField(max_length=50, null=True)
-    nb_sessions = models.IntegerField(default=5)
-    spacing = models.CharField(max_length=100, default='[1]', validators=[validate_comma_separated_integer_list])
+    briefing_template = models.CharField(max_length=50, null=True)
+    extra_json = jsonfield.JSONField()
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Study'
+        verbose_name_plural = 'Studies'
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=50, default='', unique=True)
+    description = models.TextField(default='')
+    prompt = models.CharField(max_length=100, default='', blank=True)
+    view_name = models.CharField(max_length=50, default='')
+    info_templates_csv = models.TextField(null=True, blank=True)
+    extra_json = jsonfield.JSONField()
+
+    @property
+    def info(self):
+        l, hidden = [], False
+        for i in self.info_templates_csv.split(','):
+            label, template = i.split('=')
+            if template[-1]=='-':
+                template = template[:-1]
+                hidden = True
+            l.append((label, template, hidden))
+        return l
+
+
+class ExperimentSession(models.Model):
+    study = models.ForeignKey(Study, to_field='name', null=True, on_delete=models.SET_NULL)
+    day = models.IntegerField(default=0) # have to use default=0 because nulls are not compared for uniqueness
+    index = models.IntegerField(default=0)
+    wait = models.DurationField(default=datetime.timedelta(0))
+    tasks_csv = models.CharField(max_length=200, default='')
+    extra_json = jsonfield.JSONField()
+
+    class Meta:
+        ordering = ['study', 'day', 'index']
+        unique_together = ['study', 'day', 'index']
+        constraints = [
+            models.CheckConstraint(
+                check = models.Q(day__gt=0) | models.Q(index__gt=0),
+                name='day_or_index_gt'
+            )
+        ]
+
+    def __unicode__(self):
+        return '.'.join([self.study.name, str(self.day), str(self.index)])
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def get_task_list(self):
+        return [Task.objects.get(name=task_name) for task_name in self.tasks_csv.split(',')]
+
+    def get_task_by_index(self, index):
+        return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
 
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now, verbose_name="Registration Date")
+    screen_params = models.FloatField(default=39.116)
+    date = models.DateTimeField(default=timezone.now, verbose_name='Registration Date')
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
-    screen_params = models.FloatField(default=39.116)
-    nb_practice_blocks_started = models.IntegerField(default=0)
-    nb_practice_blocks_finished = models.IntegerField(default=0)
-    nb_question_blocks_finished = models.IntegerField(default=0)
     consent = models.BooleanField(default=False)
-
-    # JOLD properties
-    wind = models.IntegerField(null=True)
-    plat = models.IntegerField(null=True)
-    dist = models.IntegerField(null=True)
+    sessions = models.ManyToManyField(ExperimentSession, default=[], related_name='session_stack') # FIFO
+    current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
+    session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
+    task_stack_csv = models.TextField(null=True, blank=True, default='')
+    extra_json = jsonfield.JSONField()
 
     class Meta:
         verbose_name = 'Participant'
         ordering = ['birth_date']
+
+    def assign_condition(self):
+        pass
+
+    def assign_sessions(self, save=True):
+        if self.study and ExperimentSession.objects.filter(study=self.study):
+            sessions = ExperimentSession.objects.filter(study=self.study)
+            self.sessions.add(*sessions)
+            if save: self.save()
+        else:
+            assert False, 'No sessions found for study "{}"'.format(self.study)
+
+    def set_current_session(self):
+        assert self.sessions.all(), 'Participant has no sessions assigned'
+        s = self.sessions.first()
+        if self.current_session == s:
+            return
+        else:
+            self.current_session = None
+        if s.day:
+            today = datetime.date.today()
+            day1 = self.date.date()
+            if today != day1 + datetime.timedelta(days=s.day-1):
+                return
+        if self.session_timestamp and s.wait:
+            now = datetime.datetime.now()
+            if now - self.session_timestamp < s.wait:
+                return
+        self.current_session = s
+        self.task_stack_csv = s.tasks_csv
+        self.save()
+
+    @property
+    def future_sessions(self):
+        if self.current_session:
+            return self.sessions.exclude(pk=self.current_session.pk)
+        else: return self.sessions.all()
+
+    def pop_session(self):
+        if self.sessions:
+            self.sessions = self.sessions.exclude(pk=self.sessions.first().pk)
+        self.save()
+
+    @property
+    def task_stack(self):
+        # The first (empty) split removes whitespaces
+        task_names = self.task_stack_csv.split().split(',')
+        print(task_names)
+        return tuple([Task.objects.get(name=name) for name in task_names])
+
+    @property
+    def current_task(self):
+        if not self.task_stack_csv:
+            return None
+        stack_head = self.task_stack_csv.split(',')[0]
+        return Task.objects.get(name=stack_head)
+
+    def pop_task(self, n=1):
+        """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
+        task_names = self.task_stack_csv.split(',')[n:]
+        self.task_stack_csv = ','.join(task_names)
+        self.save()
+        print(self.task_stack_csv)
+
+    @property
+    def progress_info(self):
+        l = []
+        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+            sess_info = {'num': i,
+                         'current': True if session == self.current_session else False,
+                         'tasks': [task.description for task in session.get_task_list()]}
+            l.append(sess_info)
+        return l
 
 
 class Episode(models.Model):
@@ -81,15 +204,6 @@ class SecondaryTask(models.Model):
     answer_duration = models.FloatField(default=0)
 
 
-class ExperimentSession(models.Model):
-    participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
-    date = models.DateField(null=True)
-    num = models.IntegerField(default=1)
-    practice_finished = models.BooleanField(default=False)
-    questions_finished = models.BooleanField(null=True)
-    is_finished = models.BooleanField(default=False)
-
-
 class JOLD_LL_trial(models.Model):
     date = models.DateTimeField(default=timezone.now)
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
@@ -108,11 +222,15 @@ class JOLD_LL_trial(models.Model):
     interruptions = models.IntegerField(null=True)
     forced = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Lunar lander trial'
+        verbose_name_plural = 'Lunar lander trials'
+
 
 class Question(models.Model):
     instrument = models.CharField(max_length=100, null=True)
     component = models.CharField(max_length=100, null=True)
-    group = models.IntegerField(null=True)
+    group = models.CharField(max_length=50, null=True)
     handle = models.CharField(max_length=10, null=True)
     order = models.IntegerField(null=True)
     prompt = models.CharField(max_length=300, null=True)
@@ -122,11 +240,16 @@ class Question(models.Model):
     step = models.IntegerField(null=1)
     annotations = models.CharField(max_length=200, null=True)
     widget = models.CharField(max_length=30, null=True)
-    session_list = models.CharField(max_length=20, default='', validators=[validate_comma_separated_integer_list])
+
+    def __unicode__(self):
+        return self.handle
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class Answer(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.PROTECT)
-    session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.DO_NOTHING)
     value = models.IntegerField(null=True)

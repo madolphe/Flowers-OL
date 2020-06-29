@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 
 
 class rangeLikert(forms.Widget):
-    template_name = 'JOLD/rangeLikert.html'
+    template_name = 'includes/rangeLikert.html'
     input_type = 'range'
     needs_validator = True
 
@@ -24,7 +24,7 @@ class rangeLikert(forms.Widget):
 
 
 class polarLikert(rangeLikert):
-    template_name = 'JOLD/polarLikert.html'
+    template_name = 'includes/polarLikert.html'
     input_type = 'range'
 
     def get_context(self, name, value, attrs):
@@ -34,7 +34,7 @@ class polarLikert(rangeLikert):
 
 
 class basicLikert(rangeLikert):
-    template_name = 'JOLD/basicLikert.html'
+    template_name = 'includes/basicLikert.html'
     input_type = 'radio'
     needs_validator = False
 
@@ -74,7 +74,7 @@ def get_custom_Likert_widget(question_object, index=False):
         return basicLikert(attrs={
             'prompt': pre + question_object.prompt,
             'annotations': annotations,
-            'header': True if question_object.order==1 else False,
+            'header': True if index==1 else False,
             'options': list(range(question_object.min_val, question_object.max_val+1)),
             'checked': None,
             'handle': question_object.handle,

@@ -38,8 +38,7 @@ class ParticipantProfileForm(forms.ModelForm):
 
     class Meta:
         model = ParticipantProfile
-        exclude = ['user', 'date', 'screen_params', 'nb_practice_blocks_started', 'nb_practice_blocks_finished',
-                   'nb_question_blocks_finished', 'wind', 'dist', 'plat', 'nb_followups_finished', 'consent']
+        fields = ['birth_date', 'study']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):
@@ -91,11 +90,10 @@ def validate_checked(value):
 
 
 class JOLDQuestionBlockForm(forms.Form):
-    def __init__(self, questions, index, *args, **kwargs):
+    def __init__(self, questions, *args, **kwargs):
         super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
-        self.index = index
         for i, q in enumerate(questions, 1):
             self.fields[q.handle] = forms.IntegerField(
                 label = '',

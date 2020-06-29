@@ -63,7 +63,7 @@ function runTutorial() {
 
     //Initializes keyboard events
     function initKeyboard() {
-        document.addEventListener('keydown', function (event) {
+        canvas.addEventListener('keydown', function (event) {
             if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = true;
             } else if (70 == event.keyCode) {
@@ -75,7 +75,7 @@ function runTutorial() {
             }
         });
 
-        document.addEventListener('keyup', function (event) {
+        canvas.addEventListener('keyup', function (event) {
             if (32 == event.keyCode) {
                 landerBody.GetUserData().thrusting = false;
             } else if (70 == event.keyCode) {

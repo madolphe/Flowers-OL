@@ -1,0 +1,107 @@
+[
+    {
+        "model": "interface_app.Task",
+        "pk": 1,
+        "fields": {
+            "name": "JOLD-ll-practice",
+            "description": "Lunar lander practice",
+            "prompt": "Begin practice",
+            "view_name": "JOLD_start_practice_block_ll",
+            "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "pk": 2,
+        "fields": {
+            "name": "JOLD-mot-practice",
+            "description": "Attention task",
+            "prompt": "Begin practice",
+            "view_name": "app_MOT"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "pk": 3,
+        "fields": {
+            "name": "JOLD-free-choice",
+            "description": "Fin de session",
+            "prompt": "Terminer la session",
+            "view_name": "JOLD_end_of_session",
+            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html-"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "pk": 4,
+        "fields": {
+            "name": "JOLD-questions-sess1",
+            "description": "Post-practice questionnaire",
+            "prompt": "Begin questionnaire",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-2"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "pk": 5,
+        "fields": {
+            "name": "JOLD-questions-sess2",
+            "description": "Post-practice questionnaire",
+            "prompt": "Begin questionnaire",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS",
+                    "MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "pk": 6,
+        "fields": {
+            "name": "JOLD-questions-sess3",
+            "description": "Post-practice questionnaire",
+            "prompt": "Begin questionnaire",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0"
+                    ]
+                }
+            }
+        }
+    }
+]
