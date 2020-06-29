@@ -124,13 +124,18 @@ class ParticipantProfile(models.Model):
     @property
     def future_sessions(self):
         if self.current_session:
-            return self.sessions.exclude(pk=self.current_session.pk)
+            if self.sessions.exclude(pk=self.current_session.pk):
+                return self.sessions.exclude(pk=self.current_session.pk)
+            else:
+                return []
         else: return self.sessions.all()
 
-    def pop_session(self):
+    def pop_current_session(self):
         if self.sessions:
-            self.sessions = self.sessions.exclude(pk=self.sessions.first().pk)
-        self.save()
+            self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
+            self.save()
+        else:
+            return None
 
     @property
     def task_stack(self):

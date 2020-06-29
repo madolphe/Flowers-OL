@@ -83,23 +83,19 @@ def consent_page(request):
 
 
 @login_required
-def off_session_page(request):
-    return
-
-
-@login_required
 @never_cache
 def home(request):
     participant = request.user.participantprofile
     if not participant.consent:
         return redirect(reverse(consent_page))
-    participant.set_current_session() # If there is no current session, set new session as current
-    if participant.current_session: request.session['active_session'] = json.dumps(True)
-    if participant.current_session and not participant.current_task: # Checks if current session is empty
-        'remove current session from stack so that the next if statement is true'
-        request.session['active_session'] = json.dumps(False)
+    try:
+        participant.set_current_session() # If there is no current session, set new session as current
+    except AssertionError:
+        return redirect(reverse(thanks_page))
+    if participant.current_session:
+        request.session['active_session'] = json.dumps(True)
     if participant.sessions.count() == 0 or participant.current_session is None:
-        return redirect(reverse(joldThanks)) # Should redirect to some "off session" page
+        return redirect(reverse(off_session_page)) # Should redirect to some "off session" page
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
@@ -107,11 +103,21 @@ def home(request):
 
 
 @login_required
-def off_session(request):
-    return render(request, 'off_session.html', {'CONTEXT': {
-        'page_props':page_props,
-        'greeting': greeting,
-        'current_sess': current_sess} })
+def off_session_page(request):
+    participant = request.user.participantprofile
+    day1 = participant.date.date()
+    days = [day for day in participant.future_sessions.values_list('day', flat=True)]
+    nextdates = [day1 + datetime.timedelta(days=day-1) for day in days]
+    wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
+    nextdates = ['{}, {}'.format(date.strftime('%d/%m/%Y'), wdays[date.weekday()]) for date in nextdates]
+    return render(request, 'off_session_page.html', {'CONTEXT': {
+        'nextdates': nextdates}})
+
+
+@login_required
+def thanks_page(request):
+    return render(request, 'thanks_page.html', {'CONTEXT': {
+        'user_first_name': request.user.first_name}})
 
 
 @login_required
@@ -132,7 +138,11 @@ def start_task(request):
 
 @login_required
 def end_task(request):
-    request.user.participantprofile.pop_task()
+    participant = request.user.participantprofile
+    participant.pop_task()
+    if participant.current_session and not participant.current_task: # Checks if current session is empty
+        participant.pop_current_session()
+        request.session['active_session'] = json.dumps(False)
     return redirect(reverse(home))
 
 
@@ -360,9 +370,10 @@ def joldQuestionBlock(request):
             del participant.extra_json['questions_extra']
             participant.save()
             add_message(request, 'Questionnaire is complete', 'success')
-            nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
-            wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
-            add_message(request, 'La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
+            if participant.future_sessions:
+                nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
+                wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
+                add_message(request, 'La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
             answer = Answer()
             answer.question = Question.objects.get(handle='jold-0')
             answer.participant = participant
@@ -393,10 +404,3 @@ def joldEndOfSession(request, choice=0):
         return redirect(reverse(joldStartPracticeBlockLL))
     else:
         return redirect(reverse(end_task))
-
-
-@login_required
-def joldThanks(request):
-    """Render the terminal page"""
-    # check how many sessions user has completed, if insufficient, redirect to
-    return render(request, 'JOLD/thanks.html', locals())
