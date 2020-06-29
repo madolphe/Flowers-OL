@@ -173,6 +173,19 @@ ul.messages > li > div.message-text-box {
     min-width: 90%;
 }
 
+div.svg-frame {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+div.svg-image {
+    display: block;
+    text-align: center;
+    width: 30%;
+}
+
 
 /* || THE SIDE PANEL */
 .side-panel {

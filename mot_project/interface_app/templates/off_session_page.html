@@ -1,27 +1,42 @@
 {% extends "base.html" %}
-{% block title %} {% endblock %}
-{% block js%} {% endblock %}
+{% block title %} Flowers OL | Off-session {% endblock %}
+{% load static %}
 {% block css %}
-    {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+    <link rel="stylesheet" href={% static "css/jold_home.css" %}>
+    <style>
+        ul.next-dates {
+            font-size: 16px;
+        }
+        strong {
+            font-size: 18px;
+        }
+        img {
+            display: block;
+            margin: auto;
+        }
+    </style>
 {% endblock %}
-{% load crispy_forms_tags %}
-{% block nav%} {%endblock%}
-{% block content%}
+{% block js %}
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+{% endblock %}
+{% block content %}
     <div class="side-panel">
         <div class="side-info">
-           <h1>Merci !</h1>
-           <p>Nous vous remercions pour votre contribution à la science !</p>
+            <h2>Vous n'avez pas de session à compléter aujourd'hui</h2>
+            <br>
+            <strong> De futures sessions sont prévues : </strong>
+            <ul class='next-dates'>
+                {% for nextdate in nextdates %}
+                    <li>{{nextdate}}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
-     </div>
+        <div class="btn-box logout"> <a class="btn logout" href={% url "user_logout" %}>Se déconnecter</a> </div>
+    </div>
 
-     <div class="main-panel">
-         <h1>You have no sessions to complete today</h1>
-         {% comment %}
-            {% if CONTEXT.nb_sess_left %}
-            {% else %}
-         {% endcomment %}
-            <p>Next session is then and then</p>
-     </div>
-
+    <div class="main-panel">
+        <div class="svg-frame">
+            <div class="svg-image"><img src={% static "images/off_session.svg" %}></div>
+        </div>
+    </div>
 {% endblock %}

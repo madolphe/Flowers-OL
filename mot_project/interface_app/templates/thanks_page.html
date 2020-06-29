@@ -9,12 +9,16 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h1>Merci!</h1>
-           <p>Nous vous remercions pour votre contribution à la science !</p>
+           <h1>L'étude est terminée</h1>
+           <p>Merci, {{CONTEXT.user_first_name}}, pour votre contribution à la science !</p>
         </div>
         <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
-     </div>
+    </div>
 
-     <div class="main-panel"></div>
+    <div class="main-panel">
+        <div class="svg-frame">
+            <div class="svg-image"><img src={% static "images/done.svg" %}></div>
+        </div>
+    </div>
 
 {% endblock %}
