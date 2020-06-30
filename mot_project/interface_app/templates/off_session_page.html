@@ -4,20 +4,10 @@
 {% block css %}
     <link rel="stylesheet" href={% static "css/jold_home.css" %}>
     <style>
-        ul.next-dates {
-            font-size: 16px;
-        }
-        strong {
-            font-size: 18px;
-        }
-        img {
-            display: block;
-            margin: auto;
-        }
+        ul.next-dates {font-size: 16px}
+        strong {font-size: 18px}
+        img {display: block; margin: auto;}
     </style>
-{% endblock %}
-{% block js %}
-    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
 {% endblock %}
 {% block content %}
     <div class="side-panel">
@@ -26,7 +16,7 @@
             <br>
             <strong> De futures sessions sont prévues : </strong>
             <ul class='next-dates'>
-                {% for nextdate in nextdates %}
+                {% for nextdate in CONTEXT.nextdates %}
                     <li>{{nextdate}}</li>
                 {% endfor %}
             </ul>
