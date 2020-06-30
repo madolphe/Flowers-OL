@@ -138,11 +138,15 @@ class ParticipantProfile(models.Model):
             return None
 
     @property
+    def task_names_list(self):
+        task_names = self.task_stack_csv.replace(' ','')
+        while task_names[-1] == ',': task_names = task_names[:-1]
+        task_names = task_names.split(',')
+        return task_names
+
+    @property
     def task_stack(self):
-        # The first (empty) split removes whitespaces
-        task_names = self.task_stack_csv.split().split(',')
-        print(task_names)
-        return tuple([Task.objects.get(name=name) for name in task_names])
+        return tuple([Task.objects.get(name=name) for name in self.task_names_list])
 
     @property
     def current_task(self):
@@ -162,9 +166,14 @@ class ParticipantProfile(models.Model):
     def progress_info(self):
         l = []
         for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+            tasks = [task.description for task in session.get_task_list()]
+            task_index = None
+            if session == self.current_session:
+                task_index = len(tasks) - len(self.task_names_list)
             sess_info = {'num': i,
                          'current': True if session == self.current_session else False,
-                         'tasks': [task.description for task in session.get_task_list()]}
+                         'tasks': tasks,
+                         'cti': task_index} # cti = current task index
             l.append(sess_info)
         return l
 
