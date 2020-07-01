@@ -1,0 +1,18 @@
+[
+    {
+        "model": "interface_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 1,
+            "tasks_csv"     : "additional-profile-general,additional-profile-attention,simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+    {
+        "model": "interface_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    }
+]

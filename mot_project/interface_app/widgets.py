@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Select
+from django.forms.widgets import Select, NumberInput
 
 class rangeLikert(forms.Widget):
     template_name = 'includes/rangeLikert.html'
@@ -47,7 +47,7 @@ class basicLikert(rangeLikert):
 
 
 class Categories(Select):
-    template_name = 'ZPDES/categories.html'
+    template_name = 'includes/categories.html'
     input_type = 'checkbox'
     needs_validator = False
 
@@ -109,3 +109,5 @@ def get_custom_Likert_widget(question_object, index=False):
             'checked': None,
             'handle': question_object.handle,
             'odd': odd})
+    if question_object.widget == 'none':
+        return

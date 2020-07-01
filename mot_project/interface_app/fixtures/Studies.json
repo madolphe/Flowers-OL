@@ -4,10 +4,10 @@
         "pk": 1,
         "fields": {
             "name"          : "zpdes_mot",
-            "project"       : "ZPDES-MOT",
+            "project"       : "Attention training",
             "base_template" : "base.html",
             "style"         : "css/zpdes_home.css",
-            "briefing_template"  : "JOLD/consent_form.html"
+            "briefing_template"  : "ZPDES/consent_form.html"
         }
     },
     {

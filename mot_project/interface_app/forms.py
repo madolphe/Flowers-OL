@@ -9,7 +9,6 @@ from django.core.exceptions import *
 # @TODO: add to condition ==> connect to ZPDES/baseline
     # @TODO: install kidlib
     # @TODO: install connect and see what has to be saved
-# @TODO: add NASA TLX (french version)
 
 
 class UserForm(forms.ModelForm):
@@ -102,18 +101,21 @@ class JOLDQuestionBlockForm(forms.Form):
         self.rows = []
         for i, q in enumerate(questions, 1):
             self.fields[q.handle] = forms.IntegerField(
-                label = '',
-                validators = [validate_checked])
-            self.fields[q.handle].widget = get_custom_Likert_widget(q, index=i)
-            if self.fields[q.handle].widget.needs_validator:
-                self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
-                self.rows.append(
-                    Row(Column(q.handle, css_class='form-group col-11'),
-                        Column(q.handle+'_validator', css_class='form-group col-1'))
-                )
+                label='',
+                validators=[validate_checked])
+            if q.widget != 'none':
+                self.fields[q.handle].widget = get_custom_Likert_widget(q, index=i)
+                if self.fields[q.handle].widget.needs_validator:
+                    self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
+                    self.rows.append(
+                        Row(Column(q.handle, css_class='form-group col-11'),
+                            Column(q.handle+'_validator', css_class='form-group col-1'))
+                    )
+                else:
+                    self.rows.append(Row(Column(q.handle, css_class='form-group col-12'), css_class='likert-form-row'))
             else:
-                self.rows.append(
-                    Row(Column(q.handle, css_class='form-group col-12'), css_class='likert-form-row'))
+                self.fields[q.handle].label = str(q.order) + '. ' + q.prompt
+                self.rows.append(Row(Column(q.handle, css_class='form-group col-12'), css_class='likert-form-row'))
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.add_input(Submit('submit', 'Valider'))

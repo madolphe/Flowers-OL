@@ -1,5 +1,5 @@
 import random, warnings
-from .models import ParticipantProfile, Responses
+from .models import ParticipantProfile, Answer
 
 
 def assign_condition(user, study):
@@ -15,7 +15,7 @@ def assign_condition(user, study):
     elif study == 'zpdes-mot':
         participant = ParticipantProfile.objects.get(user=user.id)
         # First, check attention results
-        attention_responses = Responses.objects.filter(participant=participant)
+        attention_responses = Answer.objects.filter(participant=participant)
         score = 0
         for key, resp in enumerate(attention_responses.values()):
             print("In loop", key)

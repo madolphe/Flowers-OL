@@ -12,6 +12,9 @@ pymysql = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 django-jsonfield = "*"
+jsonfield = "*"
+django-developer-panel = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"

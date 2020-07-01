@@ -6,6 +6,7 @@ from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
 import jsonfield
 
+
 class Study(models.Model):
     name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
     project = models.CharField(max_length=100, default='')

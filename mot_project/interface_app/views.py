@@ -14,14 +14,14 @@ from .forms import *
 from .utils import add_message
 from django.db.models import Count
 from .alexfuncs import assign_condition
-from .utils.seq_manager import SeqManager
+from .sequence_manager.seq_manager import SeqManager
 
-# @TODO: change description of questions
-# @TODO: NASA_TLX
 
 def login_page(request, study=''):
-    if 'study' in request.session: study = request.session.get('study')
-    if 'study' in request.GET.dict(): study = request.GET.dict().get('study')
+    if 'study' in request.session:
+        study = request.session.get('study')
+    if 'study' in request.GET.dict():
+        study = request.GET.dict().get('study')
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
         request.session['study'] = study # store 'study' extension only once per session
@@ -60,7 +60,7 @@ def signup_page(request):
     return render(request, 'signup_page.html', {'CONTEXT': {
         'form_profile': form_profile,
         'form_user': form_user
-    } })
+    }})
 
 
 @login_required
@@ -102,13 +102,13 @@ def home(request):
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
-    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant} })
+    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
 
 
 @login_required
 def off_session(request):
     return render(request, 'off_session.html', {'CONTEXT': {
-        'page_props':page_props,
+        'page_props': page_props,
         'greeting': greeting,
         'current_sess': current_sess} })
 
@@ -259,7 +259,6 @@ def restart_episode(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
-
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
