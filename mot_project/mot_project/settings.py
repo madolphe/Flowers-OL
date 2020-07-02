@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'background_task',
     'interface_app',
     'django_extensions',
     'crispy_forms'
@@ -135,3 +136,25 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+
+# Emails
+# DEFAULT_FROM_EMAIL = 'tenalexander1991@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'tenalexander1991@gmail.com'
+# EMAIL_HOST_PASSWORD = '****'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+# Background tasks
+BACKGROUND_TASK_RUN_ASYNC = True # if True, will run the tasks asynchronous. This means the tasks will be processed in parallel (at the same time) instead of processing one by one (one after the other).
+# MAX_ATTEMPTS # controls how many times a task will be attempted (default 25)
+# MAX_RUN_TIME # maximum possible task run time, after which tasks will be unlocked and tried again (default 3600 seconds)
+# BACKGROUND_TASK_ASYNC_THREADS # Specifies number of concurrent threads. Default is multiprocessing.cpu_count().
+# BACKGROUND_TASK_PRIORITY_ORDERING # Control the ordering of tasks in the queue. Default is "DESC" (tasks with a higher number are processed first). Choose "ASC" to switch to the “niceness” ordering. A niceness of −20 is the highest priority and 19 is the lowest priority.

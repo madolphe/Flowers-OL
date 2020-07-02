@@ -177,6 +177,36 @@ class ParticipantProfile(models.Model):
             l.append(sess_info)
         return l
 
+    def queue_reminder(self):
+        if self.remind:
+            day1 = self.date
+            next_session = self.sessions.first()
+            next_session_date = day1 + datetime.timedelta(days=next_session.day-1)
+            message_template = render_to_string(self.study.reminder_template,
+                {'CONTEXT': {
+                    'name': self.user.first_name.lower().capitalize(),
+                    'session_date' : next_session_date.date().strftime('%d-%m-%Y'),
+                    'tasks': next_session.get_task_list,
+                    'study_link': 'http://flowers-mot.bordeaux.inria.fr/study={}'.format(self.study.name),
+                    'project_name': self.study.project,
+                    'study_contact': self.study.contact
+                    }
+                }
+            )
+            index = list(ExperimentSession.objects.filter(study=self.study).values_list('pk', flat=True)).index(next_session.pk)
+            send_delayed_email(
+                to = self.user.email,
+                sender = self.study.contact,
+                subject = 'Flowers OL | Rappel de la session #{}'.format(index+1),
+                message_template = message_template,
+                schedule = datetime.datetime(
+                    year = next_session_date.year,
+                    month = next_session_date.month,
+                    day = next_session_date.day,
+                    hour = 6
+                )
+            )
+
 
 class Episode(models.Model):
     # Foreign key to user :

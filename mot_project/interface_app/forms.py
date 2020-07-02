@@ -35,10 +35,11 @@ class ParticipantProfileForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.form_tag = False
         self.fields['birth_date'].label = 'Date de naissance'
+        self.fields['remind'].label = 'Rappelez-moi par e-mail de compléter les tâches pour l\'étude'
 
     class Meta:
         model = ParticipantProfile
-        fields = ['birth_date', 'study']
+        fields = ['birth_date', 'study', 'remind']
         widgets = {'study': forms.HiddenInput()}
 
     def save_profile(self, user):

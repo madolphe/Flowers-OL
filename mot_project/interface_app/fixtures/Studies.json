@@ -7,7 +7,8 @@
             "project"       : "ZPDES-MOT",
             "base_template" : "base.html",
             "style"         : "css/zpdes_home.css",
-            "briefing_template"  : "JOLD/consent_form.html"
+            "briefing_template"  : "JOLD/consent_form.html",
+            "contact"       : "maxime.adolphe@inria.fr"
         }
     },
     {
@@ -18,7 +19,9 @@
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
             "style"         : "css/jold_home.css",
-            "briefing_template"  : "JOLD/consent_form.html"
+            "briefing_template"  : "JOLD/consent_form.html",
+            "reminder_template"  : "JOLD/reminder_email.html",
+            "contact"       : "alexandr.ten@inria.fr"
         }
     },
     {
@@ -29,7 +32,8 @@
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
             "style"         : "css/jold_home.css",
-            "briefing_template"  : "JOLD/consent_form.html"
+            "briefing_template"  : "JOLD/consent_form.html",
+            "contact"       : "alexandr.ten@inria.fr"
         }
     }
 ]
