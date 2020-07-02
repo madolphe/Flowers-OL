@@ -333,12 +333,15 @@ def joldClosePracticeBlock(request):
         block_complete = int(request.POST.get('blockComplete'))
         forced = int(request.POST.get('forced'))
         # if block was completed, redirect to end task view
-        if block_complete & forced:
-            add_message(request, 'Vous avez terminé l\'entraînement de Lunar Lander', 'success')
-            add_message(request, 'Ne partez pas tout de suite ! Il y a un questionnaire à remplir.', 'warning')
+        if forced:
+            if block_complete:
+                add_message(request, 'Vous avez terminé l\'entraînement de Lunar Lander', 'success')
+                add_message(request, 'Ne partez pas tout de suite ! Il y a un questionnaire à remplir.', 'warning')
+                return JsonResponse({'success': True, 'url': reverse('end_task')})
+            else:
+                return JsonResponse({'success': True, 'url': reverse('thanks_page')})
+        elif not forced:
             return JsonResponse({'success': True, 'url': reverse('end_task')})
-        else:
-            return JsonResponse({'success': True, 'url': reverse('JOLD_thanks')})
 
 
 @login_required
