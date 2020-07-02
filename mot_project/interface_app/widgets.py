@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Select, NumberInput
+from django.forms.widgets import Select, NumberInput, TextInput, TimeInput
 
 class rangeLikert(forms.Widget):
     template_name = 'includes/rangeLikert.html'
@@ -54,7 +54,6 @@ class Categories(Select):
     def get_context(self, name, value, attrs):
         # print(self.attrs)
         context = super(Select, self).get_context(name, value, attrs)
-        context['widget']['attrs']['header'] = self.attrs['header']
         context['widget']['attrs']['options'] = self.attrs['options']
         context['widget']['attrs']['checked'] = self.attrs['checked']
         return context
@@ -93,7 +92,7 @@ def get_custom_Likert_widget(question_object, index=False):
         return basicLikert(attrs={
             'prompt': pre + question_object.prompt,
             'annotations': annotations,
-            'header': True if index==1 else False,
+            'header': True if index == 1 else False,
             'options': list(range(question_object.min_val, question_object.max_val+1)),
             'checked': None,
             'handle': question_object.handle,
@@ -104,10 +103,20 @@ def get_custom_Likert_widget(question_object, index=False):
         return Categories(attrs={
             'prompt': pre + question_object.prompt,
             'annotations': annotations,
-            'header': True if question_object.order==1 else False,
             'options': list(range(question_object.min_val, question_object.max_val+1)),
             'checked': None,
             'handle': question_object.handle,
             'odd': odd})
-    if question_object.widget == 'none':
-        return
+    if question_object.widget == 'float-choice':
+        return TextInput()
+
+    if question_object.widget == 'integer-choice':
+        return NumberInput()
+
+    if question_object.widget == 'select-choice':
+        choices = question_object.annotations.split('~')
+        choices = [(str(i), choices[i].capitalize()) for i in range(len(choices))]
+        return Select(choices=choices)
+
+    if question_object.widget == 'date':
+        return TimeInput()

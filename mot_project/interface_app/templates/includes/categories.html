@@ -1,5 +1,4 @@
 <div class="basic-likert-widget">
-    {% if widget.attrs.header %}
         <div class="likert-header">
             <div class="header-padding"></div>
             <div class="header-items">
@@ -10,8 +9,6 @@
                 {% endfor %}
             </div>
         </div>
-    {% endif %}
-
         {% if widget.attrs.odd %}
             <div class="likert-row odd-row">
         {% else %}
@@ -19,7 +16,6 @@
         {% endif %}
         <div class="row-prompt"> {{widget.attrs.prompt}} </div>
         <div class="row-input">
-
             {% for i in widget.attrs.options %}
                 <label class="input-element">
                     <input

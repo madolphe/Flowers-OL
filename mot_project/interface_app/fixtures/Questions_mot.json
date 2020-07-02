@@ -4,7 +4,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": "MOT-profil",
       "handle": "prof-1",
       "order": 1,
       "prompt": "Taille de la diagonale de votre écran",
@@ -13,7 +13,8 @@
       "max_val": 1,
       "step": 1,
       "annotations": "Ce paramètre peut être retrouvé dans les paramètres d'écran.",
-      "widget": "none"
+      "widget": "float-choice",
+      "type": "float"
     }
   },
   {
@@ -21,7 +22,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": "MOT-profil",
       "handle": "prof-2",
       "order": 2,
       "prompt": "Genre",
@@ -29,8 +30,9 @@
       "min_val": 0,
       "max_val": 2,
       "step": 1,
-      "annotations": "none",
-      "widget": "none"
+      "annotations": "homme~femme~autre",
+      "widget": "select-choice",
+      "type": "string"
     }
   },
   {
@@ -38,7 +40,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": "MOT-profil",
       "handle": "prof-3",
       "order": 3,
       "prompt": "Début de pratique des jeux vidéos",
@@ -47,7 +49,8 @@
       "max_val": 99,
       "step": 1,
       "annotations": "none",
-      "widget": "none"
+      "widget": "float-choice",
+      "type": "integer"
     }
   },
   {
@@ -55,7 +58,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": "MOT-profil",
       "handle": "prof-4",
       "order": 4,
       "prompt": "Fréquence de la pratique des jeux vidéos",
@@ -64,7 +67,8 @@
       "max_val": 100,
       "step": 1,
       "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-      "widget": "range"
+      "widget": "range",
+      "type": "integer"
     }
   },
   {
@@ -72,7 +76,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": "MOT-profil",
       "handle": "prof-5",
       "order": 5,
       "prompt": "A quelle(s) catégorie(s) de jeux jouez-vous ?",
@@ -81,7 +85,8 @@
       "max_val": 4,
       "step": 1,
       "annotations": "FPS(ex:)~Action(ex:)~Sport(ex: Fifa)~MMO (ex:)~RPG (ex:)",
-      "widget": "categories"
+      "widget": "categories",
+      "type": "string"
     }
   },
   {
@@ -89,7 +94,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": "MOT-profil",
       "handle": "prof-6",
       "order": 6,
       "prompt": "Permis de conduire",
@@ -97,8 +102,9 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "none",
-      "widget": "none"
+      "annotations": "Oui~non",
+      "widget": "select-choice",
+      "type": "boolean"
     }
   },
   {
@@ -106,7 +112,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": "MOT-profil",
       "handle": "prof-7",
       "order": 7,
       "prompt": "Si oui, date d'obtention du permis de conduire",
@@ -115,7 +121,8 @@
       "max_val": 99,
       "step": 1,
       "annotations": "none",
-      "widget": "none"
+      "widget": "date",
+      "type": "string"
     }
   },
   {
@@ -123,7 +130,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": "MOT-profil",
       "handle": "prof-8",
       "order": 8,
       "prompt": "A quelle fréquence conduisez-vous ? ",
@@ -132,7 +139,8 @@
       "max_val": 100,
       "step": 1,
       "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-      "widget": "range"
+      "widget": "range",
+      "type": "integer"
     }
   },
   {
@@ -140,7 +148,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": "MOT-profil",
       "handle": "prof-9",
       "order": 9,
       "prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
@@ -148,8 +156,9 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "none",
-      "widget": "none"
+      "annotations": "Oui~Non",
+      "widget": "select-choice",
+      "type": "boolean"
     }
   },
   {
@@ -157,7 +166,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": "MOT-profil",
       "handle": "prof-10",
       "order": 10,
       "prompt": "Avez-vous déjà suivi un cours en ligne ? ",
@@ -165,8 +174,9 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "none",
-      "widget": "none"
+      "annotations": "Oui~Non",
+      "widget": "select-choice",
+      "type": "boolean"
     }
   },
   {
@@ -183,7 +193,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
@@ -200,7 +211,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
@@ -217,7 +229,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
@@ -234,7 +247,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
@@ -251,7 +265,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
@@ -268,7 +283,8 @@
       "max_val": 5,
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   }
 ]
