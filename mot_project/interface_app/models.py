@@ -1,18 +1,22 @@
 from django.db import models
 from django.utils import timezone
-import datetime, uuid, json
+import datetime, uuid, json, jsonfield
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
-import jsonfield
+from .utils import send_delayed_email
+from django.template.loader import render_to_string
+
 
 class Study(models.Model):
     name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
     project = models.CharField(max_length=100, default='')
     base_template = models.CharField(max_length=50, default='base.html')
     style = models.CharField(max_length=50, null=True)
-    briefing_template = models.CharField(max_length=50, null=True)
+    briefing_template = models.CharField(max_length=50, null=True, blank=True)
+    reminder_template = models.CharField(max_length=50, null=True, blank=True)
     extra_json = jsonfield.JSONField()
+    contact = models.EmailField(default='')
 
     def __unicode__(self):
         return self.name
@@ -72,12 +76,23 @@ class ExperimentSession(models.Model):
     def get_task_by_index(self, index):
         return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
+    def is_today(self, ref_date):
+        if self.day:
+            return datetime.date.today() == ref_date + datetime.timedelta(days=self.day-1)
+        return True
+
+    def is_now(self, ref_datetime):
+        if self.wait:
+            return datetime.datetime.now() - ref_datetime > self.wait
+        return True
+
 
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     screen_params = models.FloatField(default=39.116)
-    date = models.DateTimeField(default=timezone.now, verbose_name='Registration Date')
+    date = models.DateTimeField(default=timezone.now, verbose_name='Registration date and time')
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
+    remind = models.BooleanField(default=True)
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     consent = models.BooleanField(default=False)
     sessions = models.ManyToManyField(ExperimentSession, default=[], related_name='session_stack') # FIFO
@@ -103,23 +118,19 @@ class ParticipantProfile(models.Model):
 
     def set_current_session(self):
         assert self.sessions.all(), 'Participant has no sessions assigned'
-        s = self.sessions.first()
-        if self.current_session == s:
-            return
-        else:
-            self.current_session = None
-        if s.day:
-            today = datetime.date.today()
-            day1 = self.date.date()
-            if today != day1 + datetime.timedelta(days=s.day-1):
-                return
-        if self.session_timestamp and s.wait:
-            now = datetime.datetime.now()
-            if now - self.session_timestamp < s.wait:
-                return
-        self.current_session = s
-        self.task_stack_csv = s.tasks_csv
-        self.save()
+        if not self.current_session:
+            s = self.sessions.first()
+            self.current_session = s
+            self.task_stack_csv = s.tasks_csv
+            self.save()
+
+    @property
+    def current_session_valid(self, request=None):
+        if not self.current_session.is_today(ref_date=self.date.date()):
+            return False
+        if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
+            return False
+        return True
 
     @property
     def future_sessions(self):
@@ -130,12 +141,12 @@ class ParticipantProfile(models.Model):
                 return []
         else: return self.sessions.all()
 
-    def pop_current_session(self):
+    def close_current_session(self):
         if self.sessions:
+            self.session_timestamp = timezone.now()
             self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
+            self.current_session = None
             self.save()
-        else:
-            return None
 
     @property
     def task_names_list(self):

@@ -86,16 +86,13 @@ def consent_page(request):
 @never_cache
 def home(request):
     participant = request.user.participantprofile
-    if not participant.consent:
-        return redirect(reverse(consent_page))
-    try:
-        participant.set_current_session() # If there is no current session, set new session as current
-    except AssertionError:
-        return redirect(reverse(thanks_page))
+    if not participant.consent: return redirect(reverse(consent_page))
+    try: participant.set_current_session()
+    except AssertionError: return redirect(reverse(thanks_page))
+    if not participant.current_session_valid:
+        return redirect(reverse(off_session_page))
     if participant.current_session:
-        request.session['active_session'] = json.dumps(True)
-    if participant.sessions.count() == 0 or participant.current_session is None:
-        return redirect(reverse(off_session_page)) # Should redirect to some "off session" page
+         request.session['active_session'] = json.dumps(True)
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
@@ -106,18 +103,33 @@ def home(request):
 def off_session_page(request):
     participant = request.user.participantprofile
     day1 = participant.date.date()
-    days = [day for day in participant.future_sessions.values_list('day', flat=True)]
-    nextdates = [day1 + datetime.timedelta(days=day-1) for day in days]
-    wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
-    nextdates = ['{}, {}'.format(date.strftime('%d/%m/%Y'), wdays[date.weekday()]) for date in nextdates]
+    schedule, status = [], 1
+    for s in ExperimentSession.objects.filter(study=participant.study):
+        date = day1 + datetime.timedelta(days=s.day-1)
+        sdate = date.strftime('%d/%m/%Y')
+        if participant.current_session == s:
+            status = 0
+        schedule.append([sdate, status])
     return render(request, 'off_session_page.html', {'CONTEXT': {
-        'nextdates': nextdates}})
+        'schedule': schedule}})
 
 
 @login_required
 def thanks_page(request):
+    participant = request.user.participantprofile
+    if participant.sessions.count():
+        heading = 'La session est terminée'
+        session_day = participant.sessions.first().day
+        if session_day:
+            next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
+            text = 'Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.format(next_date.strftime('%d/%m/%Y'))
+        else:
+            text = 'Nous vous attendons la prochaine fois.'
+    else:
+        heading = 'L\'étude est terminée'
+        text = 'Merci, pour votre contribution à la science !'
     return render(request, 'thanks_page.html', {'CONTEXT': {
-        'user_first_name': request.user.first_name}})
+        'heading': heading, 'text': text}})
 
 
 @login_required
@@ -140,10 +152,19 @@ def start_task(request):
 def end_task(request):
     participant = request.user.participantprofile
     participant.pop_task()
-    if participant.current_session and not participant.current_task: # Checks if current session is empty
-        participant.pop_current_session()
-        request.session['active_session'] = json.dumps(False)
+    # Check if current session is empty
+    if participant.current_session and not participant.current_task:
+        return redirect(reverse(end_session))
     return redirect(reverse(home))
+
+
+@login_required
+def end_session(request):
+    participant = request.user.participantprofile
+    participant.close_current_session()
+    request.session['active_session'] = json.dumps(False)
+    participant.queue_reminder()
+    return redirect(reverse(thanks_page))
 
 
 @login_required
