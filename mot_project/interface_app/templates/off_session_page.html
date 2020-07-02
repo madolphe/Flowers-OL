@@ -4,20 +4,63 @@
 {% block css %}
     <link rel="stylesheet" href={% static "css/jold_home.css" %}>
     <style>
-        ul.next-dates {font-size: 16px}
+        ul.next-dates {font-size: 16px; list-style-type: none; margin-top: 1em}
         strong {font-size: 18px}
         img {display: block; margin: auto;}
+        .checkbox {
+            display: inline-flex;
+            cursor: default;
+            position: relative;
+        }
+        .checkbox > span {
+            color: white;
+            padding-left: 1em;
+        }
+        .checkbox > input {
+            height: 20px;
+            width: 20px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            border: 1px solid white;
+            outline: none;
+            cursor: default;
+          }
+        .checkbox > input:checked {
+            border: 2px solid white;
+        }
+        .checkbox > input:checked + span::before {
+            content: '\2714';
+            display: block;
+            color: white;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
     </style>
 {% endblock %}
 {% block content %}
     <div class="side-panel">
         <div class="side-info">
-            <h2>Vous n'avez pas de session à compléter aujourd'hui</h2>
+            <h2>Impossible d'attribuer une session</h2>
             <br>
-            <strong> De futures sessions sont prévues : </strong>
+            <p>Nous n'avons pas pu vous trouver de session. Cela pourrait être dû à plusieurs raisons :
+                <ol>
+                    <li><b>Il n'y a pas de session pour vous aujourd'hui</b>. Dans ce cas, veuillez revenir à l'un des jours prévus (voir ci-dessous).</li>
+                    <li><b>La session ne peut pas être lancée parce qu'il ne s'est pas écoulé suffisamment de temps depuis votre dernière session.</b> Dans ce cas, revenez plus tard (voir le calendrier ci-dessous).</li>
+                    <li>Vous avez commencé une session plus tôt mais ne l'avez pas terminée</b>. Dans ce cas, vous n'avez pas respecté le progreamme et vous ne pouvez pas poursuivre l'expérience.</li>
+                </ol>
+            </p>
+            <strong> Vos sessions : </strong>
             <ul class='next-dates'>
-                {% for nextdate in CONTEXT.nextdates %}
-                    <li>{{nextdate}}</li>
+                {% for entry in CONTEXT.schedule %}
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox"  type="checkbox" onclick="return false" {% if entry.1 %}checked{% endif %}>
+                            <span><b>Session {{forloop.counter}}</b> : {{entry.0}}</span>
+                        </label>
+                    </li>
                 {% endfor %}
             </ul>
         </div>
