@@ -9,8 +9,8 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h1>L'étude est terminée</h1>
-           <p>Merci, {{CONTEXT.user_first_name}}, pour votre contribution à la science !</p>
+           <h1>{{CONTEXT.heading}}</h1>
+           <p>{{CONTEXT.text}}</p>
         </div>
         <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
     </div>
