@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "JOLD-ll-practice",
-            "description": "Lunar lander practice",
+            "description": "Entraînement au Lunar lander",
             "prompt": "Begin practice",
             "view_name": "JOLD_start_practice_block_ll",
             "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
@@ -36,7 +36,7 @@
         "pk": 4,
         "fields": {
             "name": "JOLD-questions-sess1",
-            "description": "Post-practice questionnaire",
+            "description": "Questionnaire d'après-session",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -61,7 +61,7 @@
         "pk": 5,
         "fields": {
             "name": "JOLD-questions-sess2",
-            "description": "Post-practice questionnaire",
+            "description": "Questionnaire d'après-session",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -86,7 +86,7 @@
         "pk": 6,
         "fields": {
             "name": "JOLD-questions-sess3",
-            "description": "Post-practice questionnaire",
+            "description": "Questionnaire d'après-session",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
