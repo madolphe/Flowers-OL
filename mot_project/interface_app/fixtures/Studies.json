@@ -31,5 +31,16 @@
             "style"         : "css/jold_home.css",
             "briefing_template"  : "JOLD/consent_form.html"
         }
+    },
+    {
+        "model": "interface_app.Study",
+        "pk": 4,
+        "fields": {
+            "name"          : "zpdes_admin",
+            "project"       : "Attention training",
+            "base_template" : "base.html",
+            "style"         : "css/zpdes_home.css",
+            "briefing_template"  : "ZPDES/consent_form.html"
+        }
     }
 ]

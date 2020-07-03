@@ -14,5 +14,13 @@
             "day"           : 2,
             "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
+    },
+    {
+        "model": "interface_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_admin",
+            "day"           : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
     }
 ]

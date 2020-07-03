@@ -11,9 +11,8 @@ import json, datetime, random, re
 from django.utils.html import mark_safe
 from .models import *
 from .forms import *
-from .utils import add_message
+from .utils import add_message, assign_condition
 from django.db.models import Count
-from .alexfuncs import assign_condition
 from .sequence_manager.seq_manager import SeqManager
 
 
@@ -142,35 +141,19 @@ def super_home(request):
 
 
 @login_required
-def visual_2d_task(request):
-    # Function to be removed in the future
-    """Initial call to app 2D view"""
-    # When it's called for the first, pass this default dict:
-    # When seq manager would be init, make id_session automatic to +1
-    # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 3, 'n_distractors': 3, 'target_color': 'red', 'distractor_color': 'yellow',
-                  'radius_min': 90, 'radius_max': 120, 'speed_min': 2, 'speed_max': 2, 'episode_number': 0,
-                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0}
-    # As we don't have any seq manager, let's initialize to same parameters:
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(parameters, json_file)
-
-    with open('interface_app/static/JSON/parameters.json') as json_file:
-        parameters = mark_safe(json.load(json_file))
-    return render(request, 'app_2D.html', locals())
-
-
-@login_required
 def MOT_task(request):
     """Initial call to mot-app"""
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    condition = participant.condition
-    participant.nb_sess_started += 1
+    if participant.study.name == "zpdes_mot":
+        if "condition" not in participant.extra_json:
+            # Participant hasn't been put in a group:
+            assign_condition(participant)
+    elif participant.study.name == "zpdes_admin":
+        # For admin study, just zpdes is tested:
+        participant.extra_json['condition'] = 'zpdes'
+    condition = participant.extra_json['condition']
+    print(participant.extra_json)
     user_episodes = []
-    # Check if any session has already been finished:
-    if participant.nb_sess_finished > 0:
-        # Retrieve every episodes that belong to finished session:
-        user_episodes = Episode.objects.filter(participant=participant, finished_session=True)
     # When it's called for the first, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
@@ -182,24 +165,17 @@ def MOT_task(request):
                   'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
 
     # Create seq manager and put it in request
-    request.session['seq_manager'] = SeqManager(condition, user_episodes)
-    parameters = request.session['seq_manager'].sample_task()
-
+    # request.session['seq_manager'] = SeqManager(condition, user_episodes)
+    # parameters = request.session['seq_manager'].sample_task()
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = mark_safe(json.load(json_file))
-
     return render(request, 'app_MOT.html', locals())
 
 
 @login_required
-def visual_3d_task(request):
-    return render(request, 'app_3D.html', locals())
-
-
-# Django security to treat ajax requests:
 @csrf_exempt
 def next_episode(request):
     params = request.POST.dict()
@@ -242,7 +218,7 @@ def increase_difficulty(params):
         json.dump(params, json_file)
 
 
-# Django security to treat ajax requests:
+@login_required
 @csrf_exempt
 def restart_episode(request):
     params = request.POST.dict()
