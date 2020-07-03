@@ -4,7 +4,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "prof-1",
       "order": 1,
       "prompt": "Taille de la diagonale de votre écran",
@@ -12,9 +12,10 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "Ce paramètre peut être retrouvé dans les paramètres d'écran.",
+      "annotations": "none",
       "widget": "float-choice",
-      "type": "float"
+      "type": "float",
+      "help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)"
     }
   },
   {
@@ -22,7 +23,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "prof-2",
       "order": 2,
       "prompt": "Genre",
@@ -30,9 +31,10 @@
       "min_val": 0,
       "max_val": 2,
       "step": 1,
-      "annotations": "homme~femme~autre",
+      "annotations": "femme~homme~autre",
       "widget": "select-choice",
-      "type": "string"
+      "type": "string",
+      "help_text": "none"
     }
   },
   {
@@ -40,7 +42,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "prof-3",
       "order": 3,
       "prompt": "Début de pratique des jeux vidéos",
@@ -50,7 +52,8 @@
       "step": 1,
       "annotations": "none",
       "widget": "float-choice",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "Indiquez le nombre d'années. Si jamais pratiqué, répondre \"0\"."
     }
   },
   {
@@ -58,7 +61,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "prof-4",
       "order": 4,
       "prompt": "Fréquence de la pratique des jeux vidéos",
@@ -68,7 +71,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
       "widget": "range",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -76,7 +80,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "prof-5",
       "order": 5,
       "prompt": "A quelle(s) catégorie(s) de jeux jouez-vous ?",
@@ -84,9 +88,10 @@
       "min_val": 0,
       "max_val": 4,
       "step": 1,
-      "annotations": "FPS(ex:)~Action(ex:)~Sport(ex: Fifa)~MMO (ex:)~RPG (ex:)",
+      "annotations": "FPS(ex:Call of Duty)~Action(ex:The last of us)~Sport(ex: Fifa)~MMO (ex:World of warcraft)~RPG (ex:Final Fantasy)",
       "widget": "categories",
-      "type": "string"
+      "type": "string",
+      "help_text": "none"
     }
   },
   {
@@ -94,7 +99,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": 2,
       "handle": "prof-6",
       "order": 6,
       "prompt": "Permis de conduire",
@@ -102,9 +107,10 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "Oui~non",
+      "annotations": "oui~non",
       "widget": "select-choice",
-      "type": "boolean"
+      "type": "boolean",
+      "help_text": "none"
     }
   },
   {
@@ -112,7 +118,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": 2,
       "handle": "prof-7",
       "order": 7,
       "prompt": "Si oui, date d'obtention du permis de conduire",
@@ -122,7 +128,8 @@
       "step": 1,
       "annotations": "none",
       "widget": "date",
-      "type": "string"
+      "type": "string",
+      "help_text": "none"
     }
   },
   {
@@ -130,7 +137,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": 2,
       "handle": "prof-8",
       "order": 8,
       "prompt": "A quelle fréquence conduisez-vous ? ",
@@ -140,7 +147,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
       "widget": "range",
-      "type": "integer"
+      "type": "datetime",
+      "help_text": "none"
     }
   },
   {
@@ -148,7 +156,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": 2,
       "handle": "prof-9",
       "order": 9,
       "prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
@@ -156,9 +164,10 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "Oui~Non",
+      "annotations": "oui~non",
       "widget": "select-choice",
-      "type": "boolean"
+      "type": "boolean",
+      "help_text": "none"
     }
   },
   {
@@ -166,7 +175,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "2",
+      "group": 2,
       "handle": "prof-10",
       "order": 10,
       "prompt": "Avez-vous déjà suivi un cours en ligne ? ",
@@ -174,9 +183,10 @@
       "min_val": 0,
       "max_val": 1,
       "step": 1,
-      "annotations": "Oui~Non",
+      "annotations": "oui~non",
       "widget": "select-choice",
-      "type": "boolean"
+      "type": "boolean",
+      "help_text": "none"
     }
   },
   {
@@ -184,7 +194,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "att-1",
       "order": 1,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à finaliser les derniers détails d’un projet une fois que les parties les plus stimulantes ont été faites?",
@@ -194,7 +204,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -202,7 +213,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "att-2",
       "order": 2,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à mettre les choses en ordre lorsque vous devez faire quelque chose qui demande de l’organisation?\"",
@@ -212,7 +223,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -220,7 +232,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 1,
       "handle": "att-3",
       "order": 3,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à vous rappeler vos rendez-vous ou vos obligations?",
@@ -230,7 +242,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -238,7 +251,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 2,
       "handle": "att-4",
       "order": 4,
       "prompt": "Quand vous devez faire quelque chose qui demande beaucoup de réflexion, à quelle fréquence vous arrive-t-il d’éviter de le faire ou de le remettre à plus tard?\",",
@@ -248,7 +261,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -256,7 +270,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 2,
       "handle": "att-5",
       "order": 5,
       "prompt": "À quelle fréquence vous arrive-t-il de remuer ou de tortiller les mains ou les pieds lorsque vous devez rester assis pendant une période prolongée?\",",
@@ -266,7 +280,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   },
   {
@@ -274,7 +289,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "1",
+      "group": 2,
       "handle": "att-6",
       "order": 6,
       "prompt": "À quelle fréquence vous arrive-t-il de vous sentir excessivement actif et contraint de faire quelque chose, comme si vous étiez entraîné malgré vous par un moteur?\",",
@@ -284,7 +299,8 @@
       "step": 1,
       "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
       "widget": "likert",
-      "type": "integer"
+      "type": "integer",
+      "help_text": "none"
     }
   }
 ]

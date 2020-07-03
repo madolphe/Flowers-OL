@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Select, NumberInput, TextInput, TimeInput
+from django.forms.widgets import Select, NumberInput, TextInput, DateInput
 
 class rangeLikert(forms.Widget):
     template_name = 'includes/rangeLikert.html'
@@ -109,14 +109,12 @@ def get_custom_Likert_widget(question_object, index=False):
             'odd': odd})
     if question_object.widget == 'float-choice':
         return TextInput()
-
     if question_object.widget == 'integer-choice':
         return NumberInput()
-
     if question_object.widget == 'select-choice':
         choices = question_object.annotations.split('~')
         choices = [(str(i), choices[i].capitalize()) for i in range(len(choices))]
         return Select(choices=choices)
-
     if question_object.widget == 'date':
-        return TimeInput()
+        print("ca marche po ?")
+        return DateInput()
