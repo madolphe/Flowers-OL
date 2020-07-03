@@ -12,6 +12,7 @@ pymysql = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 django-jsonfield = "*"
+django-background-tasks = "*"
 
 [requires]
 python_version = "3.8"
