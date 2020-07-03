@@ -4,7 +4,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "1",
       "handle": "prof-1",
       "order": 1,
       "prompt": "Taille de la diagonale de votre écran",
@@ -22,7 +22,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "1",
       "handle": "prof-2",
       "order": 2,
       "prompt": "Genre",
@@ -40,7 +40,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "1",
       "handle": "prof-3",
       "order": 3,
       "prompt": "Début de pratique des jeux vidéos",
@@ -58,7 +58,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "1",
       "handle": "prof-4",
       "order": 4,
       "prompt": "Fréquence de la pratique des jeux vidéos",
@@ -76,7 +76,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "1",
       "handle": "prof-5",
       "order": 5,
       "prompt": "A quelle(s) catégorie(s) de jeux jouez-vous ?",
@@ -94,7 +94,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "2",
       "handle": "prof-6",
       "order": 6,
       "prompt": "Permis de conduire",
@@ -112,7 +112,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "2",
       "handle": "prof-7",
       "order": 7,
       "prompt": "Si oui, date d'obtention du permis de conduire",
@@ -130,7 +130,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "2",
       "handle": "prof-8",
       "order": 8,
       "prompt": "A quelle fréquence conduisez-vous ? ",
@@ -148,7 +148,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "2",
       "handle": "prof-9",
       "order": 9,
       "prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
@@ -166,7 +166,7 @@
     "fields": {
       "instrument": "get_profil",
       "component": "long_term",
-      "group": "MOT-profil",
+      "group": "2",
       "handle": "prof-10",
       "order": 10,
       "prompt": "Avez-vous déjà suivi un cours en ligne ? ",
@@ -184,7 +184,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-1",
       "order": 1,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à finaliser les derniers détails d’un projet une fois que les parties les plus stimulantes ont été faites?",
@@ -202,7 +202,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-2",
       "order": 2,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à mettre les choses en ordre lorsque vous devez faire quelque chose qui demande de l’organisation?\"",
@@ -220,7 +220,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-3",
       "order": 3,
       "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à vous rappeler vos rendez-vous ou vos obligations?",
@@ -238,7 +238,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-4",
       "order": 4,
       "prompt": "Quand vous devez faire quelque chose qui demande beaucoup de réflexion, à quelle fréquence vous arrive-t-il d’éviter de le faire ou de le remettre à plus tard?\",",
@@ -256,7 +256,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-5",
       "order": 5,
       "prompt": "À quelle fréquence vous arrive-t-il de remuer ou de tortiller les mains ou les pieds lorsque vous devez rester assis pendant une période prolongée?\",",
@@ -274,7 +274,7 @@
     "fields": {
       "instrument": "get_attention",
       "component": "long_term",
-      "group": "MOT-attention",
+      "group": "1",
       "handle": "att-6",
       "order": 6,
       "prompt": "À quelle fréquence vous arrive-t-il de vous sentir excessivement actif et contraint de faire quelque chose, comme si vous étiez entraîné malgré vous par un moteur?\",",

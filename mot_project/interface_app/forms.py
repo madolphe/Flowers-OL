@@ -97,7 +97,8 @@ def validate_checked(value):
 
 class JOLDQuestionBlockForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
-        default_widgets = {'integer': NumberInput}
+        # Pass questions as an attribute to use it in clean method
+        self.questions = questions
         super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
@@ -125,6 +126,13 @@ class JOLDQuestionBlockForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
+        for q in self.questions:
+            # Special method for questions with multiple choice ie categories:
+            if q.widget == 'categories':
+                # Split and create a list of possible choices:
+                choices = q.annotations.split('~')
+                # For this
+                self.cleaned_data[q.handle] = [choices[int(elt)] for elt in self.data.getlist(q.handle)]
         print(cleaned_data)
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
