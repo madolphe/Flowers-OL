@@ -17,7 +17,7 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h2>Salut, {{CONTEXT.participant.user.first_name}} !</h2>
+           <h2>Salut, {{CONTEXT.participant.user.username}} !</h2>
            <p>Ici, vous pouvez voir votre progression dans l'expérience</p>
            {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}
         </div>
