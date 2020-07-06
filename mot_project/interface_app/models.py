@@ -91,7 +91,7 @@ class ParticipantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     screen_params = models.FloatField(default=39.116)
     date = models.DateTimeField(default=timezone.now, verbose_name='Registration date and time')
-    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
+    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='jour/mois/an')
     remind = models.BooleanField(default=True)
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     consent = models.BooleanField(default=False)
