@@ -144,26 +144,27 @@ def super_home(request):
 def MOT_task(request):
     """Initial call to mot-app"""
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    if participant.study.name == "zpdes_mot":
-        if "condition" not in participant.extra_json:
-            # Participant hasn't been put in a group:
-            assign_condition(participant)
-    elif participant.study.name == "zpdes_admin":
-        # For admin study, just zpdes is tested:
-        participant.extra_json['condition'] = 'zpdes'
-    condition = participant.extra_json['condition']
-    print(participant.extra_json)
-    user_episodes = []
-    # When it's called for the first, pass this default dict:
+    if "condition" not in participant.extra_json:
+        # Participant hasn't been put in a group:
+        assign_condition(participant)
+        print(participant.extra_json['condition'])
+    # If this is not the first time the user plays, build an history :
+    history = Episode.objects.filter(participant=request.user)
+    print(history)
+    seq_manager = SeqManager(condition=participant.extra_json['condition'], history=history)
+    act_sample = seq_manager.sample_task()
+    # request.session['seq_manager'] = seq_manager
+    # When it's called for the first time, pass this default dict:
     # When seq manager would be init, make id_session automatic to +1
     # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 3, 'n_distractors': 3, 'angle_max': 9, 'angle_min': 3,
+    parameters = {'n_targets': act_sample['n_dots'], 'n_distractors': act_sample['total_number'],
+                  'angle_max': 9, 'angle_min': 3,
                   'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
                   'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
-                  'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
-                  'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
+                  'presentation_time': 1, 'fixation_time': 1, 'tracking_time': act_sample['tracking_duration'],
+                  'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1,
                   'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
-
+    print(parameters)
     # Create seq manager and put it in request
     # request.session['seq_manager'] = SeqManager(condition, user_episodes)
     # parameters = request.session['seq_manager'].sample_task()
@@ -198,24 +199,28 @@ def next_episode(request):
                 sec_task.success = res[2]
                 sec_task.save()
     # Function to be removed when the seq manager will be connected:
-    increase_difficulty(params)
+    # increase_difficulty(params)
+    request.session['seq_manager'].update(params)
+    parameters = request.session['seq_manager'].sample_task()
+    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
+            json.dump(parameters, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
 
 
 # Hand crafted sequence manager, to be removed :
-def increase_difficulty(params):
-    for key, value in params.items():
-        if key != 'secondary_task' and key != 'sec_task_results':
-            params[key] = float(params[key])
-    params['n_targets'] += 1
-    params['speed_max'] *= 1.05
-    params['speed_min'] *= 1.05
-    params['episode_number'] += 1
-    # To be coherent with how seq manager will work:
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(params, json_file)
+# def increase_difficulty(params):
+#    for key, value in params.items():
+#        if key != 'secondary_task' and key != 'sec_task_results':
+#            params[key] = float(params[key])
+#    params['n_targets'] += 1
+#    params['speed_max'] *= 1.05
+#    params['speed_min'] *= 1.05
+#    params['episode_number'] += 1
+#    # To be coherent with how seq manager will work:
+#    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
+#        json.dump(params, json_file)
 
 
 @login_required

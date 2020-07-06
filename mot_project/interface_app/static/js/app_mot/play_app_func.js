@@ -13,7 +13,9 @@ function play(disp_zone){
         app.check_collisions();
         app.move_objects();
         if(parameter_dict['gaming']!=0){
-            sec_task.display_task();
+            if(parameter_dict['secondary_task']!='none'){
+                sec_task.display_task();
+            }
         }
         display_pannel();
     }else{

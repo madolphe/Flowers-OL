@@ -33,6 +33,9 @@ def assign_condition(participant):
             participant.extra_json['condition'] = 'zpdes'
         print("Condition saved:",  participant.extra_json['condition'])
         participant.save()
+    elif participant.study.name == 'zpdes_admin':
+        # For admin study, zpdes is the only algorithm tested:
+        participant.extra_json['condition'] = 'zpdes'
     else:
         warnings.warn('study string unidentified, no condition assigned')
 

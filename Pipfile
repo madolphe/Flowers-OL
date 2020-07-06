@@ -15,6 +15,8 @@ django-jsonfield = "*"
 jsonfield = "*"
 django-developer-panel = "*"
 pandas = "*"
+kidlearn-lib = {editable = true,path = "./kidlearn"}
+future = "*"
 
 [requires]
 python_version = "3.8"
