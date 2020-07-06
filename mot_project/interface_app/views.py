@@ -13,6 +13,7 @@ from .models import *
 from .forms import *
 from .utils import add_message
 from django.db.models import Count
+from django.conf import settings
 
 
 def login_page(request, study=''):
@@ -296,11 +297,11 @@ def joldStartPracticeBlockLL(request):
         participant.save()
     if task_name == 'JOLD-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params']['time'] = 5
+        participant.extra_json['game_params']['time'] = 60 * 2 if settings.DEBUG else 60 * 10
         participant.save()
     elif task_name == 'JOLD-free-choice':
         participant.extra_json['game_params']['forced'] = False
-        participant.extra_json['game_params']['time'] = 5*60
+        participant.extra_json['game_params']['time'] = 60 * 5
         participant.save()
     else:
         return redirect(reverse(home))
