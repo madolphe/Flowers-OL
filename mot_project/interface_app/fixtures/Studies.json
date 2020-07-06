@@ -8,6 +8,7 @@
             "base_template" : "base.html",
             "style"         : "css/zpdes_home.css",
             "briefing_template"  : "JOLD/consent_form.html",
+            "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "maxime.adolphe@inria.fr"
         }
     },
@@ -33,6 +34,7 @@
             "base_template" : "base.html",
             "style"         : "css/jold_home.css",
             "briefing_template"  : "JOLD/consent_form.html",
+            "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "alexandr.ten@inria.fr"
         }
     }
