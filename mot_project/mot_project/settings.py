@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'djdev_panel.middleware.DebugMiddleware',
 ]
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 ROOT_URLCONF = 'mot_project.urls'
 
 TEMPLATES = [

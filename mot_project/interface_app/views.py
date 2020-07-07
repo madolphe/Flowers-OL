@@ -150,7 +150,6 @@ def MOT_task(request):
         print(participant.extra_json['condition'])
     # If this is not the first time the user plays, build an history :
     history = Episode.objects.filter(participant=request.user)
-    print(history)
     seq_manager = SeqManager(condition=participant.extra_json['condition'], history=history)
     act_sample = seq_manager.sample_task()
     # request.session['seq_manager'] = seq_manager
@@ -164,7 +163,7 @@ def MOT_task(request):
                   'presentation_time': 1, 'fixation_time': 1, 'tracking_time': act_sample['tracking_duration'],
                   'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1,
                   'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
-    print(parameters)
+    request.session['seq_manager'] = seq_manager
     # Create seq manager and put it in request
     # request.session['seq_manager'] = SeqManager(condition, user_episodes)
     # parameters = request.session['seq_manager'].sample_task()

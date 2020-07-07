@@ -103,7 +103,7 @@ function timer(app, presentation_time, fixation_time, tracking_time){
         tracking_timer = setTimeout(function(){
             // after fixation_time ms
             // app.phase change to tracking mode
-            if(parameter_dict['gaming']!=0) {
+            if(parameter_dict['gaming']!=0 && parameter_dict['secondary_task']!='none') {
                 sec_task.timer_pause();
             }
             app.phase = 'tracking';
@@ -133,7 +133,7 @@ function answer_button_clicked(){
     let res = app.get_results();
     parameter_dict['nb_target_retrieved'] = res[0];
     parameter_dict['nb_distract_retrieved'] = res[1];
-    if(parameter_dict['gaming']==1){
+    if(parameter_dict['gaming']==1 && parameter_dict['secondary_task']!='none'){
         console.log("sec_task results", sec_task.results);
         parameter_dict['sec_task_results'] = JSON.stringify(sec_task.results);
     }
