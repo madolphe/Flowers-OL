@@ -240,7 +240,9 @@ function runBlockLL() {
             if (landSite==0 || landSite==2) {landerSite = 1} else {landerSite = rSamp([0,2])};
         }
         site = (canvas.width/3)*landerSite
-        const xPos = params.lander.startRandom ? site+canvas.width/3*Math.random() : site+canvas.width/3/2;
+        let xPos = params.lander.startRandom ? site+canvas.width/3*Math.random() : site+canvas.width/3/2;
+        if (xPos < 20) {xPos = 20}
+        if (xPos > canvas.width-20) {xPos = canvas.width-20}
         const yPos = 40;
 
         trueInitDistance = getEuclidDistance([xPos,yPos],landPoint)
