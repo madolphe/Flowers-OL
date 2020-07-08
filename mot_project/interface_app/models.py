@@ -294,6 +294,7 @@ class Question(models.Model):
     max_val = models.IntegerField(null=1)
     step = models.IntegerField(null=1)
     annotations = models.CharField(max_length=200, null=True)
+    type = models.CharField(max_length=30, null=True)
     widget = models.CharField(max_length=30, null=True)
 
     def __unicode__(self):
@@ -307,4 +308,4 @@ class Answer(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.DO_NOTHING)
-    value = models.IntegerField(null=True)
+    value = models.CharField(null=True, max_length=100)
