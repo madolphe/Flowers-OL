@@ -282,7 +282,7 @@ def restart_episode(request):
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
-def joldStartPracticeBlockLL(request):
+def jold_start_ll_practice(request):
     """Starts a Lunar Lander practice block if not already finished"""
     participant = request.user.participantprofile
     task_name = participant.current_task.name
@@ -309,7 +309,7 @@ def joldStartPracticeBlockLL(request):
     }})
 
 
-def joldSaveTrialLL(request):
+def jold_save_ll_trial(request):
     """Save data from lunar lander trial"""
     participant = request.user.participantprofile
     json_string_data = list(request.POST.dict().keys()).pop()
@@ -326,7 +326,7 @@ def joldSaveTrialLL(request):
 
 @login_required
 @ensure_csrf_cookie
-def joldClosePracticeBlock(request):
+def jold_close_ll_practice(request):
     """Close lunar lander session redirect to post-sess questionnaire or the thanks page"""
     if request.is_ajax():
         participant = request.user.participantprofile
@@ -350,14 +350,13 @@ def joldQuestionBlock(request):
     """Construct a questionnaire block and render question groups on different pages"""
     participant = request.user.participantprofile
     if 'questions_extra' not in participant.extra_json:
-        # participant.save()
         task_extra = participant.current_task.extra_json
         questions = Question.objects.filter(
             instrument__in = task_extra['instruments']
         )
         for k, v in task_extra.setdefault('exclude', {}).items():
             questions = questions.exclude(**{k: v})
-        groups = [i for i in questions.values('instrument', 'group').annotate(size=Count('pk'))]
+        groups = [i for i in questions.values('instrument', 'group').annotate(size=Count('handle'))]
         order = {k: v for v, k in enumerate(task_extra['instruments'])}
         for d in groups:
             d['order'] = order[d['instrument']]
@@ -415,7 +414,7 @@ def joldQuestionBlock(request):
 
 @login_required
 @ensure_csrf_cookie
-def joldEndOfSession(request, choice=0):
+def jold_free_choice(request, choice=0):
     participant = request.user.participantprofile
     question = Question.objects.get(handle='jold-0')
     answer = Answer.objects.get(participant=participant, session=participant.current_session, question=question)
@@ -425,6 +424,6 @@ def joldEndOfSession(request, choice=0):
     answer.value = choice
     answer.save()
     if choice:
-        return redirect(reverse(joldStartPracticeBlockLL))
+        return redirect(reverse(jold_start_ll_practice))
     else:
         return redirect(reverse(end_task))

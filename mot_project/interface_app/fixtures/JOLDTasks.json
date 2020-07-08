@@ -6,7 +6,7 @@
             "name": "JOLD-ll-practice",
             "description": "Entraînement au Lunar lander",
             "prompt": "Begin practice",
-            "view_name": "JOLD_start_practice_block_ll",
+            "view_name": "jold_start_ll_practice",
             "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
         }
     },
@@ -27,7 +27,7 @@
             "name": "JOLD-free-choice",
             "description": "Fin de session",
             "prompt": "Terminer la session",
-            "view_name": "JOLD_end_of_session",
+            "view_name": "jold_free_choice",
             "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html-"
         }
     },
