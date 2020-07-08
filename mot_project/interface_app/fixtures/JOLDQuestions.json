@@ -1,7 +1,6 @@
 [
   {
     "model": "interface_app.Question",
-    "pk": 1,
     "fields": {
       "instrument": "JOLD",
       "component": "Free-choice",
@@ -14,12 +13,12 @@
       "max_val": 1,
       "step": 1,
       "annotations": "No~Yes",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 2,
     "fields": {
       "instrument": "JOLD",
       "component": "Long-term",
@@ -32,12 +31,12 @@
       "max_val": 100,
       "step": 1,
       "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
-      "widget": "range"
+      "widget": "range",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 3,
     "fields": {
       "instrument": "JOLD",
       "component": "Short-term",
@@ -50,12 +49,12 @@
       "max_val": 100,
       "step": 1,
       "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
-      "widget": "range"
+      "widget": "range",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 4,
     "fields": {
       "instrument": "JOLD",
       "component": "Recent",
@@ -68,12 +67,12 @@
       "max_val": 100,
       "step": 1,
       "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
-      "widget": "range"
+      "widget": "range",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 5,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Mental Demand",
@@ -86,12 +85,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevée",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 6,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Physical demand",
@@ -104,12 +103,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevée",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 7,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Temporal demand",
@@ -122,12 +121,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevé",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 8,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Performance",
@@ -140,12 +139,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevé",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 9,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Effort",
@@ -158,12 +157,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevé",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 10,
     "fields": {
       "instrument": "NASA-TLX",
       "component": "Frustration",
@@ -176,12 +175,12 @@
       "max_val": 20,
       "step": 1,
       "annotations": "Trés faible~Trés élevé",
-      "widget": "polar"
+      "widget": "polar",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 11,
     "fields": {
       "instrument": "MSLQ",
       "component": "Intrinsic goal orientation",
@@ -194,12 +193,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 12,
     "fields": {
       "instrument": "MSLQ",
       "component": "Intrinsic goal orientation",
@@ -212,12 +211,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 13,
     "fields": {
       "instrument": "MSLQ",
       "component": "Intrinsic goal orientation",
@@ -230,12 +229,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 14,
     "fields": {
       "instrument": "MSLQ",
       "component": "Intrinsic goal orientation",
@@ -248,12 +247,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 15,
     "fields": {
       "instrument": "MSLQ",
       "component": "Extrinsic Goal Orientation",
@@ -266,12 +265,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 16,
     "fields": {
       "instrument": "MSLQ",
       "component": "Extrinsic Goal Orientation",
@@ -284,12 +283,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 17,
     "fields": {
       "instrument": "MSLQ",
       "component": "Extrinsic Goal Orientation",
@@ -302,12 +301,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 18,
     "fields": {
       "instrument": "MSLQ",
       "component": "Extrinsic Goal Orientation",
@@ -320,12 +319,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 19,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -338,12 +337,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 20,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -356,12 +355,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 21,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -374,12 +373,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 22,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -392,12 +391,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 23,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -410,12 +409,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 24,
     "fields": {
       "instrument": "MSLQ",
       "component": "Task Value",
@@ -428,12 +427,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 25,
     "fields": {
       "instrument": "MSLQ",
       "component": "Control of Learning Beliefs",
@@ -446,12 +445,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 26,
     "fields": {
       "instrument": "MSLQ",
       "component": "Control of Learning Beliefs",
@@ -464,12 +463,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 27,
     "fields": {
       "instrument": "MSLQ",
       "component": "Control of Learning Beliefs",
@@ -482,12 +481,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 28,
     "fields": {
       "instrument": "MSLQ",
       "component": "Control of Learning Beliefs",
@@ -500,12 +499,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 29,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -518,12 +517,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 30,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -536,12 +535,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 31,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -554,12 +553,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 32,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -572,12 +571,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 33,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -590,12 +589,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 34,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -608,12 +607,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 35,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -626,12 +625,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 36,
     "fields": {
       "instrument": "MSLQ",
       "component": "Self-Efficacy for Learning and Performance",
@@ -644,12 +643,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 37,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Rehearsal",
@@ -662,12 +661,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 38,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Rehearsal",
@@ -680,12 +679,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 39,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Rehearsal",
@@ -698,12 +697,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 40,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Rehearsal",
@@ -716,12 +715,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 41,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -734,12 +733,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 42,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -752,12 +751,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 43,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -770,12 +769,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 44,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -788,12 +787,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 45,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -806,12 +805,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 46,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Elaboration",
@@ -824,12 +823,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 47,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -842,12 +841,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 48,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -860,12 +859,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 49,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -878,12 +877,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 50,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -896,12 +895,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 51,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -914,12 +913,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 52,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -932,12 +931,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 53,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -950,12 +949,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 54,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -968,12 +967,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 55,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -986,12 +985,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 56,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -1004,12 +1003,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 57,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -1022,12 +1021,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 58,
     "fields": {
       "instrument": "MSLQ",
       "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
@@ -1040,12 +1039,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 59,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1058,12 +1057,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 60,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1076,12 +1075,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 61,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1094,12 +1093,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 62,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1112,12 +1111,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 63,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1130,12 +1129,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 64,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1148,12 +1147,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 65,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1166,12 +1165,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 66,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Time and Study Environment",
@@ -1184,12 +1183,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 67,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Effort Regulation",
@@ -1202,12 +1201,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 68,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Effort Regulation",
@@ -1220,12 +1219,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 69,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Effort Regulation",
@@ -1238,12 +1237,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 70,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management Strategies: Effort Regulation",
@@ -1256,12 +1255,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 71,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Peer Learning",
@@ -1274,12 +1273,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 72,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Peer Learning",
@@ -1292,12 +1291,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 73,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Peer Learning",
@@ -1310,12 +1309,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 74,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Help Seeking",
@@ -1328,12 +1327,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 75,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Help Seeking",
@@ -1346,12 +1345,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 76,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Help Seeking",
@@ -1364,12 +1363,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 77,
     "fields": {
       "instrument": "MSLQ",
       "component": "Resource Management: Help Seeking",
@@ -1382,12 +1381,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 78,
     "fields": {
       "instrument": "SIMS",
       "component": "Motivation intrinsèque",
@@ -1400,12 +1399,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 79,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation identifiée",
@@ -1418,12 +1417,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 80,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation externe",
@@ -1436,12 +1435,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 81,
     "fields": {
       "instrument": "SIMS",
       "component": "Amotivation",
@@ -1454,12 +1453,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 82,
     "fields": {
       "instrument": "SIMS",
       "component": "Motivation intrinsèque",
@@ -1472,12 +1471,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 83,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation identifiée",
@@ -1490,12 +1489,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 84,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation externe",
@@ -1508,12 +1507,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 85,
     "fields": {
       "instrument": "SIMS",
       "component": "Amotivation",
@@ -1526,12 +1525,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 86,
     "fields": {
       "instrument": "SIMS",
       "component": "Motivation intrinsèque",
@@ -1544,12 +1543,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 87,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation identifiée",
@@ -1562,12 +1561,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 88,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation externe",
@@ -1580,12 +1579,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 89,
     "fields": {
       "instrument": "SIMS",
       "component": "Amotivation",
@@ -1598,12 +1597,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 90,
     "fields": {
       "instrument": "SIMS",
       "component": "Motivation intrinsèque",
@@ -1616,12 +1615,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 91,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation identifiée",
@@ -1634,12 +1633,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 92,
     "fields": {
       "instrument": "SIMS",
       "component": "Régulation externe",
@@ -1652,12 +1651,12 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   },
   {
     "model": "interface_app.Question",
-    "pk": 93,
     "fields": {
       "instrument": "SIMS",
       "component": "Amotivation",
@@ -1670,7 +1669,8 @@
       "max_val": 7,
       "step": 1,
       "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-      "widget": "likert"
+      "widget": "likert",
+      "type": "integer"
     }
   }
 ]
