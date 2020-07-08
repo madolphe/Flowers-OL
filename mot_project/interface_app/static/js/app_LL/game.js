@@ -610,7 +610,7 @@ function runBlockLL() {
         $.ajax({
             async: true,
             type: 'POST',
-            url: '/JOLD/SaveTrialLL',
+            url: '/JOLD/save-trial',
             dataType: "json",
             traditional: true,
             data: JSON.stringify(metrics)
@@ -649,7 +649,7 @@ function runBlockLL() {
             $.ajax({
                 async: true,
                 type: 'POST',
-                url: '/JOLD/ClosePracticeBlock',
+                url: '/JOLD/close-LL-practice',
                 dataType: "json",
                 traditional: true,
                 data: {blockComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},

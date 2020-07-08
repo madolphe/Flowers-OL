@@ -23,10 +23,10 @@ urlpatterns = [
     path('restart_episode', views.restart_episode, name='restart_episode'),
 
     ## JOLD urls
-    path('JOLD/StartPracticeBlockLL', views.joldStartPracticeBlockLL, name='JOLD_start_practice_block_ll'),
-    path('JOLD/SaveTrialLL', views.joldSaveTrialLL, name='JOLD_save_trial_LL'),
-    path('JOLD/ClosePracticeBlock', views.joldClosePracticeBlock, name='JOLD_close_practice_block'),
+    path('JOLD/practice-LL', views.jold_start_ll_practice, name='jold_start_ll_practice'),
+    path('JOLD/save-trial', views.jold_save_ll_trial, name='jold_save_ll_trial'),
+    path('JOLD/close-LL-practice', views.jold_close_ll_practice, name='jold_close_ll_practice'),
     path('JOLD/QuestionBlock/', views.joldQuestionBlock, name='JOLD_question_block'),
-    path('JOLD/EndOfSession', views.joldEndOfSession, name='JOLD_end_of_session'),
-    path('JOLD/EndOfSession/<int:choice>/', views.joldEndOfSession, name='JOLD_end_of_session')
+    path('JOLD/close-session', views.jold_free_choice, name='jold_free_choice'),
+    path('JOLD/close-session/<int:choice>/', views.jold_free_choice, name='jold_free_choice')
 ]
