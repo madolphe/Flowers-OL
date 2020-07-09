@@ -27,6 +27,9 @@ SECRET_KEY = 'mc9e-tp)bkt0+0d^fj&dowldv_vvl5ekdzw#y(cnab5+ne=x-c'
 SECURE_REFERRER_POLICY = 'same-origin'
 # CSRF_COOKIE_SECURE = True
 
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -57,11 +60,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'djdev_panel.middleware.DebugMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    # 'djdev_panel.middleware.DebugMiddleware',
 ]
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 
 ROOT_URLCONF = 'mot_project.urls'
 

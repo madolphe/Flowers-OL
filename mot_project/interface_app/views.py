@@ -6,14 +6,15 @@ from django.contrib import messages as django_messages
 from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
-from django.views.generic import CreateView
 import json, datetime, random, re
 from django.utils.html import mark_safe
 from .models import *
 from .forms import *
-from .utils import add_message, assign_condition
+from .utils import add_message, assign_mot_condition
 from django.db.models import Count
-from .sequence_manager.seq_manager import SeqManager
+from .sequence_manager.seq_manager import MotParamsWrapper
+import kidlearn_lib as k_lib
+from kidlearn_lib import functions as func
 
 
 def login_page(request, study=''):
@@ -143,30 +144,31 @@ def super_home(request):
 @login_required
 def MOT_task(request):
     """Initial call to mot-app"""
+    # Var to placed in a config file :
+    dir_path = "interface_app/static/JSON/config_files"
+    # Init a wrapper for mot :
+    mot_wrapper = MotParamsWrapper()
+    # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
-        assign_condition(participant)
-        print(participant.extra_json['condition'])
-    # If this is not the first time the user plays, build an history :
+        assign_mot_condition(participant)
+
+    # Init the correct sequence manager:
+    if participant.extra_json['condition'] == 'zpdes':
+        zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
+    else:
+        mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
+
+    # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
-    seq_manager = SeqManager(condition=participant.extra_json['condition'], history=history)
-    act_sample = seq_manager.sample_task()
-    # request.session['seq_manager'] = seq_manager
-    # When it's called for the first time, pass this default dict:
-    # When seq manager would be init, make id_session automatic to +1
-    # Search user, find highest id_session --> +1
-    parameters = {'n_targets': act_sample['n_dots'], 'n_distractors': act_sample['total_number'],
-                  'angle_max': 9, 'angle_min': 3,
-                  'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
-                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
-                  'presentation_time': 1, 'fixation_time': 1, 'tracking_time': act_sample['tracking_duration'],
-                  'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1,
-                  'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
-    request.session['seq_manager'] = seq_manager
-    # Create seq manager and put it in request
-    # request.session['seq_manager'] = SeqManager(condition, user_episodes)
-    # parameters = request.session['seq_manager'].sample_task()
+    request.session['seq_manager'] = mot_wrapper.update(history, request.session['seq_manager'])
+
+    # Get parameters for task:
+    parameters = mot_wrapper.sample_task(request.session['seq_manager'])
+
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
@@ -178,6 +180,7 @@ def MOT_task(request):
 @login_required
 @csrf_exempt
 def next_episode(request):
+    mot_wrapper = MotParamsWrapper()
     params = request.POST.dict()
     # Save episode and results:
     episode = Episode()
@@ -199,8 +202,10 @@ def next_episode(request):
                 sec_task.save()
     # Function to be removed when the seq manager will be connected:
     # increase_difficulty(params)
-    request.session['seq_manager'].update(params)
-    parameters = request.session['seq_manager'].sample_task()
+    seq_param = request.session['seq_manager']
+    seq_param = mot_wrapper.update(episode, seq_param)
+    parameters = mot_wrapper.sample_task(seq_param)
+    request.session['seq_manager'] = seq_param
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
             json.dump(parameters, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:
