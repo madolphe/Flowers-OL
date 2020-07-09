@@ -8,6 +8,7 @@ from .utils import send_delayed_email
 from django.template.loader import render_to_string
 
 
+
 class Study(models.Model):
     name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
     project = models.CharField(max_length=100, default='')
@@ -88,6 +89,7 @@ class ExperimentSession(models.Model):
 
 
 class ParticipantProfile(models.Model):
+    # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     screen_params = models.FloatField(default=39.116)
     date = models.DateTimeField(default=timezone.now, verbose_name='Registration date and time')

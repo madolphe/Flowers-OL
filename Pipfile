@@ -12,6 +12,10 @@ pymysql = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 django-jsonfield = "*"
+jsonfield = "*"
+pandas = "*"
+kidlearn-lib = {editable = true,path = "./kidlearn"}
+future = "*"
 django-background-tasks = "*"
 
 [requires]

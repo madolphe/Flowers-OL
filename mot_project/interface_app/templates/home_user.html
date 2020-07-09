@@ -1,0 +1,35 @@
+{% extends PAGE_PROPS.base_html %}
+{% block title %}{% endblock %}
+{%load static%}
+{% block js%}
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static PAGE_PROPS.style %}">
+{% endblock %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+           <h2>{{GREETING}}</h2>
+           <p>Here you can see your progression in the study</p>
+            <ul class="progress-list">
+                {% with ''|center:PAGE_PROPS.nb_sess as range %}
+                    {% for _ in range %}
+                        {% if forloop.counter < CURRENT_SESS %}
+                          <li class="sess_complete">Session {{forloop.counter}}</li>
+                        {% elif forloop.counter == CURRENT_SESS %}
+                          <li class="sess_current">Session {{forloop.counter}}</li>
+                        {% elif forloop.counter > CURRENT_SESS %}
+                          <li class="sess_incomplete">Session {{forloop.counter}}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+            </ul>
+        </div>
+        <a class="btn logout" href="{% url "user_logout" %}">Logout</a>
+    </div>
+    <div class="main-panel">
+        {% include PAGE_PROPS.instructions %}
+        <a class="btn" href="{% url PAGE_PROPS.task_url %}">Begin session</a>
+    </div>
+{% endblock %}

@@ -6,19 +6,22 @@ from django.contrib import messages as django_messages
 from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
-from django.views.generic import CreateView
 import json, datetime, random, re
 from django.utils.html import mark_safe
 from .models import *
 from .forms import *
-from .utils import add_message
+from .utils import add_message, assign_mot_condition
 from django.db.models import Count
-from django.conf import settings
+from .sequence_manager.seq_manager import MotParamsWrapper
+import kidlearn_lib as k_lib
+from kidlearn_lib import functions as func
 
 
 def login_page(request, study=''):
-    if 'study' in request.session: study = request.session.get('study')
-    if 'study' in request.GET.dict(): study = request.GET.dict().get('study')
+    if 'study' in request.session:
+        study = request.session.get('study')
+    if 'study' in request.GET.dict():
+        study = request.GET.dict().get('study')
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
         request.session['study'] = study # store 'study' extension only once per session
@@ -57,7 +60,7 @@ def signup_page(request):
     return render(request, 'signup_page.html', {'CONTEXT': {
         'form_profile': form_profile,
         'form_user': form_user
-    } })
+    }})
 
 
 @login_required
@@ -97,7 +100,7 @@ def home(request):
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
-    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant} })
+    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
 
 
 @login_required
@@ -175,53 +178,45 @@ def super_home(request):
 
 
 @login_required
-def visual_2d_task(request):
-    # Function to be removed in the future
-    """Initial call to app 2D view"""
-    # When it's called for the first, pass this default dict:
-    # When seq manager would be init, make id_session automatic to +1
-    # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 3, 'n_distractors': 3, 'target_color': 'red', 'distractor_color': 'yellow',
-                  'radius_min': 90, 'radius_max': 120, 'speed_min': 2, 'speed_max': 2, 'episode_number': 0,
-                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0}
-    # As we don't have any seq manager, let's initialize to same parameters:
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(parameters, json_file)
-
-    with open('interface_app/static/JSON/parameters.json') as json_file:
-        parameters = mark_safe(json.load(json_file))
-    return render(request, 'app_2D.html', locals())
-
-
-@login_required
 def MOT_task(request):
-    """Initial call to app 2D view"""
-    # When it's called for the first, pass this default dict:
-    # When seq manager would be init, make id_session automatic to +1
-    # Search user, find highest id_session --> +1
-    parameters = {'n_targets': 3, 'n_distractors': 3, 'angle_max': 9, 'angle_min': 3,
-                  'radius': 90, 'speed_min': 4, 'speed_max': 4, 'episode_number': 0,
-                  'nb_target_retrieved': 0, 'nb_distract_retrieved': 0,  'id_session': 0,
-                  'presentation_time': 1, 'fixation_time': 1, 'tracking_time': 10,
-                  'debug': 0, 'secondary_task': 'discrimination', 'SRI_max': 2, 'RSI': 1,
-                  'delta_orientation': 45, 'screen_params': 39.116, 'gaming': 1}
+    """Initial call to mot-app"""
+    # Var to placed in a config file :
+    dir_path = "interface_app/static/JSON/config_files"
+    # Init a wrapper for mot :
+    mot_wrapper = MotParamsWrapper()
+    # Get participant :
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    if "condition" not in participant.extra_json:
+        # Participant hasn't been put in a group:
+        assign_mot_condition(participant)
+
+    # Init the correct sequence manager:
+    if participant.extra_json['condition'] == 'zpdes':
+        zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
+    else:
+        mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
+
+    # If this is not the first time the user plays, build his history :
+    history = Episode.objects.filter(participant=request.user)
+    request.session['seq_manager'] = mot_wrapper.update(history, request.session['seq_manager'])
+
+    # Get parameters for task:
+    parameters = mot_wrapper.sample_task(request.session['seq_manager'])
+
     # As we don't have any seq manager, let's initialize to same parameters:
     with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
         json.dump(parameters, json_file)
-
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = mark_safe(json.load(json_file))
     return render(request, 'app_MOT.html', locals())
 
 
 @login_required
-def visual_3d_task(request):
-    return render(request, 'app_3D.html', locals())
-
-
-# Django security to treat ajax requests:
 @csrf_exempt
 def next_episode(request):
+    mot_wrapper = MotParamsWrapper()
     params = request.POST.dict()
     # Save episode and results:
     episode = Episode()
@@ -242,27 +237,33 @@ def next_episode(request):
                 sec_task.success = res[2]
                 sec_task.save()
     # Function to be removed when the seq manager will be connected:
-    increase_difficulty(params)
+    # increase_difficulty(params)
+    seq_param = request.session['seq_manager']
+    seq_param = mot_wrapper.update(episode, seq_param)
+    parameters = mot_wrapper.sample_task(seq_param)
+    request.session['seq_manager'] = seq_param
+    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
+            json.dump(parameters, json_file)
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
 
 
 # Hand crafted sequence manager, to be removed :
-def increase_difficulty(params):
-    for key, value in params.items():
-        if key != 'secondary_task' and key != 'sec_task_results':
-            params[key] = float(params[key])
-    params['n_targets'] += 1
-    params['speed_max'] *= 1.05
-    params['speed_min'] *= 1.05
-    params['episode_number'] += 1
-    # To be coherent with how seq manager will work:
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(params, json_file)
+# def increase_difficulty(params):
+#    for key, value in params.items():
+#        if key != 'secondary_task' and key != 'sec_task_results':
+#            params[key] = float(params[key])
+#    params['n_targets'] += 1
+#    params['speed_max'] *= 1.05
+#    params['speed_min'] *= 1.05
+#    params['episode_number'] += 1
+#    # To be coherent with how seq manager will work:
+#    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
+#        json.dump(params, json_file)
 
 
-# Django security to treat ajax requests:
+@login_required
 @csrf_exempt
 def restart_episode(request):
     params = request.POST.dict()
@@ -279,7 +280,6 @@ def restart_episode(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
-
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)

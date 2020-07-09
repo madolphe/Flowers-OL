@@ -1,0 +1,306 @@
+[
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 1,
+      "handle": "prof-1",
+      "order": 1,
+      "prompt": "Taille de la diagonale de votre écran",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 1,
+      "step": 1,
+      "annotations": "none",
+      "widget": "float-choice",
+      "type": "float",
+      "help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 1,
+      "handle": "prof-2",
+      "order": 2,
+      "prompt": "Genre",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 2,
+      "step": 1,
+      "annotations": "femme~homme~autre",
+      "widget": "select-choice",
+      "type": "string",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 1,
+      "handle": "prof-3",
+      "order": 3,
+      "prompt": "Début de pratique des jeux vidéos",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 99,
+      "step": 1,
+      "annotations": "none",
+      "widget": "float-choice",
+      "type": "integer",
+      "help_text": "Indiquez le nombre d'années. Si jamais pratiqué, répondre \"0\"."
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 1,
+      "handle": "prof-4",
+      "order": 4,
+      "prompt": "Fréquence de la pratique des jeux vidéos",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 100,
+      "step": 1,
+      "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+      "widget": "range",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 1,
+      "handle": "prof-5",
+      "order": 5,
+      "prompt": "A quelle(s) catégorie(s) de jeux jouez-vous ?",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 4,
+      "step": 1,
+      "annotations": "FPS(ex:Call of Duty)~Action(ex:The last of us)~Sport(ex: Fifa)~MMO (ex:World of warcraft)~RPG (ex:Final Fantasy)",
+      "widget": "categories",
+      "type": "string",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 2,
+      "handle": "prof-6",
+      "order": 6,
+      "prompt": "Permis de conduire",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 1,
+      "step": 1,
+      "annotations": "oui~non",
+      "widget": "select-choice",
+      "type": "boolean",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 2,
+      "handle": "prof-7",
+      "order": 7,
+      "prompt": "Si oui, date d'obtention du permis de conduire",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 99,
+      "step": 1,
+      "annotations": "none",
+      "widget": "date",
+      "type": "string",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 2,
+      "handle": "prof-8",
+      "order": 8,
+      "prompt": "A quelle fréquence conduisez-vous ? ",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 100,
+      "step": 1,
+      "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+      "widget": "range",
+      "type": "datetime",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 2,
+      "handle": "prof-9",
+      "order": 9,
+      "prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 1,
+      "step": 1,
+      "annotations": "oui~non",
+      "widget": "select-choice",
+      "type": "boolean",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_profil",
+      "component": "long_term",
+      "group": 2,
+      "handle": "prof-10",
+      "order": 10,
+      "prompt": "Avez-vous déjà suivi un cours en ligne ? ",
+      "reverse": false,
+      "min_val": 0,
+      "max_val": 1,
+      "step": 1,
+      "annotations": "oui~non",
+      "widget": "select-choice",
+      "type": "boolean",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 1,
+      "handle": "att-1",
+      "order": 1,
+      "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à finaliser les derniers détails d’un projet une fois que les parties les plus stimulantes ont été faites?",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 1,
+      "handle": "att-2",
+      "order": 2,
+      "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à mettre les choses en ordre lorsque vous devez faire quelque chose qui demande de l’organisation?\"",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 1,
+      "handle": "att-3",
+      "order": 3,
+      "prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à vous rappeler vos rendez-vous ou vos obligations?",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 2,
+      "handle": "att-4",
+      "order": 4,
+      "prompt": "Quand vous devez faire quelque chose qui demande beaucoup de réflexion, à quelle fréquence vous arrive-t-il d’éviter de le faire ou de le remettre à plus tard?\",",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 2,
+      "handle": "att-5",
+      "order": 5,
+      "prompt": "À quelle fréquence vous arrive-t-il de remuer ou de tortiller les mains ou les pieds lorsque vous devez rester assis pendant une période prolongée?\",",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  },
+  {
+    "model": "interface_app.Question",
+    "fields": {
+      "instrument": "get_attention",
+      "component": "long_term",
+      "group": 2,
+      "handle": "att-6",
+      "order": 6,
+      "prompt": "À quelle fréquence vous arrive-t-il de vous sentir excessivement actif et contraint de faire quelque chose, comme si vous étiez entraîné malgré vous par un moteur?\",",
+      "reverse": false,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+      "widget": "likert",
+      "type": "integer",
+      "help_text": "none"
+    }
+  }
+]

@@ -7,6 +7,10 @@ from crispy_forms.layout import Layout, Submit, Row, Column, Div
 from django.core.exceptions import *
 from django.forms.widgets import NumberInput, CheckboxInput
 
+# @TODO: add to condition ==> connect to ZPDES/baseline
+    # @TODO: install kidlib
+    # @TODO: install connect and see what has to be saved
+
 
 class UserForm(forms.ModelForm):
     """
@@ -87,20 +91,21 @@ def validate_checked(value):
     if not value:
         print('No value')
         raise ValidationError(
-            _('%(value)s'),
+            ('%(value)s'),
             params={'value': value},
         )
 
 
 class JOLDQuestionBlockForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
-        default_widgets = {'integer': NumberInput}
+        # Pass questions as an attribute to use it in clean method
+        self.questions = questions
         super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
         for i, q in enumerate(questions, 1):
             self.fields[q.handle] = forms.CharField(
-                label='{}. {}'.format(i, q.prompt),
+                label='{}. {}'.format(q.order, q.prompt),
                 validators=[validate_checked])
             if q.help_text != "none":
                 self.fields[q.handle].help_text = q.help_text
@@ -124,6 +129,14 @@ class JOLDQuestionBlockForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
+        for q in self.questions:
+            # Special method for questions with multiple choice ie categories:
+            if q.widget == 'categories':
+                # Split and create a list of possible choices:
+                choices = q.annotations.split('~')
+                # For this
+                self.cleaned_data[q.handle] = [choices[int(elt)] for elt in self.data.getlist(q.handle)]
+        print(cleaned_data)
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
             if not cleaned_data.get(handle):

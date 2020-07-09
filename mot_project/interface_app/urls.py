@@ -14,10 +14,10 @@ urlpatterns = [
     path('off_session_page', views.off_session_page, name='off_session_page'),
     path('start_task', views.start_task, name='start_task'),
     path('end_task', views.end_task, name='end_task'),
-    path('end_session', views.end_session, name='end_session'),
     path('thanks_page', views.thanks_page, name='thanks_page'),
-    path('app_2D', views.visual_2d_task, name='app_2D'),
-    path('app_3D', views.visual_3d_task, name='app_3D'),
+    path('end_session', views.end_session, name='end_session'),
+
+    # ZPDES urls
     path('app_MOT', views.MOT_task, name='app_MOT'),
     path('next_episode', views.next_episode, name='next_episode'),
     path('restart_episode', views.restart_episode, name='restart_episode'),

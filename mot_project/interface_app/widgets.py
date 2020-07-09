@@ -3,7 +3,6 @@ from django.template import loader
 from django.utils.safestring import mark_safe
 from django.forms.widgets import Select, NumberInput, TextInput, DateInput
 
-
 class rangeLikert(forms.Widget):
     template_name = 'includes/rangeLikert.html'
     input_type = 'range'
