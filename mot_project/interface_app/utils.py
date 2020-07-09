@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.utils import timezone
-
+from . import models
 
 def add_message(request, message, tag='info'):
     request.session.setdefault('messages', {})[tag] = message
@@ -26,6 +26,8 @@ def send_delayed_email(to, sender, subject, message_template):
 
 def assign_mot_condition(participant):
     # First check if the participant has attentional problems:
+    Answer = models.Answer
+    ParticipantProfile = models.ParticipantProfile
     attention_responses = Answer.objects.filter(participant=participant)
     score = 0
     key = 0
