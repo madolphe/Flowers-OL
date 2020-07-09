@@ -5,7 +5,7 @@
         "fields": {
             "name": "JOLD-ll-practice",
             "description": "Entraînement au Lunar lander",
-            "prompt": "Begin practice",
+            "prompt": "Commencer la session",
             "view_name": "jold_start_ll_practice",
             "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
         }
@@ -37,7 +37,7 @@
         "fields": {
             "name": "JOLD-questions-sess1",
             "description": "Questionnaire d'après-session",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer le questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -65,7 +65,7 @@
         "fields": {
             "name": "JOLD-questions-sess2",
             "description": "Questionnaire d'après-session",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer le questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -93,7 +93,7 @@
         "fields": {
             "name": "JOLD-questions-sess3",
             "description": "Questionnaire d'après-session",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer le questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -105,6 +105,26 @@
                 "exclude": {
                     "handle__in": [
                         "jold-0"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-prestudy-questions",
+            "description": "Questionnaire préliminaire",
+            "prompt": "Complétez votre profil",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["get_profil"],
+                "exclude": {
+                    "handle__in": [
+                        "prof-1",
+                        "prof-9",
+                        "prof-10"
                     ]
                 }
             }
