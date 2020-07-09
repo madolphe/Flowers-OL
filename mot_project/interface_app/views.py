@@ -249,20 +249,6 @@ def next_episode(request):
     return HttpResponse(json.dumps(parameters))
 
 
-# Hand crafted sequence manager, to be removed :
-# def increase_difficulty(params):
-#    for key, value in params.items():
-#        if key != 'secondary_task' and key != 'sec_task_results':
-#            params[key] = float(params[key])
-#    params['n_targets'] += 1
-#    params['speed_max'] *= 1.05
-#    params['speed_min'] *= 1.05
-#    params['episode_number'] += 1
-#    # To be coherent with how seq manager will work:
-#    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-#        json.dump(params, json_file)
-
-
 @login_required
 @csrf_exempt
 def restart_episode(request):
