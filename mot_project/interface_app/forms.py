@@ -105,7 +105,7 @@ class JOLDQuestionBlockForm(forms.Form):
         self.rows = []
         for i, q in enumerate(questions, 1):
             self.fields[q.handle] = forms.CharField(
-                label='{}. {}'.format(q.order, q.prompt),
+                label='{}. {}'.format(i, q.prompt),
                 validators=[validate_checked])
             if q.help_text != "none":
                 self.fields[q.handle].help_text = q.help_text
