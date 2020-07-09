@@ -15,6 +15,7 @@ from django.db.models import Count
 from .sequence_manager.seq_manager import MotParamsWrapper
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
+from django.conf import settings
 
 
 def login_page(request, study=''):
@@ -283,11 +284,11 @@ def jold_start_ll_practice(request):
         participant.save()
     if task_name == 'JOLD-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params']['time'] = 60 * 2 if settings.DEBUG else 60 * 10
+        participant.extra_json['game_params']['time'] = 5 if settings.DEBUG else 60 * 5
         participant.save()
     elif task_name == 'JOLD-free-choice':
         participant.extra_json['game_params']['forced'] = False
-        participant.extra_json['game_params']['time'] = 60 * 5
+        participant.extra_json['game_params']['time'] = 60 * 2
         participant.save()
     else:
         return redirect(reverse(home))
