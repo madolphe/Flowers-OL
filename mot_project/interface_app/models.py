@@ -15,7 +15,7 @@ class Study(models.Model):
     style = models.CharField(max_length=50, null=True)
     briefing_template = models.CharField(max_length=50, null=True, blank=True)
     reminder_template = models.CharField(max_length=50, null=True, blank=True)
-    extra_json = jsonfield.JSONField(default='{}')
+    extra_json = jsonfield.JSONField(default={})
     contact = models.EmailField(default='')
 
     def __unicode__(self):
@@ -32,7 +32,7 @@ class Task(models.Model):
     prompt = models.CharField(max_length=100, default='', blank=True)
     view_name = models.CharField(max_length=50, default='')
     info_templates_csv = models.TextField(null=True, blank=True)
-    extra_json = jsonfield.JSONField(default='{}')
+    extra_json = jsonfield.JSONField(default={})
 
     @property
     def info(self):
@@ -52,7 +52,7 @@ class ExperimentSession(models.Model):
     index = models.IntegerField(default=0)
     wait = models.DurationField(default=datetime.timedelta(0))
     tasks_csv = models.CharField(max_length=200, default='')
-    extra_json = jsonfield.JSONField(default='{}')
+    extra_json = jsonfield.JSONField(default={})
 
     class Meta:
         ordering = ['study', 'day', 'index']
@@ -99,7 +99,7 @@ class ParticipantProfile(models.Model):
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
-    extra_json = jsonfield.JSONField(default='{}')
+    extra_json = jsonfield.JSONField(default={})
 
     class Meta:
         verbose_name = 'Participant'
