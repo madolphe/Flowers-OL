@@ -7,8 +7,8 @@ verify_ssl = true
 
 [packages]
 django = "*"
-mysqlclient = "==1.3.13"
-pymysql = "*"
+# mysqlclient = "==1.3.13"
+# pymysql = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 django-jsonfield = "*"
