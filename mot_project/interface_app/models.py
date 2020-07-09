@@ -35,6 +35,12 @@ class Task(models.Model):
     info_templates_csv = models.TextField(null=True, blank=True)
     extra_json = jsonfield.JSONField(default={})
 
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__unicode__()
+
     @property
     def info(self):
         l, hidden = [], False
