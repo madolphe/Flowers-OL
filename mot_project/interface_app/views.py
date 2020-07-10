@@ -155,7 +155,14 @@ def start_task(request):
 
 @login_required
 def end_task(request):
+    ''' A task exit_view function must change the 'exit_view_done' field of the request.session dict to True,
+    in order to be run just once. The exit_view must also redirect back to this view. '''
+
     participant = request.user.participantprofile
+    if participant.current_task.exit_view and not request.session.setdefault('exit_view_done', False):
+        print('Redirecting to exit view: {}'.format(participant.current_task.exit_view))
+        return redirect(reverse(participant.current_task.exit_view))
+    if 'exit_view_done' in request.session: del request.session['exit_view_done']
     participant.pop_task()
     # Check if current session is empty
     if participant.current_session and not participant.current_task:
