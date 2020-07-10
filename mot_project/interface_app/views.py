@@ -7,7 +7,6 @@ from django.urls import reverse, resolve
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
 import json, datetime, random, re
-from django.utils.html import mark_safe
 from .models import *
 from .forms import *
 from .utils import add_message, assign_mot_condition
@@ -190,14 +189,13 @@ def MOT_task(request):
     """Initial call to mot-app"""
     # Var to placed in a config file :
     dir_path = "interface_app/static/JSON/config_files"
-    # Init a wrapper for mot :
-    mot_wrapper = MotParamsWrapper()
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
+    # Init a wrapper for mot :
+    mot_wrapper = MotParamsWrapper(participant)
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
         assign_mot_condition(participant)
-
     # Init the correct sequence manager:
     if participant.extra_json['condition'] == 'zpdes':
         zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
@@ -205,26 +203,21 @@ def MOT_task(request):
     else:
         mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
         request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
-
     # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
     request.session['seq_manager'] = mot_wrapper.update(history, request.session['seq_manager'])
-
+    request.session['mot_wrapper'] = mot_wrapper
     # Get parameters for task:
     parameters = mot_wrapper.sample_task(request.session['seq_manager'])
-
-    # As we don't have any seq manager, let's initialize to same parameters:
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(parameters, json_file)
-    with open('interface_app/static/JSON/parameters.json') as json_file:
-        parameters = mark_safe(json.load(json_file))
-    return render(request, 'app_MOT.html', locals())
+    # Serialize it to pass it to js_mot:
+    parameters = json.dumps(parameters)
+    return render(request, 'app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
 
 
 @login_required
 @csrf_exempt
 def next_episode(request):
-    mot_wrapper = MotParamsWrapper()
+    mot_wrapper = request.session['mot_wrapper']
     params = request.POST.dict()
     # Save episode and results:
     episode = Episode()
@@ -244,16 +237,10 @@ def next_episode(request):
                 sec_task.answer_duration = res[1]
                 sec_task.success = res[2]
                 sec_task.save()
-    # Function to be removed when the seq manager will be connected:
-    # increase_difficulty(params)
     seq_param = request.session['seq_manager']
     seq_param = mot_wrapper.update(episode, seq_param)
     parameters = mot_wrapper.sample_task(seq_param)
     request.session['seq_manager'] = seq_param
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-            json.dump(parameters, json_file)
-    with open('interface_app/static/JSON/parameters.json') as json_file:
-        parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
 
 

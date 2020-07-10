@@ -20,7 +20,7 @@
         "fields": {
             "study"         : "zpdes_admin",
             "day"           : 1,
-            "tasks_csv"     : "simple-mot-practice"
+            "tasks_csv"     : "screen-size-params,simple-mot-practice"
         }
     }
 ]
