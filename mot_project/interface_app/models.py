@@ -160,7 +160,7 @@ class ParticipantProfile(models.Model):
         else: return self.sessions.all()
 
     def close_current_session(self):
-        if self.sessions:
+        if self.sessions.all():
             self.session_timestamp = timezone.now()
             self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
             self.current_session = None
@@ -207,7 +207,7 @@ class ParticipantProfile(models.Model):
         return l
 
     def queue_reminder(self):
-        if self.remind:
+        if self.remind and self.sessions.all():
             day1 = self.date
             next_session = self.sessions.first()
             next_session_date = day1 + datetime.timedelta(days=next_session.day-1)
