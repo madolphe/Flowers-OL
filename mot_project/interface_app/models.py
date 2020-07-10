@@ -22,6 +22,9 @@ class Study(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.__unicode__()
+
     class Meta:
         verbose_name = 'Study'
         verbose_name_plural = 'Studies'
