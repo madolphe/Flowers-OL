@@ -5,7 +5,6 @@ function set_screen_params(){
     // screen size in pixels:
     screen_width_px = screen.availWidth;
     screen_height_px = screen.availHeight;
-    console.log(screen_width_px);
     // size of diag in pixels:
     diagpx = Math.sqrt(screen_width_px**2 + screen_height_px**2);
     // size of screen in cm:

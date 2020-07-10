@@ -77,7 +77,7 @@ def get_custom_Likert_widget(question_object, index=False):
             'max_': question_object.max_val,
             'step': question_object.step,
             'class': question_object.widget})
-    if question_object.widget == 'polar':
+    elif question_object.widget == 'polar':
         return polarLikert(attrs={
             'prompt': pre + question_object.prompt,
             'annotations': question_object.annotations.split('~'),
@@ -86,7 +86,7 @@ def get_custom_Likert_widget(question_object, index=False):
             'step': question_object.step,
             'inner_range': range(question_object.max_val-2),
             'class': question_object.widget})
-    if question_object.widget == 'likert':
+    elif question_object.widget == 'likert':
         annotations = []
         for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
         return basicLikert(attrs={
@@ -97,7 +97,7 @@ def get_custom_Likert_widget(question_object, index=False):
             'checked': None,
             'handle': question_object.handle,
             'odd': odd})
-    if question_object.widget == 'categories':
+    elif question_object.widget == 'categories':
         annotations = []
         for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
         return Categories(attrs={
@@ -116,5 +116,4 @@ def get_custom_Likert_widget(question_object, index=False):
         choices = [(str(i), choices[i].capitalize()) for i in range(len(choices))]
         return Select(choices=choices)
     if question_object.widget == 'date':
-        print("ca marche po ?")
         return DateInput()

@@ -19,4 +19,4 @@ def parse_to_fixture(path_to_csv, path_to_save):
 
 
 if __name__ == '__main__':
-    parse_to_fixture('questions_mot.csv', 'Questions_mot.json')
+    parse_to_fixture('questions_mot.csv', 'MOTQuestions.json')
