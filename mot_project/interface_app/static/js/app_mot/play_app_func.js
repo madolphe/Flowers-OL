@@ -87,6 +87,7 @@ function start_episode(){
         update_parameters_values();
         if(!hidden_pannel){
             show_inputs();
+            hide_pannel();
         }
     }else{
         quit_game();

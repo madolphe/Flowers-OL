@@ -1,0 +1,56 @@
+{% load static %}
+<div class="explanation-text">
+    <h4> Paramètres d'écran </h4>
+    <p> Vous avez défini la taille de votre écran à: {{   CONTEXT.participant.extra_json.screen_params }} cm.</p>
+    <div> Ce paramètre est trés important pour définir correctement l'environnement d'apprentissage, vous pouvez le modifier ici:
+        <br>
+        <div class="text-center">
+            <button id="myBtn">
+                <input type="image" class="setting_button" src="{% static 'images/settings.png' %}">
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Paramètres d'écran:</h4>
+      <form class="text-center">
+        <label for="screen_params_input">Taille de la diagonale :</label>
+          <input type="text" id="screen_params_input" placeholder="en cm...">
+        <button id="btn_screen" type="submit"></button>
+      </form>
+  </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal
+var is_closed = true;
+// Get the button that send request to backend for participant new screen_params:
+var btn_screen = document.getElementById("btn_screen");
+var screen = 0;
+
+btn_screen.onclick = function(){
+  console.log(btn_screen.value);
+  console.log("pusssshed");
+  screen = btn_screen.value;
+};
+btn.onclick = function() {
+  modal.style.display = "block";
+  is_closed = false;
+};
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+  is_closed = true;
+};
+</script>

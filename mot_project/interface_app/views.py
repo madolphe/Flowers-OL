@@ -185,6 +185,33 @@ def super_home(request):
 
 
 @login_required
+def set_mot_params(request):
+    participant = request.user.participantprofile
+    # Normaly current task should be retrieving screen_params:
+    instrument = participant.current_task.extra_json['instruments']
+    handle = participant.current_task.extra_json['include']['handle__in'][0]
+    # Warning here it works because of only one handle
+    questions = Question.objects.filter(instrument__in=instrument)
+    q = questions.get(handle=handle)
+    form = JOLDQuestionBlockForm([q], request.POST or None)
+    if form.is_valid():
+        answer = Answer()
+        answer.participant = participant
+        answer.session = participant.current_session
+        answer.question = q
+        answer.value = form.cleaned_data[q.handle]
+        answer.save()
+        # The line I really need is here:
+        participant.extra_json['screen_params'] = form.cleaned_data[q.handle]
+        participant.save()
+        return redirect(reverse(end_task))
+    return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
+        'form': form,
+        'current_page': 1,
+        'nb_pages': 1}})
+
+
+@login_required
 def MOT_task(request):
     """Initial call to mot-app"""
     # Var to placed in a config file :
@@ -226,17 +253,16 @@ def next_episode(request):
         if key in episode.__dict__:
             episode.__dict__[key] = val
     episode.save()
-    if params['secondary_task'] != 'none':
-        if params['gaming'] == 1:
-            params['sec_task_results'] = eval(params['sec_task_results'])
-            for res in params['sec_task_results']:
-                sec_task = SecondaryTask()
-                sec_task.episode = episode
-                sec_task.type = params['secondary_task']
-                sec_task.delta_orientation = res[0]
-                sec_task.answer_duration = res[1]
-                sec_task.success = res[2]
-                sec_task.save()
+    if params['secondary_task'] != 'none' and params['gaming'] == 1:
+        params['sec_task_results'] = eval(params['sec_task_results'])
+        for res in params['sec_task_results']:
+            sec_task = SecondaryTask()
+            sec_task.episode = episode
+            sec_task.type = params['secondary_task']
+            sec_task.delta_orientation = res[0]
+            sec_task.answer_duration = res[1]
+            sec_task.success = res[2]
+            sec_task.save()
     seq_param = request.session['seq_manager']
     seq_param = mot_wrapper.update(episode, seq_param)
     parameters = mot_wrapper.sample_task(seq_param)
@@ -261,6 +287,7 @@ def restart_episode(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
+
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
