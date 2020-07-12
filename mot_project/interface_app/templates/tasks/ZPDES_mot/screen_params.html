@@ -20,7 +20,7 @@
     <h4 id="screen_params_text">Paramètres d'écran:</h4>
       <form class="text-center">
         <label for="screen_params_input">Taille de la diagonale :</label>
-          <input type="text" id="screen_params_input" placeholder="en cm...">
+          <input type="text" id="screen_params_input" value="{{ CONTEXT.participant.extra_json.screen_params  }}" placeholder="en cm...">
         <button class="btn btn-secondary" id="btn_screen" type="submit">Valider</button>
       </form>
   </div>
