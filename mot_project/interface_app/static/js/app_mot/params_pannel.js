@@ -3,7 +3,7 @@
 // #TODO: add tuto
 
 function init_pannel(){
-    hidden_pannel = false;
+    hidden_pannel = true;
     button_params = createButton('RESTART');
     button_raz_params = createButton('DEFAULT');
     button_hide_params = createButton('HIDE <<');
