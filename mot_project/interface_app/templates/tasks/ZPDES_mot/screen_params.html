@@ -5,7 +5,7 @@
     <div> Ce paramètre est trés important pour définir correctement l'environnement d'apprentissage, vous pouvez le modifier ici:
         <br>
         <div class="text-center">
-            <button id="myBtn">
+            <button id="setting-button">
                 <input type="image" class="setting_button" src="{% static 'images/settings.png' %}">
             </button>
         </div>
@@ -16,12 +16,12 @@
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <h4>Paramètres d'écran:</h4>
+    <span class="close_button">&times;</span>
+    <h4 id="screen_params_text">Paramètres d'écran:</h4>
       <form class="text-center">
         <label for="screen_params_input">Taille de la diagonale :</label>
           <input type="text" id="screen_params_input" placeholder="en cm...">
-        <button id="btn_screen" type="submit"></button>
+        <button class="btn btn-secondary" id="btn_screen" type="submit">Valider</button>
       </form>
   </div>
 </div>
@@ -30,7 +30,7 @@
 // Get the modal
 var modal = document.getElementById("myModal");
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("setting-button");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
