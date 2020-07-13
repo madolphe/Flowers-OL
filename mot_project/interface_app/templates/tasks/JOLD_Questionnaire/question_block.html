@@ -1,29 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}JOLD Questionnaire{% endblock %}
 {% block js%}
-    <script>
-        let elements = document.getElementsByClassName("slider");
-        let onClick = function() {
-            document.getElementsByName(this.getAttribute("name").concat("_validator"))[0].checked = true
-        };
-        Array.from(elements).forEach((element) => {element.addEventListener('click', onClick)});
-    </script>
+    <script src="{% static 'js/customWidgetsBehavior.js' %}"></script>
 {% endblock %}
 {% block css %}
-    {%load static%} <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
-    {%load static%} <link rel="stylesheet" href="{% static "css/rangeLikert.css" %}">
-    {%load static%} <link rel="stylesheet" href="{% static "css/polarLikert.css" %}">
-    {%load static%} <link rel="stylesheet" href="{% static "css/basicLikert.css" %}">
+    <link rel="stylesheet" href="{% static "css/jold_home.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom_widgets.css" %}">
 {% endblock %}
 {% load crispy_forms_tags %}
-{% block nav%} {%endblock%}
-{% block content%}
+{% block content %}
     <div class="side-panel">
         <div class="side-info">
            <h2>Questionnaire</h2>
            <p> Page {{CONTEXT.current_page}} sur {{CONTEXT.nb_pages}} </p>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
+        <div class="btn-box logout"> <a class="btn logout" href={% url "user_logout" %}>Se déconnecter</a></div>
     </div>
 
     <div class="main-panel">
@@ -32,5 +24,4 @@
                 {% crispy CONTEXT.form %}
             </form>
     </div>
-
 {% endblock %}
