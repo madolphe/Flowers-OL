@@ -185,30 +185,40 @@ def super_home(request):
 
 
 @login_required
+@csrf_exempt
 def set_mot_params(request):
     participant = request.user.participantprofile
-    # Normaly current task should be retrieving screen_params:
-    instrument = participant.current_task.extra_json['instruments']
-    handle = participant.current_task.extra_json['include']['handle__in'][0]
-    # Warning here it works because of only one handle
-    questions = Question.objects.filter(instrument__in=instrument)
-    q = questions.get(handle=handle)
-    form = JOLDQuestionBlockForm([q], request.POST or None)
-    if form.is_valid():
-        answer = Answer()
-        answer.participant = participant
-        answer.session = participant.current_session
-        answer.question = q
-        answer.value = form.cleaned_data[q.handle]
-        answer.save()
-        # The line I really need is here:
-        participant.extra_json['screen_params'] = form.cleaned_data[q.handle]
+    # Case 1: user comes from home and has modified his screen params:
+    if "screen_params_input" in request.POST.dict():
+        add_message(request, "Paramètres d'écran modifiés.")
+        participant.extra_json['screen_params'] = request.POST['screen_params_input']
         participant.save()
-        return redirect(reverse(end_task))
-    return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
-        'form': form,
-        'current_page': 1,
-        'nb_pages': 1}})
+        # update screen params and return home:
+        return redirect(reverse(home))
+    else:
+        # Case 2: user has just applied and provide screen params for the first time:
+        # Normaly current task should be retrieving screen_params:
+        instrument = participant.current_task.extra_json['instruments']
+        handle = participant.current_task.extra_json['include']['handle__in'][0]
+        # Warning here it works because of only one handle
+        questions = Question.objects.filter(instrument__in=instrument)
+        q = questions.get(handle=handle)
+        form = JOLDQuestionBlockForm([q], request.POST or None)
+        if form.is_valid():
+            answer = Answer()
+            answer.participant = participant
+            answer.session = participant.current_session
+            answer.question = q
+            answer.value = form.cleaned_data[q.handle]
+            answer.save()
+            # The line I really need is here:
+            participant.extra_json['screen_params'] = form.cleaned_data[q.handle]
+            participant.save()
+            return redirect(reverse(end_task))
+        return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
+            'form': form,
+            'current_page': 1,
+            'nb_pages': 1}})
 
 
 @login_required
