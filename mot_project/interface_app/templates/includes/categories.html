@@ -1,33 +1,15 @@
-<div class="basic-likert-widget">
-        <div class="likert-header">
-            <div class="header-padding"></div>
-            <div class="header-items">
-                {% for a in widget.attrs.annotations %}
-                    <div class="header-item" style="width:calc(100%/{{widget.attrs.annotations|length}})">
-                        {{a}}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% if widget.attrs.odd %}
-            <div class="likert-row odd-row">
-        {% else %}
-            <div class="likert-row">
-        {% endif %}
-        <div class="row-prompt"> {{widget.attrs.prompt}} </div>
-        <div class="row-input">
-            {% for i in widget.attrs.options %}
-                <label class="input-element">
-                    <input
-                        type = "checkbox"
-                        value = {{i}}
-                        name = "{{widget.attrs.handle}}"
-                        {% if widget.attrs.checked == i %} checked {% endif %}
-                    />
-                    <div class="radio-button"></div>
-                </label>
-            {% endfor %}
-        </div>
-    </div>
-
+{% load custom_filters %}
+<div class="categories-widget">
+    <select multiple class="categories-menu" name={{widget.name}} size={{widget.attrs.size}}>
+    {% for choice in widget.attrs.choices %}
+        <option
+            id = {{widget.attrs.handle}}-{{choice.0}}
+            value = {{choice.0}}
+            {% if widget.attrs.checked|contains:choice.0 %} selected {% endif %}
+        >
+        <label for="{{widget.attrs.handle}}-{{choice.0}}">{{choice.1}}</label>
+    {% endfor %}
+    </select>
+    <p class="hint">Sélectionner un ou plusieurs</p>
+    <i>{{widget.attrs.checked}}</i>
 </div>
