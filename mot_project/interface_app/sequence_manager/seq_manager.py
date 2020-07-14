@@ -32,12 +32,12 @@ class MotParamsWrapper:
         parameters = {
                         'n_targets': self.values['n_targets'][act['MAIN'][0]],
                         'speed_max': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
+                        'speed_min': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
                         'tracking_time': self.values['tracking_time'][act[self.lvls[act['MAIN'][0]]][1]],
                         'probe_time': self.values['probe_time'][act[self.lvls[act['MAIN'][0]]][2]],
                         'n_distractors': self.values['n_distractors'][act[self.lvls[act['MAIN'][0]]][3]]}
         for key, value in parameters.items():
             self.parameters[key] = value
-        print("Seq manager samples:", self.parameters)
         return self.parameters
 
     def update(self, episode, seq):
@@ -49,7 +49,8 @@ class MotParamsWrapper:
         :return:
         """
         parsed_episode = self.parse_activity(episode)
-        seq.update(parsed_episode, parsed_episode['ans'])
+        seq.update(parsed_episode['act'], parsed_episode['ans'])
+        bandit_values = seq.getBanditValue()
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
         self.parameters['nb_distract_retrieved'] = episode.n_distractors
@@ -61,13 +62,15 @@ class MotParamsWrapper:
         if episode.nb_target_retrieved == episode.n_targets:
             if episode.nb_distract_retrieved == episode.n_distractors:
                 answer = 1
-
+        print("Update answer equals:", answer)
         # Then just parse act to ZPDES formalism:
-        speed_i = np.where(self.values['speed_max'] == episode.speed_max)[0][0]
-        n_targets_i = np.where(self.values['n_targets'] == episode.n_targets)[0][0]
-        n_distractors_i = np.where(self.values['n_distractors'] == episode.n_distractors)[0][0]
-        track_i = np.where(self.values['tracking_time'] == episode.tracking_time)[0][0]
+        speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
+        n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
+        n_distractors_i = np.where(self.values['n_distractors'] == float(episode.n_distractors))[0][0]
+        track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
         episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i, 0]}
+        print("Seq manager sampled task with {} targets, {} distractors with speed {} and "
+              "tracking time {}".format(n_targets_i, n_distractors_i, speed_i, track_i))
         return {'act': episode_parse, 'ans': answer}
 
     def set_parameter(self, name, new_value):

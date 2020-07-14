@@ -16,6 +16,10 @@ import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 from django.conf import settings
 
+# @TODO: play and make seq manager work (sampling/remaining episode/nb_targets_retrieved transition)
+# @TODO: Display episodes in home with new template
+# @TODO: add probe duration to gaming dynamic
+
 
 def login_page(request, study=''):
     if 'study' in request.session:
@@ -242,7 +246,7 @@ def MOT_task(request):
         request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
     # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
-    for episode in history.values():
+    for episode in history:
         request.session['seq_manager'] = mot_wrapper.update(episode, request.session['seq_manager'])
     request.session['mot_wrapper'] = mot_wrapper
     # Get parameters for task:
@@ -264,6 +268,7 @@ def next_episode(request):
         if key in episode.__dict__:
             episode.__dict__[key] = val
     episode.save()
+    # In case of secondary task:
     if params['secondary_task'] != 'none' and params['gaming'] == 1:
         params['sec_task_results'] = eval(params['sec_task_results'])
         for res in params['sec_task_results']:
