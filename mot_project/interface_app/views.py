@@ -242,7 +242,8 @@ def MOT_task(request):
         request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
     # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
-    request.session['seq_manager'] = mot_wrapper.update(history, request.session['seq_manager'])
+    for episode in history.values():
+        request.session['seq_manager'] = mot_wrapper.update(episode, request.session['seq_manager'])
     request.session['mot_wrapper'] = mot_wrapper
     # Get parameters for task:
     parameters = mot_wrapper.sample_task(request.session['seq_manager'])
