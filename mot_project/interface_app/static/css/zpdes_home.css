@@ -280,3 +280,27 @@ input.setting_button{
     adding-top: 40px;
     padding-bottom: 40px;
 }
+
+.fixed_header{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 500px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+
+.fixed_header th, .fixed_header td {
+  width: 200px;
+}
+
+
