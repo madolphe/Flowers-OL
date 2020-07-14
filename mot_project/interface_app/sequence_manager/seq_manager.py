@@ -40,12 +40,19 @@ class MotParamsWrapper:
         print("Seq manager samples:", self.parameters)
         return self.parameters
 
-    def update(self, history, seq):
-        if len(history) > 1:
-            for episode in history:
-                seq.update(self.parse_activity(episode))
-        elif len(history) == 1:
-            seq.update(self.parse_activity(history))
+    def update(self, episode, seq):
+        """
+        Given one episode update and return the seq manager.
+        Also store last episode results (i.e ep_number, nb_targets_retrieved, nb distract_retrieved)
+        :param episode:
+        :param seq:
+        :return:
+        """
+        parsed_episode = self.parse_activity(episode)
+        seq.update(parsed_episode, parsed_episode['ans'])
+        # Store in mot_wrapper result of last episode (useful for sampling new task)
+        self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
+        self.parameters['nb_distract_retrieved'] = episode.n_distractors
         return seq
 
     def parse_activity(self, episode):

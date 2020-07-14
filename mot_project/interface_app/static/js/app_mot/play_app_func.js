@@ -170,10 +170,8 @@ function next_episode(){
 }
 
 function display_transition(){
-    let nb_targets = parseInt(parameter_dict['n_targets']) - 1 ;
-    console.log(nb_targets);
     let trans_text = 'Great job, '+ str(parameter_dict['episode_number']) +' / 20' +' episode(s) have already been completed! \n'
-        + 'You have found ' + str(parameter_dict['nb_target_retrieved'] + '/' + nb_targets + ' targets on last trial... \n')
+        + 'You have found ' + str(parameter_dict['nb_target_retrieved'] + '/' + str(parameter_dict['n_targets']) + ' targets on last trial... \n')
         + 'Don\'t give up !';
     let width = 170;
     let height = 70;

@@ -1,13 +1,15 @@
-// #TODO: add non gaming mode
-// #TODO: comment everything
-// #TODO: add tuto
-
+// 3 Functions to handle inputs (init, size and position)
 function init_pannel(){
+    // Start with pannel status : hidden
     hidden_pannel = true;
+
+    // Create all inputs:
     button_params = createButton('RESTART');
     button_raz_params = createButton('DEFAULT');
-    button_hide_params = createButton('HIDE <<');
-
+    button_hide_params = createButton('>>');
+    button_hide_params.mousePressed(switch_pannel_status);
+    button_raz_params.mousePressed(raz);
+    button_params.mousePressed(restart);
     screen_params_input = createInput(parameter_dict['screen_params']);
     angle_max_input = createInput(parameter_dict['angle_max']);
     angle_min_input = createInput(parameter_dict['angle_max']);
@@ -26,6 +28,7 @@ function init_pannel(){
     delta_orientation_input = createInput(parameter_dict['delta_orientation']);
     gaming_input = createInput(parameter_dict['gaming']);
 
+    // Add some widgets:
     n_targets_slider = createSlider(0,15,1);
     angle_max_slider = createSlider(1,15, 1);
     angle_min_slider = createSlider(0,10, 1);
@@ -40,6 +43,7 @@ function init_pannel(){
     RSI_slider = createSlider(0.1, 10, 0.1);
     delta_orientation_slider = createSlider(0,85, 1);
 
+    // Input description:
     screen_params_description = "Dimension of your screen diagonal (in cm)";
     angle_max_description = "Maximum angle characterizing the \"outer\" limit of the scene (in deegres)";
     angle_min_description = "Minimum angle characterizing the \"inner\" limit of the scene (in deegres)";
@@ -78,37 +82,9 @@ function init_pannel(){
         RSI: {RSI_input, RSI_slider, RSI_description},
         delta_orientation: {delta_orientation_input, delta_orientation_slider, delta_orientation_description}
     };
+    // Hide all inputs:
     hide_inputs();
     button_hide_params.hide();
-}
-function hide_inputs(){
-    button_params.hide();
-    button_raz_params.hide();
-    for (var key in dict_pannel) {
-        // check if the property/key is defined in the object itself, not in parent
-        if (dict_pannel.hasOwnProperty(key)) {
-            dict_pannel[key][key+'_input'].hide();
-            if(dict_pannel[key].hasOwnProperty(key+'_slider')){
-                dict_pannel[key][key+'_slider'].hide();
-            }
-        }
-    }
-}
-function show_inputs(){
-    button_hide_params.show();
-    button_raz_params.show();
-    button_hide_params.mousePressed(hide_pannel);
-    button_raz_params.mousePressed(raz);
-    button_params.show();
-    button_params.mousePressed(restart);
-    for (var key in dict_pannel) {
-        if (dict_pannel.hasOwnProperty(key)) {
-            dict_pannel[key][key+'_input'].show();
-                if(dict_pannel[key].hasOwnProperty(key+'_slider')) {
-                dict_pannel[key][key+'_slider'].show();
-            }
-        }
-    }
 }
 function size_inputs(){
     //inputs_map.forEach(function(value, key, map){value.size(windowHeight/10, step*(2/3))});
@@ -137,10 +113,13 @@ function position_inputs(){
         }
         i++;
     }
+    // Position for visible pannel:
     button_params.position(start/4, windowHeight - 2.8*step);
     button_raz_params.position(4*start/4, windowHeight - 2.8*step);
-    button_hide_params.position(7*start/4, windowHeight - 2.8*step);
+    button_hide_params.position(10, windowHeight/2);
 }
+
+// Functions used by p5 to display
 function display_pannel(){
     if(!hidden_pannel){
     push();
@@ -167,24 +146,6 @@ function display_pannel(){
     pop();
     }
 }
-function hide_pannel(){
-    if(!hidden_pannel){
-        button_hide_params.elt.innerHTML = '>>';
-        button_hide_params.position(10, windowHeight/2);
-        button_params.hide();
-        hide_inputs();
-    }else{
-        button_hide_params.elt.innerHTML = 'HIDE <<';
-        //button_hide_params.position(75, windowHeight - 2*step);
-        //button_hide_params.position(2.5*150/2, windowHeight - 2.8*step);
-        button_hide_params.position(7*150/4, windowHeight - 2.8*step);
-
-        button_params.show();
-        show_inputs();
-    }
-    hidden_pannel = !hidden_pannel;
-}
-
 function add_hover(){
     for(var key in dict_pannel){
         if(mouseX<350){
@@ -211,6 +172,46 @@ function add_hover(){
             }
         }
 }
+
+// Functions used for user interaction
+function hide_inputs(){
+    button_params.hide();
+    button_raz_params.hide();
+    for (var key in dict_pannel) {
+        // check if the property/key is defined in the object itself, not in parent
+        if (dict_pannel.hasOwnProperty(key)) {
+            dict_pannel[key][key+'_input'].hide();
+            if(dict_pannel[key].hasOwnProperty(key+'_slider')){
+                dict_pannel[key][key+'_slider'].hide();
+            }
+        }
+    }
+}
+function show_inputs(){
+    button_hide_params.show();
+    button_raz_params.show();
+    button_params.show();
+    for (var key in dict_pannel) {
+        if (dict_pannel.hasOwnProperty(key)) {
+            dict_pannel[key][key+'_input'].show();
+                if(dict_pannel[key].hasOwnProperty(key+'_slider')) {
+                dict_pannel[key][key+'_slider'].show();
+            }
+        }
+    }
+}
+function switch_pannel_status(){
+    if(!hidden_pannel){
+        button_hide_params.elt.innerHTML = 'CHANGE PARAMS >>';
+        button_hide_params.position(10, windowHeight/2);
+        hide_inputs();
+    }else{
+        button_hide_params.elt.innerHTML = 'HIDE <<';
+        button_hide_params.position(7*150/4, windowHeight - 2.8*step);
+        show_inputs();
+    }
+    hidden_pannel = !hidden_pannel;
+}
 function update_input_from_slider_value(){
     // Function launch whenever a mouse is released
     // Update input value depending on slider:
@@ -222,7 +223,6 @@ function update_input_from_slider_value(){
         }
     }
 }
-
 function update_parameters_values(){
     for (var key in dict_pannel) {
         // check if the property/key is defined in the object itself, not in parent
@@ -234,8 +234,8 @@ function update_parameters_values(){
         }
     }
 }
-
 function restart(){
+    // First update parameter_dict with new values in admin_pannel
     for(var key in dict_pannel){
         if(parameter_dict.hasOwnProperty(key)){
             if(!dict_pannel[key].hasOwnProperty(key+'_slider')){
@@ -245,6 +245,7 @@ function restart(){
             }
         }
     }
+    // Send ajax_request
     $.ajax({
         async: false,
         type: "POST",
@@ -256,10 +257,12 @@ function restart(){
             parameter_dict = data;
             }
         });
+    // update screen params and timers
     set_screen_params();
     clearTimeout(pres_timer);
     clearTimeout(tracking_timer);
     clearTimeout(answer_timer);
+    // make sure buttons are hidden to restart
     if(button_next_episode){
         button_next_episode.hide();
     }
@@ -268,14 +271,13 @@ function restart(){
     }
     start_episode();
 }
-
 function raz(){
     default_params = {
-        n_targets: 3, n_distractors: 3, angle_max: 9, angle_min: 3,
-        radius: 90, speed_min: 4, speed_max: 4, episode_number: 0,
+        n_targets: 1, n_distractors: 2, angle_max: 9, angle_min: 3,
+        radius: 90, speed_min: 2, speed_max: 2, episode_number: 0,
         nb_target_retrieved: 0, nb_distract_retrieved: 0,  id_session: 0,
         presentation_time: 1, fixation_time: 1, tracking_time: 10,
-        debug: 0, secondary_task: 'discrimination', SRI_max: 2, RSI: 1,
+        debug: 0, secondary_task: 'none', SRI_max: 2, RSI: 1,
         delta_orientation: 45, screen_params: 39.116, gaming: 1
     };
     $.ajax({
@@ -301,112 +303,3 @@ function raz(){
     }
     start_episode();
 }
-
-function old() {
-    screen_params_input.hide();
-    angle_max_input.hide();
-    angle_min_input.hide();
-    debug_input.hide();
-    activity_type_input.hide();
-    n_targets_input.hide();
-    n_distractors_input.hide();
-    speed_max_input.hide();
-    speed_min_input.hide();
-    radius_input.hide();
-    presentation_time_input.hide();
-    fixation_time_input.hide();
-    tracking_time_input.hide();
-    SRI_max_input.hide();
-    RSI_input.hide();
-    delta_orientation_input.hide();
-    screen_params_input.show();
-    angle_max_input.show();
-    angle_min_input.show();
-    debug_input.show();
-    activity_type_input.show();
-    n_targets_input.show();
-    n_distractors_input.show();
-    speed_max_input.show();
-    speed_min_input.show();
-    radius_input.show();
-    presentation_time_input.show();
-    fixation_time_input.show();
-    tracking_time_input.show();
-    SRI_max_input.show();
-    RSI_input.show();
-    delta_orientation_input.show();
-    screen_params_input.position(start, windowHeight - step * 20);
-    angle_max_input.position(start, windowHeight - step * 19);
-    angle_min_input.position(start, windowHeight - step * 18);
-    debug_input.position(start, windowHeight - step * 17);
-    activity_type_input.position(start, windowHeight - step * 16);
-    n_targets_input.position(start, windowHeight - step * 15);
-    n_distractors_input.position(start, windowHeight - step * 14);
-    speed_max_input.position(start, windowHeight - step * 13);
-    speed_min_input.position(start, windowHeight - step * 12);
-    radius_input.position(start, windowHeight - step * 11);
-    presentation_time_input.position(start, windowHeight - step * 10);
-    fixation_time_input.position(start, windowHeight - step * 9);
-    tracking_time_input.position(start, windowHeight - step * 8);
-    SRI_max_input.position(start, windowHeight - step * 7);
-    RSI_input.position(start, windowHeight - step * 6);
-    delta_orientation_input.position(start, windowHeight - step * 5);
-    screen_params_input.value(diagcm);
-    angle_max_input.value(parameter_dict['angle_max']);
-    angle_min_input.value(parameter_dict['angle_min']);
-    debug_input.value(str(parameter_dict['debug']));
-    activity_type_input.value(parameter_dict['secondary_task']);
-    n_targets_input.value(parameter_dict['n_targets']);
-    n_distractors_input.value(parameter_dict['n_distractors']);
-    speed_max_input.value(parameter_dict['speed_max']);
-    speed_min_input.value(parameter_dict['speed_min']);
-    radius_input.value(parameter_dict['radius']);
-    presentation_time_input.value(parameter_dict['presentation_time']);
-    fixation_time_input.value(parameter_dict['fixation_time']);
-    tracking_time_input.value(parameter_dict['tracking_time']);
-    SRI_max_input.value(parameter_dict['SRI_max']);
-    RSI_input.value(parameter_dict['RSI']);
-    delta_orientation_input.value(parameter_dict['delta_orientation']);
-    parameter_dict['screen_params'] = int(screen_params_input.value());
-    parameter_dict['angle_max'] = int(angle_max_input.value());
-    parameter_dict['angle_min'] =  int(angle_min_input.value());
-    parameter_dict['debug'] =  int(debug_input.value());
-    parameter_dict['activity_type'] =  activity_type_input.value();
-    parameter_dict['n_targets'] =  int(n_targets_input.value());
-    parameter_dict['n_distractors'] =  int(n_distractors_input.value());
-    parameter_dict['speed_max'] =  int(speed_max_input.value());
-    parameter_dict['speed_min'] =  int(speed_min_input.value());
-    parameter_dict['radius'] = int(radius_input.value());
-    parameter_dict['presentation_time'] =  int(presentation_time_input.value());
-    parameter_dict['fixation_time'] =  int(fixation_time_input.value());
-    parameter_dict['tracking_time'] =  int(tracking_time_input.value());
-    parameter_dict['SRI_max'] =  int(SRI_max_input.value());
-    parameter_dict['RSI'] =  int(RSI_input.value());
-    parameter_dict['delta_orientation'] =  int(delta_orientation_input.value());
-    n_targets_slider.value(parameter_dict['n_targets']);
-    angle_max_slider.value(parameter_dict['angle_max']);
-    angle_min_slider.value(parameter_dict['angle_min']);
-    n_distractors_slider.value(parameter_dict['n_distractors']);
-    speed_max_slider.value(parameter_dict['speed_max']);
-    speed_min_slider.value(parameter_dict['spee_min'] );
-    radius_slider.value(parameter_dict['radius']);
-    presentation_time_slider.value(parameter_dict['presentation_time']);
-    fixation_time_slider.value(parameter_dict['fixation_time']);
-    tracking_time_slider.value(parameter_dict['tracking_time']);
-    SRI_max_slider.value(parameter_dict['SRI_max']);
-    RSI_slider.value(parameter_dict['RSI']);
-    delta_orientation_slider.value(parameter_dict['delta_orientation']);
-    labels_inputs = ["Parameters", "screen_params_input", "angle_max_input", "angle_min_input",
-        "debug_input","activity_type_input", "n_targets_input", "n_distractors_input", "speed_max_input",
-        "speed_min_input", "radius_input", "presentation_time_input", "fixation_time_input",
-        "tracking_time_input", "SRI_max_input", "RSI_input", "delta_orientation_input"];
-    key_val = [["screen_params_input", screen_params_input], ["angle_max_input",angle_max_input],
-        ["angle_min_input", angle_min_input], ["debug_input", debug_input],["activity_type_input", activity_type_input],
-        ["n_targets_input", n_targets_input], ["n_distractors_input", n_distractors_input],
-        ["speed_max_input", speed_max_input], ["speed_min_input", speed_min_input],
-        ["radius_input", radius_input], ["presentation_time_input", presentation_time_input],
-        ["fixation_time_input", fixation_time_input], ["tracking_time_input", tracking_time_input],
-        ["SRI_max_input", SRI_max_input], ["RSI_input", RSI_input], ["delta_orientation_input", delta_orientation_input]];
-    inputs_map = new Map(key_val);
-}
-

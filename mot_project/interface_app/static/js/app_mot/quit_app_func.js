@@ -13,5 +13,5 @@ function display_exit(){
 }
 function quit_game(){
         // put here current results !
-        post('home_user', parameter_dict, 'post')
+        post('home', parameter_dict, 'post')
 }
