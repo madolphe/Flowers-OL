@@ -15,8 +15,10 @@ from .sequence_manager.seq_manager import MotParamsWrapper
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 from django.conf import settings
+from collections import defaultdict
 
-# @TODO: play and make seq manager work (sampling/remaining episode/nb_targets_retrieved transition)
+
+# @TODO: nb_targets_retrieved and update transition
 # @TODO: Display episodes in home with new template
 # @TODO: add probe duration to gaming dynamic
 
@@ -303,6 +305,23 @@ def restart_episode(request):
     with open('interface_app/static/JSON/parameters.json') as json_file:
         parameters = json.load(json_file)
     return HttpResponse(json.dumps(parameters))
+
+
+@login_required
+def display_progression(request):
+    participant = request.user.participantprofile
+    # Retrieve all played episodes:
+    history = Episode.objects.filter(participant=request.user)
+    display_fields = ['n_targets', 'n_distractors', 'speed_max', 'tracking_time']
+    CONTEXT = defaultdict(list)
+    for episode in history:
+        for field in display_fields:
+            CONTEXT[episode.id].append(episode.__dict__[field])
+    CONTEXT = dict(CONTEXT)
+    print(CONTEXT)
+    participant.extra_json['history'] = CONTEXT
+    return render(request, 'tasks/ZPDES_mot/display_progression.html',
+                  {'CONTEXT': {'participant': participant}})
 
 
 @login_required
