@@ -202,7 +202,7 @@ function show_inputs(){
 }
 function switch_pannel_status(){
     if(!hidden_pannel){
-        button_hide_params.elt.innerHTML = 'CHANGE PARAMS >>';
+        button_hide_params.elt.innerHTML = '>>';
         button_hide_params.position(10, windowHeight/2);
         hide_inputs();
     }else{
@@ -262,6 +262,7 @@ function restart(){
     clearTimeout(pres_timer);
     clearTimeout(tracking_timer);
     clearTimeout(answer_timer);
+    clearTimeout(probe_timer);
     // make sure buttons are hidden to restart
     if(button_next_episode){
         button_next_episode.hide();
@@ -295,6 +296,7 @@ function raz(){
     clearTimeout(pres_timer);
     clearTimeout(tracking_timer);
     clearTimeout(answer_timer);
+    clearTimeout(probe_timer);
     if(button_next_episode){
         button_next_episode.hide();
     }
