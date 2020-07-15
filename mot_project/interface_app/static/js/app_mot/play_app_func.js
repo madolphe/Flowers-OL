@@ -1,6 +1,8 @@
 let cross_length = 10;
 let radius;
-
+let message = '';
+let fill_bar_size = 0;
+let show_probe_timer = false;
 
 // main function used to display :
 function play(disp_zone){
@@ -18,6 +20,9 @@ function play(disp_zone){
             }
         }
         display_pannel();
+        if(show_probe_timer){
+            display_probe_timer();
+        }
     }else{
         display_transition()
     }
@@ -52,7 +57,64 @@ function display_fixation_cross(cross_length){
     pop();
 }
 
+function display_probe_timer(){
+
+    // function called 60 times per second ==> probe_dur (in sec) * 60 == number of calls : nb_calls
+    // [progress size = 300] / nb_calls == iter_size
+    // fill_bar_size += iter_size
+    if(fill_bar_size<300){
+        fill_bar_size = fill_bar_size + (300/(parameter_dict['probe_time']*60))
+    }
+    push();
+    textFont(gill_font_light);
+    textSize(25);
+    textStyle(BOLD);
+    fill('white');
+    textAlign(CENTER, TOP);
+    rectMode(CORNERS);
+    text("TEMPS RESTANT:", 70, 70, 200, 200);
+    color('white');
+    stroke(255);
+    strokeWeight(3);
+    noFill();
+    rect(270,70,570,90);
+    pop();
+    push();
+    fill('white');
+    noStroke();
+    rectMode(CORNERS);
+    rect(270,70,270+fill_bar_size,90);
+    pop();
+}
+function display_transition(){
+    let trans_text = 'Great job, '+ str(parameter_dict['episode_number']) +' / 20' +' episode(s) have already been completed! \n'
+        + 'You have found ' + str(parameter_dict['nb_target_retrieved'] + '/' + str(parameter_dict['n_targets']) + ' targets on last trial... \n')
+        + 'Don\'t give up !';
+    let width = 170;
+    let height = 70;
+    push();
+    fill(250,250,250,210);
+    rectMode(CENTER);
+    rect(windowWidth/2, windowHeight/2, windowWidth, 500);
+    button_keep.position(windowWidth/2 - width/2, windowHeight/2 + height/2);
+    button_keep.size(width, height);
+    button_keep.mousePressed(start_episode);
+    textFont(gill_font_light);
+    textSize(25);
+    textStyle(BOLD);
+    fill('black');
+    textAlign(CENTER, TOP);
+    rectMode(CORNERS);
+    text(trans_text, 0, windowHeight/2 - height, windowWidth, 2*height);
+    text(message, 0, windowHeight/2 - 2*height, windowWidth, height);
+    pop();
+}
+
+// functions to parametrized game, timer and user interactions:
 function start_episode(){
+    message = '';
+    fill_bar_size = 0;
+    show_probe_timer = false;
     paused = false;
     button_keep.hide();
     button_hide_params.show();
@@ -83,7 +145,8 @@ function start_episode(){
         // timer(app, 2000, 2000, 10000);
         timer(app, 1000*parameter_dict['presentation_time'],
             1000*parameter_dict['fixation_time'],
-            1000*parameter_dict['tracking_time']);
+            1000*parameter_dict['tracking_time'],
+            1000*parameter_dict['probe_time']);
         update_parameters_values();
         if(!hidden_pannel){
             show_inputs();
@@ -94,7 +157,7 @@ function start_episode(){
     }
 }
 
-function timer(app, presentation_time, fixation_time, tracking_time){
+function timer(app, presentation_time, fixation_time, tracking_time, probe_time){
     pres_timer = setTimeout(function () {
         // after presention_time ms
         // app.phase changes to fixation
@@ -116,10 +179,16 @@ function timer(app, presentation_time, fixation_time, tracking_time){
                 app.phase = 'answer';
                 app.frozen = true;
                 app.enable_interact();
-                show_answer_button(); },
+                show_answer_button();
+                show_probe_timer = true;
+                probe_timer = setTimeout(function () {
+                    message = 'Temps écoulé!';
+                    answer_button_clicked()
+                },
+                    probe_time)},
                 tracking_time)},
-            fixation_time)
-    }, presentation_time);
+            fixation_time)},
+        presentation_time);
 }
 
 function show_answer_button(){
@@ -130,6 +199,10 @@ function show_answer_button(){
 }
 
 function answer_button_clicked(){
+    // reset few variables:
+    fill_bar_size = 0;
+    show_probe_timer = false;
+    clearTimeout(probe_timer);
     button_answer.hide();
     let res = app.get_results();
     parameter_dict['nb_target_retrieved'] = res[0];
@@ -149,8 +222,8 @@ function answer_button_clicked(){
 }
 
 function next_episode(){
-    //console.log(parameter_dict);
     button_next_episode.hide();
+    // Send ajax request to backend:
     $.ajax({
     async: false,
     type: "POST",
@@ -169,25 +242,4 @@ function next_episode(){
     button_hide_params.hide();
 }
 
-function display_transition(){
-    let trans_text = 'Great job, '+ str(parameter_dict['episode_number']) +' / 20' +' episode(s) have already been completed! \n'
-        + 'You have found ' + str(parameter_dict['nb_target_retrieved'] + '/' + str(parameter_dict['n_targets']) + ' targets on last trial... \n')
-        + 'Don\'t give up !';
-    let width = 170;
-    let height = 70;
-    push();
-    fill(250,250,250,210);
-    rectMode(CENTER);
-    rect(windowWidth/2, windowHeight/2, windowWidth, 500);
-    button_keep.position(windowWidth/2 - width/2, windowHeight/2 + height/2);
-    button_keep.size(width, height);
-    button_keep.mousePressed(start_episode);
-    textFont(gill_font_light);
-    textSize(25);
-    textStyle(BOLD);
-    fill('black');
-    textAlign(CENTER, TOP);
-    rectMode(CORNERS);
-    text(trans_text, 0, windowHeight/2 - height, windowWidth, 2*height);
-    pop();
-}
+

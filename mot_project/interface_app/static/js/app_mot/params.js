@@ -33,7 +33,7 @@ let arena_background, button_play, button_tuto, button_exit, button_pause, butto
     button_answer, button_next_episode, guard_image, goblin_image, leaf_image,
     sec_task, gill_font_light, gill_font;
 let screen_params = false;
-let pres_timer, tracking_timer, answer_timer;
+let pres_timer, tracking_timer, answer_timer, probe_timer;
 let paused = false;
 
 // inputs for params pannel:

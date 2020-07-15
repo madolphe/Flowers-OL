@@ -18,11 +18,6 @@ from django.conf import settings
 from collections import defaultdict
 
 
-# @TODO: nb_targets_retrieved and update transition
-# @TODO: Display episodes in home with new template
-# @TODO: add probe duration to gaming dynamic
-
-
 def login_page(request, study=''):
     if 'study' in request.session:
         study = request.session.get('study')
