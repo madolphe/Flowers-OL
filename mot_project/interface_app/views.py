@@ -17,7 +17,6 @@ from kidlearn_lib import functions as func
 from django.conf import settings
 from collections import defaultdict
 
-#  @TODO: rethink transition pannel
 #  @TODO: update fixture --> no need for tutorials + add accordion for results
 #  @TODO: check for MOT (add boolean to delete pannel)
 #  @TODO: update baseline to work well on MOT
@@ -91,7 +90,7 @@ def consent_page(request):
         'greeting': greeting,
         'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
         'study': study,
-        'form': form} })
+        'form': form} });
 
 
 @login_required

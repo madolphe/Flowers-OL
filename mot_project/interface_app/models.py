@@ -282,6 +282,7 @@ class Episode(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+
 class SecondaryTask(models.Model):
     episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
     type = models.CharField(max_length=20, default='detection')

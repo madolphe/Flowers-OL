@@ -1,14 +1,10 @@
-// @TODO: add pannel to confirm exit (see text display)
-// @TODO: add pannel to play game when paused
-// @TODO: add css - hover on buttons
-
-
 // p5.js functions to display the game:
 function preload() {
     arena_background = loadImage('/static/images/bavelier_lab/arena.png');
     guard_image = loadImage('/static/images/bavelier_lab/guard.png');
     goblin_image = loadImage('/static/images/bavelier_lab/goblin.png');
     leaf_image = loadImage('/static/images/bavelier_lab/leaf.png');
+    timer_image = loadImage('static/images/timer.png');
 }
 function setup(){
     gill_font_light = loadFont('/static/font/gillsansstd/GillSansStd-Light.otf');
@@ -24,8 +20,10 @@ function setup(){
     button_exit = createButton('EXIT');
     button_pause = createButton('PAUSE');
     button_keep = createButton('PLAY');
+    button_keep.hide();
+    button_tuto.hide();
+    button_pause.hide();
     textAlign(CENTER, CENTER);
-    init_pannel();
 }
 function draw(){
     push();
@@ -39,6 +37,11 @@ function draw(){
     if(mode=='start'){
         start_mode();
     }else if (mode =='play') {
+        time_step ++;
+        if(time_step % 60 == 0){
+            time_step = 0;
+            game_time --;
+        }
         play(parameter_dict['debug']);
     }
     pop();
