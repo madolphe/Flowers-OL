@@ -6,12 +6,13 @@ function display_exit(){
     button_exit.size(width,height);
     button_exit.mousePressed(quit_game);
 
-    button_pause.position(windowWidth-(width*1.3), 80 );
-    button_pause.size(width, height);
-    button_pause.mousePressed(quit_game);
+    // button_pause.position(windowWidth-(width*1.3), 80 );
+    // button_pause.size(width, height);
+    // button_pause.mousePressed(quit_game);
     pop();
 }
 function quit_game(){
         // put here current results !
+        fullscreen(false);
         post('home', parameter_dict, 'post')
 }

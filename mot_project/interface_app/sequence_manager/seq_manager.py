@@ -14,7 +14,7 @@ class MotParamsWrapper:
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
-                           'gaming': 1, }
+                           'gaming': 1, 'game_time': 1*60}
         # Could be obtained through reading graph (to be automated!):
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
                        'speed_max': np.linspace(2, 7, 11, dtype=float),
@@ -54,6 +54,8 @@ class MotParamsWrapper:
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
         self.parameters['nb_distract_retrieved'] = episode.n_distractors
+        # Count how many episodes were played for this init of MOT-wrapper e.g for a session
+        self.parameters['episode_number'] += 1
         return seq
 
     def parse_activity(self, episode):
