@@ -17,6 +17,13 @@ from kidlearn_lib import functions as func
 from django.conf import settings
 from collections import defaultdict
 
+#  @TODO: rethink transition pannel
+#  @TODO: update fixture --> no need for tutorials + add accordion for results
+#  @TODO: check for MOT (add boolean to delete pannel)
+#  @TODO: update baseline to work well on MOT
+#  @TODO: check questions to used in exp
+#  @TODO: user could play anytime he wants on MOT-admin
+
 
 def login_page(request, study=''):
     if 'study' in request.session:
@@ -286,19 +293,17 @@ def next_episode(request):
 @login_required
 @csrf_exempt
 def restart_episode(request):
-    params = request.POST.dict()
+    parameters = request.POST.dict()
     # Save episode and results:
     episode = Episode()
     episode.participant = request.user
     # Same params parse correctly for python:
-    for key, value in params.items():
+    for key, value in parameters.items():
         # Just parse everything:
-        if key != 'secondary_task' and key != 'sec_task_results':
-            params[key] = float(params[key])
-    with open('interface_app/static/JSON/parameters.json', 'w') as json_file:
-        json.dump(params, json_file)
-    with open('interface_app/static/JSON/parameters.json') as json_file:
-        parameters = json.load(json_file)
+        try:
+            parameters[key] = float(value)
+        except ValueError:
+            parameters[key] = value
     return HttpResponse(json.dumps(parameters))
 
 
@@ -307,13 +312,13 @@ def display_progression(request):
     participant = request.user.participantprofile
     # Retrieve all played episodes:
     history = Episode.objects.filter(participant=request.user)
-    display_fields = ['n_targets', 'n_distractors', 'speed_max', 'tracking_time']
+    display_fields = ['n_targets', 'n_distractors', 'speed_max', 'tracking_time', 'probe_time']
     CONTEXT = defaultdict(list)
     for episode in history:
         for field in display_fields:
             CONTEXT[episode.id].append(episode.__dict__[field])
+        CONTEXT[episode.id].append(episode.get_results)
     CONTEXT = dict(CONTEXT)
-    print(CONTEXT)
     participant.extra_json['history'] = CONTEXT
     return render(request, 'tasks/ZPDES_mot/display_progression.html',
                   {'CONTEXT': {'participant': participant}})

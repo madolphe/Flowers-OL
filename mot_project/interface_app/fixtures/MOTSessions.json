@@ -4,7 +4,7 @@
         "fields": {
             "study"         : "zpdes_mot",
             "day"           : 1,
-            "tasks_csv"     : "additional-profile-general,additional-profile-attention,simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "12-months-vgq, years-vgq, additional-profile-general,additional-profile-attention,simple-mot-practice,post-sess-questionnaire,  "
         }
     },
     {
