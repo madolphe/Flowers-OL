@@ -149,10 +149,8 @@ function display_pannel(){
 function add_hover(){
     for(var key in dict_pannel){
         if(mouseX<350){
-            console.log(dict_pannel[key].position+step);
             if(mouseY>dict_pannel[key].position){
                 if(mouseY<dict_pannel[key].position+step){
-                    console.log(key);
                     push();
                     strokeWeight(2);
                     stroke('white');
@@ -255,6 +253,7 @@ function restart(){
         data: parameter_dict,
         success: function(data) {
             parameter_dict = data;
+            console.log(parameter_dict);
             }
         });
     // update screen params and timers
@@ -279,7 +278,7 @@ function raz(){
         nb_target_retrieved: 0, nb_distract_retrieved: 0,  id_session: 0,
         presentation_time: 1, fixation_time: 1, tracking_time: 10,
         debug: 0, secondary_task: 'none', SRI_max: 2, RSI: 1,
-        delta_orientation: 45, screen_params: 39.116, gaming: 1
+        delta_orientation: 45, screen_params: 39.116, gaming: 1, probe_time: 3
     };
     $.ajax({
         async: false,

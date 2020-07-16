@@ -150,7 +150,7 @@ function start_episode(){
         update_parameters_values();
         if(!hidden_pannel){
             show_inputs();
-            hide_pannel();
+            switch_pannel_status();
         }
     }else{
         quit_game();
@@ -235,7 +235,6 @@ function next_episode(){
         parameter_dict = data;
         }
     });
-    //start_episode();
     paused = true;
     button_keep.show();
     hide_inputs();

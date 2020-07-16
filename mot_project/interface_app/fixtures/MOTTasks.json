@@ -83,5 +83,31 @@
                 }
             }
         }
+    },
+        {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "12-months-vgq",
+            "description": "Habitudes de jeux (1)",
+            "prompt": "Commencer",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["VGQ"]
+            }
+        }
+    },
+        {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "years-vgq",
+            "description": "Habitudes de jeux (2)",
+            "prompt": "Commencer",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["VGQ"]
+            }
+        }
     }
 ]
