@@ -17,7 +17,6 @@ from kidlearn_lib import functions as func
 from django.conf import settings
 from collections import defaultdict
 
-#  @TODO: update fixture --> no need for tutorials + add accordion for results
 #  @TODO: check for MOT (add boolean to delete pannel)
 #  @TODO: update baseline to work well on MOT
 #  @TODO: check questions to used in exp

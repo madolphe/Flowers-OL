@@ -172,19 +172,19 @@ function start_episode(){
     // Init the proper app (gamin mode, with sec task etc)
     console.log(parameter_dict);
     if(parameter_dict['debug']==1){
-         app = new MOT(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
-              Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_max'],
-              parameter_dict['speed_max']);
+         app = new MOT(parameter_dict['n_targets'],parameter_dict['n_targets']+parameter_dict['n_distractors'],
+              Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
+              parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max']);
     }else{
         if(parameter_dict['gaming']==0){
             console.log("no gaming mode");
-            app = new MOT_Game_Light(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
-            Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_max'],
-                parameter_dict['speed_max'], 'green', 'red');
+            app = new MOT_Game_Light(parameter_dict['n_targets'],parameter_dict['n_targets']+ parameter_dict['n_distractors'],
+                Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
+                parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], 'green', 'red');
         }else if(parameter_dict['gaming']==1){
-            app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_distractors'], Math.round(ppd*parameter_dict['angle_max']),
-            Math.round(ppd*parameter_dict['angle_min']), parameter_dict['radius'],parameter_dict['speed_max'],
-                parameter_dict['speed_max'], goblin_image, guard_image);
+            app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_targets'] + parameter_dict['n_distractors'],
+                Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
+                parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], goblin_image, guard_image);
             if(parameter_dict['secondary_task']!='none'){
                 sec_task = new Secondary_Task(leaf_image, parameter_dict['secondary_task'], parameter_dict['SRI_max']*1000,
                     parameter_dict['RSI']*1000, parameter_dict['tracking_time']*1000, parameter_dict['delta_orientation'],
@@ -239,13 +239,13 @@ function answer_button_clicked(){
 }
 function next_episode(){
     // First set_up prompt of transition pannel:
-    message = 'Vous avez retrouvé '+ parameter_dict['nb_target_retrieved'] + '/' + parameter_dict['n_targets'] +' cibles.';
-    let add_message = '\n Malheureusement, il en manque '+ str(parameter_dict['n_targets']- parameter_dict['nb_target_retrieved']) +'.';
-    if(parameter_dict['nb_target_retrieved'] == parameter_dict['n_targets']){
-        if(parameter_dict['nb_distract_retrieved'] == parameter_dict['n_distractors']){
+    message = 'Vous avez retrouvé '+ parameter_dict['nb_target_retrieved'] + '/' + app.n_targets +' cibles.';
+    let add_message = '\n Malheureusement, il en manque '+ str(app.n_targets- parameter_dict['nb_target_retrieved']) +'.';
+    if(parameter_dict['nb_target_retrieved'] == app.n_targets){
+        if(parameter_dict['nb_distract_retrieved'] == app.n_distractors){
             add_message = '\n Bien joué!';
         }else{
-            var nb = str(parameter_dict['n_distractors'] - parameter_dict['nb_distract_retrieved'])
+            var nb = str(app.n_distractors - parameter_dict['nb_distract_retrieved']);
             add_message = '\n Malheureusement, vous avez aussi sélectionné '+ nb +' guarde(s)! Évitez les la prochaine fois.';
         }
     }
