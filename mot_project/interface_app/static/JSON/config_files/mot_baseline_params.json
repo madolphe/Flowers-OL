@@ -11,7 +11,7 @@
         "Speed_Min": 2,
         "Speed_Max": 7,
         "Delta_Orient_Max": 30,
-        "N_Down": 1
+        "N_Down": 3
     },
 
     "graph" : {

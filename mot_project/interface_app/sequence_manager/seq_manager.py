@@ -6,7 +6,7 @@ class MotParamsWrapper:
     """
         Wrapper class for kidlearn algorithms to produce correct parameterized tasks dict
     """
-    def __init__(self, participant, admin_pannel=False, game_time=1800):
+    def __init__(self, participant, admin_pannel=False, game_time=60):
         # Check participant study to determine
         self.participant = participant
         if participant.study.name == 'zpdes_admin':
@@ -43,6 +43,10 @@ class MotParamsWrapper:
                         'n_distractors': self.values['n_distractors'][act[self.lvls[act['MAIN'][0]]][3]]}
         for key, value in parameters.items():
             self.parameters[key] = value
+        try:
+            self.parameters['n_distractors'] += self.parameters['n_targets']
+        except KeyError:
+            print('No key')
         return self.parameters
 
     def update(self, episode, seq):
@@ -66,10 +70,13 @@ class MotParamsWrapper:
         # First check if this act was successful:
         answer = episode.get_results
         print("Update answer equals:", answer)
+        # Adjust values in 'n_distractors':
+        n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
+                      for i in range(len(self.values['n_distractors']))])
         # Then just parse act to ZPDES formalism:
         speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
         n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
-        n_distractors_i = np.where(self.values['n_distractors'] == float(episode.n_distractors))[0][0]
+        n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
         track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
         probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
         episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i, probe_i]}
@@ -83,5 +90,5 @@ class MotParamsWrapper:
         :param name: string
         :param new_value: new object to add
         """
+        print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
         self.parameters[name] = new_value
-        return self.parameters

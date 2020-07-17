@@ -11,8 +11,6 @@ var btn_screen = document.getElementById("btn_screen");
 var screen = 0;
 
 btn_screen.onclick = function(){
-  console.log(btn_screen.value);
-  console.log("pusssshed");
   screen = btn_screen.value;
 };
 btn.onclick = function() {

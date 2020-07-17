@@ -4,6 +4,7 @@ let message = '';
 let fill_bar_size = 0;
 let show_probe_timer = false;
 let game_end = false;
+let min, sec;
 
 // main function used to display :
 function play(disp_zone){
@@ -105,8 +106,8 @@ function display_transition(){
     pop();
 }
 function display_game_timer() {
-    var min = Math.floor(game_time / 60);
-    var sec = game_time - (min*60);
+    min = Math.floor(game_time / 60);
+    sec = game_time - (min*60);
     push();
     translate(windowWidth-300,windowHeight-80);
     imageMode(CENTER);
@@ -174,17 +175,17 @@ function start_episode(){
     // Init the proper app (gamin mode, with sec task etc)
     console.log(parameter_dict);
     if(parameter_dict['debug']==1){
-         app = new MOT(parameter_dict['n_targets'],parameter_dict['n_targets']+parameter_dict['n_distractors'],
+         app = new MOT(parameter_dict['n_targets'],parameter_dict['n_distractors'],
               Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
               parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max']);
     }else{
         if(parameter_dict['gaming']==0){
             console.log("no gaming mode");
-            app = new MOT_Game_Light(parameter_dict['n_targets'],parameter_dict['n_targets']+ parameter_dict['n_distractors'],
+            app = new MOT_Game_Light(parameter_dict['n_targets'],parameter_dict['n_distractors'],
                 Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
                 parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], 'green', 'red');
         }else if(parameter_dict['gaming']==1){
-            app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_targets'] + parameter_dict['n_distractors'],
+            app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_distractors'],
                 Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
                 parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], goblin_image, guard_image);
             if(parameter_dict['secondary_task']!='none'){

@@ -121,13 +121,13 @@
 			"group": 2,
 			"handle": "prof-7",
 			"order": 7,
-			"prompt": "Si oui, date d'obtention du permis de conduire",
+			"prompt": "Depuis quand conduisez-vous ? ",
 			"reverse": 0,
-			"min_val": 0,
-			"max_val": 99,
+			"min_val": 1,
+			"max_val": 100,
 			"step": 1,
-			"annotations": "none",
-			"widget": "date",
+			"annotations": "Jamais~Moins d'un an~Entre 1 et 5 ans~Plus de 5 ans",
+			"widget": "range",
 			"type": "string",
 			"help_text": "none"
 		}
@@ -147,7 +147,7 @@
 			"step": 1,
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
 			"widget": "range",
-			"type": "datetime",
+			"type": "string",
 			"help_text": "none"
 		}
 	},
@@ -317,7 +317,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -336,7 +336,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -355,7 +355,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -374,7 +374,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -393,7 +393,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -412,7 +412,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -431,7 +431,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "polar",
+			"widget": "likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -450,6 +450,500 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "likert",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-1",
+			"order": 1,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Agacant~Agréable",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-2",
+			"order": 2,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Incompréhensible~Compréhensible",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-3",
+			"order": 3,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Moderne~Sans fantaisie",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-4",
+			"order": 4,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Appropriation simple~Appropriation compliquée",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-5",
+			"order": 5,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-6",
+			"order": 6,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Ennuyeux~Captivant",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-7",
+			"order": 7,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inintéressant~Intéressant",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-8",
+			"order": 8,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Imprévisible~Prévisible",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-9",
+			"order": 9,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rapide~Lent",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-10",
+			"order": 10,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Original~Conventionnel",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-11",
+			"order": 11,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rigide~Facilitant",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-12",
+			"order": 12,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Bien~Médiocre",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-13",
+			"order": 13,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Compliqué~Simple",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-14",
+			"order": 14,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Repoussant~Attractif",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-15",
+			"order": 15,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Habituel~Avant-gardiste",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-16",
+			"order": 16,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Désagréable~Agréable",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-17",
+			"order": 17,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sécurisant~Insécurisant",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-18",
+			"order": 18,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Stimulant~Soporifique",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-19",
+			"order": 19,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-20",
+			"order": 20,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inefficace~Efficace ",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-21",
+			"order": 21,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Clair~Déroutant",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-22",
+			"order": 22,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Non pragmatique~Pragmatique",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-23",
+			"order": 23,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sobre~Surchargé",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-24",
+			"order": 24,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Attrayant~Rébarbatif",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-25",
+			"order": 25,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sympathique~Inamical",
+			"widget": "polar",
+			"type": "integer",
+			"help_text": "none"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-26",
+			"order": 26,
+			"prompt": "",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Conservateur~Innovant",
 			"widget": "polar",
 			"type": "integer",
 			"help_text": "none"

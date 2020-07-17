@@ -23,6 +23,7 @@ urlpatterns = [
     path('restart_episode', views.restart_episode, name='restart_episode'),
     path('set_mot_params', views.set_mot_params, name='set_mot_params'),
     path('display_progression', views.display_progression, name="display_progression"),
+    path('mot_close_task', views.mot_close_task, name='mot_close_task'),
 
     ## JOLD urls
     path('JOLD/practice-LL', views.jold_start_ll_practice, name='jold_start_ll_practice'),

@@ -3,12 +3,19 @@
         "model": "interface_app.Task",
         "fields": {
             "name": "additional-profile-general",
-            "description": "Complete profile",
+            "description": "Profil général",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
-                "instruments": ["get_profil"]
+                "instruments": ["get_profil"],
+                "exclude": {
+                    "handle__in": [
+                        "prof-3",
+                        "prof-4",
+                        "prof-5"
+                    ]
+                }
             }
         }
     },
@@ -16,7 +23,7 @@
         "model": "interface_app.Task",
         "fields": {
             "name": "additional-profile-attention",
-            "description": "Complete profile",
+            "description": "Profil général",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -65,7 +72,7 @@
         "model": "interface_app.Task",
         "fields": {
             "name": "post-sess-questionnaire",
-            "description": "Complete profile",
+            "description": "Questionnaire post-session",
             "prompt": "Begin questionnaire",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -107,6 +114,19 @@
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["VGQ"]
+            }
+        }
+    },
+            {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "ueq",
+            "description": "Questionnaire d'utilisabilité",
+            "prompt": "Commencer",
+            "view_name": "JOLD_question_block",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["UEQ"]
             }
         }
     }
