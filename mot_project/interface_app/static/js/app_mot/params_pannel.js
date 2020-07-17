@@ -272,25 +272,10 @@ function restart(){
     start_episode();
 }
 function raz(){
-    default_params = {
-        n_targets: 1, n_distractors: 2, angle_max: 9, angle_min: 3,
-        radius: 90, speed_min: 2, speed_max: 2, episode_number: 0,
-        nb_target_retrieved: 0, nb_distract_retrieved: 0,  id_session: 0,
-        presentation_time: 1, fixation_time: 1, tracking_time: 10,
-        debug: 0, secondary_task: 'none', SRI_max: 2, RSI: 1,
-        delta_orientation: 45, screen_params: 39.116, gaming: 1, probe_time: 3
-    };
-    $.ajax({
-        async: false,
-        type: "POST",
-        url: "/restart_episode",
-        dataType: "json",
-        traditional: true,
-        data: default_params,
-        success: function(data) {
-            parameter_dict = data;
-            }
-        });
+    // No more useless call to backend:
+    Object.keys(default_params).forEach(function(key) {
+        parameter_dict[key] = default_params[key]
+    });
     set_screen_params();
     clearTimeout(pres_timer);
     clearTimeout(tracking_timer);

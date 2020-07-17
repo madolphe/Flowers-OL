@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 from django.utils import timezone
 from . import models
 
+
 def add_message(request, message, tag='info'):
     request.session.setdefault('messages', {})[tag] = message
 
@@ -25,7 +26,6 @@ def send_delayed_email(to, sender, subject, message_template):
 
 
 def assign_mot_condition(participant):
-    print(participant.study.name)
     # First, check if participant study is zpdes_admin
     if participant.study.name == 'zpdes_admin':
         participant.extra_json['condition'] = 'zpdes'

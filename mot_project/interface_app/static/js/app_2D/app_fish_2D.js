@@ -102,7 +102,6 @@ function windowResized(){
 
 // Additional functions to interract with user:
 function start_episode(){
-    update_episode_number();
     if(parameter_dict['episode_number']<8){
         app = new Space_App(parameter_dict['n_targets'], parameter_dict['n_distractors'],
                     parameter_dict['target_color'], parameter_dict['distractor_color'],
@@ -175,7 +174,4 @@ function next_episode(){
         }
     });
     start_episode();
-}
-function update_episode_number(){
-    //document.getElementById("episode_number").innerHTML = parameter_dict['episode_number'];
 }

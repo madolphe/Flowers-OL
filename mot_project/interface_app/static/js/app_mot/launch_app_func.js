@@ -37,7 +37,10 @@ function launch_app(){
     button_play.hide();
     button_tuto.hide();
     fullscreen(true);
-    init_pannel();
+    // Add admin pannel if participant.study is zpdes-admin:
+    if(parameter_dict['admin_pannel']){
+        init_pannel();
+    }
     set_screen_params();
     timer_end_game();
     start_episode();
