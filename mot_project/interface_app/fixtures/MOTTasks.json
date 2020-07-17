@@ -42,7 +42,7 @@
             "description": "Attention task",
             "prompt": "Begin practice",
             "view_name": "app_MOT",
-            "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions_admin.html, Paramètre d'écran=tasks/ZPDES_mot/screen_params.html-"
+            "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions_admin.html, Paramètre d'écran=tasks/ZPDES_mot/screen_params.html-, Historique d'épisode=tasks/ZPDES_mot/link_to_progression.html-"
         }
     },
         {
@@ -52,7 +52,7 @@
             "description": "Screen information",
             "prompt": "Begin questionnaire",
             "view_name": "set_mot_params",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html",
             "extra_json": {
                 "instruments": ["get_profil"],
                 "include": {
