@@ -17,10 +17,9 @@ from kidlearn_lib import functions as func
 from django.conf import settings
 from collections import defaultdict
 
-#  @TODO: check for MOT (add boolean to delete pannel)
-#  @TODO: update baseline to work well on MOT
-#  @TODO: check questions to used in exp
+#  @TODO: visuals of some questionnaires
 #  @TODO: user could play anytime he wants on MOT-admin
+#  @TODO: if user stops playing add to extra_json paused moment
 
 
 def login_page(request, study=''):
@@ -191,6 +190,29 @@ def super_home(request):
 
 
 @login_required
+def mot_close_task(request):
+    participant = request.user.participantprofile
+    params = request.POST.dict()
+    game_end = False
+    if params['game_end'] == 'true':
+        game_end = True
+    if not game_end:
+        min = int(request.POST.dict()['game_time']) // 60
+        sec = int(request.POST.dict()['game_time']) - min * 60
+        request.session['mot_wrapper'].set_parameter('game_time', request.POST.dict()['game_time'])
+        add_message(request, 'Il vous reste encore du temps de jeu: {} min et {} sec, continuez!'.format(min, sec),
+                    tag='WARNING')
+        # Store that participant just paused the game:
+        participant.extra_json['paused_mot_start'] = str(datetime.time)
+        participant.save()
+        return redirect(reverse(home))
+    else:
+        add_message(request, 'Vous avez terminé la session de jeu!', 'success')
+        request.session['exit_view_done'] = True,
+        return redirect(reverse(end_task))
+
+
+@login_required
 @csrf_exempt
 def set_mot_params(request):
     participant = request.user.participantprofile
@@ -232,13 +254,18 @@ def MOT_task(request):
     """Initial call to mot-app"""
     # Var to placed in a config file :
     dir_path = "interface_app/static/JSON/config_files"
+
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    # Init a wrapper for mot :
-    mot_wrapper = MotParamsWrapper(participant)
+
+    # Init a wrapper for mot if called for the first time:
+    if 'mot_wrapper' not in request.session:
+        request.session['mot_wrapper'] = MotParamsWrapper(participant)
+
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
         assign_mot_condition(participant)
+
     # Init the correct sequence manager:
     if participant.extra_json['condition'] == 'zpdes':
         zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
@@ -249,10 +276,9 @@ def MOT_task(request):
     # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
     for episode in history:
-        request.session['seq_manager'] = mot_wrapper.update(episode, request.session['seq_manager'])
-    request.session['mot_wrapper'] = mot_wrapper
+        request.session['seq_manager'] = request.session['mot_wrapper'].update(episode, request.session['seq_manager'])
     # Get parameters for task:
-    parameters = mot_wrapper.sample_task(request.session['seq_manager'])
+    parameters = request.session['mot_wrapper'].sample_task(request.session['seq_manager'])
     # Serialize it to pass it to js_mot:
     parameters = json.dumps(parameters)
     return render(request, 'app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})

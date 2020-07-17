@@ -28,7 +28,7 @@ def send_delayed_email(to, sender, subject, message_template):
 def assign_mot_condition(participant):
     # First, check if participant study is zpdes_admin
     if participant.study.name == 'zpdes_admin':
-        participant.extra_json['condition'] = 'zpdes'
+        participant.extra_json['condition'] = 'baseline'
         print("Condition saved:", participant.extra_json['condition'])
         zpdes_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='zpdes'))
         baseline_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='baseline'))

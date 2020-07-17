@@ -303,4 +303,7 @@ input.setting_button{
   width: 200px;
 }
 
-
+#timer_img{
+    background: black;
+    width: 80px;
+}
