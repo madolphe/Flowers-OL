@@ -50,6 +50,15 @@ let screen_params_input, angle_max_input, angle_min_input,debug_input, activity_
     presentation_time_description, fixation_time_description, tracking_time_description, SRI_max_description,
     RSI_description, delta_orientation_description, button_hide_params, hidden_pannel, button_raz_params,game_timer;
 
+
+let default_params = {
+        n_targets: 1, n_distractors: 2, angle_max: 9, angle_min: 3,
+        radius: 90, speed_min: 4, speed_max: 4, nb_target_retrieved: 0, nb_distract_retrieved: 0,
+        presentation_time: 1, fixation_time: 1, tracking_time: 7,
+        debug: 0, secondary_task: 'none', SRI_max: 2, RSI: 1,
+        delta_orientation: 45, gaming: 1, probe_time: 3 };
+
+
 // clear session storage:
 sessionStorage.clear();
 

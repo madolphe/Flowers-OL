@@ -22,7 +22,9 @@ function play(disp_zone){
                 sec_task.display_task();
             }
         }
-        display_pannel();
+        if(parameter_dict['admin_pannel']){
+            display_pannel();
+        }
         if(show_probe_timer){
             display_probe_timer();
         }
@@ -118,7 +120,7 @@ function display_game_timer() {
     fill('white');
     textAlign(CENTER, CENTER);
     rectMode(CORNER);
-    text("Temps de jeu: " + str(min) + ':' + str(sec), windowWidth-310, windowHeight-150, 300, 150);
+    text("Fin du jeu: " + str(min) + ':' + str(sec), windowWidth-310, windowHeight-150, 300, 150);
     pop();
 }
 // Functions to manage game time:
@@ -198,15 +200,17 @@ function start_episode(){
         1000*parameter_dict['fixation_time'],
         1000*parameter_dict['tracking_time'],
         1000*parameter_dict['probe_time']);
-    // Adjust pannel parameters to current parameter_dict:
-    update_parameters_values();
-    // Show hide-show parameters button:
-    button_hide_params.show();
-    // If current hidden variable is set to true, show inputs:
-    if(!hidden_pannel){
-        button_hide_params.elt.innerHTML = 'HIDE <<';
-        button_hide_params.position(7*150/4, windowHeight - 2.8*step);
-        show_inputs();
+    if(parameter_dict['admin_pannel']){
+        // Adjust pannel parameters to current parameter_dict:
+        update_parameters_values();
+        // Show hide-show parameters button:
+        button_hide_params.show();
+        // If current hidden variable is set to true, show inputs:
+        if(!hidden_pannel){
+            button_hide_params.elt.innerHTML = 'HIDE <<';
+            button_hide_params.position(7*150/4, windowHeight - 2.8*step);
+            show_inputs();
+        }
     }
 }
 function show_answer_button(){
@@ -267,8 +271,10 @@ function next_episode(){
     });
     paused = true;
     button_keep.show();
-    hide_inputs();
-    button_hide_params.hide();
+    if(parameter_dict['admin_pannel']){
+        hide_inputs();
+        button_hide_params.hide();
+    }
 }
 
 

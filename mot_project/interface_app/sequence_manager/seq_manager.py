@@ -6,15 +6,19 @@ class MotParamsWrapper:
     """
         Wrapper class for kidlearn algorithms to produce correct parameterized tasks dict
     """
-    def __init__(self, participant, admin_pannel=False):
+    def __init__(self, participant, admin_pannel=False, game_time=1800):
+        # Check participant study to determine
         self.participant = participant
+        if participant.study.name == 'zpdes_admin':
+            admin_pannel = True
+            game_time = 5*60
         screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
         # Just init "fixed parameters":
         self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 90, 'speed_min': 4, 'speed_max': 4,
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
-                           'gaming': 1, 'game_time': 1*60}
+                           'gaming': 1, 'game_time': game_time, 'admin_pannel': admin_pannel}
         # Could be obtained through reading graph (to be automated!):
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
                        'speed_max': np.linspace(2, 7, 11, dtype=float),
