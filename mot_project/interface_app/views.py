@@ -419,6 +419,7 @@ def jold_close_postsess_questionnaire(request):
         nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
         wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
         add_message(request, 'La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
+    add_message(request, 'Le questionnaire est complet', 'success')
     answer = Answer()
     answer.question = Question.objects.get(handle='jold-0')
     answer.participant = participant
@@ -477,7 +478,6 @@ def joldQuestionBlock(request):
         if participant.extra_json['questions_extra']['ind'] == len(groups):
             del participant.extra_json['questions_extra']
             participant.save()
-            add_message(request, 'Questionnaire is complete', 'success')
             return redirect(reverse(end_task))
         return redirect(reverse(joldQuestionBlock))
     return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
