@@ -4,6 +4,8 @@
         "fields": {
             "study"         : "zpdes_mot",
             "day"           : 1,
+            "required"      : false,
+            "index"         : 1,
             "tasks_csv"     : "additional-profile-general,additional-profile-attention,12-months-vgq,years-vgq,simple-mot-practice,ueq,post-sess-questionnaire"
                     }
     },
@@ -11,7 +13,9 @@
         "model": "interface_app.ExperimentSession",
         "fields": {
             "study"         : "zpdes_mot",
-            "day"           : 2,
+            "day"           : 1,
+            "required"      : false,
+            "index"         : 2,
             "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
     },
@@ -20,7 +24,9 @@
         "model": "interface_app.ExperimentSession",
         "fields": {
             "study"         : "zpdes_mot",
-            "day"           : 3,
+            "day"           : 4,
+            "required"      : false,
+            "index"         : 1,
             "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
     },
@@ -29,6 +35,8 @@
         "fields": {
             "study"         : "zpdes_mot",
             "day"           : 4,
+            "required"      : false,
+            "index"         : 2,
             "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
     },

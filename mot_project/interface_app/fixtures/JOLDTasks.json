@@ -110,11 +110,11 @@
     {
         "model": "interface_app.Task",
         "fields": {
-            "name": "JOLD-prestudy-questions",
+            "name": "JOLD-profile-questions",
             "description": "Questionnaire préliminaire",
             "prompt": "Complétez votre profil",
             "view_name": "JOLD_question_block",
-            "info_templates_csv": "Votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_profil"],
                 "exclude": {

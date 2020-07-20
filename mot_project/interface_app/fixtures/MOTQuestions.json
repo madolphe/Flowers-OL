@@ -7,13 +7,13 @@
 			"group": 1,
 			"handle": "prof-1",
 			"order": 1,
-			"prompt": "Taille de la diagonale de votre écran",
+			"prompt": "Taille de la diagonale de votre écran (cm)",
 			"reverse": 0,
 			"min_val": 0,
 			"max_val": 1,
 			"step": 1,
 			"annotations": "none",
-			"widget": "float-choice",
+			"widget": "custom-float",
 			"type": "float",
 			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)"
 		}
@@ -32,7 +32,7 @@
 			"max_val": 2,
 			"step": 1,
 			"annotations": "femme~homme~autre",
-			"widget": "select-choice",
+			"widget": "custom-select",
 			"type": "string",
 			"help_text": "none"
 		}
@@ -51,7 +51,7 @@
 			"max_val": 99,
 			"step": 1,
 			"annotations": "none",
-			"widget": "float-choice",
+			"widget": "custom-float",
 			"type": "integer",
 			"help_text": "Indiquez le nombre d'années. Si jamais pratiqué, répondre \"0\""
 		}
@@ -70,7 +70,7 @@
 			"max_val": 100,
 			"step": 1,
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-			"widget": "range",
+			"widget": "custom-range",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -89,7 +89,7 @@
 			"max_val": 4,
 			"step": 1,
 			"annotations": "FPS(ex:Call of Duty)~Action(ex:The last of us)~Sport(ex: Fifa)~MMO (ex:World of warcraft)~RPG (ex:Final Fantasy)",
-			"widget": "categories",
+			"widget": "custom-categories",
 			"type": "string",
 			"help_text": "none"
 		}
@@ -108,7 +108,7 @@
 			"max_val": 1,
 			"step": 1,
 			"annotations": "oui~non",
-			"widget": "select-choice",
+			"widget": "custom-select",
 			"type": "boolean",
 			"help_text": "none"
 		}
@@ -127,7 +127,7 @@
 			"max_val": 100,
 			"step": 1,
 			"annotations": "Jamais~Moins d'un an~Entre 1 et 5 ans~Plus de 5 ans",
-			"widget": "range",
+			"widget": "custom-range",
 			"type": "string",
 			"help_text": "none"
 		}
@@ -146,7 +146,7 @@
 			"max_val": 100,
 			"step": 1,
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-			"widget": "range",
+			"widget": "custom-range",
 			"type": "string",
 			"help_text": "none"
 		}
@@ -165,7 +165,7 @@
 			"max_val": 1,
 			"step": 1,
 			"annotations": "oui~non",
-			"widget": "select-choice",
+			"widget": "custom-select",
 			"type": "boolean",
 			"help_text": "none"
 		}
@@ -184,7 +184,7 @@
 			"max_val": 1,
 			"step": 1,
 			"annotations": "oui~non",
-			"widget": "select-choice",
+			"widget": "custom-select",
 			"type": "boolean",
 			"help_text": "none"
 		}
@@ -203,7 +203,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -222,7 +222,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -241,7 +241,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -260,7 +260,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -279,7 +279,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -298,7 +298,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -317,7 +317,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -336,7 +336,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -355,7 +355,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -374,7 +374,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -393,7 +393,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -412,7 +412,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -431,7 +431,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -450,7 +450,7 @@
 			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
-			"widget": "likert",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -469,7 +469,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Agacant~Agréable",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -488,7 +488,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Incompréhensible~Compréhensible",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -507,7 +507,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Moderne~Sans fantaisie",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -526,7 +526,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Appropriation simple~Appropriation compliquée",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -545,7 +545,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -564,7 +564,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Ennuyeux~Captivant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -583,7 +583,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Inintéressant~Intéressant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -602,7 +602,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Imprévisible~Prévisible",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -621,7 +621,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Rapide~Lent",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -640,7 +640,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Original~Conventionnel",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -659,7 +659,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Rigide~Facilitant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -678,7 +678,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Bien~Médiocre",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -697,7 +697,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Compliqué~Simple",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -716,7 +716,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Repoussant~Attractif",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -735,7 +735,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Habituel~Avant-gardiste",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -754,7 +754,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Désagréable~Agréable",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -773,7 +773,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Sécurisant~Insécurisant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -792,7 +792,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Stimulant~Soporifique",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -811,7 +811,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -830,7 +830,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Inefficace~Efficace ",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -849,7 +849,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Clair~Déroutant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -868,7 +868,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Non pragmatique~Pragmatique",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -887,7 +887,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Sobre~Surchargé",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -906,7 +906,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Attrayant~Rébarbatif",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -925,7 +925,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Sympathique~Inamical",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
@@ -944,7 +944,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Conservateur~Innovant",
-			"widget": "polar",
+			"widget": "custom-polar",
 			"type": "integer",
 			"help_text": "none"
 		}
