@@ -18,7 +18,7 @@ def send_delayed_email(to, sender, subject, message_template):
         subject = subject,
         html_message = message_template,
         message = strip_tags(message_template),
-        from_email = sender,
+        from_email = settings.DEFAULT_FROM_EMAIL,
         recipient_list = [to],
         fail_silently = False
     )
