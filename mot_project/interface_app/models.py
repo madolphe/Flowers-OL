@@ -62,6 +62,7 @@ class ExperimentSession(models.Model):
     day = models.IntegerField(default=0) # have to use default=0 because nulls are not compared for uniqueness
     index = models.IntegerField(default=0)
     wait = models.DurationField(default=datetime.timedelta(0))
+    required = models.BooleanField(default=True)
     tasks_csv = models.CharField(max_length=200, default='')
     extra_json = jsonfield.JSONField(default={}, blank=True)
 
@@ -143,8 +144,12 @@ class ParticipantProfile(models.Model):
             self.save()
 
     @property
-    def current_session_valid(self, request=None):
+    def current_session_valid(self):
         if not self.current_session.is_today(ref_date=self.date.date()):
+            if not self.current_session.required:
+                self.close_current_session()
+                self.set_current_session()
+                return self.current_session_valid
             return False
         if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
             return False
