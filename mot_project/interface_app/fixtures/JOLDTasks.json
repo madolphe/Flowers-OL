@@ -111,7 +111,7 @@
         "model": "interface_app.Task",
         "fields": {
             "name": "JOLD-profile-questions",
-            "description": "Questionnaire préliminaire",
+            "description": "Complétez votre profil",
             "prompt": "Complétez votre profil",
             "view_name": "JOLD_question_block",
             "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
