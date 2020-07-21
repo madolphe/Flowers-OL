@@ -60,7 +60,12 @@ br {
     margin-top: 30px;
 }
 .logout {
-    margin: auto;
+    margin: 2rem auto;
+    /* margin-top: 2rem; */
+}
+.container.logout-button {
+    display: flex;
+    justify-content: center
 }
 
 
@@ -189,8 +194,8 @@ div.svg-image {
 
 /* || THE SIDE PANEL */
 .side-panel {
-    overflow-x: hidden;
-    padding: 5%;
+    overflow: visible;
+    padding: 5% 5% 2% 5%;
     width: 30%;
     height: 100%;
     top: 0;
@@ -198,16 +203,42 @@ div.svg-image {
     background-color: black;
     color: white;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: space-between; */
 }
 .side-panel .side-info {
-    flex: 1;
+    height: 80%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    position: relative;
 }
+div.fade-screen {
+  position: absolute;
+  bottom: 0;
+  height: 20%;
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(to top,
+     rgba(0,0,0, 1) 0%,
+     rgba(0,0,0, 0) 100%
+  );
+  pointer-events: none; /* so the text is still selectable */
+}
+.side-panel .side-info::-webkit-scrollbar {display: none}
 .side-panel .info h2{
     font-weight: 300;
 }
+.side-panel .side-info
+/* div.gradient-border {
+    margin: 0;
+    position: relative;
+    min-height: 25px;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.05) 100%);
+    z-index: 100;
+    border: 1px solid white;
+} */
 
 .progress-list{}
 .progress-list li {

@@ -36,7 +36,7 @@
 }
 .basic-likert-widget > label {
     display: flex;
-    font-size: .9vw;
+    font-size: 13px;
     cursor: pointer;
     text-align: center;
     justify-content: center;
