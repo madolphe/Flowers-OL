@@ -6,7 +6,7 @@
             "name"          : "zpdes_mot",
             "project"       : "Attention training",
             "base_template" : "base.html",
-            "style"         : "css/zpdes_home.css",
+            "style"         : "css/common.css",
             "briefing_template"  : "JOLD/consent_form.html",
             "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "maxime.adolphe@inria.fr"
@@ -19,7 +19,7 @@
             "name"          : "jold_ll",
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
-            "style"         : "css/jold_home.css",
+            "style"         : "css/common.css",
             "briefing_template"  : "JOLD/consent_form.html",
             "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "alexandr.ten@inria.fr"
@@ -32,7 +32,7 @@
             "name"          : "jold_mot",
             "project"       : "Judgments of learning dynamics",
             "base_template" : "base.html",
-            "style"         : "css/jold_home.css",
+            "style"         : "css/common.css",
             "briefing_template"  : "JOLD/consent_form.html",
             "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "alexandr.ten@inria.fr"
@@ -45,7 +45,7 @@
             "name"          : "zpdes_admin",
             "project"       : "Attention training",
             "base_template" : "base.html",
-            "style"         : "css/zpdes_home.css",
+            "style"         : "css/common.css",
             "briefing_template"  : "ZPDES/consent_form.html"
         }
     }
