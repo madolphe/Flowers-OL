@@ -8,12 +8,11 @@ from .utils import send_delayed_email
 from django.template.loader import render_to_string
 
 
-
 class Study(models.Model):
     name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
     project = models.CharField(max_length=100, default='')
     base_template = models.CharField(max_length=50, default='base.html')
-    style = models.CharField(max_length=50, null=True)
+    style = models.CharField(default='css/home.css', max_length=50, null=True)
     briefing_template = models.CharField(max_length=50, null=True, blank=True)
     reminder_template = models.CharField(max_length=50, null=True, blank=True)
     extra_json = jsonfield.JSONField(default={}, blank=True)
