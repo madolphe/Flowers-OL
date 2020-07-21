@@ -17,10 +17,6 @@ from kidlearn_lib import functions as func
 from django.conf import settings
 from collections import defaultdict
 
-#  @TODO: visuals of some questionnaires
-#  @TODO: user could play anytime he wants on MOT-admin
-#  @TODO: if user stops playing add to extra_json paused moment
-
 
 def login_page(request, study=''):
     if 'study' in request.session:
