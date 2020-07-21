@@ -7,7 +7,7 @@
 			"group": 1,
 			"handle": "prof-1",
 			"order": 1,
-			"prompt": "Taille de la diagonale de votre écran (cm)",
+			"prompt": "Taille de la diagonale de votre écran en cm",
 			"reverse": 0,
 			"min_val": 0,
 			"max_val": 1,
@@ -34,7 +34,7 @@
 			"annotations": "femme~homme~autre",
 			"widget": "custom-select",
 			"type": "string",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -72,7 +72,7 @@
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
 			"widget": "custom-range",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -91,7 +91,7 @@
 			"annotations": "FPS(ex:Call of Duty)~Action(ex:The last of us)~Sport(ex: Fifa)~MMO (ex:World of warcraft)~RPG (ex:Final Fantasy)",
 			"widget": "custom-categories",
 			"type": "string",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -110,7 +110,7 @@
 			"annotations": "oui~non",
 			"widget": "custom-select",
 			"type": "boolean",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -129,7 +129,7 @@
 			"annotations": "Jamais~Moins d'un an~Entre 1 et 5 ans~Plus de 5 ans",
 			"widget": "custom-range",
 			"type": "string",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -148,7 +148,7 @@
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
 			"widget": "custom-range",
 			"type": "string",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -167,7 +167,7 @@
 			"annotations": "oui~non",
 			"widget": "custom-select",
 			"type": "boolean",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -186,7 +186,7 @@
 			"annotations": "oui~non",
 			"widget": "custom-select",
 			"type": "boolean",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -205,7 +205,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -224,7 +224,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -243,7 +243,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -262,7 +262,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -281,7 +281,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -300,7 +300,7 @@
 			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -311,7 +311,7 @@
 			"group": 1,
 			"handle": "vgq-1",
 			"order": 1,
-			"prompt": "First/Third Person Shooter (FPS/TPS) ex: Call Of Duty, Halo, Battlefield, Half-Life, Overwatch, Counterstrike",
+			"prompt": "First/Third Person Shooter (FPS/TPS) ",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -319,7 +319,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Call Of Duty, Halo, Battlefield, Half-Life, Overwatch, Counterstrike"
 		}
 	},
 	{
@@ -330,7 +330,7 @@
 			"group": 1,
 			"handle": "vgq-2",
 			"order": 2,
-			"prompt": "Action - RPG / Aventure ex :The Witcher, Mass Effect, Fallout 4, Skyrim, GTA, Assassin’s Creed, Tomb Raider, The Last of Us",
+			"prompt": "Action - RPG / Aventure",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -338,7 +338,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex :The Witcher, Mass Effect, Fallout 4, Skyrim, GTA, Assassin’s Creed, Tomb Raider, The Last of Us"
 		}
 	},
 	{
@@ -349,7 +349,7 @@
 			"group": 1,
 			"handle": "vgq-3",
 			"order": 3,
-			"prompt": "Sport / Pilotage ex: Fifa, NHL, Mario Kart, Need for Speed, Forza",
+			"prompt": "Sport / Pilotage",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -357,7 +357,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Fifa, NHL, Mario Kart, Need for Speed, Forza"
 		}
 	},
 	{
@@ -368,7 +368,7 @@
 			"group": 1,
 			"handle": "vgq-4",
 			"order": 4,
-			"prompt": "Stratégie en temps réel / MOBA : Starcraft, Warcraft I, II & III, DotA, Command & Conquer, League of Legends, Age of Empires…",
+			"prompt": "Stratégie en temps réel / MOBA ",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -376,7 +376,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Starcraft, Warcraft I, II & III, DotA, Command & Conquer, League of Legends, Age of Empire"
 		}
 	},
 	{
@@ -387,7 +387,7 @@
 			"group": 2,
 			"handle": "vgq-5",
 			"order": 5,
-			"prompt": "Jeux à base de tours / Jeu de rôle sans action / Fantasy ex: World of Warcraft, Final Fantasy, Fable, Pokemon, Dragon Age, …",
+			"prompt": "Jeux à base de tours / Jeu de rôle sans action / Fantasy ",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -395,7 +395,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: World of Warcraft, Final Fantasy, Fable, Pokemon, Dragon Age"
 		}
 	},
 	{
@@ -406,7 +406,7 @@
 			"group": 2,
 			"handle": "vgq-6",
 			"order": 6,
-			"prompt": "Jeux à base de tours stratégique / Simulation de vie / Puzzle ex: Civilization, Hearthstone, The Sims, Restaurant Empire, Puzzle Quest, Bejeweled, Solitaire, Candy Crush",
+			"prompt": "Jeux à base de tours stratégique / Simulation de vie / Puzzle ",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -414,7 +414,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Civilization, Hearthstone, The Sims, Restaurant Empire, Puzzle Quest, Bejeweled, Solitaire, Candy Crush"
 		}
 	},
 	{
@@ -425,7 +425,7 @@
 			"group": 2,
 			"handle": "vgq-7",
 			"order": 7,
-			"prompt": "Jeux de musique ex: Guitar Hero, DDR, Rock Band",
+			"prompt": "Jeux de musique",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -433,7 +433,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Guitar Hero, DDR, Rock Band"
 		}
 	},
 	{
@@ -444,7 +444,7 @@
 			"group": 2,
 			"handle": "vgq-8",
 			"order": 8,
-			"prompt": "Autres jeux qui ne correspondent à aucune catégories précédentes ex: Phone games, Browser games, Fighting games, etc",
+			"prompt": "Autres jeux qui ne correspondent à aucune catégories précédentes",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 5,
@@ -452,7 +452,7 @@
 			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
 			"widget": "custom-likert",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": "ex: Jeux mobiles, jeux sur navigateurs, jeux de combats"
 		}
 	},
 	{
@@ -463,7 +463,7 @@
 			"group": 1,
 			"handle": "ueq-1",
 			"order": 1,
-			"prompt": "",
+			"prompt": "Agacant ou Agréable?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -471,7 +471,7 @@
 			"annotations": "Agacant~Agréable",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -482,7 +482,7 @@
 			"group": 1,
 			"handle": "ueq-2",
 			"order": 2,
-			"prompt": "",
+			"prompt": "Incompréhensible ou Compréhensible ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -490,7 +490,7 @@
 			"annotations": "Incompréhensible~Compréhensible",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -501,7 +501,7 @@
 			"group": 1,
 			"handle": "ueq-3",
 			"order": 3,
-			"prompt": "",
+			"prompt": "Moderne ou Sans fantaisie ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -509,7 +509,7 @@
 			"annotations": "Moderne~Sans fantaisie",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -520,7 +520,7 @@
 			"group": 1,
 			"handle": "ueq-4",
 			"order": 4,
-			"prompt": "",
+			"prompt": "Appropriation simple ou Appropriation compliquée ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -528,7 +528,7 @@
 			"annotations": "Appropriation simple~Appropriation compliquée",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -539,7 +539,7 @@
 			"group": 1,
 			"handle": "ueq-5",
 			"order": 5,
-			"prompt": "",
+			"prompt": "Apporte de la valeur ou Peu de valeur ajoutée? ",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -547,7 +547,7 @@
 			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -558,7 +558,7 @@
 			"group": 1,
 			"handle": "ueq-6",
 			"order": 6,
-			"prompt": "",
+			"prompt": "Ennuyeux ou Captivant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -566,7 +566,7 @@
 			"annotations": "Ennuyeux~Captivant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -577,7 +577,7 @@
 			"group": 1,
 			"handle": "ueq-7",
 			"order": 7,
-			"prompt": "",
+			"prompt": "Inintéressant ou Intéressant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -585,7 +585,7 @@
 			"annotations": "Inintéressant~Intéressant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -596,7 +596,7 @@
 			"group": 2,
 			"handle": "ueq-8",
 			"order": 8,
-			"prompt": "",
+			"prompt": "Imprévisible ou Prévisible ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -604,7 +604,7 @@
 			"annotations": "Imprévisible~Prévisible",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -615,7 +615,7 @@
 			"group": 2,
 			"handle": "ueq-9",
 			"order": 9,
-			"prompt": "",
+			"prompt": "Rapide ou Lent ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -623,7 +623,7 @@
 			"annotations": "Rapide~Lent",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -634,7 +634,7 @@
 			"group": 2,
 			"handle": "ueq-10",
 			"order": 10,
-			"prompt": "",
+			"prompt": "Original ou Conventionnel ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -642,7 +642,7 @@
 			"annotations": "Original~Conventionnel",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -653,7 +653,7 @@
 			"group": 2,
 			"handle": "ueq-11",
 			"order": 11,
-			"prompt": "",
+			"prompt": "Rigide ou Facilitant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -661,7 +661,7 @@
 			"annotations": "Rigide~Facilitant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -672,7 +672,7 @@
 			"group": 2,
 			"handle": "ueq-12",
 			"order": 12,
-			"prompt": "",
+			"prompt": "Bien ou Médiocre ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -680,7 +680,7 @@
 			"annotations": "Bien~Médiocre",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -691,7 +691,7 @@
 			"group": 2,
 			"handle": "ueq-13",
 			"order": 13,
-			"prompt": "",
+			"prompt": "Compliqué ou Simple ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -699,7 +699,7 @@
 			"annotations": "Compliqué~Simple",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -710,7 +710,7 @@
 			"group": 2,
 			"handle": "ueq-14",
 			"order": 14,
-			"prompt": "",
+			"prompt": "Repoussant ou Attractif ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -718,7 +718,7 @@
 			"annotations": "Repoussant~Attractif",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -729,7 +729,7 @@
 			"group": 3,
 			"handle": "ueq-15",
 			"order": 15,
-			"prompt": "",
+			"prompt": "Habituel ou Avant-gardiste ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -737,7 +737,7 @@
 			"annotations": "Habituel~Avant-gardiste",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -748,7 +748,7 @@
 			"group": 3,
 			"handle": "ueq-16",
 			"order": 16,
-			"prompt": "",
+			"prompt": "Désagréable ou Agréable ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -756,7 +756,7 @@
 			"annotations": "Désagréable~Agréable",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -767,7 +767,7 @@
 			"group": 3,
 			"handle": "ueq-17",
 			"order": 17,
-			"prompt": "",
+			"prompt": "Sécurisant ou Insécurisant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -775,7 +775,7 @@
 			"annotations": "Sécurisant~Insécurisant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -786,7 +786,7 @@
 			"group": 3,
 			"handle": "ueq-18",
 			"order": 18,
-			"prompt": "",
+			"prompt": "Stimulant ou Soporifique ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -794,7 +794,7 @@
 			"annotations": "Stimulant~Soporifique",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -805,7 +805,7 @@
 			"group": 3,
 			"handle": "ueq-19",
 			"order": 19,
-			"prompt": "",
+			"prompt": "Répond aux attentes ou Ne répond pas aux attentes ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -813,7 +813,7 @@
 			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -824,7 +824,7 @@
 			"group": 3,
 			"handle": "ueq-20",
 			"order": 20,
-			"prompt": "",
+			"prompt": "Inefficace ou Efficace ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -832,7 +832,7 @@
 			"annotations": "Inefficace~Efficace ",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -843,7 +843,7 @@
 			"group": 3,
 			"handle": "ueq-21",
 			"order": 21,
-			"prompt": "",
+			"prompt": "Clair ou Déroutant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -851,7 +851,7 @@
 			"annotations": "Clair~Déroutant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -862,7 +862,7 @@
 			"group": 4,
 			"handle": "ueq-22",
 			"order": 22,
-			"prompt": "",
+			"prompt": "Non pragmatique ou Pragmatique ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -870,7 +870,7 @@
 			"annotations": "Non pragmatique~Pragmatique",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -881,7 +881,7 @@
 			"group": 4,
 			"handle": "ueq-23",
 			"order": 23,
-			"prompt": "",
+			"prompt": "Sobre ou Surchargé ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -889,7 +889,7 @@
 			"annotations": "Sobre~Surchargé",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -900,7 +900,7 @@
 			"group": 4,
 			"handle": "ueq-24",
 			"order": 24,
-			"prompt": "",
+			"prompt": "Attrayant ou Rébarbatif ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -908,7 +908,7 @@
 			"annotations": "Attrayant~Rébarbatif",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -919,7 +919,7 @@
 			"group": 4,
 			"handle": "ueq-25",
 			"order": 25,
-			"prompt": "",
+			"prompt": "Sympathique ou Inamical ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -927,7 +927,7 @@
 			"annotations": "Sympathique~Inamical",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	},
 	{
@@ -938,7 +938,7 @@
 			"group": 4,
 			"handle": "ueq-26",
 			"order": 26,
-			"prompt": "",
+			"prompt": "Conservateur ou Innovant ?",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
@@ -946,7 +946,7 @@
 			"annotations": "Conservateur~Innovant",
 			"widget": "custom-polar",
 			"type": "integer",
-			"help_text": "none"
+			"help_text": ""
 		}
 	}
 ]

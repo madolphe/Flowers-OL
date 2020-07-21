@@ -97,6 +97,10 @@ class ExperimentSession(models.Model):
             return datetime.datetime.now() - ref_datetime > self.wait
         return True
 
+    def is_past(self, ref_datetime):
+        if self.day:
+            return datetime.date.today() > ref_datetime + datetime.timedelta(days=self.day-1)
+
 
 class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
@@ -143,8 +147,9 @@ class ParticipantProfile(models.Model):
 
     @property
     def current_session_valid(self):
+        # If the current session is not today, not required and was skipped (i.e date in the past):
         if not self.current_session.is_today(ref_date=self.date.date()):
-            if not self.current_session.required:
+            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.date.date()):
                 self.close_current_session()
                 self.set_current_session()
                 return self.current_session_valid
