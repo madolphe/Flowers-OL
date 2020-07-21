@@ -14,6 +14,9 @@
 {% endblock %}
 
 {% block js %}
+    <script src="{% static 'js/JOLD/seedrandom.min.js' %}"></script>
+    <script src="{% static 'js/JOLD/Box2d.js' %}"></script>
+    <script src="{% static 'js/JOLD/easeljs.min.js' %}"></script>
     <script> xparams = {% autoescape off %}{{ CONTEXT.game_params }}{% endautoescape %} </script>
     <script src="{% static 'js/app_LL/utilities.js' %}"></script>
     <script src="{% static 'js/app_LL/game.js' %}"></script>
