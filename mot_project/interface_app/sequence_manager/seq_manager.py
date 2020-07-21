@@ -6,7 +6,7 @@ class MotParamsWrapper:
     """
         Wrapper class for kidlearn algorithms to produce correct parameterized tasks dict
     """
-    def __init__(self, participant, admin_pannel=False, game_time=60):
+    def __init__(self, participant, admin_pannel=False, game_time=3):
         # Check participant study to determine
         self.participant = participant
         if participant.study.name == 'zpdes_admin':

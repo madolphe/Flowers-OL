@@ -127,7 +127,13 @@ def thanks_page(request):
         session_day = participant.sessions.first().day
         if session_day:
             next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
-            text = 'Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.format(next_date.strftime('%d/%m/%Y'))
+            if datetime.date.today() == next_date:
+                text = 'Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
+                       'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
+                       ' Déconnectez vous, reconnectez vous et recommencez !'
+            else:
+                text = 'Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.\
+                    format(next_date.strftime('%d/%m/%Y'))
         else:
             text = 'Nous vous attendons la prochaine fois.'
     else:
