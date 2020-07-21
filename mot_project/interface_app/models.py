@@ -334,6 +334,7 @@ class Question(models.Model):
     type = models.CharField(max_length=30, null=True)
     widget = models.CharField(max_length=30, null=True)
     help_text = models.CharField(max_length=200, null=True, blank=True)
+    validate = models.CharField(max_length=200, default='', blank=True)
 
     def __unicode__(self):
         return self.handle

@@ -6,6 +6,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Div, HTML
 from django.core.exceptions import *
 from django.forms.widgets import NumberInput, CheckboxInput
+from . import validators
 
 # @TODO: add to condition ==> connect to ZPDES/baseline
     # @TODO: install kidlib
@@ -87,15 +88,6 @@ class ConsentForm(forms.Form):
         return user_input
 
 
-def validate_checked(value):
-    if not value:
-        print('No value')
-        raise ValidationError(
-            ('%(value)s'),
-            params={'value': value},
-        )
-
-
 class JOLDQuestionBlockForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
         # Pass questions as an attribute to use it in clean method
@@ -104,7 +96,8 @@ class JOLDQuestionBlockForm(forms.Form):
         validator_ = False
         self.rows = []
         for i, q in enumerate(questions, 1):
-            self.fields[q.handle] = forms.CharField(label='', validators=[validate_checked])
+            custom_validators = [getattr(validators, v, validators.dummy) for v in q.validate.split(',')]
+            self.fields[q.handle] = forms.CharField(label='', validators=custom_validators)
             self.fields[q.handle].help_text = q.help_text
             self.fields[q.handle].widget = get_custom_widget(q, num=i)
             question_widget = [Div(q.handle)]
