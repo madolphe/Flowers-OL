@@ -101,8 +101,7 @@ class ExperimentSession(models.Model):
 class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    screen_params = models.FloatField(default=39.116)
-    date = models.DateTimeField(default=timezone.now, verbose_name='Registration date and time')
+    date = models.DateTimeField(default=datetime.datetime.now, verbose_name='Registration date and time')
     birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='jour/mois/an')
     remind = models.BooleanField(default=True)
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
@@ -165,7 +164,7 @@ class ParticipantProfile(models.Model):
 
     def close_current_session(self):
         if self.sessions.all():
-            self.session_timestamp = timezone.now()
+            self.session_timestamp = datetime.datetime.now()
             self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
             self.current_session = None
             self.save()
@@ -296,7 +295,7 @@ class SecondaryTask(models.Model):
 
 
 class JOLD_LL_trial(models.Model):
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateTimeField(default=datetime.datetime.now)
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
     trial = models.IntegerField(null=True)
