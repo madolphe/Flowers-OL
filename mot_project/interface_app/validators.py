@@ -1,10 +1,6 @@
 from django.core.exceptions import ValidationError
 
 
-def skip(value):
-    pass
-
-
 def is_pos_num(value):
     raise_error = False
     try:
@@ -13,6 +9,6 @@ def is_pos_num(value):
         raise_error = True
     if raise_error:
         raise ValidationError(
-            ('Value must be a positive number'),
+            ('La valeur doit être un nombre positif\n(Value must be a positive number)'),
             params={'value': value},
         )
