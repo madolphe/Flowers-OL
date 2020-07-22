@@ -96,7 +96,7 @@ class JOLDQuestionBlockForm(forms.Form):
         validator_ = False
         self.rows = []
         for i, q in enumerate(questions, 1):
-            custom_validators = [getattr(validators, v, validators.dummy) for v in q.validate.split(',')]
+            custom_validators = [getattr(validators, v, validators.skip) for v in q.validate.split(',')]
             self.fields[q.handle] = forms.CharField(label='', validators=custom_validators)
             self.fields[q.handle].help_text = q.help_text
             self.fields[q.handle].widget = get_custom_widget(q, num=i)

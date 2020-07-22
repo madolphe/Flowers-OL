@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 
 
-def dummy(value):
+def skip(value):
     pass
 
 
