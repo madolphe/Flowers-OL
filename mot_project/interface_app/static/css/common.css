@@ -204,30 +204,34 @@ div.svg-image {
     align-items: space-between;
 }
 .side-panel .side-info {
-    height: 100%;
+    flex: 1;
+    max-height: auto;
     overflow-y: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     position: relative;
-}
-div.fade-screen {
-  position: sticky;
-  bottom: -2px;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  background: linear-gradient(to top,
-     rgba(0,0,0, 1) 0%,
-     rgba(0,0,0, 0) 20%
-  );
-  pointer-events: none; /* so the text is still selectable */
 }
 .side-panel .side-info::-webkit-scrollbar {display: none}
 .side-panel .info h2{
     font-weight: 300;
 }
-.side-panel .side-info
+.side-panel .side-info div.content {
+    display: block;
+}
+div.fade-screen {
+  position: sticky;
+  bottom: -2px;
+  left: 0;
+  height: 5rem;
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(to top,
+     rgba(0,0,0, 1) 0%,
+     rgba(0,0,0, .5) 75%,
+     rgba(0,0,0, 0) 100%
+  );
+  pointer-events: none; /* so the text is still selectable */
+}
 
 .progress-list{}
 .progress-list li {
