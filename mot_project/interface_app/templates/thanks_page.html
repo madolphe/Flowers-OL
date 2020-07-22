@@ -11,8 +11,11 @@
         <div class="side-info">
            <h1>{{CONTEXT.heading}}</h1>
            <p>{{CONTEXT.text}}</p>
+           <div class="fade-screen"></div>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
+        <div class="btn-box" id="logout-button">
+            <a class="btn logout" href={% url "user_logout" %}>Se déconnecter</a>
+        </div>
     </div>
 
     <div class="main-panel">

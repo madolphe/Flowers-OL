@@ -19,7 +19,7 @@ br {
 
 
 /* || BUTTONS */
-.btn-box{display: flex}
+.btn-box {display: flex}
 .btn {
     display: inline-block;
     text-align: center;
@@ -49,6 +49,7 @@ br {
     color: white;
     border-color: currentColor;
     background-color: black;
+    cursor: pointer;
 }
 .btn:focus {
     /* make sure we have a visible focus ring */
@@ -60,12 +61,7 @@ br {
     margin-top: 30px;
 }
 .logout {
-    margin: 2rem auto;
-    /* margin-top: 2rem; */
-}
-.container.logout-button {
-    display: flex;
-    justify-content: center
+    margin: 1.5rem auto;
 }
 
 
@@ -203,26 +199,27 @@ div.svg-image {
     background-color: black;
     color: white;
     position: fixed;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: space-between; */
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
 }
 .side-panel .side-info {
-    height: 80%;
+    height: 100%;
     overflow-y: auto;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     position: relative;
 }
 div.fade-screen {
-  position: absolute;
-  bottom: 0;
-  height: 20%;
+  position: sticky;
+  bottom: -2px;
+  left: 0;
+  height: 100%;
   width: 100%;
   margin: 0;
   background: linear-gradient(to top,
      rgba(0,0,0, 1) 0%,
-     rgba(0,0,0, 0) 100%
+     rgba(0,0,0, 0) 20%
   );
   pointer-events: none; /* so the text is still selectable */
 }
@@ -231,14 +228,6 @@ div.fade-screen {
     font-weight: 300;
 }
 .side-panel .side-info
-/* div.gradient-border {
-    margin: 0;
-    position: relative;
-    min-height: 25px;
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.05) 100%);
-    z-index: 100;
-    border: 1px solid white;
-} */
 
 .progress-list{}
 .progress-list li {
