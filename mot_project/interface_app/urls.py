@@ -5,8 +5,9 @@ import datetime
 
 
 urlpatterns = [
+    # Interface urls
     path('', views.login_page, name='login_page'),
-    re_path(r'^study=(.*)$', views.login_page, name='login_page'), # Still not sure how this works, but it prevents the login page warning if user logs out from interface
+    re_path(r'^study=(.*)$', views.login_page, name='login_page'),
     path('home', views.home, name='home'),
     path('user_logout', views.user_logout, name='user_logout'),
     path('signup_page', views.signup_page, name='signup_page'),
@@ -16,6 +17,10 @@ urlpatterns = [
     path('end_task', views.end_task, name='end_task'),
     path('thanks_page', views.thanks_page, name='thanks_page'),
     path('end_session', views.end_session, name='end_session'),
+
+    # Common task urls
+    path('test', views.test, name='test'),
+    path('questionnaire', views.questionnaire, name='questionnaire'),
 
     # ZPDES urls
     path('app_MOT', views.MOT_task, name='app_MOT'),
@@ -29,7 +34,6 @@ urlpatterns = [
     path('JOLD/practice-LL', views.jold_start_ll_practice, name='jold_start_ll_practice'),
     path('JOLD/save-trial', views.jold_save_ll_trial, name='jold_save_ll_trial'),
     path('JOLD/close-LL-practice', views.jold_close_ll_practice, name='jold_close_ll_practice'),
-    path('JOLD/QuestionBlock/', views.joldQuestionBlock, name='JOLD_question_block'),
     path('JOLD/close-postsess-questionnaire', views.jold_close_postsess_questionnaire, name='jold_close_postsess_questionnaire'),
     path('JOLD/close-session', views.jold_free_choice, name='jold_free_choice'),
     path('JOLD/close-session/<int:choice>/', views.jold_free_choice, name='jold_free_choice')
