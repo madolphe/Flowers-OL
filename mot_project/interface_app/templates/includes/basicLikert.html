@@ -7,7 +7,7 @@
             value = {{option.0}}
             {% if widget.attrs.prev|add:"0" == option.0 %} checked {% endif %}
         >
-        <label for = "{{widget.attrs.handle}}-{{option.0}}" style = "width:calc(100%/{{widget.attrs.size}})" title = "({{option.0}}) {{option.1}}">
+        <label for="{{widget.attrs.handle}}-{{option.0}}" style="width:calc(100%/{{widget.attrs.size}})" title="({{option.0}}) {{option.1}}">
             {% if option.1 %}
                 {{option.1}}
             {% else %}
