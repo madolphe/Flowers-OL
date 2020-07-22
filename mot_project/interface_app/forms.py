@@ -88,11 +88,11 @@ class ConsentForm(forms.Form):
         return user_input
 
 
-class JOLDQuestionBlockForm(forms.Form):
+class QuestinnaireForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
         # Pass questions as an attribute to use it in clean method
         self.questions = questions
-        super(JOLDQuestionBlockForm, self).__init__(*args, **kwargs)
+        super(QuestinnaireForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
         for i, q in enumerate(questions, 1):

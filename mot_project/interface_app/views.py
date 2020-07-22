@@ -233,7 +233,7 @@ def set_mot_params(request):
         # Warning here it works because of only one handle
         questions = Question.objects.filter(instrument__in=instrument)
         q = questions.get(handle=handle)
-        form = JOLDQuestionBlockForm([q], request.POST or None)
+        form = QuestinnaireForm([q], request.POST or None)
         if form.is_valid():
             answer = Answer()
             answer.participant = participant
@@ -466,7 +466,7 @@ def joldQuestionBlock(request):
     questions = Question.objects.filter(
         handle__in = groups[ind]
     )
-    form = JOLDQuestionBlockForm(questions, request.POST or None)
+    form = QuestinnaireForm(questions, request.POST or None)
     if form.is_valid():
         for q in questions:
             answer = Answer()
