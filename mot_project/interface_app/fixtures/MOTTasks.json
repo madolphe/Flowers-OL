@@ -5,7 +5,7 @@
             "name": "additional-profile-general",
             "description": "Profil général",
             "prompt": "Begin questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_profil"],
@@ -25,7 +25,7 @@
             "name": "additional-profile-attention",
             "description": "Profil général",
             "prompt": "Begin questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_attention"]
@@ -74,7 +74,7 @@
             "name": "post-sess-questionnaire",
             "description": "Questionnaire post-session",
             "prompt": "Begin questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
@@ -97,7 +97,7 @@
             "name": "12-months-vgq",
             "description": "Habitudes de jeux (1)",
             "prompt": "Commencer",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["VGQ"]
@@ -110,7 +110,7 @@
             "name": "years-vgq",
             "description": "Habitudes de jeux (2)",
             "prompt": "Commencer",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["VGQ"]
@@ -123,7 +123,7 @@
             "name": "ueq",
             "description": "Questionnaire d'utilisabilité",
             "prompt": "Commencer",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["UEQ"]

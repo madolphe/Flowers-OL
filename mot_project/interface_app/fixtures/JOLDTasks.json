@@ -34,7 +34,7 @@
             "name": "JOLD-questions-sess1",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -62,7 +62,7 @@
             "name": "JOLD-questions-sess2",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -90,7 +90,7 @@
             "name": "JOLD-questions-sess3",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -113,7 +113,7 @@
             "name": "JOLD-profile-questions",
             "description": "Complétez votre profil",
             "prompt": "Complétez votre profil",
-            "view_name": "JOLD_question_block",
+            "view_name": "questionnaire",
             "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_profil"],
