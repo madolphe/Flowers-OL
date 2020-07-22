@@ -30,6 +30,36 @@
         .checkbox > input:checked {
             border: 2px solid white;
         }
+        .checkbox#skipped > input:checked {
+            border: 2px solid #FF2011;
+        }
+        .checkbox#skipped > input:checked + span::before {
+            content: '\d7';
+            display: block;
+            color: #FF2011;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
+        .checkbox#skipped > span {
+            color: #FF2011;
+            padding-left: 1em;
+        }
+        .checkbox#not_skipped > input:checked {
+            border: 2px solid #78BC73;
+        }
+        .checkbox#not_skipped > input:checked + span::before {
+            content: '\2714';
+            display: block;
+            color: #78BC73;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
+        .checkbox#not_skipped > span {
+            color: #78BC73;
+            padding-left: 1em;
+        }
         .checkbox > input:checked + span::before {
             content: '\2714';
             display: block;
@@ -46,24 +76,28 @@
         <p>Nous n'avons pas pu vous trouver de session. Cela pourrait être dû à plusieurs raisons :</p>
         <div class="side-info">
             <div class="content">
-                <ol>
-                    <li><b>Il n'y a pas de session pour vous aujourd'hui</b>. Dans ce cas, veuillez revenir à l'un des jours prévus (voir ci-dessous).</li>
-                    <li><b>La session ne peut pas être lancée parce qu'il ne s'est pas écoulé suffisamment de temps depuis votre dernière session.</b> Dans ce cas, revenez plus tard (voir le calendrier ci-dessous).</li>
-                    <li><b>Vous avez commencé une session plus tôt mais ne l'avez pas terminée</b>. Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas poursuivre l'expérience.</li>
-                </ol>
-                <strong> Vos sessions : </strong>
-                <ul class='next-dates'>
-                    {% for entry in CONTEXT.schedule %}
-                        <li>
-                            <label class="checkbox">
-                                <input type="checkbox"  type="checkbox" onclick="return false" {% if entry.1 %}checked{% endif %}>
-                                <span><b>Session {{forloop.counter}}</b> : {{entry.0}}</span>
-                            </label>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <div class="fade-screen"></div>
             </div>
+            <ol>
+                <li><b>Il n'y a pas de session pour vous aujourd'hui</b>. Dans ce cas, veuillez revenir à l'un des jours prévus (voir ci-dessous).</li>
+                <li><b>La session ne peut pas être lancée parce qu'il ne s'est pas écoulé suffisamment de temps depuis votre dernière session.</b> Dans ce cas, revenez plus tard (voir le calendrier ci-dessous).</li>
+                <li><b>Vous avez commencé une session plus tôt mais ne l'avez pas terminée</b>. Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas poursuivre l'expérience.</li>
+            </ol>
+            <strong> Vos sessions : </strong>
+            <ul class='next-dates'>
+                {% for entry in CONTEXT.schedule %}
+                    <li>
+                        {% if not entry.1 %}
+                            <label class="checkbox">
+                        {% else %}
+                            <label class="checkbox" {% if entry.2 %} id="skipped" {% else %} id="not_skipped" {% endif %}>
+                        {% endif %}
+                            <input type="checkbox" type="checkbox" onclick="return false" {% if entry.1 %}checked{% endif %}>
+                            <span><b>Session {{forloop.counter}}</b> : {{entry.0}} {% if entry.2 %} <span style="color: red">(Pas d'entraînement)</span> {% endif %}</span>
+                        </label>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="fade-screen"></div>
         </div>
         <div class="btn-box" id="logout-button">
             <a class="btn logout" href={% url "user_logout" %}>Se déconnecter</a>
