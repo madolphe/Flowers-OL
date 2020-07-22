@@ -108,13 +108,23 @@ def home(request):
 def off_session_page(request):
     participant = request.user.participantprofile
     day1 = participant.date.date()
-    schedule, status = [], 1
+    schedule, status, skipped_session = [], 1, []
+    if 'skipped_session' in participant.extra_json:
+        skipped_session = participant.extra_json['skipped_session']
     for s in ExperimentSession.objects.filter(study=participant.study):
         date = day1 + datetime.timedelta(days=s.day-1)
         sdate = date.strftime('%d/%m/%Y')
+        skipped = False
+        for sk_sess in skipped_session:
+            if sk_sess[0] == s.day:
+                if sk_sess[1] == s.index:
+                    skipped = True
+        # To speed up next search
+        if skipped:
+            skipped_session.remove([s.day, s.index])
         if participant.current_session == s:
             status = 0
-        schedule.append([sdate, status])
+        schedule.append([sdate, status, skipped])
     return render(request, 'off_session_page.html', {'CONTEXT': {
         'schedule': schedule}})
 

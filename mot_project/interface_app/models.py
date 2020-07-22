@@ -150,6 +150,11 @@ class ParticipantProfile(models.Model):
         # If the current session is not today, not required and was skipped (i.e date in the past):
         if not self.current_session.is_today(ref_date=self.date.date()):
             if not self.current_session.required and self.current_session.is_past(ref_datetime=self.date.date()):
+                # Store in participant extra_json when a session has been skipped:
+                if 'skipped_session' in self.extra_json:
+                    self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
+                else:
+                    self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
                 self.close_current_session()
                 self.set_current_session()
                 return self.current_session_valid
