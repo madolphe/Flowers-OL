@@ -7,7 +7,7 @@ from django.views.decorators.cache import never_cache
 
 import json, datetime
 
-from ..models import ParticipantProfile, Study
+from ..models import ParticipantProfile, Study, ExperimentSession
 from ..forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 

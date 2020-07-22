@@ -31,11 +31,11 @@ def mot_close_task(request):
         # Store that participant just paused the game:
         participant.extra_json['paused_mot_start'] = str(datetime.time)
         participant.save()
-        return redirect(reverse(home))
+        return redirect(reverse('home'))
     else:
         add_message(request, 'Vous avez terminé la session de jeu!', 'success')
         request.session['exit_view_done'] = True,
-        return redirect(reverse(end_task))
+        return redirect(reverse('end_task'))
 
 
 @login_required
@@ -48,7 +48,7 @@ def set_mot_params(request):
         participant.extra_json['screen_params'] = request.POST['screen_params_input']
         participant.save()
         # update screen params and return home:
-        return redirect(reverse(home))
+        return redirect(reverse('home'))
     else:
         # Case 2: user has just applied and provide screen params for the first time:
         # Normaly current task should be retrieving screen_params:
