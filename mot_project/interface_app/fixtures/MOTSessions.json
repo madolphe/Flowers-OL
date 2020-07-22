@@ -6,7 +6,7 @@
             "day"           : 1,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "additional-profile-general,additional-profile-attention,12-months-vgq,years-vgq,simple-mot-practice,post-sess-questionnaire""
+            "tasks_csv"     : "additional-profile-general,additional-profile-attention,12-months-vgq,years-vgq,simple-mot-practice,post-sess-questionnaire"
                     }
     },
     {
