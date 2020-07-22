@@ -88,11 +88,11 @@ class ConsentForm(forms.Form):
         return user_input
 
 
-class QuestinnaireForm(forms.Form):
+class QuestionnaireForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
         # Pass questions as an attribute to use it in clean method
         self.questions = questions
-        super(QuestinnaireForm, self).__init__(*args, **kwargs)
+        super(QuestionnaireForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
         for i, q in enumerate(questions, 1):
