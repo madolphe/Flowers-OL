@@ -70,7 +70,7 @@ const rSamp = (arr) => {return arr[Math.floor(Math.random() * arr.length)]};
 const round = (num, digits=0, base=10) => {const pow = Math.pow(base||10, digits); return Math.round(num*pow) / pow};
 const fmtMSS = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s};
 
-function runSessionLL() {
+function runBlockLL() {
     new p5();
     const canvas = document.getElementById('mainCanvas');
     const context = canvas.getContext('2d');
@@ -94,26 +94,26 @@ function runSessionLL() {
 
     let outOfTime = false;
     let trialsCompleted = 0;
-    let sessElapsedTime = 0;
-    let sesStartTime = new Date().getTime();
+    let blockElapsedTime = 0;
+    let blockStartTime = new Date().getTime();
     let lastUpdateTime;
     let trialStartTime;
     let accumulator = 0;
     let gamePaused = true;
-    const beginMsg = 'Spacecraft ready!'
+    const beginMsg = 'Vaisseau prêt!'
 
     let pauseMessage = new createjs.Text(beginMsg, '40px Arial', params.colors.pauseText);
     pauseMessage.x = canvas.width/2;
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
     pauseMessage.textBaseline = 'bottom';
-    const subMsg = 'Press \'Enter\' to begin*'
+    const subMsg = 'Appuyer sur \'Entrer\' pour commencer'
     const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
     pauseSubMessage.x = canvas.width/2;
     pauseSubMessage.y = canvas.height/2+20;
     pauseSubMessage.textAlign = 'center';
     pauseSubMessage.textBaseline = 'top';
-    const pauseSubSubMessage = new createjs.Text('* fullscreen must be enabled', '18px Arial', params.colors.floor);
+    const pauseSubSubMessage = new createjs.Text('* le mode plein écran doit être activé', '18px Arial', params.colors.floor);
     pauseSubSubMessage.x = canvas.width-50;
     pauseSubSubMessage.y = canvas.height-50;
     pauseSubSubMessage.textAlign = 'right';
@@ -121,11 +121,11 @@ function runSessionLL() {
 
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
-    const landedMsg = 'Spacecraft landed!'
-    const crashMsg = 'Spacecraft crashed!'
-    const offMsg = 'Spacecraft lost!'
-    const shrunkMsg = 'Paused'
-    const timeMsg = 'End of session'
+    const landedMsg = 'Le vaisseau a atterri!'
+    const crashMsg = 'Le vaisseau s\'est écrasé'
+    const offMsg = 'Le vaisseau s\'est perdu'
+    const shrunkMsg = 'En pause'
+    const timeMsg = 'Fin de la session'
 
     let landSight, landerSight;
     let landPoint;
@@ -178,11 +178,11 @@ function runSessionLL() {
 
     // Initialize HTML (p5) buttons
     function initOuterElements() {
-        toggleFullscreenButton = createButton('Fullscreen');
+        toggleFullscreenButton = createButton('Plein écran');
         toggleFullscreenButton.class('toggleFullscreen')
         toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
 
-        terminateButton = createButton('End session');
+        terminateButton = createButton('Terminer');
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
 
@@ -206,9 +206,6 @@ function runSessionLL() {
             } else if (event.keyCode == 32 && event.target == document.body) {
               event.preventDefault();
             }
-            // } else if (82 == event.keyCode) {
-            //     userReset = !userReset
-            // }
         });
 
         document.addEventListener('keyup', function (event) {
@@ -243,7 +240,9 @@ function runSessionLL() {
             if (landSite==0 || landSite==2) {landerSite = 1} else {landerSite = rSamp([0,2])};
         }
         site = (canvas.width/3)*landerSite
-        const xPos = params.lander.startRandom ? site+canvas.width/3*Math.random() : site+canvas.width/3/2;
+        let xPos = params.lander.startRandom ? site+canvas.width/3*Math.random() : site+canvas.width/3/2;
+        if (xPos < 20) {xPos = 20}
+        if (xPos > canvas.width-20) {xPos = canvas.width-20}
         const yPos = 40;
 
         trueInitDistance = getEuclidDistance([xPos,yPos],landPoint)
@@ -327,7 +326,7 @@ function runSessionLL() {
     // Reset episode
     function endTrial() {
         saveTrialData();
-        sessElapsedTime += createjs.Ticker.getTime(true)
+        blockElapsedTime += createjs.Ticker.getTime(true)
 
         // Destroy world (by creating a new one)
         wind = params.wind() * params.windDir();
@@ -423,9 +422,9 @@ function runSessionLL() {
         }
 
         if (trialStart && params.lander.startRandomMom && !gamePaused) {
-            pluMinus = Math.random() < 0.5 ? -1 : 1;
+            plusMinus = Math.random() < 0.5 ? -1 : 1;
             steeringPoint = landerBody.GetWorldCenter().Copy();
-            impulse = new Box2D.Common.Math.b2Vec2(pluMinus*shipData.turning * 50, 0);
+            impulse = new Box2D.Common.Math.b2Vec2(plusMinus*shipData.turning * 50, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
             impulse = new Box2D.Common.Math.b2Vec2(Math.sin(landerBody.GetAngle()) * shipData.thrust,
                 -(Math.cos(landerBody.GetAngle()) * shipData.thrust * 10));
@@ -471,7 +470,7 @@ function runSessionLL() {
             footViews[i].x = fX;
             footViews[i].y = fY;
             footViews[i].rotation = feetBodies[i].GetAngle() * (180/Math.PI);
-            legViews[i].graphics.clear().ss(3, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
+            legViews[i].graphics.clear().ss(4, caps=1, joins=1).s(params.colors.legs).mt(lX,lY).lt(fX,fY);
         };
 
         if (landed) {
@@ -501,9 +500,9 @@ function runSessionLL() {
         }
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
-        timeElapsed = inSec(sessElapsedTime+createjs.Ticker.getTime(true))
-        timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))
-        if (timeElapsed > xparams.time) {endSess()};
+        timeElapsed = inSec(blockElapsedTime+createjs.Ticker.getTime(true))
+        if (!gamePaused) {timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))}
+        if (timeElapsed > xparams.time) {closeBlock()};
     };
 
     // Check if lander is in land box
@@ -519,10 +518,10 @@ function runSessionLL() {
     // If the page is hidden, pause physics, else continue
     function reportVisibilityChange() {
         if (document[hidden]) {
-            document.title = 'Paused';
+            document.title = 'Lunar Lander | Paused';
             if (!gamePaused) {
-                pauseMessage.text = 'Session interrupted'
-                pauseSubMessage.text = 'Press \'Enter\' to continue*'
+                pauseMessage.text = 'Session interrompue'
+                pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
                 interruptions++;
             };
             gamePaused = true;
@@ -573,7 +572,7 @@ function runSessionLL() {
     function saveTrialData() {
         landerX = unscaled(landerBody.GetPosition().x).toFixed(0);
         landerY =  unscaled(landerBody.GetPosition().y).toFixed(0);
-        pauseSubMessage.text = 'Press \'Enter\' to continue*'
+        pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
         if (landerX < 0 || landerX > canvas.width || landerY < 0) {
             outcome='offscreen';
             pauseMessage.text = offMsg;
@@ -591,7 +590,7 @@ function runSessionLL() {
         metrics = {
             'trial' : trialsCompleted,
             'time_trial' : inSec(createjs.Ticker.getTime(true)).toFixed(1),
-            'time_sess' : inSec(new Date().getTime() - sesStartTime).toFixed(1),
+            'time_block' : inSec(new Date().getTime() - blockStartTime).toFixed(1),
             'outcome' : outcome,
             'fuel' : round(fuel),
             'presses' : round(presses),
@@ -601,7 +600,7 @@ function runSessionLL() {
             'wind' : round(wind, 2),
             'end_dist' : round(distToLandPoint, 2),
             'interruptions' : interruptions,
-            'sess_finished' : outOfTime,
+            'forced' : xparams.forced
             // 'll_thrust' : round(params.lander.thrust, 2),
             // 'll_turn' : round(params.lander.turning, 2),
             // 'll_density' : round(params.lander.density, 2),
@@ -611,23 +610,24 @@ function runSessionLL() {
         $.ajax({
             async: true,
             type: 'POST',
-            url: '/joldSaveTrial_LL',
+            url: '/JOLD/save-trial',
             dataType: "json",
             traditional: true,
             data: JSON.stringify(metrics)
         });
     };
 
-    // Stop session
-    function endSess() {
+    // Close block
+    function closeBlock() {
         if (!outOfTime) {
             outOfTime = true;
             saveTrialData();
             pauseMessage.text = timeMsg;
-            pauseSubMessage.text = 'Click the \'End session\' button to continue to the next phase'
+            pauseSubMessage.text = 'Cliquez sur \'Terminer\' pour continuer l\'expérience'
             pauseSubSubMessage.text = ''
             gamePaused = true;
             pauseUnpause(gamePaused);
+            timePane.html('0:00')
             stage.update()
         }
     };
@@ -635,21 +635,29 @@ function runSessionLL() {
     // Request next template
     function terminate() {
         if (!gamePaused) {
-            pauseMessage.text = 'Session interrupted';
-            pauseSubMessage.text = 'Press \'Enter\' to continue*'
+            pauseMessage.text = 'Session interrompue'
+            pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
             interruptions++;
         };
+        let confirmMessage = 'Continuer ?'
+        if (!outOfTime && xparams.forced) {
+            confirmMessage = 'Cette session n\'est pas encore terminée. Nous ne serons pas en mesure d\'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de vouloir quitter ?'
+        }
         gamePaused = true;
         pauseUnpause(gamePaused);
-        setTimeout(function() {
-            if (confirm('Please confirm')) {
-                console.log('Signaling termination')
-                post('/joldEndSess', {sessComplete: outOfTime? 1:0})
-            } else {
-                console.log('Doing nothing');
-            }
-        }, 100);
-
+        if (confirm(confirmMessage)) {
+            $.ajax({
+                async: true,
+                type: 'POST',
+                url: '/JOLD/close-LL-practice',
+                dataType: "json",
+                traditional: true,
+                data: {blockComplete: outOfTime? 1:0, forced: xparams.forced? 1:0},
+                success: function(response) {
+                    window.location.href = response.url
+                }
+            })
+        };
     };
 
     // Print debug data on canvas
@@ -664,7 +672,7 @@ function runSessionLL() {
                 'landed' : landed,
                 'since landed' : sinceEnter.toFixed(1),
                 'trial time (s)': inSec(createjs.Ticker.getTime(true)).toFixed(1),
-                'session time (s)': inSec(sessElapsedTime + createjs.Ticker.getTime(true)).toFixed(1),
+                'block time (s)': inSec(blockElapsedTime + createjs.Ticker.getTime(true)).toFixed(1),
                 'fuel' : fuel,
                 'user interruptions': interruptions,
             }
@@ -673,7 +681,7 @@ function runSessionLL() {
                 s = s.concat(`${key}: ${value}<br>`)
             };
             document.getElementById("debugDiv").innerHTML = s;
-        } else {
+        } else if (document.getElementById("debugDiv")) {
             document.getElementById("debugDiv").innerHTML = '';
         }
     };
@@ -848,26 +856,3 @@ function addLanderJoint(landerBody, footBody, pivLander, pivFoot, offset, side) 
     footJointDef.collideConnected = true;
     return footJointDef
 };
-
-function post(path, params, method='post') {
-
-  // The rest of this code assumes you are not using a library.
-  // It can be made less wordy if you use one.
-  const form = document.createElement('form');
-  form.method = method;
-  form.action = path;
-
-  for (const key in params) {
-    if (params.hasOwnProperty(key)) {
-      const hiddenField = document.createElement('input');
-      hiddenField.type = 'hidden';
-      hiddenField.name = key;
-      hiddenField.value = params[key];
-
-      form.appendChild(hiddenField);
-    }
-  }
-
-  document.body.appendChild(form);
-  form.submit();
-}

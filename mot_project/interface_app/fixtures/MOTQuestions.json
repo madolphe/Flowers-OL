@@ -1,0 +1,953 @@
+[
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-1",
+			"order": 1,
+			"prompt": "Taille de la diagonale de votre écran en cm",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "none",
+			"widget": "custom-float",
+			"type": "float",
+			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
+			"validate": "is_pos_num"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-2",
+			"order": 2,
+			"prompt": "Genre",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 2,
+			"step": 1,
+			"annotations": "femme~homme~autre",
+			"widget": "custom-select",
+			"type": "string",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-3",
+			"order": 3,
+			"prompt": "Début de pratique des jeux vidéos",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 99,
+			"step": 1,
+			"annotations": "none",
+			"widget": "custom-float",
+			"type": "integer",
+			"help_text": "Indiquez le nombre d'années. Si jamais pratiqué, répondre \"0\""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-4",
+			"order": 4,
+			"prompt": "Fréquence de la pratique des jeux vidéos",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+			"widget": "custom-range",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-5",
+			"order": 5,
+			"prompt": "A quelle(s) catégorie(s) de jeux jouez-vous ?",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 4,
+			"step": 1,
+			"annotations": "FPS(ex:Call of Duty)~Action(ex:The last of us)~Sport(ex: Fifa)~MMO (ex:World of warcraft)~RPG (ex:Final Fantasy)",
+			"widget": "custom-categories",
+			"type": "string",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 2,
+			"handle": "prof-6",
+			"order": 6,
+			"prompt": "Permis de conduire",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "oui~non",
+			"widget": "custom-select",
+			"type": "boolean",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 2,
+			"handle": "prof-7",
+			"order": 7,
+			"prompt": "Depuis quand conduisez-vous ? ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Jamais~Moins d'un an~Entre 1 et 5 ans~Plus de 5 ans",
+			"widget": "custom-range",
+			"type": "string",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 2,
+			"handle": "prof-8",
+			"order": 8,
+			"prompt": "A quelle fréquence conduisez-vous ? ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+			"widget": "custom-range",
+			"type": "string",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 2,
+			"handle": "prof-9",
+			"order": 9,
+			"prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "oui~non",
+			"widget": "custom-select",
+			"type": "boolean",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_profil",
+			"component": "long_term",
+			"group": 2,
+			"handle": "prof-10",
+			"order": 10,
+			"prompt": "Avez-vous déjà suivi un cours en ligne ? ",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "oui~non",
+			"widget": "custom-select",
+			"type": "boolean",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-1",
+			"order": 1,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à finaliser les derniers détails d’un projet une fois que les parties les plus stimulantes ont été faites?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-2",
+			"order": 2,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à mettre les choses en ordre lorsque vous devez faire quelque chose qui demande de l’organisation?\"",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-3",
+			"order": 3,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à vous rappeler vos rendez-vous ou vos obligations?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-4",
+			"order": 4,
+			"prompt": "Quand vous devez faire quelque chose qui demande beaucoup de réflexion, à quelle fréquence vous arrive-t-il d’éviter de le faire ou de le remettre à plus tard?\",",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-5",
+			"order": 5,
+			"prompt": "À quelle fréquence vous arrive-t-il de remuer ou de tortiller les mains ou les pieds lorsque vous devez rester assis pendant une période prolongée?\",",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-6",
+			"order": 6,
+			"prompt": "À quelle fréquence vous arrive-t-il de vous sentir excessivement actif et contraint de faire quelque chose, comme si vous étiez entraîné malgré vous par un moteur?\",",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-1",
+			"order": 1,
+			"prompt": "First/Third Person Shooter (FPS/TPS) ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Call Of Duty, Halo, Battlefield, Half-Life, Overwatch, Counterstrike"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-2",
+			"order": 2,
+			"prompt": "Action - RPG / Aventure",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex :The Witcher, Mass Effect, Fallout 4, Skyrim, GTA, Assassin’s Creed, Tomb Raider, The Last of Us"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-3",
+			"order": 3,
+			"prompt": "Sport / Pilotage",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Fifa, NHL, Mario Kart, Need for Speed, Forza"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-4",
+			"order": 4,
+			"prompt": "Stratégie en temps réel / MOBA ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Starcraft, Warcraft I, II & III, DotA, Command & Conquer, League of Legends, Age of Empire"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-5",
+			"order": 5,
+			"prompt": "Jeux à base de tours / Jeu de rôle sans action / Fantasy ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: World of Warcraft, Final Fantasy, Fable, Pokemon, Dragon Age"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-6",
+			"order": 6,
+			"prompt": "Jeux à base de tours stratégique / Simulation de vie / Puzzle ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Civilization, Hearthstone, The Sims, Restaurant Empire, Puzzle Quest, Bejeweled, Solitaire, Candy Crush"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-7",
+			"order": 7,
+			"prompt": "Jeux de musique",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Guitar Hero, DDR, Rock Band"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-8",
+			"order": 8,
+			"prompt": "Autres jeux qui ne correspondent à aucune catégories précédentes",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Jeux mobiles, jeux sur navigateurs, jeux de combats"
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-1",
+			"order": 1,
+			"prompt": "Agacant ou Agréable?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Agacant~Agréable",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-2",
+			"order": 2,
+			"prompt": "Incompréhensible ou Compréhensible ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Incompréhensible~Compréhensible",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-3",
+			"order": 3,
+			"prompt": "Moderne ou Sans fantaisie ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Moderne~Sans fantaisie",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-4",
+			"order": 4,
+			"prompt": "Appropriation simple ou Appropriation compliquée ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Appropriation simple~Appropriation compliquée",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-5",
+			"order": 5,
+			"prompt": "Apporte de la valeur ou Peu de valeur ajoutée? ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-6",
+			"order": 6,
+			"prompt": "Ennuyeux ou Captivant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Ennuyeux~Captivant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 1,
+			"handle": "ueq-7",
+			"order": 7,
+			"prompt": "Inintéressant ou Intéressant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inintéressant~Intéressant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-8",
+			"order": 8,
+			"prompt": "Imprévisible ou Prévisible ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Imprévisible~Prévisible",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-9",
+			"order": 9,
+			"prompt": "Rapide ou Lent ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rapide~Lent",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-10",
+			"order": 10,
+			"prompt": "Original ou Conventionnel ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Original~Conventionnel",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-11",
+			"order": 11,
+			"prompt": "Rigide ou Facilitant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rigide~Facilitant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-12",
+			"order": 12,
+			"prompt": "Bien ou Médiocre ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Bien~Médiocre",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-13",
+			"order": 13,
+			"prompt": "Compliqué ou Simple ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Compliqué~Simple",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 2,
+			"handle": "ueq-14",
+			"order": 14,
+			"prompt": "Repoussant ou Attractif ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Repoussant~Attractif",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-15",
+			"order": 15,
+			"prompt": "Habituel ou Avant-gardiste ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Habituel~Avant-gardiste",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-16",
+			"order": 16,
+			"prompt": "Désagréable ou Agréable ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Désagréable~Agréable",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-17",
+			"order": 17,
+			"prompt": "Sécurisant ou Insécurisant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sécurisant~Insécurisant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-18",
+			"order": 18,
+			"prompt": "Stimulant ou Soporifique ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Stimulant~Soporifique",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-19",
+			"order": 19,
+			"prompt": "Répond aux attentes ou Ne répond pas aux attentes ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-20",
+			"order": 20,
+			"prompt": "Inefficace ou Efficace ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inefficace~Efficace ",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 3,
+			"handle": "ueq-21",
+			"order": 21,
+			"prompt": "Clair ou Déroutant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Clair~Déroutant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-22",
+			"order": 22,
+			"prompt": "Non pragmatique ou Pragmatique ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Non pragmatique~Pragmatique",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-23",
+			"order": 23,
+			"prompt": "Sobre ou Surchargé ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sobre~Surchargé",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-24",
+			"order": 24,
+			"prompt": "Attrayant ou Rébarbatif ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Attrayant~Rébarbatif",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-25",
+			"order": 25,
+			"prompt": "Sympathique ou Inamical ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sympathique~Inamical",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "interface_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "ueq",
+			"group": 4,
+			"handle": "ueq-26",
+			"order": 26,
+			"prompt": "Conservateur ou Innovant ?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Conservateur~Innovant",
+			"widget": "custom-polar",
+			"type": "integer",
+			"help_text": ""
+		}
+	}
+]

@@ -1,0 +1,64 @@
+{% block css%}
+    <style>
+        .tutorial-box {
+            display: flex;
+            justify-content: center;
+        }
+        .tutorial-canvas {
+            border: 5px solid black;
+            margin: 15px;
+            border-radius: 10px;
+        }
+        .tutorial-canvas:hover, .tutorial-canvas:focus {
+            outline: none;
+            border: 5px solid #f07a56;
+            cursor: pointer;
+        }
+        kbd#fullscreen {
+            background-color: #2f3e59;
+            color: #f07a56;
+            border: 2px solid #252938;
+            border-radius: 0;
+        }
+        kbd#terminate {
+            background-color: #f07a56;
+            color: #2f3e59;
+            border: 2px solid #252938;
+            border-radius: 0;
+        }
+    </style>
+{% endblock %}
+<p>
+    Vous pouvez contrôler le vaisseau avec ces 3 touches :
+    <ul>
+        <li><kbd>J</kbd> tourne le vaisseau vers la droite</li>
+        <li><kbd>F</kbd> tourne le vaisseau vers la gauche</li>
+        <li><kbd>Space</kbd> propulse le vaisseau en avant</li>
+    </ul>
+    De plus, vous verrez 2 autres boutons en haut de l'écran :
+    <ul>
+        <li style="margin:5px"><kbd id='fullscreen'>Plein écran</kbd> met le jeu en mode plein écran. <b>Le jeu ne peut être utilisé qu'en mode plein écran</b>.</li>
+        <li style="margin:5px"><kbd id='terminate'>Terminer</kbd> termine la sessione en cours. <b>Si vous terminez la session avant la fin du temps imparti, nous ne serons pas en mesure d'utiliser vos données pour notre étude</b>.</li>
+    </ul>
+    <div style="display:block;text-align:center;">Cliquez sur la fenêtre ci-dessous pour l'essayer</div>
+    <div class="tutorial-box">
+        <canvas id="id-tutorial-canvas" class="tutorial-canvas" width="300" height="200" onclick="focusMethod()" tabindex=10></canvas>
+    </div>
+</p>
+{% block js%}
+    {% load static %}
+    <script src="{% static 'js/JOLD/seedrandom.min.js' %}"></script>
+    <script src="{% static 'js/JOLD/Box2d.js' %}"></script>
+    <script src="{% static 'js/JOLD/easeljs.min.js' %}"></script>
+    <script src="{% static 'js/app_LL/tutorial.js' %}"></script>
+    <script>
+        focusMethod = function getFocus() {
+            document.getElementById("id-tutorial-canvas").focus();
+        }
+        window.onkeydown = function(e) {
+            if (e.keyCode == 32 && e.target == document.getElementById("id-tutorial-canvas")) {
+                e.preventDefault();
+            }
+        };
+    </script>
+{% endblock %}

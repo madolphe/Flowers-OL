@@ -1,4 +1,7 @@
 mot_project/mot_db
-interface_experimentation/db.sqlite3
+mot_project/interface_app/migrations
 *.pyc
-.idea
+.idea/
+kidlearn/
+
+

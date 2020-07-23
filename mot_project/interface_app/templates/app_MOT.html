@@ -11,8 +11,6 @@
 {% endblock %}
 
 {% block js%}
-    <!-- <script src="{% static 'js/app_2D/ball_script.js' %}"></script>
-    <script src="{% static 'js/app_2D/mot_balls_script.js' %}"></script> -->
     <script src="{% static 'js/app_mot/params.js' %}"></script>
     <script src="{% static 'js/app_mot/utils.js' %}"></script>
     <script src="{% static 'js/app_mot/quit_app_func.js' %}"></script>
@@ -27,5 +25,5 @@
     <script src="{% static 'js/app_mot/secondary_task.js' %}"></script>
     <script src="{% static 'js/app_mot/params_pannel.js' %}"></script>
     <script src="{% static 'js/app_mot/app.js' %}"></script>
-    <script> parameter_dict = {{parameters}}</script>
+    <script> parameter_dict = {% autoescape off %}{{CONTEXT.parameter_dict}}{% endautoescape %} </script>
 {% endblock %}

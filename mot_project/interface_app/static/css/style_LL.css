@@ -42,7 +42,8 @@ body {background-color: black}
     color: #f07a56;
     border: 3px solid #252938;
     position: fixed;
-    top: 2%
+    top: 2%;
+    cursor: pointer;
 }
 
 .terminate {
@@ -53,6 +54,7 @@ body {background-color: black}
     position: fixed;
     top: 2%;
     right: 0px;
+    cursor: pointer;
 }
 
 .timer {
@@ -70,4 +72,5 @@ body {background-color: black}
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: sans-serif;
 }

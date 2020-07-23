@@ -1,0 +1,19 @@
+{% load static %}
+<ul class="messages">
+    {% for m in ms %}
+        <li {% if m.tags %} class="{{ m.tags }}"{% endif %}>
+            <div class="icon-box">
+                {% if m.tags == "info" %} <img src="{% static "images/icons/info.svg" %}"> {% endif %}
+                {% if m.tags == "warning" %} <img src="{% static "images/icons/warning.svg" %}"> {% endif %}
+                {% if m.tags == "error" %} <img src="{% static "images/icons/error.svg" %}"> {% endif %}
+                {% if m.tags == "success" %} <img src="{% static "images/icons/success.svg" %}"> {% endif %}
+            </div>
+            <div class="message-text-box">
+                {% autoescape off %}
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}{{ m }}
+                {% endautoescape %}
+            </div>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </li>
+    {% endfor %}
+</ul>

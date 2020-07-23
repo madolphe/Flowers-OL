@@ -21,16 +21,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'mc9e-tp)bkt0+0d^fj&dowldv_vvl5ekdzw#y(cnab5+ne=x-c'
+SECURE_REFERRER_POLICY = 'same-origin'
+# SECURE_HSTS_SECONDS = 3600*24*30
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', "127.0.0.1", "flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
-
-LOGIN_URL = '/sign_up/'
+LOGIN_URL = '/signup_page/'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,12 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'background_task',
     'interface_app',
+    'django_extensions',
     'crispy_forms'
 ]
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,11 +55,10 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
-
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 ROOT_URLCONF = 'mot_project.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,24 +74,21 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'mot_project.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
   'default':{
 	'ENGINE': 'django.db.backends.sqlite3',
-	'NAME': 'mot_db', 
+	'NAME': 'mot_db',
    }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -107,23 +107,36 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
-
-USE_L10N = True
-
+DATE_INPUT_FORMATS = ['%d/%m/%Y','%d/%m/%y','%d-%m-%Y', '%d.%m.%Y']
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+
+# Emails
+EMAIL_HOST = 'smtp.inria.fr'
+DEFAULT_FROM_EMAIL = 'noreply-flowers@inria.fr'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+# For testing (on gmail)
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'yourUsername@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your_gmail_password'
+# DEFAULT_FROM_EMAIL = 'tenalexander1991@gmail.com'#'noreply-flowers@inria.fr'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+
+# Background tasks
+BACKGROUND_TASK_RUN_ASYNC = True # if True, will run the tasks asynchronous. This means the tasks will be processed in parallel (at the same time) instead of processing one by one (one after the other).
+MAX_ATTEMPTS = 10 # controls how many times a task will be attempted (default 25)
+# MAX_RUN_TIME # maximum possible task run time, after which tasks will be unlocked and tried again (default 3600 seconds)
+# BACKGROUND_TASK_ASYNC_THREADS # Specifies number of concurrent threads. Default is multiprocessing.cpu_count().
+# BACKGROUND_TASK_PRIORITY_ORDERING # Control the ordering of tasks in the queue. Default is "DESC" (tasks with a higher number are processed first). Choose "ASC" to switch to the “niceness” ordering. A niceness of −20 is the highest priority and 19 is the lowest priority.
