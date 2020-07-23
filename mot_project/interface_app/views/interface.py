@@ -93,6 +93,7 @@ def home(request):
          request.session['active_session'] = json.dumps(True)
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
+            print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
     return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
 
