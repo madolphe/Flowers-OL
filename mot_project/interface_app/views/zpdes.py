@@ -44,10 +44,20 @@ def set_mot_params(request):
     participant = request.user.participantprofile
     # Case 1: user comes from home and has modified his screen params:
     if "screen_params_input" in request.POST.dict():
-        add_message(request, "Paramètres d'écran modifiés.")
-        participant.extra_json['screen_params'] = request.POST['screen_params_input']
-        participant.save()
-        # update screen params and return home:
+        try:
+            float(request.POST['screen_params_input'])
+            add_message(request, "Paramètres d'écran modifiés.")
+            # use extra_json for prompt in view and save it:
+            participant.extra_json['screen_params'] = request.POST['screen_params_input']
+            participant.save()
+            # also update answer:
+            answers = Answer.objects.filter(participant=participant)
+            answer = answers.get(question__handle='prof-1')
+            answer.value = request.POST['screen_params_input']
+            answer.save()
+            # update screen params and return home:
+        except ValueError:
+            add_message(request, "Fournir une valeur réelle svp (ex: 39.116).", tag="error")
         return redirect(reverse('home'))
     else:
         # Case 2: user has just applied and provide screen params for the first time:
