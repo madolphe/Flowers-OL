@@ -15,7 +15,8 @@
 			"annotations": "none",
 			"widget": "custom-float",
 			"type": "float",
-			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)"
+			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
+			"validate": "is_pos_num"
 		}
 	},
 	{

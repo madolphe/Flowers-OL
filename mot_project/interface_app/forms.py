@@ -8,10 +8,6 @@ from django.core.exceptions import *
 from django.forms.widgets import NumberInput, CheckboxInput
 from . import validators
 
-# @TODO: add to condition ==> connect to ZPDES/baseline
-    # @TODO: install kidlib
-    # @TODO: install connect and see what has to be saved
-
 
 class UserForm(forms.ModelForm):
     """
@@ -109,7 +105,6 @@ class QuestionnaireForm(forms.Form):
                 HTML('<div class="question-prompt">{}. {}</div>'.format(i, q.prompt)),
                 Div(*question_widget, css_class='question-widget')
             ]
-
             self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i%2 else '')))
         self.helper = FormHelper()
         self.helper.form_tag = False
