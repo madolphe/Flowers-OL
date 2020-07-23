@@ -25,6 +25,18 @@ def send_delayed_email(to, sender, subject, message_template):
     )
 
 
+@background(schedule=0)
+def send_delayed_email_2():
+    print('Sending email test')
+    send_mail(
+        subject = 'Testing process tasks',
+        message = 'This is a test',
+        from_email = 'noreply-flowers@inria.fr',
+        recipient_list = ['alexandr.ten@inria.fr', 'maxime.adolphe@inria.fr'],
+        fail_silently = False
+    )
+
+
 def assign_mot_condition(participant):
     # First, check if participant study is zpdes_admin
     if participant.study.name == 'zpdes_admin':

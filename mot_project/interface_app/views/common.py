@@ -6,6 +6,8 @@ from django.views.decorators.cache import never_cache
 from ..models import Question, Answer
 from ..forms import QuestionnaireForm
 from django.db.models import Count
+from django.utils import timezone
+
 
 
 @login_required
@@ -67,21 +69,10 @@ def questionnaire(request):
 
 @login_required
 def test(request):
-    from background_task import background
-    from django.core.mail import send_mail
+    from ..utils import send_delayed_email_2
     from datetime import datetime, timedelta
     if request.user.is_superuser:
-        @background(schedule=0)
-        def send_delayed_email():
-            print('Sending email test')
-            send_mail(
-                subject = 'Testing process tasks',
-                message = 'This is a test',
-                from_email = 'noreply-flowers@inria.fr',
-                recipient_list = ['alexandr.ten@inria.fr', 'maxime.adolphe@inria.fr'],
-                fail_silently = False
-            )
-        send_delayed_email(schedule=datetime.now() + timedelta(seconds=59))
+        send_delayed_email_2(schedule=datetime.now() + timedelta(seconds=5))
         return render(request, 'test_page.html', locals())
     else:
         return HttpResponseForbidden()
