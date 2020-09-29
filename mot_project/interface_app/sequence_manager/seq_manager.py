@@ -25,7 +25,7 @@ class MotParamsWrapper:
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
                        'probe_time': np.linspace(3, 1, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float)}
-        print(self.values)
+        # print(self.values)
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
@@ -58,8 +58,8 @@ class MotParamsWrapper:
         :return:
         """
         parsed_episode = self.parse_activity(episode)
-        print(parsed_episode)
-        print("---------------------")
+        # print(parsed_episode)
+        # print("---------------------")
         seq.update(parsed_episode['act'], parsed_episode['ans'])
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
@@ -71,25 +71,26 @@ class MotParamsWrapper:
     def parse_activity(self, episode):
         # First check if this act was successful:
         answer = episode.get_results
-        print("Update answer equals:", answer)
+        # print("Update answer equals:", answer)
         # Adjust values in 'n_distractors':
         n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
                       for i in range(len(self.values['n_distractors']))])
         # Then just parse act to ZPDES formalism:
         speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
-        print(speed_i)
+        # print(speed_i)
         n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
-        print(n_targets_i)
+        # print(n_targets_i)
         n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
-        print(n_distractors_i)
+        # print(n_distractors_i)
         track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
-        print(track_i)
+        # print(track_i)
         probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
-        print(probe_i)
-        #episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i, probe_i]}
+        # print(probe_i)
+        # episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i,
+        # probe_i]}
         episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
-        print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
-              "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
+        # print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
+        #      "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
         return {'act': episode_parse, 'ans': answer}
 
     def set_parameter(self, name, new_value):

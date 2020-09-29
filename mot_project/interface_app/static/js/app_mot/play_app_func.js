@@ -33,6 +33,9 @@ function play(disp_zone){
         button_keep.show();
         display_transition();
     }
+    if(bot_mode){
+       bot_answer(app);
+    }
 }
 function display_game_zone(){
     push();
@@ -63,7 +66,7 @@ function display_fixation_cross(cross_length){
 }
 function display_probe_timer(){
     if(fill_bar_size<300){
-        fill_bar_size = fill_bar_size + (300/(parameter_dict['probe_time']*60))
+        fill_bar_size = fill_bar_size + (300/(parameter_dict['probe_time']*30))
     }
     push();
     textFont(gill_font_light);
@@ -93,9 +96,7 @@ function display_transition(){
     fill(250,250,250,210);
     rectMode(CENTER);
     rect(windowWidth/2, windowHeight/2, windowWidth, 500);
-    button_keep.position(windowWidth/2 - width/2, windowHeight/2 + height/2);
-    button_keep.size(width, height);
-    button_keep.mousePressed(start_episode);
+    button_keep.show();
     textFont(gill_font_light);
     textSize(25);
     textStyle(BOLD);
@@ -107,7 +108,8 @@ function display_transition(){
 }
 function display_game_timer() {
     min = Math.floor(game_time / 60);
-    sec = game_time - (min*60);
+    // Game_time / 2 as update is made every 0.5s (ie 30 fps)
+    sec = Math.floor(game_time - (min*60));
     push();
     translate(windowWidth-300,windowHeight-80);
     imageMode(CENTER);
@@ -173,7 +175,8 @@ function start_episode(){
     paused = false;
     button_keep.hide();
     // Init the proper app (gamin mode, with sec task etc)
-    console.log(parameter_dict);
+    // console.log(parameter_dict);
+    // delete app;
     if(parameter_dict['debug']==1){
          app = new MOT(parameter_dict['n_targets'],parameter_dict['n_distractors'],
               Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
@@ -215,10 +218,7 @@ function start_episode(){
     }
 }
 function show_answer_button(){
-    button_answer = createButton('ANSWER');
-    button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
-    button_answer.size(120,60);
-    button_answer.mousePressed(answer_button_clicked);
+    button_answer.show();
 }
 function answer_button_clicked(){
     // reset few variables:
@@ -237,10 +237,7 @@ function answer_button_clicked(){
     app.change_to_same_color();
     app.change_target_color();
     app.all_objects.forEach(function(item){item.interact_phase = false;});
-    button_next_episode = createButton('NEXT EPISODE');
-    button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
-    button_next_episode.size(120,60);
-    button_next_episode.mousePressed(next_episode);
+    button_next_episode.show();
 }
 function next_episode(){
     // First set_up prompt of transition pannel:

@@ -2,3 +2,4 @@ mot_project/mot_db
 *.pyc
 .idea/
 kidlearn/
+mot_project/interface_app/static/admin/

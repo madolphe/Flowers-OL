@@ -1,15 +1,11 @@
 function start_mode(){
     let width = 170;
     let height = 70;
+    button_play.show();
     push();
     fill(hover_color);
     rectMode(CENTER);
     rect(windowWidth/2, windowHeight/2, windowWidth, 500);
-
-    button_play.position(windowWidth/2-(width/2), windowHeight/2  - (height/2));
-    button_play.size(width,height);
-    button_play.mousePressed(launch_app);
-
     // button_tuto.position(windowWidth/2-(width/2), windowHeight/2 + 50 - (height/2));
     // button_tuto.size(width,height);
     // button_tuto.mousePressed(launch_tuto);

@@ -95,20 +95,20 @@ def MOT_task(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
 
     # Init a wrapper for mot if called for the first time:
-    if 'mot_wrapper' not in request.session:
-        request.session['mot_wrapper'] = MotParamsWrapper(participant)
+    request.session['mot_wrapper'] = MotParamsWrapper(participant)
 
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
         assign_mot_condition(participant)
 
-    # Init the correct sequence manager:
-    if participant.extra_json['condition'] == 'zpdes':
-        zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
-        request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
-    else:
-        mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
-        request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
+    # Init the correct sequence manager if not already in request session:
+    if "seq_manager" not in request.session:
+        if participant.extra_json['condition'] == 'zpdes':
+            zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
+            request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
+        else:
+            mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
+            request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
     # If this is not the first time the user plays, build his history :
     history = Episode.objects.filter(participant=request.user)
     for episode in history:
@@ -123,6 +123,7 @@ def MOT_task(request):
 @login_required
 @csrf_exempt
 def next_episode(request):
+    print(locals())
     mot_wrapper = request.session['mot_wrapper']
     params = request.POST.dict()
     # Save episode and results:
