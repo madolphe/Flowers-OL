@@ -1,5 +1,5 @@
 let bot_mode = true;
-let bot_skill = 0.1;
+let bot_skill = 1;
 
 function bot_answer(app){
     if(app.phase=='answer'){
