@@ -23,7 +23,7 @@ class MotParamsWrapper:
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
                        'speed_max': np.linspace(2, 7, 11, dtype=float),
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
-                       'probe_time': np.linspace(3, 1, 11, dtype=float),
+                       'probe_time': np.linspace(4, 2, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float)}
         # print(self.values)
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
@@ -34,6 +34,7 @@ class MotParamsWrapper:
         :return:
         """
         act = seq.sample()
+        # print("BUUUUUG", act[self.lvls[act['MAIN'][0]]][2])
         parameters = {
                         'n_targets': self.values['n_targets'][act['MAIN'][0]],
                         'speed_max': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
@@ -84,8 +85,10 @@ class MotParamsWrapper:
         # print(n_distractors_i)
         track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
         # print(track_i)
+        # print(episode.probe_time)
         probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
-        # print(probe_i)
+        # print(self.values['probe_time'], episode.probe_time, float(episode.probe_time))
+        # 97cyprint(probe_i)
         # episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i,
         # probe_i]}
         episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
@@ -99,5 +102,5 @@ class MotParamsWrapper:
         :param name: string
         :param new_value: new object to add
         """
-        print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
+        # print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
         self.parameters[name] = new_value

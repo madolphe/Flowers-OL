@@ -1,14 +1,15 @@
 #! /bin/bash
 # Check if user wants to reset_db: 
 
+
 if [ ! -z $1 ]; then
-	if [ $1 = "rm_db" ]; then
+	if [ $1 = "reset_db" ]; then
 		read -p "You really want to delete db (y/n)? " -n 1 -r
 		echo    # (optional) move to a new line
 		if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-			echo 'out'
+			echo 'Reset db aborted'
 		else
-			echo 'in'
+			pipenv run python manage.py reset_db
 		fi
 	fi
 fi
@@ -21,10 +22,10 @@ fixtures=''
 for file in $folder; do
 	fixture="$fixture ${file:23}"
 done
-echo "$fixture"
+# echo "$fixture"
 
-#pipenv run python manage.py makemigrations
-#pipenv run python manage.py migrate
-#pipenv run python manage.py loaddata $fixture
-
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+pipenv run python manage.py loaddata $fixture
+pipenv run python manage.py createsuperuser 
 
