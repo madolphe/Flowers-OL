@@ -39,7 +39,7 @@
             "description": "Attention task",
             "prompt": "Begin practice",
             "view_name": "app_MOT",
-            "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions.html"
+            "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions.html, Paramètre d'écran=tasks/ZPDES_mot/screen_params.html-"
         }
     },
         {
@@ -67,8 +67,7 @@
                 }
             }
         }
-    },
-    {
+    }, {
         "model": "interface_app.Task",
         "fields": {
             "name": "post-sess-questionnaire",

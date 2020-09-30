@@ -77,7 +77,7 @@ def consent_page(request):
         'greeting': greeting,
         'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
         'study': study,
-        'form': form} });
+        'form': form}})
 
 
 @login_required

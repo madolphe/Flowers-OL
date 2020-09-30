@@ -123,7 +123,6 @@ def MOT_task(request):
 @login_required
 @csrf_exempt
 def next_episode(request):
-    print(locals())
     mot_wrapper = request.session['mot_wrapper']
     params = request.POST.dict()
     # Save episode and results:
