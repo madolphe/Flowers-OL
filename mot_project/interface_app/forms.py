@@ -123,3 +123,4 @@ class QuestionnaireForm(forms.Form):
                 self.fields[handle].widget.attrs['prev'] = cleaned_data[handle]
         if missing_data:
             raise forms.ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')
+

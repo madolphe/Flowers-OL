@@ -1,7 +1,8 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Select, NumberInput, TextInput, DateInput, SelectMultiple
+from django.forms.widgets import Widget, Select, NumberInput, TextInput, DateInput, SelectMultiple, MultiWidget
+
 
 class LikertRange(forms.Widget):
     template_name = 'includes/rangeLikert.html'
@@ -63,6 +64,32 @@ class Categories(SelectMultiple):
         return mark_safe(template)
 
 
+class CustomMultiWidget(MultiWidget):
+    template_name = 'includes/multiwidget_screen.html'
+
+    def __init__(self, attrs=None):
+        choices = [('cm', 'cm'), ('inches', 'inches')]
+        widgets = [
+            TextInput(attrs=attrs),
+            forms.Select(attrs=attrs, choices=choices),
+        ]
+        super().__init__(widgets, attrs)
+
+    def decompress(self, value):
+        print("VALUE", value)
+        if value:
+            return [value.size, value.unit]
+        return [None, None]
+
+    def value_from_datadict(self, data, files, name):
+        size, unit = super().value_from_datadict(data, files, name)
+        if unit == 'inches':
+            size = float(size)
+            size *= 2.54
+            size = str(size)
+        return size
+
+
 def get_custom_widget(question_object, num):
     if question_object.widget == 'custom-range':
         return LikertRange(attrs={
@@ -104,5 +131,6 @@ def get_custom_widget(question_object, num):
         choices = [(str(i), choices[i].capitalize()) for i in range(len(choices))]
         return Select(choices=choices)
     elif question_object.widget == 'custom-date':
-        #print("ca marche po ?")
         return DateInput()
+    elif question_object.widget == 'multiple-widget':
+        return CustomMultiWidget()

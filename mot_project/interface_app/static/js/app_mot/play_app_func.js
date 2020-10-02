@@ -240,6 +240,10 @@ function answer_button_clicked(){
     button_next_episode.show();
 }
 function next_episode(){
+    // update score
+    parameter_dict['score'] = parameter_dict['score']+(parameter_dict['nb_target_retrieved'] * 10) - ((app.n_distractors - parameter_dict['nb_distract_retrieved'])*10);
+    if(parameter_dict['score'] < 0){parameter_dict['score']=0}
+    console.log(parameter_dict['score']);
     // First set_up prompt of transition pannel:
     message = 'Vous avez retrouvé '+ parameter_dict['nb_target_retrieved'] + '/' + app.n_targets +' cibles.';
     let add_message = '\n Malheureusement, il en manque '+ str(app.n_targets- parameter_dict['nb_target_retrieved']) +'.';

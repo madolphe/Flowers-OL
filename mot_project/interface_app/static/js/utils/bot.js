@@ -1,4 +1,4 @@
-let bot_mode = true;
+let bot_mode = false;
 let bot_skill = 1;
 
 function bot_answer(app){

@@ -36,7 +36,7 @@
             "day"           : 2,
             "required"      : false,
             "index"         : 2,
-            "tasks_csv"     : "simple-mot-practice,ueq,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
     },
 
@@ -47,7 +47,7 @@
             "day"           : 3,
             "index"         : 1,
             "required"      : false,
-            "tasks_csv"     : "simple-mot-practice"
+            "tasks_csv"     : "simple-mot-practice,ueq"
         }
     },
     {
