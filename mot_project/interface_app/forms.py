@@ -110,17 +110,17 @@ class QuestionnaireForm(forms.Form):
         self.helper.form_tag = False
         self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.layout = Layout(*self.rows)
+        self.helper.form_show_errors = True
 
     def clean(self):
         cleaned_data = super().clean()
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
-            print('{}: {}'.format(handle, cleaned_data.get(handle)))
+            print('{}: value = {}'.format(handle, cleaned_data.get(handle)))
             if cleaned_data.get(handle) is None:
                 self.helper[handle].wrap(Div, css_class='empty-row')
                 missing_data = True
             else:
                 self.fields[handle].widget.attrs['prev'] = cleaned_data[handle]
         if missing_data:
-            raise forms.ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')
-
+            raise ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')

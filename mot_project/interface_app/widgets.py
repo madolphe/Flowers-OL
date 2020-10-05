@@ -76,18 +76,20 @@ class CustomMultiWidget(MultiWidget):
         super().__init__(widgets, attrs)
 
     def decompress(self, value):
-        print("VALUE", value)
         if value:
-            return [value.size, value.unit]
+            return [*value]
         return [None, None]
 
     def value_from_datadict(self, data, files, name):
         size, unit = super().value_from_datadict(data, files, name)
-        if unit == 'inches':
-            size = float(size)
-            size *= 2.54
-            size = str(size)
-        return size
+        try:
+            if unit == 'inches':
+                size = float(size)
+                size *= 2.54
+                size = str(size)
+            return size
+        except ValueError:
+            return None
 
 
 def get_custom_widget(question_object, num):
