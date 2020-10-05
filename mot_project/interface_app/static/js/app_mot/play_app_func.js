@@ -43,16 +43,16 @@ function display_game_zone(){
     stroke('red');
     noFill();
     strokeWeight(4);
-    radius = Math.round(ppd*max_angle);
-    ellipse(windowWidth/2, windowHeight/2, radius);
+    //radius = Math.round(ppd*max_angle);
+    ellipse(windowWidth/2, windowHeight/2, Math.round(ppd*max_angle));
     pop();
     push();
     ellipseMode(CENTER);
     stroke('red');
     noFill();
     strokeWeight(2);
-    radius = Math.round(ppd*min_angle);
-    ellipse(windowWidth/2, windowHeight/2, radius);
+    //radius = Math.round(ppd*min_angle);
+    ellipse(windowWidth/2, windowHeight/2, Math.round(ppd*min_angle));
     pop();
 }
 function display_fixation_cross(cross_length){
@@ -143,6 +143,7 @@ function timer(app, presentation_time, fixation_time, tracking_time, probe_time)
         tracking_timer = setTimeout(function(){
             // after fixation_time ms
             // app.phase change to tracking mode
+            console.log(parameter_dict['gaming'], parameter_dict['secondary_task']);
             if(parameter_dict['gaming']!=0 && parameter_dict['secondary_task']!='none') {
                 sec_task.timer_pause();
             }

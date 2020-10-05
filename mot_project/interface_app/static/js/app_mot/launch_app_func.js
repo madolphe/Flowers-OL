@@ -6,9 +6,6 @@ function start_mode(){
     fill(hover_color);
     rectMode(CENTER);
     rect(windowWidth/2, windowHeight/2, windowWidth, 500);
-    // button_tuto.position(windowWidth/2-(width/2), windowHeight/2 + 50 - (height/2));
-    // button_tuto.size(width,height);
-    // button_tuto.mousePressed(launch_tuto);
     // to remove:
     add_hover(windowWidth/2, windowHeight/2, width/2, height/2);
     add_hover(windowWidth/2, windowHeight/2, width/2, height/2);

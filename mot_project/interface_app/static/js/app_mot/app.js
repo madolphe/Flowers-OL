@@ -80,10 +80,7 @@ function draw(){
     if(mode=='start'){
         start_mode();
     }else if (mode =='play') {
-        //time_step ++;
-        //if(time_step % 30 == 0){
         if(frameCount % fps == 0){
-            // time_step = 0;
             game_time --;
         }
         play(parameter_dict['debug']);
@@ -94,13 +91,11 @@ function mousePressed(event) {
     if((mouseX > canvas.width-40)&&(mouseY<40)){quit_game()}
     console.log(mouseX, mouseY);//console.log(canvas.width);
    // First test if objects are in "clickable mode"
-   //if (app.distractors[0].hover) {
     if (typeof app !== 'undefined') {
-    if(app.phase=='answer'){
-        app.check_mouse_pressed(mouseX, mouseY);
+        if(app.phase=='answer'){
+            app.check_mouse_pressed(mouseX, mouseY);
+        }
     }
-    }
-   //}
 }
 function windowResized(){
     canvas = createCanvas(windowWidth, windowHeight);
