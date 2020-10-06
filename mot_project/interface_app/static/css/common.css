@@ -1,7 +1,9 @@
 :root {
     --main-panel-width: 70%;
 }
-
+.invalid-feedback {
+    display: initial;
+}
 /* || GENERAL STYLES */
 html, body {
     font-family: "Lato", sans-serif;

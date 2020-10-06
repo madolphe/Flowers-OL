@@ -13,7 +13,7 @@
 			"max_val": 1,
 			"step": 1,
 			"annotations": "none",
-			"widget": "custom-float",
+			"widget": "multiple-widget",
 			"type": "float",
 			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
 			"validate": "is_pos_num"

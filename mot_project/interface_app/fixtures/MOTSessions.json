@@ -6,7 +6,7 @@
             "day"           : 1,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "additional-profile-general,additional-profile-attention,12-months-vgq,years-vgq,simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "additional-profile-general,additional-profile-attention,simple-mot-practice"
                     }
     },
     {
@@ -16,7 +16,7 @@
             "day"           : 1,
             "required"      : false,
             "index"         : 2,
-            "tasks_csv"     : "simple-mot-practice,ueq"
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
         }
     },
     {
@@ -26,7 +26,7 @@
             "day"           : 2,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "12-months-vgq,years-vgq,simple-mot-practice"
         }
     },
     {
@@ -47,7 +47,7 @@
             "day"           : 3,
             "index"         : 1,
             "required"      : false,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice,ueq"
         }
     },
     {
@@ -68,7 +68,7 @@
             "day"           : 4,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -89,7 +89,7 @@
             "day"           : 5,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -110,7 +110,7 @@
             "day"           : 8,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -131,7 +131,7 @@
             "day"           : 9,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -152,7 +152,7 @@
             "day"           : 10,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -173,7 +173,7 @@
             "day"           : 11,
             "required"      : false,
             "index"         : 1,
-            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice"
         }
     },
     {
@@ -204,7 +204,7 @@
             "day"           : 12,
             "required"      : false,
             "index"         : 2,
-            "tasks_csv"     : "simple-mot-practice,ueq,post-sess-questionnaire"
+            "tasks_csv"     : "simple-mot-practice,ueq"
         }
     },
     {

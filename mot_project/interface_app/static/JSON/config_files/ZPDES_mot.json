@@ -1,7 +1,7 @@
 {
     "algo_name" : "ZpdesHssbg",
     "graph": { 
-        "file_name": "mot_graph",
+        "file_name": "mot_graph_v1",
         "path" : "interface_app/static/JSON/config_files",
         "main_act": "MAIN"
     },

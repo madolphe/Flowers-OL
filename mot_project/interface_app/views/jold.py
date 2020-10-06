@@ -107,6 +107,5 @@ def jold_free_choice(request, choice=0):
     answer.value = choice
     answer.save()
     if choice:
-        return redirect(reverse(jold_start_ll_practice))
-    else:
-        return redirect(reverse(end_task))
+        return redirect(reverse('jold_start_ll_practice'))
+    else: return redirect(reverse('end_task'))

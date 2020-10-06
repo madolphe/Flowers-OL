@@ -12,7 +12,7 @@ function init_pannel(){
     button_params.mousePressed(restart);
     screen_params_input = createInput(parameter_dict['screen_params']);
     angle_max_input = createInput(parameter_dict['angle_max']);
-    angle_min_input = createInput(parameter_dict['angle_max']);
+    angle_min_input = createInput(parameter_dict['angle_min']);
     debug_input = createInput(parameter_dict['debug']);
     secondary_task_input = createInput(parameter_dict['secondary_task']);
     n_targets_input = createInput(parameter_dict['n_targets']);

@@ -19,13 +19,18 @@ class MotParamsWrapper:
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
                            'gaming': 1, 'game_time': game_time, 'admin_pannel': admin_pannel}
+        if 'score' in participant.extra_json:
+            # if the participant has already a score:
+            self.parameters['score'] = participant.extra_json['score']
+        else:
+            self.parameters['score'] = 0
         # Could be obtained through reading graph (to be automated!):
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
                        'speed_max': np.linspace(2, 7, 11, dtype=float),
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
-                       'probe_time': np.linspace(3, 1, 11, dtype=float),
+                       'probe_time': np.linspace(4, 2, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float)}
-        print(self.values)
+        # print(self.values)
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
@@ -34,6 +39,7 @@ class MotParamsWrapper:
         :return:
         """
         act = seq.sample()
+        # print("BUUUUUG", act[self.lvls[act['MAIN'][0]]][2])
         parameters = {
                         'n_targets': self.values['n_targets'][act['MAIN'][0]],
                         'speed_max': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
@@ -58,6 +64,8 @@ class MotParamsWrapper:
         :return:
         """
         parsed_episode = self.parse_activity(episode)
+        # print(parsed_episode)
+        # print("---------------------")
         seq.update(parsed_episode['act'], parsed_episode['ans'])
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
@@ -69,19 +77,28 @@ class MotParamsWrapper:
     def parse_activity(self, episode):
         # First check if this act was successful:
         answer = episode.get_results
-        print("Update answer equals:", answer)
+        # print("Update answer equals:", answer)
         # Adjust values in 'n_distractors':
         n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
                       for i in range(len(self.values['n_distractors']))])
         # Then just parse act to ZPDES formalism:
         speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
+        # print(speed_i)
         n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
+        # print(n_targets_i)
         n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
+        # print(n_distractors_i)
         track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
+        # print(track_i)
+        # print(episode.probe_time)
         probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
-        episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i, probe_i]}
-        print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
-              "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
+        # print(self.values['probe_time'], episode.probe_time, float(episode.probe_time))
+        # 97cyprint(probe_i)
+        # episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i,
+        # probe_i]}
+        episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
+        # print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
+        #      "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
         return {'act': episode_parse, 'ans': answer}
 
     def set_parameter(self, name, new_value):
@@ -90,5 +107,5 @@ class MotParamsWrapper:
         :param name: string
         :param new_value: new object to add
         """
-        print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
+        # print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
         self.parameters[name] = new_value

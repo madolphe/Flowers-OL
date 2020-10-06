@@ -7,7 +7,7 @@
             "project"       : "Attention training",
             "base_template" : "base.html",
             "style"         : "css/common.css",
-            "briefing_template"  : "JOLD/consent_form.html",
+            "briefing_template"  : "ZPDES/consent_form.html",
             "reminder_template"  : "JOLD/reminder_email.html",
             "contact"       : "maxime.adolphe@inria.fr"
         }

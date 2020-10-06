@@ -72,7 +72,7 @@ def test(request):
     from ..utils import send_delayed_email_2
     from datetime import datetime, timedelta
     if request.user.is_superuser:
-        send_delayed_email_2(schedule=datetime.now() + timedelta(seconds=5))
+        send_delayed_email_2(schedule=datetime.now() + timedelta(minutes=1))
         return render(request, 'test_page.html', locals())
     else:
         return HttpResponseForbidden()

@@ -15,6 +15,8 @@ let cmpd;
 // pixels per deg:
 let ppd;
 
+// framerate:
+let fps = 30;
 
 // Params of MOT task (to display debug mode):
 let max_angle = 18;
@@ -29,8 +31,15 @@ let results = {};
 let numbers = [];
 let exit;
 let mode;
-let arena_background, button_play, button_tuto, button_exit, button_pause, button_keep,
-    button_answer, button_next_episode, guard_image, goblin_image, leaf_image,
+let arena_background,arena_background_init, button_play, button_tuto, button_exit, button_pause, button_keep,
+    button_answer, button_next_episode;
+let background_size;
+let button_exit_width = 100;
+let button_exit_height = 45;
+let button_height = 60;
+let button_width = 120;
+
+let guard_image, goblin_image, leaf_image,
     sec_task, gill_font_light, gill_font, timer_image;
 let screen_params = false;
 let pres_timer, tracking_timer, answer_timer, probe_timer, time_step, game_time;

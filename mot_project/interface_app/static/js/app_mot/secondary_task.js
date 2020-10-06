@@ -43,7 +43,7 @@ class Secondary_Task{
         return true
     }
     display_task(){
-        if(this.display){
+            if(this.display){
             push();
             imageMode(CENTER);
             translate(this.x + windowWidth/2, this.y + windowHeight/2);
@@ -114,12 +114,10 @@ class Secondary_Task{
                     this.display = false;
                     if(this.delta_orientation>30){
                         // wrong key pressed:
-                        console.log("WRONG");
                         this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
                     }else{
                         // Correct key pressed:
-                        console.log("CORRECT");
-                        this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
+                         this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
                     }
                     clearTimeout(this.timer_disp_id);
                     this.available_time -= (Date.now() - this.time_start_display);
@@ -129,11 +127,9 @@ class Secondary_Task{
                     this.display = false;
                     if(this.delta_orientation>30){
                         // correct key pressed:
-                        console.log("CORRECT");
                         this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 0]);
                     }else{
                         // wrong key pressed:
-                        console.log("WRONG");
                         this.results.push([this.delta_orientation, Date.now() - this.time_start_display, 1]);
                     }
                     clearTimeout(this.timer_disp_id);
@@ -142,8 +138,6 @@ class Secondary_Task{
                 }
             }
         }else{
-            console.log("push incorrectly");
-            console.log(this.available_time);
             // otherwise, the user press without asking for it:
             this.results.push([0, 0, 0]);
         }

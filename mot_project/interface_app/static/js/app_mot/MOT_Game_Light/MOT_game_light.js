@@ -29,16 +29,14 @@ class MOT_Game_Light extends MOT{
         stroke('white');
         noFill();
         strokeWeight(4);
-        radius = Math.round(ppd*max_angle);
-        ellipse(windowWidth/2, windowHeight/2, radius);
+        ellipse(windowWidth/2, windowHeight/2, Math.round(ppd*max_angle));
         pop();
         push();
         ellipseMode(CENTER);
         stroke('white');
         noFill();
         strokeWeight(2);
-        radius = Math.round(ppd*min_angle);
-        ellipse(windowWidth/2, windowHeight/2, radius);
+        ellipse(windowWidth/2, windowHeight/2, Math.round(ppd*min_angle));
         pop();
         super.display_objects(mouseX, mouseY);
     }
