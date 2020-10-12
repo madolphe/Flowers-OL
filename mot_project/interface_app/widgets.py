@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Widget, Select, NumberInput, TextInput, DateInput, SelectMultiple, MultiWidget
+from django.forms.widgets import Widget, Select, NumberInput, TextInput, DateInput, SelectMultiple, MultiWidget, Textarea
 
 
 class LikertRange(forms.Widget):
@@ -124,6 +124,8 @@ def get_custom_widget(question_object, num):
             'prev': None,
             'handle': question_object.handle,
             'odd': not (num % 2 == 0)})
+    elif question_object.widget == 'custom-textbox':
+        return Textarea()
     elif question_object.widget == 'custom-float':
         return TextInput()
     elif question_object.widget == 'custom-int':
