@@ -43,14 +43,20 @@ class EpisodeAdmin(admin.ModelAdmin, ExportCsvMixin):
 
 class QuestionAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('handle', 'instrument', 'component', 'prompt', 'widget', 'type')
-    list_filter = ['instrument', 'component']
+    list_filter = ['instrument', 'widget', 'type']
+    actions = ["export_as_csv"]
+
+
+class JOLD_LL_trialAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ('participant', 'session', 'forced', 'trial', 'wind', 'outcome', 'init_dist', 'end_dist', 'time_trial', 'presses', 'fuel')
+    list_filter = ['participant', 'session', 'forced']
     actions = ["export_as_csv"]
 
 
 # Register your models here
 admin.site.register(Session)
 admin.site.register(Study)
-admin.site.register(JOLD_LL_trial)
+admin.site.register(JOLD_LL_trial, JOLD_LL_trialAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerAdmin)
 admin.site.register(ParticipantProfile, ParticipantAdmin)
