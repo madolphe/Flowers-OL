@@ -27,11 +27,12 @@ class ExportCsvMixin:
 # Define admin classes
 class ParticipantAdmin(admin.ModelAdmin):
     list_display = ('user', 'study', 'date', 'current_session', 'task_stack_csv', 'extra_json')
+    list_filter = ('study',)
 
 
 class AnswerAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('__str__', 'participant', 'question', 'session', 'value')
-    list_filter = ['participant']
+    list_filter = ['participant__study', 'participant']
     actions = ["export_as_csv"]
 
 
@@ -41,6 +42,7 @@ class EpisodeAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_filter = ['participant']
     actions = ["export_as_csv"]
 
+
 class QuestionAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('handle', 'instrument', 'component', 'prompt', 'widget', 'type')
     list_filter = ['instrument', 'widget', 'type']
@@ -49,7 +51,7 @@ class QuestionAdmin(admin.ModelAdmin, ExportCsvMixin):
 
 class JOLD_LL_trialAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('participant', 'session', 'forced', 'trial', 'wind', 'outcome', 'init_dist', 'end_dist', 'time_trial', 'presses', 'fuel')
-    list_filter = ['participant', 'session', 'forced']
+    list_filter = [('participant', admin.RelatedOnlyFieldListFilter), ('session', admin.RelatedOnlyFieldListFilter), 'forced']
     actions = ["export_as_csv"]
 
 
