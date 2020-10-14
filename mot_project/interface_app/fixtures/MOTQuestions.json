@@ -68,10 +68,10 @@
 			"prompt": "Fréquence de la pratique des jeux vidéos",
 			"reverse": 0,
 			"min_val": 1,
-			"max_val": 100,
+			"max_val": 5,
 			"step": 1,
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-			"widget": "custom-range",
+			"widget": "custom-likert",
 			"type": "integer",
 			"help_text": ""
 		}
@@ -125,10 +125,10 @@
 			"prompt": "Depuis quand conduisez-vous ? ",
 			"reverse": 0,
 			"min_val": 1,
-			"max_val": 100,
+			"max_val": 4,
 			"step": 1,
 			"annotations": "Jamais~Moins d'un an~Entre 1 et 5 ans~Plus de 5 ans",
-			"widget": "custom-range",
+			"widget": "custom-likert",
 			"type": "string",
 			"help_text": ""
 		}
@@ -147,7 +147,7 @@
 			"max_val": 100,
 			"step": 1,
 			"annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
-			"widget": "custom-range",
+			"widget": "custom-likert",
 			"type": "string",
 			"help_text": ""
 		}
