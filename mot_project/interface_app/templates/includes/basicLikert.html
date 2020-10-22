@@ -1,35 +1,18 @@
 <div class="basic-likert-widget">
-    {% if widget.attrs.header %}
-        <div class="likert-header">
-            <div class="header-padding"></div>
-            <div class="header-items">
-                {% for a in widget.attrs.annotations %}
-                    <div class="header-item" style="width:calc(100%/{{widget.attrs.annotations|length}})">
-                        {{a}}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
-    {% if widget.attrs.odd %}
-    <div class="likert-row odd-row">
-    {% else %}
-    <div class="likert-row">
-    {% endif %}
-        <div class="row-prompt"> {{widget.attrs.prompt}} </div>
-        <div class="row-input">
-            {% for i in widget.attrs.options %}
-                <label class="input-element">
-                    <input
-                        type = "radio"
-                        value = {{i}}
-                        name = "{{widget.attrs.handle}}"
-                        {% if widget.attrs.checked == i %} checked {% endif %}
-                    />
-                    <div class="radio-button"></div>
-                </label>
-            {% endfor %}
-        </div>
-    </div>
-
-</div>
+    {% for option in widget.attrs.options %}
+        <input
+            type = "radio"
+            id = "{{widget.attrs.handle}}-{{option.0}}"
+            name = {{widget.name}}
+            value = {{option.0}}
+            {% if widget.attrs.prev|add:"0" == option.0 %} checked {% endif %}
+        >
+        <label for="{{widget.attrs.handle}}-{{option.0}}" style="width:calc(100%/{{widget.attrs.size}})" title="({{option.0}}) {{option.1}}">
+            {% if option.1 %}
+                {{option.1}}
+            {% else %}
+                -
+            {% endif %}
+        </label>
+    {% endfor %}
+ </div>

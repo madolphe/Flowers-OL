@@ -111,25 +111,7 @@ function answer_button_clicked(){
 }
 function quit_game(){
         // put here current results !
-        post('home_user', parameter_dict, 'post')
-}
-function post(path, params, method='post') {
-    // Function to ask for parameters of new episode
-    // first create an hidden form:
-    let form = document.getElementById('request');
-    form.method = method;
-    form.action = path;
-    // Pass all parameters needed:
-    for (const key in params) {
-        if (params.hasOwnProperty(key)) {
-          const hiddenField = document.createElement('input');
-          hiddenField.type = 'hidden';
-          hiddenField.name = key;
-          hiddenField.value = params[key];
-          form.appendChild(hiddenField)}
-    }
-    document.body.appendChild(form);
-    form.submit();
+        post('home', parameter_dict, 'post')
 }
 function next_episode(){
     //console.log(parameter_dict);

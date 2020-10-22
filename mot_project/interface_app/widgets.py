@@ -1,17 +1,16 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.forms.widgets import Select, NumberInput, TextInput, DateInput
+from django.forms.widgets import Widget, Select, NumberInput, TextInput, DateInput, SelectMultiple, MultiWidget, Textarea
 
 
-class rangeLikert(forms.Widget):
+class LikertRange(forms.Widget):
     template_name = 'includes/rangeLikert.html'
     input_type = 'range'
     needs_validator = True
 
     def get_context(self, name, value, attrs):
-        context = super(rangeLikert, self).get_context(name, value, attrs)
-        context['widget']['attrs']['prompt'] = self.attrs['prompt']
+        context = super(LikertRange, self).get_context(name, value, attrs)
         context['widget']['attrs']['annotations'] = self.attrs['annotations']
         context['widget']['attrs']['min_'] = self.attrs['min_']
         context['widget']['attrs']['max_'] = self.attrs['max_']
@@ -24,39 +23,39 @@ class rangeLikert(forms.Widget):
         return mark_safe(template)
 
 
-class polarLikert(rangeLikert):
+class LikertPolar(LikertRange):
     template_name = 'includes/polarLikert.html'
     input_type = 'range'
 
     def get_context(self, name, value, attrs):
-        context = super(rangeLikert, self).get_context(name, value, attrs)
+        context = super(LikertRange, self).get_context(name, value, attrs)
         context['widget']['attrs']['inner_range'] = self.attrs['inner_range']
         return context
 
 
-class basicLikert(rangeLikert):
+class LikertBasic(LikertRange):
     template_name = 'includes/basicLikert.html'
     input_type = 'radio'
     needs_validator = False
 
     def get_context(self, name, value, attrs):
-        context = super(rangeLikert, self).get_context(name, value, attrs)
-        context['widget']['attrs']['header'] = self.attrs['header']
+        context = super(LikertRange, self).get_context(name, value, attrs)
+        context['widget']['attrs']['size'] = self.attrs['size']
         context['widget']['attrs']['options'] = self.attrs['options']
-        context['widget']['attrs']['checked'] = self.attrs['checked']
+        context['widget']['attrs']['prev'] = self.attrs['prev']
         return context
 
 
-class Categories(Select):
+class Categories(SelectMultiple):
     template_name = 'includes/categories.html'
     input_type = 'checkbox'
     needs_validator = False
 
     def get_context(self, name, value, attrs):
-        # print(self.attrs)
-        context = super(Select, self).get_context(name, value, attrs)
-        context['widget']['attrs']['options'] = self.attrs['options']
-        context['widget']['attrs']['checked'] = self.attrs['checked']
+        context = super(SelectMultiple, self).get_context(name, value, attrs)
+        context['widget']['attrs']['choices'] = self.attrs['choices']
+        context['widget']['attrs']['size'] = self.attrs['size']
+        context['widget']['attrs']['prev'] = self.attrs['prev']
         return context
 
     def render(self, name, value, attrs, renderer=None):
@@ -65,57 +64,77 @@ class Categories(Select):
         return mark_safe(template)
 
 
-def get_custom_Likert_widget(question_object, index=False):
-    pre = '{}. '.format(index) if index else ''
-    odd = False
-    if index:
-        odd = not (index % 2 == 0)
-    if question_object.widget == 'range':
-        return rangeLikert(attrs={
-            'prompt': pre + question_object.prompt,
+class CustomMultiWidget(MultiWidget):
+    template_name = 'includes/multiwidget_screen.html'
+
+    def __init__(self, attrs=None):
+        choices = [('cm', 'cm'), ('inches', 'inches')]
+        widgets = [
+            TextInput(attrs=attrs),
+            forms.Select(attrs=attrs, choices=choices),
+        ]
+        super().__init__(widgets, attrs)
+
+    def decompress(self, value):
+        if value:
+            return [*value]
+        return [None, None]
+
+    def value_from_datadict(self, data, files, name):
+        size, unit = super().value_from_datadict(data, files, name)
+        try:
+            if unit == 'inches':
+                size = float(size)
+                size *= 2.54
+                size = str(size)
+            return size
+        except ValueError:
+            return None
+
+
+def get_custom_widget(question_object, num):
+    if question_object.widget == 'custom-range':
+        return LikertRange(attrs={
             'annotations': question_object.annotations.split('~'),
             'min_': question_object.min_val,
             'max_': question_object.max_val,
             'step': question_object.step,
             'class': question_object.widget})
-    if question_object.widget == 'polar':
-        return polarLikert(attrs={
-            'prompt': pre + question_object.prompt,
+    elif question_object.widget == 'custom-polar':
+        return LikertPolar(attrs={
             'annotations': question_object.annotations.split('~'),
             'min_': question_object.min_val,
             'max_': question_object.max_val,
             'step': question_object.step,
             'inner_range': range(question_object.max_val-2),
             'class': question_object.widget})
-    if question_object.widget == 'likert':
+    elif question_object.widget == 'custom-likert':
         annotations = []
         for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
-        return basicLikert(attrs={
-            'prompt': pre + question_object.prompt,
-            'annotations': annotations,
-            'header': True if index == 1 else False,
-            'options': list(range(question_object.min_val, question_object.max_val+1)),
-            'checked': None,
+        return LikertBasic(attrs={
+            'options': [(i, a) for i, a in enumerate(question_object.annotations.split('~'))],
+            'size': len(question_object.annotations.split('~')),
+            'prev': None,
             'handle': question_object.handle,
-            'odd': odd})
-    if question_object.widget == 'categories':
-        annotations = []
-        for a in question_object.annotations.split('~'): annotations.append(a if a else ' ')
+            'odd': not (num % 2 == 0)})
+    elif question_object.widget == 'custom-categories':
         return Categories(attrs={
-            'prompt': pre + question_object.prompt,
-            'annotations': annotations,
-            'options': list(range(question_object.min_val, question_object.max_val+1)),
-            'checked': None,
+            'choices': [(i, a) for i, a in enumerate(question_object.annotations.split('~'))],
+            'size': len(question_object.annotations.split('~')),
+            'prev': None,
             'handle': question_object.handle,
-            'odd': odd})
-    if question_object.widget == 'float-choice':
+            'odd': not (num % 2 == 0)})
+    elif question_object.widget == 'custom-textbox':
+        return Textarea()
+    elif question_object.widget == 'custom-float':
         return TextInput()
-    if question_object.widget == 'integer-choice':
+    elif question_object.widget == 'custom-int':
         return NumberInput()
-    if question_object.widget == 'select-choice':
+    elif question_object.widget == 'custom-select':
         choices = question_object.annotations.split('~')
         choices = [(str(i), choices[i].capitalize()) for i in range(len(choices))]
         return Select(choices=choices)
-    if question_object.widget == 'date':
-        print("ca marche po ?")
+    elif question_object.widget == 'custom-date':
         return DateInput()
+    elif question_object.widget == 'multiple-widget':
+        return CustomMultiWidget()

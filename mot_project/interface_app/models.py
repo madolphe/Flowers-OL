@@ -12,14 +12,17 @@ class Study(models.Model):
     name = models.CharField(max_length=50, default=uuid.uuid4, unique=True)
     project = models.CharField(max_length=100, default='')
     base_template = models.CharField(max_length=50, default='base.html')
-    style = models.CharField(max_length=50, null=True)
+    style = models.CharField(default='css/home.css', max_length=50, null=True)
     briefing_template = models.CharField(max_length=50, null=True, blank=True)
     reminder_template = models.CharField(max_length=50, null=True, blank=True)
-    extra_json = jsonfield.JSONField()
+    extra_json = jsonfield.JSONField(default={}, blank=True)
     contact = models.EmailField(default='')
 
     def __unicode__(self):
         return self.name
+
+    def __str__(self):
+        return self.__unicode__()
 
     class Meta:
         verbose_name = 'Study'
@@ -28,11 +31,18 @@ class Study(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=50, default='', unique=True)
-    description = models.TextField(default='')
+    description = models.TextField(default='', blank=True)
     prompt = models.CharField(max_length=100, default='', blank=True)
     view_name = models.CharField(max_length=50, default='')
+    exit_view = models.CharField(max_length=50, default='', blank=True)
     info_templates_csv = models.TextField(null=True, blank=True)
-    extra_json = jsonfield.JSONField()
+    extra_json = jsonfield.JSONField(default={}, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__unicode__()
 
     @property
     def info(self):
@@ -51,8 +61,9 @@ class ExperimentSession(models.Model):
     day = models.IntegerField(default=0) # have to use default=0 because nulls are not compared for uniqueness
     index = models.IntegerField(default=0)
     wait = models.DurationField(default=datetime.timedelta(0))
+    required = models.BooleanField(default=True)
     tasks_csv = models.CharField(max_length=200, default='')
-    extra_json = jsonfield.JSONField()
+    extra_json = jsonfield.JSONField(default={}, blank=True)
 
     class Meta:
         ordering = ['study', 'day', 'index']
@@ -86,12 +97,16 @@ class ExperimentSession(models.Model):
             return datetime.datetime.now() - ref_datetime > self.wait
         return True
 
+    def is_past(self, ref_datetime):
+        if self.day:
+            return datetime.date.today() > ref_datetime + datetime.timedelta(days=self.day-1)
+
 
 class ParticipantProfile(models.Model):
+    # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    screen_params = models.FloatField(default=39.116)
-    date = models.DateTimeField(default=timezone.now, verbose_name='Registration date and time')
-    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='day / month / year')
+    date = models.DateTimeField(default=datetime.datetime.now, verbose_name='Registration date and time')
+    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='jour/mois/an')
     remind = models.BooleanField(default=True)
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     consent = models.BooleanField(default=False)
@@ -99,11 +114,17 @@ class ParticipantProfile(models.Model):
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
-    extra_json = jsonfield.JSONField()
+    extra_json = jsonfield.JSONField(default={}, blank=True)
 
     class Meta:
         verbose_name = 'Participant'
         ordering = ['birth_date']
+
+    def __unicode__(self):
+        return '{} -- {}'.format(self.study.name, self.user.username)
+
+    def __str__(self):
+        return self.__unicode__()
 
     def assign_condition(self):
         pass
@@ -125,8 +146,18 @@ class ParticipantProfile(models.Model):
             self.save()
 
     @property
-    def current_session_valid(self, request=None):
+    def current_session_valid(self):
+        # If the current session is not today, not required and was skipped (i.e date in the past):
         if not self.current_session.is_today(ref_date=self.date.date()):
+            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.date.date()):
+                # Store in participant extra_json when a session has been skipped:
+                if 'skipped_session' in self.extra_json:
+                    self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
+                else:
+                    self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
+                self.close_current_session()
+                self.set_current_session()
+                return self.current_session_valid
             return False
         if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
             return False
@@ -142,8 +173,8 @@ class ParticipantProfile(models.Model):
         else: return self.sessions.all()
 
     def close_current_session(self):
-        if self.sessions:
-            self.session_timestamp = timezone.now()
+        if self.sessions.all():
+            self.session_timestamp = datetime.datetime.now()
             self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
             self.current_session = None
             self.save()
@@ -189,7 +220,7 @@ class ParticipantProfile(models.Model):
         return l
 
     def queue_reminder(self):
-        if self.remind:
+        if self.remind and self.sessions.all():
             day1 = self.date
             next_session = self.sessions.first()
             next_session_date = day1 + datetime.timedelta(days=next_session.day-1)
@@ -241,6 +272,7 @@ class Episode(models.Model):
     presentation_time = models.FloatField(default=0)
     fixation_time = models.FloatField(default=0)
     tracking_time = models.FloatField(default=0)
+    probe_time = models.FloatField(default=0)
 
     # User Score:
     nb_target_retrieved = models.IntegerField(default=0)
@@ -249,6 +281,19 @@ class Episode(models.Model):
     # To avoid creating session model but to be able to make joint queries:
     id_session = models.IntegerField(default=0)
     finished_session = models.BooleanField(default=False)
+
+    @property
+    def get_results(self):
+        if self.nb_target_retrieved == self.n_targets and \
+                self.nb_distract_retrieved == self.n_distractors:
+            return 1
+        return 0
+
+    def __unicode__(self):
+        return str(self.episode_number)
+
+    def __str__(self):
+        return self.__unicode__()
 
 
 class SecondaryTask(models.Model):
@@ -260,7 +305,7 @@ class SecondaryTask(models.Model):
 
 
 class JOLD_LL_trial(models.Model):
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateTimeField(default=datetime.datetime.now)
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.CASCADE)
     trial = models.IntegerField(null=True)
@@ -286,17 +331,18 @@ class Question(models.Model):
     instrument = models.CharField(max_length=100, null=True)
     component = models.CharField(max_length=100, null=True)
     group = models.CharField(max_length=50, null=True)
-    handle = models.CharField(max_length=10, null=True)
+    handle = models.CharField(max_length=10, null=True, unique=True)
     order = models.IntegerField(null=True)
     prompt = models.CharField(max_length=300, null=True)
     reverse = models.BooleanField(null=True)
-    min_val = models.IntegerField(null=1)
-    max_val = models.IntegerField(null=1)
-    step = models.IntegerField(null=1)
+    min_val = models.IntegerField(null=True)
+    max_val = models.IntegerField(null=True)
+    step = models.IntegerField(null=True)
     annotations = models.CharField(max_length=200, null=True)
     type = models.CharField(max_length=30, null=True)
     widget = models.CharField(max_length=30, null=True)
-    help_text = models.CharField(max_length=200, default="none")
+    help_text = models.CharField(max_length=200, null=True, blank=True)
+    validate = models.CharField(max_length=200, default='', blank=True)
 
     def __unicode__(self):
         return self.handle
