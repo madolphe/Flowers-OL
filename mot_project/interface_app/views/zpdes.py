@@ -24,17 +24,20 @@ def mot_close_task(request):
         game_end = True
     if not game_end:
         min = int(request.POST.dict()['game_time']) // 60
-        sec = int(request.POST.dict()['game_time']) - min * 60
+        sec = int(request.POST.dict()['game_time']) - (min * 60)
         request.session['mot_wrapper'].set_parameter('game_time', request.POST.dict()['game_time'])
         add_message(request, 'Il vous reste encore du temps de jeu: {} min et {} sec, continuez!'.format(min, sec),
                     tag='WARNING')
         # Store that participant just paused the game:
         participant.extra_json['paused_mot_start'] = str(datetime.time)
+        participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
         participant.save()
         return redirect(reverse('home'))
     else:
+        participant.extra_json['game_time_to_end'] = str(30*60)
+        participant.save()
         add_message(request, 'Vous avez terminé la session de jeu!', 'success')
-        request.session['exit_view_done'] = True,
+        request.session['exit_view_done'] = True
         return redirect(reverse('end_task'))
 
 
@@ -94,8 +97,14 @@ def MOT_task(request):
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
 
-    # Init a wrapper for mot if called for the first time:
-    request.session['mot_wrapper'] = MotParamsWrapper(participant)
+    # If user connects for the first time of the day (begin session):
+    if 'mot_wrapper' not in request.session:
+        # Init a wrapper for mot if called for the first time:
+        request.session['mot_wrapper'] = MotParamsWrapper(participant)
+        if 'game_time_to_end' in participant.extra_json:
+            request.session['mot_wrapper'].parameters['game_time'] = int(participant.extra_json['game_time_to_end'])
+        else:
+            request.session['mot_wrapper'].parameters['game_time'] = 30*60
 
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
@@ -143,6 +152,8 @@ def next_episode(request):
             sec_task.answer_duration = res[1]
             sec_task.success = res[2]
             sec_task.save()
+    # Game time is updated even if for a normal new episode, not used:
+    request.session['mot_wrapper'].set_parameter('game_time', params['game_time'])
     seq_param = request.session['seq_manager']
     seq_param = mot_wrapper.update(episode, seq_param)
     parameters = mot_wrapper.sample_task(seq_param)

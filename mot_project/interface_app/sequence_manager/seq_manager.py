@@ -14,7 +14,7 @@ class MotParamsWrapper:
             game_time = 10*60*60
         screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
         # Just init "fixed parameters":
-        self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 90, 'speed_min': 4, 'speed_max': 4,
+        self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 40, 'speed_min': 4, 'speed_max': 4,
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
@@ -30,7 +30,6 @@ class MotParamsWrapper:
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
                        'probe_time': np.linspace(4, 2, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float)}
-        # print(self.values)
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):

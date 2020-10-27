@@ -1,12 +1,13 @@
 class Tracked_Object_Game extends Tracked_Object{
-    constructor(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, target_image, distract_image){
-        super(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius);
+    constructor(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, target_image, distract_image,
+                positions){
+        super(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, positions);
         this.target_image = target_image;
         this.distract_image = distract_image;
         this.actual_image = this.distract_image;
     }
-    initial_position(forbidden_loc) {
-        super.initial_position(forbidden_loc);
+    init_pos(forbidden_loc, positions) {
+        super.init_pos(forbidden_loc, positions);
     }
     update_next_boundaries() {
         super.update_next_boundaries();
@@ -34,7 +35,15 @@ class Tracked_Object_Game extends Tracked_Object{
         imageMode(CENTER);
         scale(0.5);
         image(this.actual_image, 0, 0);
+        ellipse(0,0,20,20);
         pop();
+        push();
+        translate(this.pos.x+windowWidth/2, this.pos.y+windowHeight/2);
+        noFill();
+        stroke(this.color_colision);
+        ellipse(0,0,2*this.radius,2*this.radius);
+        pop();
+
     }
     event_display(X, Y) {
         if(this.interact_phase){
@@ -44,25 +53,22 @@ class Tracked_Object_Game extends Tracked_Object{
                 strokeWeight(2);
                 stroke(this.color);
                 noFill();
-                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, this.radius);
+                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 2*this.radius);
                 pop();
             }
             else{
-                if(abs((this.pos.x+windowWidth/2)-X)<this.radius/2 && abs((this.pos.y+windowHeight/2)-Y)<this.radius/2)
+                if(abs((this.pos.x+windowWidth/2)-X)<this.radius && abs((this.pos.y+windowHeight/2)-Y)<this.radius)
                 {
                 this.color = 'white';
                 push();
                 strokeWeight(2);
                 stroke(this.color);
                 noFill();
-                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, this.radius);
+                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 2*this.radius);
                 pop();
                 }
             }
         }
-    }
-    change_pos() {
-        super.change_pos();
     }
     move() {
         super.move();

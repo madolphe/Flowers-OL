@@ -53,6 +53,18 @@ function display_game_zone(){
     strokeWeight(2);
     //radius = Math.round(ppd*min_angle);
     ellipse(windowWidth/2, windowHeight/2, Math.round(ppd*min_angle));
+    app.positions.forEach(function (item)  {
+        let r = item[1];
+        let theta = Math.PI*item[0]/180;
+        let x = Math.round(r*Math.cos(theta));
+        let y = Math.round(r*Math.sin(theta));
+       push();
+       noFill();
+       stroke('red');
+       strokeWeight(2);
+       ellipse(x+windowWidth/2,y+windowHeight/2,2*app.radius, 2*app.radius);
+       pop();
+    });
     pop();
 }
 function display_fixation_cross(cross_length){
@@ -227,6 +239,7 @@ function answer_button_clicked(){
     show_probe_timer = false;
     clearTimeout(probe_timer);
     button_answer.hide();
+    parameter_dict['game_time'] = game_time;
     let res = app.get_results();
     parameter_dict['nb_target_retrieved'] = res[0];
     parameter_dict['nb_distract_retrieved'] = res[1];
@@ -279,5 +292,3 @@ function next_episode(){
         button_hide_params.hide();
     }
 }
-
-

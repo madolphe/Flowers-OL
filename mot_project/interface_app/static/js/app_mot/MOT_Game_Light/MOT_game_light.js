@@ -1,6 +1,7 @@
 class MOT_Game_Light extends MOT{
-    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_color, distract_color){
-        super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max);
+    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_color, distract_color,
+                positions){
+        super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, positions);
         this.target_color = target_color;
         this.distract_color = distract_color;
         this.targets = [];
@@ -22,7 +23,9 @@ class MOT_Game_Light extends MOT{
     freeze_app() {
         super.freeze_app();
     }
-
+    discrete_space() {
+        return super.discrete_space();
+    }
     display_objects(mouseX, mouseY) {
         push();
         ellipseMode(CENTER);

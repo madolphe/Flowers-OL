@@ -1,12 +1,13 @@
 class Tracked_Object_Game_Light extends Tracked_Object{
-    constructor(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, target_color, distract_color){
-        super(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius);
+    constructor(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, target_color, distract_color,
+                positions){
+        super(speed_min, speed_max, name, area_min, area_max, type, forbidden_loc, radius, positions);
         this.target_color = target_color;
         this.distract_color = distract_color;
         this.actual_color = this.distract_color;
     }
-    initial_position(forbidden_loc) {
-        super.initial_position(forbidden_loc);
+    init_pos(forbidden_loc, positions) {
+        super.init_pos(forbidden_loc, positions);
     }
     update_next_boundaries() {
         super.update_next_boundaries();
@@ -42,24 +43,21 @@ class Tracked_Object_Game_Light extends Tracked_Object{
                 strokeWeight(2);
                 stroke('white');
                 noFill();
-                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 1.1*this.radius);
+                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 2*this.radius);
                 pop();
             }
             else{
-                if(abs((this.pos.x+windowWidth/2)-X)<this.radius/2 && abs((this.pos.y+windowHeight/2)-Y)<this.radius/2)
+                if(abs((this.pos.x+windowWidth/2)-X)<this.radius && abs((this.pos.y+windowHeight/2)-Y)<this.radius)
                 {
                 push();
                 strokeWeight(2);
                 stroke('white');
                 noFill();
-                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 1.1*this.radius);
+                ellipse(this.pos.x+ windowWidth/2, this.pos.y+windowHeight/2, 2*this.radius);
                 pop();
                 }
             }
         }
-    }
-    change_pos() {
-        super.change_pos();
     }
     move() {
         super.move();
