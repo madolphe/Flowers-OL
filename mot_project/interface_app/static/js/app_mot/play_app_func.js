@@ -196,7 +196,6 @@ function start_episode(){
               parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max']);
     }else{
         if(parameter_dict['gaming']==0){
-            console.log("no gaming mode");
             app = new MOT_Game_Light(parameter_dict['n_targets'],parameter_dict['n_distractors'],
                 Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
                 parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], 'green', 'red');

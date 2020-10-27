@@ -1,7 +1,6 @@
 class MOT_Game_Light extends MOT{
-    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_color, distract_color,
-                positions){
-        super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, positions);
+    constructor(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max, target_color, distract_color){
+        super(n_targets, n_distractors, area_max, area_min, radius, speed_min, speed_max);
         this.target_color = target_color;
         this.distract_color = distract_color;
         this.targets = [];
@@ -12,12 +11,12 @@ class MOT_Game_Light extends MOT{
     init_lists() {
         for(let step = 0; step < this.n_targets; step++){
             this.targets.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
-                'target', this.targets, this.radius, this.target_color, this.distract_color))
+                'target', this.targets, this.radius, this.target_color, this.distract_color, this.positions))
         }
         for(let step = 0; step < this.n_distractors; step++){
             this.distractors.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max,step+this.n_targets,
                 this.area_min, this.area_max, 'distractor', this.targets.concat(this.distractors), this.radius,
-                this.target_color, this.distract_color));
+                this.target_color, this.distract_color, this.positions));
         }
     }
     freeze_app() {
