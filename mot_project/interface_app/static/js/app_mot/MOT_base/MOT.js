@@ -14,7 +14,6 @@ class MOT{
         this.speed_max = speed_max;
         this.radius = radius;
         this.positions = this.discrete_space();
-        console.log(this.positions);
         this.init_lists();
         this.all_objects = this.targets.concat(this.distractors);
     }
@@ -23,6 +22,13 @@ class MOT{
         let complete = false;
         let r = this.area_min + this.radius;
         let positions = [];
+        // Make sure radius is not too big for space in scene:
+        if(this.radius>(this.area_max-this.area_min)){
+            alert("Radius is too large, we automaticaly set it to 45 (default value)");
+            this.radius = 45;
+            this.discrete_space();
+        }
+        // Discretize space:
         while(!complete){
             // first compute current circle perimeter:
             // var perimeter = 2*Math.PI*r;
@@ -36,13 +42,23 @@ class MOT{
             }
             // update r and check that it still fits in scene:
             if(r<this.area_max-3*this.radius){
-                console.log("R VAUT :", r);
                 r=r+2*this.radius;
             }else{
-                console.log("ON VA SORTIR,", r);
                 complete = true;
             }
         }
+        // Depending on radius, number of available positions decrease
+        // Make sure to display only max number of elements (otherwise init_lists is an infinite loop)
+        let has_removed = false;
+        while(positions.length<this.n_targets+this.n_distractors){
+            has_removed = true;
+            if(this.n_distractors > 0){
+                this.n_distractors --;
+            }else{
+                this.n_targets --;
+            }
+        }
+        if(has_removed){alert("Too many objects, we automaticaly remove those that didn't fit!");}
         return positions;
     }
     init_lists(){
