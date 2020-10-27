@@ -11,14 +11,18 @@ class MOT_Game extends MOT{
     init_lists() {
         for(let step = 0; step < this.n_targets; step++){
             this.targets.push(new Tracked_Object_Game(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
-                'target', this.targets, this.radius, this.target_image, this.distract_image))
+                'target', this.targets, this.radius, this.target_image, this.distract_image, this.positions))
         }
         for(let step = 0; step < this.n_distractors; step++){
             this.distractors.push(new Tracked_Object_Game(this.speed_min, this.speed_max,step+this.n_targets,
                 this.area_min, this.area_max, 'distractor', this.targets.concat(this.distractors), this.radius,
-                this.target_image, this.distract_image));
+                this.target_image, this.distract_image, this.positions));
         }
     }
+    discrete_space() {
+        return super.discrete_space();
+    }
+
     freeze_app() {
         super.freeze_app();
     }

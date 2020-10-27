@@ -85,6 +85,8 @@ function init_pannel(){
     // Hide all inputs:
     hide_inputs();
     button_hide_params.hide();
+    position_inputs();
+    size_inputs();
 }
 function size_inputs(){
     //inputs_map.forEach(function(value, key, map){value.size(windowHeight/10, step*(2/3))});
