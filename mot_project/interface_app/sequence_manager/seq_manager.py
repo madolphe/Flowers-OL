@@ -38,7 +38,6 @@ class MotParamsWrapper:
         :return:
         """
         act = seq.sample()
-        # print("BUUUUUG", act[self.lvls[act['MAIN'][0]]][2])
         parameters = {
                         'n_targets': self.values['n_targets'][act['MAIN'][0]],
                         'speed_max': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
@@ -57,14 +56,12 @@ class MotParamsWrapper:
     def update(self, episode, seq):
         """
         Given one episode update and return the seq manager.
-        Also store last episode results (i.e ep_number, nb_targets_retrieved, nb distract_retrieved)
+        Also store last episode results (i.e ep_number, nb_targets_retrieved, nb distract_retrieved) in parameters dict
         :param episode:
         :param seq:
         :return:
         """
         parsed_episode = self.parse_activity(episode)
-        # print(parsed_episode)
-        # print("---------------------")
         seq.update(parsed_episode['act'], parsed_episode['ans'])
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
@@ -76,28 +73,33 @@ class MotParamsWrapper:
     def parse_activity(self, episode):
         # First check if this act was successful:
         answer = episode.get_results
-        # print("Update answer equals:", answer)
-        # Adjust values in 'n_distractors':
-        n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
-                      for i in range(len(self.values['n_distractors']))])
-        # Then just parse act to ZPDES formalism:
-        speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
-        # print(speed_i)
-        n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
-        # print(n_targets_i)
-        n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
-        # print(n_distractors_i)
-        track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
-        # print(track_i)
-        # print(episode.probe_time)
-        probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
-        # print(self.values['probe_time'], episode.probe_time, float(episode.probe_time))
-        # 97cyprint(probe_i)
-        # episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i,
-        # probe_i]}
-        episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
-        # print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
-        #      "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
+
+        # Adjust values in 'n_distractors' (always add n_targets):
+        n_d_values = np.array(list(map(lambda x: x + float(episode.n_targets), self.values['n_distractors'])))
+        # n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
+        #              for i in range(len(self.values['n_distractors']))])
+
+        # Check that episode values are present in graph (ZPDES formalism):
+        episode_status = True
+        for key, value in episode.__dict__.items():
+            if key in self.values:
+                if value not in self.values[key]:
+                    episode_status = False
+                    break
+        if episode_status:
+            speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
+            n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
+            n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
+            track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
+            probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
+            episode_parse = {'MAIN': [n_targets_i],
+                             str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
+        else:
+            print("INCORRECT EPISODE !!!!")
+            # It means that this episode isn't a correct one:
+            for key, value in self.values.items():
+                episode.__dict__[key] = value[0]
+            episode_parse = {'MAIN': [0], str(self.lvls[0]): [0, 0, 0, 0]}
         return {'act': episode_parse, 'ans': answer}
 
     def set_parameter(self, name, new_value):
