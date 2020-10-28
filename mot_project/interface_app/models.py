@@ -155,6 +155,8 @@ class ParticipantProfile(models.Model):
                     self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
                 else:
                     self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
+                if 'game_time_to_end' in self.extra_json:
+                    del self.extra_json['game_time_to_end']
                 self.close_current_session()
                 self.set_current_session()
                 return self.current_session_valid

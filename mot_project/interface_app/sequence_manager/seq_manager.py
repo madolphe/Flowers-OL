@@ -34,7 +34,7 @@ class MotParamsWrapper:
 
     def sample_task(self, seq):
         """
-        Method that convert a node in ZPD graph to real value for MOT
+        Convert a node in ZPD graph to exploitable value for MOT_task
         :return:
         """
         act = seq.sample()
@@ -71,13 +71,17 @@ class MotParamsWrapper:
         return seq
 
     def parse_activity(self, episode):
+        """
+        Format episode to dict exploitable by kidlearn_lib. If episode passed in args doesn't fit with space
+        discretization, returns easiest exercice possible.
+        :param episode:
+        :return:
+        """
         # First check if this act was successful:
         answer = episode.get_results
 
         # Adjust values in 'n_distractors' (always add n_targets):
         n_d_values = np.array(list(map(lambda x: x + float(episode.n_targets), self.values['n_distractors'])))
-        # n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
-        #              for i in range(len(self.values['n_distractors']))])
 
         # Check that episode values are present in graph (ZPDES formalism):
         episode_status = True
@@ -95,7 +99,6 @@ class MotParamsWrapper:
             episode_parse = {'MAIN': [n_targets_i],
                              str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
         else:
-            print("INCORRECT EPISODE !!!!")
             # It means that this episode isn't a correct one:
             for key, value in self.values.items():
                 episode.__dict__[key] = value[0]
