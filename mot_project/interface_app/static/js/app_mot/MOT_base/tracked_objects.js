@@ -167,7 +167,7 @@ class Tracked_Object{
 
     is_pressed(X, Y){
         // function called each time user press
-        if(abs((this.pos.x+windowWidth/2)-X)<this.radius/2 && abs((this.pos.y+windowHeight/2)-Y)<this.radius/2){
+        if(abs((this.pos.x+windowWidth/2)-X)<this.radius && abs((this.pos.y+windowHeight/2)-Y)<this.radius){
             // on-off switch:
             this.pressed = !this.pressed;
         }

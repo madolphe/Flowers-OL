@@ -34,8 +34,10 @@ def mot_close_task(request):
         participant.save()
         return redirect(reverse('home'))
     else:
-        participant.extra_json['game_time_to_end'] = str(30*60)
-        participant.save()
+        # If mot close and time is over, just remove game_time_to_end:
+        if 'game_time_to_end' in participant.extra_json:
+            del participant.extra_json['game_time_to_end']
+            participant.save()
         add_message(request, 'Vous avez terminé la session de jeu!', 'success')
         request.session['exit_view_done'] = True
         return redirect(reverse('end_task'))
@@ -90,37 +92,35 @@ def set_mot_params(request):
 
 @login_required
 def MOT_task(request):
-    """Initial call to mot-app"""
+    """
+    View called when button "begin task" is selected.
+    :param request:
+    :return:
+    """
     # Var to placed in a config file :
     dir_path = "interface_app/static/JSON/config_files"
-
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
-
-    # If user connects for the first time of the day (begin session):
-    if 'mot_wrapper' not in request.session:
-        # Init a wrapper for mot if called for the first time:
-        request.session['mot_wrapper'] = MotParamsWrapper(participant)
-        if 'game_time_to_end' in participant.extra_json:
-            request.session['mot_wrapper'].parameters['game_time'] = int(participant.extra_json['game_time_to_end'])
-        else:
-            request.session['mot_wrapper'].parameters['game_time'] = 30*60
-
+    # First assign condition if first connexion:
     if "condition" not in participant.extra_json:
         # Participant hasn't been put in a group:
         assign_mot_condition(participant)
-
-    # Init the correct sequence manager if not already in request session:
-    if "seq_manager" not in request.session:
-        if participant.extra_json['condition'] == 'zpdes':
-            zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
-            request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
-        else:
-            mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
-            request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
-    # If this is not the first time the user plays, build his history :
+    # Set new mot_wrapper (erase old one if exists):
+    request.session['mot_wrapper'] = MotParamsWrapper(participant)
+    if 'game_time_to_end' in participant.extra_json:
+        # If players has already played / reload page (and delete cache) for this session, game_time has to be set:
+        request.session['mot_wrapper'].parameters['game_time'] = int(participant.extra_json['game_time_to_end'])
+    # Set new sequence_manager (erase the previous one if exists):
+    if participant.extra_json['condition'] == 'zpdes':
+        zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
+    else:
+        mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
+        request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
+    # Build his history :
     history = Episode.objects.filter(participant=request.user)
     for episode in history:
+        # Call mot_wrapper to parse django episodes and update seq_manager
         request.session['seq_manager'] = request.session['mot_wrapper'].update(episode, request.session['seq_manager'])
     # Get parameters for task:
     parameters = request.session['mot_wrapper'].sample_task(request.session['seq_manager'])
@@ -152,12 +152,13 @@ def next_episode(request):
             sec_task.answer_duration = res[1]
             sec_task.success = res[2]
             sec_task.save()
-    # Game time is updated even if for a normal new episode, not used:
-    request.session['mot_wrapper'].set_parameter('game_time', params['game_time'])
-    seq_param = request.session['seq_manager']
-    seq_param = mot_wrapper.update(episode, seq_param)
-    parameters = mot_wrapper.sample_task(seq_param)
-    request.session['seq_manager'] = seq_param
+    # In case the user reloads page, we save in participant extra_json the game_time_to_end:
+    participant = request.user.participantprofile
+    participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
+    participant.save()
+    # Sample new episode:
+    request.session['seq_manager'] = mot_wrapper.update(episode, request.session['seq_manager'])
+    parameters = mot_wrapper.sample_task(request.session['seq_manager'])
     return HttpResponse(json.dumps(parameters))
 
 

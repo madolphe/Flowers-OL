@@ -155,6 +155,8 @@ class ParticipantProfile(models.Model):
                     self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
                 else:
                     self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
+                if 'game_time_to_end' in self.extra_json:
+                    del self.extra_json['game_time_to_end']
                 self.close_current_session()
                 self.set_current_session()
                 return self.current_session_valid
@@ -205,18 +207,21 @@ class ParticipantProfile(models.Model):
         print(self.task_stack_csv)
 
     @property
-    def progress_info(self):
+    def progress_info(self, all_values=False):
         l = []
         for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
             tasks = [task.description for task in session.get_task_list()]
             task_index = None
             if session == self.current_session:
                 task_index = len(tasks) - len(self.task_names_list)
-            sess_info = {'num': i,
-                         'current': True if session == self.current_session else False,
-                         'tasks': tasks,
-                         'cti': task_index} # cti = current task index
-            l.append(sess_info)
+                # From this session, append other sess:
+                all_values = True
+            if all_values:
+                sess_info = {'num': i,
+                             'current': True if session == self.current_session else False,
+                             'tasks': tasks,
+                             'cti': task_index} # cti = current task index
+                l.append(sess_info)
         return l
 
     def queue_reminder(self):
