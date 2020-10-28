@@ -105,8 +105,8 @@ class ExperimentSession(models.Model):
 class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=datetime.datetime.now, verbose_name='Registration date and time')
-    birth_date = models.DateField(default=datetime.date.today, blank=True, help_text='jour/mois/an')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Registration date and time')
+    birth_date = models.DateField(help_text='jour/mois/an')
     remind = models.BooleanField(default=True)
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     consent = models.BooleanField(default=False)

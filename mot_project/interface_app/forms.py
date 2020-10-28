@@ -7,6 +7,7 @@ from crispy_forms.layout import Layout, Submit, Row, Div, HTML
 from django.core.exceptions import *
 from django.forms.widgets import NumberInput, CheckboxInput
 from . import validators
+import datetime
 
 
 class UserForm(forms.ModelForm):
@@ -43,7 +44,9 @@ class ParticipantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         fields = ['birth_date', 'study', 'remind']
-        widgets = {'study': forms.HiddenInput()}
+        widgets = {'study': forms.HiddenInput(),
+                   'birth_date': forms.DateInput(attrs={'type': 'date'})
+                   }
 
     def save_profile(self, user):
         """
