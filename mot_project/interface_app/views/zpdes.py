@@ -20,6 +20,7 @@ def mot_close_task(request):
     participant = request.user.participantprofile
     params = request.POST.dict()
     game_end = False
+    # Game is over:
     if params['game_end'] == 'true':
         game_end = True
     if not game_end:
