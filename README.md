@@ -1,6 +1,6 @@
 # Multi-object tracking application
 
-The aim of this project is to develop a django app providing a multiple object tracking task. This interface will be leverage in the context of an experiment studying how intelligent tutoring system could be used for attention training.
+The aim of this project is to develop a django app providing an online laboratory for the flowers team. Two experiments are currently running on the plateform (Attention training task and learning progress self-evaluation).
 
 # Project information
 
