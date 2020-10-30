@@ -19,6 +19,6 @@ To be hosted on : http://flowers-mot.bordeaux.inria.fr/
 
 If you want to run this project localy, you will need python > 3.6. Then use pipenv to install required packages:
 
-'pip install pipenv'
+`pip install pipenv`
 
-'pipenv install'
+`pipenv install`
