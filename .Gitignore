@@ -3,3 +3,5 @@ mot_project/mot_db
 .idea/
 kidlearn/
 mot_project/interface_app/static/admin/
+Pipfile
+Pipfile.lock

@@ -89,7 +89,6 @@ function draw(){
 }
 function mousePressed(event) {
     if((mouseX > canvas.width-40)&&(mouseY<40)){quit_game()}
-    console.log(mouseX, mouseY);//console.log(canvas.width);
    // First test if objects are in "clickable mode"
     if (typeof app !== 'undefined') {
         if(app.phase=='answer'){

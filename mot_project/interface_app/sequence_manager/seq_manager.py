@@ -14,7 +14,7 @@ class MotParamsWrapper:
             game_time = 10*60*60
         screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
         # Just init "fixed parameters":
-        self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 90, 'speed_min': 4, 'speed_max': 4,
+        self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 40, 'speed_min': 4, 'speed_max': 4,
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
@@ -30,16 +30,14 @@ class MotParamsWrapper:
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
                        'probe_time': np.linspace(4, 2, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float)}
-        # print(self.values)
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
         """
-        Method that convert a node in ZPD graph to real value for MOT
+        Convert a node in ZPD graph to exploitable value for MOT_task
         :return:
         """
         act = seq.sample()
-        # print("BUUUUUG", act[self.lvls[act['MAIN'][0]]][2])
         parameters = {
                         'n_targets': self.values['n_targets'][act['MAIN'][0]],
                         'speed_max': self.values['speed_max'][act[self.lvls[act['MAIN'][0]]][0]],
@@ -58,14 +56,12 @@ class MotParamsWrapper:
     def update(self, episode, seq):
         """
         Given one episode update and return the seq manager.
-        Also store last episode results (i.e ep_number, nb_targets_retrieved, nb distract_retrieved)
+        Also store last episode results (i.e ep_number, nb_targets_retrieved, nb distract_retrieved) in parameters dict
         :param episode:
         :param seq:
         :return:
         """
         parsed_episode = self.parse_activity(episode)
-        # print(parsed_episode)
-        # print("---------------------")
         seq.update(parsed_episode['act'], parsed_episode['ans'])
         # Store in mot_wrapper result of last episode (useful for sampling new task)
         self.parameters['nb_target_retrieved'] = episode.nb_target_retrieved
@@ -75,30 +71,38 @@ class MotParamsWrapper:
         return seq
 
     def parse_activity(self, episode):
+        """
+        Format episode to dict exploitable by kidlearn_lib. If episode passed in args doesn't fit with space
+        discretization, returns easiest exercice possible.
+        :param episode:
+        :return:
+        """
         # First check if this act was successful:
         answer = episode.get_results
-        # print("Update answer equals:", answer)
-        # Adjust values in 'n_distractors':
-        n_d_values = np.array([self.values['n_distractors'][i] + float(episode.n_targets)
-                      for i in range(len(self.values['n_distractors']))])
-        # Then just parse act to ZPDES formalism:
-        speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
-        # print(speed_i)
-        n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
-        # print(n_targets_i)
-        n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
-        # print(n_distractors_i)
-        track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
-        # print(track_i)
-        # print(episode.probe_time)
-        probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
-        # print(self.values['probe_time'], episode.probe_time, float(episode.probe_time))
-        # 97cyprint(probe_i)
-        # episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, n_distractors_i, track_i,
-        # probe_i]}
-        episode_parse = {'MAIN': [n_targets_i], str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
-        # print("Seq manager sampled task with {} targets, {} distractors with speed {}, "
-        #      "tracking time {} and probe_time {}".format(n_targets_i, n_distractors_i, speed_i, track_i, probe_i))
+
+        # Adjust values in 'n_distractors' (always add n_targets):
+        n_d_values = np.array(list(map(lambda x: x + float(episode.n_targets), self.values['n_distractors'])))
+
+        # Check that episode values are present in graph (ZPDES formalism):
+        episode_status = True
+        for key, value in episode.__dict__.items():
+            if key in self.values:
+                if value not in self.values[key]:
+                    episode_status = False
+                    break
+        if episode_status:
+            speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
+            n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
+            n_distractors_i = np.where(n_d_values == float(episode.n_distractors))[0][0]
+            track_i = np.where(self.values['tracking_time'] == float(episode.tracking_time))[0][0]
+            probe_i = np.where(self.values['probe_time'] == float(episode.probe_time))[0][0]
+            episode_parse = {'MAIN': [n_targets_i],
+                             str(self.lvls[n_targets_i]): [speed_i, track_i, probe_i, n_distractors_i]}
+        else:
+            # It means that this episode isn't a correct one:
+            for key, value in self.values.items():
+                episode.__dict__[key] = value[0]
+            episode_parse = {'MAIN': [0], str(self.lvls[0]): [0, 0, 0, 0]}
         return {'act': episode_parse, 'ans': answer}
 
     def set_parameter(self, name, new_value):

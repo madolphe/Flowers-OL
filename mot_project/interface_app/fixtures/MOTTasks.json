@@ -4,7 +4,7 @@
         "fields": {
             "name": "additional-profile-general",
             "description": "Profil général",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -24,7 +24,7 @@
         "fields": {
             "name": "additional-profile-attention",
             "description": "Profil général",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -37,7 +37,7 @@
         "fields": {
             "name": "simple-mot-practice",
             "description": "Attention task",
-            "prompt": "Begin practice",
+            "prompt": "Commencer",
             "view_name": "app_MOT",
             "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions.html, Paramètre d'écran=tasks/ZPDES_mot/screen_params.html-"
         }
@@ -47,7 +47,7 @@
         "fields": {
             "name": "simple-mot-practice-admin",
             "description": "Attention task",
-            "prompt": "Begin practice",
+            "prompt": "Commencer",
             "view_name": "app_MOT",
             "info_templates_csv": "Instructions=tasks/ZPDES_mot/instructions_admin.html, Paramètre d'écran=tasks/ZPDES_mot/screen_params.html-, Historique d'épisode=tasks/ZPDES_mot/link_to_progression.html-"
         }
@@ -57,7 +57,7 @@
         "fields": {
             "name": "screen-size-params",
             "description": "Screen information",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer",
             "view_name": "set_mot_params",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html",
             "extra_json": {
@@ -72,7 +72,7 @@
         "fields": {
             "name": "post-sess-questionnaire",
             "description": "Questionnaire post-session",
-            "prompt": "Begin questionnaire",
+            "prompt": "Commencer",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {

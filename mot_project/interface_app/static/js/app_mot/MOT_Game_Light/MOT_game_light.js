@@ -11,18 +11,20 @@ class MOT_Game_Light extends MOT{
     init_lists() {
         for(let step = 0; step < this.n_targets; step++){
             this.targets.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max, step, this.area_min, this.area_max,
-                'target', this.targets, this.radius, this.target_color, this.distract_color))
+                'target', this.targets, this.radius, this.target_color, this.distract_color, this.positions))
         }
         for(let step = 0; step < this.n_distractors; step++){
             this.distractors.push(new Tracked_Object_Game_Light(this.speed_min, this.speed_max,step+this.n_targets,
                 this.area_min, this.area_max, 'distractor', this.targets.concat(this.distractors), this.radius,
-                this.target_color, this.distract_color));
+                this.target_color, this.distract_color, this.positions));
         }
     }
     freeze_app() {
         super.freeze_app();
     }
-
+    discrete_space() {
+        return super.discrete_space();
+    }
     display_objects(mouseX, mouseY) {
         push();
         ellipseMode(CENTER);
