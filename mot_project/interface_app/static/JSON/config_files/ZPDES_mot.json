@@ -2,7 +2,8 @@
     "algo_name" : "ZpdesHssbg",
     "graph": { 
         "file_name": "mot_graph_v1",
-        "path" : "interface_app/static/JSON/config_files",
+        "_commentpath" : "/interface_app/static/JSON/config_files",
+        "path" : "../mot_project/interface_app/static/JSON/config_files",
         "main_act": "MAIN"
     },
 
