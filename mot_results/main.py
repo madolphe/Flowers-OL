@@ -8,7 +8,8 @@ import json
 
 
 if __name__ == '__main__':
-    bandit_values_to_csv()
-    # with open('get_bandits/bandit_values.json') as json_file:
-    #    data = json.load(json_file)
+    # bandit_values_to_csv()
+    with open('get_bandits/camille_bandit.json') as json_file:
+        data = json.load(json_file)
+    print(pd.DataFrame(data['MAIN']))
     # print((data['nb2'][0]))
