@@ -12,27 +12,30 @@ import datetime
 
 class UserForm(forms.ModelForm):
     """
-    Class to generate user form : !!! CreateUserForm already exists and could be override !!!
+    Class to generate user form : [CreateUserForm already exists and could be overwritten]
     """
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
-    password = forms.CharField(label= 'Mot de passe', widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs=
+                                                                                 {'placeholder': "Nom d'utilisateur"}))
+    password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
     first_name = forms.CharField(label='Prénom', widget=forms.TextInput(attrs={'placeholder': 'Prénom'}))
     last_name = forms.CharField(label='Nom de famille', widget=forms.TextInput(attrs={'placeholder': 'Nom de famille'}))
     email = forms.CharField(label='E-mail', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
+    field_order = ['username', 'password', 'first_name', 'last_name', 'email']
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        pass
 
     class Meta:
         model = User
         exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined']
-    field_order = ['username', 'password', 'first_name', 'last_name', 'email']
 
 
 class ParticipantProfileForm(forms.ModelForm):
+    """
+    Class to generate a form used to register a participant.
+    """
     def __init__(self, *args, **kwargs):
         super(ParticipantProfileForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -60,7 +63,11 @@ class ParticipantProfileForm(forms.ModelForm):
 
 
 class SignInForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
+    """
+    Class to generate a form for logging page.
+    """
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs=
+                                                                                 {'placeholder': "Nom d'utilisateur"}))
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
     fields = ['username', 'password']
 
@@ -71,6 +78,9 @@ class SignInForm(forms.Form):
 
 
 class ConsentForm(forms.Form):
+    """
+    Class to generate a form for consent page.
+    """
     understood = forms.BooleanField(label="J'ai lu et compris les termes de cette étude")
     agreed = forms.CharField(label='Consentement', help_text='Ecrire \"Je consens\" dans la barre')
     fields = ['understood', 'agreed']
@@ -83,23 +93,32 @@ class ConsentForm(forms.Form):
     def clean_agreed(self):
         user_input = self.cleaned_data['agreed'].lower().strip('\"')
         if user_input != 'je consens':
-            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" pour valider votre participation')
+            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" '
+                                        'pour valider votre participation')
         return user_input
 
 
 class QuestionnaireForm(forms.Form):
+    """
+    Generic questionnaire form.
+    """
     def __init__(self, questions, *args, **kwargs):
         # Pass questions as an attribute to use it in clean method
         self.questions = questions
         super(QuestionnaireForm, self).__init__(*args, **kwargs)
         validator_ = False
         self.rows = []
+        # Build a row for each question:
         for i, q in enumerate(questions, 1):
-            # Get all validators that match `vname` or get None of name does not match. Then filter out `None`s
+            # Get all validators that match `vname` or get None if name does not match. Then filter out `None`s
             validators_list = [getattr(validators, vname, None) for vname in q.validate.split(',')]
+            # Create a default charfield without label
             self.fields[q.handle] = forms.CharField(label='', validators=[v for v in validators_list if v])
+            # Add help_text
             self.fields[q.handle].help_text = q.help_text
+            # Add correct widget (possibly a custom one)
             self.fields[q.handle].widget = get_custom_widget(q, num=i)
+            # Build the div object:
             question_widget = [Div(q.handle)]
             if hasattr(self.fields[q.handle].widget, "needs_validator") and self.fields[q.handle].widget.needs_validator:
                 self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
@@ -108,7 +127,7 @@ class QuestionnaireForm(forms.Form):
                 HTML('<div class="question-prompt">{}. {}</div>'.format(i, q.prompt)),
                 Div(*question_widget, css_class='question-widget')
             ]
-            self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i%2 else '')))
+            self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i % 2 else '')))
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.add_input(Submit('submit', 'Valider'))
@@ -116,10 +135,14 @@ class QuestionnaireForm(forms.Form):
         self.helper.form_show_errors = True
 
     def clean(self):
+        """
+        Method called when a form is sent. Add a warning when a row is empty.
+        """
         cleaned_data = super().clean()
         missing_data = False
         for handle in sorted(list(self.fields.keys())):
-            print('{}: value = {}'.format(handle, cleaned_data.get(handle)))
+            # print('{}: value = {}'.format(handle, cleaned_data.get(handle)))
+            # if a particular field is empty:
             if cleaned_data.get(handle) is None:
                 self.helper[handle].wrap(Div, css_class='empty-row')
                 missing_data = True

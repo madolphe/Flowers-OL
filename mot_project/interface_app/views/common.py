@@ -9,7 +9,6 @@ from django.db.models import Count
 from django.utils import timezone
 
 
-
 @login_required
 @never_cache
 def questionnaire(request):

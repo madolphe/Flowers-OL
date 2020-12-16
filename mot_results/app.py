@@ -17,9 +17,9 @@ st.title('Space exploration by ZPDES')
 
 @st.cache
 def load_data():
-    with open('get_bandits/laetitia_values.json') as json_file:
+    with open('get_bandits/data/bandits/laetitia_bandits.json') as json_file:
         data = json.load(json_file)
-    data_full = pd.read_csv('get_bandits/laetitia_all.csv')
+    data_full = pd.read_csv('get_bandits/data/episodes/laetitia.csv')
     col_list = ['episode_number', 'n_targets', 'speed_max', 'n_distractors', 'probe_time', 'tracking_time',
                 'nb_target_retrieved', 'nb_distract_retrieved']
     data_full = data_full[col_list]
@@ -78,4 +78,56 @@ performances = performances.rename(columns={'episode_number': 'ep', 'nb_target_r
                                             'nb_distract_retrieved': 'd_retri'})
 st.write(performances)
 
+st.header("Bandit states:")
+# FIRST PANNEL:
+objects = ('nb2', 'nb3', 'nb4', 'nb5', 'nb6', 'nb7')
+y_pos = np.arange(1, len(objects)+1)
+col, col0 = st.beta_columns(2)
+with st.beta_container():
+    fig, ax = plt.subplots()
+    ax.set_title("MAIN DIMENSION")
+    ax.bar(y_pos, data['MAIN']['nb'][episode_number], align='center', alpha=0.5)
+    ax.set_xticklabels(['', 'nb2', 'nb3', 'nb4', 'nb5', 'nb6', 'nb7'])
+    with col:
+        st.pyplot(fig)
+    with col0:
+        _ = pd.DataFrame(data[nb])
+        st.write(_.iloc[episode_number])
 
+col1, col2 = st.beta_columns(2)
+with st.beta_container():
+    with col1:
+        fig, ax = plt.subplots()
+        y_pos = values['speed_max']
+        ax.set_title("Speed_max")
+        ax.bar(y_pos, data[nb]['speed_max'][episode_number], edgecolor='red')
+        ax.set_xticklabels(y_pos)
+        st.pyplot(fig)
+    with col2:
+        fig, ax = plt.subplots()
+        y_pos = values['tracking_time']
+        ax.set_title("Tracking time")
+        ax.bar(y_pos, data[nb]['tracking_time'][episode_number], edgecolor='red')
+        st.pyplot(fig)
+
+col3, col4 = st.beta_columns(2)
+with st.beta_container():
+    with col3:
+        fig, ax = plt.subplots()
+        y_pos = values['probe_time']
+        ax.set_title("Probe time")
+        ax.bar(y_pos, data[nb]['probe_time'][episode_number], edgecolor='red')
+        st.pyplot(fig)
+    with col4:
+        fig, ax = plt.subplots()
+        y_pos = values['n_distractors']
+        ax.set_title("N distractors")
+        ax.bar(y_pos, data[nb]['n_distractors'][episode_number], edgecolor='red')
+        st.pyplot(fig)
+
+
+st.write("Grid: ")
+st.write("Probe_Time:", values['probe_time'].T)
+st.write("Speed_max:", values['speed_max'].T)
+st.write("Tracking_time:", values['tracking_time'].T)
+st.write("N distractors:", values['n_distractors'].T)

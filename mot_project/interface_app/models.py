@@ -57,6 +57,9 @@ class Task(models.Model):
 
 
 class ExperimentSession(models.Model):
+    """
+    Model that represent a particular experiment for a participant.
+    """
     study = models.ForeignKey(Study, to_field='name', null=True, on_delete=models.SET_NULL)
     day = models.IntegerField(default=0) # have to use default=0 because nulls are not compared for uniqueness
     index = models.IntegerField(default=0)
@@ -82,6 +85,7 @@ class ExperimentSession(models.Model):
         return self.__unicode__()
 
     def get_task_list(self):
+        """Return a list of all tasks in BDD for this Experiment Session"""
         return [Task.objects.get(name=task_name) for task_name in self.tasks_csv.split(',')]
 
     def get_task_by_index(self, index):
@@ -172,7 +176,8 @@ class ParticipantProfile(models.Model):
                 return self.sessions.exclude(pk=self.current_session.pk)
             else:
                 return []
-        else: return self.sessions.all()
+        else:
+            return self.sessions.all()
 
     def close_current_session(self):
         if self.sessions.all():
@@ -242,16 +247,14 @@ class ParticipantProfile(models.Model):
             )
             index = list(ExperimentSession.objects.filter(study=self.study).values_list('pk', flat=True)).index(next_session.pk)
             send_delayed_email(
-                to = self.user.email,
-                sender = self.study.contact,
-                subject = 'Flowers OL | Rappel de la session #{}'.format(index+1),
-                message_template = message_template,
-                schedule = datetime.datetime(
-                    year = next_session_date.year,
-                    month = next_session_date.month,
-                    day = next_session_date.day,
-                    hour = 6
-                )
+                to=self.user.email,
+                sender=self.study.contact,
+                subject='Flowers OL | Rappel de la session #{}'.format(index+1),
+                message_template=message_template,
+                schedule=datetime.datetime(year=next_session_date.year,
+                                           month=next_session_date.month,
+                                           day=next_session_date.day,
+                                           hour=6)
             )
 
 

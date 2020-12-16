@@ -1,10 +1,7 @@
 import numpy as np
 import math
-import pandas as pd
-import json
-import kidlearn_lib as k_lib
-from kidlearn_lib import functions as func
 import copy
+
 
 class MotWrapperResults:
     """
@@ -148,16 +145,3 @@ class MotWrapperResults:
         # print("UPDATE {} parameter, with new val {}".format(name, str(new_value)))
         self.parameters[name] = new_value
 
-
-def bandit_values_to_csv(path='get_bandits/laetitia_all.csv', output='laetitia_values.json'):
-    history = pd.read_csv(path)
-    history['episode_number'].apply(pd.to_numeric)
-    history = history.sort_values('episode_number', axis=0).reset_index(drop=True)
-    dir_path = "../mot_project/interface_app/static/JSON/config_files"
-    zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
-    seq_manager = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
-    mot_wrapper = MotWrapperResults()
-    for index, episode in history.iterrows():
-        seq_manager = mot_wrapper.update(episode, seq_manager)
-    with open(output, 'w') as outfile:
-        json.dump(mot_wrapper.bandit_values, outfile)
