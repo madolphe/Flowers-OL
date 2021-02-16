@@ -100,7 +100,7 @@ def MOT_task(request):
     :return:
     """
     # Var to placed in a config file :
-    dir_path = "interface_app/static/JSON/config_files"
+    dir_path = "flowers-ol/interface_app/static/JSON/config_files"
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
     # First assign condition if first connexion:

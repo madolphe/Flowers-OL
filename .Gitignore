@@ -5,3 +5,5 @@ lib/kidlearn/
 flowers-ol/interface_app/static/admin/
 Pipfile
 Pipfile.lock
+*migrations/
+flowers-ol-db

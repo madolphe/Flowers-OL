@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'flowers-ol.wsgi.application'
 DATABASES = {
   'default':{
 	'ENGINE': 'django.db.backends.sqlite3',
-	'NAME': 'mot_db',
+	'NAME': 'flowers-ol-db',
    }
 }
 

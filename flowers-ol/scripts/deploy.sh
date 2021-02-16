@@ -9,7 +9,7 @@ if [ ! -z $1 ]; then
 		if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 			echo 'Reset db aborted'
 		else
-			pipenv run python manage.py reset_db
+			pipenv run python flowers-ol/manage.py reset_db
 		fi
 	fi
 fi
@@ -17,15 +17,16 @@ fi
 # To load datas, either manualy or load all fixtures in fixtures folder:
 #pipenv run python manage.py loaddata JOLDSessions JOLDTasks MOTSessions MOTTasks Questions Questions_mot Studies
 
-folder=interface_app/fixtures/*.json
+folder=flowers-ol/interface_app/fixtures/*.json
 fixtures=''
 for file in $folder; do
-	fixture="$fixture ${file:23}"
+  echo $file
+	fixtures="$fixtures ${file:34}"
 done
-# echo "$fixture"
+echo "$fixtures"
 
-pipenv run python manage.py makemigrations
-pipenv run python manage.py migrate
-pipenv run python manage.py loaddata $fixture
-pipenv run python manage.py createsuperuser 
+pipenv run python flowers-ol/manage.py makemigrations
+pipenv run python flowers-ol/manage.py migrate
+pipenv run python flowers-ol/manage.py loaddata $fixtures
+pipenv run python flowers-ol/manage.py createsuperuser
 
