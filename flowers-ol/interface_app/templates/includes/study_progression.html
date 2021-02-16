@@ -1,0 +1,29 @@
+{% load static %}
+{% block css %}
+    <style>
+    .blink-arrow {
+        animation: blinker 1s linear infinite;
+        color: #ff4d4d;
+        margin-left: 5px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    @keyframes blinker {50% {opacity: 0;} }
+    </style>
+{% endblock %}
+<ul class="progress-list">
+<i class="fi-cloud"></i>
+{% for i in info %}
+    {% if i.current %} <li class="current"> {% else %} <li class="noncurrent"> {% endif %}
+        Session {{i.num}}
+        {% if i.current %} <ol class="current"> {% else %} <ol class="noncurrent"> {% endif %}
+            {% for task in i.tasks %}
+                <li>
+                    {# cti = current task index #}
+                    {{task}}{% if i.cti == forloop.counter0 %}<span class="blink-arrow">&#8592</span>{% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,130 @@
+[
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-ll-practice",
+            "description": "Entraînement au Lunar lander",
+            "prompt": "Commencer la session",
+            "view_name": "jold_start_ll_practice",
+            "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-mot-practice",
+            "description": "Attention task",
+            "prompt": "Begin practice",
+            "view_name": "app_MOT"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-free-choice",
+            "description": "Fin de session",
+            "prompt": "Terminer la session",
+            "view_name": "jold_free_choice",
+            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html-"
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-questions-sess1",
+            "description": "Questionnaire d'après-session",
+            "prompt": "Commencer le questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-2",
+                        "jold-4",
+                        "jold-5",
+                        "jold-6"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-questions-sess2",
+            "description": "Questionnaire d'après-session",
+            "prompt": "Commencer le questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS",
+                    "MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-4",
+                        "jold-5",
+                        "jold-6"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-questions-sess3",
+            "description": "Questionnaire d'après-session",
+            "prompt": "Commencer le questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "interface_app.Task",
+        "fields": {
+            "name": "JOLD-profile-questions",
+            "description": "Complétez votre profil",
+            "prompt": "Complétez votre profil",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["get_profil"],
+                "exclude": {
+                    "handle__in": [
+                        "prof-1",
+                        "prof-9",
+                        "prof-10"
+                    ]
+                }
+            }
+        }
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "model": "interface_app.ExperimentSession",
+        "pk": 1,
+        "fields": {
+            "study"         : "jold_ll",
+            "day"           : 1,
+            "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess1,JOLD-free-choice"
+        }
+    },
+    {
+        "model": "interface_app.ExperimentSession",
+        "pk": 2,
+        "fields": {
+            "study"         : "jold_ll",
+            "day"           : 2,
+            "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess2,JOLD-free-choice"
+        }
+    },
+    {
+        "model": "interface_app.ExperimentSession",
+        "pk": 3,
+        "fields": {
+            "study"         : "jold_ll",
+            "day"           : 5,
+            "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess3,JOLD-profile-questions,JOLD-free-choice"
+        }
+    }
+]
