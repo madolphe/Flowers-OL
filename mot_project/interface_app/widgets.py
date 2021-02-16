@@ -5,6 +5,9 @@ from django.forms.widgets import Widget, Select, NumberInput, TextInput, DateInp
 
 
 class LikertRange(forms.Widget):
+    """
+    Range Likert scale.
+    """
     template_name = 'includes/rangeLikert.html'
     input_type = 'range'
     needs_validator = True
@@ -24,6 +27,9 @@ class LikertRange(forms.Widget):
 
 
 class LikertPolar(LikertRange):
+    """
+    Polar Likert scale.
+    """
     template_name = 'includes/polarLikert.html'
     input_type = 'range'
 
@@ -34,6 +40,9 @@ class LikertPolar(LikertRange):
 
 
 class LikertBasic(LikertRange):
+    """
+    Basic Likert scale.
+    """
     template_name = 'includes/basicLikert.html'
     input_type = 'radio'
     needs_validator = False
@@ -47,6 +56,9 @@ class LikertBasic(LikertRange):
 
 
 class Categories(SelectMultiple):
+    """
+    Custom widget that enable the selection of multiple categories.
+    """
     template_name = 'includes/categories.html'
     input_type = 'checkbox'
     needs_validator = False
@@ -65,6 +77,9 @@ class Categories(SelectMultiple):
 
 
 class CustomMultiWidget(MultiWidget):
+    """
+    Custom multiple choice widget.
+    """
     template_name = 'includes/multiwidget_screen.html'
 
     def __init__(self, attrs=None):
@@ -93,6 +108,9 @@ class CustomMultiWidget(MultiWidget):
 
 
 def get_custom_widget(question_object, num):
+    """
+    Main function, instantiate the correct object according to question_object (django model)
+    """
     if question_object.widget == 'custom-range':
         return LikertRange(attrs={
             'annotations': question_object.annotations.split('~'),

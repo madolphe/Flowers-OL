@@ -9,7 +9,8 @@ from ..utils import add_message, assign_mot_condition
 from ..sequence_manager.seq_manager import MotParamsWrapper
 
 from collections import defaultdict
-import json, datetime
+import json
+import datetime
 
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func

@@ -12,7 +12,7 @@ def add_message(request, message, tag='info'):
     request.session.setdefault('messages', {})[tag] = message
 
 
-@background(schedule=0)
+# @background(schedule=0)
 def send_delayed_email(to, sender, subject, message_template):
     print('Sending email to {}'.format(to))
     send_mail(
@@ -25,7 +25,7 @@ def send_delayed_email(to, sender, subject, message_template):
     )
 
 
-@background(schedule=0)
+# @background(schedule=0)
 def send_delayed_email_2():
     print('Sending email test')
     send_mail(
@@ -69,7 +69,7 @@ def assign_mot_condition(participant):
             participant.extra_json['condition'] = 'baseline'
         else:
             participant.extra_json['condition'] = 'zpdes'
-        print("Condition saved:", participant.extra_json['condition'])
+        # print("Condition saved:", participant.extra_json['condition'])
         zpdes_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='zpdes'))
         baseline_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='baseline'))
         print("Number in zpdes/baseline: ({}/{})".format(zpdes_group_nb, baseline_group_nb))
