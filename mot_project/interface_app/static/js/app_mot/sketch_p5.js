@@ -29,6 +29,7 @@ function setup(){
     canvas.parent('app_holder');
     canvas.style('position: absolute; z-index: -1000;');
 
+    // Creer methode
     button_answer = createButton('REPONSE');
     button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_answer.size(120,60);
@@ -102,6 +103,9 @@ function windowResized(){
     position_inputs();
     size_inputs();
     }
+    // nommer tous les coefficients
+    // Pq toutes ces formules ? --> variable explicite
+    // ex: heightCenter = windowWidth / 2 same heightCenter
     button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_play.position(windowWidth/2-(button_width/2), windowHeight/2  - (button_height/2));

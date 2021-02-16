@@ -12,12 +12,16 @@ from ..forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 
 def login_page(request, study=''):
+    # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
     if 'study' in request.session:
         study = request.session.get('study')
+    # Pourquoi ça ??
     if 'study' in request.GET.dict():
         study = request.GET.dict().get('study')
+    # validate_study(name=study)
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
+        # Pourquoi ça ??
         request.session['study'] = study # store 'study' extension only once per session
     error = False
     form_sign_in = SignInForm(request.POST or None)
@@ -30,6 +34,7 @@ def login_page(request, study=''):
             return redirect(reverse(home))
         else:  # show error if user not in DB
             error = True
+    # Plutôt utiliser un code erreur
     return render(request, 'login_page.html', {'CONTEXT': {
         'study': valid_study_title,
         'error': error,
