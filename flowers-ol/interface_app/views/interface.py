@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
+from django.utils.translation import LANGUAGE_SESSION_KEY
 
 import json, datetime
 
@@ -12,6 +13,9 @@ from ..forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 
 def login_page(request, study=''):
+    # request.session[LANGUAGE_SESSION_KEY] = 'en'
+    # print(request.session[LANGUAGE_SESSION_KEY])
+    print(request.LANGUAGE_CODE)
     # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
     if 'study' in request.session:
         study = request.session.get('study')
