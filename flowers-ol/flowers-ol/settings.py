@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
 
 LOCALE_PATHS = [
     os.path.join(os.path.dirname(__file__), "interface_app/locale"),
@@ -85,10 +86,10 @@ WSGI_APPLICATION = 'flowers-ol.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-  'default':{
-	'ENGINE': 'django.db.backends.sqlite3',
-	'NAME': 'flowers-ol-db',
-   }
+  'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'flowers-ol-db'
+      }
 }
 
 
@@ -113,9 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 LANGUAGE_CODE = 'fr'
+LANGUAGES = [('fr', _('français')), ('en', _('en'))]
 TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
-DATE_INPUT_FORMATS = ['%d/%m/%Y','%d/%m/%y','%d-%m-%Y', '%d.%m.%Y', '%Y-%m-%d']
+USE_L10N = True
+DATE_INPUT_FORMATS = ['%d/%m/%Y', '%d/%m/%y', '%d-%m-%Y', '%d.%m.%Y', '%Y-%m-%d']
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)

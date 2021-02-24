@@ -6,6 +6,7 @@ from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
 from .utils import send_delayed_email
 from django.template.loader import render_to_string
+from django.utils.translation import gettext_lazy as _
 
 
 class Study(models.Model):
@@ -110,10 +111,11 @@ class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Registration date and time')
-    birth_date = models.DateField(help_text='jour/mois/an')
+    birth_date = models.DateField(help_text=_('jour/mois/an'))
     remind = models.BooleanField(default=True)
-    study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     consent = models.BooleanField(default=False)
+
+    study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     sessions = models.ManyToManyField(ExperimentSession, default=[], related_name='session_stack') # FIFO
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
@@ -130,17 +132,7 @@ class ParticipantProfile(models.Model):
     def __str__(self):
         return self.__unicode__()
 
-    def assign_condition(self):
-        pass
-
-    def assign_sessions(self, save=True):
-        if self.study and ExperimentSession.objects.filter(study=self.study):
-            sessions = ExperimentSession.objects.filter(study=self.study)
-            self.sessions.add(*sessions)
-            if save: self.save()
-        else:
-            assert False, 'No sessions found for study "{}"'.format(self.study)
-
+    # HOME VIEW
     def set_current_session(self):
         assert self.sessions.all(), 'Participant has no sessions assigned'
         if not self.current_session:
@@ -169,41 +161,7 @@ class ParticipantProfile(models.Model):
             return False
         return True
 
-    @property
-    def future_sessions(self):
-        if self.current_session:
-            if self.sessions.exclude(pk=self.current_session.pk):
-                return self.sessions.exclude(pk=self.current_session.pk)
-            else:
-                return []
-        else:
-            return self.sessions.all()
-
-    def close_current_session(self):
-        if self.sessions.all():
-            self.session_timestamp = datetime.datetime.now()
-            self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
-            self.current_session = None
-            self.save()
-
-    @property
-    def task_names_list(self):
-        task_names = self.task_stack_csv.replace(' ','')
-        while task_names[-1] == ',': task_names = task_names[:-1]
-        task_names = task_names.split(',')
-        return task_names
-
-    @property
-    def task_stack(self):
-        return tuple([Task.objects.get(name=name) for name in self.task_names_list])
-
-    @property
-    def current_task(self):
-        if not self.task_stack_csv:
-            return None
-        stack_head = self.task_stack_csv.split(',')[0]
-        return Task.objects.get(name=stack_head)
-
+    # END TASK VIEW :
     def pop_task(self, n=1):
         """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
         task_names = self.task_stack_csv.split(',')[n:]
@@ -212,22 +170,19 @@ class ParticipantProfile(models.Model):
         print(self.task_stack_csv)
 
     @property
-    def progress_info(self, all_values=False):
-        l = []
-        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
-            tasks = [task.description for task in session.get_task_list()]
-            task_index = None
-            if session == self.current_session:
-                task_index = len(tasks) - len(self.task_names_list)
-                # From this session, append other sess:
-                all_values = True
-            if all_values:
-                sess_info = {'num': i,
-                             'current': True if session == self.current_session else False,
-                             'tasks': tasks,
-                             'cti': task_index} # cti = current task index
-                l.append(sess_info)
-        return l
+    def current_task(self):
+        if not self.task_stack_csv:
+            return None
+        stack_head = self.task_stack_csv.split(',')[0]
+        return Task.objects.get(name=stack_head)
+
+    # END SESSION VIEW :
+    def close_current_session(self):
+        if self.sessions.all():
+            self.session_timestamp = datetime.datetime.now()
+            self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
+            self.current_session = None
+            self.save()
 
     def queue_reminder(self):
         if self.remind and self.sessions.all():
@@ -256,6 +211,57 @@ class ParticipantProfile(models.Model):
                                            day=next_session_date.day,
                                            hour=6)
             )
+
+    # CONSENT PAGE FOR NOW BUT SHOULD BE MOVED
+    def assign_sessions(self, save=True):
+        if self.study and ExperimentSession.objects.filter(study=self.study):
+            sessions = ExperimentSession.objects.filter(study=self.study)
+            self.sessions.add(*sessions)
+            if save:
+                self.save()
+        else:
+            assert False, 'No sessions found for study "{}"'.format(self.study)
+
+    # ADDITIONAL USEFUL PROPERTIES
+    @property
+    def future_sessions(self):
+        if self.current_session:
+            if self.sessions.exclude(pk=self.current_session.pk):
+                return self.sessions.exclude(pk=self.current_session.pk)
+            else:
+                return []
+        else:
+            return self.sessions.all()
+
+    # DISPLAY USER INFORMATIONS
+    @property
+    def task_stack(self):
+        return tuple([Task.objects.get(name=name) for name in self.task_names_list])
+
+    @property
+    def progress_info(self, all_values=False):
+        l = []
+        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+            tasks = [task.description for task in session.get_task_list()]
+            task_index = None
+            if session == self.current_session:
+                task_index = len(tasks) - len(self.task_names_list)
+                # From this session, append other sess:
+                all_values = True
+            if all_values:
+                sess_info = {'num': i,
+                             'current': True if session == self.current_session else False,
+                             'tasks': tasks,
+                             'cti': task_index} # cti = current task index
+                l.append(sess_info)
+        return l
+
+    @property
+    def task_names_list(self):
+        task_names = self.task_stack_csv.replace(' ','')
+        while task_names[-1] == ',': task_names = task_names[:-1]
+        task_names = task_names.split(',')
+        return task_names
 
 
 class Episode(models.Model):

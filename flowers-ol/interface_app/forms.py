@@ -8,15 +8,17 @@ from django.core.exceptions import *
 from django.forms.widgets import NumberInput, CheckboxInput
 from . import validators
 import datetime
+from django.utils.translation import gettext_lazy as _
 
 
 class UserForm(forms.ModelForm):
     """
     Class to generate user form : [CreateUserForm already exists and could be overwritten]
     """
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs=
-                                                                                 {'placeholder': "Nom d'utilisateur"}))
-    password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
+    username = forms.CharField(label=_("Nom d'utilisateur"),
+                               widget=forms.TextInput(attrs={'placeholder': _("Nom d'utilisateur")}))
+    password = forms.CharField(label=_('Mot de passe'),
+                               widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     first_name = forms.CharField(label='Prénom', widget=forms.TextInput(attrs={'placeholder': 'Prénom'}))
     last_name = forms.CharField(label='Nom de famille', widget=forms.TextInput(attrs={'placeholder': 'Nom de famille'}))
     email = forms.CharField(label='E-mail', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
@@ -41,8 +43,8 @@ class ParticipantProfileForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Valider'))
         self.helper.form_tag = False
-        self.fields['birth_date'].label = 'Date de naissance'
-        self.fields['remind'].label = 'Rappelez-moi par e-mail de compléter les tâches pour l\'étude'
+        self.fields['birth_date'].label = _('Date de naissance')
+        self.fields['remind'].label = _('Rappelez-moi par e-mail de compléter les tâches pour l\'étude')
 
     class Meta:
         model = ParticipantProfile
@@ -66,9 +68,10 @@ class SignInForm(forms.Form):
     """
     Class to generate a form for logging page.
     """
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs=
-                                                                                 {'placeholder': "Nom d'utilisateur"}))
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
+    username = forms.CharField(label=_("Nom d'utilisateur"),
+                               widget=forms.TextInput(attrs={'placeholder': _("Nom d'utilisateur")}))
+    password = forms.CharField(label="Mot de passe",
+                               widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     fields = ['username', 'password']
 
     def __init__(self, *args, **kwargs):

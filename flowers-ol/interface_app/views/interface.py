@@ -13,9 +13,6 @@ from ..forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 
 def login_page(request, study=''):
-    # request.session[LANGUAGE_SESSION_KEY] = 'en'
-    # print(request.session[LANGUAGE_SESSION_KEY])
-    print(request.LANGUAGE_CODE)
     # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
     if 'study' in request.session:
         study = request.session.get('study')
@@ -93,11 +90,17 @@ def consent_page(request):
 @never_cache
 def home(request):
     participant = request.user.participantprofile
-    if not participant.consent: return redirect(reverse(consent_page))
-    try: participant.set_current_session()
-    except AssertionError: return redirect(reverse(thanks_page))
+    if not participant.consent:
+        return redirect(reverse(consent_page))
+
+    try:
+        participant.set_current_session()
+    except AssertionError:
+        return redirect(reverse(thanks_page))
+
     if not participant.current_session_valid:
         return redirect(reverse(off_session_page))
+
     if participant.current_session:
          request.session['active_session'] = json.dumps(True)
     if 'messages' in request.session:
@@ -105,6 +108,13 @@ def home(request):
             print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
     return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
+
+
+@login_required
+def start_task(request):
+    if 'messages' in request.session:
+        del request.session['messages']
+    return redirect(reverse(request.user.participantprofile.current_task.view_name))
 
 
 @login_required
@@ -120,6 +130,15 @@ def off_session_page(request):
         schedule.append([sdate, status])
     return render(request, 'off_session_page.html', {'CONTEXT': {
         'schedule': schedule}})
+
+
+@login_required
+def end_session(request):
+    participant = request.user.participantprofile
+    participant.close_current_session()
+    request.session['active_session'] = json.dumps(False)
+    participant.queue_reminder()
+    return redirect(reverse(thanks_page))
 
 
 @login_required
@@ -156,13 +175,6 @@ def user_logout(request):
 
 
 @login_required
-def start_task(request):
-    if 'messages' in request.session:
-        del request.session['messages']
-    return redirect(reverse(request.user.participantprofile.current_task.view_name))
-
-
-@login_required
 def end_task(request):
     ''' A task exit_view function must change the 'exit_view_done' field of the request.session dict to True,
     in order to be run just once. The exit_view must also redirect back to this view. '''
@@ -171,21 +183,14 @@ def end_task(request):
     if participant.current_task.exit_view and not request.session.setdefault('exit_view_done', False):
         print('Redirecting to exit view: {}'.format(participant.current_task.exit_view))
         return redirect(reverse(participant.current_task.exit_view))
-    if 'exit_view_done' in request.session: del request.session['exit_view_done']
+    if 'exit_view_done' in request.session:
+        del request.session['exit_view_done']
     participant.pop_task()
     # Check if current session is empty
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
 
-
-@login_required
-def end_session(request):
-    participant = request.user.participantprofile
-    participant.close_current_session()
-    request.session['active_session'] = json.dumps(False)
-    participant.queue_reminder()
-    return redirect(reverse(thanks_page))
 
 
 @login_required
