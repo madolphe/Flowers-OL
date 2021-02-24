@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+# from ..mot_app.models import *
 from django.contrib.sessions.models import Session
 import csv
 from django.http import HttpResponse
@@ -34,13 +35,6 @@ class AnswerAdmin(admin.ModelAdmin, ExportCsvMixin):
     actions = ["export_as_csv"]
 
 
-class EpisodeAdmin(admin.ModelAdmin, ExportCsvMixin):
-    list_display = ('__str__', 'participant', 'get_results', 'n_targets', 'n_distractors', 'probe_time',
-                    'tracking_time', 'speed_max')
-    list_filter = ['participant']
-    actions = ["export_as_csv"]
-
-
 class QuestionAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('handle', 'instrument', 'component', 'prompt', 'widget', 'type')
     list_filter = ['instrument', 'widget', 'type']
@@ -62,4 +56,4 @@ admin.site.register(Answer, AnswerAdmin)
 admin.site.register(ParticipantProfile, ParticipantAdmin)
 admin.site.register(ExperimentSession)
 admin.site.register(Task)
-admin.site.register(Episode, EpisodeAdmin)
+# admin.site.register(Episode, EpisodeAdmin)

@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+import sys
+from .models import SecondaryTask, Episode
+from interface_app.models import Question, Answer, ParticipantProfile
+from interface_app.forms import QuestionnaireForm
+from interface_app.utils import add_message
+from .utils import assign_mot_condition
+from .sequence_manager.seq_manager import MotParamsWrapper
 
-from ..models import Question, SecondaryTask, Episode, Answer, ParticipantProfile
-from ..forms import QuestionnaireForm
-from ..utils import add_message, assign_mot_condition
-from ..sequence_manager.seq_manager import MotParamsWrapper
 
 from collections import defaultdict
 import json
@@ -14,6 +17,10 @@ import datetime
 
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
+
+
+def view_test(request):
+    return HttpResponse("You're looking at test view")
 
 
 @login_required
@@ -100,7 +107,7 @@ def MOT_task(request):
     :return:
     """
     # Var to placed in a config file :
-    dir_path = "flowers-ol/interface_app/static/JSON/config_files"
+    dir_path = "flowers-ol/mot_app/static/JSON/config_files"
     # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
     # First assign condition if first connexion:

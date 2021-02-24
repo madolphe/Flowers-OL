@@ -1,6 +1,7 @@
 #! /bin/bash
 # Check if user wants to reset_db: 
 
+pipenv run python flowers-ol/manage.py makemigrations
 
 if [ ! -z $1 ]; then
 	if [ $1 = "reset_db" ]; then
@@ -25,7 +26,6 @@ for file in $folder; do
 done
 echo "$fixtures"
 
-pipenv run python flowers-ol/manage.py makemigrations
 pipenv run python flowers-ol/manage.py migrate
 pipenv run python flowers-ol/manage.py loaddata $fixtures
 pipenv run python flowers-ol/manage.py createsuperuser
