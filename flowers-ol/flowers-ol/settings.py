@@ -14,7 +14,7 @@ import os
 from django.utils.translation import gettext_lazy as _
 
 LOCALE_PATHS = [
-    os.path.join(os.path.dirname(__file__), "interface_app/locale"),
+    os.path.join(os.path.dirname(__file__), "experiment_manager_app/locale"),
 ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -48,8 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'background_task',
-    'interface_app',
+    'experiment_manager_app',
     'mot_app',
+    'survey_app',
     'django_extensions',
     'crispy_forms'
 ]

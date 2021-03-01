@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-import sys
 from .models import SecondaryTask, Episode
-from interface_app.models import Question, Answer, ParticipantProfile
-from interface_app.forms import QuestionnaireForm
-from interface_app.utils import add_message
+from experiment_manager_app.models import ParticipantProfile
+from survey_app.models import Question, Answer
+from survey_app.forms import QuestionnaireForm
+from experiment_manager_app.utils import add_message
 from .utils import assign_mot_condition
 from .sequence_manager.seq_manager import MotParamsWrapper
 

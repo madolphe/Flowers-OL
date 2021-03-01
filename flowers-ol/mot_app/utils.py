@@ -1,4 +1,4 @@
-from interface_app import models
+from survey_app import models
 
 
 def assign_mot_condition(participant):

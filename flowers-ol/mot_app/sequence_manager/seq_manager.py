@@ -1,5 +1,5 @@
 import numpy as np
-from interface_app.models import Answer
+from survey_app.models import Answer
 
 
 class MotParamsWrapper:
