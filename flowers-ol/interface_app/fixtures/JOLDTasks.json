@@ -25,7 +25,7 @@
             "description": "Fin de session",
             "prompt": "Terminer la session",
             "view_name": "jold_free_choice",
-            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html-"
+            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html"
         }
     },
     {
