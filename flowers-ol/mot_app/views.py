@@ -19,10 +19,6 @@ import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
 
-def view_test(request):
-    return HttpResponse("You're looking at test view")
-
-
 @login_required
 def mot_close_task(request):
     participant = request.user.participantprofile
@@ -135,7 +131,7 @@ def MOT_task(request):
     parameters = request.session['mot_wrapper'].sample_task(request.session['seq_manager'])
     # Serialize it to pass it to js_mot:
     parameters = json.dumps(parameters)
-    return render(request, 'app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
+    return render(request, 'mot_app/app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
 
 
 @login_required
@@ -201,5 +197,10 @@ def display_progression(request):
         CONTEXT[episode.id].append(episode.get_results)
     CONTEXT = dict(CONTEXT)
     participant.extra_json['history'] = CONTEXT
-    return render(request, 'tasks/ZPDES_mot/display_progression.html',
+    return render(request, 'mot_app/display_progression.html',
                   {'CONTEXT': {'participant': participant}})
+
+@login_required
+def enumeration_task(request):
+    parameters = []
+    return render(request, 'pre-post-tasks/enumeration_task.html', {'CONTEXT': {'parameter_dict': parameters}})

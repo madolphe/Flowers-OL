@@ -32,16 +32,6 @@
             }
         }
     },
-    {
-        "model": "experiment_manager_app.Task",
-        "fields": {
-            "name": "simple-mot-practice",
-            "description": "Attention task",
-            "prompt": "Commencer",
-            "view_name": "app_MOT",
-            "info_templates_csv": "Instructions=ZPDES_mot/instructions.html, Paramètre d'écran=ZPDES_mot/screen_params.html-"
-        }
-    },
         {
         "model": "experiment_manager_app.Task",
         "fields": {
@@ -49,7 +39,7 @@
             "description": "Attention task",
             "prompt": "Commencer",
             "view_name": "app_MOT",
-            "info_templates_csv": "Instructions=ZPDES_mot/instructions_admin.html, Paramètre d'écran=ZPDES_mot/screen_params.html-, Historique d'épisode=ZPDES_mot/link_to_progression.html-"
+            "info_templates_csv": "Instructions=mot_app/instructions_admin.html, Paramètre d'écran=mot_app/screen_params.html-, Historique d'épisode=mot_app/link_to_progression.html-"
         }
     },
         {
@@ -127,6 +117,16 @@
             "extra_json": {
                 "instruments": ["UEQ"]
             }
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "enumeration-task-practice",
+            "description": "Attention task",
+            "prompt": "Commencer",
+            "view_name": "enumeration_task",
+            "info_templates_csv": "Instructions=pre-post-tasks/instructions_enumeration_task.html"
         }
     }
 ]

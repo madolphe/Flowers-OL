@@ -9,5 +9,5 @@ urlpatterns = [
     path('set_mot_params', views.set_mot_params, name='set_mot_params'),
     path('display_progression', views.display_progression, name="display_progression"),
     path('mot_close_task', views.mot_close_task, name='mot_close_task'),
-    path('view_test', views.view_test, name='view_test')
+    path('enumeration_task', views.enumeration_task, name='enumeration_task'),
 ]
