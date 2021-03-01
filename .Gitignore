@@ -1,8 +1,8 @@
-flowers-ol/mot_db
+mot_db
 *.pyc
 .idea/
 lib/kidlearn/
-flowers-ol/interface_app/static/admin/
+flowers-ol/experiment_manager_app/static/admin/
 Pipfile
 Pipfile.lock
 *migrations/

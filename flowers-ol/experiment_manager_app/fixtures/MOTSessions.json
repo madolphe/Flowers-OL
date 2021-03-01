@@ -1,0 +1,219 @@
+[
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 1,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "additional-profile-general,additional-profile-attention,simple-mot-practice"
+                    }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 1,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 2,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "12-months-vgq,years-vgq,simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 2,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 3,
+            "index"         : 1,
+            "required"      : false,
+            "tasks_csv"     : "simple-mot-practice,ueq"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 3,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 4,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 4,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 5,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 5,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 8,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 8,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+        {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 9,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 9,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+        {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 10,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 10,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+        {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 11,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 11,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+
+            {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 12,
+            "required"      : false,
+            "index"         : 1,
+            "tasks_csv"     : "simple-mot-practice,post-sess-questionnaire"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_mot",
+            "day"           : 12,
+            "required"      : false,
+            "index"         : 2,
+            "tasks_csv"     : "simple-mot-practice,ueq"
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "zpdes_admin",
+            "index"         : 1,
+            "tasks_csv"     : "screen-size-params,simple-mot-practice-admin",
+            "required"      : true
+        }
+    }
+]
