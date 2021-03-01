@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'experiment_manager_app',
     'mot_app',
     'survey_app',
+    'jold_app',
     'django_extensions',
     'crispy_forms'
 ]

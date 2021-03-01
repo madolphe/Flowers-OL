@@ -8,8 +8,8 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 
 import json, datetime
 
-from ..models import ParticipantProfile, Study, ExperimentSession
-from ..forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
+from .models import ParticipantProfile, Study, ExperimentSession
+from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 
 def login_page(request, study=''):
