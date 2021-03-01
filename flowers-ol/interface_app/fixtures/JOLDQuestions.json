@@ -265,7 +265,7 @@
             "help_text": ""
         }
     },
-    {
+{
         "model": "interface_app.Question",
         "fields": {
             "instrument": "MSLQ",
@@ -278,8 +278,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -297,8 +297,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -316,8 +316,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -335,8 +335,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -354,8 +354,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -373,8 +373,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -392,8 +392,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -411,8 +411,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -430,8 +430,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -449,8 +449,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -468,8 +468,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -487,8 +487,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -506,8 +506,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -525,8 +525,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -544,8 +544,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -563,8 +563,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -582,8 +582,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -601,8 +601,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -620,8 +620,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -639,8 +639,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -658,8 +658,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -677,8 +677,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -696,8 +696,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -715,8 +715,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -734,8 +734,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -753,8 +753,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -772,8 +772,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -791,8 +791,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -810,8 +810,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -829,8 +829,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -848,8 +848,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -867,8 +867,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -886,8 +886,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -905,8 +905,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -924,8 +924,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -943,8 +943,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -962,8 +962,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -981,8 +981,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1000,8 +1000,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1019,8 +1019,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1038,8 +1038,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1057,8 +1057,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1076,8 +1076,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1095,8 +1095,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1114,8 +1114,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1133,8 +1133,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1152,8 +1152,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1171,8 +1171,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1190,8 +1190,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1209,8 +1209,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1228,8 +1228,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1247,8 +1247,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1266,8 +1266,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1285,8 +1285,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1304,8 +1304,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1323,8 +1323,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1342,8 +1342,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1361,8 +1361,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1380,8 +1380,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1399,8 +1399,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1418,8 +1418,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1437,8 +1437,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1456,8 +1456,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1475,8 +1475,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1494,8 +1494,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1513,8 +1513,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1532,8 +1532,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
