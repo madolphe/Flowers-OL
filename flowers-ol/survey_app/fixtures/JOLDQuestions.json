@@ -1843,7 +1843,7 @@
         }
     },
     {
-        "model": "interface_app.Question",
+        "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
             "component": "Régulation externe",
@@ -1862,7 +1862,7 @@
         }
     },
     {
-        "model": "interface_app.Question",
+        "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
             "component": "Amotivation",
