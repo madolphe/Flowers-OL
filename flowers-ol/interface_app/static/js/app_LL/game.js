@@ -1,11 +1,14 @@
 const params = {
     verbose : false,
     gravity : 5,
-    wind : () => (xparams.wind + Math.random()-.5),
+    wind : () => (xparams.wind + Math.random()*4),
+//    wind : () => (xparams.wind + Math.random()-.5),
     windDir : () => Math.random() < 0.5 ? -1 : 1,
     scale : 5,
-    initDistance : xparams.dist,
-    platformType : xparams.plat,            // -1 = pit, 0 = flat, 1 = hill
+    initDistance : xparams.dist + Math.floor(Math.random()*2),
+    platformType : xparams.plat + Math.floor(Math.random() * Math.floor(3)-1),
+//    initDistance : xparams.dist,
+//    platformType : xparams.plat,            // -1 = pit, 0 = flat, 1 = hill
     timeToWin: 3,
     lander : {
         startRandom : true,

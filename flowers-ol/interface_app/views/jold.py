@@ -22,14 +22,18 @@ def jold_start_ll_practice(request):
     # Randomly assign LL condition
     if 'game_params' not in participant.extra_json:
         game_params = {
-            'wind' : random.sample([0,2,4], 1)[0],
-            'plat' : random.sample([-1,0,1], 1)[0],
-            'dist' : random.randint(0,1)}
+            # 'wind' : random.sample([0,2,4], 1)[0],
+            # 'plat' : random.sample([-1,0,1], 1)[0],
+            # 'dist' : random.randint(0,1)
+            'wind': 0,
+            'plat': 0,
+            'dist': 0
+        }
         participant.extra_json['game_params'] = game_params
         participant.save()
     if task_name == 'JOLD-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params']['time'] = 5 if settings.DEBUG else 60 * 5
+        participant.extra_json['game_params']['time'] = 5*60 if settings.DEBUG else 60 * 5
         participant.save()
     elif task_name == 'JOLD-free-choice':
         participant.extra_json['game_params']['forced'] = False
