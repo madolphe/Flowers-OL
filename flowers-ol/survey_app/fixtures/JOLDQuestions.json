@@ -278,8 +278,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -297,8 +297,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -316,8 +316,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -335,8 +335,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -354,8 +354,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -373,8 +373,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -392,8 +392,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -411,8 +411,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -430,8 +430,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -449,8 +449,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -468,8 +468,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -487,8 +487,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -506,8 +506,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -525,8 +525,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -544,8 +544,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -563,8 +563,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -582,8 +582,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -601,8 +601,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -620,8 +620,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -639,8 +639,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -658,8 +658,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -677,8 +677,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -696,8 +696,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -715,8 +715,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -734,8 +734,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -743,7 +743,7 @@
     {
         "model": "survey_app.Question",
         "fields": {
-            "instrument": "MSLQ",
+            "instrument": "",
             "component": "Self-Efficacy for Learning and Performance",
             "group": 5,
             "handle": "mslq-26",
@@ -753,8 +753,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -772,8 +772,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -791,8 +791,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -810,8 +810,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -829,8 +829,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -848,8 +848,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -867,8 +867,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -886,8 +886,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -905,8 +905,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -924,8 +924,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -943,8 +943,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -962,8 +962,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -981,8 +981,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1000,8 +1000,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1019,8 +1019,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1038,8 +1038,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1057,8 +1057,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1076,8 +1076,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1095,8 +1095,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1114,8 +1114,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1133,8 +1133,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1152,8 +1152,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1171,8 +1171,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1190,8 +1190,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1209,8 +1209,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1228,8 +1228,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1247,8 +1247,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1266,8 +1266,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1285,8 +1285,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1304,8 +1304,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1323,8 +1323,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1342,8 +1342,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1361,8 +1361,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1380,8 +1380,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1399,8 +1399,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1418,8 +1418,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1437,8 +1437,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1456,8 +1456,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1475,8 +1475,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1494,8 +1494,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1513,8 +1513,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1532,8 +1532,8 @@
             "min_val": 1,
             "max_val": 7,
             "step": 1,
-            "annotations": "Pas du tout vrai pour moi~~~~~~Très vrai pour moi",
-            "widget": "custom-likert",
+            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+            "widget": "custom-polar",
             "type": "integer",
             "help_text": ""
         }
@@ -1546,13 +1546,13 @@
             "group": 1,
             "handle": "sims-1",
             "order": 1,
-            "prompt": "Je continue de participer à cette activité parce que cette activité est vraiment plaisante",
+            "prompt": "Je continue de participer à cette activité :",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
             "step": 1,
             "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
+            "widget": "text-header",
             "type": "integer",
             "help_text": ""
         }
@@ -1561,11 +1561,11 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Régulation identifiée",
+            "component": "Motivation intrinsèque",
             "group": 1,
             "handle": "sims-2",
             "order": 2,
-            "prompt": "Je continue de participer à cette activité parce que j'ai choisi de la faire pour mon bien",
+            "prompt": "Parce que cette activité est vraiment plaisante",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1580,11 +1580,11 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Régulation externe",
+            "component": "Régulation identifiée",
             "group": 1,
             "handle": "sims-3",
             "order": 3,
-            "prompt": "Je continue de participer à cette activité parce que je sens que je suis supposé la faire",
+            "prompt": "Parce que j'ai choisi de la faire pour mon bien",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1599,11 +1599,11 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Amotivation",
+            "component": "Régulation externe",
             "group": 1,
             "handle": "sims-4",
             "order": 4,
-            "prompt": "Je continue de participer à cette activité mais je ne vois pas ce que cela me procure",
+            "prompt": "Parce que je sens que je suis supposé la faire",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1618,11 +1618,11 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
+            "component": "Amotivation",
             "group": 1,
             "handle": "sims-5",
             "order": 5,
-            "prompt": "Je continue de participer à cette activité parce que je me sens bien en faisant cette activité",
+            "prompt": "Mais je ne vois pas ce que cela me procure",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1637,11 +1637,11 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Régulation identifiée",
+            "component": "Motivation intrinsèque",
             "group": 1,
             "handle": "sims-6",
             "order": 6,
-            "prompt": "Je continue de participer à cette activité parce que je crois que cette activité est importante pour moi",
+            "prompt": "Parce que je me sens bien en faisant cette activité",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1656,11 +1656,30 @@
         "model": "survey_app.Question",
         "fields": {
             "instrument": "SIMS",
-            "component": "Régulation externe",
+            "component": "Régulation identifiée",
             "group": 1,
             "handle": "sims-7",
             "order": 7,
-            "prompt": "Je continue de participer à cette activité parce que c'est quelque chose que je dois faire",
+            "prompt": "Parce que je crois que cette activité est importante pour moi",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 7,
+            "step": 1,
+            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+            "widget": "custom-likert",
+            "type": "integer",
+            "help_text": ""
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "SIMS",
+            "component": "Régulation externe",
+            "group": 1,
+            "handle": "sims-8",
+            "order": 8,
+            "prompt": "Parce que c'est quelque chose que je dois faire",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1677,9 +1696,9 @@
             "instrument": "SIMS",
             "component": "Amotivation",
             "group": 1,
-            "handle": "sims-8",
-            "order": 8,
-            "prompt": "Je continue de participer à cette activité mais je ne suis pas sûr si cela en vaut la peine",
+            "handle": "sims-9",
+            "order": 9,
+            "prompt": "Mais je ne suis pas sûr si cela en vaut la peine",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1695,73 +1714,16 @@
         "fields": {
             "instrument": "SIMS",
             "component": "Motivation intrinsèque",
-            "group": 2,
-            "handle": "sims-9",
-            "order": 9,
-            "prompt": "Je continue de participer à cette activité parce que je trouve cette activité intéressante",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation identifiée",
             "group": 2,
             "handle": "sims-10",
             "order": 10,
-            "prompt": "Je continue de participer à cette activité parce que je sens que je veux faire cette activité",
+            "prompt": "Je continue de participer à cette activité :",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
             "step": 1,
             "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation externe",
-            "group": 2,
-            "handle": "sims-11",
-            "order": 11,
-            "prompt": "Je continue de participer à cette activité parce que c'est quelque chose que je dois faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Amotivation",
-            "group": 2,
-            "handle": "sims-12",
-            "order": 12,
-            "prompt": "Je continue de participer à cette activité mais en me demandant si je dois la faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
+            "widget": "text-header",
             "type": "integer",
             "help_text": ""
         }
@@ -1772,9 +1734,9 @@
             "instrument": "SIMS",
             "component": "Motivation intrinsèque",
             "group": 2,
-            "handle": "sims-13",
-            "order": 13,
-            "prompt": "Je continue de participer à cette activité parce que je trouve cette activité agréable",
+            "handle": "sims-11",
+            "order": 11,
+            "prompt": "Parce que je trouve cette activité intéressante",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1791,9 +1753,9 @@
             "instrument": "SIMS",
             "component": "Régulation identifiée",
             "group": 2,
-            "handle": "sims-14",
-            "order": 14,
-            "prompt": "Je continue de participer à cette activité parce que je trouve que faire cette activité est bon pour moi",
+            "handle": "sims-12",
+            "order": 12,
+            "prompt": "Parce que je sens que je veux faire cette activité",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1810,9 +1772,9 @@
             "instrument": "SIMS",
             "component": "Régulation externe",
             "group": 2,
-            "handle": "sims-15",
-            "order": 15,
-            "prompt": "Je continue de participer à cette activité parce que je sens que je n'ai pas d'autres choix que de la faire",
+            "handle": "sims-13",
+            "order": 13,
+            "prompt": "Parce que c'est quelque chose que je dois faire",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
@@ -1829,9 +1791,85 @@
             "instrument": "SIMS",
             "component": "Amotivation",
             "group": 2,
+            "handle": "sims-14",
+            "order": 14,
+            "prompt": "Mais en me demandant si je dois la faire",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 7,
+            "step": 1,
+            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+            "widget": "custom-likert",
+            "type": "integer",
+            "help_text": ""
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "SIMS",
+            "component": "Motivation intrinsèque",
+            "group": 2,
+            "handle": "sims-15",
+            "order": 15,
+            "prompt": "Parce que je trouve cette activité agréable",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 7,
+            "step": 1,
+            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+            "widget": "custom-likert",
+            "type": "integer",
+            "help_text": ""
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "SIMS",
+            "component": "Régulation identifiée",
+            "group": 2,
             "handle": "sims-16",
             "order": 16,
-            "prompt": "Je continue de participer à cette activité mais personellement je ne vois pas de bonne raisons pour faire cette activité",
+            "prompt": "Parce que je trouve que faire cette activité est bon pour moi",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 7,
+            "step": 1,
+            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+            "widget": "custom-likert",
+            "type": "integer",
+            "help_text": ""
+        }
+    },
+    {
+        "model": "interface_app.Question",
+        "fields": {
+            "instrument": "SIMS",
+            "component": "Régulation externe",
+            "group": 2,
+            "handle": "sims-17",
+            "order": 17,
+            "prompt": "Parce que je sens que je n'ai pas d'autres choix que de la faire",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 7,
+            "step": 1,
+            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+            "widget": "custom-likert",
+            "type": "integer",
+            "help_text": ""
+        }
+    },
+    {
+        "model": "interface_app.Question",
+        "fields": {
+            "instrument": "SIMS",
+            "component": "Amotivation",
+            "group": 2,
+            "handle": "sims-18",
+            "order": 18,
+            "prompt": "Mais personellement je ne vois pas de bonne raisons pour faire cette activité",
             "reverse": 0,
             "min_val": 1,
             "max_val": 7,
