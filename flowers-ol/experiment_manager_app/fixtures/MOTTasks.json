@@ -1,0 +1,132 @@
+[
+    {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "additional-profile-general",
+            "description": "Profil général",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["get_profil"],
+                "exclude": {
+                    "handle__in": [
+                        "prof-3",
+                        "prof-4",
+                        "prof-5"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "additional-profile-attention",
+            "description": "Profil général",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["get_attention"]
+            }
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "simple-mot-practice-admin",
+            "description": "Attention task",
+            "prompt": "Commencer",
+            "view_name": "app_MOT",
+            "info_templates_csv": "Instructions=mot_app/instructions_admin.html, Paramètre d'écran=mot_app/screen_params.html-, Historique d'épisode=mot_app/link_to_progression.html-"
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "screen-size-params",
+            "description": "Screen information",
+            "prompt": "Commencer",
+            "view_name": "set_mot_params",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html",
+            "extra_json": {
+                "instruments": ["get_profil"],
+                "include": {
+                    "handle__in": ["prof-1"]
+                }
+            }
+        }
+    }, {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "post-sess-questionnaire",
+            "description": "Questionnaire post-session",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-2"
+                    ]
+                }
+            }
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "12-months-vgq",
+            "description": "Habitudes de jeux (1)",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["VGQ"]
+            }
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "years-vgq",
+            "description": "Habitudes de jeux (2)",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["VGQ"]
+            }
+        }
+    },
+            {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "ueq",
+            "description": "Questionnaire d'utilisabilité",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["UEQ"]
+            }
+        }
+    },
+        {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "enumeration-task-practice",
+            "description": "Attention task",
+            "prompt": "Commencer",
+            "view_name": "enumeration_task",
+            "info_templates_csv": "Instructions=pre-post-tasks/instructions_enumeration_task.html"
+        }
+    }
+]
