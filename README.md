@@ -20,5 +20,11 @@ To be hosted on : http://flowers-mot.bordeaux.inria.fr/
 If you want to run this project localy, you will need python > 3.6. Then use pipenv to install required packages:
 
 `pip install pipenv`
-
 `pipenv install`
+
+To deploy when it's the first time you use:
+`cd flowers-ol`
+`python scripts/deploy.py -r`
+
+When you add new fixtures, be careful if you are using same pks, loadatas won't work!
+@TODO : python script to add new fixture (flush a particular table then load datas again)

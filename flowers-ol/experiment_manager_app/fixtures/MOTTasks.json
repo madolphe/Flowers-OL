@@ -128,5 +128,15 @@
             "view_name": "enumeration_task",
             "info_templates_csv": "Instructions=pre-post-tasks/instructions_enumeration_task.html"
         }
+    },
+    {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "simple-mot-practice",
+            "description": "Attention task",
+            "prompt": "Begin practice",
+            "view_name": "app_MOT",
+            "info_templates_csv": "Instructions=mot_app/instructions.html"
+        }
     }
 ]
