@@ -10,6 +10,7 @@ import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession
 from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
+from .utils import send_delayed_email
 
 
 def login_page(request, study=''):
@@ -192,8 +193,49 @@ def end_task(request):
     return redirect(reverse(home))
 
 
-
 @login_required
 def super_home(request):
     if request.user.is_authenticated & request.user.is_superuser:
         return render(request, 'super_home_page.html')
+
+
+from django.http import HttpResponse
+from django.conf import settings
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
+import smtplib
+from background_task import background
+
+
+def test_send_mails(request):
+    notify_user()
+    html = f"<html><body>User notified.</body></html>"
+    return HttpResponse(html)
+
+
+def send_email(to, subject, message_template):
+    print('Sending email to {}'.format(to))
+    print(to, subject, message_template)
+    try:
+        send_mail(
+            subject=subject,
+            html_message=message_template,
+            message=strip_tags(message_template),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[to],
+            fail_silently=False
+        )
+    except smtplib.SMTPException:
+        return 'Failed'
+    return 'Success'
+
+
+@background(schedule=60)
+def notify_user():
+    # lookup user by id and send them a message
+    args = {'to': 'maximadolphe@gmail.com',
+            'subject': 'Subject here',
+            'message_template': 'Here is the message.'
+    }
+    msg = send_email(**args)
+    print(msg)

@@ -16,5 +16,6 @@ urlpatterns = [
     path('start_task', views.start_task, name='start_task'),
     path('end_task', views.end_task, name='end_task'),
     path('thanks_page', views.thanks_page, name='thanks_page'),
-    path('end_session', views.end_session, name='end_session')
+    path('end_session', views.end_session, name='end_session'),
+    path('test_send_mails', views.test_send_mails, name='test_send_mails')
 ]
