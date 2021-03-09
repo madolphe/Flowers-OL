@@ -20,7 +20,7 @@ class MOT{
     // INIT FUNCTIONS //
     discrete_space(){
         let complete = false;
-        let r = this.area_min + this.radius;
+        let r = this.area_min + 1.5*this.radius;
         let positions = [];
         // Make sure radius is not too big for space in scene:
         if(this.radius>(this.area_max-this.area_min)){
