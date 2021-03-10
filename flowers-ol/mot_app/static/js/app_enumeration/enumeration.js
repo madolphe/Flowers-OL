@@ -1,50 +1,5 @@
 //We will conduct this experiment by a method of constant, one of the psychophysical methodologes.
 
-//// parameters
-
-//const CANVAS_WIDTH = 640;
-//const CANVAS_HEIGHT = 480;
-
-let num_rep = 10; // the experiment is conducted by psudo randomizing (common in psychological exps).
-let array_numobj = [5,6,7,8,9,10,11]; //Experimental condition. 
-let time_stimduration = 50; //in ms
-let time_maskduration = 1000; //in ms
-
-//object condition
-let size_obj = 40; //in pix. in diameter
-let roi_obj = 500; //in pix. in diameter. Later, these value will be determined from the visual angle.
-let Objs = [];
-let f_load =false;
-
-//save array. just be stored in the prensetation order.
-let array_responses =[];
-let array_stimuli =[];
-
-
-// for the mask image
-let img;
-let size_img = [1024,1024];
-
-// fixation 
-let len_fixation = 20; // in pix
-let col_fixation = 20; // in rgb
-let thick_fixation = 5; // in pix
-let duration_fixation = 1000; // in millisecond
-
-// text 
-let col_text = 255;
-let size_text = 28;
-
-
-//button
-let sel;
-let x_response = 50;
-let y_response = 200;
-let max_answer = 15;
-let x_ok = -50;
-let y_ok = 200;
-////
-
 //p5.js preload images
 function preload() {
   img = loadImage('/static/images/enumeration_imgs/noise.png');
@@ -54,16 +9,13 @@ function preload() {
 function setup() {
   createCanvas(displayWidth, displayHeight);
   Time = new TimeManager();
-  CANVAS_WIDTH = displayWidth
-  CANVAS_HEIGHT = displayHeight 
+  CANVAS_WIDTH = displayWidth;
+  CANVAS_HEIGHT = displayHeight;
 }
 
 //p5.js frame animation.
 function draw() {
   background(128); //bkg color
-  //Main experiment schedule
-  fullscreen(true);
-
   if(Time.scene==0){
     scene_instruction();
   }else if(Time.scene==1){
@@ -88,6 +40,11 @@ function scene_instruction(){
     textSize(size_text);
     textAlign(CENTER);
     text( "Please press the space key to start this experiment", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  }
+}
+function keyPressed(){
+  if(keyCode===32){
+    fullscreen(true);
   }
 }
 
@@ -235,27 +192,27 @@ class TimeManager{
   }
 
   update(){
-    if(this.scene==0){
+    if(this.scene===0){
       // called from the instruction scene
       this.scene ++;
       this.starttime_block = Date.now();
       this.repeat();
-    }else if(this.scene==1){
+    }else if(this.scene===1){
       // called from the fixation scene
       this.ind_numobj ++;
       this.scene ++;
       f_load = false;
       this.starttime_block = Date.now();
-    }else if(this.scene==2){
+    }else if(this.scene===2){
       // called from the stimuli scene
       this.scene ++;
       this.starttime_block = Date.now();
-    }else if(this.scene==3){
+    }else if(this.scene===3){
       // called from the stimuli scene
       this.scene ++;
       this.starttime_block = Date.now();
       make_button();
-    }else if(this.scene==4){
+    }else if(this.scene===4){
       // called from the response scene
       this.repeat();
       this.starttime_block = Date.now();
@@ -285,8 +242,6 @@ class TimeManager{
     // Just to increase the stimulus duration accuracy when you present the experimental stimuli.
     this.starttime_block = Date.now();
   }
-
-
  }
 
  //To randomize the stimulus condition.

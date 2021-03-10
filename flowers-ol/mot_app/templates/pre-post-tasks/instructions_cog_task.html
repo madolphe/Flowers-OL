@@ -1,0 +1,42 @@
+{% extends CONTEXT.participant.study.base_template %}
+{% load static %}
+{% block title %} Flowers OL | Home {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static CONTEXT.participant.study.style %}">
+{% endblock %}
+{% block js %}
+    <script>
+        const sessionActive = {{request.session.active_session}}
+        function confirm_logout() {
+            if (sessionActive && confirm('Current session is not finished, continue ?')) {
+                window.location.href = "user_logout"
+            }
+        }
+    </script>
+{% endblock %}
+{% block content%}
+    <div class="side-panel">
+        <h2>Salut, {{CONTEXT.participant.user.username}} !</h2>
+        <p>Ici, vous pouvez voir votre progression dans l'expérience</p>
+        <div class="side-info">
+            <div class="content">
+                {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}
+                <div class="fade-screen"></div>
+            </div>
+        </div>
+        <div class="btn-box" id="logout-button" onclick="confirm_logout()">
+            <p class="btn logout">Se déconnecter</p>
+        </div>
+    </div>
+    <div class="main-panel">
+        <section class="accordion">
+            <input type="checkbox" name="collapse" id="Instructions" checked="checked">
+            <h2 class="handle"> <label class="folding" for="Instructions">Instructions</label></h2>
+            <div class="content"> {% include CONTEXT.current_task.template_instruction_name %} </div>
+        </section>
+        <a class="btn" href={% url CONTEXT.current_task.view_name %}>
+            {{CONTEXT.current_task.instructions_prompt_name}}
+        </a>
+    </div>
+{% endblock %}
+

@@ -55,3 +55,10 @@ class SecondaryTask(models.Model):
     delta_orientation = models.FloatField(default=0)
     success = models.BooleanField(default=False)
     answer_duration = models.FloatField(default=0)
+
+
+class CognitiveTask(models.Model):
+    name = models.TextField(blank=True)
+    view_name = models.TextField(blank=True)
+    template_instruction_name = models.TextField(blank=True)
+    instructions_prompt_name = models.TextField(blank=True)

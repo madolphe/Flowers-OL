@@ -1,0 +1,12 @@
+[
+    {
+        "model": "mot_app.CognitiveTask",
+        "pk": 1,
+        "fields": {
+            "name": "enumeration",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"instructions_enumeration_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    }
+]

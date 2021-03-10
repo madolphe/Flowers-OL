@@ -9,5 +9,6 @@ urlpatterns = [
     path('set_mot_params', views.set_mot_params, name='set_mot_params'),
     path('display_progression', views.display_progression, name="display_progression"),
     path('mot_close_task', views.mot_close_task, name='mot_close_task'),
-    path('enumeration_task', views.enumeration_task, name='enumeration_task'),
+    path('cognitive_assessment_home', views.cognitive_assessment_home, name='cognitive_assessment_home'),
+    path('enumeration_task', views.enumeration_task, name='enumeration_task')
 ]
