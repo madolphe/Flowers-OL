@@ -99,8 +99,8 @@ function mousePressed(event) {
 function windowResized(){
     canvas = createCanvas(windowWidth, windowHeight);
     if(parameter_dict['admin_pannel']){
-    position_inputs();
-    size_inputs();
+        position_inputs();
+        size_inputs();
     }
     // nommer tous les coefficients
     // Pq toutes ces formules ? --> variable explicite
