@@ -46,6 +46,7 @@ def login_page(request, study=''):
 def signup_page(request):
     # First, init forms, if request is valid we can create the user
     study = Study.objects.get(name=request.session['study'])
+    print(study)
     form_user = UserForm(request.POST or None)
     form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
     if form_user.is_valid() and form_profile.is_valid():
@@ -68,6 +69,7 @@ def consent_page(request):
     user = request.user
     participant = user.participantprofile
     study = participant.study
+    print(study)
     greeting = "Salut, {0} !".format(user.username)
     form = ConsentForm(request.POST or None)
     if form.is_valid():
@@ -114,6 +116,7 @@ def home(request):
 def start_task(request):
     if 'messages' in request.session:
         del request.session['messages']
+    print(request.user.participantprofile.current_task.view_name)
     return redirect(reverse(request.user.participantprofile.current_task.view_name))
 
 

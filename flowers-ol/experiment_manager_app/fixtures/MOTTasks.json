@@ -119,14 +119,14 @@
             }
         }
     },
-        {
+    {
         "model": "experiment_manager_app.Task",
         "fields": {
-            "name": "enumeration-task-practice",
-            "description": "Attention task",
-            "prompt": "Commencer",
-            "view_name": "enumeration_task",
-            "info_templates_csv": "Instructions=pre-post-tasks/instructions_enumeration_task.html"
+            "name": "cognitive-task-practice",
+            "description": "Cognitive assessment",
+            "prompt": "Start",
+            "view_name": "cognitive_assessment_home",
+            "info_templates_csv": "Instructions=pre-post-tasks/instructions/instructions_cognitive_task.html"
         }
     },
     {

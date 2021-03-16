@@ -1,23 +1,19 @@
 {% extends "base.html" %}
+{% block title %}TASK{% endblock %}
 {%load static%}
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pre and post tests</title>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
+
+{% block content%}
+    <form id="request">{% csrf_token %}</form>
+{% endblock %}
+
 {% block js%}
     <script> screen_params = {% autoescape off %}{{screen_params}}{% endautoescape %} </script>
     <script src="{% static 'js/utils/screen_params.js' %}"></script>
     <script src="{% static 'js/utils/utils.js' %}"></script>
     <script src="{% static 'js/app_enumeration/config.js' %}"></script>
     <script src="{% static 'js/app_enumeration/enumeration.js' %}"></script>
-{% endblock %}
-</head>
-<body>
-</body>
-</html>
+{% endblock %}\
