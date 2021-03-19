@@ -219,7 +219,7 @@
     {
         "model": "experiment_manager_app.ExperimentSession",
         "fields": {
-            "study"         : "cognitive_tests",
+            "study"         : "v0_prolific",
             "day"           : 1,
             "index"         : 1,
             "tasks_csv"     : "screen-size-params,cognitive-task-practice",
@@ -229,7 +229,27 @@
     {
         "model": "experiment_manager_app.ExperimentSession",
         "fields": {
-            "study"         : "cognitive_tests",
+            "study"         : "v0_prolific",
+            "day"           : 2,
+            "index"         : 1,
+            "tasks_csv"     : "cognitive-task-practice",
+            "required"      : true
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "v0_ubx",
+            "day"           : 1,
+            "index"         : 1,
+            "tasks_csv"     : "screen-size-params,cognitive-task-practice",
+            "required"      : true
+        }
+    },
+    {
+        "model": "experiment_manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "v0_ubx",
             "day"           : 2,
             "index"         : 1,
             "tasks_csv"     : "cognitive-task-practice",

@@ -53,7 +53,18 @@
         "model": "experiment_manager_app.Study",
         "pk": 5,
         "fields": {
-            "name"          : "cognitive_tests",
+            "name"          : "v0_ubx",
+            "project"       : "Cognitive assessment",
+            "base_template" : "base.html",
+            "style"         : "css/common.css",
+            "briefing_template"  : "mot_app/consent_form.html"
+        }
+    },
+        {
+        "model": "experiment_manager_app.Study",
+        "pk": 6,
+        "fields": {
+            "name"          : "v0_prolific",
             "project"       : "Cognitive assessment",
             "base_template" : "base.html",
             "style"         : "css/common.css",
