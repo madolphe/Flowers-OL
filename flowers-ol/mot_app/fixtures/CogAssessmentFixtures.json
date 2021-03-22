@@ -1,0 +1,62 @@
+[
+    {
+        "model": "mot_app.CognitiveTask",
+        "pk": 6,
+        "fields": {
+            "name": "enumeration",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_enumeration_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 1,
+        "fields": {
+            "name": "gonogo",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_gonogo_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 2,
+        "fields": {
+            "name": "loadblindness",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_loadblindness_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 3,
+        "fields": {
+            "name": "memorability",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_memorability_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 4,
+        "fields": {
+            "name": "taskswitch",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_taskswitch_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    },
+    {
+        "model": "mot_app.CognitiveTask",
+        "pk": 5,
+        "fields": {
+            "name": "workingmemory",
+            "view_name": "enumeration_task",
+            "template_instruction_name":"pre-post-tasks/instructions/instructions_workingmemory_task.html",
+            "instructions_prompt_name": "Start"
+        }
+    }
+]

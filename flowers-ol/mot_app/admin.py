@@ -29,5 +29,19 @@ class EpisodeAdmin(admin.ModelAdmin, ExportCsvMixin):
     actions = ["export_as_csv"]
 
 
+class CognitiveTaskAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ('name', 'view_name')
+    list_filter = ['name']
+    actions = ["export_as_csv"]
+
+
+class CognitiveResultsAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ('participant', 'cognitive_task', 'idx', 'results')
+    list_filter = ['participant', 'cognitive_task']
+    actions = ["export_as_csv"]
+
+
 # Register your models here.
 admin.site.register(Episode, EpisodeAdmin)
+admin.site.register(CognitiveTask, CognitiveTaskAdmin)
+admin.site.register(CognitiveResult, CognitiveResultsAdmin)

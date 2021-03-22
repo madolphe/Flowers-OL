@@ -15,8 +15,9 @@
     <div class="col-md-7 col-sm-12">
         <div class="signup-form">
             <form action={% url "signup_page" %} class="form" method="post">
-                {% crispy CONTEXT.form_user %}
-                {% crispy CONTEXT.form_profile %}
+                {% for key, form in CONTEXT.forms.items %}
+                    {% crispy form %}
+                {% endfor %}
                 <div>
                     <p class="text-center register-link"><a href="{% url "login_page"%}">Cliquez ici pour se connecter</a></p>
                 </div>

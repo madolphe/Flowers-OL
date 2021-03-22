@@ -9,11 +9,12 @@ from survey_app.forms import QuestionnaireForm
 from experiment_manager_app.utils import add_message
 from .utils import assign_mot_condition
 from .sequence_manager.seq_manager import MotParamsWrapper
-
+from .models import CognitiveTask, CognitiveResult
 
 from collections import defaultdict
 import json
 import datetime
+import random
 
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
@@ -88,6 +89,7 @@ def set_mot_params(request):
             # The line I really need is here:
             participant.extra_json['screen_params'] = form.cleaned_data[q.handle]
             participant.save()
+            print(participant.extra_json)
             return redirect(reverse('end_task'))
         return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
             'form': form,
@@ -200,7 +202,97 @@ def display_progression(request):
     return render(request, 'mot_app/display_progression.html',
                   {'CONTEXT': {'participant': participant}})
 
+
 @login_required
 def enumeration_task(request):
-    parameters = []
-    return render(request, 'pre-post-tasks/enumeration_task.html', {'CONTEXT': {'parameter_dict': parameters}})
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    return render(request, 'pre-post-tasks/base_cognitive_task.html', {"screen_params": screen_params})
+
+
+@login_required
+def cognitive_assessment_home(request):
+    """
+    Set if this is pre OR post test
+    Render instruction page of correct tasks
+    """
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    # Check if participant is doing the test for the first time:
+    if 'cognitive_tests_status' not in participant.extra_json:
+        init_participant_extra_json(participant)
+    idx_task = participant.extra_json['cognitive_tests_current_task_idx']
+    # If the participant has just played, store results of last tasks:
+    if idx_task > 0:
+        store_previous_task(request, participant, idx_task)
+    current_task_name, current_task_context = get_current_task_context(participant, idx_task)
+    update_task_index(participant)
+    if current_task_name is not None:
+        return render(request,
+                      'pre-post-tasks/instructions/instructions_cognitive_task.html',
+                      {'CONTEXT': {'participant': participant, 'current_task': current_task_context}})
+    else:
+        # Ok task is over let's close the task by rendering the usual end_task
+        participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
+        participant.extra_json['cognitive_tests_current_task_idx'] = 0
+        participant.save()
+        return redirect(reverse('end_task'))
+
+
+def get_task_stack():
+    """When user pass the test for the first time, the task stack is defined randomly here"""
+    all_tasks = CognitiveTask.objects.all().values('name')
+    task_stack = [task['name'] for task in all_tasks]
+    random.shuffle(task_stack)
+    return task_stack
+
+
+def get_current_task_context(participant, idx_task):
+    task_stack = participant.extra_json['cognitive_tests_task_stack']
+    if idx_task < len(task_stack):
+        current_task_name = task_stack[idx_task]
+        current_task_context = CognitiveTask.objects.values('view_name',
+                                                            'template_instruction_name',
+                                                            'instructions_prompt_name').\
+                                                    get(name=current_task_name)
+        return current_task_name, current_task_context
+    else:
+        participant.extra_json['cognitive_tests_current_task_idx'] = 0
+        participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
+        return None, None
+
+
+def store_previous_task(request, participant, idx_task):
+    datas = request.POST.dict()
+    if 'csrfmiddlewaretoken' in datas:
+        del datas['csrfmiddlewaretoken']
+    # We need to store the PREVIOUS task, decrement task idx:
+    idx_task -= 1
+    task_name = participant.extra_json['cognitive_tests_task_stack'][idx_task]
+    task = CognitiveTask.objects.get(name=task_name)
+    res = CognitiveResult()
+    res.cognitive_task = task
+    res.participant = participant
+    res.idx = idx_task
+    res.results = datas
+    res.save()
+
+
+def update_task_index(participant):
+    participant.extra_json['cognitive_tests_current_task_idx'] += 1
+    participant.save()
+
+
+def init_participant_extra_json(participant):
+    participant.extra_json['cognitive_tests_status'] = 'PRE_TEST'
+    participant.extra_json['cognitive_tests_task_stack'] = get_task_stack()
+    # Point to the first task in task stack:
+    participant.extra_json['cognitive_tests_current_task_idx'] = 0
+    participant.save()
+
+# @TODO : Ajout de ma tache
+# @TODO : tests enchainements tasks
+# @TODO : Ajout des bonnes instructions en englais pour general
+# @TODO : Ajout des bonnes instructions en englais pour taches specifiaques
+
+
+

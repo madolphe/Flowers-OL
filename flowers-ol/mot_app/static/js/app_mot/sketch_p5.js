@@ -1,7 +1,6 @@
 // p5.js functions to display the game:
 function preload() {
-    arena_background_init = loadImage('/static/images/bavelier_lab/arena.png',
-        img => {arena_background = img.get()});
+    arena_background_init = loadImage('/static/images/bavelier_lab/arena.png', img => {arena_background = img.get()});
     // arena_background_init = loadImage('/static/images/bavelier_lab/arena.png');
     guard_image = loadImage('/static/images/bavelier_lab/guard.png');
     goblin_image = loadImage('/static/images/bavelier_lab/goblin.png');
@@ -100,8 +99,8 @@ function mousePressed(event) {
 function windowResized(){
     canvas = createCanvas(windowWidth, windowHeight);
     if(parameter_dict['admin_pannel']){
-    position_inputs();
-    size_inputs();
+        position_inputs();
+        size_inputs();
     }
     // nommer tous les coefficients
     // Pq toutes ces formules ? --> variable explicite

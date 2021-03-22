@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Div, HTML
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import login
 
 
 class UserForm(forms.ModelForm):
@@ -94,3 +95,64 @@ class ConsentForm(forms.Form):
             raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" '
                                         'pour valider votre participation')
         return user_input
+
+
+################# MANAGE DIFFERENT FORMS FOR DIFFERENT STUDIES #######################
+
+from mot_app.forms import ProlificUserForm, ProlificParticipantProfileForm
+
+
+def get_default_forms(request, study):
+    form_user = UserForm(request.POST or None)
+    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+    return {"form_user": form_user, "form_profile": form_profile}
+
+
+def default_store_infos(request, forms):
+    # Get extra-info for user profile:
+    user = forms['form_user'].save(commit=False)
+    # Use set_password in order to hash password
+    user.set_password(forms['form_user'].cleaned_data['password'])
+    user.save()
+    forms['form_profile'].save_profile(user)
+    login(request, user)
+
+
+def get_ubx_forms(request, study):
+    form_user = UserForm(request.POST or None)
+    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+
+
+def get_prolific_forms(request, study):
+    return {
+        "form_user": ProlificUserForm(request.POST or None),
+        "form_profile": ProlificParticipantProfileForm(request.POST or None, initial={'study': study})
+    }
+
+
+def prolific_store_infos(request, forms):
+    # Get extra-info for user profile:
+    user = forms['form_user'].save(commit=False)
+    # Use set_password in order to hash password
+    user.set_password(forms['form_user'].cleaned_data['password'])
+    user.save()
+    forms['form_profile'].save_profile(user)
+    login(request, user)
+
+
+def ubx_store_infos(request, forms):
+    # Get extra-info for user profile:
+    user = forms['form_user'].save(commit=False)
+    # Use set_password in order to hash password
+    user.set_password(forms['form_user'].cleaned_data['password'])
+    user.save()
+    forms['form_profile'].save_profile(user)
+    login(request, user)
+
+
+FORMS = {
+    'default': (get_default_forms, default_store_infos),
+    'v0_ubx': (get_default_forms, default_store_infos),
+    'v0_prolific': (get_prolific_forms, prolific_store_infos)
+}
+
