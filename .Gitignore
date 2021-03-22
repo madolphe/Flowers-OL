@@ -1,9 +1,9 @@
-flowers-ol/mot_db
+mot_db
 *.pyc
 .idea/
 lib/kidlearn/
-flowers-ol/interface_app/static/admin/
-Pipfile
+flowers-ol/experiment_manager_app/static/admin/
+# Pipfile
 Pipfile.lock
 *migrations/
 flowers-ol-db
@@ -12,3 +12,4 @@ flowers-ol-db/static
 # Branch-specific ignores for JOLD
 flowers-ol/mot_app/*
 lib/kidlearn/*
+flowers-ol/mot_app/

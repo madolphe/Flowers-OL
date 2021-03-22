@@ -15,7 +15,7 @@
 			"annotations": "none",
 			"widget": "multiple-widget",
 			"type": "float",
-			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
+			"help_text": "(Si vous ne le connaissez pas, vous pouvez utiliser le lien suivant: <a href='https://www.piliapp.com/actual-size/what-is-my-monitor-size/credit-card/' target='_blank'> mes dimensions </a>)",
 			"validate": "is_pos_num"
 		}
 	},
