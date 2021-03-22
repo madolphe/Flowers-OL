@@ -192,13 +192,13 @@
     </div>
 </section>
 <section id="section-7">
-    <p>{% trans "Je soussigné(e):" %}
+    <p>{% trans "Je soussigné.e:" %}
     <span class='consent-form'>
         <span><label for="nom">{% trans "Nom" %}</label></span><input type="text" value={{person.0}} name='nom' required/>
         <span><label for="prenom">{% trans "Prénom" %}</label></span><input type="text" value={{person.1}} name='prenom' required/>
     </span>
     </p>
     <p>
-        {% trans "reconnais avoir lu et compris le présent formulaire d’informations concernant le projet "{{project}}" et consens volontairement à participer à ce projet de recherche. Je reconnais avoir été informé que je peux mettre fin à ma participation au projet à tout moment sans aucun motif à donner, en contactant simplement les personnes contacts référencées ci-dessus. Je reconnais que j’ai été informé sur le but et les modalités du projet, ainsi que les avantages, risques et inconvénients du projet. Je reconnais avoir obtenu les réponses mes questions de manière claire et précise. Je reconnais enfin avoir la possibilité de poser des questions additionnelles sur le projet ou sur mes droits, à tout moment pendant le projet, en communiquant avec les personnes contacts. Fait en deux exemplaires dont un sera remis au participant et un sera conservé par le responsable du projet." %}
+        {% trans "reconnais avoir lu et compris le présent formulaire d’informations concernant le projet " %}{{project}}{% trans" et consens volontairement à participer à ce projet de recherche. Je reconnais avoir été informé que je peux mettre fin à ma participation au projet à tout moment sans aucun motif à donner, en contactant simplement les personnes contacts référencées ci-dessus. Je reconnais que j’ai été informé sur le but et les modalités du projet, ainsi que les avantages, risques et inconvénients du projet. Je reconnais avoir obtenu les réponses mes questions de manière claire et précise. Je reconnais enfin avoir la possibilité de poser des questions additionnelles sur le projet ou sur mes droits, à tout moment pendant le projet, en communiquant avec les personnes contacts. Fait en deux exemplaires dont un sera remis au participant et un sera conservé par le responsable du projet." %}
     </p>
 </section>

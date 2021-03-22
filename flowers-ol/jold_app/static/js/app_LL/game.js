@@ -100,20 +100,20 @@ function runBlockLL() {
     let trialStartTime;
     let accumulator = 0;
     let gamePaused = true;
-    const beginMsg = 'Vaisseau prêt!'
+    const beginMsg = gettext('Vaisseau prêt!')
 
     let pauseMessage = new createjs.Text(beginMsg, '40px Arial', params.colors.pauseText);
     pauseMessage.x = canvas.width/2;
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
     pauseMessage.textBaseline = 'bottom';
-    const subMsg = 'Appuyer sur \'Entrer\' pour commencer'
+    const subMsg = gettext('Appuyer sur \'Entrer\' pour commencer')
     const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
     pauseSubMessage.x = canvas.width/2;
     pauseSubMessage.y = canvas.height/2+20;
     pauseSubMessage.textAlign = 'center';
     pauseSubMessage.textBaseline = 'top';
-    const pauseSubSubMessage = new createjs.Text('* le mode plein écran doit être activé', '18px Arial', params.colors.floor);
+    const pauseSubSubMessage = new createjs.Text(gettext('* le mode plein écran doit être activé'), '18px Arial', params.colors.floor);
     pauseSubSubMessage.x = canvas.width-50;
     pauseSubSubMessage.y = canvas.height-50;
     pauseSubSubMessage.textAlign = 'right';
@@ -121,11 +121,11 @@ function runBlockLL() {
 
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
-    const landedMsg = 'Le vaisseau a atterri!'
-    const crashMsg = 'Le vaisseau s\'est écrasé'
-    const offMsg = 'Le vaisseau s\'est perdu'
-    const shrunkMsg = 'En pause'
-    const timeMsg = 'Fin de la session'
+    const landedMsg = gettext('Le vaisseau a atterri!')
+    const crashMsg = gettext('Le vaisseau s\'est écrasé')
+    const offMsg = gettext('Le vaisseau s\'est perdu')
+    const shrunkMsg = gettext('En pause')
+    const timeMsg = gettext('Fin de la session')
 
     let landSight, landerSight;
     let landPoint;
@@ -178,11 +178,11 @@ function runBlockLL() {
 
     // Initialize HTML (p5) buttons
     function initOuterElements() {
-        toggleFullscreenButton = createButton('Plein écran');
+        toggleFullscreenButton = createButton(gettext('Plein écran'));
         toggleFullscreenButton.class('toggleFullscreen')
         toggleFullscreenButton.mousePressed(() => {initKeyboard(); toggleFullscreen()});
 
-        terminateButton = createButton('Terminer');
+        terminateButton = createButton(gettext('Terminer'));
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
 
@@ -520,8 +520,8 @@ function runBlockLL() {
         if (document[hidden]) {
             document.title = 'Lunar Lander | Paused';
             if (!gamePaused) {
-                pauseMessage.text = 'Session interrompue'
-                pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
+                pauseMessage.text = gettext('Session interrompue')
+                pauseSubMessage.text = gettext('Appuyer sur \'Entrée\' pour continuer')
                 interruptions++;
             };
             gamePaused = true;
@@ -572,7 +572,7 @@ function runBlockLL() {
     function saveTrialData() {
         landerX = unscaled(landerBody.GetPosition().x).toFixed(0);
         landerY =  unscaled(landerBody.GetPosition().y).toFixed(0);
-        pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
+        pauseSubMessage.text = gettext('Appuyer sur \'Entrée\' pour continuer')
         if (landerX < 0 || landerX > canvas.width || landerY < 0) {
             outcome='offscreen';
             pauseMessage.text = offMsg;
@@ -623,7 +623,7 @@ function runBlockLL() {
             outOfTime = true;
             saveTrialData();
             pauseMessage.text = timeMsg;
-            pauseSubMessage.text = 'Cliquez sur \'Terminer\' pour continuer l\'expérience'
+            pauseSubMessage.text = gettext('Cliquez sur \'Terminer\' pour continuer l\'expérience')
             pauseSubSubMessage.text = ''
             gamePaused = true;
             pauseUnpause(gamePaused);
@@ -635,13 +635,13 @@ function runBlockLL() {
     // Request next template
     function terminate() {
         if (!gamePaused) {
-            pauseMessage.text = 'Session interrompue'
-            pauseSubMessage.text = 'Appuyer sur \'Entrée\' pour continuer'
+            pauseMessage.text = gettext('Session interrompue')
+            pauseSubMessage.text = gettext('Appuyer sur \'Entrée\' pour continuer')
             interruptions++;
         };
-        let confirmMessage = 'Continuer ?'
+        let confirmMessage = gettext('Continuer ?')
         if (!outOfTime && xparams.forced) {
-            confirmMessage = 'Cette session n\'est pas encore terminée. Nous ne serons pas en mesure d\'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de vouloir quitter ?'
+            confirmMessage = gettext('Cette session n\'est pas encore terminée. Nous ne serons pas en mesure d\'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de vouloir quitter ?')
         }
         gamePaused = true;
         pauseUnpause(gamePaused);
