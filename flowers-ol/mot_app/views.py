@@ -211,6 +211,11 @@ def enumeration_task(request):
 
 
 @login_required
+def test_task(request):
+    return redirect(reverse('cognitive_assessment_home'))
+
+
+@login_required
 def cognitive_assessment_home(request):
     """
     Set if this is pre OR post test
@@ -222,19 +227,44 @@ def cognitive_assessment_home(request):
         init_participant_extra_json(participant)
     idx_task = participant.extra_json['cognitive_tests_current_task_idx']
     # If the participant has just played, store results of last tasks:
-    if idx_task > 0:
+    if participant.extra_json['task_to_store']:
         store_previous_task(request, participant, idx_task)
+    # Get current task context and name according to task idx:
     current_task_name, current_task_context = get_current_task_context(participant, idx_task)
+    # Update task index for next visit to the view
     update_task_index(participant)
-    if current_task_name is not None:
+    print(current_task_name)
+    print(idx_task)
+    # 3 use cases: play / time for break / time to stop
+    if current_task_name is not None and not participant.extra_json['cognitive_tests_break']:
+        # No break + still tasks to play:
+        # The task results will have to be stored right after coming back to this view
+        participant.extra_json['task_to_store'] = True
+        participant.save()
         return render(request,
                       'pre-post-tasks/instructions/instructions_cognitive_task.html',
                       {'CONTEXT': {'participant': participant, 'current_task': current_task_context}})
+    elif current_task_name is not None:
+        # A break but still tasks to play, i.e time to pass to second half of cognitive tests:
+        # set participant extra json to same status (POST/PRE) with task index
+        # When coming back after break, make sure the task to store is still set to False
+        NUMBER_OF_TASKS_PER_BATCH = 4
+        participant.extra_json['cognitive_tests_break'] = False
+        participant.save()
+        restart_participant_extra_json(participant,
+                                       test_title=participant.extra_json['cognitive_tests_status'],
+                                       task_index=NUMBER_OF_TASKS_PER_BATCH,
+                                       is_first_half=False,
+                                       task_to_store=False)
+        return redirect(reverse('end_task'))
+
     else:
         # Ok task is over let's close the task by rendering the usual end_task
-        participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
-        participant.extra_json['cognitive_tests_current_task_idx'] = 0
-        participant.save()
+        restart_participant_extra_json(participant,
+                                       test_title='POST_TEST',
+                                       task_index=0,
+                                       is_first_half=True,
+                                       task_to_store=False)
         return redirect(reverse('end_task'))
 
 
@@ -278,21 +308,30 @@ def store_previous_task(request, participant, idx_task):
 
 
 def update_task_index(participant):
+    """Objectives of this function are 2-folds:
+        1) increment the current index of the cognitive_test that will be played
+        2) Test if this index corresponds to the moment for a break
+    """
+    NUMBER_OF_TASKS_PER_BATCH = 4
+    if participant.extra_json['cognitive_tests_first_half']:
+        participant.extra_json['cognitive_tests_break'] = participant.extra_json['cognitive_tests_current_task_idx'] \
+                                                          == NUMBER_OF_TASKS_PER_BATCH
     participant.extra_json['cognitive_tests_current_task_idx'] += 1
     participant.save()
 
 
 def init_participant_extra_json(participant):
-    participant.extra_json['cognitive_tests_status'] = 'PRE_TEST'
     participant.extra_json['cognitive_tests_task_stack'] = get_task_stack()
-    # Point to the first task in task stack:
-    participant.extra_json['cognitive_tests_current_task_idx'] = 0
+    restart_participant_extra_json(participant, 'PRE_TEST', task_to_store=False)
+
+
+def restart_participant_extra_json(participant, test_title, task_index=0, is_first_half=True, task_to_store=True):
+    participant.extra_json['cognitive_tests_status'] = test_title
+    participant.extra_json['cognitive_tests_current_task_idx'] = task_index
+    participant.extra_json['cognitive_tests_first_half'] = is_first_half
+    participant.extra_json['task_to_store'] = task_to_store
     participant.save()
 
-# @TODO : Ajout de ma tache
-# @TODO : tests enchainements tasks
-# @TODO : Ajout des bonnes instructions en englais pour general
-# @TODO : Ajout des bonnes instructions en englais pour taches specifiaques
 
 
 

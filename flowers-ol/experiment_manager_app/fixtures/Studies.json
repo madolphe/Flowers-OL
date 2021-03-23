@@ -70,5 +70,16 @@
             "style"         : "css/common.css",
             "briefing_template"  : "mot_app/consent_form.html"
         }
+    },
+        {
+        "model": "experiment_manager_app.Study",
+        "pk": 7,
+        "fields": {
+            "name"          : "test",
+            "project"       : "Cognitive assessment",
+            "base_template" : "base.html",
+            "style"         : "css/common.css",
+            "briefing_template"  : "mot_app/consent_form.html"
+        }
     }
 ]

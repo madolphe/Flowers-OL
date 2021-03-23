@@ -79,6 +79,20 @@
                 }
             }
         }
+    }, {
+        "model": "experiment_manager_app.Task",
+        "fields": {
+            "name": "nasatlx-questionnaire",
+            "description": "Questionnaire post-session",
+            "prompt": "Commencer",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "NASA-TLX"
+                ]
+            }
+        }
     },
         {
         "model": "experiment_manager_app.Task",
