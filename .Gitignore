@@ -1,6 +1,5 @@
 *.pyc
 .idea/
-lib/kidlearn/
 flowers-ol/interface_app/static/admin/
 # Pipfile
 Pipfile.lock
