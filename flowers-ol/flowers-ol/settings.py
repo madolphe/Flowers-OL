@@ -14,9 +14,7 @@ import os
 from django.utils.translation import gettext_lazy as _
 
 LOCALE_PATHS = [
-    os.path.join(os.path.dirname(__file__), "experiment_manager_app/locale"),
-    os.path.join(os.path.dirname(__file__), "survey_app/locale"),
-    os.path.join(os.path.dirname(__file__), "jold_app/locale")
+    os.path.join(os.path.dirname(__file__), "experiment_manager_app/locale")
 ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
