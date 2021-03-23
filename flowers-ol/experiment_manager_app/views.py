@@ -154,8 +154,7 @@ def thanks_page(request):
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
                        ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')' {}'.\
-                    format(next_date.strftime('%d/%m/%Y'))
+                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.format(next_date.strftime('%d/%m/%Y')))
         else:
             text = _('Nous vous attendons la prochaine fois.')
     else:
