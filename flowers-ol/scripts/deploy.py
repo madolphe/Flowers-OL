@@ -4,7 +4,7 @@ import sys
 import getopt
 import os
 
-application_names = ['experiment_manager_app', 'mot_app', 'survey_app', 'jold_app']
+application_names = ['experiment_manager_app', 'survey_app', 'jold_app']
 
 
 def get_args(argv):
