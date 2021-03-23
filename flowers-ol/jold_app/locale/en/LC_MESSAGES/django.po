@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-22 12:32+0100\n"
+"POT-Creation-Date: 2021-03-22 21:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: templates/JOLD/consent_form.html:3
 msgid "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ"
-msgstr ""
+msgstr "INFORMATION AND INFORMED CONSENT FORM"
 
 #: templates/JOLD/consent_form.html:5
 msgid ""
@@ -572,6 +572,21 @@ msgid ""
 "reconnais avoir lu et compris le présent formulaire d’informations "
 "concernant le projet "
 msgstr "acknowledge having read and understood this project information form"
+
+#: templates/JOLD/consent_form.html:202
+msgid ""
+" et consens volontairement à participer à ce projet de recherche. Je "
+"reconnais avoir été informé que je peux mettre fin à ma participation au "
+"projet à tout moment sans aucun motif à donner, en contactant simplement les "
+"personnes contacts référencées ci-dessus. Je reconnais que j’ai été informé "
+"sur le but et les modalités du projet, ainsi que les avantages, risques et "
+"inconvénients du projet. Je reconnais avoir obtenu les réponses mes "
+"questions de manière claire et précise. Je reconnais enfin avoir la "
+"possibilité de poser des questions additionnelles sur le projet ou sur mes "
+"droits, à tout moment pendant le projet, en communiquant avec les personnes "
+"contacts. Fait en deux exemplaires dont un sera remis au participant et un "
+"sera conservé par le responsable du projet."
+msgstr "and voluntarily consent to participate in this research project. I acknowledge that I have been informed that I may terminate my participation in the project at any time without giving any reason, simply by contacting the contact persons listed above. I acknowledge that I have been informed about the purpose and modalities of the project, as well as the advantages, risks and disadvantages of the project. I acknowledge that I have received clear and precise answers to my questions. I acknowledge that I have the possibility to ask additional questions about the project or my rights at any time during the project by contacting the contact persons. Made in duplicate, one copy to be given to the participant and one copy to be kept by the project leader."
 
 #: templates/JOLD/reminder_email.html:9
 msgid "Vous participez à une étude en ligne"

@@ -150,17 +150,17 @@ def thanks_page(request):
         if session_day:
             next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
             if datetime.date.today() == next_date:
-                text = 'Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
+                text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
-                       ' Déconnectez vous, reconnectez vous et recommencez !'
+                       ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                text = 'Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.\
+                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')' {}'.\
                     format(next_date.strftime('%d/%m/%Y'))
         else:
-            text = 'Nous vous attendons la prochaine fois.'
+            text = _('Nous vous attendons la prochaine fois.')
     else:
-        heading = 'L\'étude est terminée'
-        text = 'Merci, pour votre contribution à la science !'
+        heading = _('L\'étude est terminée')
+        text = _('Merci, pour votre contribution à la science !')
     return render(request, 'thanks_page.html', {'CONTEXT': {
         'heading': heading, 'text': text}})
 

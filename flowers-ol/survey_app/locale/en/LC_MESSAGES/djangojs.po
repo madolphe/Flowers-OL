@@ -578,7 +578,7 @@ msgstr "By personal decision"
 
 #: fixtures/JOLDQuestions.json:1796
 msgid "Mais en me demandant si je dois la faire"
-msgstr ""
+msgstr "I am not sure it is a good thing to pursue it"
 
 #: fixtures/JOLDQuestions.json:1815
 msgid "Parce que je trouve cette activité agréable"

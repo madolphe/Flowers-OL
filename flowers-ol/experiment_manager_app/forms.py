@@ -14,8 +14,8 @@ class UserForm(forms.ModelForm):
                                widget=forms.TextInput(attrs={'placeholder': _("Nom d'utilisateur")}))
     password = forms.CharField(label=_('Mot de passe'),
                                widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
-    first_name = forms.CharField(label='Prénom', widget=forms.TextInput(attrs={'placeholder': 'Prénom'}))
-    last_name = forms.CharField(label='Nom de famille', widget=forms.TextInput(attrs={'placeholder': 'Nom de famille'}))
+    first_name = forms.CharField(label=_('Prénom'), widget=forms.TextInput(attrs={'placeholder': _('Prénom')}))
+    last_name = forms.CharField(label=_('Nom de famille'), widget=forms.TextInput(attrs={'placeholder': _('Nom de famille')}))
     email = forms.CharField(label='E-mail', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
     field_order = ['username', 'password', 'first_name', 'last_name', 'email']
 
@@ -36,7 +36,7 @@ class ParticipantProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ParticipantProfileForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Valider'))
+        self.helper.add_input(Submit('submit', _('Valider')))
         self.helper.form_tag = False
         self.fields['birth_date'].label = _('Date de naissance')
         self.fields['remind'].label = _('Rappelez-moi par e-mail de compléter les tâches pour l\'étude')
@@ -72,25 +72,24 @@ class SignInForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Se connecter'))
+        self.helper.add_input(Submit('submit', _('Se connecter')))
 
 
 class ConsentForm(forms.Form):
     """
     Class to generate a form for consent page.
     """
-    understood = forms.BooleanField(label="J'ai lu et compris les termes de cette étude")
-    agreed = forms.CharField(label='Consentement', help_text='Ecrire \"Je consens\" dans la barre')
+    understood = forms.BooleanField(label=_("J'ai lu et compris les termes de cette étude"))
+    agreed = forms.CharField(label=_('Consentement'), help_text=_('Ecrire \'Je consens\' dans la barre'))
     fields = ['understood', 'agreed']
 
     def __init__(self, *args, **kwargs):
         super(ConsentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Valider'))
+        self.helper.add_input(Submit('submit', _('Valider')))
 
     def clean_agreed(self):
         user_input = self.cleaned_data['agreed'].lower().strip('\"')
-        if user_input != 'je consens':
-            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" '
-                                        'pour valider votre participation')
+        if user_input != 'je consens' or user_input != 'I consent':
+            raise forms.ValidationError(_('Veuillez donner votre consentement en écrivant \'Je consens\' pour valider votre participation'))
         return user_input
