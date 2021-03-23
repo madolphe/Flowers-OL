@@ -22,15 +22,12 @@ def jold_start_ll_practice(request):
     task_name = participant.current_task.name
     # Randomly assign LL condition
     if 'game_params' not in participant.extra_json:
-        game_params = {
-            'wind' : random.sample([0,2,4], 1)[0],
-            'plat' : random.sample([-1,0,1], 1)[0],
-            'dist' : random.randint(0,1)}
+        game_params = {}
         participant.extra_json['game_params'] = game_params
         participant.save()
     if task_name == 'JOLD-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params']['time'] = 5 if settings.DEBUG else 60 * 5
+        participant.extra_json['game_params']['time'] = 5 * 60
         participant.save()
     elif task_name == 'JOLD-free-choice':
         participant.extra_json['game_params']['forced'] = False
@@ -69,8 +66,8 @@ def jold_close_ll_practice(request):
         # if block was completed, redirect to end task view
         if forced:
             if block_complete:
-                add_message(request, 'Vous avez terminé l\'entraînement de Lunar Lander', 'success')
-                add_message(request, 'Ne partez pas tout de suite ! Il y a un questionnaire à remplir.', 'warning')
+                add_message(request, _('Vous avez terminé l\'entraînement de Lunar Lander'), 'success')
+                add_message(request, _('Ne partez pas tout de suite ! Il y a un questionnaire à remplir.'), 'warning')
                 return JsonResponse({'success': True, 'url': reverse('end_task')})
             else:
                 return JsonResponse({'success': True, 'url': reverse('thanks_page')})
@@ -83,9 +80,9 @@ def jold_close_postsess_questionnaire(request):
     participant = request.user.participantprofile
     if participant.future_sessions:
         nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
-        wdays = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
-        add_message(request, 'La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
-    add_message(request, 'Le questionnaire est complet', 'success')
+        wdays = [_('Lundi'),_('Mardi'),_('Mercredi'),_('Jeudi'),_('Vendredi'),_('Samedi'),_('Dimanche')]
+        add_message(request, _('La prochaine session est le'),'{} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()]), 'info')
+    add_message(request, _('Le questionnaire est complet'), 'success')
     answer = Answer()
     answer.question = Question.objects.get(handle='jold-0')
     answer.participant = participant

@@ -13,7 +13,7 @@ def is_pos_num(value):
         raise_error = True
     if raise_error:
         raise ValidationError(
-            'Attention, la valeur doit être un nombre positif (ex: 21.32)',
+            _('Attention, la valeur doit être un nombre positif (ex: 21.32)'),
             params={'value': value},
             code='negative'
         )

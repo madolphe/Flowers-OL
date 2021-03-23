@@ -38,7 +38,7 @@ class QuestionnaireForm(forms.Form):
             self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i % 2 else '')))
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.add_input(Submit('submit', 'Valider'))
+        self.helper.add_input(Submit('submit', _('Valider')))
         self.helper.layout = Layout(*self.rows)
         self.helper.form_show_errors = True
 
@@ -57,4 +57,4 @@ class QuestionnaireForm(forms.Form):
             else:
                 self.fields[handle].widget.attrs['prev'] = cleaned_data[handle]
         if missing_data:
-            raise ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')
+            raise ValidationError(_('Oups, il semblerait que tu as oublié de répondre à certaines questions.'))

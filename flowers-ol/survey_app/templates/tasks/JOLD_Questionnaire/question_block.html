@@ -13,9 +13,9 @@
     <div class="side-panel">
         <div class="side-info">
            <h2>Questionnaire</h2>
-           <p> Page {{CONTEXT.current_page}} sur {{CONTEXT.nb_pages}} </p>
+           <p> Page {{CONTEXT.current_page}} {% trans "sur" %} {{CONTEXT.nb_pages}} </p>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href={% url "user_logout" %}>Se déconnecter</a></div>
+        <div class="btn-box logout"> <a class="btn logout" href={% url "user_logout" %}>{% trans "Se déconnecter" %}</a></div>
     </div>
 
     <div class="main-panel">

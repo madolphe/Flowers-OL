@@ -10,17 +10,20 @@ import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession
 from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
-from .forms import FORMS
 
 
 def login_page(request, study=''):
-    """
-    params
-    request
-    study: string corersponding to GET http request after "study=" keyword.
-    Example: https://flowers-mot.bordeaux.inria.fr/study=zpdes_mot will return "zpdes_mot"
-    """
-    valid_study_title = check_study_url(request, study)
+    # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
+    if 'study' in request.session:
+        study = request.session.get('study')
+    # Pourquoi ça ??
+    if 'study' in request.GET.dict():
+        study = request.GET.dict().get('study')
+    # validate_study(name=study)
+    valid_study_title = bool(Study.objects.filter(name=study).count())
+    if valid_study_title:
+        # Pourquoi ça ??
+        request.session['study'] = study # store 'study' extension only once per session
     error = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
@@ -32,6 +35,7 @@ def login_page(request, study=''):
             return redirect(reverse(home))
         else:  # show error if user not in DB
             error = True
+    # Plutôt utiliser un code erreur
     return render(request, 'login_page.html', {'CONTEXT': {
         'study': valid_study_title,
         'error': error,
@@ -39,41 +43,24 @@ def login_page(request, study=''):
     }})
 
 
-def check_study_url(request, study):
-    """Util function to make sure the url used is correct (study exists in DB)"""
-    # Check if study url extension has been stored in request.session['study']
-    valid_study_title = ('study' in request.session)
-    # If not in request session OR if url has changed, check if extension exists in DB:
-    if (not valid_study_title) or request.session['study'] != study:
-        if bool(Study.objects.filter(name=study).count()):
-            request.session['study'] = study
-            valid_study_title = True
-        else:
-            valid_study_title = False
-    return valid_study_title
-
-
 def signup_page(request):
-    """
-
-    """
     # First, init forms, if request is valid we can create the user
     study = Study.objects.get(name=request.session['study'])
-    # Retrieve func to generate forms and store infos for the displayed forms
-    if study.name in FORMS:
-        generate_form, store_infos = FORMS[study.name]
-    else:
-        generate_form, store_infos = FORMS['default']
-
-    forms = generate_form(request, study)
-
-    # Check if all forms are valid:
-    forms_are_valids = [form.is_valid() for key, form in forms.items()]
-    if all(forms_are_valids):
-        store_infos(request, forms)
-        return redirect(reverse(home))
-
-    return render(request, 'signup_page.html', {'CONTEXT': {'forms': forms}})
+    form_user = UserForm(request.POST or None)
+    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+    if form_user.is_valid() and form_profile.is_valid():
+        # Get extra-info for user profile:
+        user = form_user.save(commit=False)
+        # Use set_password in order to hash password
+        user.set_password(form_user.cleaned_data['password'])
+        user.save()
+        form_profile.save_profile(user)
+        login(request, user)
+        return redirect(reverse(home))                  # Redirect to consent form
+    return render(request, 'signup_page.html', {'CONTEXT': {
+        'form_profile': form_profile,
+        'form_user': form_user
+    }})
 
 
 @login_required
@@ -105,6 +92,7 @@ def home(request):
     participant = request.user.participantprofile
     if not participant.consent:
         return redirect(reverse(consent_page))
+
     try:
         participant.set_current_session()
     except AssertionError:
@@ -119,14 +107,13 @@ def home(request):
         for tag, content in request.session['messages'].items():
             print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
-    return render(request, 'home_page.html', {'CONTEXT': {'participant': participant}})
+    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
 
 
 @login_required
 def start_task(request):
     if 'messages' in request.session:
         del request.session['messages']
-    print(request.user.participantprofile.current_task.view_name)
     return redirect(reverse(request.user.participantprofile.current_task.view_name))
 
 
@@ -163,17 +150,17 @@ def thanks_page(request):
         if session_day:
             next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
             if datetime.date.today() == next_date:
-                text = 'Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
+                text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
-                       ' Déconnectez vous, reconnectez vous et recommencez !'
+                       ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                text = 'Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.\
+                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')' {}'.\
                     format(next_date.strftime('%d/%m/%Y'))
         else:
-            text = 'Nous vous attendons la prochaine fois.'
+            text = _('Nous vous attendons la prochaine fois.')
     else:
-        heading = 'L\'étude est terminée'
-        text = 'Merci, pour votre contribution à la science !'
+        heading = _('L\'étude est terminée')
+        text = _('Merci, pour votre contribution à la science !')
     return render(request, 'thanks_page.html', {'CONTEXT': {
         'heading': heading, 'text': text}})
 

@@ -10,15 +10,15 @@
         <div class="side-info">
            <h2>{{CONTEXT.greeting}}</h2>
            <p>
-               Pour donner votre consentement et participer à l'expérience:
+               {% trans "Pour donner votre consentement et participer à l'expérience:" %}
                <ul>
-                   <li>Lisez attentivement le formulaire de consentement sur la droite</li>
-                   <li>Cochez la case "J'ai lu et compris les termes de cette étude</li>
-                   <li>Écrivez "Je consens" dans la barre en dessous</li>
-                   <li>Cliquez ensuite sur "Valider"</li>
+                   <li>{% trans "Lisez attentivement le formulaire de consentement sur la droite" %}</li>
+                   <li>{% trans "Cochez la case " %}{% trans "J'ai lu et compris les termes de cette étude" %}</li>
+                   <li>{% trans "Écrivez " %}{% trans "Je consens" dans la barre en dessous" %}</li>
+                   <li>{% trans "Cliquez ensuite sur" %} {% trans "Valider" %}</li>
                </ul>
         </div>
-        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">Se déconnecter</a> </div>
+        <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">{% trans "Se déconnecter" %}</a> </div>
     </div>
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-18 12:05+0100\n"
+"POT-Creation-Date: 2021-03-23 01:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,25 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:18 forms.py:19 forms.py:71 forms.py:72
+#: forms.py:13 forms.py:14 forms.py:66 forms.py:67
 msgid "Nom d'utilisateur"
 msgstr "Login"
 
-#: forms.py:20 forms.py:21 forms.py:74
+#: forms.py:15 forms.py:16 forms.py:69
 msgid "Mot de passe"
 msgstr "Password"
 
-#: forms.py:46
+#: forms.py:17
+msgid "Prénom"
+msgstr "First name"
+
+#: forms.py:18
+msgid "Nom de famille"
+msgstr "Last name"
+
+#: forms.py:39 forms.py:89 templates/consent_page.html:18
+msgid "Valider"
+msgstr "Confirm"
+
+#: forms.py:41
 msgid "Date de naissance"
 msgstr "Date of birth"
 
-#: forms.py:47
+#: forms.py:42
 msgid "Rappelez-moi par e-mail de compléter les tâches pour l'étude"
 msgstr "Send me an email when a new task has to be completed"
+
+#: forms.py:75
+msgid "Se connecter"
+msgstr "Log out"
+
+#: forms.py:82 templates/consent_page.html:16
+msgid "J'ai lu et compris les termes de cette étude"
+msgstr "I have read and understood the terms of this study"
+
+#: forms.py:83
+msgid "Consentement"
+msgstr "Consent"
+
+#: forms.py:83
+msgid "Ecrire 'Je consens' dans la barre"
+msgstr "Write 'I consent' in the bar"
+
+#: forms.py:94
+msgid ""
+"Veuillez donner votre consentement en écrivant 'Je consens' pour valider "
+"votre participation"
+msgstr ""
+"Please give your consent by writing 'I consent' to validate your "
+"participation"
 
 #: models.py:114
 msgid "jour/mois/an"
 msgstr "day/month/year"
+
+#: templates/consent_page.html:13
+msgid "Pour donner votre consentement et participer à l'expérience:"
+msgstr "To give your consent and participate in the experiment:"
+
+#: templates/consent_page.html:15
+msgid "Lisez attentivement le formulaire de consentement sur la droite"
+msgstr "Read the consent form on the right carefully"
+
+#: templates/consent_page.html:16
+msgid "Cochez la case "
+msgstr "Check the box"
+
+#: templates/consent_page.html:17
+msgid "Écrivez "
+msgstr "Write"
+
+#: templates/consent_page.html:17
+msgid "Je consens"
+msgstr "I consent"
+
+#: templates/consent_page.html:18
+msgid "Cliquez ensuite sur"
+msgstr "Then click on"
+
+#: templates/consent_page.html:21 templates/home_page.html:28
+#: templates/off_session_page.html:103 templates/thanks_page.html:19
+msgid "Se déconnecter"
+msgstr "Log out"
+
+#: templates/home_page.html:19
+msgid "Salut"
+msgstr "Hi"
+
+#: templates/home_page.html:20
+msgid ", vous pouvez voir votre progression dans l'expérience"
+msgstr ", you can see your progress in the experience"
 
 #: templates/login_page.html:13
 msgid "Se connecter ou s'inscrire pour accéder à l'expérience."
@@ -49,3 +122,88 @@ msgstr "Login or password incorrect."
 #: templates/login_page.html:29
 msgid "Cliquez ici pour s'inscrire"
 msgstr "Click here to sign up"
+
+#: templates/off_session_page.html:75
+msgid "Impossible d'attribuer une session"
+msgstr "Unable to assign a session"
+
+#: templates/off_session_page.html:76
+msgid ""
+"Nous n'avons pas pu vous trouver de session. Cela pourrait être dû à "
+"plusieurs raisons :"
+msgstr ""
+"We could not find a session for you. This could be due to several reasons:"
+
+#: templates/off_session_page.html:81
+msgid "Il n'y a pas de session pour vous aujourd'hui"
+msgstr "There is no session for you today"
+
+#: templates/off_session_page.html:81
+msgid ""
+"Dans ce cas, veuillez revenir à l'un des jours prévus (voir ci-dessous)."
+msgstr ""
+"In this case, please come back on one of the scheduled days (see below)."
+
+#: templates/off_session_page.html:82
+msgid ""
+"La session ne peut pas être lancée parce qu'il ne s'est pas écoulé "
+"suffisamment de temps depuis votre dernière session."
+msgstr ""
+"The session cannot be started because not enough time has passed since your "
+"last session."
+
+#: templates/off_session_page.html:82
+msgid "Dans ce cas, revenez plus tard (voir le calendrier ci-dessous)."
+msgstr "In this case, come back later (see timetable below)."
+
+#: templates/off_session_page.html:83
+msgid "Vous avez commencé une session plus tôt mais ne l'avez pas terminée"
+msgstr "You started a session earlier but did not finish it"
+
+#: templates/off_session_page.html:83
+msgid ""
+"Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas "
+"poursuivre l'expérience."
+msgstr ""
+"In this case, you have not followed the programme and you cannot continue "
+"the experiment."
+
+#: templates/off_session_page.html:85
+msgid "Vos sessions : "
+msgstr "Your sessions : "
+
+#: templates/off_session_page.html:95
+msgid "(Pas d'entraînement)"
+msgstr "(No training)"
+
+#: templates/signup_page.html:11
+msgid "Page d'inscription"
+msgstr "Registration page"
+
+#: templates/signup_page.html:21
+msgid "Cliquez ici pour se connecter"
+msgstr "Click here to sign up"
+
+#: views.py:153
+msgid ""
+"Votre entraînement n'est pas fini pour aujourd'hui, il vous reste une "
+"session à effectuer durant la journée! Si vous voulez continuer "
+"immédiatement c'est possible: Déconnectez vous, reconnectez vous et "
+"recommencez !"
+msgstr "Your training is not over for today, you still have one more session to do during the day! If you want to continue immediately, it is possible: Log out, log back in and start again!"
+
+#: views.py:157
+msgid "Nous vous attendons la prochaine fois. Votre prochaine session est le"
+msgstr "We look forward to seeing you next time. Your next session is on"
+
+#: views.py:160
+msgid "Nous vous attendons la prochaine fois."
+msgstr "We look forward to seeing you next time."
+
+#: views.py:162
+msgid "L'étude est terminée"
+msgstr "The study has been completed"
+
+#: views.py:163
+msgid "Merci, pour votre contribution à la science !"
+msgstr "Thank you for your contribution to science!"

@@ -23,20 +23,20 @@ def get_args(argv):
 
 
 if __name__ == "__main__":
-    pipenv_pref = "pipenv run python manage.py"
+    pipenv_pref = "pipenv run python manage.py" if os.getenv('PIPENV_ACTIVE') != '1' else "python manage.py"
 
     # If user wants to reset db:
     if get_args(sys.argv[1:]):
         os.system(f'{pipenv_pref} reset_db')
 
-    # Make sur a migration folder exists:
+    # Make sure a migration folder exists:
     for app in application_names:
         if not os.path.isdir(f'{app}/migrations'):
             os.system(f'mkdir {app}/migrations')
             os.system(f'touch {app}/migrations/__init__.py')
 
     # List of commands to run:
-    commands = ['makemigrations', 'migrate']
+    commands = ['makemigrations', 'migrate', 'sync_translation_fields']
     # Then loaddata:
     for app in application_names:
         if os.path.isdir(f'{app}/fixtures'):
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # Finally collectstatics and add superuser
     commands += ['collectstatic -l', 'createsuperuser']
 
-    # To make sur cmds are run synchronoulsy:
+    # To make sure cmds are run synchronoulsy:
     for command in commands:
         if 'loaddata' in command:
             app = command.split(' ')[1].split('/')[0].upper()

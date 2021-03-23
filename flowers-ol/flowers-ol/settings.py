@@ -15,6 +15,8 @@ from django.utils.translation import gettext_lazy as _
 
 LOCALE_PATHS = [
     os.path.join(os.path.dirname(__file__), "experiment_manager_app/locale"),
+    os.path.join(os.path.dirname(__file__), "survey_app/locale"),
+    os.path.join(os.path.dirname(__file__), "jold_app/locale")
 ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -53,7 +55,8 @@ INSTALLED_APPS = [
     'survey_app',
     'jold_app',
     'django_extensions',
-    'crispy_forms'
+    'crispy_forms',
+    'modeltranslation'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -117,7 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 LANGUAGE_CODE = 'fr'
-LANGUAGES = [('fr', _('français')), ('en', _('en'))]
+LANGUAGES = [('fr', _('français')), ('en', _('English'))]
+MODELTRANSLATION_AUTO_POPULATE = True
 TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
 USE_L10N = True
