@@ -49,10 +49,9 @@ INSTALLED_APPS = [
     'background_task',
     'django_extensions',
     'crispy_forms',
-    'modeltranslation'
+    'modeltranslation',
     # Local apps
-    'interface_app',
-    'survey_app',
+    'interface_app'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
