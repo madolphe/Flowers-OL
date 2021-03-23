@@ -38,6 +38,7 @@ class Task(models.Model):
     exit_view = models.CharField(max_length=50, default='', blank=True)
     info_templates_csv = models.TextField(null=True, blank=True)
     extra_json = jsonfield.JSONField(default={}, blank=True)
+    actions = jsonfield.JSONField(default={}, blank=True)  # Must be a csv of valid views
 
     def __unicode__(self):
         return self.name
