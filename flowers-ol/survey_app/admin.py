@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from experiment_manager_app.utils import ExportCsvMixin
+from interface_app.utils import ExportCsvMixin
 
 
 class AnswerAdmin(admin.ModelAdmin, ExportCsvMixin):

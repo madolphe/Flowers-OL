@@ -1,5 +1,5 @@
 from django.db import models
-from experiment_manager_app.models import ParticipantProfile, ExperimentSession
+from interface_app.models import ParticipantProfile, ExperimentSession
 
 
 class Question(models.Model):

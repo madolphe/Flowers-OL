@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'background_task',
-    'experiment_manager_app',
+    'interface_app',
     'mot_app',
     'survey_app',
     'jold_app',
