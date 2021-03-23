@@ -46,5 +46,8 @@ if __name__ == "__main__":
 
     # To make sure cmds are run synchronoulsy:
     for command in commands:
+        if 'loaddata' in command:
+            app = command.split(' ')[1].split('/')[0].upper()
+            print(f'Loading fixtures for {app}')
         if os.system(f'{pipenv_pref} {command}') == 0:
             continue

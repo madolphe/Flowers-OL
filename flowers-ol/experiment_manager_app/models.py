@@ -38,6 +38,7 @@ class Task(models.Model):
     exit_view = models.CharField(max_length=50, default='', blank=True)
     info_templates_csv = models.TextField(null=True, blank=True)
     extra_json = jsonfield.JSONField(default={}, blank=True)
+    actions = jsonfield.JSONField(default={}, blank=True)  # Must be a csv of valid views
 
     def __unicode__(self):
         return self.name
@@ -111,7 +112,7 @@ class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Registration date and time')
-    birth_date = models.DateField(help_text=_('jour/mois/an'))
+    birth_date = models.DateField()
     remind = models.BooleanField(default=True)
     consent = models.BooleanField(default=False)
 

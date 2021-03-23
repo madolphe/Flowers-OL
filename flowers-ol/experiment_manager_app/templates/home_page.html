@@ -36,10 +36,21 @@
         {% for i in CONTEXT.participant.current_task.info %}
             {% include "includes/info_section.html" with info=i %}
         {% endfor %}
+        {% if CONTEXT.participant.current_task.actions %}
+            <div class="btn-panel">
+            {% for prompt, view in CONTEXT.participant.current_task.actions.items %}
+                <a class="btn" href={% url view %}>
+                    {{prompt}}
+                </a>
+            {% endfor %}
+            </div>
+        {% endif %}
         {% if CONTEXT.participant.current_task.prompt %}
-            <a class="btn" href={% url "start_task" %}>
-                {{CONTEXT.participant.current_task.prompt}}
-            </a>
+            <div class="btn-panel">
+                <a class="btn" href={% url "start_task" %}>
+                    {{CONTEXT.participant.current_task.prompt}}
+                </a>
+            </div>
         {% endif %}
     </div>
 {% endblock %}
