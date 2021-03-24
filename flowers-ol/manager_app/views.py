@@ -47,19 +47,20 @@ def login_page(request, study=''):
 def signup_page(request):
     # First, init forms, if request is valid we can create the user
     study = Study.objects.get(name=request.session['study'])
-    form_user = UserForm(request.POST or None)
-    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
-    if form_user.is_valid() and form_profile.is_valid():
+    form_user = SignInForm(request.POST or None)
+    # form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
+    # if form_user.is_valid() and form_profile.is_valid():
+    if form_user.is_valid():
         # Get extra-info for user profile:
         user = form_user.save(commit=False)
         # Use set_password in order to hash password
         user.set_password(form_user.cleaned_data['password'])
         user.save()
-        form_profile.save_profile(user)
+        # form_profile.save_profile(user)
         login(request, user)
         return redirect(reverse(home))                  # Redirect to consent form
     return render(request, 'signup_page.html', {'CONTEXT': {
-        'form_profile': form_profile,
+        # 'form_profile': form_profile,
         'form_user': form_user
     }})
 
