@@ -88,9 +88,6 @@ def consent_page(request):
 @never_cache
 def home(request):
     participant = request.user.participantprofile
-    if not participant.consent:
-        return redirect(reverse(consent_page))
-
     try:
         participant.set_current_session()
     except AssertionError:
