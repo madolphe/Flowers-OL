@@ -22,6 +22,7 @@ p.add_argument('-r', '--reset_db', action='store_true', help='Boolean flag to re
 p.add_argument('-s', '--superuser', action='store_true', help='Boolean flag to create superuser')
 p.add_argument('-c', '--collectstatic', action='store_true', help='Boolean flag to collect static files inside STATIC_ROOT')
 p.add_argument('-t', '--translate', action='store_true', help='Boolean flag to register translation fields')
+p.add_argument('-f', '--full', action='store_true', help='Boolean flag to run deployment will all options')
 args = p.parse_args()
 
 
@@ -29,7 +30,7 @@ if __name__ == '__main__':
     pipenv_pref = 'pipenv run python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
 
     # If user wants to reset db:
-    if args.reset_db:
+    if args.reset_db or args.full:
         os.system(f'{pipenv_pref} reset_db')
         print()
 
@@ -56,12 +57,12 @@ if __name__ == '__main__':
             labels.append(f'Loading fixtures for {app}')
 
     # 4. Collect statics (optional)
-    if args.collectstatic:
+    if args.collectstatic or args.full:
         commands.append('collectstatic -l')
         labels.append('Collecting static files')
 
     # 5. Add superuser (optional)
-    if args.superuser:
+    if args.superuser or args.full:
         commands.append('createsuperuser')
         labels.append('Creating superuser')
 
