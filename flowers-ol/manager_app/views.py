@@ -13,16 +13,17 @@ from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
 
 
 def login_page(request, study=''):
-    # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
+    # If study key exists in request.session dict, get its values. This works when user requests the login page without specifying study extension and when the user already has a session
     if 'study' in request.session:
         study = request.session.get('study')
-    # Pourquoi ça ??
+    # If user requests login page with a specific study extension, e.g. http://web-address.fr/study=name_of_study, the name_of_study will be assigned to the study variable
+    # This also overwrites study name currently stored in user's session
     if 'study' in request.GET.dict():
         study = request.GET.dict().get('study')
-    # validate_study(name=study)
+    # validate study name by checking with the database
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
-        # Pourquoi ça ??
+        # Normally, a participant has link to only one study. Thus, this should only be performed once
         request.session['study'] = study # store 'study' extension only once per session
     error = False
     form_sign_in = SignInForm(request.POST or None)
@@ -189,7 +190,6 @@ def end_task(request):
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
-
 
 
 @login_required
