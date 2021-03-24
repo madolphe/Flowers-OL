@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse, resolve
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
@@ -9,20 +10,21 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession
-from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
+from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm, SignUpForm
 
 
 def login_page(request, study=''):
-    # Factoriser par une méthode, ex: study = retrieve_study(request) (inclure validation? ex: retrieve_valid_study())
+    # If study key exists in request.session dict, get its values. This works when user requests the login page without specifying study extension and when the user already has a session
     if 'study' in request.session:
         study = request.session.get('study')
-    # Pourquoi ça ??
+    # If user requests login page with a specific study extension, e.g. http://web-address.fr/study=name_of_study, the name_of_study will be assigned to the study variable
+    # This also overwrites study name currently stored in user's session
     if 'study' in request.GET.dict():
         study = request.GET.dict().get('study')
-    # validate_study(name=study)
+    # validate study name by checking with the database
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
-        # Pourquoi ça ??
+        # Normally, a participant has link to only one study. Thus, this should only be performed once
         request.session['study'] = study # store 'study' extension only once per session
     error = False
     form_sign_in = SignInForm(request.POST or None)
@@ -46,21 +48,17 @@ def login_page(request, study=''):
 def signup_page(request):
     # First, init forms, if request is valid we can create the user
     study = Study.objects.get(name=request.session['study'])
-    form_user = UserForm(request.POST or None)
-    form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
-    if form_user.is_valid() and form_profile.is_valid():
+    sign_up_form = SignUpForm(request.POST or None)
+    if sign_up_form.is_valid():
         # Get extra-info for user profile:
-        user = form_user.save(commit=False)
+        user = User()
         # Use set_password in order to hash password
-        user.set_password(form_user.cleaned_data['password'])
+        user.set_password(sign_up_form.cleaned_data['password'])
         user.save()
-        form_profile.save_profile(user)
+        # form_profile.save_profile(user)
         login(request, user)
         return redirect(reverse(home))                  # Redirect to consent form
-    return render(request, 'signup_page.html', {'CONTEXT': {
-        'form_profile': form_profile,
-        'form_user': form_user
-    }})
+    return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
 
 
 @login_required
@@ -189,7 +187,6 @@ def end_task(request):
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
-
 
 
 @login_required
