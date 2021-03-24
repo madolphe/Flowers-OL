@@ -1,46 +1,56 @@
 //// parameters
+
+// number of pixels per degres:
+let viewer_dist = 50;
+let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
+let ppd = get_ppd(viewer_dist, screen_params);
+
+//just for my local debug
+function get_ppd(viewer_dist, screen_params){
+    return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
+}
+
 //let CANVAS_WIDTH = 640;
 //let CANVAS_HEIGHT = 480;
 
-let num_rep = 40; 
+let num_rep = 2; 
+
+let keyRes1 = 70; //f
+let keyRes2 = 74; //j
+
 let array_stimcond = [0,1,2,3]; //Experimental condition. 
 
 let array_fixation = [0,1];
-let length_longer = 10; //in pix
+let length_longer = Math.round(0.8*ppd); //in pix
 
 
 let time_stimduration = 100; //in ms
 let time_maskduration = 1900; //in ms
 let time_fixation = 1000; // in millisecond
 let col_target = 255;
-let size_target = 200;
-
-
-//save array. just be stored in the prensetation order.
-let array_responses =[];
-let array_rt =[];
-let array_stimuli =[];
-let array_previousstimuli =[];
 
 
 // fixation 
-let len_fixation = 20; // in pix
-let col_fixation = [0,0,0]; // in rgb
-let thick_fixation = 5; // in pix
+let len_fixation = Math.round(1*ppd); // in pix
+let col_fixation = 20; // in rgb
+let thick_fixation = Math.round(0.1*ppd); // in pix
 
 
 // text 
 let col_text = 255;
-let size_text = 28;
+let size_text = 1*ppd; //in pix
 let size_text_button = 24;
 let Buttons = [];
 ////
 
 // image
-let size_img = 256;
+let size_img = Math.round(3.6*ppd); //in pix
 let contrast_img_correct = 0.8;
 let contrast_img_wrong = 0.4;
-let distance_from_center =  200; //in pix;
+let ind_distance = [0,1];
+let distance_from_center =  [Math.round(3*ppd),Math.round(6*ppd)]; //in pix;
 
 let x_ok = 0;
 let y_ok = 200;
+
+let pos_guide = Math.round(2*ppd);

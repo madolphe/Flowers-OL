@@ -82,11 +82,11 @@ function scene_isi(){
 function scene_stim(){
   Time.count();
   if (keyIsPressed){
-    if (keyCode == LEFT_ARROW) {
+    if (keyCode == keyRes1) {
       Time.count_response();
       Params.tmp_res_ob = 1;
       Time.update();
-    } else if (keyCode == RIGHT_ARROW) {
+    } else if (keyCode == keyRes2) {
       Time.count_response();
       Time.tmp_res_ob = 2;
       Time.update();
@@ -103,6 +103,15 @@ function scene_stim(){
       ellipse(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, size_obj, size_obj);
     }
     pop();
+    push();
+    fill(col_instruction);
+    textSize(size_instruction);
+    noStroke();
+    textAlign(CENTER);
+    text(array_textleft[Params.trialcond[Params.ind_stimcond]],(CANVAS_WIDTH/2)-pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
+    text(array_textright[Params.trialcond[Params.ind_stimcond]],(CANVAS_WIDTH/2)+pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
+    pop();
+    
   } else{
     Time.update();
   }
@@ -219,7 +228,7 @@ class ParameterManager{
 
     // condition setting
     this.trialcond = shuffle(array_stimcond);
-    this.taskcond = shuffle(array_taskcond);
+    this.taskcond = array_taskcond;
     this.colorcond = shuffle(array_colorcond);
     this.shapecond = shuffle(array_shapecond);
     if (this.colorcond[0]==0){
@@ -272,7 +281,6 @@ class ParameterManager{
 
   set_stimlusorder_block(){
     this.trialcond = shuffle(array_stimcond);
-    this.taskcond = shuffle(array_taskcond);
     this.colorcond = shuffle(array_colorcond);
     this.shapecond = shuffle(array_shapecond);
     if (this.colorcond[0]==0){
@@ -285,7 +293,7 @@ class ParameterManager{
     // store the current stimulus and response data to the result dictionary.
     this.results_responses.push(this.tmp_res_ob);
     this.results_rt.push(this.tmp_rt);
-    this.results_taskcond.push(this.taskcond[0]);
+    this.results_taskcond.push(this.taskcond[this.trialcond[this.ind_stimcond]]);
     this.results_colorcond.push(this.colorcond[0]);
     this.results_shapecond.push(this.shapecond[0]);
   }

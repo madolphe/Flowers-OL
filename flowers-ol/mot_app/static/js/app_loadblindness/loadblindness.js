@@ -11,17 +11,16 @@ function setup() {
   Time = new TimeManager();
 
   img_correct = createImage(size_img, size_img);
+  console.log(round(size_img));
   img_correct.loadPixels();
-  make_gabor_correct(img_correct,contrast_img_correct);
+  make_gabor_correct(img_correct,contrast_img_correct,size_img=size_img);
   
-
   img_wrong = createImage(size_img, size_img);
   img_wrong.loadPixels();
-  make_gabor_wrong(img_wrong,contrast_img_wrong);
+  make_gabor_wrong(img_wrong,contrast_img_wrong,size_img=size_img);
 
   create_answer_button();
   create_end_button();
- 
 }
 
 //p5.js frame animation.
@@ -36,8 +35,10 @@ function draw() {
   }else if(Time.scene==2){
     scene_stim(scene_targ);
   }else if(Time.scene==3){
-    scene_response();
+    scene_key_response();
   }else if(Time.scene==4){
+    scene_response();
+  }else if(Time.scene==5){
     scene_end();
   }
 }
@@ -86,15 +87,6 @@ function scene_targ(){
 
 function scene_stim(callback){
   Time.count();
-  if (keyIsPressed){
-    if (keyCode == LEFT_ARROW) {
-      Time.count_response();
-      Params.tmp_res_fixation = 1;
-    } else if (keyCode == RIGHT_ARROW) {
-      Time.count_response();
-      Params.tmp_res_fixation = 2;
-    }
-  }
 
   if (Time.activetime_block < time_stimduration){   
     push();
@@ -117,8 +109,38 @@ function scene_stim(callback){
 }
 
 // scene 3
+function scene_key_response(){
+  Time.count();
+  if (keyIsPressed){
+    if (keyCode == keyRes1) {
+      Time.count_response();
+      Params.tmp_res_fixation = 0;
+      Time.update();
+    } else if (keyCode == keyRes2) {
+      Time.count_response();
+      Params.tmp_res_fixation = 1;
+      Time.update();
+    }
+  }
+  push();
+  fill(col_text);
+  textSize(size_text);
+  textAlign(CENTER);
+  text( 'Which line was longer, vertical or horizontal?', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text( 'Vertical:press key "f"     Horizontal:press key"j"', CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+pos_guide);
+  pop();
+}
+
+// scene 4
 function scene_response(){
   Time.count();
+  push();
+  fill(col_text);
+  textSize(size_text);
+  textAlign(CENTER);
+  text( 'Which target contrast was strong?', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  pop();
+
   for (let i=0;i<4;i++){
     if (i==0) {
       Buttons[i].mousePressed(fnc_correct);
@@ -130,7 +152,7 @@ function scene_response(){
 
 function create_answer_button(){
   for (let i=0;i<4;i++){
-    Buttons[i] = createButton("Target is here!"); 
+    Buttons[i] = createButton("Here!"); 
     Buttons[i].size(size_img, size_img);
     Buttons[i].style('font-size', size_text_button + 'px');
     Buttons[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
@@ -163,7 +185,7 @@ function fnc_false(){
   Time.update();
 }
 
-// scene 4
+// scene 5
 function scene_end(){
   if (mouseIsPressed) {
     Time.update();
@@ -190,7 +212,8 @@ function quit_task(){
       'results_responses_fix': Params.results_responses_fix,
       'results_rt': Params.results_rt,
       'results_targetvalue_stim': Params.results_targetvalue_stim,
-      'results_targetvalue_fixation': Params.results_targetvalue_fixation
+      'results_targetvalue_fixation': Params.results_targetvalue_fixation,
+      'results_target_distance': Params.results_target_distance
     }
   post('cognitive_assessment_home', parameters_to_save, 'post');
 }
@@ -203,10 +226,10 @@ class TimeManager{
     this.starttime_block = null;
     this.activetime_block = null;
 
-    this.scene_key1 = 3;
-    this.scene_key2 = 2;
+    this.scene_key1 = 4;
+    this.scene_key2 = 3;
     this.scene_back = 1;
-    this.end_scene = 4;
+    this.end_scene = 5;
   
   }
 
@@ -263,17 +286,18 @@ class TimeManager{
     this.repetition = 0;
 
     //ConditionManager
-    let x_pos1 = (CANVAS_WIDTH/2)-distance_from_center*(1/Math.sqrt(2))-size_img
-    let x_pos2 = (CANVAS_WIDTH/2)+distance_from_center*(1/Math.sqrt(2))
-    let y_pos1 = (CANVAS_HEIGHT/2)-distance_from_center*(1/Math.sqrt(2))-size_img
-    let y_pos2 = (CANVAS_HEIGHT/2)+distance_from_center*(1/Math.sqrt(2))
-    this.dict_pos = [[x_pos1,y_pos1],[x_pos2,y_pos1],[x_pos1,y_pos2],[x_pos2,y_pos2]];
+    this.trial_ind_distance = shuffle(ind_distance);
+    this.x_pos1 = (CANVAS_WIDTH/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.x_pos2 = (CANVAS_WIDTH/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.y_pos1 = (CANVAS_HEIGHT/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.y_pos2 = (CANVAS_HEIGHT/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.dict_pos = [[this.x_pos1,this.y_pos1],[this.x_pos2,this.y_pos1],[this.x_pos1,this.y_pos2],[this.x_pos2,this.y_pos2]];
     this.dict_fixation = [[0,length_longer],[length_longer,0]];
 
     this.trial_fixation = shuffle(array_fixation);
     this.trial_stimcond = shuffle(array_stimcond); 
     this.tmp_res_ob = 0;
-    this.tmp_res_fixation = 0;
+    this.tmp_res_fixation = null;
 
     //save
     this.results_responses_pos = [];
@@ -281,32 +305,52 @@ class TimeManager{
     this.results_rt = [];
     this.results_targetvalue_stim = [];
     this.results_targetvalue_fixation = [];
+    this.results_target_distance = []
 
   }
   
   next_trial(){
+    //if not correct response for fixation length, the process doesn't go on.
+    if (this.tmp_res_fixation==this.trial_fixation[0]){
     this.save(); 
-    this.repetition ++;
     //set the next trial parameters
     this.trial_fixation = shuffle(array_fixation);
     this.trial_stimcond = shuffle(array_stimcond); 
     this.ind_stimcond ++;
     this.tmp_res_ob = 0;
-    if (this.ind_stimcond==array_stimcond.length-1){
+    this.tmp_res_fixation = null;
+    this.x_pos1 = (CANVAS_WIDTH/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.x_pos2 = (CANVAS_WIDTH/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.y_pos1 = (CANVAS_HEIGHT/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.y_pos2 = (CANVAS_HEIGHT/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.dict_pos = [[this.x_pos1,this.y_pos1],[this.x_pos2,this.y_pos1],[this.x_pos1,this.y_pos2],[this.x_pos2,this.y_pos2]];
+    if (this.ind_stimcond==ind_distance.length-1){
       this.flag_block = true;
     }
+    }
+    this.trial_fixation = shuffle(array_fixation);
+    this.trial_stimcond = shuffle(array_stimcond);
   }
 
   //no block at the moment in this experiment
   next_block(){
+    if (this.tmp_res_fixation==this.trial_fixation[0]){
     //set the next block parameters
     this.save(); 
     this.repetition ++;
-    this.trial_fixation = shuffle(array_fixation);
-    this.trial_stimcond = shuffle(array_stimcond); 
+    this.trial_ind_distance = shuffle(ind_distance);
     this.ind_stimcond = 0;
     this.flag_block = false;
     this.tmp_res_ob = 0;
+    this.tmp_res_fixation = null;
+    this.x_pos1 = (CANVAS_WIDTH/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.x_pos2 = (CANVAS_WIDTH/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.y_pos1 = (CANVAS_HEIGHT/2)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
+    this.y_pos2 = (CANVAS_HEIGHT/2)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
+    this.dict_pos = [[this.x_pos1,this.y_pos1],[this.x_pos2,this.y_pos1],[this.x_pos1,this.y_pos2],[this.x_pos2,this.y_pos2]];
+    }
+    this.trial_fixation = shuffle(array_fixation);
+    this.trial_stimcond = shuffle(array_stimcond); 
   }
 
   save(){
@@ -316,6 +360,7 @@ class TimeManager{
     this.results_rt.push(this.tmp_rt);
     this.results_targetvalue_stim.push(this.trial_stimcond[this.ind_stimcond]);
     this.results_targetvalue_fixation.push(this.trial_fixation[0]);
+    this.results_target_distance.push(distance_from_center[this.trial_ind_distance[this.ind_stimcond]]);
     //console.log('response is');
     //console.log(this.tmp_res_ob);
   }

@@ -1,4 +1,3 @@
-
 //p5.js preload images
 function preload() {
   img = loadImage('/static/images/enumeration_imgs/noise.png');
@@ -338,4 +337,15 @@ const shuffle = ([...array]) => {
   return array;
 }
 
+
+function make_whitenoise(image,size_img = 800){
+  let noise_1d = make_array(0,256-1,256);
+  noise_1d= shuffle(noise_1d);
+  for (let y=0;y<size_img;y++){
+    for (let x=0;x<size_img;x++){
+      image.set(y,x,[noise_1d[0],noise_1d[0],noise_1d[0],255]);
+    }
+  }
+  image.updatePixels();
+}
 

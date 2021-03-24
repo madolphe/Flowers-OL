@@ -74,7 +74,7 @@ function scene_targ(){
   if (Time.activetime_block < time_stimduration){
     
     for (let i=0; i < array_stimcond.length; ++i) {
-      if (i==Params.count_color && i<num_memory){
+      if (i==Params.count_color && i<num_memory[Params.ind_stimcond]){
         push();
         fill(col_target);
         Objs[i].display();
@@ -130,7 +130,7 @@ function scene_response(){
     Button[i].mousePressed(record_response);
   }
 
-  if (Params.tmp_res_ob.length==num_memory){
+  if (Params.tmp_res_ob.length==num_memory[Params.ind_stimcond]){
     Time.update();
   }
 }
@@ -257,7 +257,8 @@ class ParameterManager{
     this.ind_stimcond = 0;
     this.flag_block = true; //no trial
     this.flag_load = false;
-    this.count_color = -1;   
+    this.count_color = -1;
+    num_memory = shuffle(num_memory);
     //ConditionManager
     
     this.dict_pos = [[CENTER_X-shift_position,CENTER_Y-shift_position],
@@ -278,18 +279,20 @@ class ParameterManager{
     this.results_responses = [];
     this.results_rt = [];
     this.results_targetvalue_stim = [];
+    this.results_num_stim = [];
 
   }
     next_trial(){
       //set the next trial parameters 
+      this.save();
       this.ind_stimcond ++;
-      if (this.ind_stimcond==num_memory-1){
+      if (this.ind_stimcond==num_memory.length-1){
         this.flag_block = true;
       }
     }
   
     next_block(){
-      this.save(); 
+       
       //set the next block parameters
 
       this.count_color = -1;
@@ -299,6 +302,7 @@ class ParameterManager{
       this.ind_stimcond = 0;
       this.tmp_res_ob = [];
       this.order = -1;
+      num_memory = shuffle(num_memory);
     }
   
     save(){
@@ -306,6 +310,7 @@ class ParameterManager{
       this.results_responses.push(this.tmp_res_ob);
       this.results_rt.push(this.tmp_rt);
       this.results_targetvalue_stim.push(this.trial_stimcond);
+      this.results_num_stim.push(num_stimulus[this.ind_stimcond])
       //console.log('response is');
       //console.log(this.tmp_res_ob);
     }

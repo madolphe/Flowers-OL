@@ -1,46 +1,84 @@
 //// parameters
 
+// number of pixels per degres:
+let viewer_dist = 50;
+let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
+let ppd = get_ppd(viewer_dist, screen_params);
+
+//just for my local debug
+function get_ppd(viewer_dist, screen_params){
+    return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
+}
+
+
 //const CANVAS_WIDTH = 640;
 //const CANVAS_HEIGHT = 480;
 
+let keyRes1 = 70; //f
+let keyRes2 = 74; //j
+
 let num_rep = 1; 
-let num_stimulus = 10;
+
+//number of lists
+let num_stimulus = 120;
+let num_targlist = 18;
+let num_fillerlist = 84;
+
+//Stimulus condition.
+let num_longtarget =  3;
+let dict_longtarget = [0,1,2,3,4,5,6,7,8,9];
+let distance_longtarget = [100,101,102,103,104,105,106,107,108,109];
+
+let num_shorttarget = 15;
+let min_shorttarget = 10;
+let max_shorttarget = 92;
+let distance_shorttarget = [3,4,5,6,7,3,4,5,6,7,3,4,5,6,7];
+
+let ind_targlist = make_array(0,num_targlist-1,num_targlist); 
+let ind_fillerlist = make_array(0,num_fillerlist-1,num_fillerlist); 
+
+
 let time_stimduration = 1000; //in ms
 let time_fixation = 1400; // in millisecond
 let time_feedback = 1400; // in millisecond
 
-let col_target = 255;
-let size_target = 200;
-
-
-//save array. just be stored in the prensetation order.
-let array_responses =[];
-let array_rt =[];
-let array_stimuli =[];
-let array_previousstimuli =[];
-
 
 // fixation 
-let len_fixation = 20; // in pix
+let len_fixation = Math.round(1*ppd); // in pix
 let col_fixation = [20,20,20]; // in rgb
-let thick_fixation = 5; // in pix
+let thick_fixation = Math.round(0.1*ppd); // in pix
 
 // text 
 let col_text = 255;
-let size_text = 28;
+let size_text = Math.round(1*ppd); //in pix
 ////
 
 let Imgs_targ = [];
 let Imgs_filler = [];
-let size_img = 1000;
-let size_rescale = 256;
+let size_img = 700; 
+let size_rescale = Math.round(6.5*ppd); //in pix
 
 
 //feedback params
 let col_correct = [0,0,128];
-let size_correct = 32;
+let size_correct = Math.round(1*ppd); //in pix
 let col_wrong = [128,0,0];
-let size_wrong = 32;
+let size_wrong = Math.round(1*ppd);  //in pix
 
 let x_ok = 0;
 let y_ok = 200;
+
+// window size control.
+let scale_window = 0.8;
+
+let pos_guide = Math.round(6*ppd); //in pix
+
+function make_array(val_start, val_stop, num_array) {
+    let array = [];
+    let step = (val_stop - val_start) / (num_array - 1);
+    for (let i = 0; i < num_array; i++) {
+      array.push(val_start + (step * i));
+    }
+    return array;
+  }
+  

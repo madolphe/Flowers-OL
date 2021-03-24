@@ -1,4 +1,3 @@
-
 //p5.js preload images
 function preload() {
 }
@@ -82,7 +81,7 @@ function scene_stim(callback){
   if (Params.ind_stimcond==Params.ind_previous+1){
     if (keyIsPressed){
       // 32 means space
-      if (keyCode == 32) {
+      if (keyCode == keyRes1) {
         if (Params.flag_gonogo[Params.repetition]==1){
           Time.count_response();
           Params.tmp_res_ob = 1; //1 means the correct response.

@@ -1,34 +1,40 @@
 
 //p5.js preload images
 function preload() {
+
+  //load_imgs(loop_imgs);
+  //num_targlist = stats_targ.getRowCount();
   stats_targ = loadTable('./img/list_img_target.csv');
   stats_filler = loadTable('./img/list_img_filler.csv');
-  
+  console.log('done preload')
+
 }
 
 //p5.js initializing.
 function setup() {
-  createCanvas(displayWidth, displayHeight);
   CANVAS_WIDTH = displayWidth;
   CANVAS_HEIGHT = displayHeight;
-  num_targlist = stats_targ.getRowCount();
+  createCanvas(displayWidth, displayHeight);
+
   for (let i=0; i < num_targlist; ++i) {
     Imgs_targ[i] = loadImage(stats_targ.get(i, 0));
+    print(stats_targ.get(i, 0))
   }
 
-  num_fillerlist = stats_filler.getRowCount();
   for (let i=0; i < num_fillerlist; ++i) {
     Imgs_filler[i] = loadImage(stats_filler.get(i, 0));
+    print(stats_filler.get(i, 0))
   }
 
+  create_end_button();
   Params = new ParameterManager(); 
   Time = new TimeManager();
-  //pg = createGraphics(size_rescale, size_rescale);
-  create_end_button();
+  console.log('done setup')
 }
 
 //p5.js frame animation.
 function draw() {
+  //console.log('start draw')
   background(128); //bkg color
   //Main experiment schedule
 
@@ -44,6 +50,26 @@ function draw() {
     scene_end();
   }
 }
+
+
+function load_imgs(callback){
+  stats_targ = loadTable('./img/list_img_target.csv');
+  stats_filler = loadTable('./img/list_img_filler.csv');
+  callback();
+}
+
+function loop_imgs(){
+  for (let i=0; i < num_targlist; ++i) {
+    Imgs_targ[i] = loadImage(stats_targ.get(i, 0));
+    print(stats_targ.get(i, 0))
+  }
+
+  for (let i=0; i < num_fillerlist; ++i) {
+    Imgs_filler[i] = loadImage(stats_filler.get(i, 0));
+    print(stats_filler.get(i, 0))
+  }
+}
+
 
 function keyPressed(){
   if(keyCode===32){
@@ -84,7 +110,7 @@ function scene_stim(){
   Time.count();
 
   if (keyIsPressed){
-    if (key == 'space') {
+    if(keyCode===keyRes1) {
       Time.count_response();
       Params.tmp_res_ob = 1;
     }
@@ -95,14 +121,25 @@ function scene_stim(){
     //image(Imgs[0],CANVAS_WIDTH,CANVAS_HEIGHT);    
     
     if (Params.array_stim[Params.ind_stimcond]==0){
-      Imgs_filler[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
-      image(Imgs_filler[Params.trial_stimind[Params.ind_stimcond]],(CANVAS_WIDTH/2)-(size_rescale/2),(CANVAS_HEIGHT/2)-(size_rescale/2));
+      Imgs_filler[Params.trial_stimind[Params.ind_trial_filler]].resize(size_rescale, size_rescale);
+      image(Imgs_filler[Params.trial_stimind[Params.ind_trial_filler]],(CANVAS_WIDTH/2)-(size_rescale/2),(CANVAS_HEIGHT/2)-(size_rescale/2));
     }else if (Params.array_stim[Params.ind_stimcond]==1){
-      Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
-      image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(CANVAS_WIDTH/2)-(size_rescale/2),(CANVAS_HEIGHT/2)-(size_rescale/2));
+      Imgs_targ[Params.ind_trial_target1].resize(size_rescale, size_rescale);
+      image(Imgs_targ[Params.ind_trial_target1],(CANVAS_WIDTH/2)-(size_rescale/2),(CANVAS_HEIGHT/2)-(size_rescale/2));
+    }else if (Params.array_stim[Params.ind_stimcond]==2){
+      Imgs_targ[Params.ind_trial_target2].resize(size_rescale, size_rescale);
+      image(Imgs_targ[Params.ind_trial_target2],(CANVAS_WIDTH/2)-(size_rescale/2),(CANVAS_HEIGHT/2)-(size_rescale/2));
     }
     
+    /*
     pop();
+    push();
+    fill(col_text);
+    textSize(size_text);
+    textAlign(CENTER);
+    text( 'Press key "f" if you saw this previously', CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+pos_guide);
+    pop();
+    */
   } else{
     Time.update();
   }
@@ -187,7 +224,7 @@ class TimeManager{
       this.starttime_block = Date.now();      
     }else if (this.scene==this.scene_key2) {
       this.scene ++;
-      Params.make_reponseflag();
+      Params.make_responseflag();
       this.starttime_block = Date.now();
     }else{
       this.scene ++;
@@ -232,24 +269,9 @@ class TimeManager{
 
     this.flag_correct = true;
 
-    //Stimulus condition.
-    
-    let num_longtarget =  3;
-    let dict_longtarget = [0,1,2,3,4,5,6,7,8,9];
-    let distance_longtarget = [100,101,102,103,104,105,106,107,108,109];
-
-    let num_shorttarget = 15;
-    let min_shorttarget = 10;
-    let max_shorttarget = 92;
-    let distance_shorttarget = [3,4,5,6,7,3,4,5,6,7,3,4,5,6,7];
-
-    let ind_targlist = make_array(0,num_targlist-1,num_targlist); 
-    let ind_fillerlist = make_array(0,num_fillerlist-1,num_fillerlist); 
 
     ind_targlist = shuffle(ind_targlist);
     ind_fillerlist = shuffle(ind_fillerlist);
-
-    let num_target = num_longtarget + num_shorttarget;
 
     dict_longtarget = shuffle(dict_longtarget);
     distance_shorttarget = shuffle(distance_shorttarget);
@@ -257,39 +279,54 @@ class TimeManager{
     this.array_stim = Array(num_stimulus).fill(0)
     this.trial_stimind = [];
 
+    this.ind_trial_filler = 0
+    this.ind_trial_target1 = 0
+    this.ind_trial_target2 = 0
+
+    
+    
     let j = 0;
     while (j < num_longtarget){
       let tmp1 = this.array_stim[dict_longtarget[j]] + 1;
       distance_longtarget = shuffle(distance_longtarget);
-      let tmp2 = this.array_stim[dict_longtarget[j+distance_longtarget]]+1;
+      let tmp2 = this.array_stim[dict_longtarget[j]+distance_longtarget[0]]+1;
       if (tmp1==1 && tmp2==1){
-        this.array_stim[dict_longtarget[j]] = 2
-        this.array_stim[dict_longtarget[j+distance_longtarget]] = 1
+        this.array_stim[dict_longtarget[j]] = 1
+        this.array_stim[dict_longtarget[j]+distance_longtarget[0]] = 2
         j = j+1;
       }
     }
-
+    
+    
     j = 0;
     while (j < num_shorttarget){
       let ind_tmp = getRandomInt(min_shorttarget,max_shorttarget)
       let tmp1 = this.array_stim[ind_tmp] + 1;
       let tmp2 = this.array_stim[ind_tmp+distance_shorttarget[j]]+1;
       if (tmp1==1 && tmp2==1){
-        this.array_stim[ind_tmp] = 2;
-        this.array_stim[ind_tmp+distance_shorttarget[j]] = 1;
+        this.array_stim[ind_tmp] = 1;
+        this.array_stim[ind_tmp+distance_shorttarget[j]] = 2;
         j = j+1;
       }
     }
 
+    console.log('ok until here2')
+
     let k = 0;
-    let t = 0;
+    let l = 0;
+    let m = 0;
     for (let i=0;i<num_stimulus;i++){
       if (this.array_stim[i]==0){
         this.trial_stimind.push(ind_fillerlist[k]);
         k ++;
       }else if (this.array_stim[i]==1){
-        this.trial_stimind.push(ind_targlist[t]);
-        t ++;
+        //console.log(l)
+        this.trial_stimind.push(ind_targlist[l]);
+        l ++;
+      } else if (this.array_stim[i]==2){
+        //console.log(m)
+        this.trial_stimind.push(ind_targlist[m]);
+        m ++;
       }
     }
 
@@ -304,11 +341,21 @@ class TimeManager{
 
   next_trial(){
     this.save();
+
     //set the next trial parameters
+    if (this.array_stim[this.ind_stimcond]==0){
+      this.ind_trial_filler ++;
+    }else if (this.array_stim[this.ind_stimcond]==1){
+      this.ind_trial_target1 ++;
+    } else if (this.array_stim[this.ind_stimcond]==2){
+      this.ind_trial_target2 ++;
+    }
+
     this.ind_stimcond ++;
     this.tmp_res_ob = 0;
     if (this.ind_stimcond==num_stimulus-1){
       this.flag_block = true;
+      button_end.show();
     }
   }
 
@@ -323,10 +370,18 @@ class TimeManager{
   }
 
   make_responseflag(){
-    if (this.array_stim[this.ind_stimcond]==this.tmp_res_ob){
-      this.flag_correct = true;
-    }else{
-      this.flag_correct = false;
+    if (this.array_stim[this.ind_stimcond]==2){
+      if (this.tmp_res_ob==1){
+        this.flag_correct = true;
+      }else{
+        this.flag_correct = false;
+      }
+    } else{
+      if (this.tmp_res_ob==1){
+        this.flag_correct = false;
+      }else{
+        this.flag_correct = true;
+      }
     }
   }
 
@@ -345,15 +400,6 @@ function getRandomInt(min,max) {
   return (Math.floor(Math.random() * Math.floor(max-min)))+min;
 }
 
-
-function make_array(val_start, val_stop, num_array) {
-  let array = [];
-  let step = (val_stop - val_start) / (num_array - 1);
-  for (let i = 0; i < num_array; i++) {
-    array.push(val_start + (step * i));
-  }
-  return array;
-}
 
 //To randomize the stimulus condition.
 const shuffle = ([...array]) => {
