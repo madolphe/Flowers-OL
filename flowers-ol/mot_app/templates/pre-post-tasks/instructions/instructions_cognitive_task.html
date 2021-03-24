@@ -1,0 +1,8 @@
+CECI est un test
+{% if CONTEXT.current_task %}
+    {{ CONTEXT.current_task }}
+
+    <a class="btn" href={% url CONTEXT.current_task.view_name %}>
+        {{CONTEXT.current_task.view_name}}
+    </a>
+{% endif %}

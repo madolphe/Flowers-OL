@@ -7,3 +7,4 @@ Pipfile.lock
 *migrations/
 flowers-ol-db
 flowers-ol/static
+flowers-ol/mot_app/lib/kidlearn/

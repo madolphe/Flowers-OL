@@ -1,0 +1,29 @@
+<div class="explanation-text">
+    <h4> Bienvenue dans notre expérimentation</h4>
+    <p>
+        Tout d'abord, merci d'avoir pris le temps de répondre aux questionnaires précédents, l'expèrience peut enfin débuter.
+        Pour rappel, notre objectif est d'évaluer un dispositif d'entraînement de l'attention. Alors, en plus de pouvoir
+        améliorer cette capacité, vous nous permettrez de mieux comprendre les caractériques importantes d'un tel protocole.
+    </p>
+    <h4>Déroulement du protocole: </h4>
+    <p>
+        <h5> Tâche principale: </h5>
+        {%load static%}
+        Après lancement de l'expèrience (boutton "Begin session"), il vous sera demandé de suivre les gobelins de la forme: <br>
+        <div class="text-center"><img class="mx-auto" src={%  static 'images/bavelier_lab/goblin.png' %}> <br></div>
+        Attention, ces gobelins se déplacent dans un espace rempli de guardes: <br>
+        <div class="text-center"><img src={%  static 'images/bavelier_lab/guard.png' %}> <br></div>
+        Quand les gobelins se transforment en guardes, ne les perdez pas de vue, il vous sera demandé de les retrouver! <br>
+
+        <h5>Attention, la session dure 30 minutes!</h5> <br>
+        Vous pouvez observer le temps restant en bas à droite de l'image suivante. <br>
+        <div class="text-center"><img class="mx-auto" id="timer_img" src={%  static 'images/timer.png' %}></div>
+        <!--
+        <h5> Tâche secondaire:</h5>
+        Votre travail ne s'arrête pas ici, en plus de continuer à suivre les gobelins cachés dans la masse de guardes,
+        il vous faudra détecter l'apparition des étendards suivants: <br>
+        <div class="text-center"><img src={%  static 'images/bavelier_lab/leaf_resize.png' %}> <br></div>
+        Quand vous en détectez un, appuyez rapidement sur la barre espace! -->
+    </p>
+</div>
+

@@ -1,0 +1,10 @@
+{
+    "model": "Qstudent",
+    "knowledge_levels" : [0,0,0,0,0,0,0], 
+    "knowledge_names" : ["Speed", "Tracking_Duration", "Probe_Duration", "N_Dot", "RSI", "SRI_max", "Delta_Orient"],
+        
+    "logistic_values" : {
+        "learn" : [-10,0.07],
+        "ans" : [-10,0.1]
+        }
+}
