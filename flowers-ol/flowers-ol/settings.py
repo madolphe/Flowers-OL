@@ -50,10 +50,13 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'modeltranslation'
-    # Local apps
-    'interface_app',
-    'survey_app',
 ]
+USER_APPS = [
+    # This is the list of user-defined apps
+    'manager_app',
+    'demo_app'
+]
+INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 LOCALE_PATHS = [
-    os.path.join(os.path.dirname(__file__), "interface_app/locale"),
+    os.path.join(os.path.dirname(__file__), "manager_app/locale"),
     os.path.join(os.path.dirname(__file__), "demo_app/locale")
 ]
 LANGUAGE_CODE = 'fr'
