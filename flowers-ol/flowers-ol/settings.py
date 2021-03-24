@@ -49,10 +49,14 @@ INSTALLED_APPS = [
     'background_task',
     'django_extensions',
     'crispy_forms',
-    'modeltranslation',
-    # Local apps
-    'interface_app'
+    'modeltranslation'
 ]
+USER_APPS = [
+    # This is the list of user-defined apps
+    'interface_app',
+    'demo_app'
+]
+INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
