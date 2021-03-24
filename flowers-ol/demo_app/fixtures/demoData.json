@@ -1,0 +1,14 @@
+[
+    {
+        "model": "interface_app.Study",
+        "pk": 1,
+        "fields": {
+            "name"          : "demo",
+            "project"       : "Demo study",
+            "base_template" : "base.html",
+            "style"         : "css/common.css",
+            "briefing_template"  : "mot_app/consent_form.html",
+            "contact"       : "alexandr.ten@inria.fr"
+        }
+    }
+]
