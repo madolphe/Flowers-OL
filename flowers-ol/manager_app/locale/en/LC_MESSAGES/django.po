@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 23:36+0100\n"
+"POT-Creation-Date: 2021-03-24 23:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 msgid "Nom d'utilisateur"
 msgstr "Username"
 
-#: forms.py:16 forms.py:17 forms.py:70 forms.py:83 forms.py:84 forms.py:86
+#: forms.py:16 forms.py:17 forms.py:69 forms.py:70 forms.py:83 forms.py:84
+#: forms.py:86
 msgid "Mot de passe"
 msgstr "Password"
 
@@ -33,6 +34,10 @@ msgstr "Date of birth"
 #: forms.py:43
 msgid "Rappelez-moi par e-mail de compléter les tâches pour l'étude"
 msgstr "Send me an email when a new task has to be completed"
+
+#: forms.py:76
+msgid "Se connecter"
+msgstr "Log out"
 
 #: forms.py:85
 msgid "Confirmer le mot de passe"
@@ -164,7 +169,7 @@ msgstr "Registration"
 msgid "Cliquez ici pour se connecter"
 msgstr "Click here to sign in"
 
-#: views.py:150
+#: views.py:148
 msgid ""
 "Votre entraînement n'est pas fini pour aujourd'hui, il vous reste une "
 "session à effectuer durant la journée! Si vous voulez continuer "
@@ -175,7 +180,7 @@ msgstr ""
 "during the day! If you want to continue immediately, it is possible: Log "
 "out, log back in and start again!"
 
-#: views.py:154
+#: views.py:152
 #, fuzzy
 #| msgid ""
 #| "Nous vous attendons la prochaine fois. Votre prochaine session est le"
@@ -183,15 +188,15 @@ msgid ""
 "Nous vous attendons la prochaine fois. Votre prochaine session est le {}"
 msgstr "We look forward to seeing you next time. Your next session is on {}"
 
-#: views.py:156
+#: views.py:154
 msgid "Nous vous attendons la prochaine fois."
 msgstr "We look forward to seeing you next time."
 
-#: views.py:158
+#: views.py:156
 msgid "L'étude est terminée"
 msgstr "The study has been completed"
 
-#: views.py:159
+#: views.py:157
 msgid "Merci, pour votre contribution à la science !"
 msgstr "Thank you for your contribution to science!"
 
@@ -200,9 +205,6 @@ msgstr "Thank you for your contribution to science!"
 
 #~ msgid "Nom de famille"
 #~ msgstr "Last name"
-
-#~ msgid "Se connecter"
-#~ msgstr "Log out"
 
 #~ msgid "Consentement"
 #~ msgstr "Consent"

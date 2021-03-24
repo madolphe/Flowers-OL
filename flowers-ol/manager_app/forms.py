@@ -66,14 +66,14 @@ class SignInForm(forms.Form):
     """
     username = forms.CharField(label=_("Nom d'utilisateur"),
                                widget=forms.TextInput(attrs={'placeholder': _("Nom d'utilisateur")}))
-    password = forms.CharField(label="Mot de passe",
+    password = forms.CharField(label=_("Mot de passe"),
                                widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     fields = ['username', 'password']
 
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Se connecter'))
+        self.helper.add_input(Submit('submit', _('Se connecter')))
 
 
 class SignUpForm(forms.Form):
