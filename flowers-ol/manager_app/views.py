@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse, resolve
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
@@ -9,7 +10,7 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession
-from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm
+from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm, SignUpForm
 
 
 def login_page(request, study=''):
@@ -47,22 +48,17 @@ def login_page(request, study=''):
 def signup_page(request):
     # First, init forms, if request is valid we can create the user
     study = Study.objects.get(name=request.session['study'])
-    form_user = SignInForm(request.POST or None)
-    # form_profile = ParticipantProfileForm(request.POST or None, initial={'study': study})
-    # if form_user.is_valid() and form_profile.is_valid():
-    if form_user.is_valid():
+    sign_up_form = SignUpForm(request.POST or None)
+    if sign_up_form.is_valid():
         # Get extra-info for user profile:
-        user = form_user.save(commit=False)
+        user = User()
         # Use set_password in order to hash password
-        user.set_password(form_user.cleaned_data['password'])
+        user.set_password(sign_up_form.cleaned_data['password'])
         user.save()
         # form_profile.save_profile(user)
         login(request, user)
         return redirect(reverse(home))                  # Redirect to consent form
-    return render(request, 'signup_page.html', {'CONTEXT': {
-        # 'form_profile': form_profile,
-        'form_user': form_user
-    }})
+    return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
 
 
 @login_required
