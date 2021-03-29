@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Div, HTML
 from django.core.exceptions import *
 from . import validators
+from django.utils.translation import gettext as _
 
 
 class QuestionnaireForm(forms.Form):
