@@ -4,28 +4,38 @@ function preload() {
 
 //p5.js initializing.
 function setup() {
-  createCanvas(displayWidth, displayHeight);
-  CANVAS_WIDTH = displayWidth;
-  CANVAS_HEIGHT = displayHeight; 
+  if (flag_practice==true){
+    CANVAS_WIDTH = canvas_w;
+    CANVAS_HEIGHT = canvas_h;
+    }else{
+    CANVAS_WIDTH = displayWidth;
+    CANVAS_HEIGHT = displayHeight;    
+    }
+  createCanvas(CANVAS_WIDTH,CANVAS_HEIGHT); 
   Params = new ParameterManager(); 
   Time = new TimeManager();
 
   img_correct = createImage(size_img, size_img);
   console.log(round(size_img));
   img_correct.loadPixels();
-  make_gabor_correct(img_correct,contrast_img_correct,size_img=size_img);
+  make_gabor_correct(img_correct,contrast_img_correct,size_img=size_img,sigma=round(size_img/5));
   
   img_wrong = createImage(size_img, size_img);
   img_wrong.loadPixels();
-  make_gabor_wrong(img_wrong,contrast_img_wrong,size_img=size_img);
+  make_gabor_wrong(img_wrong,contrast_img_wrong,size_img=size_img,sigma=round(size_img/5));
 
   create_answer_button();
   create_end_button();
+  if (flag_practice==true){
+    create_restart_button();
+  }else{
+    create_end_button();
+  }
 }
 
 //p5.js frame animation.
 function draw() {
-  background(128); //bkg color
+  background(col_bkg); //bkg color
   //Main experiment schedule
 
   if(Time.scene==0){
@@ -187,15 +197,11 @@ function fnc_false(){
 
 // scene 5
 function scene_end(){
-  if (mouseIsPressed) {
-    Time.update();
-  } else {
-    fill(col_text);
-    noStroke();
-    textSize(size_text);
-    textAlign(CENTER);
-    text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-  }
+  fill(col_text);
+  noStroke();
+  textSize(size_text);
+  textAlign(CENTER);
+  text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 function create_end_button(){
@@ -216,6 +222,18 @@ function quit_task(){
       'results_target_distance': Params.results_target_distance
     }
   post('cognitive_assessment_home', parameters_to_save, 'post');
+}
+
+function create_restart_button(){
+  button_restart = createButton('RESTART');
+  //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
+  button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
+  button_restart.mousePressed(restart_task);
+}
+
+function restart_task(){
+  Params = new ParameterManager();
+  Time = new TimeManager();
 }
 
 
@@ -253,7 +271,9 @@ class TimeManager{
       Params.next_block();
       if (Params.repetition == num_rep){
         this.scene = this.end_scene;
-        button_end.show();
+        if (flag_practice==false){
+          button_end.show();
+        }   
       }else{
         this.scene = this.scene_back;
       }
@@ -371,7 +391,7 @@ class TimeManager{
 ///////////////////////////////////////////////////////////
 
 //draw gabor 後でクラス継承をして整える
-function make_gabor_correct(image_correct,contrast=1,size_img = 256,freq=8,sigma=50,theta=90,phase=0){
+function make_gabor_correct(image_correct,contrast=1,size_img = 256,sigma=50,freq=8,theta=90,phase=0){
   let theta_rad = deg2rad(theta);
   let phase_rad = deg2rad(phase);
     
@@ -390,7 +410,7 @@ function make_gabor_correct(image_correct,contrast=1,size_img = 256,freq=8,sigma
   image_correct.updatePixels();
 }
 
-function make_gabor_wrong(image_wrong,contrast=1,size_img = 256,freq=8,sigma=50,theta=90,phase=0){
+function make_gabor_wrong(image_wrong,contrast=1,size_img = 256,sigma=50,freq=8,theta=90,phase=0){
   let theta_rad = deg2rad(theta);
   let phase_rad = deg2rad(phase);
     

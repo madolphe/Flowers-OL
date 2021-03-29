@@ -10,8 +10,9 @@ function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
 
-
-let flag_practice = false;
+let flag_practice = true;
+let canvas_w = Math.round(12*ppd);
+let canvas_h = Math.round(10*ppd);
 
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
@@ -50,20 +51,20 @@ let thick_fixation = Math.round(0.1*ppd); // in pix
 
 // text 
 let col_text = 255;
-let size_text = Math.round(1*ppd); //in pix
+let size_text = Math.round(0.5*ppd); //in pix
 ////
 
 let Imgs_targ = [];
 let Imgs_filler = [];
 let size_img = 700; 
-let size_rescale = Math.round(6.5*ppd); //in pix
+let size_rescale = Math.round(4.5*ppd); //in pix
 
 
 //feedback params
 let col_correct = [0,0,128];
-let size_correct = Math.round(1*ppd); //in pix
+let size_correct = Math.round(0.5*ppd); //in pix
 let col_wrong = [128,0,0];
-let size_wrong = Math.round(1*ppd);  //in pix
+let size_wrong = Math.round(0.5*ppd);  //in pix
 
 let x_ok = 0;
 let y_ok = 200;
@@ -82,3 +83,5 @@ function make_array(val_start, val_stop, num_array) {
     return array;
   }
   
+  let x_restart = -Math.round(5.5*ppd);; //in pixel
+  let y_restart = Math.round(0*ppd);; //in pixel

@@ -12,9 +12,14 @@ function preload() {
 
 //p5.js initializing.
 function setup() {
-  CANVAS_WIDTH = displayWidth;
-  CANVAS_HEIGHT = displayHeight;
-  createCanvas(displayWidth, displayHeight);
+  if (flag_practice==true){
+    CANVAS_WIDTH = canvas_w;
+    CANVAS_HEIGHT = canvas_h;
+    }else{
+    CANVAS_WIDTH = displayWidth;
+    CANVAS_HEIGHT = displayHeight;    
+    } 
+  createCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
 
   for (let i=0; i < num_targlist; ++i) {
     Imgs_targ[i] = loadImage(stats_targ.get(i, 0));
@@ -29,13 +34,19 @@ function setup() {
   create_end_button();
   Params = new ParameterManager(); 
   Time = new TimeManager();
+  if (flag_practice==true){
+    create_restart_button();
+  }else{
+    create_end_button();
+  }
   console.log('done setup')
+  
 }
 
 //p5.js frame animation.
 function draw() {
   //console.log('start draw')
-  background(128); //bkg color
+  background(col_bkg); //bkg color
   //Main experiment schedule
 
   if(Time.scene==0){
@@ -86,7 +97,7 @@ function scene_instruction(){
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
-    text( "Please click the mouse to start this experiment", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    text( "Please click the mouse to start this experiment", CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+(size_text/2));
   }
 }
 
@@ -197,9 +208,25 @@ function quit_task(){
   let parameters_to_save = {
       'results_responses': Params.results_responses,
       'results_rt': Params.results_rt,
-      'results_targetvalue': Params.results_targetvalue
+      'results_targetvalue': Params.results_targetvalue,
+      'results_flagcorrect':Params.results_flagcorrect,
+      'results_ind_trial_filler':Params.results_ind_trial_filler,
+      'results_ind_trial_target1':Params.results_ind_trial_target1,
+      'results_ind_trial_target2':Params.results_ind_trial_target2
     }
   post('cognitive_assessment_home', parameters_to_save, 'post');
+}
+
+function create_restart_button(){
+  button_restart = createButton('RESTART');
+  //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
+  button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
+  button_restart.mousePressed(restart_task);
+}
+
+function restart_task(){
+  Params = new ParameterManager();
+  Time = new TimeManager();
 }
 
 
@@ -237,6 +264,9 @@ class TimeManager{
       Params.next_block();
       if (Params.repetition == num_rep){
         this.scene = this.end_scene;
+        if (flag_practice==false){
+          button_end.show();
+        } 
       }else{
         this.scene = this.scene_back;
       }
@@ -336,6 +366,10 @@ class TimeManager{
     this.results_responses = [];
     this.results_rt = [];
     this.results_targetvalue = [];
+    this.results_flagcorrect = [];
+    this.results_ind_trial_filler = [];
+    this.results_ind_trial_target1 = [];
+    this.results_ind_trial_target2 = [];
   }
 
 
@@ -361,6 +395,7 @@ class TimeManager{
 
   next_block(){
     this.save();
+    //assuming only one block
 
     //set the next block parameters
     this.repetition ++;
@@ -389,7 +424,18 @@ class TimeManager{
     // save the current result.
     this.results_responses.push(this.tmp_res_ob);
     this.results_rt.push(this.tmp_rt);
-    this.results_targetvalue.push(this.ind_stimcond);
+    this.results_targetvalue.push(this.array_stim[this.ind_stimcond]);
+    this.results_flagcorrect.push(this.flag_correct)
+
+    //set the next trial parameters
+    if (this.array_stim[this.ind_stimcond]==0){
+      this.results_ind_trial_filler.push(this.ind_trial_filler);
+    }else if (this.array_stim[this.ind_stimcond]==1){
+      this.results_ind_trial_target1.push(this.ind_trial_target1);
+    } else if (this.array_stim[this.ind_stimcond]==2){
+      this.results_ind_trial_target2.push(this.ind_trial_target2);
+    }
+
     //console.log('response is');
     //console.log(this.tmp_res_ob);
   }

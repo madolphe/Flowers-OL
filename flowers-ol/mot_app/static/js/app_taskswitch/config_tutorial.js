@@ -10,9 +10,11 @@ function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
 
-let flag_practice = false;
+let flag_practice = true;
+let canvas_w = Math.round(12*ppd);
+let canvas_h = Math.round(10*ppd);
 
-let num_rep = 10; 
+let num_rep = 2; 
 let array_stimcond = [1,1,1,0,0,0];
 let array_taskcond = ['Color','Shape']; //Tasks switch condition.
 let array_textleft = ['Red:f','Circle:f'];
@@ -25,10 +27,10 @@ let col_1 = [0,0,128];
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
 
-let time_stimduration = 2000; //in ms
+let time_stimduration = 4000; //in ms
 let time_maskduration = 1000; //in ms
 let time_isi = 0; //in ms
-let time_fixation = 650; // in millisecond
+let time_fixation = 1500; // in millisecond
 
 //object condition
 let size_obj = Math.round(2*ppd); //in pix. in diameter
@@ -36,11 +38,11 @@ let size_obj = Math.round(2*ppd); //in pix. in diameter
 
 // fixation 
 let col_instruction = 255;
-let size_instruction = Math.round(1*ppd); //in pix
+let size_instruction = Math.round(0.75*ppd); //in pix
 
 // text 
 let col_text = 255;
-let size_text = Math.round(1*ppd); //in pix
+let size_text = Math.round(0.5*ppd); //in pix
 ////
 
 let col_bkg = 128;
@@ -49,4 +51,7 @@ let x_ok = 0;
 let y_ok = 200;
 
 //
-let pos_guide = Math.round(5*ppd);
+let pos_guide = Math.round(3*ppd);
+
+let x_restart = -Math.round(5.5*ppd);; //in pixel
+let y_restart = Math.round(2*ppd);; //in pixel

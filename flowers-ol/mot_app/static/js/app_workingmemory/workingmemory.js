@@ -4,9 +4,15 @@ function preload() {
 
 //p5.js initializing.
 function setup() {
-  createCanvas(displayWidth, displayHeight);
-  CANVAS_WIDTH = displayWidth;
-  CANVAS_HEIGHT = displayHeight;
+  if (flag_practice==true){
+    CANVAS_WIDTH = canvas_w;
+    CANVAS_HEIGHT = canvas_h;
+    }else{
+    CANVAS_WIDTH = displayWidth;
+    CANVAS_HEIGHT = displayHeight;    
+    }
+  createCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
+  
   CENTER_X = (CANVAS_WIDTH/2)-(size_target/2);
   CENTER_Y = (CANVAS_HEIGHT/2)-(size_target/2); 
   Params = new ParameterManager();
@@ -14,11 +20,16 @@ function setup() {
 
   create_answer_button();
   create_end_button();
+  if (flag_practice==true){
+    create_restart_button();
+  }else{
+    create_end_button();
+  }
 }
 
 //p5.js frame animation.
 function draw() {
-  background(128); //bkg color
+  background(col_bkg); //bkg color
   //Main experiment schedule
 
   if(Time.scene==0){
@@ -160,15 +171,11 @@ function record_response(){
 
 // scene 5
 function scene_end(){
-  if (mouseIsPressed) {
-    Time.update();
-  } else {
-    fill(col_text);
-    noStroke();
-    textSize(size_text);
-    textAlign(CENTER);
-    text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-  }
+  fill(col_text);
+  noStroke();
+  textSize(size_text);
+  textAlign(CENTER);
+  text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 function create_end_button(){
@@ -187,6 +194,19 @@ function quit_task(){
     }
   post('cognitive_assessment_home', parameters_to_save, 'post');
 }
+
+function create_restart_button(){
+  button_restart = createButton('RESTART');
+  //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
+  button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
+  button_restart.mousePressed(restart_task);
+}
+
+function restart_task(){
+  Params = new ParameterManager();
+  Time = new TimeManager();
+}
+
 
 class TimeManager{
   constructor() {
@@ -223,14 +243,15 @@ class TimeManager{
       Params.next_block();
       if (Params.repetition == num_rep){
         this.scene = this.end_scene;
-        button_end.show();
+        if (flag_practice==false){
+          button_end.show();
+        } 
       }else{
         this.scene = this.scene_back;
       }
     }else{
-      //In this experiment, no trial.
-      //this.Params.next_trial(); 
-      //this.scene = this.scene_back;
+      Params.next_trial(); 
+      this.scene = this.scene_back;
     }
   }
   
@@ -255,7 +276,7 @@ class ParameterManager{
     // Stimulus parameters
     this.repetition = 0;
     this.ind_stimcond = 0;
-    this.flag_block = true; //no trial
+    this.flag_block = false;
     this.flag_load = false;
     this.count_color = -1;
     num_memory = shuffle(num_memory);
@@ -283,25 +304,32 @@ class ParameterManager{
 
   }
     next_trial(){
-      //set the next trial parameters 
       this.save();
+      //set the next trial parameters 
       this.ind_stimcond ++;
+      this.flag_load = false;
+      this.tmp_res_ob = [];
+      this.count_color = -1;
+      this.order = -1;
+
       if (this.ind_stimcond==num_memory.length-1){
         this.flag_block = true;
       }
     }
   
     next_block(){
-       
+      this.save();
       //set the next block parameters
-
-      this.count_color = -1;
       this.flag_load = false;
+      this.tmp_res_ob = [];
+      this.count_color = -1;
+      this.order = -1;
+
+
+      this.flag_block = false;
       this.repetition ++;
       this.trial_stimcond = shuffle(array_stimcond); 
       this.ind_stimcond = 0;
-      this.tmp_res_ob = [];
-      this.order = -1;
       num_memory = shuffle(num_memory);
     }
   
@@ -310,7 +338,7 @@ class ParameterManager{
       this.results_responses.push(this.tmp_res_ob);
       this.results_rt.push(this.tmp_rt);
       this.results_targetvalue_stim.push(this.trial_stimcond);
-      this.results_num_stim.push(num_stimulus[this.ind_stimcond])
+      this.results_num_stim.push(num_memory[this.ind_stimcond])
       //console.log('response is');
       //console.log(this.tmp_res_ob);
     }

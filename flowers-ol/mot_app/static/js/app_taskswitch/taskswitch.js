@@ -5,18 +5,29 @@ function preload() {
 
 //p5.js initializing.
 function setup() {
-  createCanvas(displayWidth, displayHeight);
-  CANVAS_WIDTH = displayWidth;
-  CANVAS_HEIGHT = displayHeight;
+  if (flag_practice==true){
+    CANVAS_WIDTH = canvas_w;
+    CANVAS_HEIGHT = canvas_h;
+    }else{
+    CANVAS_WIDTH = displayWidth;
+    CANVAS_HEIGHT = displayHeight;    
+    }
+  createCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
+  
   Params = new ParameterManager();
   Time = new TimeManager();
   create_end_button();
+  if (flag_practice==true){
+    create_restart_button();
+  }else{
+    create_end_button();
+  }
  
 }
 
 //p5.js frame animation.
 function draw() {
-  background(128); //bkg color
+  background(col_bkg); //bkg color
   //Main experiment schedule
 
   if(Time.scene==0){
@@ -132,15 +143,11 @@ function scene_backmask(){
 
 // scene 3
 function scene_end(){
-  if (mouseIsPressed) {
-    Time.update();
-  } else {
-    fill(col_text);
-    noStroke();
-    textSize(size_text);
-    textAlign(CENTER);
-    text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-  }
+  fill(col_text);
+  noStroke();
+  textSize(size_text);
+  textAlign(CENTER);
+  text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 function create_end_button(){
@@ -162,6 +169,17 @@ function quit_task(){
   post('cognitive_assessment_home', parameters_to_save, 'post');
 }
 
+function create_restart_button(){
+  button_restart = createButton('RESTART');
+  //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
+  button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
+  button_restart.mousePressed(restart_task);
+}
+
+function restart_task(){
+  Params = new ParameterManager();
+  Time = new TimeManager();
+}
 
 
 class TimeManager{
@@ -193,7 +211,9 @@ class TimeManager{
       Params.next_block();
       if (Params.repetition == num_rep){
         this.scene = this.end_scene;
-        button_end.show();
+        if (flag_practice==false){
+          button_end.show();
+        }   
       }else{
         this.scene = this.scene_back;
       }

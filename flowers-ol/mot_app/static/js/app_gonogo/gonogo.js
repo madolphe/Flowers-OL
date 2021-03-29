@@ -4,19 +4,28 @@ function preload() {
 
 //p5.js initializing.
 function setup() {
-  createCanvas(displayWidth, displayHeight);
-  CANVAS_WIDTH = displayWidth;
-  CANVAS_HEIGHT = displayHeight; 
-  
+  if (flag_practice==true){
+    CANVAS_WIDTH = canvas_w;
+    CANVAS_HEIGHT = canvas_h;
+    }else{
+    CANVAS_WIDTH = displayWidth;
+    CANVAS_HEIGHT = displayHeight;    
+    }
+  createCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
   Params = new ParameterManager(); 
   Time = new TimeManager();
 
   create_end_button();
+  if (flag_practice==true){
+    create_restart_button();
+  }else{
+    create_end_button();
+  }
 }
 
 //p5.js frame animation.
 function draw() {
-  background(128); //bkg color
+  background(col_bkg); //bkg color
   //Main experiment schedule
 
   if(Time.scene==0){
@@ -42,10 +51,12 @@ function scene_instruction(){
   if (mouseIsPressed) {
     Time.update();
   } else {
+    push();
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
     text( "Please click the mouse to start this experiment", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    pop();
   }
 }
 
@@ -67,9 +78,12 @@ function scene_fixation(){
 
 //scene 2
 function scene_targ(){
-  if (Time.activetime_block < time_stimduration + time_maskduration){
-    //show a blank for this experiment
-    //image(img, (CANVAS_WIDTH/2)-(size_img[0]/2), (CANVAS_HEIGHT/2)-(size_img[1]/2));
+  if (Time.activetime_block < time_stimduration + time_maskduration){ 
+    if (Params.ind_stimcond==Params.ind_previous+1){
+      if (flag_practice==true){
+        Params.feedback();
+      }
+    }
   } else{
     Time.update();
   }
@@ -90,7 +104,7 @@ function scene_stim(callback){
           Params.tmp_res_ob = 2; //2 means the false alarm.
         }
       }
-    } 
+    }
   }
 
 
@@ -109,15 +123,13 @@ function scene_stim(callback){
 
 // scene 4
 function scene_end(){
-  if (mouseIsPressed) {
-    Time.update();
-  } else {
+    push();
     fill(col_text);
     noStroke();
     textSize(size_text);
     textAlign(CENTER);
     text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-  }
+    pop();
 }
 
 function create_end_button(){
@@ -136,6 +148,19 @@ function quit_task(){
       'results_targetvalue': Params.results_targetvalue
     }
   post('cognitive_assessment_home', parameters_to_save, 'post');
+}
+
+
+function create_restart_button(){
+  button_restart = createButton('RESTART');
+  //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
+  button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
+  button_restart.mousePressed(restart_task);
+}
+
+function restart_task(){
+  Params = new ParameterManager();
+  Time = new TimeManager();
 }
 
 
@@ -168,7 +193,9 @@ class TimeManager{
       Params.next_block();
       if (Params.repetition == num_rep){
         this.scene = this.end_scene;
-        button_end.show();
+        if (flag_practice==false){
+          button_end.show();
+        }   
       }else{
         this.scene = this.scene_back;
       }
@@ -235,6 +262,32 @@ class TimeManager{
     if (this.ind_stimcond==array_stimcond.length-1){
       this.flag_block = true;
     }
+  }
+
+  feedback(){
+    //still not used
+    push();
+    noStroke();
+    textSize(size_text);
+    textAlign(CENTER);
+    if(this.trial_stimcond[this.ind_previous+1]==stim_target){
+      if (this.tmp_res_ob==1){
+        fill(col_1);
+        text( "Correct Answer", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+      }else{
+        fill(col_0);
+        text( "Wrong Answer", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+      }
+    }else{
+      if (this.tmp_res_ob==2){
+        fill(col_0);
+        text( "Wrong Answer", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+      }else{
+        fill(col_1);
+        text( "Correct Answer", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+      }   
+    }
+    pop();
   }
 
   next_block(){

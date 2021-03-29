@@ -9,34 +9,36 @@ function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
 
-let flag_practice = false;
+let flag_practice = true;
+let canvas_w = Math.round(12*ppd);
+let canvas_h = Math.round(10*ppd);
 
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
 
-let num_rep = 50; 
+let num_rep = 4; 
 let array_stimcond = [1,2,3,4,5,6,7,8,9]; //Experimental condition. 
 let stim_target = 3;
 let stim_filler = [1,2,4,5,6,8,9];
 let stim_previous = 7;
 
 
-let time_stimduration = 50; //in ms Mani et al., (2005)
-let time_maskduration = 950; //in ms
+let time_stimduration = 1000; //in ms Mani et al., (2005)
+let time_maskduration = 1000; //in ms
 let col_target = 255;
 let size_target = Math.round(1.5*ppd); //in pix 
 
 let col_bkg = 128;
 
 // fixation 
-let len_fixation = Math.round(1*ppd); // in pix
+let len_fixation = Math.round(0.5*ppd); // in pix
 let col_fixation = 20; // in rgb
 let thick_fixation = Math.round(0.1*ppd); // in pix
 let time_fixation = 1000; // in millisecond
 
 // text 
 let col_text = 255;
-let size_text = Math.round(1*ppd); //in pixel
+let size_text = Math.round(0.5*ppd); //in pixel
 ////
 
 let x_ok = 0;
