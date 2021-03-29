@@ -66,6 +66,7 @@ class SignUpForm(forms.ModelForm):
             self.add_error('username', _('Le nom d\'utilisateur existe déjà, veuillez choisir un autre nom d\'utilisateur'))
 
         if password != confirm_password:
+            # Confirmation passowrd does not match
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
         return cleaned_data
