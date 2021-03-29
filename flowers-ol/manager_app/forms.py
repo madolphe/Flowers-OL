@@ -47,14 +47,13 @@ class SignUpForm(forms.ModelForm):
         # Create ParticipantProfile and register participant's study
         self.instance.set_password(self.cleaned_data['password'])
         self.instance.save()
-
         participant_profile = ParticipantProfile()
         participant_profile.user = self.instance
         participant_profile.study = study
         participant_profile.save()
 
-        super(SignUpForm, self).save(*args, **kwargs)
-
+        user = super(SignUpForm, self).save(*args, **kwargs)
+        return user
 
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
