@@ -7,59 +7,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import login
 
 
-class UserForm(forms.ModelForm):
-    """
-    Class to generate user form : [CreateUserForm already exists and could be overwritten]
-    """
-    username = forms.CharField(label=_("Nom d'utilisateur"),
-                               widget=forms.TextInput(attrs={'placeholder': _("Nom d'utilisateur")}))
-    password = forms.CharField(label=_('Mot de passe'),
-                               widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
-    first_name = forms.CharField(label='Prénom', widget=forms.TextInput(attrs={'placeholder': 'Prénom'}))
-    last_name = forms.CharField(label='Nom de famille', widget=forms.TextInput(attrs={'placeholder': 'Nom de famille'}))
-    email = forms.CharField(label='E-mail', widget=forms.TextInput(attrs={'placeholder': 'E-mail'}))
-    field_order = ['username', 'password', 'first_name', 'last_name', 'email']
-
-    def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
-
-    class Meta:
-        model = User
-        exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined']
-
-
-class ParticipantProfileForm(forms.ModelForm):
-    """
-    Class to generate a form used to register a participant.
-    """
-    def __init__(self, *args, **kwargs):
-        super(ParticipantProfileForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Valider'))
-        self.helper.form_tag = False
-        self.fields['birth_date'].label = _('Date de naissance')
-        self.fields['remind'].label = _('Rappelez-moi par e-mail de compléter les tâches pour l\'étude')
-
-    class Meta:
-        model = ParticipantProfile
-        fields = ['birth_date', 'study', 'remind']
-        widgets = {'study': forms.HiddenInput(),
-                   'birth_date': forms.DateInput(attrs={'type': 'date'})
-                   }
-
-    def save_profile(self, user):
-        """
-        Method to link participant profile and django user
-        :param user:
-        :return:
-        """
-        participant_profile = super().save(commit=False)
-        participant_profile.user = user
-        super().save(commit=True)
-
-
 class SignInForm(forms.Form):
     """
     Class to generate a form for logging page.
@@ -76,7 +23,7 @@ class SignInForm(forms.Form):
         self.helper.add_input(Submit('submit', _('Se connecter')))
 
 
-class SignUpForm(forms.Form):
+class SignUpForm(forms.ModelForm):
     '''Class to generate a form for sign up page'''
     username = forms.CharField(label=_('Nom d\'utilisateur'),
                                widget=forms.TextInput(attrs={'placeholder': _('Nom d\'utilisateur')}))
@@ -85,18 +32,41 @@ class SignUpForm(forms.Form):
     password_confirm = forms.CharField(label=_('Confirmer le mot de passe'),
                                        widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     fields = ['username', 'password', 'password_confirm']
+    field_order = ['username', 'password', 'password_confirm']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', _('Créer un compte')))
 
+    class Meta:
+        model = User
+        exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined', 'first_name', 'last_name', 'email']
+
+    def save(self, study, *args, **kwargs):
+        # Create ParticipantProfile and register participant's study
+        self.instance.set_password(self.cleaned_data['password'])
+        self.instance.save()
+
+        participant_profile = ParticipantProfile()
+        participant_profile.user = self.instance
+        participant_profile.study = study
+        participant_profile.save()
+
+        super(SignUpForm, self).save(*args, **kwargs)
+
+
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('password_confirm')
 
+        if User.objects.filter(username=cleaned_data['username']).exists():
+            # Username exists
+            self.add_error('username', _('Le nom d\'utilisateur existe déjà, veuillez choisir un autre nom d\'utilisateur'))
+
         if password != confirm_password:
+            # Confirmation passowrd does not match
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
         return cleaned_data

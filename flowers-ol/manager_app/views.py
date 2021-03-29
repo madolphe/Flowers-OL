@@ -10,7 +10,7 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession
-from .forms import UserForm, ParticipantProfileForm, SignInForm, ConsentForm, SignUpForm
+from .forms import SignInForm, SignUpForm
 
 
 def login_page(request, study=''):
@@ -21,7 +21,7 @@ def login_page(request, study=''):
     # This also overwrites study name currently stored in user's session
     if 'study' in request.GET.dict():
         study = request.GET.dict().get('study')
-    # validate study name by checking with the database
+    # Validate study name by checking with the database
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
         # Normally, a participant has link to only one study. Thus, this should only be performed once
@@ -46,18 +46,16 @@ def login_page(request, study=''):
 
 
 def signup_page(request):
-    # First, init forms, if request is valid we can create the user
+    # Get study name from session
     study = Study.objects.get(name=request.session['study'])
+    # Create form, validate, and save user credentials and (implicitly) create a ParticipantProfile object
     sign_up_form = SignUpForm(request.POST or None)
     if sign_up_form.is_valid():
-        # Get extra-info for user profile:
-        user = User()
-        # Use set_password in order to hash password
-        user.set_password(sign_up_form.cleaned_data['password'])
-        user.save()
-        # form_profile.save_profile(user)
+        user = sign_up_form.save(study=study, commit=False)
+        # user # Use set_password in order to hash password
+        # user.save()
         login(request, user)
-        return redirect(reverse(home))                  # Redirect to consent form
+        return redirect(reverse(home))
     return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
 
 
