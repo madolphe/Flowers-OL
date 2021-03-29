@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    main {
+      padding: 200;
+      margin: 200;
+    }
+  </style>
+
+  <title>pre and post tests</title>
+</head>
+
+<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
+
+<body>
+<main>
+<div class="explanation-text">
+
+    <h3> Instructions </h3>
+    <p> 
+        <UL>  
+        <li>The goal of this experiment is to measure the ability to switch your attention.</li> 
+        <li>In each trial, the instruction word <b>"Color"</b> or <b>"Shape"</b> will be shown to you. </li>
+        <li>Depending on the instruction word, your task changes.</li> 
+        <li>When you see the word <b>"Color,"</b> you have to answer whether the following object is <b>"blue"</b> or <b>"red."</b>  </li>
+        <UL>
+            <li>For the <b>"Color"</b> trial, please press <b>"f"</b> or <b>"j"</b> for the <b>red</b> or <b>blue</b>, respectively, as soon as possible.</li>
+        </UL>
+        <li>In contrast, when you see the word <b>"Shape,"</b> you have to answer whether the following object is <b>"square"</b> or <b>"circle."</b> </li>
+        <UL>
+            <li>For the <b>"Shape"</b> trial, please press <b>"f"</b> or <b>"j"</b> for the <b>square</b> or <b>circle</b>, respectively, as soon as possible.</li>
+        </UL>
+        <li>You can check the practice trials of this task from the following window.</li>
+        </UL>
+    </p>
+
+</div>
+
+<h3> Practice trials </h3>
+<p>
+    <script src="./js/p5.js"></script>
+    <script src="./js/app_taskswitch/config_tutorial.js"></script>
+    <script src="./js/app_taskswitch/taskswitch.js"></script>
+</p>
+
+</main>
 </body>
 </html>

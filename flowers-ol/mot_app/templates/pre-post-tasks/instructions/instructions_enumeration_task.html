@@ -1,23 +1,42 @@
-<div class="explanation-text">
-    <h4> Bienvenue dans notre expérimentation</h4>
-    <p>
-        Tout d'abord, merci d'avoir pris le temps de répondre aux questionnaires précédents, l'expèrience peut enfin débuter.
-        Pour rappel, notre objectif est d'évaluer un dispositif d'entraînement de l'attention. Alors, en plus de pouvoir
-        améliorer cette capacité, vous nous permettrez de mieux comprendre les caractériques importantes d'un tel protocole.
-    </p>
-    <h4>Déroulement du protocole: </h4>
-    <p>
-        <h5> Tâche principale: </h5>
-        {%load static%}
-        Après lancement de l'expèrience (boutton "Begin session"), il vous sera demandé de suivre les gobelins de la forme: <br>
-        <div class="text-center"><img class="mx-auto" src={%  static 'images/bavelier_lab/goblin.png' %}> <br></div>
-        Attention, ces gobelins se déplacent dans un espace rempli de guardes: <br>
-        <div class="text-center"><img src={%  static 'images/bavelier_lab/guard.png' %}> <br></div>
-        Quand les gobelins se transforment en guardes, ne les perdez pas de vue, il vous sera demandé de les retrouver! <br>
+<!DOCTYPE html>
+<html lang="">
 
-        <h5>Attention, la session dure 30 minutes!</h5> <br>
-        Vous pouvez observer le temps restant en bas à droite de l'image suivante. <br>
-        <div class="text-center"><img class="mx-auto" id="timer_img" src={%  static 'images/timer.png' %}></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    main {
+      padding: 200;
+      margin: 200;
+    }
+  </style>
+
+  <title>pre and post tests</title>
+</head>
+
+<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
+
+<body>
+<main>
+<div class="explanation-text">
+
+    <h3> Instructions </h3>
+    <p>
+        <li>The goal of this experiment is to measure human counting ability.</li> 
+        <li>In each rial, you will see a flash of multiple white circles. </li>
+        <li>Your task is <b>to count these circles and answer how many circles were presented using a drop-down list</b>.</li> 
+        <li>You can check the practice trials of this task from the following window. </li>
     </p>
+
 </div>
 
+<h3> Practice trials </h3>
+<p>
+    <script src="./js/p5.js"></script>
+    <script src="./js/app_enumeration/config_tutorial.js"></script>
+    <script src="./js/app_enumeration/enumeration.js"></script>
+</p>
+
+</main>
+</body>
+</html>
