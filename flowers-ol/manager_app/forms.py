@@ -51,7 +51,8 @@ class SignUpForm(forms.ModelForm):
         participant_profile.user = self.instance
         participant_profile.study = study
         participant_profile.save()
-
+        participant_profile.assign_sessions()
+        
         user = super(SignUpForm, self).save(*args, **kwargs)
         return user
 
