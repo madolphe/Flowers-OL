@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'flowers-ol.wsgi.application'
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'flowers-ol-db'
+        'NAME': os.path.join(BASE_DIR, 'flowers-ol-db')
       }
 }
 

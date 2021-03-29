@@ -7,7 +7,7 @@ from .utils import ExportCsvMixin
 
 # Define admin classes
 class ParticipantAdmin(admin.ModelAdmin, ExportCsvMixin):
-    list_display = ('user', 'study', 'date', 'current_session', 'task_stack_csv', 'extra_json')
+    list_display = ('user', 'ref_dt', 'current_session', 'task_stack_csv', 'extra_json')
     actions = ["export_as_csv"]
 
 
