@@ -111,9 +111,9 @@ class ExperimentSession(models.Model):
 class ParticipantProfile(models.Model):
     # Properties shared in both experimentations:
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True, verbose_name='Registration date and time')
-    birth_date = models.DateField()
-    remind = models.BooleanField(default=True)
+
+    # Participant preferences
+    remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
 
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
