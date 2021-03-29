@@ -26,7 +26,7 @@
             "description": "Demo task",
             "prompt": "Start demo task",
             "view_name": "questionnaire",
-            "exit_view": "home",
+            "exit_view": "exit_demo_task",
             "info_templates_csv": "Basic information tabs=basic_tab.html",
             "extra_json": {
                 "instruments": [
