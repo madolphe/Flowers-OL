@@ -39,6 +39,10 @@ class SignUpForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', _('Créer un compte')))
 
+    class Meta:
+        model = User
+        exclude = ['groups', 'user_permissions', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined', 'first_name', 'last_name', 'email']
+
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
         password = cleaned_data.get('password')
