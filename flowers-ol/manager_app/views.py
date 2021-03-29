@@ -95,13 +95,17 @@ def home(request):
     if not participant.current_session_valid:
         return redirect(reverse(off_session_page))
 
+    if not participant.current_task.prompt:
+        return redirect(reverse(start_task))
+
     if participant.current_session:
          request.session['active_session'] = json.dumps(True)
+
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
             print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
-    return render(request, 'home_page.html', { 'CONTEXT': {'participant': participant}})
+    return render(request, 'home_page.html', {'CONTEXT': {'participant': participant}})
 
 
 @login_required
