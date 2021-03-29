@@ -109,14 +109,16 @@ class ExperimentSession(models.Model):
 
 
 class ParticipantProfile(models.Model):
-    # Properties shared in both experimentations:
+    # Link to User model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # Participant preferences
     remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
-
+    
+    # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
+    ref_dt = models.DateTimeField(default=datetime.datetime.now, verbose_name='Reference datetime')
     sessions = models.ManyToManyField(ExperimentSession, default=[], related_name='session_stack') # FIFO
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
@@ -125,7 +127,6 @@ class ParticipantProfile(models.Model):
 
     class Meta:
         verbose_name = 'Participant'
-        ordering = ['birth_date']
 
     def __unicode__(self):
         return '{} -- {}'.format(self.study.name, self.user.username)
@@ -145,8 +146,8 @@ class ParticipantProfile(models.Model):
     @property
     def current_session_valid(self):
         # If the current session is not today, not required and was skipped (i.e date in the past):
-        if not self.current_session.is_today(ref_date=self.date.date()):
-            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.date.date()):
+        if not self.current_session.is_today(ref_date=self.ref_dt.date()):
+            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.ref_dt.date()):
                 # Store in participant extra_json when a session has been skipped:
                 if 'skipped_session' in self.extra_json:
                     self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
@@ -187,7 +188,7 @@ class ParticipantProfile(models.Model):
 
     def queue_reminder(self):
         if self.remind and self.sessions.all():
-            day1 = self.date
+            day1 = self.ref_dt
             next_session = self.sessions.first()
             next_session_date = day1 + datetime.timedelta(days=next_session.day-1)
             message_template = render_to_string(self.study.reminder_template,
