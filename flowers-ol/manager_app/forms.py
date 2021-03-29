@@ -61,6 +61,10 @@ class SignUpForm(forms.ModelForm):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('password_confirm')
 
+        if User.objects.filter(username=cleaned_data['username']).exists():
+            # Username exists
+            self.add_error('username', _('Le nom d\'utilisateur existe déjà, veuillez choisir un autre nom d\'utilisateur'))
+
         if password != confirm_password:
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
