@@ -32,6 +32,7 @@ class SignUpForm(forms.ModelForm):
     password_confirm = forms.CharField(label=_('Confirmer le mot de passe'),
                                        widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     fields = ['username', 'password', 'password_confirm']
+    field_order = ['username', 'password', 'password_confirm']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
