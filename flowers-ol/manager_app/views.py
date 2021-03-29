@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
 from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.utils.translation import gettext as _
 
 import json, datetime
 
