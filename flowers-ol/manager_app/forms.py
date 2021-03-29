@@ -23,7 +23,7 @@ class SignInForm(forms.Form):
         self.helper.add_input(Submit('submit', _('Se connecter')))
 
 
-class SignUpForm(forms.Form):
+class SignUpForm(forms.ModelForm):
     '''Class to generate a form for sign up page'''
     username = forms.CharField(label=_('Nom d\'utilisateur'),
                                widget=forms.TextInput(attrs={'placeholder': _('Nom d\'utilisateur')}))
