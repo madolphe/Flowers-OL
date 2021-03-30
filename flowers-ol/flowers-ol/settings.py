@@ -13,11 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.utils.translation import gettext_lazy as _
 
-LOCALE_PATHS = [
-    os.path.join(os.path.dirname(__file__), "experiment_manager_app/locale"),
-    os.path.join(os.path.dirname(__file__), "survey_app/locale"),
-    os.path.join(os.path.dirname(__file__), "jold_app/locale")
-]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,20 +38,26 @@ LOGIN_URL = '/signup_page/'
 
 # Application definition
 INSTALLED_APPS = [
+    # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Django third party apps
     'background_task',
-    'experiment_manager_app',
-    'survey_app',
-    'jold_app',
     'django_extensions',
     'crispy_forms',
     'modeltranslation'
 ]
+USER_APPS = [
+    # This is the list of user-defined apps
+    'manager_app',
+    'demo_app',
+    'survey_app'
+]
+INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'flowers-ol.wsgi.application'
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'flowers-ol-db'
+        'NAME': os.path.join(BASE_DIR, 'flowers-ol-db')
       }
 }
 
@@ -118,8 +119,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
+LOCALE_PATHS = [
+    os.path.join(os.path.dirname(__file__), "manager_app/locale"),
+    os.path.join(os.path.dirname(__file__), "demo_app/locale")
+]
 LANGUAGE_CODE = 'fr'
-LANGUAGES = [('fr', _('français')), ('en', _('English'))]
+LANGUAGES = [('fr', _('français')), ('en', _('english'))]
 MODELTRANSLATION_AUTO_POPULATE = True
 TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
@@ -143,7 +148,7 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'yourUsername@gmail.com'
 # EMAIL_HOST_PASSWORD = 'your_gmail_password'
-# DEFAULT_FROM_EMAIL = 'tenalexander1991@gmail.com'#'noreply-flowers@inria.fr'
+# DEFAULT_FROM_EMAIL = 'yourUsername@gmail.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 

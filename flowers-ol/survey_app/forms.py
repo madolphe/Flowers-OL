@@ -1,9 +1,11 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import *
 from .widgets import get_custom_widget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Div, HTML
-from django.core.exceptions import *
 from . import validators
+from django.utils.translation import gettext as _
 
 
 class QuestionnaireForm(forms.Form):
@@ -38,7 +40,7 @@ class QuestionnaireForm(forms.Form):
             self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i % 2 else '')))
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.add_input(Submit('submit', 'Valider'))
+        self.helper.add_input(Submit('submit', _('Valider')))
         self.helper.layout = Layout(*self.rows)
         self.helper.form_show_errors = True
 
@@ -57,4 +59,25 @@ class QuestionnaireForm(forms.Form):
             else:
                 self.fields[handle].widget.attrs['prev'] = cleaned_data[handle]
         if missing_data:
-            raise ValidationError('Oups, il semblerait que tu as oublié de répondre à certaines questions.')
+            raise ValidationError(_('Oups, il semblerait que tu as oublié de répondre à certaines questions.'))
+
+
+class ConsentForm(forms.Form):
+    """
+    Class to generate a form for consent page.
+    """
+    understood = forms.BooleanField(label=_("J'ai lu et compris les termes de cette étude"))
+    agreed = forms.CharField(label=_('Consentement'), help_text=_('Ecrire \"Je consens\" dans la barre'))
+    fields = ['understood', 'agreed']
+
+    def __init__(self, *args, **kwargs):
+        super(ConsentForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', _('Valider')))
+
+    def clean_agreed(self):
+        user_input = self.cleaned_data['agreed'].lower().strip('\"')
+        if user_input != 'je consens':
+            raise forms.ValidationError(_('Veuillez donner votre consentement en écrivant "Je consens" '
+                                        'pour valider votre participation'))
+        return user_input
