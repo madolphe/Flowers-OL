@@ -5,6 +5,7 @@ from .widgets import get_custom_widget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Div, HTML
 from . import validators
+from django.utils.translation import gettext as _
 
 
 class QuestionnaireForm(forms.Form):
