@@ -1,54 +1,44 @@
-<!DOCTYPE html>
-<html lang="">
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    main {
-      padding: 200;
-      margin: 200;
-    }
-  </style>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
 
-  <title>pre and post tests</title>
-</head>
+{% block content%}
+  <form id="request">{% csrf_token %}</form>
 
-<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
+  <div class="explanation-text">
 
-<body>
-<main>
-<div class="explanation-text">
+      <h3> Instructions </h3>
+      <p> 
+          <UL>  
+          <li>The goal of this experiment is to measure the ability of memory capacity for photographs.</li> 
+          <li>In this experiment, you will see a set of photographs one-by-one.  </li>
+          <li>Your task is to <b>remember each photograph </b>and answer <b>whether the photograph is presented twice or not by pressing the key "f" as soon as possible</b>. </li> 
+          <li>Some images will appear twice in a short-range, others in a long-range, and the others just once.</li>
+          <li>In each trial, you will get feedback as to if your response was correct.</li>
+          <UL>
+              <li>If you answer correctly (that is, if you don't press the key for the first-time-image or if you do press the key for the image presented twice), you will see the word "Correct answer". </li>
+          </UL>
+          <UL>
+              <li>If not, you will see the word "Wrong answer. "</li>
+          </UL>
+          <li>You can check the practice trials of this task from the following window.</li>
+          </UL>
+      </p>
 
-    <h3> Instructions </h3>
-    <p> 
-        <UL>  
-        <li>The goal of this experiment is to measure the ability of memory capacity for photographs.</li> 
-        <li>In this experiment, you will see a set of photographs one-by-one.  </li>
-        <li>Your task is to <b>remember each photograph </b>and answer <b>whether the photograph is presented twice or not by pressing the key "f" as soon as possible</b>. </li> 
-        <li>Some images will appear twice in a short-range, others in a long-range, and the others just once.</li>
-        <li>In each trial, you will get feedback as to if your response was correct.</li>
-        <UL>
-            <li>If you answer correctly (that is, if you don't press the key for the first-time-image or if you do press the key for the image presented twice), you will see the word "Correct answer". </li>
-        </UL>
-        <UL>
-            <li>If not, you will see the word "Wrong answer. "</li>
-        </UL>
-        <li>You can check the practice trials of this task from the following window.</li>
-        </UL>
-    </p>
+  </div>
 
-</div>
+  <h3> Practice trials </h3>
+  <p>
+    {%load templates%}
+    <iframe id="tutorial_demo"
+    title="practice trials"
+    width="640"
+    height="480"
+    src="{% static 'pre-post-tasks/instructions/tutorials_memorability_task.html' %}"></iframe>
+  </p>
 
-<h3> Practice trials </h3>
-<p>
-  <iframe id="tutorial_demo"
-  title="practice trials"
-  width="640"
-  height="480"
-  src="./tutorials_memorability_task.html"></iframe>
-</p>
-
-</main>
-</body>
-</html>
+{% endblock %}\

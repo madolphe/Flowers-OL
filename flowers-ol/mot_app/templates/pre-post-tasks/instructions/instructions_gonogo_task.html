@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html lang="">
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    main {
-      padding: 200;
-      margin: 200;
-    }
-  </style>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
 
-  <title>pre and post tests</title>
-</head>
+{% block content%}
+  <form id="request">{% csrf_token %}</form>
+  <div class="explanation-text">
 
-<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
+      <h3> Instructions </h3>
+      <p>   
+          <li>The goal of this experiment is to measure the ability to distinguish between relevant and irrelevant information.</li> 
+          <li>In each trial, you will see a sequence of numbers. </li>
+          <li>Your task is to focus on the number <b>"7"</b> and answer whether the number after the <b>"7"</b> is the <b>"3"</b> or not.</li> 
+          <li>If the number after <b>"7"</b> is <b>"3"</b>, please press the key <b>"<kbd>F</kbd>"</b> on your keyboard as soon as possible. </li>
+          <li>If not, please don't press any key.</li>
+          <li>You will get feedback about if your answer is correct in the following practice trials, but no feedback in the main experiment.</li>
+      </p>
 
-<body>
-<main>
-<div class="explanation-text">
+  </div>
 
-    <h3> Instructions </h3>
-    <p>   
-        <li>The goal of this experiment is to measure the ability to distinguish between relevant and irrelevant information.</li> 
-        <li>In each trial, you will see a sequence of numbers. </li>
-        <li>Your task is to focus on the number <b>"7"</b> and answer whether the number after the <b>"7"</b> is the <b>"3"</b> or not.</li> 
-        <li>If the number after <b>"7"</b> is <b>"3"</b>, please press the key <b>"<kbd>F</kbd>"</b> on your keyboard as soon as possible. </li>
-        <li>If not, please don't press any key.</li>
-        <li>You will get feedback about if your answer is correct in the following practice trials, but no feedback in the main experiment.</li>
-    </p>
+  <h3> Practice trials </h3>
+  <p>
+    {%load templates%}
+    <iframe id="tutorial_demo"
+    title="practice trials"
+    width="640"
+    height="480"
+    src="{% static 'pre-post-tasks/instructions/tutorials_gonogo_task.html' %}"></iframe>
+  </p>
 
-</div>
-
-<h3> Practice trials </h3>
-<p>
-  <iframe id="tutorial_demo"
-  title="practice trials"
-  width="640"
-  height="480"
-  src="./tutorials_gonogo_task.html"></iframe>
-</p>
-
-</main>
-</body>
-</html>
+  {% endblock %}\

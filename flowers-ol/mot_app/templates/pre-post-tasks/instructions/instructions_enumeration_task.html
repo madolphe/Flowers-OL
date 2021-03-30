@@ -1,44 +1,34 @@
-<!DOCTYPE html>
-<html lang="">
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./js/jquery-3.4.1.min.js"></script>
-  <script src="./js/addScreenPositionFunction.js"></script>
-  <script src="./js/csrfControl.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous">
-  
-  <link rel="stylesheet" href="./css/style_app.css">
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
 
-  <title>pre and post tests</title>
-</head>
+{% block content%}
+  <form id="request">{% csrf_token %}</form>
 
-<body>
-<main>
-<div class="explanation-text">
+  <div class="explanation-text">
 
-    <h3> Instructions </h3>
-    <p>
-        <li>The goal of this experiment is to measure human counting ability.</li> 
-        <li>In each rial, you will see a flash of multiple white circles. </li>
-        <li>Your task is <b>to count these circles and answer how many circles were presented using a drop-down list</b>.</li> 
-        <li>You can check the practice trials of this task from the following window. </li>
-    </p>
+      <h3> Instructions </h3>
+      <p>
+          <li>The goal of this experiment is to measure human counting ability.</li> 
+          <li>In each rial, you will see a flash of multiple white circles. </li>
+          <li>Your task is <b>to count these circles and answer how many circles were presented using a drop-down list</b>.</li> 
+          <li>You can check the practice trials of this task from the following window. </li>
+      </p>
 
-</div>
+  </div>
 
-<h3> Practice trials </h3>
-<p>
-  <iframe id="tutorial_demo"
-  title="practice trials"
-  width="640"
-  height="480"
-  src="./tutorials_enumeration_task.html"></iframe>
-</p>
+  <h3> Practice trials </h3>
+  <p>
+    {%load templates%}
+    <iframe id="tutorial_demo"
+    title="practice trials"
+    width="640"
+    height="480"
+    src="{% static 'pre-post-tasks/instructions/tutorials_enumeration_task.html' %}"></iframe>
+  </p>
 
-</main>
-</body>
-</html>
+{% endblock %}\

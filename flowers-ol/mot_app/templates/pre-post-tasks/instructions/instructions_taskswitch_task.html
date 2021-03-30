@@ -1,54 +1,43 @@
-<!DOCTYPE html>
-<html lang="">
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    main {
-      padding: 200;
-      margin: 200;
-    }
-  </style>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
 
-  <title>pre and post tests</title>
-</head>
+{% block content%}
+  <form id="request">{% csrf_token %}</form>
+  <div class="explanation-text">
 
-<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
+      <h3> Instructions </h3>
+      <p> 
+          <UL>  
+          <li>The goal of this experiment is to measure the ability to switch your attention.</li> 
+          <li>In each trial, the instruction word <b>"Color"</b> or <b>"Shape"</b> will be shown to you. </li>
+          <li>Depending on the instruction word, your task changes.</li> 
+          <li>For the <b>"Color"</b> trial, you have to answer whether the following object is <b>"blue"</b> or <b>"red."</b>  </li>
+          <UL>
+              <li>Please press <b>"f"</b> or <b>"j"</b> for the <b>red</b> or <b>blue</b>, respectively, as soon as possible.</li>
+          </UL>
+          <li>For the <b>"Shape"</b> trial, you have to answer whether the following object is <b>"square"</b> or <b>"circle."</b> </li>
+          <UL>
+              <li>Please press <b>"f"</b> or <b>"j"</b> for the <b>square</b> or <b>circle</b>, respectively, as soon as possible.</li>
+          </UL>
+          <li>You can check the practice trials of this task from the following window.</li>
+          </UL>
+      </p>
 
-<body>
-<main>
-<div class="explanation-text">
+  </div>
 
-    <h3> Instructions </h3>
-    <p> 
-        <UL>  
-        <li>The goal of this experiment is to measure the ability to switch your attention.</li> 
-        <li>In each trial, the instruction word <b>"Color"</b> or <b>"Shape"</b> will be shown to you. </li>
-        <li>Depending on the instruction word, your task changes.</li> 
-        <li>For the <b>"Color"</b> trial, you have to answer whether the following object is <b>"blue"</b> or <b>"red."</b>  </li>
-        <UL>
-            <li>Please press <b>"f"</b> or <b>"j"</b> for the <b>red</b> or <b>blue</b>, respectively, as soon as possible.</li>
-        </UL>
-        <li>For the <b>"Shape"</b> trial, you have to answer whether the following object is <b>"square"</b> or <b>"circle."</b> </li>
-        <UL>
-            <li>Please press <b>"f"</b> or <b>"j"</b> for the <b>square</b> or <b>circle</b>, respectively, as soon as possible.</li>
-        </UL>
-        <li>You can check the practice trials of this task from the following window.</li>
-        </UL>
-    </p>
+  <h3> Practice trials </h3>
+  <p>
+    {%load templates%}
+    <iframe id="tutorial_demo"
+    title="practice trials"
+    width="640"
+    height="480"
+    src="{% static 'pre-post-tasks/instructions/tutorials_taskswitch_task.html' %}"></iframe>
+  </p>
 
-</div>
-
-<h3> Practice trials </h3>
-<p>
-  <iframe id="tutorial_demo"
-  title="practice trials"
-  width="640"
-  height="480"
-  src="./tutorials_taskswitch_task.html"></iframe>
-</p>
-
-</main>
-</body>
-</html>
+{% endblock %}\
