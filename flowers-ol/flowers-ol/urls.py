@@ -22,6 +22,6 @@ urlpatterns = [
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
     path('', include('manager_app.urls')),
-    path('', include('demo_app.urls')),
+    path('', include('jold_app.urls')),
     path('', include('survey_app.urls'))
 ]
