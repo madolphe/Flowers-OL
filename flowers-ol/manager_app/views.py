@@ -53,8 +53,6 @@ def signup_page(request):
     sign_up_form = SignUpForm(request.POST or None)
     if sign_up_form.is_valid():
         user = sign_up_form.save(study=study, commit=False)
-        # user # Use set_password in order to hash password
-        # user.save()
         login(request, user)
         return redirect(reverse(home))
     return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
