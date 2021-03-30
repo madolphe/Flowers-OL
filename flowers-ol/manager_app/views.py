@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
 from django.utils.translation import LANGUAGE_SESSION_KEY
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 import json, datetime
 
@@ -58,29 +58,6 @@ def signup_page(request):
         login(request, user)
         return redirect(reverse(home))
     return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
-
-
-@login_required
-def consent_page(request):
-    user = request.user
-    participant = user.participantprofile
-    study = participant.study
-    greeting = "Salut, {0} !".format(user.username)
-    form = ConsentForm(request.POST or None)
-    if form.is_valid():
-        user.first_name = request.POST['nom']
-        user.last_name = request.POST['prenom']
-        user.save()
-        participant.consent = True
-        participant.save()
-        participant.assign_sessions()
-        return redirect(reverse(home))
-    if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
-    return render(request, 'consent_page.html', {'CONTEXT': {
-        'greeting': greeting,
-        'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
-        'study': study,
-        'form': form}})
 
 
 @login_required

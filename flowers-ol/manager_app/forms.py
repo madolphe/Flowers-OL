@@ -70,24 +70,3 @@ class SignUpForm(forms.ModelForm):
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
         return cleaned_data
-
-
-class ConsentForm(forms.Form):
-    """
-    Class to generate a form for consent page.
-    """
-    understood = forms.BooleanField(label="J'ai lu et compris les termes de cette étude")
-    agreed = forms.CharField(label='Consentement', help_text='Ecrire \"Je consens\" dans la barre')
-    fields = ['understood', 'agreed']
-
-    def __init__(self, *args, **kwargs):
-        super(ConsentForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Valider'))
-
-    def clean_agreed(self):
-        user_input = self.cleaned_data['agreed'].lower().strip('\"')
-        if user_input != 'je consens':
-            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" '
-                                        'pour valider votre participation')
-        return user_input
