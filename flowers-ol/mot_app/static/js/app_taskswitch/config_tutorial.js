@@ -15,7 +15,7 @@ let canvas_w = Math.round(12*ppd);
 let canvas_h = Math.round(10*ppd);
 
 let num_rep = 2; 
-let array_stimcond = [1,1,1,0,0,0];
+let array_stimcond = [1,1,1,0,0,0]; //this parameter is used for the switching flag. 
 let array_taskcond = ['Color','Shape']; //Tasks switch condition.
 let array_textleft = ['Red:f','Circle:f'];
 let array_textright = ['Blue:j','Square:j']; 
@@ -47,11 +47,10 @@ let size_text = Math.round(0.5*ppd); //in pix
 
 let col_bkg = 128;
 
-let x_ok = 0;
-let y_ok = 200;
-
 //
 let pos_guide = Math.round(3*ppd);
 
-let x_restart = -Math.round(5.5*ppd);; //in pixel
-let y_restart = Math.round(2*ppd);; //in pixel
+let x_ok = -Math.round(1.5*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(6*ppd);; //in pixel
+let y_restart = -Math.round(5*ppd);; //in pixel

@@ -39,11 +39,10 @@ let col_text = 255;
 let size_text = Math.round(1*ppd); //in pixel
 ////
 
-let x_ok = 0;
-let y_ok = 200;
-
+let x_ok = -Math.round(0*ppd);
+let y_ok = Math.round(4*ppd);
 let x_restart = -Math.round(5.5*ppd);; //in pixel
-let y_restart = Math.round(1*ppd);; //in pixel
+let y_restart = -Math.round(4*ppd);; //in pixel
 
 let col_0 =[128,0,0];
 let col_1 = [0,0,128];

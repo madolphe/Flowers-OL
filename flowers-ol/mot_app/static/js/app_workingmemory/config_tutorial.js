@@ -46,8 +46,8 @@ let size_text_button = 0.5*ppd; //in pix
 let shift_position = 3*ppd; //in pix
 
 let Button = [];
-let x_ok = 0;
-let y_ok = 200;
 
-let x_restart = -Math.round(5.5*ppd);; //in pixel
-let y_restart = Math.round(0*ppd);; //in pixel
+let x_ok = -Math.round(1.5*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(6*ppd);; //in pixel
+let y_restart = -Math.round(5*ppd);; //in pixel

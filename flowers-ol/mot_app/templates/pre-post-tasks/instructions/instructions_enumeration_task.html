@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    main {
-      padding: 200;
-      margin: 200;
-    }
-  </style>
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/addScreenPositionFunction.js"></script>
+  <script src="./js/csrfControl.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="./css/style_app.css">
 
   <title>pre and post tests</title>
 </head>
-
-<!--<link rel="stylesheet" href="{% static 'css/style_app.css' %}">-->
 
 <body>
 <main>
@@ -32,9 +32,11 @@
 
 <h3> Practice trials </h3>
 <p>
-    <script src="./js/p5.js"></script>
-    <script src="./js/app_enumeration/config_tutorial.js"></script>
-    <script src="./js/app_enumeration/enumeration.js"></script>
+  <iframe id="tutorial_demo"
+  title="practice trials"
+  width="640"
+  height="480"
+  src="./tutorials_enumeration_task.html"></iframe>
 </p>
 
 </main>

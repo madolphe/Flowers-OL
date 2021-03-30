@@ -15,7 +15,7 @@ let flag_practice = true;
 let canvas_w = Math.round(12*ppd);
 let canvas_h = Math.round(10*ppd);
 
-let num_rep = 3; 
+let num_rep = 2; 
 let array_stimcond = [3,4,5]; //Experimental condition. 
 let time_stimduration = 700; //in ms Green & Bavelier (2006)
 let time_maskduration = 1000; //in ms
@@ -45,12 +45,12 @@ let size_text = Math.round(0.5*ppd); //in pixel
 
 let sel;
 let x_response = Math.round(1.5*ppd); //in pixel
-let y_response = Math.round(7*ppd); //in pixel
+let y_response = Math.round(4*ppd); //in pixel
 let max_answer = 15;
 let x_ok = -Math.round(1.5*ppd);
-let y_ok = Math.round(7*ppd);
-let x_restart = -Math.round(5.5*ppd);; //in pixel
-let y_restart = Math.round(0*ppd);; //in pixel
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(6*ppd);; //in pixel
+let y_restart = -Math.round(5*ppd);; //in pixel
 let round_button = "5px";
 let size_button_x = "70px";
 let size_button_y = "70px";

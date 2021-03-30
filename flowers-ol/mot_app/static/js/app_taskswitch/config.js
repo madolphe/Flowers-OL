@@ -45,8 +45,10 @@ let size_text = Math.round(1*ppd); //in pix
 
 let col_bkg = 128;
 
-let x_ok = 0;
-let y_ok = 200;
+let x_ok = -Math.round(0*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(5.5*ppd);; //in pixel
+let y_restart = -Math.round(4*ppd);; //in pixel
 
 //
 let pos_guide = Math.round(5*ppd);

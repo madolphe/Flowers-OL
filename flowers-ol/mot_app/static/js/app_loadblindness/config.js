@@ -50,7 +50,9 @@ let contrast_img_wrong = 0.3;
 let ind_distance = [0,1];
 let distance_from_center =  [Math.round(3*ppd),Math.round(6*ppd)]; //in pix;
 
-let x_ok = 0;
-let y_ok = 200;
+let x_ok = -Math.round(0*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(5.5*ppd);; //in pixel
+let y_restart = -Math.round(4*ppd);; //in pixel
 
 let pos_guide = Math.round(2*ppd);

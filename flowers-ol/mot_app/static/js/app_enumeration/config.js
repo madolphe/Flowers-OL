@@ -41,13 +41,16 @@ let size_text = Math.round(1*ppd); //in pixel
 
 //button
 let sel;
-let x_response = 50;
-let y_response = 200;
 let max_answer = 15;
-let x_ok = -50;
-let y_ok = 200;
 let round_button = "5px";
 let size_button_x = "70px";
 let size_button_y = "70px";
+
+let x_response = Math.round(1.5*ppd); //in pixel
+let y_response = Math.round(4*ppd); //in pixel
+let x_ok = -Math.round(1.5*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(5.5*ppd);; //in pixel
+let y_restart = -Math.round(4*ppd);; //in pixel
 ////
 

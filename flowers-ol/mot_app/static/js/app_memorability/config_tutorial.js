@@ -66,8 +66,10 @@ let size_correct = Math.round(0.5*ppd); //in pix
 let col_wrong = [128,0,0];
 let size_wrong = Math.round(0.5*ppd);  //in pix
 
-let x_ok = 0;
-let y_ok = 200;
+let x_ok = -Math.round(1.5*ppd);
+let y_ok = Math.round(4*ppd);
+let x_restart = -Math.round(6*ppd);; //in pixel
+let y_restart = -Math.round(5*ppd);; //in pixel
 
 // window size control.
 let scale_window = 0.8;
@@ -83,5 +85,3 @@ function make_array(val_start, val_stop, num_array) {
     return array;
   }
   
-  let x_restart = -Math.round(5.5*ppd);; //in pixel
-  let y_restart = Math.round(0*ppd);; //in pixel

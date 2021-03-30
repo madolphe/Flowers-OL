@@ -70,7 +70,7 @@ function scene_fixation(callback){
     textSize(size_instruction);
     noStroke();
     textAlign(CENTER);
-    text(Params.taskcond[Params.trialcond[Params.ind_stimcond]],CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+(size_instruction/2));
+    text(Params.taskcond[Params.ind_task],CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+(size_instruction/2));
     pop();
 
   } else {
@@ -119,8 +119,8 @@ function scene_stim(){
     textSize(size_instruction);
     noStroke();
     textAlign(CENTER);
-    text(array_textleft[Params.trialcond[Params.ind_stimcond]],(CANVAS_WIDTH/2)-pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
-    text(array_textright[Params.trialcond[Params.ind_stimcond]],(CANVAS_WIDTH/2)+pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
+    text(array_textleft[Params.ind_task],(CANVAS_WIDTH/2)-pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
+    text(array_textright[Params.ind_task],(CANVAS_WIDTH/2)+pos_guide, (CANVAS_HEIGHT/2)+(size_instruction/2));
     pop();
     
   } else{
@@ -162,6 +162,7 @@ function quit_task(){
   let parameters_to_save = {
       'results_responses': Params.results_responses,
       'results_rt': Params.results_rt,
+      'results_ind_switch': Params.results_ind_switch,
       'results_taskcond': Params.results_taskcond,
       'results_colorcond': Params.results_colorcond,
       'results_shapecond': Params.results_shapecond
@@ -208,14 +209,11 @@ class TimeManager{
 
   repeat(){
     if (Params.flag_block ==true){
+      // This experiment is regarded as one block experiment. The preset repetetion is recalculated in one block in the constructer.
       Params.next_block();
-      if (Params.repetition == num_rep){
-        this.scene = this.end_scene;
-        if (flag_practice==false){
-          button_end.show();
-        }   
-      }else{
-        this.scene = this.scene_back;
+      this.scene = this.end_scene;
+      if (flag_practice==false){
+        button_end.show();
       }
     }else{
       Params.next_trial();      
@@ -247,7 +245,15 @@ class ParameterManager{
     this.flag_block = false;
 
     // condition setting
-    this.trialcond = shuffle(array_stimcond);
+    this.ind_switch = [];
+    for (let i=0;i<num_rep;i++){
+      this.ind_switch = concat(this.ind_switch,array_stimcond);
+    }
+    this.ind_switch = shuffle(this.ind_switch);
+
+    this.ind_task = shuffle([0,1]); 
+    this.ind_task = int(this.ind_task[0]); //initialize the first task;
+
     this.taskcond = array_taskcond;
     this.colorcond = shuffle(array_colorcond);
     this.shapecond = shuffle(array_shapecond);
@@ -262,6 +268,7 @@ class ParameterManager{
     this.tmp_rt = null;
     this.results_responses = [];
     this.results_rt = [];
+    this.results_ind_switch = [];
     this.results_taskcond = [];
     this.results_colorcond = [];
     this.results_shapecond = [];
@@ -272,24 +279,30 @@ class ParameterManager{
     this.save(); //This task saves the data once per block.
 
     //set the next trial parameters
+    this.set_stimlusorder_trial();
     this.ind_stimcond ++;
     this.tmp_res_ob = 0;
-    this.set_stimlusorder_trial();
-    if (this.ind_stimcond==array_stimcond.length-1){
+    if (this.ind_stimcond==this.ind_switch.length){
       this.flag_block = true;
     }
   }
 
   next_block(){
+    //in this experiment, this function is just for the save of the last trial.
+    //The last value of the ind_switch is the same as the one before just for pudding.
+    this.ind_stimcond = this.ind_stimcond-1;
     this.save(); 
-    //set the next block parameters
-    this.repetition ++;
-    this.set_stimlusorder_block();
-    this.ind_stimcond = 0;
-    this.flag_block = false;
-    this.tmp_res_ob = 0;
   }
+
   set_stimlusorder_trial(){
+    console.log(this.ind_switch);
+    console.log(this.ind_stimcond)
+    console.log(this.ind_task)
+    console.log(array_textleft[this.ind_task])
+    if (this.ind_switch[this.ind_stimcond]==1){
+      this.ind_task = Math.abs(this.ind_task -1);
+    }
+
     this.colorcond = shuffle(array_colorcond);
     this.shapecond = shuffle(array_shapecond);
     if (this.colorcond[0]==0){
@@ -299,21 +312,13 @@ class ParameterManager{
     }
   }
 
-  set_stimlusorder_block(){
-    this.trialcond = shuffle(array_stimcond);
-    this.colorcond = shuffle(array_colorcond);
-    this.shapecond = shuffle(array_shapecond);
-    if (this.colorcond[0]==0){
-      this.color = col_0;
-    } else{
-      this.color = col_1;
-    }
-  }
+
   save(){
     // store the current stimulus and response data to the result dictionary.
     this.results_responses.push(this.tmp_res_ob);
     this.results_rt.push(this.tmp_rt);
-    this.results_taskcond.push(this.taskcond[this.trialcond[this.ind_stimcond]]);
+    this.results_ind_switch.push(this.ind_switch[this.ind_stimcond]);
+    this.results_taskcond.push(this.taskcond[this.ind_task]);
     this.results_colorcond.push(this.colorcond[0]);
     this.results_shapecond.push(this.shapecond[0]);
   }
@@ -327,8 +332,3 @@ const shuffle = ([...array]) => {
   }
   return array;
 }
-
-
-
-
-
