@@ -10,14 +10,12 @@ function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
 
-let flag_practice = true;
-let prac_num_rep = 30;
 
-let fname_target = './img/list_img_target_tutorial.csv';
-let fname_filler = './img/list_img_filler_tutorial.csv';
+let flag_practice = false;
+let prac_num_rep = 30; //ignored in the main exp.
 
-let canvas_w = Math.round(12*ppd);
-let canvas_h = Math.round(10*ppd);
+let fname_target = './img/list_img_target2.csv';
+let fname_filler = './img/list_img_filler2.csv';
 
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
@@ -56,25 +54,25 @@ let thick_fixation = Math.round(0.1*ppd); // in pix
 
 // text 
 let col_text = 255;
-let size_text = Math.round(0.5*ppd); //in pix
+let size_text = Math.round(1*ppd); //in pix
 ////
 
 let Imgs_targ = [];
 let Imgs_filler = [];
 let size_img = 700; 
-let size_rescale = Math.round(4.5*ppd); //in pix
+let size_rescale = Math.round(6.5*ppd); //in pix
 
 
 //feedback params
 let col_correct = [0,0,128];
-let size_correct = Math.round(0.5*ppd); //in pix
+let size_correct = Math.round(1*ppd); //in pix
 let col_wrong = [128,0,0];
-let size_wrong = Math.round(0.5*ppd);  //in pix
+let size_wrong = Math.round(1*ppd);  //in pix
 
-let x_ok = -Math.round(1.5*ppd);
+let x_ok = -Math.round(0*ppd);
 let y_ok = Math.round(4*ppd);
-let x_restart = -Math.round(6*ppd);; //in pixel
-let y_restart = -Math.round(5*ppd);; //in pixel
+let x_restart = -Math.round(5.5*ppd);; //in pixel
+let y_restart = -Math.round(4*ppd);; //in pixel
 
 // window size control.
 let scale_window = 0.8;

@@ -4,8 +4,8 @@ function preload() {
 
   //load_imgs(loop_imgs);
   //num_targlist = stats_targ.getRowCount();
-  stats_targ = loadTable('./img/list_img_target.csv');
-  stats_filler = loadTable('./img/list_img_filler.csv');
+  stats_targ = loadTable(fname_target);
+  stats_filler = loadTable(fname_filler);
   console.log('done preload')
 
 }
@@ -387,9 +387,17 @@ class TimeManager{
 
     this.ind_stimcond ++;
     this.tmp_res_ob = 0;
-    if (this.ind_stimcond==num_stimulus-1){
-      this.flag_block = true;
-      button_end.show();
+    
+    if (flag_practice==true){
+      if (this.ind_stimcond==prac_num_rep-1){
+        this.flag_block = true;
+        button_end.show();
+      }
+    } else{
+      if (this.ind_stimcond==num_stimulus-1){
+        this.flag_block = true;
+        button_end.show();
+      }
     }
   }
 
