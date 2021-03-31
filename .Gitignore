@@ -1,4 +1,5 @@
 *.pyc
+.vscode
 .idea/
 lib/kidlearn/
 flowers-ol/manager_app/static/admin/
