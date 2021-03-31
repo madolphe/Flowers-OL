@@ -1,6 +1,6 @@
 [
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-ll-practice",
             "description": "Entraînement au Lunar lander",
@@ -10,7 +10,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-mot-practice",
             "description": "Attention task",
@@ -19,7 +19,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-free-choice",
             "description": "Fin de session",
@@ -29,7 +29,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-questions-sess1",
             "description": "Questionnaire d'après-session",
@@ -57,7 +57,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-questions-sess2",
             "description": "Questionnaire d'après-session",
@@ -85,7 +85,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-questions-sess3",
             "description": "Questionnaire d'après-session",
@@ -97,7 +97,7 @@
                 "instruments": [
                     "JOLD",
                     "NASA-TLX",
-                    "SIMS",
+                    "SIMS"
                 ],
                 "exclude": {
                     "handle__in": [
@@ -108,7 +108,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-ux-questions",
             "description": "Questionnaire d'expérience utilisateur",
@@ -124,7 +124,7 @@
         }
     },
     {
-        "model": "experiment_manager_app.Task",
+        "model": "manager_app.Task",
         "fields": {
             "name": "JOLD-profile-questions",
             "description": "Complétez votre profil",
