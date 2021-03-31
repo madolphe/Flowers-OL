@@ -171,7 +171,6 @@ class ParticipantProfile(models.Model):
             return False
         return True
 
-    # END TASK VIEW :
     def pop_task(self, n=1):
         """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
         task_names = self.task_stack_csv.split(',')[n:]
@@ -186,7 +185,6 @@ class ParticipantProfile(models.Model):
         stack_head = self.task_stack_csv.split(',')[0]
         return Task.objects.get(name=stack_head)
 
-    # END SESSION VIEW :
     def close_current_session(self):
         if self.sessions.all():
             self.session_timestamp = datetime.datetime.now()
@@ -237,7 +235,6 @@ class ParticipantProfile(models.Model):
         else:
             assert False, 'No sessions found for study "{}"'.format(self.study)
 
-    # ADDITIONAL USEFUL PROPERTIES
     @property
     def future_sessions(self):
         if self.current_session:
@@ -248,7 +245,6 @@ class ParticipantProfile(models.Model):
         else:
             return self.sessions.all()
 
-    # DISPLAY USER INFORMATIONS
     @property
     def task_stack(self):
         return tuple([Task.objects.get(name=name) for name in self.task_names_list])
