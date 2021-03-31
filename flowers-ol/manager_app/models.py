@@ -1,3 +1,4 @@
+from random import shuffle
 from django.db import models
 from django.utils import timezone
 import datetime, uuid, json, jsonfield
@@ -112,7 +113,7 @@ class ParticipantProfile(models.Model):
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     ref_dt = models.DateTimeField(default=datetime.datetime.now, verbose_name='Reference datetime')
-    sessions = models.ManyToManyField(ExperimentSession, default=[], related_name='session_stack') # FIFO
+    sessions_stack_csv = models.TextField(default='', null=True, blank=True, verbose_name='Sessions stack')
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
@@ -127,7 +128,21 @@ class ParticipantProfile(models.Model):
     def __str__(self):
         return self.__unicode__()
 
-    # HOME VIEW
+    def add_session(self, pk, commit=True):
+        if self.sessions_stack_csv == '':
+            self.sessions_stack_csv = str(pk)
+        else:
+            self.sessions_stack_csv = ','.join([self.sessions_stack_csv, str(pk)])
+        if commit:
+            self.save()
+
+    def pop_session(self, commit=True):
+        sessions_stack_csv = self.sessions_stack_csv
+        if sessions_stack_csv:
+            self.sessions_stack_csv = sessions_stack_csv.split(',')[:-1]
+            if commit:
+                self.save()
+
     def set_current_session(self):
         assert self.sessions.all(), 'Participant has no sessions assigned'
         if not self.current_session:
@@ -207,12 +222,17 @@ class ParticipantProfile(models.Model):
                                            hour=6)
             )
 
-    # CONSENT PAGE FOR NOW BUT SHOULD BE MOVED
-    def assign_sessions(self, save=True):
+    def assign_sessions(self, commit=True):
         if self.study and ExperimentSession.objects.filter(study=self.study):
             sessions = ExperimentSession.objects.filter(study=self.study)
-            self.sessions.add(*sessions)
-            if save:
+            unique_indexes = list(set([s.index for s in sessions]))
+            for i in unique_indexes:
+                sessions_i = list(sessions.filter(index=i))
+                if len(sessions_i) > 1:
+                    shuffle(sessions_i)
+                for s in sessions_i:
+                    self.add_session(s.pk)
+            if commit:
                 self.save()
         else:
             assert False, 'No sessions found for study "{}"'.format(self.study)
