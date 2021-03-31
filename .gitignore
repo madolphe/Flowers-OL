@@ -1,9 +1,0 @@
-*.pyc
-.vscode
-.idea/
-flowers-ol/manager_app/static/admin/
-# Pipfile
-Pipfile.lock
-*migrations/
-flowers-ol/flowers-ol-db
-flowers-ol/static
