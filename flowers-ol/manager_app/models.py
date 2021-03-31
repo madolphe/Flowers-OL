@@ -63,25 +63,18 @@ class ExperimentSession(models.Model):
     Model that represent a particular experiment for a participant.
     """
     study = models.ForeignKey(Study, to_field='name', null=True, on_delete=models.SET_NULL)
-    day = models.IntegerField(default=0) # have to use default=0 because nulls are not compared for uniqueness
-    index = models.IntegerField(default=0)
-    wait = models.DurationField(default=datetime.timedelta(0))
-    required = models.BooleanField(default=True)
     tasks_csv = models.CharField(max_length=200, default='')
-    extra_json = jsonfield.JSONField(default={}, blank=True)
+    extra_json = jsonfield.JSONField(default=dict, blank=True)
+    index = models.IntegerField(default=0)  # TODO index determines how sessions are ordered (sessions with equal indexes are randomized)
+    required = models.BooleanField(default=True)
+    wait = models.JSONField(default=dict, blank=True)  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
+    deadline = models.JSONField(default=dict, blank=True)  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
 
     class Meta:
-        ordering = ['study', 'day', 'index']
-        unique_together = ['study', 'day', 'index']
-        constraints = [
-            models.CheckConstraint(
-                check = models.Q(day__gt=0) | models.Q(index__gt=0),
-                name='day_or_index_gt'
-            )
-        ]
+        ordering = ['study', 'index', 'pk']
 
     def __unicode__(self):
-        return '.'.join([self.study.name, str(self.day), str(self.index)])
+        return '.'.join([self.study.name, str(self.index), str(self.pk)])
 
     def __str__(self):
         return self.__unicode__()
