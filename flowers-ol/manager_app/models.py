@@ -186,9 +186,14 @@ class ParticipantProfile(models.Model):
         return Task.objects.get(name=stack_head)
 
     def close_current_session(self):
-        if self.sessions.all():
-            self.session_timestamp = datetime.datetime.now()
-            self.sessions.set(self.sessions.exclude(pk=self.current_session.pk))
+        '''If sessions stack is not an empty string: 
+            1. time stamp current session
+            2. pop the first item
+            3. clear current session
+        '''
+        if self.session_stack:
+            self.last_session_timestamp = datetime.datetime.now()
+            self.pop_session()
             self.current_session = None
             self.save()
 
