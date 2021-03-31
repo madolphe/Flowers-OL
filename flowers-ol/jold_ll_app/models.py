@@ -1,6 +1,6 @@
 from django.db import models
 import datetime
-from experiment_manager_app.models import ParticipantProfile, ExperimentSession
+from manager_app.models import ParticipantProfile, ExperimentSession
 
 
 # Create your models here.
