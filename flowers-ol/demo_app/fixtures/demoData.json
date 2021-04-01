@@ -26,7 +26,7 @@
             "description": "Demo task",
             "prompt": "Start demo task",
             "view_name": "questionnaire",
-            "exit_view": "home",
+            "exit_view": "exit_demo_task",
             "info_templates_csv": "Basic information tabs=basic_tab.html",
             "extra_json": {
                 "instruments": [
@@ -34,5 +34,25 @@
                 ]
             }
         }
-    }
+    },
+    {
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "DEMO",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-1",
+			"order": 1,
+			"prompt": "Taille de la diagonale de votre écran en cm",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "none",
+			"widget": "multiple-widget",
+			"type": "float",
+			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
+			"validate": "is_pos_num"
+		}
+	}
 ]

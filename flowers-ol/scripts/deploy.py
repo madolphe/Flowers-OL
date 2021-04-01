@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import sys
 import getopt, argparse
@@ -18,57 +18,94 @@ apps = settings.USER_APPS
 
 # Parse arguments
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+p.add_argument('-a', '--all', action='store_true', help='Boolean flag to run deployment will all options')
 p.add_argument('-r', '--reset_db', action='store_true', help='Boolean flag to reset project database using reset_db')
 p.add_argument('-s', '--superuser', action='store_true', help='Boolean flag to create superuser')
 p.add_argument('-c', '--collectstatic', action='store_true', help='Boolean flag to collect static files inside STATIC_ROOT')
-p.add_argument('-t', '--translate', action='store_true', help='Boolean flag to register translation fields')
-p.add_argument('-f', '--full', action='store_true', help='Boolean flag to run deployment will all options')
+p.add_argument('-t', '--translations', action='store_true', help='Boolean flag to run translation routines across all apps (i.e. makemessages and sync_translation_fields)')
+p.add_argument('-m', '--migrations', action='store_true', help='Boolean flag to make and apply migrations across all apps')
+p.add_argument('-f', '--fixtures', action='store_true', help='Boolean flag to install fixtures across all apps')
 args = p.parse_args()
 
 
-if __name__ == '__main__':
-    pipenv_pref = 'pipenv run python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
+# Add text ANSI escape sequences for pretty text output
+class bcolors:
+    PURPLE_BOLD_BRIGHT = '\033[1;95m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
+def bold(s):
+    return f'{bcolors.BOLD}{s}{bcolors.ENDC}'
+
+
+class Deployer(object):
+    def __init__(self):
+        self.commands = []
+        self.messages = []
+
+    def highlight_message(self, message):
+        # return f'{bcolors.HEADER}{bcolors.PURPLE}* {message} ...{bcolors.ENDC}{bcolors.ENDC}'
+        return f'{bcolors.PURPLE_BOLD_BRIGHT}* {message} ...{bcolors.ENDC}'
+
+    def add(self, command='', message='', plain_format=False):
+        assert any([command, message]), 'Need either a command or a message to add'
+        self.commands.append(command)
+        self.messages.append(message if plain_format else self.highlight_message(message))
+
+    def run(self):
+        for message, command in zip(self.messages, self.commands):
+            if message:
+                print(message)
+            if os.system(f'{command}') == 0:
+                continue
+            else:
+                break
+
+
+def main():
+    deployer = Deployer()
+    prefix = 'python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
+    # deployer.add(f'{}', '')
     # If user wants to reset db:
-    if args.reset_db or args.full:
-        os.system(f'{pipenv_pref} reset_db')
-        print()
+    if args.reset_db or args.all:
+        deployer.add(command=f'{prefix} reset_db', message='Resetting DB')
+    
+    # Mogrations
+    if args.migrations or args.all:
+        deployer.add(message='Setting up migration directories')
+        for app in apps:
+            # Make sure a migration folder exists, if not create one and add __init__.py inside
+            if not os.path.isdir(f'{app}/migrations'):
+                deployer.add(f'mkdir {app}/migrations', f'  mkdir {bold(app)}/migrations', plain_format=True)
+                deployer.add(f'touch {app}/migrations/__init__.py', f'  touch {bold(app)}/migrations/__init__.py', plain_format=True)
+            else:
+                deployer.add('', f'  migration directory is already set up for {bold(app)}', plain_format=True)
+        deployer.add(f'{prefix} makemigrations', 'Creating migrations')
+        deployer.add(f'{prefix} migrate', 'Migrating')
 
-    # Make sure a migration folder exists:
-    for app in apps:
-        if not os.path.isdir(f'{app}/migrations'):
-            os.system(f'mkdir {app}/migrations')
-            os.system(f'touch {app}/migrations/__init__.py')
-
-    # List of `manage.py` commands to run (order is important!)
-    # 1. Make migrations
-    # 2. Apply migrations
-    labels = ['Making migrations', 'Migrating']
-    commands = ['makemigrations', 'migrate']
-
-    # 3. Register translation fields
-    commands.append('sync_translation_fields')
-    labels.append('Registering translation fields')
+    # Register translation fields
+    # TODO add code to make messages in all apps
+    if args.translations or args.all:
+        deployer.add(f'{prefix} sync_translation_fields', 'Registering translation fields')
 
     # Install fixtures for each app
-    for app in apps:
-        if os.path.isdir(f'{app}/fixtures'):
-            commands.append(f'loaddata {app}/fixtures/*')
-            labels.append(f'Loading fixtures for {app}')
+    if args.fixtures or args.all:
+        deployer.add(message='Installing fixtures')
+        for app in apps:
+            if os.path.isdir(f'{app}/fixtures'):
+                deployer.add(f'{prefix} loaddata {app}/fixtures/* -v 1', f'  {bold(app)}', plain_format=True)
 
-    # 4. Collect statics (optional)
-    if args.collectstatic or args.full:
-        commands.append('collectstatic -l')
-        labels.append('Collecting static files')
+    # Collect statics
+    if args.collectstatic or args.all:
+        deployer.add(f'{prefix} collectstatic -l', 'Collecting static files')
 
-    # 5. Add superuser (optional)
-    if args.superuser or args.full:
-        commands.append('createsuperuser')
-        labels.append('Creating superuser')
+    # Add superuser
+    if args.superuser or args.all:
+        deployer.add(f'{prefix} createsuperuser', 'Creating superuser')
 
-    # Run commands synchronoulsy
-    for label, command in zip(labels, commands):
-        print()
-        print(f'* {label} ...')
-        if os.system(f'{pipenv_pref} {command}') == 0:
-            continue
+    deployer.run()
+
+
+if __name__ == '__main__':
+    main()

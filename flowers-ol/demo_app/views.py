@@ -13,3 +13,9 @@ from survey_app.models import Question, Answer
 def demo_questionnaire(request):
     print('Call to `demo_questionnaire` view in demo_app/views.py')
     return redirect(reverse('home'))
+
+
+@login_required
+def exit_demo_task(request):
+    request.session['exit_view_done'] = True
+    return redirect(reverse('end_task'))
