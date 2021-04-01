@@ -116,7 +116,6 @@ class ExperimentSession(models.Model):
         return all(checks)
 
 
-
 class ParticipantProfile(models.Model):
     # Link to User model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -144,6 +143,8 @@ class ParticipantProfile(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+    # Session management
+
     def add_session(self, pk, commit=True):
         if self.session_stack == '':
             self.session_stack = str(pk)
@@ -167,6 +168,24 @@ class ParticipantProfile(models.Model):
             if commit:
                 self.save()
 
+    def assign_sessions(self, commit=True):
+        if self.study and ExperimentSession.objects.filter(study=self.study):
+            self.reset_session_stack(commit=True)
+            sessions = ExperimentSession.objects.filter(study=self.study)
+            self.sessions.add(*sessions)
+            unique_indexes = list(set([s.index for s in sessions]))
+            for i in unique_indexes:
+                sessions_i = list(sessions.filter(index=i))
+                if len(sessions_i) > 1:
+                    shuffle(sessions_i)
+                for s in sessions_i:
+                    self.add_session(s.pk)
+            if commit:
+                self.clean_fields()
+                self.save()
+        else:
+            assert False, 'No sessions found for study "{}"'.format(self.study)
+
     def set_current_session(self):
         assert self.session_stack, 'Session "stack" is an empty string. Did you forget to assign sessions and create a sessions stack?'
         if not self.current_session:
@@ -175,6 +194,28 @@ class ParticipantProfile(models.Model):
             self.current_session = s
             self.task_stack_csv = s.tasks_csv
             self.save()
+
+    def close_current_session(self):
+        '''If sessions stack is not an empty string: 
+            1. time stamp current session
+            2. pop the first item
+            3. clear current session
+        '''
+        if self.session_stack:
+            self.last_session_timestamp = timezone.now().replace(microsecond=0)
+            self.pop_session()
+            self.current_session = None
+            self.save()
+
+    @property
+    def future_sessions(self):
+        if self.current_session:
+            if self.sessions.exclude(pk=self.current_session.pk):
+                return self.sessions.exclude(pk=self.current_session.pk)
+            else:
+                return []
+        else:
+            return self.sessions.all()
 
     def old_validator(self):
         # If the current session is not today, not required and was skipped (i.e date in the past):
@@ -194,7 +235,9 @@ class ParticipantProfile(models.Model):
         if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
             return False
         return True
-        
+
+    # Task management
+
     def pop_task(self, n=1):
         """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
         task_names = self.task_stack_csv.split(',')[n:]
@@ -209,17 +252,36 @@ class ParticipantProfile(models.Model):
         stack_head = self.task_stack_csv.split(',')[0]
         return Task.objects.get(name=stack_head)
 
-    def close_current_session(self):
-        '''If sessions stack is not an empty string: 
-            1. time stamp current session
-            2. pop the first item
-            3. clear current session
-        '''
-        if self.session_stack:
-            self.last_session_timestamp = timezone.now().replace(microsecond=0)
-            self.pop_session()
-            self.current_session = None
-            self.save()
+    @property
+    def task_stack(self):
+        return tuple([Task.objects.get(name=name) for name in self.task_names_list])
+
+    @property
+    def task_names_list(self):
+        task_names = self.task_stack_csv.replace(' ','')
+        while task_names[-1] == ',': task_names = task_names[:-1]
+        task_names = task_names.split(',')
+        return task_names
+
+    # Miscelaneous
+
+    @property
+    def progress_info(self, all_values=False):
+        l = []
+        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+            tasks = [task.description for task in session.get_task_list()]
+            task_index = None
+            if session == self.current_session:
+                task_index = len(tasks) - len(self.task_names_list)
+                # From this session, append other sess:
+                all_values = True
+            if all_values:
+                sess_info = {'num': i,
+                             'current': True if session == self.current_session else False,
+                             'tasks': tasks,
+                             'cti': task_index} # cti = current task index
+                l.append(sess_info)
+        return l
 
     def queue_reminder(self):
         if self.remind and self.sessions.all():
@@ -248,62 +310,3 @@ class ParticipantProfile(models.Model):
                                            day=next_session_date.day,
                                            hour=6)
             )
-
-    def assign_sessions(self, commit=True):
-        if self.study and ExperimentSession.objects.filter(study=self.study):
-            self.reset_session_stack(commit=True)
-            sessions = ExperimentSession.objects.filter(study=self.study)
-            self.sessions.add(*sessions)
-            unique_indexes = list(set([s.index for s in sessions]))
-            for i in unique_indexes:
-                sessions_i = list(sessions.filter(index=i))
-                if len(sessions_i) > 1:
-                    shuffle(sessions_i)
-                for s in sessions_i:
-                    self.add_session(s.pk)
-            if commit:
-                self.save()
-        else:
-            assert False, 'No sessions found for study "{}"'.format(self.study)
-
-    @property
-    def future_sessions(self):
-        if self.current_session:
-            if self.sessions.exclude(pk=self.current_session.pk):
-                return self.sessions.exclude(pk=self.current_session.pk)
-            else:
-                return []
-        else:
-            return self.sessions.all()
-
-    @property
-    def task_stack(self):
-        return tuple([Task.objects.get(name=name) for name in self.task_names_list])
-
-    @property
-    def progress_info(self, all_values=False):
-        l = []
-        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
-            tasks = [task.description for task in session.get_task_list()]
-            task_index = None
-            if session == self.current_session:
-                task_index = len(tasks) - len(self.task_names_list)
-                # From this session, append other sess:
-                all_values = True
-            if all_values:
-                sess_info = {'num': i,
-                             'current': True if session == self.current_session else False,
-                             'tasks': tasks,
-                             'cti': task_index} # cti = current task index
-                l.append(sess_info)
-        return l
-
-    @property
-    def task_names_list(self):
-        task_names = self.task_stack_csv.replace(' ','')
-        while task_names[-1] == ',': task_names = task_names[:-1]
-        task_names = task_names.split(',')
-        return task_names
-
-
-
