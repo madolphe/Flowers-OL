@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-30 11:55+0200\n"
+"POT-Creation-Date: 2021-04-01 13:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -777,39 +777,46 @@ msgstr ""
 "final questionnaire (5 questions). All questions are optional, but please "
 "note that all your thoughts can be extremely useful to us."
 
-#~ msgid ""
-#~ "Pour cette tâche, il vous sera demandé de vous entraîner à jouer au jeu "
-#~ msgstr "For this task, you will be asked to practice playing the game"
+#: views.py:70
+msgid "Vous avez terminé l'entraînement de Lunar Lander"
+msgstr "You have completed the Lunar Lander training"
 
-#~ msgid "Vous avez terminé l'entraînement de Lunar Lander"
-#~ msgstr "You have completed the Lunar Lander training"
+#: views.py:71
+msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
+msgstr "Don't leave just yet! There is a questionnaire to fill in."
 
-#~ msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
-#~ msgstr "Don't leave just yet! There is a questionnaire to fill in."
+#: views.py:84
+msgid "Lundi"
+msgstr "Monday"
 
-#~ msgid "Lundi"
-#~ msgstr "Monday"
+#: views.py:84
+msgid "Mardi"
+msgstr "Tuesday"
 
-#~ msgid "Mardi"
-#~ msgstr "Tuesday"
+#: views.py:84
+msgid "Mercredi"
+msgstr "Wednesday"
 
-#~ msgid "Mercredi"
-#~ msgstr "Wednesday"
+#: views.py:84
+msgid "Jeudi"
+msgstr "Thursday"
 
-#~ msgid "Jeudi"
-#~ msgstr "Thursday"
+#: views.py:84
+msgid "Vendredi"
+msgstr "Friday"
 
-#~ msgid "Vendredi"
-#~ msgstr "Friday"
+#: views.py:84
+msgid "Samedi"
+msgstr "Saturday"
 
-#~ msgid "Samedi"
-#~ msgstr "Saturday"
+#: views.py:84
+msgid "Dimanche"
+msgstr "Sunday"
 
-#~ msgid "Dimanche"
-#~ msgstr "Sunday"
+#: views.py:85
+msgid "La prochaine session est le {} ({})"
+msgstr "The next session is on {} ({})"
 
-#~ msgid "La prochaine session est le"
-#~ msgstr "The next session is on"
-
-#~ msgid "Le questionnaire est complet"
-#~ msgstr "The questionnaire is complete"
+#: views.py:86
+msgid "Le questionnaire est complet"
+msgstr "The questionnaire is complete"
