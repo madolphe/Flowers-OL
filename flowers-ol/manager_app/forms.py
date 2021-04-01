@@ -47,14 +47,14 @@ class SignUpForm(forms.ModelForm):
         # Create ParticipantProfile and register participant's study
         self.instance.set_password(self.cleaned_data['password'])
         self.instance.save()
-
         participant_profile = ParticipantProfile()
         participant_profile.user = self.instance
         participant_profile.study = study
         participant_profile.save()
-
-        super(SignUpForm, self).save(*args, **kwargs)
-
+        participant_profile.assign_sessions()
+        
+        user = super(SignUpForm, self).save(*args, **kwargs)
+        return user
 
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
@@ -70,24 +70,3 @@ class SignUpForm(forms.ModelForm):
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
         return cleaned_data
-
-
-class ConsentForm(forms.Form):
-    """
-    Class to generate a form for consent page.
-    """
-    understood = forms.BooleanField(label="J'ai lu et compris les termes de cette étude")
-    agreed = forms.CharField(label='Consentement', help_text='Ecrire \"Je consens\" dans la barre')
-    fields = ['understood', 'agreed']
-
-    def __init__(self, *args, **kwargs):
-        super(ConsentForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Valider'))
-
-    def clean_agreed(self):
-        user_input = self.cleaned_data['agreed'].lower().strip('\"')
-        if user_input != 'je consens':
-            raise forms.ValidationError('Veuillez donner votre consentement en écrivant "Je consens" '
-                                        'pour valider votre participation')
-        return user_input
