@@ -5,8 +5,8 @@ import datetime, uuid, json, jsonfield
 from datetime import timedelta as delta
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from django.core.validators import validate_comma_separated_integer_list
 from .utils import send_delayed_email
+from .validators import validate_session_stack, validate_timedelta_args
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
@@ -71,8 +71,8 @@ class ExperimentSession(models.Model):
     extra_json = jsonfield.JSONField(default=dict, blank=True)
     index = models.IntegerField(default=0)  # TODO index determines how sessions are ordered (sessions with equal indexes are randomized)
     required = models.BooleanField(default=True)
-    wait = models.JSONField(default=dict, blank=True)  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
-    deadline = models.JSONField(default=dict, blank=True)  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
+    wait = models.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
+    deadline = models.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
 
     class Meta:
         ordering = ['study', 'index', 'pk']
@@ -82,6 +82,13 @@ class ExperimentSession(models.Model):
 
     def __str__(self):
         return self.__unicode__()
+
+    def clean(self, *args, **kwargs):
+        '''Checks if `wait` is not greater than `deadline` if both are provided'''
+        if self.wait and self.deadline:
+            if delta(**self.wait) > delta(**self.deadline):
+                raise ValidationError(_('wait timedelta cannot be greater than deadline timedelta'))
+        super().clean(*args, **kwargs)
 
     def get_task_list(self):
         """Return a list of all tasks in BDD for this Experiment Session"""
