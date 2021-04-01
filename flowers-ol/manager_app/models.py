@@ -2,6 +2,7 @@ from random import shuffle
 from django.db import models
 from django.utils import timezone
 import datetime, uuid, json, jsonfield
+from datetime import timedelta as delta
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.validators import validate_comma_separated_integer_list
@@ -62,6 +63,8 @@ class Task(models.Model):
 class ExperimentSession(models.Model):
     """
     Model that represent a particular experiment for a participant.
+    Note: `timedeltas_validated` is a hacky way to ensure we run our custom field and model validators 
+    when an instance of ExperimentSession is used to determine that the session is valid at a given time
     """
     study = models.ForeignKey(Study, to_field='name', null=True, on_delete=models.SET_NULL)
     tasks_csv = models.CharField(max_length=200, default='')
@@ -87,19 +90,24 @@ class ExperimentSession(models.Model):
     def get_task_by_index(self, index):
         return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
-    def is_today(self, ref_date):
-        if self.day:
-            return datetime.date.today() == ref_date + datetime.timedelta(days=self.day-1)
-        return True
+    def get_valid_period(self, ref):
+        valid_period = [None, None]
+        for i, constraint in enumerate([self.wait, self.deadline]):
+            if 'days' in constraint.keys():
+                valid_period[i] = (ref + delta(**constraint)).replace(microsecond=0, second=59*i, minute=59*i, hour=23*i)
+            elif 'minutes' in constraint.keys():
+                valid_period[i] = ref + delta(**constraint)
+        return valid_period
 
-    def is_now(self, ref_datetime):
-        if self.wait:
-            return datetime.datetime.now() - ref_datetime > self.wait
-        return True
+    def is_valid_now(self, ref_timestamp):
+        now, checks = timezone.now(), []
+        valid_period = self.get_valid_period(ref_timestamp)
+        if valid_period[0]:
+            checks.append(now > valid_period[0])
+        if valid_period[1]:
+            checks.append(now < valid_period[1])
+        return all(checks)
 
-    def is_past(self, ref_datetime):
-        if self.day:
-            return datetime.date.today() > ref_datetime + datetime.timedelta(days=self.day-1)
 
 
 class ParticipantProfile(models.Model):
@@ -112,10 +120,11 @@ class ParticipantProfile(models.Model):
     
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
-    ref_dt = models.DateTimeField(default=datetime.datetime.now, verbose_name='Reference datetime')
-    sessions_stack_csv = models.TextField(default='', null=True, blank=True, verbose_name='Sessions stack')
+    origin_timestamp = models.DateTimeField(default=timezone.now, verbose_name='Timestamp for when participant was first created')
+    sessions = models.ManyToManyField(ExperimentSession, related_name='study_sessions')
+    session_stack = models.TextField(default='', null=True, blank=True, verbose_name='csv string of Session PKs', validators=[validate_session_stack])
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
-    session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
+    last_session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
     extra_json = jsonfield.JSONField(default={}, blank=True)
 
@@ -129,30 +138,38 @@ class ParticipantProfile(models.Model):
         return self.__unicode__()
 
     def add_session(self, pk, commit=True):
-        if self.sessions_stack_csv == '':
-            self.sessions_stack_csv = str(pk)
+        if self.session_stack == '':
+            self.session_stack = str(pk)
         else:
-            self.sessions_stack_csv = ','.join([self.sessions_stack_csv, str(pk)])
+            self.session_stack = ','.join([self.session_stack, str(pk)])
         if commit:
             self.save()
 
     def pop_session(self, commit=True):
-        sessions_stack_csv = self.sessions_stack_csv
-        if sessions_stack_csv:
-            self.sessions_stack_csv = sessions_stack_csv.split(',')[:-1]
+        stack_copy = self.session_stack.split(',')
+        if stack_copy:
+            stack_copy.pop(0)
+            self.session_stack = ','.join(stack_copy)
+            if commit:
+                self.save()
+    
+    def reset_session_stack(self, commit=True):
+        session_stack = self.session_stack
+        if session_stack:
+            self.session_stack = ''
             if commit:
                 self.save()
 
     def set_current_session(self):
-        assert self.sessions.all(), 'Participant has no sessions assigned'
+        assert self.session_stack, 'Session "stack" is an empty string. Did you forget to assign sessions and create a sessions stack?'
         if not self.current_session:
-            s = self.sessions.first()
+            session_stack_head = self.session_stack.split(',')[0]  # get pk of the first session in self.session_stack
+            s = self.sessions.get(pk=session_stack_head)
             self.current_session = s
             self.task_stack_csv = s.tasks_csv
             self.save()
 
-    @property
-    def current_session_valid(self):
+    def old_validator(self):
         # If the current session is not today, not required and was skipped (i.e date in the past):
         if not self.current_session.is_today(ref_date=self.ref_dt.date()):
             if not self.current_session.required and self.current_session.is_past(ref_datetime=self.ref_dt.date()):
@@ -170,7 +187,7 @@ class ParticipantProfile(models.Model):
         if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
             return False
         return True
-
+        
     def pop_task(self, n=1):
         """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
         task_names = self.task_stack_csv.split(',')[n:]
@@ -192,7 +209,7 @@ class ParticipantProfile(models.Model):
             3. clear current session
         '''
         if self.session_stack:
-            self.last_session_timestamp = datetime.datetime.now()
+            self.last_session_timestamp = timezone.now().replace(microsecond=0)
             self.pop_session()
             self.current_session = None
             self.save()
@@ -227,7 +244,9 @@ class ParticipantProfile(models.Model):
 
     def assign_sessions(self, commit=True):
         if self.study and ExperimentSession.objects.filter(study=self.study):
+            self.reset_session_stack(commit=True)
             sessions = ExperimentSession.objects.filter(study=self.study)
+            self.sessions.add(*sessions)
             unique_indexes = list(set([s.index for s in sessions]))
             for i in unique_indexes:
                 sessions_i = list(sessions.filter(index=i))
