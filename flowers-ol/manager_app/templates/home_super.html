@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h1>Hello, superuser!</h1>
+  <p>
+    <b>ParticipantProfile sessions (study.index.pk):</b>
+    <ul> 
+    {% for s in CONTEXT.p.sessions.all %}
+      <li>{{s}}</li>
+    {% endfor %}
+    </ul>
+    <b>Sessios stack:</b> {{CONTEXT.p.session_stack}} <br/>
+    <b>Last session timestamp</b> {{CONTEXT.time_stamp}} <br/>
+    <b>Current sesssion</b> {{CONTEXT.p.current_session}} <br/>
+    <b>- wait:</b> {{CONTEXT.p.current_session.wait}} <br/>
+    <b>- deadline:</b> {{CONTEXT.p.current_session.deadline}} <br/>
+    <b>- valid period:</b> {{CONTEXT.valid_period}} <br/>
+    <b>- valid now: {{CONTEXT.valid_now}}</b>
+  </p>
+  
+  <div class="row justify-content-center">
+      <button>
+        <a href="{% url "reset_user_participant" %}">Reset participant</a>
+      </button>
+      <button>
+        <a href="{% url "end_session" %}">End session</a>
+      </button>
+      <button>
+        <a href="{% url "login_page" %}">Logout</a>
+      </button>
+      <button>
+        <a href="{% url "home_super" %}">Reload</a>
+      </button>
+  </div>
+</div>
+{%endblock%}

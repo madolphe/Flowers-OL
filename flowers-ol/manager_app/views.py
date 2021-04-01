@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse, resolve
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
@@ -32,10 +32,11 @@ def login_page(request, study=''):
     if form_sign_in.is_valid():
         username = form_sign_in.cleaned_data['username']
         password = form_sign_in.cleaned_data['password']
-        user = authenticate(request, username=username, password=password)  # Check if datas are valid
+        user = authenticate(request, username=username, password=password)  # Check if data are valid
         if user:  # if user exists
             login(request, user)  # connect user
-            return redirect(reverse(home))
+            destination = home_super if user.is_superuser else home
+            return redirect(reverse(destination))
         else:  # show error if user not in DB
             error = True
     # Plutôt utiliser un code erreur
@@ -61,13 +62,15 @@ def signup_page(request):
 @login_required
 @never_cache
 def home(request):
+    if request.user.is_superuser: # ! to be removed
+        return redirect(reverse(home_super))
     participant = request.user.participantprofile
     try:
         participant.set_current_session()
     except AssertionError:
         return redirect(reverse(thanks_page))
 
-    if not participant.current_session_valid:
+    if not participant.current_session.is_valid_now():
         return redirect(reverse(off_session_page))
 
     if not participant.current_task.prompt:
@@ -111,13 +114,13 @@ def end_session(request):
     participant.close_current_session()
     request.session['active_session'] = json.dumps(False)
     participant.queue_reminder()
-    return redirect(reverse(thanks_page))
+    return redirect(reverse(home))
 
 
 @login_required
 def thanks_page(request):
     participant = request.user.participantprofile
-    if participant.sessions.count():
+    if False:# ! participant.sessions.count():
         heading = 'La session est terminée'
         session_day = participant.sessions.first().day
         if session_day:
@@ -164,7 +167,50 @@ def end_task(request):
     return redirect(reverse(home))
 
 
-@login_required
-def super_home(request):
-    if request.user.is_authenticated & request.user.is_superuser:
-        return render(request, 'super_home_page.html')
+@user_passes_test(lambda u: u.is_superuser)
+def home_super(request):
+    if request.user.is_authenticated:
+        #* Create a participant for user if it does not exist
+        #* ==========================
+        s = Study.objects.get(name='demo')
+        try:
+            p = request.user.participantprofile
+        except Exception:
+            p = ParticipantProfile()
+            p.user = request.user
+            p.study = s
+            p.save()
+            p.assign_sessions()
+        #* Do regular home_view stuff
+        #* ==========================
+        try:
+            p.set_current_session()
+        except AssertionError:
+            return redirect(reverse(thanks_page))
+
+        # if not p.current_session_valid:
+        time_stamp = p.last_session_timestamp.strftime("%d %b %Y (%H:%M:%S)") if p.last_session_timestamp else None
+        ref = p.last_session_timestamp if p.last_session_timestamp else p.origin_timestamp
+        valid_period = p.current_session.get_valid_period(ref)
+        valid_period = [t.strftime("%d %b %Y (%H:%M:%S)") if t else None for t in valid_period]
+        valid_period = f'{valid_period[0]} - {valid_period[1]}'
+        valid_now = p.current_session.is_valid_now(ref)
+        
+        return render(request, 'home_super.html', 
+            {
+                'CONTEXT': {
+                    'p': p,
+                    'time_stamp': time_stamp,
+                    'valid_period': valid_period,
+                    'valid_now': valid_now
+                }
+            }
+        )
+
+@user_passes_test(lambda u: u.is_superuser)
+def reset_user_participant(request):
+    s = Study.objects.get(name='demo')
+    request.user.participantprofile.delete()
+    request.user.participantprofile = None
+    request.user.save()
+    return redirect(reverse('home_super'))

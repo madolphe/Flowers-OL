@@ -37,7 +37,7 @@ msgstr "Send me an email when a new task has to be completed"
 
 #: forms.py:76
 msgid "Se connecter"
-msgstr "Log out"
+msgstr "Log in"
 
 #: forms.py:85
 msgid "Confirmer le mot de passe"
