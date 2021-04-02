@@ -85,20 +85,24 @@ class ExperimentSession(models.Model):
         return self.__unicode__()
 
     def clean(self, *args, **kwargs):
-        '''Checks if `wait` is not greater than `deadline` if both are provided'''
+        '''Checks if `wait` is not greater than `deadline` if both are provided.'''
         if self.wait and self.deadline:
             if delta(**self.wait) > delta(**self.deadline):
                 raise ValidationError(_(f'Cannot set wait={self.wait} and deadline={self.deadline}; wait timedelta cannot be greater than deadline timedelta.'))
         super().clean(*args, **kwargs)
 
     def get_task_list(self):
-        """Return a list of all tasks in BDD for this Experiment Session"""
+        '''Return a list of all tasks in BDD for this Experiment Session.'''
         return [Task.objects.get(name=task_name) for task_name in self.tasks_csv.split(',')]
 
     def get_task_by_index(self, index):
+        '''Fetches the task instance by index in the task stack.'''
         return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
     def get_valid_period(self, ref_timestamp, string_format=''):
+        '''Returns a pair of values representing the valid period boundaries. By default, return datetime objects. If string_format is specified
+        return a pair of string-formatted datetimes. If a boundary is not provided by wait or deadline, put None instead.
+        '''
         valid_period = [None, None]
         for i, constraint in enumerate([self.wait, self.deadline]):
             if 'days' in constraint.keys():
@@ -110,6 +114,9 @@ class ExperimentSession(models.Model):
         return valid_period
 
     def is_valid_now(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime. Specifically, we check if now is inside the valid period defined relative to
+        the reference timestamp.
+        '''
         now, checks = timezone.now(), []
         valid_period = self.get_valid_period(ref_timestamp)
         if valid_period[0]:
@@ -119,6 +126,9 @@ class ExperimentSession(models.Model):
         return all(checks)
 
     def in_future(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime in relation to the lower boundary of the valid period definer relative to the 
+        reference timestamp.
+        '''
         if not self.wait:
             return False
         now = timezone.now().replace(microsecond=0)
@@ -129,6 +139,9 @@ class ExperimentSession(models.Model):
         return now < start
 
     def in_past(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime in relation to the upper boundary of the valid period definer relative to the 
+        reference timestamp.
+        '''
         if not self.deadline:
             return False
         now = timezone.now().replace(microsecond=0)
