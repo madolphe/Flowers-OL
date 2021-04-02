@@ -197,12 +197,19 @@ def home_super(request):
             return redirect(reverse(thanks_page))
 
         # if not p.current_session_valid:
-        time_stamp = p.last_session_timestamp.strftime("%d %b %Y (%H:%M:%S)") if p.last_session_timestamp else None
+        time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
         ref = p.last_session_timestamp if p.last_session_timestamp else p.origin_timestamp
-        valid_period = p.current_session.get_valid_period(ref)
-        valid_period = [t.strftime("%d %b %Y (%H:%M:%S)") if t else None for t in valid_period]
-        valid_period = f'{valid_period[0]} - {valid_period[1]}'
-        valid_now = p.current_session.is_valid_now(ref)
+        valid_period = p.current_session.get_valid_period(ref, string_format='%d %b %Y (%H:%M:%S)')
+
+        now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
+        if p.current_session.in_future(ref):
+            now_is, destination = f'too early {now}', 'off_session_page'
+        elif p.current_session.in_past(ref):
+            now_is, destination = f'too late {now}', 'thanks_page'
+        else:
+            now_is, destination = f'good time {now}', 'start_task'
+
+        # valid_now = p.current_session.is_valid_now(ref)
         
         return render(request, 'home_super.html', 
             {
@@ -210,7 +217,8 @@ def home_super(request):
                     'p': p,
                     'time_stamp': time_stamp,
                     'valid_period': valid_period,
-                    'valid_now': valid_now
+                    'now_is': now_is,
+                    'destination': destination
                 }
             }
         )
