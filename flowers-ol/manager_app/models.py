@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .utils import send_delayed_email
 from .validators import validate_session_stack, validate_timedelta_args
+from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
@@ -87,7 +88,7 @@ class ExperimentSession(models.Model):
         '''Checks if `wait` is not greater than `deadline` if both are provided'''
         if self.wait and self.deadline:
             if delta(**self.wait) > delta(**self.deadline):
-                raise ValidationError(_('wait timedelta cannot be greater than deadline timedelta'))
+                raise ValidationError(_(f'Cannot set wait={self.wait} and deadline={self.deadline}; wait timedelta cannot be greater than deadline timedelta.'))
         super().clean(*args, **kwargs)
 
     def get_task_list(self):
