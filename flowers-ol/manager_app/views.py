@@ -169,12 +169,12 @@ def end_task(request):
     if 'exit_view_done' in request.session:
         del request.session['exit_view_done']
     participant.pop_task()
-    # Check if current session is empty
+    # Check if participant has no more task in current session
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
 
-
+from django.utils import timezone
 @user_passes_test(lambda u: u.is_superuser)
 def home_super(request):
     if request.user.is_authenticated:
