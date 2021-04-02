@@ -205,7 +205,7 @@ class ParticipantProfile(models.Model):
         is determined randomly)
         '''
         if self.study and ExperimentSession.objects.filter(study=self.study):
-            self.reset_session_stack(commit=True)
+            self.clear_session_stack(commit=True)
             sessions = ExperimentSession.objects.filter(study=self.study)
             self.sessions.add(*sessions)
             unique_indexes = list(set([s.index for s in sessions]))
