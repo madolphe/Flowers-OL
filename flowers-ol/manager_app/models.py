@@ -60,6 +60,10 @@ class Task(models.Model):
             l.append((label, template, hidden))
         return l
 
+    @property
+    def unprompted(self):
+        return not (bool(self.prompt) or bool(self.actions))
+
 
 class ExperimentSession(models.Model):
     """

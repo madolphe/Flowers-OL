@@ -72,7 +72,7 @@ def home(request):
     if not participant.current_session.is_valid_now():
         return redirect(reverse(off_session_page))
 
-    if not participant.current_task.prompt:
+    if participant.current_task.unprompted:
         return redirect(reverse(start_task))
 
     if participant.current_session:
