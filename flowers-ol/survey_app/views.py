@@ -77,7 +77,7 @@ def consent_page(request):
         user.save()
         participant.consent = True
         participant.save()
-        participant.assign_sessions()
+        participant.populate_session_stack()
         return redirect(reverse(home))
     if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
     return render(request, 'consent_page.html', {'CONTEXT': {

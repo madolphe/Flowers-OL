@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse, resolve
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
+from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.utils.translation import gettext_lazy as _
 
@@ -32,9 +33,11 @@ def login_page(request, study=''):
     if form_sign_in.is_valid():
         username = form_sign_in.cleaned_data['username']
         password = form_sign_in.cleaned_data['password']
-        user = authenticate(request, username=username, password=password)  # Check if datas are valid
-        if user:  # if user exists
-            login(request, user)  # connect user
+        user = authenticate(request, username=username, password=password)  # Check if data are valid
+        if user:
+            login(request, user)
+            if request.user.is_superuser:
+                return redirect(reverse(fork_super))
             return redirect(reverse(home))
         else:  # show error if user not in DB
             error = True
@@ -53,8 +56,6 @@ def signup_page(request):
     sign_up_form = SignUpForm(request.POST or None)
     if sign_up_form.is_valid():
         user = sign_up_form.save(study=study, commit=False)
-        # user # Use set_password in order to hash password
-        # user.save()
         login(request, user)
         return redirect(reverse(home))
     return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
@@ -63,24 +64,34 @@ def signup_page(request):
 @login_required
 @never_cache
 def home(request):
+    # Get the related ParticipantProfile instance
     participant = request.user.participantprofile
-    try:
-        participant.set_current_session()
-    except AssertionError:
+
+    # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
+    if not participant.set_current_session():
         return redirect(reverse(thanks_page))
 
-    if not participant.current_session_valid:
-        return redirect(reverse(off_session_page))
+    # I user tries to start session at a wrong time, redirect user to an appropriate page
+    ref = participant.ref_timestamp
+    if participant.current_session.in_future(ref):
+        return redirect(reverse(off_session_page))  # too early
+    elif participant.current_session.in_past(ref):
+        if participant.current_session.required:
+            return redirect(reverse(thanks_page))  # too late => can't proceed
+        else:
+            return redirect(reverse(end_session))  # too late => try next session
 
-    if not participant.current_task.prompt:
+    # If current task has no prompt or actions, start task immediately
+    if participant.current_task.unprompted:
         return redirect(reverse(start_task))
 
+    # If participant has a session assigned, set request.session.active_session to True
     if participant.current_session:
          request.session['active_session'] = json.dumps(True)
 
+    # If there are any messages, add them to django messages see https://docs.djangoproject.com/en/dev/ref/contrib/messages/
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
-            print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
     return render(request, 'home_page.html', {'CONTEXT': {'participant': participant}})
 
@@ -95,16 +106,19 @@ def start_task(request):
 @login_required
 def off_session_page(request):
     participant = request.user.participantprofile
-    day1 = participant.date.date()
-    schedule, status = [], 1
-    for s in ExperimentSession.objects.filter(study=participant.study):
-        date = day1 + datetime.timedelta(days=s.day-1)
-        sdate = date.strftime('%d/%m/%Y')
-        if participant.current_session == s:
-            status = 0
-        schedule.append([sdate, status])
-    return render(request, 'off_session_page.html', {'CONTEXT': {
-        'schedule': schedule}})
+
+    # Get next session if session stack is not empty, otherwise assign None to session
+    session = None  # assigning None might be redundant, which is a good thing here!
+    if participant.session_stack_peek():
+        session = ExperimentSession.objects.get(pk=participant.session_stack_peek())
+
+    if session:
+        valid_period = session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        start_info = f' opens on {valid_period[0]}' if valid_period[0] else ' opens whenever'
+        deadline_info = f' and closes on {valid_period[1]}' if valid_period[1] else ' and remains open until you complete it'
+        next_session_info = start_info + deadline_info
+        return render(request, 'off_session_page.html', {'CONTEXT': {
+            'next_session_info': _(next_session_info)}})
 
 
 @login_required
@@ -119,17 +133,18 @@ def end_session(request):
 @login_required
 def thanks_page(request):
     participant = request.user.participantprofile
-    if participant.sessions.count():
-        heading = 'La session est terminée'
-        session_day = participant.sessions.first().day
-        if session_day:
-            next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
-            if datetime.date.today() == next_date:
+    if participant.session_stack_csv:
+        heading = _('La session est terminée')
+        next_session_pk = participant.session_stack_peek()
+        if next_session_pk:
+            next_session = participant.sessions.get(pk=next_session_pk)
+            if not next_session.wait:
                 text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
                        ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.format(next_date.strftime('%d/%m/%Y')))
+                next_date = next_session.get_valid_period(participant.ref_timestamp, string_format='%d/%M/%Y')[0]
+                text = _(f'Nous vous attendons la prochaine fois. Votre prochaine session est le {next_date}')
         else:
             text = _('Nous vous attendons la prochaine fois.')
     else:
@@ -160,13 +175,65 @@ def end_task(request):
     if 'exit_view_done' in request.session:
         del request.session['exit_view_done']
     participant.pop_task()
-    # Check if current session is empty
+    # Check if participant has no more task in current session
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
 
 
 @login_required
-def super_home(request):
-    if request.user.is_authenticated & request.user.is_superuser:
-        return render(request, 'super_home_page.html')
+@user_passes_test(lambda u: u.is_superuser)
+def fork_super(request):
+    s = Study.objects.get(name='demo')
+    try:
+        participant = request.user.participantprofile
+    except Exception:
+        participant = ParticipantProfile()
+        participant.user = request.user
+        participant.study = s
+        participant.save()
+        participant.populate_session_stack()
+    return render(request, 'fork_super.html')
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def home_super(request):
+        p = request.user.participantprofile
+        if not p.set_current_session():
+            return redirect(reverse(thanks_page))
+
+        time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
+        valid_period = p.current_session.get_valid_period(p.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+
+        now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
+        now_is, destination = f'good time [{now}]', 'start_task'
+        if p.current_session.in_future(p.ref_timestamp):
+            now_is, destination = f'too early [{now}]', 'off_session_page'
+        elif p.current_session.in_past(p.ref_timestamp):
+            now_is = f'too late [{now}]'
+            if p.current_session.required:
+                destination = 'thanks_page'
+            else:
+                destination = 'end_session'
+        
+        return render(request, 'home_super.html', 
+            {
+                'CONTEXT': {
+                    'p': p,
+                    'time_stamp': time_stamp,
+                    'valid_period': valid_period,
+                    'now_is': now_is,
+                    'destination': destination
+                }
+            }
+        )
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def reset_user_participant(request):
+    s = Study.objects.get(name='demo')
+    request.user.participantprofile.delete()
+    request.user.participantprofile = None
+    request.user.save()
+    django_messages.add_message(request, django_messages.SUCCESS, 'Participant reset succesfully.')
+    return redirect(reverse('fork_super'))

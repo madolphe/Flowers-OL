@@ -14,8 +14,63 @@
         "model": "manager_app.ExperimentSession",
         "fields": {
             "study"         : "demo",
-            "day"           : 0,
+            "wait"          : {},
+            "deadline"      : {},
             "index"         : 1,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 0.1},
+            "deadline"      : {"minutes": 1},
+            "index"         : 2,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"days": 10},
+            "deadline"      : {"minutes": 6},
+            "index"         : 4,
+            "required"       : false,
             "tasks_csv"     : "demo-task"
         }
     },
