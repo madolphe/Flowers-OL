@@ -328,6 +328,10 @@ class ParticipantProfile(models.Model):
     # Miscelaneous
 
     @property
+    def ref_timestamp(self):
+        return self.last_session_timestamp if self.last_session_timestamp else self.origin_timestamp
+
+    @property
     def progress_info(self, all_values=False):
         l = []
         for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):

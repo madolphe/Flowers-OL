@@ -63,23 +63,15 @@ def signup_page(request):
 @login_required
 @never_cache
 def home(request):
-    # Redirect to superuser views
-    if request.user.is_superuser:
-        return redirect(reverse(home_super))
-
     # Get the related ParticipantProfile instance
     participant = request.user.participantprofile
-
-    # Get participant's timestamp
-    ref = participant.last_session_timestamp
-    if ref is None:
-        ref = participant.origin_timestamp
 
     # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
     if not participant.set_current_session():
         return redirect(reverse(thanks_page))
 
     # I user tries to start session at a wrong time, redirect user to an appropriate page
+    ref = participant.ref_timestamp
     if participant.current_session.in_future(ref):
         return redirect(reverse(off_session_page))  # too early
     elif participant.current_session.in_past(ref):
@@ -113,11 +105,6 @@ def start_task(request):
 @login_required
 def off_session_page(request):
     participant = request.user.participantprofile
-    
-    # Get a time stamp (either datetime of joining or datetime of last session closed)
-    ref_timestamp = participant.origin_timestamp
-    if participant.last_session_timestamp:
-        ref_timestamp = participant.last_session_timestamp
 
     # Get next session if session stack is not empty, otherwise assign None to session
     session = None  # assigning None might be redundant, which is a good thing here!
@@ -125,7 +112,7 @@ def off_session_page(request):
         session = ExperimentSession.objects.get(pk=participant.session_stack_peek())
 
     if session:
-        valid_period = session.get_valid_period(ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        valid_period = session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
         start_info = f' opens on {valid_period[0]}' if valid_period[0] else ' opens whenever'
         deadline_info = f' and closes on {valid_period[1]}' if valid_period[1] else ' and remains open until you complete it'
         next_session_info = start_info + deadline_info
@@ -215,15 +202,13 @@ def home_super(request):
             return redirect(reverse(thanks_page))
 
         time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
-        ref = p.last_session_timestamp if p.last_session_timestamp else p.origin_timestamp
-        valid_period = p.current_session.get_valid_period(ref, string_format='%d %b %Y (%H:%M:%S)')
+        valid_period = p.current_session.get_valid_period(p.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
 
         now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
-        # ! Session validation should be repeated in start_task so that the user cannot start a task outside the session's valid period by keeping the home page open for too long!
         now_is, destination = f'good time [{now}]', 'start_task'
-        if p.current_session.in_future(ref):
+        if p.current_session.in_future(p.ref_timestamp):
             now_is, destination = f'too early [{now}]', 'off_session_page'
-        elif p.current_session.in_past(ref):
+        elif p.current_session.in_past(p.ref_timestamp):
             now_is = f'too late [{now}]'
             if p.current_session.required:
                 destination = 'thanks_page'
