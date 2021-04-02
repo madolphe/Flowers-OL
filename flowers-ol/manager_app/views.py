@@ -180,7 +180,7 @@ def home_super(request):
             p.user = request.user
             p.study = s
             p.save()
-            p.assign_sessions()
+            p.populate_session_stack()
         #* Do regular home_view stuff
         #* ==========================
         try:
