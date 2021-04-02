@@ -96,16 +96,24 @@ def start_task(request):
 @login_required
 def off_session_page(request):
     participant = request.user.participantprofile
-    day1 = participant.date.date()
-    schedule, status = [], 1
-    for s in ExperimentSession.objects.filter(study=participant.study):
-        date = day1 + datetime.timedelta(days=s.day-1)
-        sdate = date.strftime('%d/%m/%Y')
-        if participant.current_session == s:
-            status = 0
-        schedule.append([sdate, status])
-    return render(request, 'off_session_page.html', {'CONTEXT': {
-        'schedule': schedule}})
+    
+    # Get a time stamp (either datetime of joining or datetime of last session closed)
+    ref_timestamp = participant.origin_timestamp
+    if participant.last_session_timestamp:
+        ref_timestamp = participant.last_session_timestamp
+
+    # Get next session if session stack is not empty, otherwise assign None to session
+    session = None  # assigning None might be redundant, which is a good thing here!
+    if participant.session_stack_peek():
+        session = ExperimentSession.objects.get(pk=participant.session_stack_peek())
+
+    if session:
+        valid_period = session.get_valid_period(ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        start_info = f' opens on {valid_period[0]}' if valid_period[0] else ' opens whenever'
+        deadline_info = f' and closes on {valid_period[1]}' if valid_period[1] else ' and remains open until you complete it'
+        next_session_info = start_info + deadline_info
+        return render(request, 'off_session_page.html', {'CONTEXT': {
+            'next_session_info': _(next_session_info)}})
 
 
 @login_required
