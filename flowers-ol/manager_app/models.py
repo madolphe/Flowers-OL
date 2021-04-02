@@ -253,7 +253,7 @@ class ParticipantProfile(models.Model):
                 if commit:
                     self.save()
                 return s
-        else
+        else:
             return None
 
     def close_current_session(self, commit=True):

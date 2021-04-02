@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages as django_messages
 from django.views.decorators.cache import never_cache
+from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.utils.translation import gettext_lazy as _
 
@@ -72,17 +73,17 @@ def home(request):
     # Get participant's timestamp
     ref = participant.last_session_timestamp
     if ref is None:
-        ref = p.origin_timestamp
+        ref = participant.origin_timestamp
 
     # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
-    if not participant.set_current_session()
+    if not participant.set_current_session():
         return redirect(reverse(thanks_page))
 
     # I user tries to start session at a wrong time, redirect user to an appropriate page
     if participant.current_session.in_future(ref):
         return redirect(reverse(off_session_page))  # too early
     elif participant.current_session.in_past(ref):
-        if p.current_session.required:
+        if participant.current_session.required:
             return redirect(reverse(thanks_page))  # too late => can't proceed
         else:
             return redirect(reverse(end_session))  # too late => try next session
@@ -190,6 +191,7 @@ def end_task(request):
         return redirect(reverse(end_session))
     return redirect(reverse(home))
 
+
 from django.utils import timezone
 @user_passes_test(lambda u: u.is_superuser)
 def home_super(request):
@@ -212,7 +214,6 @@ def home_super(request):
         except AssertionError:
             return redirect(reverse(thanks_page))
 
-        # if not p.current_session_valid:
         time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
         ref = p.last_session_timestamp if p.last_session_timestamp else p.origin_timestamp
         valid_period = p.current_session.get_valid_period(ref, string_format='%d %b %Y (%H:%M:%S)')
@@ -228,9 +229,6 @@ def home_super(request):
                 destination = 'thanks_page'
             else:
                 destination = 'end_session'
-            
-
-        # valid_now = p.current_session.is_valid_now(ref)
         
         return render(request, 'home_super.html', 
             {
@@ -243,6 +241,7 @@ def home_super(request):
                 }
             }
         )
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def reset_user_participant(request):
