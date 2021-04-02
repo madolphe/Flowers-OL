@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "study"         : "jold_ll",
-            "day"           : 1,
+            "index"         : 1,
             "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess1,JOLD-free-choice"
         }
     },
@@ -13,7 +13,9 @@
         "pk": 2,
         "fields": {
             "study"         : "jold_ll",
-            "day"           : 2,
+            "index"         : 2,
+            "wait"          : {"days": 2},
+            "deadline"      : {"days": 2},
             "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess2,JOLD-free-choice"
         }
     },
@@ -22,7 +24,9 @@
         "pk": 3,
         "fields": {
             "study"         : "jold_ll",
-            "day"           : 5,
+            "index"         : 5,
+            "wait"          : {"days": 3},
+            "deadline"      : {"days": 3},
             "tasks_csv"     : "JOLD-ll-practice,JOLD-questions-sess3,JOLD-ux-questions,JOLD-profile-questions,JOLD-free-choice"
         }
     }
