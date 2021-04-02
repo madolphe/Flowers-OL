@@ -2,7 +2,15 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-ll-practice",
+            "name": "jold-consent",
+            "description": "Informed consent",
+            "view_name": "consent_page"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-ll-practice",
             "description": "Entraînement au Lunar lander",
             "prompt": "Commencer la session",
             "view_name": "jold_start_ll_practice",
@@ -12,16 +20,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-mot-practice",
-            "description": "Attention task",
-            "prompt": "Begin practice",
-            "view_name": "app_MOT"
-        }
-    },
-    {
-        "model": "manager_app.Task",
-        "fields": {
-            "name": "JOLD-free-choice",
+            "name": "jold-free-choice",
             "description": "Fin de session",
             "prompt": "Terminer la session",
             "view_name": "jold_free_choice",
@@ -31,7 +30,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-questions-sess1",
+            "name": "jold-questions-sess1",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
             "view_name": "questionnaire",
@@ -59,7 +58,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-questions-sess2",
+            "name": "jold-questions-sess2",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
             "view_name": "questionnaire",
@@ -87,7 +86,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-questions-sess3",
+            "name": "jold-questions-sess3",
             "description": "Questionnaire d'après-session",
             "prompt": "Commencer le questionnaire",
             "view_name": "questionnaire",
@@ -110,7 +109,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-ux-questions",
+            "name": "ux-questions",
             "description": "Questionnaire d'expérience utilisateur",
             "prompt": "Donnez votre avis sur l'application",
             "view_name": "questionnaire",
@@ -126,7 +125,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "JOLD-profile-questions",
+            "name": "profile-questions",
             "description": "Complétez votre profil",
             "prompt": "Complétez votre profil",
             "view_name": "questionnaire",
