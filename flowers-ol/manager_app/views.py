@@ -202,12 +202,17 @@ def home_super(request):
         valid_period = p.current_session.get_valid_period(ref, string_format='%d %b %Y (%H:%M:%S)')
 
         now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
+        # ! Session validation should be repeated in start_task so that the user cannot start a task outside the session's valid period by keeping the home page open for too long!
+        now_is, destination = f'good time [{now}]', 'start_task'
         if p.current_session.in_future(ref):
-            now_is, destination = f'too early {now}', 'off_session_page'
+            now_is, destination = f'too early [{now}]', 'off_session_page'
         elif p.current_session.in_past(ref):
-            now_is, destination = f'too late {now}', 'thanks_page'
-        else:
-            now_is, destination = f'good time {now}', 'start_task'
+            now_is = f'too late [{now}]'
+            if p.current_session.required:
+                destination = 'thanks_page'
+            else:
+                destination = 'end_session'
+            
 
         # valid_now = p.current_session.is_valid_now(ref)
         

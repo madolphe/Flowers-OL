@@ -10,8 +10,9 @@
       <li>{{s}}</li>
     {% endfor %}
     </ul>
-    <b>Sessios stack:</b> {{CONTEXT.p.session_stack}} <br/>
-    <b>Last session timestamp</b> {{CONTEXT.time_stamp}} <br/>
+    <b>Sessios stack (pks):</b> {{CONTEXT.p.session_stack_csv}} <br/>
+    <b>Origin timestamp:</b> {{CONTEXT.p.origin_timestamp}} <br/>
+    <b>Last session timestamp:</b> {{CONTEXT.time_stamp}} <br/>
     <b>Current sesssion</b> {{CONTEXT.p.current_session}} <br/>
     <b>- wait:</b> {{CONTEXT.p.current_session.wait}} <br/>
     <b>- deadline:</b> {{CONTEXT.p.current_session.deadline}} <br/>
@@ -34,6 +35,6 @@
         <a href="{% url "login_page" %}" style="text-decoration:none;color:inherit;display:block">Logout</a>
       </button>
   </div>
-  <div style="text-align:center;padding:1em 0;"> <h3><span style="color:gray;">Current local time in</span><br />Paris time</h3> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=medium&timezone=Europe%2FParis" width="100%" height="115" frameborder="0" seamless></iframe> </div>
+  <div style="text-align:center;padding:1em 0;"> <h3><span style="color:gray;">Current local time in</span><br />Paris time</h3> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=medium&timezone=Europe%2FParis" width="25%" height="115" frameborder="0" seamless></iframe> </div>
 </div>
 {%endblock%}
