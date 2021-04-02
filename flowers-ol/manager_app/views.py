@@ -96,16 +96,24 @@ def start_task(request):
 @login_required
 def off_session_page(request):
     participant = request.user.participantprofile
-    day1 = participant.date.date()
-    schedule, status = [], 1
-    for s in ExperimentSession.objects.filter(study=participant.study):
-        date = day1 + datetime.timedelta(days=s.day-1)
-        sdate = date.strftime('%d/%m/%Y')
-        if participant.current_session == s:
-            status = 0
-        schedule.append([sdate, status])
-    return render(request, 'off_session_page.html', {'CONTEXT': {
-        'schedule': schedule}})
+    
+    # Get a time stamp (either datetime of joining or datetime of last session closed)
+    ref_timestamp = participant.origin_timestamp
+    if participant.last_session_timestamp:
+        ref_timestamp = participant.last_session_timestamp
+
+    # Get next session if session stack is not empty, otherwise assign None to session
+    session = None  # assigning None might be redundant, which is a good thing here!
+    if participant.session_stack_peek():
+        session = ExperimentSession.objects.get(pk=participant.session_stack_peek())
+
+    if session:
+        valid_period = session.get_valid_period(ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        start_info = f' opens on {valid_period[0]}' if valid_period[0] else ' opens whenever'
+        deadline_info = f' and closes on {valid_period[1]}' if valid_period[1] else ' and remains open until you complete it'
+        next_session_info = start_info + deadline_info
+        return render(request, 'off_session_page.html', {'CONTEXT': {
+            'next_session_info': _(next_session_info)}})
 
 
 @login_required
@@ -161,12 +169,12 @@ def end_task(request):
     if 'exit_view_done' in request.session:
         del request.session['exit_view_done']
     participant.pop_task()
-    # Check if current session is empty
+    # Check if participant has no more task in current session
     if participant.current_session and not participant.current_task:
         return redirect(reverse(end_session))
     return redirect(reverse(home))
 
-
+from django.utils import timezone
 @user_passes_test(lambda u: u.is_superuser)
 def home_super(request):
     if request.user.is_authenticated:
@@ -180,7 +188,7 @@ def home_super(request):
             p.user = request.user
             p.study = s
             p.save()
-            p.assign_sessions()
+            p.populate_session_stack()
         #* Do regular home_view stuff
         #* ==========================
         try:
@@ -189,12 +197,19 @@ def home_super(request):
             return redirect(reverse(thanks_page))
 
         # if not p.current_session_valid:
-        time_stamp = p.last_session_timestamp.strftime("%d %b %Y (%H:%M:%S)") if p.last_session_timestamp else None
+        time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
         ref = p.last_session_timestamp if p.last_session_timestamp else p.origin_timestamp
-        valid_period = p.current_session.get_valid_period(ref)
-        valid_period = [t.strftime("%d %b %Y (%H:%M:%S)") if t else None for t in valid_period]
-        valid_period = f'{valid_period[0]} - {valid_period[1]}'
-        valid_now = p.current_session.is_valid_now(ref)
+        valid_period = p.current_session.get_valid_period(ref, string_format='%d %b %Y (%H:%M:%S)')
+
+        now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
+        if p.current_session.in_future(ref):
+            now_is, destination = f'too early {now}', 'off_session_page'
+        elif p.current_session.in_past(ref):
+            now_is, destination = f'too late {now}', 'thanks_page'
+        else:
+            now_is, destination = f'good time {now}', 'start_task'
+
+        # valid_now = p.current_session.is_valid_now(ref)
         
         return render(request, 'home_super.html', 
             {
@@ -202,7 +217,8 @@ def home_super(request):
                     'p': p,
                     'time_stamp': time_stamp,
                     'valid_period': valid_period,
-                    'valid_now': valid_now
+                    'now_is': now_is,
+                    'destination': destination
                 }
             }
         )
