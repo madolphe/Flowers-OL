@@ -132,17 +132,18 @@ def end_session(request):
 @login_required
 def thanks_page(request):
     participant = request.user.participantprofile
-    if False:# ! participant.sessions.count():
-        heading = 'La session est terminée'
-        session_day = participant.sessions.first().day
-        if session_day:
-            next_date = participant.date.date() + datetime.timedelta(days=session_day-1)
-            if datetime.date.today() == next_date:
+    if participant.session_stack_csv:
+        heading = _('La session est terminée')
+        next_session_pk = participant.session_stack_peek()
+        if next_session_pk:
+            next_session = participant.sessions.get(pk=next_session_pk)
+            if not next_session.wait:
                 text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
                        ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le {}'.format(next_date.strftime('%d/%m/%Y')))
+                next_date = next_session.get_valid_period(participant.ref_timestamp, string_format='%d/%M/%Y')[0]
+                text = _(f'Nous vous attendons la prochaine fois. Votre prochaine session est le {next_date}')
         else:
             text = _('Nous vous attendons la prochaine fois.')
     else:
