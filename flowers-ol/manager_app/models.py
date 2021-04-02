@@ -245,7 +245,9 @@ class ParticipantProfile(models.Model):
         If session_stack_csv is empty, return None
         '''
         if self.session_stack_csv:
-            if not self.current_session:
+            if self.current_session:
+                return self.current_session
+            else:
                 session_stack_head = self.session_stack_peek()
                 s = self.sessions.get(pk=session_stack_head)
                 self.current_session = s
