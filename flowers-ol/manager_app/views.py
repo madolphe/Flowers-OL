@@ -69,13 +69,23 @@ def home(request):
     # Get the related ParticipantProfile instance
     participant = request.user.participantprofile
 
+    # Get participant's timestamp
+    ref = participant.last_session_timestamp
+    if ref is None:
+        ref = p.origin_timestamp
+
     # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
     if not participant.set_current_session()
         return redirect(reverse(thanks_page))
 
-    # If it is not the time for current session, redirect user to an appropriate page
-    if not participant.current_session.is_valid_now():
-        return redirect(reverse(off_session_page))
+    # I user tries to start session at a wrong time, redirect user to an appropriate page
+    if participant.current_session.in_future(ref):
+        return redirect(reverse(off_session_page))  # too early
+    elif participant.current_session.in_past(ref):
+        if p.current_session.required:
+            return redirect(reverse(thanks_page))  # too late => can't proceed
+        else:
+            return redirect(reverse(end_session))  # too late => try next session
 
     # If current task has no prompt or actions, start task immediately
     if participant.current_task.unprompted:
