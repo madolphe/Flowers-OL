@@ -126,7 +126,7 @@ def end_session(request):
     participant.close_current_session()
     request.session['active_session'] = json.dumps(False)
     participant.queue_reminder()
-    return redirect(reverse(home))
+    return redirect(reverse(thanks_page))
 
 
 @login_required
