@@ -98,13 +98,15 @@ class ExperimentSession(models.Model):
     def get_task_by_index(self, index):
         return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
-    def get_valid_period(self, ref):
+    def get_valid_period(self, ref_timestamp, string_format=''):
         valid_period = [None, None]
         for i, constraint in enumerate([self.wait, self.deadline]):
             if 'days' in constraint.keys():
-                valid_period[i] = (ref + delta(**constraint)).replace(microsecond=0, second=59*i, minute=59*i, hour=23*i)
+                valid_period[i] = (ref_timestamp + delta(**constraint)).replace(microsecond=0, second=59*i, minute=59*i, hour=23*i)
             elif 'minutes' in constraint.keys():
-                valid_period[i] = ref + delta(**constraint)
+                valid_period[i] = ref_timestamp + delta(**constraint)
+        if string_format:
+            return [t.strftime(string_format) if t else None for t in valid_period]
         return valid_period
 
     def is_valid_now(self, ref_timestamp):
