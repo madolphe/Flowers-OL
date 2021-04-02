@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from survey_app.models import Question, Answer
+from .forms import ConsentForm
 from .models import JOLD_LL_trial
 from .utils import add_message
 
@@ -35,7 +36,7 @@ def jold_start_ll_practice(request):
         participant.extra_json['game_params']['time'] = 60 * 2
         participant.save()
     else:
-        return redirect(reverse(home))
+        return redirect(reverse('home'))
     return render(request, 'tasks/JOLD_LL/lunar_lander.html', {'CONTEXT': {
         'game_params': json.dumps(participant.extra_json['game_params'])
     }})
@@ -108,3 +109,23 @@ def jold_free_choice(request, choice=0):
     if choice:
         return redirect(reverse('jold_start_ll_practice'))
     else: return redirect(reverse('end_task'))
+
+
+@login_required
+def jold_consent_page(request):
+    user = request.user
+    participant = user.participantprofile
+    study = participant.study
+    greeting = "Salut, {0} !".format(user.username)
+    form = ConsentForm(request.POST or None)
+    if form.is_valid():
+        # TODO save participant data here (informed consent, email, and if reminder is requested)
+        participant.consent = True
+        participant.save()
+        return redirect(reverse('end_task'))
+    # if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
+    return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
+        'greeting': greeting,
+        'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
+        'study': study,
+        'form': form}})
