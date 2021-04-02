@@ -62,25 +62,32 @@ def signup_page(request):
 @login_required
 @never_cache
 def home(request):
-    if request.user.is_superuser: # ! to be removed
+    # Redirect to superuser views
+    if request.user.is_superuser:
         return redirect(reverse(home_super))
+
+    # Get the related ParticipantProfile instance
     participant = request.user.participantprofile
 
+    # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
     if not participant.set_current_session()
         return redirect(reverse(thanks_page))
 
+    # If it is not the time for current session, redirect user to an appropriate page
     if not participant.current_session.is_valid_now():
         return redirect(reverse(off_session_page))
 
+    # If current task has no prompt or actions, start task immediately
     if participant.current_task.unprompted:
         return redirect(reverse(start_task))
 
+    # If participant has a session assigned, set request.session.active_session to True
     if participant.current_session:
          request.session['active_session'] = json.dumps(True)
 
+    # If there are any messages, add them to django messages see https://docs.djangoproject.com/en/dev/ref/contrib/messages/
     if 'messages' in request.session:
         for tag, content in request.session['messages'].items():
-            print(tag, content)
             django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
     return render(request, 'home_page.html', {'CONTEXT': {'participant': participant}})
 
