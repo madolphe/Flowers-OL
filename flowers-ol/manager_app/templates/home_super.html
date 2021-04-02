@@ -1,23 +1,21 @@
 
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="container" style="padding-top:5%">
   <p>
-    <b>ParticipantProfile sessions (study.index.pk):</b>
-    <ul> 
+    <b>ParticipantProfile sessions (study.index.pk):</b></br>
     {% for s in CONTEXT.p.sessions.all %}
-      <li>{{s}}</li>
+    - {{s}} </br>
     {% endfor %}
-    </ul>
     <b>Sessios stack (pks):</b> {{CONTEXT.p.session_stack_csv}} <br/>
     <b>Origin timestamp:</b> {{CONTEXT.p.origin_timestamp}} <br/>
     <b>Last session timestamp:</b> {{CONTEXT.time_stamp}} <br/>
-    <b>Current sesssion</b> {{CONTEXT.p.current_session}} <br/>
+    <b>Current sesssion:</b> {{CONTEXT.p.current_session}} <br/>
     <b>- wait:</b> {{CONTEXT.p.current_session.wait}} <br/>
     <b>- deadline:</b> {{CONTEXT.p.current_session.deadline}} <br/>
     <b>- valid period:</b> {{CONTEXT.valid_period}} <br/>
     <b>- now is:</b> {{CONTEXT.now_is}} <br/>
-    <b>- redirect_to:</b> <a href="{% url CONTEXT.destination %}"> {{CONTEXT.destination}} </a>
+    <b>- redirect to:</b> <a href="{% url CONTEXT.destination %}"> {{CONTEXT.destination}} </a>
   </p>
   
   <div style="display:flex;justify-content:space-around;padding:0 20em;">
