@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .utils import send_delayed_email
 from .validators import validate_session_stack, validate_timedelta_args
+from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
@@ -59,6 +60,10 @@ class Task(models.Model):
             l.append((label, template, hidden))
         return l
 
+    @property
+    def unprompted(self):
+        return not (bool(self.prompt) or bool(self.actions))
+
 
 class ExperimentSession(models.Model):
     """
@@ -84,29 +89,38 @@ class ExperimentSession(models.Model):
         return self.__unicode__()
 
     def clean(self, *args, **kwargs):
-        '''Checks if `wait` is not greater than `deadline` if both are provided'''
+        '''Checks if `wait` is not greater than `deadline` if both are provided.'''
         if self.wait and self.deadline:
             if delta(**self.wait) > delta(**self.deadline):
-                raise ValidationError(_('wait timedelta cannot be greater than deadline timedelta'))
+                raise ValidationError(_(f'Cannot set wait={self.wait} and deadline={self.deadline}; wait timedelta cannot be greater than deadline timedelta.'))
         super().clean(*args, **kwargs)
 
     def get_task_list(self):
-        """Return a list of all tasks in BDD for this Experiment Session"""
+        '''Return a list of all tasks in BDD for this Experiment Session.'''
         return [Task.objects.get(name=task_name) for task_name in self.tasks_csv.split(',')]
 
     def get_task_by_index(self, index):
+        '''Fetches the task instance by index in the task stack.'''
         return Task.objects.get(name=self.tasks_csv.split(',')[index])
 
-    def get_valid_period(self, ref):
+    def get_valid_period(self, ref_timestamp, string_format=''):
+        '''Returns a pair of values representing the valid period boundaries. By default, return datetime objects. If string_format is specified
+        return a pair of string-formatted datetimes. If a boundary is not provided by wait or deadline, put None instead.
+        '''
         valid_period = [None, None]
         for i, constraint in enumerate([self.wait, self.deadline]):
             if 'days' in constraint.keys():
-                valid_period[i] = (ref + delta(**constraint)).replace(microsecond=0, second=59*i, minute=59*i, hour=23*i)
+                valid_period[i] = (ref_timestamp + delta(**constraint)).replace(microsecond=0, second=59*i, minute=59*i, hour=23*i)
             elif 'minutes' in constraint.keys():
-                valid_period[i] = ref + delta(**constraint)
+                valid_period[i] = ref_timestamp + delta(**constraint)
+        if string_format:
+            return [t.strftime(string_format) if t else None for t in valid_period]
         return valid_period
 
     def is_valid_now(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime. Specifically, we check if now is inside the valid period defined relative to
+        the reference timestamp.
+        '''
         now, checks = timezone.now(), []
         valid_period = self.get_valid_period(ref_timestamp)
         if valid_period[0]:
@@ -114,6 +128,32 @@ class ExperimentSession(models.Model):
         if valid_period[1]:
             checks.append(now < valid_period[1])
         return all(checks)
+
+    def in_future(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime in relation to the lower boundary of the valid period definer relative to the 
+        reference timestamp.
+        '''
+        if not self.wait:
+            return False
+        now = timezone.now().replace(microsecond=0)
+        if 'days' in self.wait.keys():
+            start = (ref_timestamp + delta(**self.wait)).replace(microsecond=0, second=0, minute=0, hour=0)
+        elif 'minutes' in self.wait.keys():
+            start = ref_timestamp + delta(**self.wait)
+        return now < start
+
+    def in_past(self, ref_timestamp):
+        '''Checks if session is valid at the current datetime in relation to the upper boundary of the valid period definer relative to the 
+        reference timestamp.
+        '''
+        if not self.deadline:
+            return False
+        now = timezone.now().replace(microsecond=0)
+        if 'days' in self.deadline.keys():
+            deadline = (ref_timestamp + delta(**self.deadline)).replace(microsecond=0, second=59, minute=59, hour=23)
+        elif 'minutes' in self.deadline.keys():
+            deadline = ref_timestamp + delta(**self.deadline)
+        return now > deadline
 
 
 class ParticipantProfile(models.Model):
@@ -128,7 +168,7 @@ class ParticipantProfile(models.Model):
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
     origin_timestamp = models.DateTimeField(default=timezone.now, verbose_name='Timestamp for when participant was first created')
     sessions = models.ManyToManyField(ExperimentSession, related_name='study_sessions')
-    session_stack = models.TextField(default='', null=True, blank=True, verbose_name='csv string of Session PKs', validators=[validate_session_stack])
+    session_stack_csv = models.TextField(default='', null=True, blank=True, verbose_name='csv string of Session PKs', validators=[validate_session_stack])
     current_session = models.ForeignKey(ExperimentSession, null=True, blank=True, on_delete=models.DO_NOTHING)
     last_session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
@@ -145,32 +185,44 @@ class ParticipantProfile(models.Model):
 
     # Session management
 
-    def add_session(self, pk, commit=True):
-        if self.session_stack == '':
-            self.session_stack = str(pk)
+    def session_stack_peek(self, index=0):
+        '''Returns the indexed value from the session_stack_csv'''
+        return self.session_stack_csv.split(',')[index]
+
+    def session_stack_append(self, pk, commit=True):
+        '''Adds an ExperimentSession primary key to session_stack_csv'''
+        if self.session_stack_csv == '':
+            self.session_stack_csv = str(pk)
         else:
-            self.session_stack = ','.join([self.session_stack, str(pk)])
+            self.session_stack_csv = ','.join([self.session_stack_csv, str(pk)])
         if commit:
             self.save()
 
-    def pop_session(self, commit=True):
-        stack_copy = self.session_stack.split(',')
+    def session_stack_pop(self, commit=True):
+        '''Removes the first primary key of an ExperimentSession from the session_stack_csv of primary keys if the stack is not empty'''
+        stack_copy = self.session_stack_csv.split(',')
         if stack_copy:
-            stack_copy.pop(0)
-            self.session_stack = ','.join(stack_copy)
+            pk = stack_copy.pop(0)
+            self.session_stack_csv = ','.join(stack_copy)
             if commit:
                 self.save()
+        return pk
     
-    def reset_session_stack(self, commit=True):
-        session_stack = self.session_stack
+    def clear_session_stack(self, commit=True):
+        '''Clears session_stack_csv turning it into an empty list'''
+        session_stack = self.session_stack_csv
         if session_stack:
-            self.session_stack = ''
+            self.session_stack_csv = ''
             if commit:
                 self.save()
 
-    def assign_sessions(self, commit=True):
+    def populate_session_stack(self, commit=True):
+        ''' Queries ExperimentSessions associated with participant's study, orders them by index, and
+        populates participants session_tack_csv with pk's of ordered sessions (order of equal indexes
+        is determined randomly)
+        '''
         if self.study and ExperimentSession.objects.filter(study=self.study):
-            self.reset_session_stack(commit=True)
+            self.clear_session_stack(commit=True)
             sessions = ExperimentSession.objects.filter(study=self.study)
             self.sessions.add(*sessions)
             unique_indexes = list(set([s.index for s in sessions]))
@@ -179,33 +231,45 @@ class ParticipantProfile(models.Model):
                 if len(sessions_i) > 1:
                     shuffle(sessions_i)
                 for s in sessions_i:
-                    self.add_session(s.pk)
+                    self.session_stack_append(s.pk)
             if commit:
                 self.clean_fields()
                 self.save()
         else:
             assert False, 'No sessions found for study "{}"'.format(self.study)
 
-    def set_current_session(self):
-        assert self.session_stack, 'Session "stack" is an empty string. Did you forget to assign sessions and create a sessions stack?'
-        if not self.current_session:
-            session_stack_head = self.session_stack.split(',')[0]  # get pk of the first session in self.session_stack
-            s = self.sessions.get(pk=session_stack_head)
-            self.current_session = s
-            self.task_stack_csv = s.tasks_csv
-            self.save()
+    def set_current_session(self, commit=True):
+        '''If session_stack_csv is not empty, set_current_session() assigns an ExperimentSession instance to the participant's
+        current_session (ForeighKey) field. This is done by peeking the first element from session_stack_csv (a primary key) and
+        getting the corresponding ExperimentSession that is then assigned and saved (by default). Finally, return the set session.
+        If session_stack_csv is empty, return None
+        '''
+        if self.session_stack_csv:
+            if self.current_session:
+                return self.current_session
+            else:
+                session_stack_head = self.session_stack_peek()
+                s = self.sessions.get(pk=session_stack_head)
+                self.current_session = s
+                self.task_stack_csv = s.tasks_csv
+                if commit:
+                    self.save()
+                return s
+        else:
+            return None
 
-    def close_current_session(self):
+    def close_current_session(self, commit=True):
         '''If sessions stack is not an empty string: 
             1. time stamp current session
             2. pop the first item
             3. clear current session
         '''
-        if self.session_stack:
+        if self.session_stack_csv:
             self.last_session_timestamp = timezone.now().replace(microsecond=0)
-            self.pop_session()
+            self.session_stack_pop()
             self.current_session = None
-            self.save()
+            if commit:
+                self.save()
 
     @property
     def future_sessions(self):
@@ -239,7 +303,7 @@ class ParticipantProfile(models.Model):
     # Task management
 
     def pop_task(self, n=1):
-        """Remove n items from task "stack". Return False if updated stack is empty, True otherwise"""
+        '''Remove n items from task "stack". Return False if updated stack is empty, True otherwise'''
         task_names = self.task_stack_csv.split(',')[n:]
         self.task_stack_csv = ','.join(task_names)
         self.save()
@@ -264,6 +328,10 @@ class ParticipantProfile(models.Model):
         return task_names
 
     # Miscelaneous
+
+    @property
+    def ref_timestamp(self):
+        return self.last_session_timestamp if self.last_session_timestamp else self.origin_timestamp
 
     @property
     def progress_info(self, all_values=False):

@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+{% block css %}
+  <link rel="stylesheet" href="{% static "css/common.css" %}">
+  <style>
+    button.btn-outline-dark{
+      margin-top: 1em;
+    }
+    .super-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    body {
+      all: revert
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+  </style> 
+{% endblock css %}
+<body>
+  <div class="super-panel">
+    {% if messages %}
+        {% include "includes/message.html" with ms=messages %}
+    {% endif %}
+    <h1>Hello, {{request.user.username}}!</h1>
+    <p>Whatcha wanna do as a <b style="color:DeepPink">superuser</b>?</p>
+        <button type="button" class="btn btn-outline-dark">
+          <a href="{% url "home" %}" style="text-decoration:none;color:inherit;display:block">Proceed as study participant</a>
+        </button>
+        <button type="button" class="btn btn-outline-dark">
+          <a href="{% url "home_super" %}" style="text-decoration:none;color:inherit;display:block">Proceed as superuser</a>
+        </button>
+          <button type="button" class="btn btn-outline-dark">
+          <a href="{% url "reset_user_participant" %}" style="text-decoration:none;color:inherit;display:block">Reset ParticipantProfile</a>
+        </button>
+  </div>
+</body>
+{%endblock%}
