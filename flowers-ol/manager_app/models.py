@@ -236,17 +236,21 @@ class ParticipantProfile(models.Model):
 
     def set_current_session(self, commit=True):
         '''If session_stack_csv is not empty, set_current_session() assigns an ExperimentSession instance to the participant's
-        current_session (ForeighKey) field. This is done by getting the first element (a primary key) from session_stack_csv and
-        querying a corresponding ExperimentSession that is then assigned and saved (by default)
+        current_session (ForeighKey) field. This is done by peeking the first element from session_stack_csv (a primary key) and
+        getting the corresponding ExperimentSession that is then assigned and saved (by default). Finally, return the set session.
+        If session_stack_csv is empty, return None
         '''
-        assert self.session_stack_csv, 'Session "stack" is an empty string. Did you forget to assign sessions and create a sessions stack?'
-        if not self.current_session:
-            session_stack_head = self.session_stack_peek()
-            s = self.sessions.get(pk=session_stack_head)
-            self.current_session = s
-            self.task_stack_csv = s.tasks_csv
-            if commit:
-                self.save()
+        if self.session_stack_csv:
+            if not self.current_session:
+                session_stack_head = self.session_stack_peek()
+                s = self.sessions.get(pk=session_stack_head)
+                self.current_session = s
+                self.task_stack_csv = s.tasks_csv
+                if commit:
+                    self.save()
+                return s
+        else
+            return None
 
     def close_current_session(self, commit=True):
         '''If sessions stack is not an empty string: 

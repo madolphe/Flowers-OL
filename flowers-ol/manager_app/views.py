@@ -65,9 +65,8 @@ def home(request):
     if request.user.is_superuser: # ! to be removed
         return redirect(reverse(home_super))
     participant = request.user.participantprofile
-    try:
-        participant.set_current_session()
-    except AssertionError:
+
+    if not participant.set_current_session()
         return redirect(reverse(thanks_page))
 
     if not participant.current_session.is_valid_now():
