@@ -118,6 +118,26 @@ class ExperimentSession(models.Model):
             checks.append(now < valid_period[1])
         return all(checks)
 
+    def in_future(self, ref_timestamp):
+        if not self.wait:
+            return False
+        now = timezone.now().replace(microsecond=0)
+        if 'days' in self.wait.keys():
+            start = (ref_timestamp + delta(**self.wait)).replace(microsecond=0, second=0, minute=0, hour=0)
+        elif 'minutes' in self.wait.keys():
+            start = ref_timestamp + delta(**self.wait)
+        return now < start
+
+    def in_past(self, ref_timestamp):
+        if not self.deadline:
+            return False
+        now = timezone.now().replace(microsecond=0)
+        if 'days' in self.deadline.keys():
+            deadline = (ref_timestamp + delta(**self.deadline)).replace(microsecond=0, second=59, minute=59, hour=23)
+        elif 'minutes' in self.deadline.keys():
+            deadline = ref_timestamp + delta(**self.deadline)
+        return now > deadline
+
 
 class ParticipantProfile(models.Model):
     # Link to User model
