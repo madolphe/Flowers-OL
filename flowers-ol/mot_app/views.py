@@ -205,10 +205,19 @@ def display_progression(request):
 
 
 @login_required
-def enumeration_task(request):
+def cognitive_task(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
-    return render(request, 'pre-post-tasks/base_cognitive_task.html', {"screen_params": screen_params})
+    current_task_idx = participant.extra_json["cognitive_tests_current_task_idx"]
+    stack_tasks = participant.extra_json["cognitive_tests_task_stack"]
+    current_task = f"app-{stack_tasks[current_task_idx]}"
+    return render(request, 'pre-post-tasks/base_cognitive_task.html', {"CONTEXT": {"screen_params": screen_params,
+                                                                                   "task": current_task}})
+
+
+def tutorial(request, script_name):
+    print(script_name)
+    return render(request, f'pre-post-tasks/instructions/tutorials_{script_name}.html')
 
 
 @login_required
@@ -242,9 +251,13 @@ def cognitive_assessment_home(request):
         # The task results will have to be stored right after coming back to this view
         participant.extra_json['task_to_store'] = True
         participant.save()
+        instructions_page = f"pre-post-tasks/instructions/instructions_{current_task_name}.html"
         return render(request,
                       'pre-post-tasks/instructions/instructions_cognitive_task.html',
-                      {'CONTEXT': {'participant': participant, 'current_task': current_task_context}})
+                      {'CONTEXT': {'participant': participant,
+                                   'current_task': current_task_context,
+                                   'instructions_page': instructions_page,
+                                   'tutorials_page': current_task_name}})
     elif current_task_name is not None:
         # A break but still tasks to play, i.e time to pass to second half of cognitive tests:
         # set participant extra json to same status (POST/PRE) with task index
@@ -273,7 +286,7 @@ def get_task_stack():
     """When user pass the test for the first time, the task stack is defined randomly here"""
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    random.shuffle(task_stack)
+    random.Random(0).shuffle(task_stack)
     return task_stack
 
 

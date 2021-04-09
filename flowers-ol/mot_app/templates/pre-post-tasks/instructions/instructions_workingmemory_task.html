@@ -1,34 +1,12 @@
-{% extends "base.html" %}
-{% block title %}TASK{% endblock %}
-{%load static%}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
-
-{% block content%}
-  <form id="request">{% csrf_token %}</form>
-  <div class="explanation-text">
-
-      <h3> Instructions </h3>
-      <p> 
-          <li>The goal of this experiment is to measure the ability of spatial memories. </li> 
-          <li>In each trial, you will first see the sequence of color changes in the nine objects.  </li>
-          <li>Your task is to <b>remember the order</b> of these changes and to report the order after the sequence presentation is finished <b>by clicking the buttons in the order you saw.</b></li>
-          <li>You can check the practice trials of this task from the following window.</li>
-          </UL>
-      </p>
-
-  </div>
-
-  <h3> Practice trials </h3>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<div class="explanation-text">
+  <h3> Instructions </h3>
   <p>
-    {%load templates%}
-    <iframe id="tutorial_demo"
-    title="practice trials"
-    width="640"
-    height="480"
-    src="{% static 'pre-post-tasks/instructions/tutorials_workingmemory_task.html' %}"></iframe>
+      <li>The goal of this experiment is to measure the ability of spatial memories. </li>
+      <li>In each trial, you will first see the sequence of color changes in the nine objects.  </li>
+      <li>Your task is to <b>remember the order</b> of these changes and to report the order after the sequence presentation is finished <b>by clicking the buttons in the order you saw.</b></li>
+      <li>You can check the practice trials of this task from the following window.</li>
+      </UL>
   </p>
-
-{% endblock %}\
+</div>
