@@ -3,6 +3,7 @@ import datetime
 from django.contrib.auth.models import User
 from manager_app.models import ParticipantProfile
 
+
 class Episode(models.Model):
     # Foreign key to user :
     participant = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -60,9 +61,9 @@ class SecondaryTask(models.Model):
 class CognitiveTask(models.Model):
     name = models.TextField(blank=True)
     view_name = models.TextField(blank=True)
-    template_instruction_name = models.TextField(blank=True)
-    instructions_prompt_name = models.TextField(blank=True)
-    answers_params_name = models.TextField(blank=True)
+    instructions_prompt_label = models.TextField(blank=True)
+    template_instruction_path = models.TextField(blank=True)
+    template_tutorials_path = models.TextField(blank=True)
 
 
 class CognitiveResult(models.Model):

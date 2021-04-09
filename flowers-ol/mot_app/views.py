@@ -20,6 +20,8 @@ import random
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
+# ### Views and utilities for mot_app-task ###
+
 
 @login_required
 def mot_close_task(request):
@@ -204,32 +206,31 @@ def display_progression(request):
                   {'CONTEXT': {'participant': participant}})
 
 
-@login_required
-def cognitive_task(request):
-    participant = ParticipantProfile.objects.get(user=request.user.id)
-    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
-    current_task_idx = participant.extra_json["cognitive_tests_current_task_idx"]
-    stack_tasks = participant.extra_json["cognitive_tests_task_stack"]
-    current_task = f"app-{stack_tasks[current_task_idx]}"
-    return render(request, 'pre-post-tasks/base_cognitive_task.html', {"CONTEXT": {"screen_params": screen_params,
-                                                                                   "task": current_task}})
-
-
-def tutorial(request, script_name):
-    print(script_name)
-    return render(request, f'pre-post-tasks/instructions/tutorials_{script_name}.html')
-
-
-@login_required
-def test_task(request):
-    return redirect(reverse('cognitive_assessment_home'))
-
+# ### Views and utilities for pre-post-task ###
 
 @login_required
 def cognitive_assessment_home(request):
     """
-    Set if this is pre OR post test
-    Render instruction page of correct tasks
+    This view is the controller for the all activity. It checks the current status of the pre/post test.
+    5 possibilities:
+    1) This is the first activity for the participant:
+        - Create a task stack (random)
+        - Update status (pre/post - phase1)
+        - Launch the first activity
+    2) There is an another activity in the task stack:
+        - Save last activity results
+        - Launch the next activity
+    3) This is the break
+        - Save last activity results
+        - Exit this view and call to 'end-task' view
+    4) This is the first activity after the break:
+        - Do not save last activity results
+        - Update status (pre/post - phase2)
+        - Launch activity on task stack
+    5) No more activity on task stack:
+        - Save last activity results
+        - Update status (pre -> post OR end)
+        - Call to exit view 'end_task'
     """
     participant = ParticipantProfile.objects.get(user=request.user.id)
     # Check if participant is doing the test for the first time:
@@ -240,50 +241,38 @@ def cognitive_assessment_home(request):
     if participant.extra_json['task_to_store']:
         store_previous_task(request, participant, idx_task)
     # Get current task context and name according to task idx:
-    current_task_name, current_task_context = get_current_task_context(participant, idx_task)
+    current_task_name, current_task_object = get_current_task_context(participant, idx_task)
     # Update task index for next visit to the view
     update_task_index(participant)
-    print(current_task_name)
-    print(idx_task)
     # 3 use cases: play / time for break / time to stop
     if current_task_name is not None and not participant.extra_json['cognitive_tests_break']:
-        # No break + still tasks to play:
-        # The task results will have to be stored right after coming back to this view
-        participant.extra_json['task_to_store'] = True
-        participant.save()
-        instructions_page = f"pre-post-tasks/instructions/instructions_{current_task_name}.html"
-        return render(request,
-                      'pre-post-tasks/instructions/instructions_cognitive_task.html',
-                      {'CONTEXT': {'participant': participant,
-                                   'current_task': current_task_context,
-                                   'instructions_page': instructions_page,
-                                   'tutorials_page': current_task_name}})
+        return launch_task(request, participant, current_task_object)
     elif current_task_name is not None:
-        # A break but still tasks to play, i.e time to pass to second half of cognitive tests:
-        # set participant extra json to same status (POST/PRE) with task index
-        # When coming back after break, make sure the task to store is still set to False
-        NUMBER_OF_TASKS_PER_BATCH = 4
-        participant.extra_json['cognitive_tests_break'] = False
-        participant.save()
-        restart_participant_extra_json(participant,
-                                       test_title=participant.extra_json['cognitive_tests_status'],
-                                       task_index=NUMBER_OF_TASKS_PER_BATCH,
-                                       is_first_half=False,
-                                       task_to_store=False)
-        return redirect(reverse('end_task'))
-
+        return exit_for_break(participant)
     else:
-        # Ok task is over let's close the task by rendering the usual end_task
-        restart_participant_extra_json(participant,
-                                       test_title='POST_TEST',
-                                       task_index=0,
-                                       is_first_half=True,
-                                       task_to_store=False)
-        return redirect(reverse('end_task'))
+        return end_task(participant)
+
+
+@login_required
+def cognitive_task(request):
+    """
+        View used to render all activities in the pre/post assessment
+        Render a base html file that uses a custom filter django tag to include the correct js scripts
+    """
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    current_task_idx = participant.extra_json["cognitive_tests_current_task_idx"]
+    stack_tasks = participant.extra_json["cognitive_tests_task_stack"]
+    current_task = f"{stack_tasks[current_task_idx]}"
+    return render(request,
+                  'pre-post-tasks/base_pre_post_app.html',
+                  {"CONTEXT": {"screen_params": screen_params, "task": current_task}})
 
 
 def get_task_stack():
-    """When user pass the test for the first time, the task stack is defined randomly here"""
+    """
+        When user pass the test for the first time, the task stack is defined randomly here
+    """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
     random.Random(0).shuffle(task_stack)
@@ -294,15 +283,60 @@ def get_current_task_context(participant, idx_task):
     task_stack = participant.extra_json['cognitive_tests_task_stack']
     if idx_task < len(task_stack):
         current_task_name = task_stack[idx_task]
-        current_task_context = CognitiveTask.objects.values('view_name',
-                                                            'template_instruction_name',
-                                                            'instructions_prompt_name').\
-                                                    get(name=current_task_name)
-        return current_task_name, current_task_context
+        current_task_object = CognitiveTask.objects.values().get(name=current_task_name)
+        return current_task_name, current_task_object
     else:
         participant.extra_json['cognitive_tests_current_task_idx'] = 0
         participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
         return None, None
+
+
+def update_task_index(participant):
+    """Objectives of this function are 2-folds:
+        1) increment the current index of the cognitive_test that will be played
+        2) Test if this index corresponds to the moment for a break
+    """
+    NUMBER_OF_TASKS_PER_BATCH = 4
+    if participant.extra_json['cognitive_tests_first_half']:
+        participant.extra_json['cognitive_tests_break'] = participant.extra_json['cognitive_tests_current_task_idx'] \
+                                                          == NUMBER_OF_TASKS_PER_BATCH
+    participant.extra_json['cognitive_tests_current_task_idx'] += 1
+    participant.save()
+
+
+def launch_task(request, participant, current_task_object):
+    # No break + still tasks to play:
+    # The task results will have to be stored right after coming back to this view
+    participant.extra_json['task_to_store'] = True
+    participant.save()
+    return render(request,
+                  'pre-post-tasks/instructions/pre-post.html',
+                  {'CONTEXT': {'participant': participant, 'current_task': current_task_object}})
+
+
+def exit_for_break(participant):
+    # A break but still tasks to play, i.e time to pass to second half of cognitive tests:
+    # set participant extra json to same status (POST/PRE) with task index
+    # When coming back after break, make sure the task to store is still set to False
+    NUMBER_OF_TASKS_PER_BATCH = 4
+    participant.extra_json['cognitive_tests_break'] = False
+    participant.save()
+    restart_participant_extra_json(participant,
+                                   test_title=participant.extra_json['cognitive_tests_status'],
+                                   task_index=NUMBER_OF_TASKS_PER_BATCH,
+                                   is_first_half=False,
+                                   task_to_store=False)
+    return redirect(reverse('end_task'))
+
+
+def end_task(participant):
+    # Ok task is over let's close the task by rendering the usual end_task
+    restart_participant_extra_json(participant,
+                                   test_title='POST_TEST',
+                                   task_index=0,
+                                   is_first_half=True,
+                                   task_to_store=False)
+    return redirect(reverse('end_task'))
 
 
 def store_previous_task(request, participant, idx_task):
@@ -321,19 +355,6 @@ def store_previous_task(request, participant, idx_task):
     res.save()
 
 
-def update_task_index(participant):
-    """Objectives of this function are 2-folds:
-        1) increment the current index of the cognitive_test that will be played
-        2) Test if this index corresponds to the moment for a break
-    """
-    NUMBER_OF_TASKS_PER_BATCH = 4
-    if participant.extra_json['cognitive_tests_first_half']:
-        participant.extra_json['cognitive_tests_break'] = participant.extra_json['cognitive_tests_current_task_idx'] \
-                                                          == NUMBER_OF_TASKS_PER_BATCH
-    participant.extra_json['cognitive_tests_current_task_idx'] += 1
-    participant.save()
-
-
 def init_participant_extra_json(participant):
     participant.extra_json['cognitive_tests_task_stack'] = get_task_stack()
     restart_participant_extra_json(participant, 'PRE_TEST', task_to_store=False)
@@ -347,5 +368,8 @@ def restart_participant_extra_json(participant, test_title, task_index=0, is_fir
     participant.save()
 
 
+@login_required
+def tutorial(request, task_name):
+    return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html")
 
 

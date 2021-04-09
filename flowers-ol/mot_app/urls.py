@@ -11,6 +11,5 @@ urlpatterns = [
     path('mot_close_task', views.mot_close_task, name='mot_close_task'),
     path('cognitive_assessment_home', views.cognitive_assessment_home, name='cognitive_assessment_home'),
     path('cognitive_task', views.cognitive_task, name='cognitive_task'),
-    path('test_task', views.test_task, name='test_task'),
-    path('tutorial/<str:script_name>', views.tutorial, name="tutorial")
+    path('tutorial/<str:task_name>', views.tutorial, name="tutorial")
 ]

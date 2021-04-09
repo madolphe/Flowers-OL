@@ -31,11 +31,10 @@
     </div>
     <div class="main-panel">
         {% if CONTEXT.current_task %}
-            {% include CONTEXT.instructions_page %}
-            <iframe id="" title="practice trials" width="640" height="480" src="{% url 'tutorial' script_name=CONTEXT.tutorials_page %}"></iframe>
-            <a class="btn" href={% url CONTEXT.current_task.view_name %}>{{CONTEXT.tutorials_page}}</a>
+            {% include CONTEXT.current_task.template_instruction_path %}
+            <iframe id="" title="practice trials" width="640" height="480" src="{% url 'tutorial' task_name=CONTEXT.current_task.name %}"></iframe>
+            <a class="btn" href={% url CONTEXT.current_task.view_name %}>{{CONTEXT.current_task.name}}</a>
         {% endif %}
-
     </div>
 {% endblock %}
 

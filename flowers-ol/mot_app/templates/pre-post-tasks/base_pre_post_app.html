@@ -8,14 +8,17 @@
 
 {% block content%}
     <form id="request">{% csrf_token %}</form>
-    {% load mot_app_extras %}
-    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/"|addstr:CONTEXT.task|addstr:".js" as task_template %}
-        {{ task_template }}
-    {% endwith %}
 {% endblock %}
 
 {% block js%}
     <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
     <script src="{% static 'js/utils/screen_params.js' %}"></script>
     <script src="{% static 'js/utils/utils.js' %}"></script>
+    {% load mot_app_extras %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/"|addstr:CONTEXT.task|addstr:".js" as task_template %}
+        <script src="{% static task_template %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/config.js" as task_config %}
+        <script src="{% static task_config %}"></script>
+    {% endwith %}
 {% endblock %}
