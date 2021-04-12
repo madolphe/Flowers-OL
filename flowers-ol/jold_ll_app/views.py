@@ -116,17 +116,14 @@ def jold_free_choice(request, choice=0):
 def jold_consent_page(request):
     user = request.user
     participant = user.participantprofile
-    form = ConsentForm(request.POST or None)
+    form = ConsentForm(request.POST or None, request=request)
     if form.is_valid():
-        # TODO save participant data here (informed consent, email, and if reminder is requested)
         participant.consent = True
         if form.cleaned_data['request_reminder']:
             participant.remind = True
             participant.email = form.cleaned_data['email']
         participant.save()
         return redirect(reverse('end_task'))
-    else:
-        django_messages.add_message(request, django_messages.ERROR, 'Le formulaire n''est pas valide. Consultez les messages d''erreur pour corriger le formulaire')
     return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
         'username': user.username,
         'study': participant.study,
