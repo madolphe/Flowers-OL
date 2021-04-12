@@ -9,19 +9,17 @@
 {% block content%}
     <div class="side-panel">
         <div class="side-info">
-           <h2>{{CONTEXT.greeting}}</h2>
+           <h2>{% trans "Salut" %}, {{CONTEXT.username}}!</h2>
            <p>
-               {% trans "Pour donner votre consentement et participer à l'expérience:" %}
+               {% trans "Avant de commencer, nous devons recueillir votre consentement éclairé. Pour donner votre consentement:" %}
                <ul>
-                   <li>{% trans "Lisez attentivement le formulaire de consentement sur la droite" %}</li>
-                   <li>{% trans "Cochez la case " %}{% trans "J'ai lu et compris les termes de cette étude" %}</li>
-                   <li>{% trans "Écrivez " %}{% trans "Je consens dans la barre en dessous" %}</li>
-                   <li>{% trans "Cliquez ensuite sur" %} {% trans "Valider" %}</li>
+                   <li>{% trans "Lisez attentivement les informations à droite" %}</li>
+                   <li>{% trans "Remplissez le formulaire de consentement à la fin" %}</li>
+                   <li>{% trans "Envoyez le formulaire de consentement que vous avez rempli" %}</li>
                </ul>
         </div>
         <div class="btn-box logout"> <a class="btn logout" href="{% url "user_logout" %}">{% trans "Se déconnecter" %}</a> </div>
     </div>
-
 
     <div class="main-panel">
         {% load crispy_forms_tags %}
