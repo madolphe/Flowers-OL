@@ -25,9 +25,9 @@
         {% load crispy_forms_tags %}
         <form class="form" method="post">
             <div class="form-sheet">
-                {% include CONTEXT.study.briefing_template with person=CONTEXT.person project=CONTEXT.study.project %}
+                {% include CONTEXT.study.briefing_template with project=CONTEXT.study.project %}
+                {% crispy CONTEXT.form %}
             </div>
-            {% crispy CONTEXT.form %}
         </form>
     </div>
 {% endblock %}
