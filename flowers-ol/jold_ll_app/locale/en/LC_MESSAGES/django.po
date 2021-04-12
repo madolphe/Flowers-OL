@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-01 13:33+0200\n"
+"POT-Creation-Date: 2021-04-12 20:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/JOLD/consent_form.html:3
-msgid "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ"
-msgstr "INFORMATION AND INFORMED CONSENT FORM"
+#: forms.py:9
+msgid ""
+"En cochant cette case, vous reconnaissez avoir lu et compris les "
+"informations fournies sur l'étude."
+msgstr ""
+"By checking this box, you acknowledge that you have read and understood the "
+"information provided about the study"
 
-#: templates/JOLD/consent_form.html:5
+#: forms.py:10
+msgid ""
+"En cochant cette case, vous donnez votre consentement éclairé à participer à "
+"l'étude."
+msgstr ""
+"By checking this box you provide your informed consent to participate in the "
+"study"
+
+#: forms.py:11
+msgid ""
+"En cochant cette case, vous acceptez de tecevoir un rappel 1 jour avant la "
+"prochaine session (optionel)."
+msgstr ""
+"By checking this box, you request to be reminded about the upcoming session "
+"1 day in advance (optional)"
+
+#: forms.py:12
+msgid ""
+"À quelle adresse souhaitez-vous recevoir le(s) rappel(s) ? Indiquez votre "
+"adresse électronique ci-dessous (optionel)"
+msgstr ""
+"Where should we send the reminder(s)? Provide your email adress below "
+"(optional)"
+
+#: forms.py:18
+msgid "Soumettre le consentement éclairé"
+msgstr "Submit informed consent"
+
+#: templates/consent_form.html:3
+msgid "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ"
+msgstr "INFORMATION ABOUT THE STUDY"
+
+#: templates/consent_form.html:5
 msgid ""
 "Dans le cadre de leurs recherches, les chercheurs Inria sont amenés à "
 "demander à des personnes de participer à des études nécessaires pour "
@@ -33,23 +69,21 @@ msgid ""
 "recueil de consentement éclairé que le COERLE recommande de faire signer aux "
 "personnes qui participent à des recherches menées par les chercheurs Inria."
 msgstr ""
-"As part of their research, Inria researchers may ask individuals to "
+"As part of their research, researchers of Inria ask individuals to "
 "participate in studies necessary for the progress of their research "
-"projects. Any participation of individuals in a study must be preceded, on "
-"the one hand, by the transmission of an information note and, on the other "
-"hand, by the signature of an informed consent form. This document presents "
-"the information and informed consent form that COERLE recommends that "
-"individuals participating in research conducted by Inria researchers sign."
+"projects. In accordance with <a href='https://www.inria.fr/en/operational-"
+"committee-assesment-legal-and-ethical-risks'>OCELER</a> ethical guidelines, "
+"any kind of participation in a study must be preceded by the transmission of "
+"information regarding participantion, followed by the signing of an informed "
+"consent form. This document presents the information and an informed consent "
+"form recommended by OCELER for individuals participating in studies "
+"conducted by Inria researchers sign."
 
-#: templates/JOLD/consent_form.html:9
+#: templates/consent_form.html:9
 msgid "INFORMATIONS COMMUNIQUÉES AUX PARTICIPANTS"
-msgstr "INFORMATION PROVIDED TO PARTICIPANTS"
+msgstr "INFORMATION FOR PARTICIPANTS"
 
-#: templates/JOLD/consent_form.html:10
-msgid "Remerciements :"
-msgstr "Acknowledgements :"
-
-#: templates/JOLD/consent_form.html:11
+#: templates/consent_form.html:10
 msgid ""
 "Votre collaboration est essentielle à la réalisation de notre projet et, "
 "l’équipe de recherche tient à vous en remercier."
@@ -57,7 +91,7 @@ msgstr ""
 "Your collaboration is essential to the realisation of our project and the "
 "research team would like to thank you."
 
-#: templates/JOLD/consent_form.html:13
+#: templates/consent_form.html:12
 msgid ""
 "Avant de donner votre consentement éclairé, il est important que vous "
 "compreniez pourquoi la recherche est faite, ce qu’elle implique et quels "
@@ -67,45 +101,40 @@ msgstr ""
 "why the research is being done, what it involves and what your rights and "
 "obligations are."
 
-#: templates/JOLD/consent_form.html:17
+#: templates/consent_form.html:16
 msgid "PRESENTATION DU PROJET"
 msgstr "PRESENTATION OF THE PROJECT"
 
-#: templates/JOLD/consent_form.html:18
+#: templates/consent_form.html:17
 msgid "Responsables du projet"
 msgstr "Project leaders"
 
-#: templates/JOLD/consent_form.html:19
+#: templates/consent_form.html:18
 msgid "Equipe-projet et CRI "
 msgstr "Project team and IRC"
 
-#: templates/JOLD/consent_form.html:19
+#: templates/consent_form.html:18
 msgid "Équipe-projet FLOWERS – Inria Bordeaux Sud-Ouest "
 msgstr "FLOWERS project team - Inria Bordeaux Sud-Ouest"
 
-#: templates/JOLD/consent_form.html:20
+#: templates/consent_form.html:19
 msgid "Nom du projet "
 msgstr "Name of the project"
 
-#: templates/JOLD/consent_form.html:20
-msgid "Apprentissage intrinsèquement motivé chez l’homme "
-msgstr "Intrinsically motivated learning in humans"
-
-#: templates/JOLD/consent_form.html:22
+#: templates/consent_form.html:21
 msgid ""
 "Vous êtes invités à prendre part à ce projet dont la finalité est d’étudier "
 "dans quelle mesure les progrès d’apprentissage sont une motivation forte "
 "chez les humains à poursuivre un apprentissage sur une tâche donnée."
 msgstr ""
-"You are invited to take part in this project, which aims to study the extent "
-"to which learning progress is a strong motivation for humans to continue "
-"learning on a given task."
+"You are invited to participate in a behavioral experiment that aims to study "
+"metacognitive processes involved in self-regulated sensorimotor learning."
 
-#: templates/JOLD/consent_form.html:24
+#: templates/consent_form.html:23
 msgid "Les modalités de réalisation du projet seront les suivantes :"
-msgstr "The project will be implemented as follows:"
+msgstr "The experiment will be implemented as follows:"
 
-#: templates/JOLD/consent_form.html:26
+#: templates/consent_form.html:25
 msgid ""
 "Ce projet s'inscrit dans une démarche de compréhension des liens entre les "
 "mécanismes d'apprentissage et la motivation intrinsèque (propre à "
@@ -119,22 +148,18 @@ msgid ""
 "numérique, un jeu sérieux d’attention, dans lequel sera évalué vos progrès "
 "d’apprentissage et vos comportements et perceptions vis-à-vis de celui-ci."
 msgstr ""
-"This project is part of a process of understanding the links between "
-"learning mechanisms and intrinsic motivation (specific to the individual). "
-"In particular, this research aims to analyse the human capacity to monitor "
-"and evaluate learning (metacognition) in order to measure progress as a "
-"source of motivation to continue learning. Our aim is to observe the extent "
-"to which learning progress is a driver of task endurance and to measure the "
-"accuracy with which an individual is able to measure it during learning. To "
-"do this, you will be asked to use a digital application, a serious game of "
-"attention, in which your learning progress and your behaviours and "
-"perceptions towards it will be assessed."
+"This experiment is designed to investigate the links between one'slearning "
+"and one's subjective judgments of learning (specific to the individual). In "
+"particular, this research aims to analyze the human capacity to monitor and "
+"evaluate their own learning (metacognition).To do this, you will be asked to "
+"practice three sessions of a video game called 'Lunar Lander' and provide "
+"your subjective evaluations of your own performance and progress."
 
-#: templates/JOLD/consent_form.html:28
+#: templates/consent_form.html:27
 msgid "Les bénéfices attendus du projet sont les suivants :"
-msgstr "The expected benefits of the project are as follows:"
+msgstr "As a results of the experiment, we expect learn about the following:"
 
-#: templates/JOLD/consent_form.html:30
+#: templates/consent_form.html:29
 msgid ""
 "Nous espérons déterminer des conditions dans lesquelles le progrès "
 "d’apprentissage est maximal. Nous espérons également établir un lien entre "
@@ -146,40 +171,41 @@ msgid ""
 "éthiques d’Inria. Pour de plus amples informations : http://www.inria.fr/"
 "institut/organisation/instances/coerle/presentation-du-coerle"
 msgstr ""
-"We hope to identify conditions under which learning progress is maximised. "
-"We also hope to establish a link between learning progress and the learner's "
-"perception of progress. As the proposed game is a serious game, it will in "
-"any case allow you to stimulate yourself cognitively, and in particular, "
-"your attentional capacities. This project is funded by the Flowers team "
-"(Inria Bordeaux SO centre) and has been authorised by Inria's Operational "
-"Committee for the assesment of Legal and Ethical risks. For more "
-"information: http://www.inria.fr/institut/organisation/instances/coerle/"
-"presentation-du-coerle"
+"We aim to identify conditions under which learning is maximised. We also "
+"hope to establish a link between the objective rate of learning and the "
+"learner's perception of progress of his or her own learning. This project is "
+"funded by the Flowers team (Inria Bordeaux Sud-Ouest centre) and has been "
+"authorised by Inria's Operational Committee for the assesment of Legal and "
+"Ethical risks. For more information, click on this <a href='https://www."
+"inria.fr/en/operational-committee-assesment-legal-and-ethical-risks'>link</"
+"a>."
 
-#: templates/JOLD/consent_form.html:33
+#: templates/consent_form.html:32
 msgid "VOTRE PARTICIPATION AU PROJET"
 msgstr "YOUR PARTICIPATION IN THE PROJECT"
 
-#: templates/JOLD/consent_form.html:34
+#: templates/consent_form.html:33
 msgid "Modalités de votre participation:"
-msgstr "Details of your participation:"
+msgstr "Details of your participation"
 
-#: templates/JOLD/consent_form.html:36
+#: templates/consent_form.html:35
 msgid "Votre participation consiste, pour l’essentiel, à :"
-msgstr "Your participation consists mainly of :"
+msgstr "Your participation will consist of:"
 
-#: templates/JOLD/consent_form.html:45
+#: templates/consent_form.html:44
 msgid ""
 " Faire usage des outils mis à disposition par l’équipe de recherche "
 "(application/jeu sur ordinateur). La durée d'utilisation des outils est de 5 "
 "minutes à raison de 3 fois dans la semaine (ne pas faire 2 séances le même "
 "jour) et ce, pendant 1 semaine."
 msgstr ""
-"Use the tools provided by the research team (computer application/game). The "
-"duration of the use of the tools is 5 minutes, 3 times a week (do not do 2 "
-"sessions on the same day), for 1 week."
+"Using the tools provided by the research team (online application and the "
+"video game). The entire experiment will last 5 days, during which you will "
+"be asked to complete 3 scheduled sessions, 10-15 minutes each. The first "
+"session can be started on any day, but the following sessions will need to "
+"be completed 1 and 4 days after the first session, respectively."
 
-#: templates/JOLD/consent_form.html:48
+#: templates/consent_form.html:47
 msgid ""
 " Il est impératif de suivre le planning des sessions, sans quoi, nous ne "
 "pourrons utiliser vos résultats pour notre étude. Le planning est comme "
@@ -187,19 +213,20 @@ msgid ""
 "exemple, si votre première session est un lundi, vous devrez effectué la "
 "deuxième session le mardi et la dernière le vendredi."
 msgstr ""
-"It is imperative that you follow the session schedule, otherwise we will not "
+"It is important that you follow the session schedule, otherwise we will not "
 "be able to use your results for our study. The schedule is as follows: Day 1 "
-"- session 1 -> Day 2 - session 2 -> Day 5 - session 3. For example, if your "
-"first session is on a Monday, you should do the second session on Tuesday "
-"and the last session on Friday."
+"- session 1 -> Day 2 - session 2 -> Day 5 - session 3. For example, if you "
+"complete your first session on any time on Tuesday, the next session must be "
+"completed on Thursday (from 12:00 AM to 11:59 PM), and the next one after "
+"that must be completed on Saturday (from 12:00 to 11:59 PM)"
 
-#: templates/JOLD/consent_form.html:51
+#: templates/consent_form.html:50
 msgid ""
 "  Répondre à des questionnaires au regard de la tâche que vous aurez "
 "effectuée."
-msgstr "Respond to questionnaires in relation to the task you have completed."
+msgstr "Respond to questionnaires about your activity."
 
-#: templates/JOLD/consent_form.html:54
+#: templates/consent_form.html:53
 msgid ""
 " Aucun risque particulier n’est à déplorer concernant votre participation à "
 "cette étude. De plus, cette participation vous donne également l’opportunité "
@@ -207,25 +234,25 @@ msgid ""
 "relatifs à l'apprentissage et aux capacités cognitives des humains."
 msgstr ""
 "There are no particular risks involved in participating in this study. "
-"Moreover, this participation also gives you the opportunity to know that "
-"research is mobilising to address major issues related to human learning and "
+"Moreover, the participation also gives you an opportunity to learn about the "
+"ongoing research addressing major issues related to human learning and "
 "cognitive abilities."
 
-#: templates/JOLD/consent_form.html:57
+#: templates/consent_form.html:56
 msgid ""
 " Aucune compensation financière n’est prévue pour votre participation, qui "
 "ne repose que sur votre libre choix et votre droit de retrait que vous "
 "pouvez exercer à tout moment de l’étude."
 msgstr ""
 "There is no financial compensation for your participation, which is based "
-"solely on your free choice and your right to withdraw at any time during the "
-"study."
+"solely on your decision. You have the right to withdraw at any time during "
+"the experiment."
 
-#: templates/JOLD/consent_form.html:62
+#: templates/consent_form.html:61
 msgid "Participation volontaire au projet :"
-msgstr "Voluntary participation in the project :"
+msgstr "Voluntary participation in the project"
 
-#: templates/JOLD/consent_form.html:64
+#: templates/consent_form.html:63
 msgid ""
 "Après avoir lu et compris les informations contenues dans la partie « "
 "Présentation du projet», votre signature de ce formulaire indique que vous "
@@ -234,17 +261,17 @@ msgid ""
 "décision, n’hésitez pas à demander un complément d’informations aux "
 "personnes contacts (voir ci-après)."
 msgstr ""
-"Having read and understood the information in the 'Project Presentation' "
-"section, your signature on this form indicates that you agree to participate "
-"in the project, without any constraints or external pressure. If you are "
-"missing any information necessary for your decision, please do not hesitate "
-"to ask for further information from the contact persons (see below)."
+"Having read and understood the information in the 'PRESENTATION OF THE "
+"PROJECT' section, your submission of this form indicates that you agree to "
+"participate in the project, without any constraints or external pressure. If "
+"you are missing any information necessary for your decision, please do not "
+"hesitate to ask for further information from the contact persons (see below)."
 
-#: templates/JOLD/consent_form.html:67
+#: templates/consent_form.html:66
 msgid "Retrait du projet à tout moment :"
-msgstr "Withdrawal of the project at any time :"
+msgstr "Withdrawal of the project at any time"
 
-#: templates/JOLD/consent_form.html:69
+#: templates/consent_form.html:68
 msgid ""
 "Vous êtes totalement libre de mettre fin à votre participation au projet à "
 "n’importe quel moment. Il vous suffit d’en informer les personnes contacts "
@@ -255,11 +282,11 @@ msgstr ""
 "time. You just need to inform the contact persons (below). You will not have "
 "to justify your withdrawal and you will not incur any liability."
 
-#: templates/JOLD/consent_form.html:71
+#: templates/consent_form.html:70
 msgid "Suite de votre retrait du projet :"
-msgstr "Following your withdrawal from the project :"
+msgstr "Following your withdrawal from the project"
 
-#: templates/JOLD/consent_form.html:73
+#: templates/consent_form.html:72
 msgid ""
 "L’équipe de recherche pourra continuer à utiliser les renseignements vous "
 "concernant jusqu’au retrait de votre consentement, sauf si vous vous y "
@@ -268,39 +295,40 @@ msgid ""
 msgstr ""
 "The research team may continue to use your information until you withdraw "
 "your consent, unless you object by telling the contact persons. In this "
-"case, your information will be destroyed."
+"case, your data will be destroyed."
 
-#: templates/JOLD/consent_form.html:75
+#: templates/consent_form.html:74
 msgid "Demande d’informations au cours du projet :"
-msgstr "Request for information during the project :"
+msgstr "Request for information during the project"
 
-#: templates/JOLD/consent_form.html:77
+#: templates/consent_form.html:76
 msgid ""
 "Si vous avez des questions additionnelles sur le projet ou sur les droits en "
 "tant que participant à ces travaux de recherche, n’hésitez pas à en faire "
 "part aux personnes contacts mentionnées ci-après."
 msgstr ""
 "If you have any additional questions about the project or about your rights "
-"as a participant in this research, please do not hesitate to"
+"as a participant in this research, please do not hesitate to contact us."
 
-#: templates/JOLD/consent_form.html:79
+#: templates/consent_form.html:78
 msgid "Information concernant les résultats principaux de la recherche :"
-msgstr "Information on the main results of the research :"
+msgstr "Information on the main results of the research"
 
-#: templates/JOLD/consent_form.html:81
+#: templates/consent_form.html:80
 msgid ""
 "Si vous souhaitez obtenir un résumé écrit des principaux résultats de cette "
 "recherche ainsi que de leur utilisation, veuillez en faire la demande aux "
 "personnes contacts."
 msgstr ""
 "If you would like to receive a written summary of the main results of this "
-"research and their use, please request this from the contact persons."
+"research and their use, please make a request from any of the contacts "
+"provided below."
 
-#: templates/JOLD/consent_form.html:85
+#: templates/consent_form.html:84
 msgid "CONFIDENTIALITE ET LOI INFORMATIQUE & LIBERTES"
 msgstr "CONFIDENTIALITY AND DATA PROTECTION LAW"
 
-#: templates/JOLD/consent_form.html:87
+#: templates/consent_form.html:86
 msgid ""
 "Inria est très attentif et vigilant concernant les questions de protection "
 "des données à caractère personnel (DCP), il s’est d’ailleurs doté d’un "
@@ -313,27 +341,27 @@ msgstr ""
 "responsible for ensuring that Inria complies with the General Data "
 "Protection Regulation (GDPR)."
 
-#: templates/JOLD/consent_form.html:89
+#: templates/consent_form.html:88
 msgid "Ces données sont les suivantes :"
 msgstr "These data are as follows:"
 
-#: templates/JOLD/consent_form.html:91
+#: templates/consent_form.html:90
 msgid ""
 "Les données collectées à partir de l'application sont des scores de réussite "
 "enregistrés automatiquement lors de l’utilisation du jeu. Ces données sont "
 "totalement anonymes dans la mesure où votre nom et prénom ne sont pas "
 "renseignés dans la base de données où figurent uniquement des matricules."
 msgstr ""
-"The data collected from the application are success scores automatically "
+"The data collected from the application are game outcomes automatically "
 "recorded when using the game. These data are completely anonymous in that "
 "your first and last names are not entered in the database, which only "
-"contains personnel numbers."
+"contains numerical identifyers that cannot be traced back to you."
 
-#: templates/JOLD/consent_form.html:93
+#: templates/consent_form.html:92
 msgid "Ces données seront traitées de la manière suivante :"
 msgstr "These data will be processed in the following way:"
 
-#: templates/JOLD/consent_form.html:95
+#: templates/consent_form.html:94
 msgid ""
 "Les données issues de l’application nous permettront d'étudier les "
 "mécanismes de l’apprentissage intrinsèquement motivés: les données "
@@ -348,9 +376,9 @@ msgstr ""
 "database, on which we will perform statistical analyses of the learning "
 "progress and the self-assessment of this progress when using the "
 "application. This anonymous data will not be used for any other purpose than "
-"the study of learning mechanisms through this game."
+"the study of learning and metacognitive mechanisms."
 
-#: templates/JOLD/consent_form.html:98
+#: templates/consent_form.html:97
 msgid ""
 "Conformément à l'article 13 du Règlement relatif à la protection des "
 "personnes physiques à l'égard du traitement des données à caractère "
@@ -365,7 +393,7 @@ msgstr ""
 "Protection Regulation or GDPR), please find below some information about "
 "this data collection:"
 
-#: templates/JOLD/consent_form.html:101
+#: templates/consent_form.html:100
 msgid ""
 "Cette collecte de données s’effectue sur la base du volontariat. Vous n’êtes "
 "en aucun cas tenu par voie réglementaire, contractuelle ou autres de fournir "
@@ -374,7 +402,7 @@ msgstr ""
 "This data collection is voluntary. You are not obliged in any way by "
 "regulation, contract or otherwise to provide your data."
 
-#: templates/JOLD/consent_form.html:104
+#: templates/consent_form.html:103
 msgid ""
 " À tout moment, vous pouvez décider d’arrêter le Projet et demander la "
 "suppression de vos données collectées."
@@ -382,7 +410,7 @@ msgstr ""
 "At any time, you can decide to stop the Project and request the deletion of "
 "your collected data."
 
-#: templates/JOLD/consent_form.html:107
+#: templates/consent_form.html:106
 msgid ""
 " Il est entendu que les données personnelles recueillies lors du projet sont "
 "confidentielles et que seuls les membres de l’équipe de recherche, "
@@ -392,35 +420,31 @@ msgstr ""
 "confidential and that only the members of the research team, identified "
 "below, will have access to this data:"
 
-#: templates/JOLD/consent_form.html:109
+#: templates/consent_form.html:108
 msgid "M. OUDEYER Pierre-Yves, directeur d’équipe"
 msgstr "Dr. OUDEYER Pierre-Yves, Team Manager"
 
-#: templates/JOLD/consent_form.html:110
+#: templates/consent_form.html:109
 msgid "Mme. SAUZEON Hélène, professeure en Psychologie"
 msgstr "Pr. SAUZEON Hélène, Professor of Psychology"
 
-#: templates/JOLD/consent_form.html:111
-msgid "Mme. BAVELIER Daphnée, professeure en Neurosciences cognitives"
-msgstr "Pr. BAVELIER Daphnée, Professor of Cognitive Neuroscience"
-
-#: templates/JOLD/consent_form.html:112
+#: templates/consent_form.html:110
 msgid "M. CLEMENT Benjamin, Post-doctorant sur le projet"
 msgstr "Mr. CLEMENT Benjamin, Post-doctoral fellow on the project"
 
-#: templates/JOLD/consent_form.html:113
+#: templates/consent_form.html:111
 msgid "M. TEN Alexandr, Doctorant sur le projet"
 msgstr "Mr. TEN Alexandr, PhD student on the project"
 
-#: templates/JOLD/consent_form.html:114
+#: templates/consent_form.html:112
 msgid "M. ADOLPHE Maxime, Doctorant sur le projet"
 msgstr "Mr. ADOLPHE Maxime, PhD student on the project"
 
-#: templates/JOLD/consent_form.html:115
+#: templates/consent_form.html:113
 msgid "M. BALAN Maxime, Stagiaire sur le projet"
 msgstr "Mr. BALAN Maxime, Intern on the project"
 
-#: templates/JOLD/consent_form.html:119
+#: templates/consent_form.html:117
 msgid ""
 " Chaque traitement de données à caractère personnel au sein d’Inria doit "
 "faire l’objet d’une déclaration auprès du DPD d’Inria."
@@ -428,16 +452,7 @@ msgstr ""
 "Any processing of personal data within Inria must be declared to the Inria "
 "DPO."
 
-#: templates/JOLD/consent_form.html:121
-msgid ""
-"Le DPD nommé par Inria est Madame Anne COMBE – dpd@inria.fr – adresse "
-"postale : Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis "
-"cedex"
-msgstr ""
-"The DPO appointed by Inria is Mrs Anne COMBE - dpd@inria.fr - postal "
-"address: Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis cedex"
-
-#: templates/JOLD/consent_form.html:124
+#: templates/consent_form.html:120
 msgid ""
 " Le représentant du responsable de traitement est le Directeur du Centre de "
 "Recherche Inria Bordeaux Sud-Ouest : Nicolas Roussel."
@@ -445,7 +460,7 @@ msgstr ""
 "The representative of the data controller is the Director of the Inria "
 "Bordeaux Sud-Ouest Research Centre: Nicolas Roussel."
 
-#: templates/JOLD/consent_form.html:127
+#: templates/consent_form.html:123
 msgid ""
 " Aucun transfert de vos données vers un pays tiers ou vers une organisation "
 "internationale ne sera effectué"
@@ -453,7 +468,7 @@ msgstr ""
 "Your data will not be transferred to a third country or to an international "
 "organisation"
 
-#: templates/JOLD/consent_form.html:130
+#: templates/consent_form.html:126
 msgid ""
 " Vos données seront conservées pour une durée maximale de 10 ans (temps "
 "requis pour la valorisation scientifique et éventuellement, leur utilisation "
@@ -462,7 +477,7 @@ msgstr ""
 "Your data will be kept for a maximum of 10 years (time required for "
 "scientific valorisation and possibly their use for subsequent meta-analyses)."
 
-#: templates/JOLD/consent_form.html:133
+#: templates/consent_form.html:129
 msgid ""
 " Conformément à la loi « informatique et libertés » du 6 janvier 1978 "
 "modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux "
@@ -474,7 +489,7 @@ msgstr ""
 "and rectify any information concerning you. You may also, for legitimate "
 "reasons, oppose the processing of data concerning you."
 
-#: templates/JOLD/consent_form.html:136
+#: templates/consent_form.html:132
 msgid ""
 " Vous pouvez donc accéder aux données vous concernant ou demander leur "
 "effacement. Vous disposez également d'un droit d’opposition, d’un droit de "
@@ -486,7 +501,7 @@ msgstr ""
 "limit the processing of your data (see cnil.fr for more information on your "
 "rights)."
 
-#: templates/JOLD/consent_form.html:139
+#: templates/consent_form.html:135
 msgid ""
 "Pour exercer ces droits ou pour toute question sur le traitement de vos "
 "données dans ce dispositif, vous pouvez contacter le DPD."
@@ -494,11 +509,14 @@ msgstr ""
 "To exercise these rights or if you have any questions about the processing "
 "of your data under this scheme, you can contact the DPO."
 
-#: templates/JOLD/consent_form.html:142
-msgid "Contacter le DPD par voie électronique : anne.combe@inria.fr"
-msgstr "Contact the DPO electronically: anne.combe@inria.fr"
+#: templates/consent_form.html:138
+msgid ""
+" Contacter le DPD par voie électronique : <a href=\"mailto:dpd@inria.fr"
+"\">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a href="
+"\"mailto:anne.combe@inria.fr\">anne.combe@inria.fr</a>)"
+msgstr ""
 
-#: templates/JOLD/consent_form.html:145
+#: templates/consent_form.html:141
 msgid ""
 " Contacter le DPD par courrier postal : Le délégué à la protection des "
 "données Inria, 2004 route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex"
@@ -506,7 +524,7 @@ msgstr ""
 "Contact the DPO by post: Le délégué à la protection des données Inria, 2004 "
 "route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex"
 
-#: templates/JOLD/consent_form.html:148
+#: templates/consent_form.html:144
 msgid ""
 " Si vous estimez, après nous avoir contactés, que vos droits Informatique et "
 "Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles "
@@ -514,9 +532,9 @@ msgid ""
 msgstr ""
 "If you believe, after having contacted us, that your data protection rights "
 "have not been respected or that the study does not comply with the data "
-"protection rules, you can submit a complaint to the CNIL"
+"protection rules, you can submit a complaint to the CNIL."
 
-#: templates/JOLD/consent_form.html:151
+#: templates/consent_form.html:148
 msgid ""
 "Le présent formulaire d’information et de recueil de consentement éclairé "
 "est un document confidentiel et sensible, à ce titre il doit faire l’objet "
@@ -527,7 +545,7 @@ msgstr ""
 "document, and as such it must be treated with particular care, both in terms "
 "of storage and archiving"
 
-#: templates/JOLD/consent_form.html:154
+#: templates/consent_form.html:150
 msgid ""
 " L’exemplaire du formulaire dûment signé destiné au responsable du projet "
 "sera conservé au sein du service administratif et financier du Centre de "
@@ -539,71 +557,93 @@ msgstr ""
 "Centre concerned for a period of fifteen years and will then be transferred "
 "to the archives of the Inria Research Centre concerned."
 
-#: templates/JOLD/consent_form.html:158
+#: templates/consent_form.html:154
 msgid "PERSONNES CONTACTS"
 msgstr "CONTACT PERSONS"
 
-#: templates/JOLD/consent_form.html:163 templates/JOLD/consent_form.html:171
+#: templates/consent_form.html:159 templates/consent_form.html:167
 msgid "Doctorant"
 msgstr "PhD student"
 
-#: templates/JOLD/consent_form.html:179
+#: templates/consent_form.html:175
 msgid "Post-doctorant"
 msgstr "Post-doctoral fellow"
 
-#: templates/JOLD/consent_form.html:187
+#: templates/consent_form.html:183
 msgid "Stagiaire"
 msgstr "Intern"
 
-#: templates/JOLD/consent_form.html:195
-msgid "Je soussigné.e:"
-msgstr "I, the undersigned:"
+#: templates/consent_form.html:192
+msgid "YOUR INFORMED CONSENT"
+msgstr ""
 
-#: templates/JOLD/consent_form.html:197
-msgid "Nom"
-msgstr "Last name"
-
-#: templates/JOLD/consent_form.html:198
-msgid "Prénom"
-msgstr "First name"
-
-#: templates/JOLD/consent_form.html:202
+#: templates/consent_form.html:194
+#, fuzzy, python-format
+#| msgid ""
+#| "Reconnais avoir lu et compris le présent formulaire d’informations "
+#| "concernant le projet <b>\"%(project)s\"</b> et consens volontairement à "
+#| "participer à ce projet de recherche.\n"
+#| "        <ul>\n"
+#| "            <li>Je reconnais avoir été informé que je peux mettre fin à "
+#| "ma participation au projet à tout moment sans aucun motif à donner, en "
+#| "contactant simplement les personnes contacts référencées ci-dessus.</li>\n"
+#| "            <li>Je reconnais que j’ai été informé sur le but et les "
+#| "modalités du projet, ainsi que les avantages, risques et inconvénients du "
+#| "projet.</li>\n"
+#| "            <li>Je reconnais avoir obtenu les réponses mes questions de "
+#| "manière claire et précise.</li>\n"
+#| "            <li>Je reconnais enfin avoir la possibilité de poser des "
+#| "questions additionnelles sur le projet ou sur mes droits, à tout moment "
+#| "pendant le projet, en communiquant avec les personnes contacts.\n"
+#| "            </li>\n"
+#| "        </ul>\n"
+#| "        Fait en deux exemplaires dont un sera remis au participant et un "
+#| "sera conservé par le responsable du projet."
 msgid ""
-"reconnais avoir lu et compris le présent formulaire d’informations "
-"concernant le projet "
-msgstr "acknowledge having read and understood this project information form"
-
-#: templates/JOLD/consent_form.html:202
-msgid ""
-" et consens volontairement à participer à ce projet de recherche. Je "
-"reconnais avoir été informé que je peux mettre fin à ma participation au "
-"projet à tout moment sans aucun motif à donner, en contactant simplement les "
-"personnes contacts référencées ci-dessus. Je reconnais que j’ai été informé "
-"sur le but et les modalités du projet, ainsi que les avantages, risques et "
-"inconvénients du projet. Je reconnais avoir obtenu les réponses mes "
-"questions de manière claire et précise. Je reconnais enfin avoir la "
-"possibilité de poser des questions additionnelles sur le projet ou sur mes "
-"droits, à tout moment pendant le projet, en communiquant avec les personnes "
-"contacts. Fait en deux exemplaires dont un sera remis au participant et un "
+"Reconnais avoir lu et compris le présent formulaire d’informations "
+"concernant le projet \"%(project)s\" et consens volontairement à participer "
+"à ce projet de recherche.\n"
+"        <ul>\n"
+"            <li>Je reconnais avoir été informé que je peux mettre fin à ma "
+"participation au projet à tout moment sans aucun motif à donner, en "
+"contactant simplement les personnes contacts référencées ci-dessus.</li>\n"
+"            <li>Je reconnais que j’ai été informé sur le but et les "
+"modalités du projet, ainsi que les avantages, risques et inconvénients du "
+"projet.</li>\n"
+"            <li>Je reconnais avoir obtenu les réponses mes questions de "
+"manière claire et précise.</li>\n"
+"            <li>Je reconnais enfin avoir la possibilité de poser des "
+"questions additionnelles sur le projet ou sur mes droits, à tout moment "
+"pendant le projet, en communiquant avec les personnes contacts.\n"
+"            </li>\n"
+"        </ul>\n"
+"        Fait en deux exemplaires dont un sera remis au participant et un "
 "sera conservé par le responsable du projet."
 msgstr ""
-"and voluntarily consent to participate in this research project. I "
-"acknowledge that I have been informed that I may terminate my participation "
-"in the project at any time without giving any reason, simply by contacting "
-"the contact persons listed above. I acknowledge that I have been informed "
-"about the purpose and modalities of the project, as well as the advantages, "
-"risks and disadvantages of the project. I acknowledge that I have received "
-"clear and precise answers to my questions. I acknowledge that I have the "
-"possibility to ask additional questions about the project or my rights at "
-"any time during the project by contacting the contact persons. Made in "
-"duplicate, one copy to be given to the participant and one copy to be kept "
-"by the project leader."
+"By filling in the required form fields you voluntarily consent to "
+"participate in the project entitled <b>'%(project)s'</b>. By giving your "
+"informed consent you agree to the following:\n"
+"          <ul>\n"
+"            <li>You have been informed that you may terminate my "
+"participation in the project at any time without giving any reason, simply "
+"by contacting the contact persons listed above.</li>\n"
+"            <li>You have been informed about the purpose and modalities of "
+"the project, as well as the advantages, risks and disadvantages of the "
+"project.</li>\n"
+"            <li>You have received clear and precise answers to your "
+"questions.</li>\n"
+"            <li>You have the possibility to ask additional questions about "
+"the project or your rights at any time during the project by contacting any "
+"of the contact persons provided above. </li>\n"
+"        </ul>\n"
+"        Made in duplicate, one copy to be given to the participant and one "
+"copy to be kept by the project leader."
 
-#: templates/JOLD/reminder_email.html:9
+#: templates/reminder_email.html:9
 msgid "Vous participez à une étude en ligne"
-msgstr "You participate in an online survey"
+msgstr "You participate in an online study"
 
-#: templates/JOLD/reminder_email.html:9
+#: templates/reminder_email.html:9
 msgid ""
 "Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les "
 "tâches suivantes:"
@@ -611,23 +651,23 @@ msgstr ""
 "You have one session to complete today. You will need to complete the "
 "following tasks:"
 
-#: templates/JOLD/reminder_email.html:18
+#: templates/reminder_email.html:18
 msgid "Il se peut qu'elle ne soit remplie qu'aujourd'hui"
 msgstr "It may only be completed today"
 
-#: templates/JOLD/reminder_email.html:18
+#: templates/reminder_email.html:18
 msgid ""
 "et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos "
 "données."
 msgstr "and if you miss a day, we can't make good use of your data."
 
-#: templates/JOLD/reminder_email.html:25
+#: templates/reminder_email.html:25
 #, fuzzy
 #| msgid "Se connecter"
 msgid " Se connecter"
 msgstr "Log in"
 
-#: templates/JOLD/reminder_email.html:32
+#: templates/reminder_email.html:32
 msgid ""
 " Si vous avez des questions concernant l'étude, ou si vous pensez que vous "
 "avez reçu ce courriel par erreur, écrivez à "
@@ -649,6 +689,34 @@ msgstr ""
 #: templates/tasks/JOLD_LL/tutorial.html:51
 msgid "Terminer"
 msgstr "Finish"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:12
+msgid "Salut"
+msgstr "Hello"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:14
+msgid ""
+"Avant de commencer, nous devons recueillir votre consentement éclairé. Pour "
+"donner votre consentement:"
+msgstr ""
+"Before you begin, we need to collect your informed consent. To provide your "
+"consent:"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:16
+msgid "Lisez attentivement les informations à droite"
+msgstr "Read carefully the information on the right"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:17
+msgid "Remplissez le formulaire de consentement à la fin"
+msgstr "Fill in the consent form at the end"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:18
+msgid "Envoyez le formulaire de consentement que vous avez rempli"
+msgstr "Fill in the consent form at the end"
+
+#: templates/tasks/JOLD_Consent/consent_page.html:21
+msgid "Se déconnecter"
+msgstr "Log out"
 
 #: templates/tasks/JOLD_LL/instructions.html:3
 msgid ""
@@ -777,46 +845,83 @@ msgstr ""
 "final questionnaire (5 questions). All questions are optional, but please "
 "note that all your thoughts can be extremely useful to us."
 
-#: views.py:70
+#: views.py:71
 msgid "Vous avez terminé l'entraînement de Lunar Lander"
 msgstr "You have completed the Lunar Lander training"
 
-#: views.py:71
+#: views.py:72
 msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
 msgstr "Don't leave just yet! There is a questionnaire to fill in."
 
-#: views.py:84
+#: views.py:85
 msgid "Lundi"
 msgstr "Monday"
 
-#: views.py:84
+#: views.py:85
 msgid "Mardi"
 msgstr "Tuesday"
 
-#: views.py:84
+#: views.py:85
 msgid "Mercredi"
 msgstr "Wednesday"
 
-#: views.py:84
+#: views.py:85
 msgid "Jeudi"
 msgstr "Thursday"
 
-#: views.py:84
+#: views.py:85
 msgid "Vendredi"
 msgstr "Friday"
 
-#: views.py:84
+#: views.py:85
 msgid "Samedi"
 msgstr "Saturday"
 
-#: views.py:84
+#: views.py:85
 msgid "Dimanche"
 msgstr "Sunday"
 
-#: views.py:85
+#: views.py:86
 msgid "La prochaine session est le {} ({})"
 msgstr "The next session is on {} ({})"
 
-#: views.py:86
+#: views.py:87
 msgid "Le questionnaire est complet"
 msgstr "The questionnaire is complete"
+
+#~ msgid "Soumettez le formulaire rempli"
+#~ msgstr "Envoyez le formulaire de consentement que vous avez rempli"
+
+#~ msgid "Apprentissage intrinsèquement motivé chez l’homme "
+#~ msgstr "Judgments of learning dynamics"
+
+#~ msgid ""
+#~ "Le DPD nommé par Inria est Madame Anne COMBE – dpd@inria.fr – adresse "
+#~ "postale : Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis "
+#~ "cedex"
+#~ msgstr ""
+#~ "The DPO appointed by Inria is Mrs Anne COMBE - dpd@inria.fr - postal "
+#~ "address: Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis "
+#~ "cedex"
+
+#~ msgid "Contacter le DPD par voie électronique : anne.combe@inria.fr"
+#~ msgstr "Contact the DPO electronically: anne.combe@inria.fr"
+
+#, python-format
+#~ msgid "VOTRE CONSENTEMENT ÉCLAIRÉ"
+#~ msgstr "YOUR INFORMED CONSENT"
+
+#~ msgid ""
+#~ "reconnais avoir lu et compris le présent formulaire d’informations "
+#~ "concernant le projet "
+#~ msgstr ""
+#~ "acknowledge having read and understood this project information form"
+
+#~ msgid "Je soussigné.e:"
+#~ msgstr "I, the undersigned:"
+
+#~ msgid "Nom"
+#~ msgstr "Last name"
+
+#~ msgid "Prénom"
+#~ msgstr "First name"
