@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-12 20:28+0200\n"
+"POT-Creation-Date: 2021-04-12 21:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,24 @@ msgstr ""
 #: forms.py:18
 msgid "Soumettre le consentement éclairé"
 msgstr "Submit informed consent"
+
+#: forms.py:27
+msgid ""
+"Veuillez fournir une adresse électronique si vous souhaitez recevoir un "
+"rappel de la future session 1 jour à l'avance."
+msgstr ""
+"Please provide an email address if you wish to be reminded of the future "
+"session 1 day in advance"
+
+#: forms.py:31
+msgid ""
+"Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine "
+"session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de "
+"tels rappels, décochez cette case et supprimez votre courriel ci-dessous."
+msgstr ""
+"If you want to receive an email reminder about the next session, please "
+"check this box. If you DO NOT want to receive such reminders, clear this box "
+"and delete your email below."
 
 #: templates/consent_form.html:3
 msgid "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ"
@@ -578,6 +596,7 @@ msgid "VOTRE CONSENTEMENT ÉCLAIRÉ"
 msgstr "YOUR INFORMED CONSENT"
 
 #: templates/consent_form.html:194
+#, python-format
 msgid ""
 "Reconnais avoir lu et compris le présent formulaire d’informations "
 "concernant le projet \"%(project)s\" et consens volontairement à participer "

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
+from django.contrib import messages as django_messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -119,8 +120,13 @@ def jold_consent_page(request):
     if form.is_valid():
         # TODO save participant data here (informed consent, email, and if reminder is requested)
         participant.consent = True
+        if form.cleaned_data['request_reminder']:
+            participant.remind = True
+            participant.email = form.cleaned_data['email']
         participant.save()
         return redirect(reverse('end_task'))
+    else:
+        django_messages.add_message(request, django_messages.ERROR, 'Le formulaire n''est pas valide. Consultez les messages d''erreur pour corriger le formulaire')
     return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
         'username': user.username,
         'study': participant.study,
