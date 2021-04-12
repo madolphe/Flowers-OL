@@ -1552,7 +1552,7 @@
             "max_val": 7,
             "step": 1,
             "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "text-header",
+            "widget": "custom-header",
             "type": "integer",
             "help_text": ""
         }
@@ -1723,7 +1723,7 @@
             "max_val": 7,
             "step": 1,
             "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "text-header",
+            "widget": "custom-header",
             "type": "integer",
             "help_text": ""
         }
