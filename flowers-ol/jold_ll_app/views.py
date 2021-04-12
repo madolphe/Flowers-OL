@@ -115,17 +115,13 @@ def jold_free_choice(request, choice=0):
 def jold_consent_page(request):
     user = request.user
     participant = user.participantprofile
-    study = participant.study
-    greeting = "Salut, {0} !".format(user.username)
     form = ConsentForm(request.POST or None)
     if form.is_valid():
         # TODO save participant data here (informed consent, email, and if reminder is requested)
         participant.consent = True
         participant.save()
         return redirect(reverse('end_task'))
-    # if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
     return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
-        'greeting': greeting,
-        'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
-        'study': study,
+        'username': user.username,
+        'study': participant.study,
         'form': form}})
