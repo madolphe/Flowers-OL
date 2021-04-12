@@ -4,7 +4,7 @@
     <table class="sheet" style="max-width: 60%;min-width: 400px;text-align: center;margin-left: auto;margin-right: auto;background-color: white;padding-top: 30px;padding-bottom: 30px;">
         <tr>
             <td class="content" style="padding: 0 10px;text-align: left;line-height: 1.3em;">
-                <p class="greeting" style="font-size: 1.1em;">Salut {{CONTEXT.name}},</p>
+                <p class="greeting" style="font-size: 1.1em;">Salut {{CONTEXT.username}},</p>
                 <p>
                     {% trans "Vous participez à une étude en ligne" %} <b>"{{CONTEXT.project_name}}"</b>. {% trans "Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les tâches suivantes:" %}
                     <ul>
@@ -15,7 +15,7 @@
                 </p>
                 <p style="border: 1px solid #9F6000;background-color: #FEEFB3;color: #9F6000; padding: 1em;border-radius: 15px">
                     <span style="color: #9F6000;font-family:Verdana, Arial, Tahoma, Serif">[!]</span>
-                    {% trans "Il se peut qu'elle ne soit remplie qu'aujourd'hui" %} ({{CONTEXT.session_date}}) {% trans "et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos données." %}
+                    {% trans "Il se peut qu'elle ne soit remplie qu'aujourd'hui" %} {{CONTEXT.valid_period}} {% trans "et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos données." %}
                 </p>
             </td>
         </tr>
