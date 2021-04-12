@@ -7,7 +7,6 @@
 </section>
 <section id="section-2">
     <center><h2>{% trans "INFORMATIONS COMMUNIQUÉES AUX PARTICIPANTS" %}</h2></center>
-    <em>{% trans "Remerciements :" %}</em><br>
     <b>{% trans "Votre collaboration est essentielle à la réalisation de notre projet et, l’équipe de recherche tient à vous en remercier." %}</b>
     <p>
         {% trans "Avant de donner votre consentement éclairé, il est important que vous compreniez pourquoi la recherche est faite, ce qu’elle implique et quels sont vos droits et obligations." %}
@@ -17,7 +16,7 @@
     <center><h2>{% trans "PRESENTATION DU PROJET" %}</h2></center>
     <b>{% trans "Responsables du projet" %}</b> : Pierre-Yves OUDEYER, Hélène SAUZEON <br>
     <b>{% trans "Equipe-projet et CRI " %}</b>: {% trans "Équipe-projet FLOWERS – Inria Bordeaux Sud-Ouest " %}<br>
-    <b>{% trans "Nom du projet " %}</b>: {% trans "Apprentissage intrinsèquement motivé chez l’homme " %}<br>
+    <b>{% trans "Nom du projet " %}</b>: {{project}}<br>
     <p>
         {% trans "Vous êtes invités à prendre part à ce projet dont la finalité est d’étudier dans quelle mesure les progrès d’apprentissage sont une motivation forte chez les humains à poursuivre un apprentissage sur une tâche donnée." %}
     </p>
@@ -108,7 +107,6 @@
             <ul type=square>
                 <li>{% trans "M. OUDEYER Pierre-Yves, directeur d’équipe" %}</li>
                 <li>{% trans "Mme. SAUZEON Hélène, professeure en Psychologie" %}</li>
-                <li>{% trans "Mme. BAVELIER Daphnée, professeure en Neurosciences cognitives" %}</li>
                 <li>{% trans "M. CLEMENT Benjamin, Post-doctorant sur le projet" %}</li>
                 <li>{% trans "M. TEN Alexandr, Doctorant sur le projet" %}</li>
                 <li>{% trans "M. ADOLPHE Maxime, Doctorant sur le projet" %}</li>
@@ -116,9 +114,7 @@
             </ul>
         </li>
         <li>
-           {% trans " Chaque traitement de données à caractère personnel au sein d’Inria doit faire l’objet d’une déclaration auprès du DPD d’Inria." %}</li>
-        <li>
-            {% trans "Le DPD nommé par Inria est Madame Anne COMBE – dpd@inria.fr – adresse postale : Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis cedex" %}
+           {% trans " Chaque traitement de données à caractère personnel au sein d’Inria doit faire l’objet d’une déclaration auprès du DPD d’Inria." %}
         </li>
         <li>
            {% trans " Le représentant du responsable de traitement est le Directeur du Centre de Recherche Inria Bordeaux Sud-Ouest : Nicolas Roussel." %}
@@ -139,7 +135,7 @@
             {% trans "Pour exercer ces droits ou pour toute question sur le traitement de vos données dans ce dispositif, vous pouvez contacter le DPD." %}
             <ul type="square">
                 <li>
-                    {% trans "Contacter le DPD par voie électronique : anne.combe@inria.fr" %}
+                    {% blocktrans %} Contacter le DPD par voie électronique : <a href="mailto:dpd@inria.fr">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a href="mailto:anne.combe@inria.fr">anne.combe@inria.fr</a>){% endblocktrans %}
                 </li>
                 <li>
                    {% trans " Contacter le DPD par courrier postal : Le délégué à la protection des données Inria, 2004 route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex" %}
@@ -147,11 +143,11 @@
             </ul>
            {% trans " Si vous estimez, après nous avoir contactés, que vos droits Informatique et Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles de protection des données, vous pouvez adresser une réclamation à la CNIL" %}
         </li>
+    </ul>
     <p>
         {% trans "Le présent formulaire d’information et de recueil de consentement éclairé est un document confidentiel et sensible, à ce titre il doit faire l’objet d’un traitement particulier tant concernant sa conservation que son archivage." %}
-    </p>​
-    <p>
-       {% trans " L’exemplaire du formulaire dûment signé destiné au responsable du projet sera conservé au sein du service administratif et financier du Centre de recherche Inria concerné pendant une durée de quinze ans puis fera l’objet d’un versement au service des archives du Centre de recherche Inria concerné." %}
+        </br>
+        {% trans " L’exemplaire du formulaire dûment signé destiné au responsable du projet sera conservé au sein du service administratif et financier du Centre de recherche Inria concerné pendant une durée de quinze ans puis fera l’objet d’un versement au service des archives du Centre de recherche Inria concerné." %}
     </p>
 </section>​
 <section id="section-6">
