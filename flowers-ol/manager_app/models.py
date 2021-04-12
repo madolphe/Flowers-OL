@@ -163,6 +163,7 @@ class ParticipantProfile(models.Model):
     # Participant preferences
     remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
+    email = models.EmailField(null=True, blank=True, )
     
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
@@ -353,13 +354,12 @@ class ParticipantProfile(models.Model):
 
     def queue_reminder(self):
         if self.remind and self.sessions.all():
-            day1 = self.ref_dt
-            next_session = self.sessions.first()
-            next_session_date = day1 + datetime.timedelta(days=next_session.day-1)
+            next_session = self.sessions.get(pk=self.session_stack_peek())
+            next_session_date = next_session.get_valid_period(ref_timestamp=self.ref_timestamp, string_format='%d-%m-%Y')
             message_template = render_to_string(self.study.reminder_template,
                 {'CONTEXT': {
-                    'name': self.user.first_name.lower().capitalize(),
-                    'session_date' : next_session_date.date().strftime('%d-%m-%Y'),
+                    'username': self.user.username,
+                    'valid_period' : next_session_date,
                     'tasks': next_session.get_task_list,
                     'study_link': 'http://flowers-mot.bordeaux.inria.fr/study={}'.format(self.study.name),
                     'project_name': self.study.project,
@@ -369,7 +369,7 @@ class ParticipantProfile(models.Model):
             )
             index = list(ExperimentSession.objects.filter(study=self.study).values_list('pk', flat=True)).index(next_session.pk)
             send_delayed_email(
-                to=self.user.email,
+                to=self.email,
                 sender=self.study.contact,
                 subject='Flowers OL | Rappel de la session #{}'.format(index+1),
                 message_template=message_template,
