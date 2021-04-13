@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-12 21:15+0200\n"
+"POT-Creation-Date: 2021-04-13 18:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:9
+#: forms.py:10
 msgid ""
 "En cochant cette case, vous reconnaissez avoir lu et compris les "
 "informations fournies sur l'étude."
@@ -26,7 +26,7 @@ msgstr ""
 "By checking this box, you acknowledge that you have read and understood the "
 "information provided about the study"
 
-#: forms.py:10
+#: forms.py:11
 msgid ""
 "En cochant cette case, vous donnez votre consentement éclairé à participer à "
 "l'étude."
@@ -34,7 +34,7 @@ msgstr ""
 "By checking this box you provide your informed consent to participate in the "
 "study"
 
-#: forms.py:11
+#: forms.py:12
 msgid ""
 "En cochant cette case, vous acceptez de tecevoir un rappel 1 jour avant la "
 "prochaine session (optionel)."
@@ -42,7 +42,7 @@ msgstr ""
 "By checking this box, you request to be reminded about the upcoming session "
 "1 day in advance (optional)"
 
-#: forms.py:12
+#: forms.py:13
 msgid ""
 "À quelle adresse souhaitez-vous recevoir le(s) rappel(s) ? Indiquez votre "
 "adresse électronique ci-dessous (optionel)"
@@ -50,11 +50,11 @@ msgstr ""
 "Where should we send the reminder(s)? Provide your email adress below "
 "(optional)"
 
-#: forms.py:18
+#: forms.py:20
 msgid "Soumettre le consentement éclairé"
 msgstr "Submit informed consent"
 
-#: forms.py:27
+#: forms.py:30
 msgid ""
 "Veuillez fournir une adresse électronique si vous souhaitez recevoir un "
 "rappel de la future session 1 jour à l'avance."
@@ -62,7 +62,7 @@ msgstr ""
 "Please provide an email address if you wish to be reminded of the future "
 "session 1 day in advance"
 
-#: forms.py:31
+#: forms.py:34
 msgid ""
 "Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine "
 "session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de "
@@ -71,6 +71,12 @@ msgstr ""
 "If you want to receive an email reminder about the next session, please "
 "check this box. If you DO NOT want to receive such reminders, clear this box "
 "and delete your email below."
+
+#: forms.py:37
+msgid ""
+"Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
+"corriger le formulaire"
+msgstr ""
 
 #: templates/consent_form.html:3
 msgid "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ"
@@ -637,11 +643,11 @@ msgstr ""
 "        Made in duplicate, one copy to be given to the participant and one "
 "copy to be kept by the project leader."
 
-#: templates/reminder_email.html:9
+#: templates/reminder_email.html:10
 msgid "Vous participez à une étude en ligne"
 msgstr "You participate in an online study"
 
-#: templates/reminder_email.html:9
+#: templates/reminder_email.html:10
 msgid ""
 "Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les "
 "tâches suivantes:"
@@ -649,23 +655,23 @@ msgstr ""
 "You have one session to complete today. You will need to complete the "
 "following tasks:"
 
-#: templates/reminder_email.html:18
+#: templates/reminder_email.html:19
 msgid "Il se peut qu'elle ne soit remplie qu'aujourd'hui"
 msgstr "It may only be completed today"
 
-#: templates/reminder_email.html:18
+#: templates/reminder_email.html:19
 msgid ""
 "et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos "
 "données."
 msgstr "and if you miss a day, we can't make good use of your data."
 
-#: templates/reminder_email.html:25
+#: templates/reminder_email.html:26
 #, fuzzy
 #| msgid "Se connecter"
 msgid " Se connecter"
 msgstr "Log in"
 
-#: templates/reminder_email.html:32
+#: templates/reminder_email.html:33
 msgid ""
 " Si vous avez des questions concernant l'étude, ou si vous pensez que vous "
 "avez reçu ce courriel par erreur, écrivez à "
@@ -673,7 +679,7 @@ msgstr ""
 "If you have any questions about the study, or if you think you have received "
 "this email in error, please write to"
 
-#: templates/tasks/JOLD_Choice/free_choice.html:11
+#: templates/tasks/JOLD_Choice/free_choice.html:12
 msgid ""
 "La session d'aujourd'hui est terminée. Vous pouvez maintenant quitter la "
 "page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 "
@@ -683,7 +689,7 @@ msgstr ""
 "continue to play for a little while, no more than 5 minutes. You can stop at "
 "any time by clicking on the"
 
-#: templates/tasks/JOLD_Choice/free_choice.html:11
+#: templates/tasks/JOLD_Choice/free_choice.html:12
 #: templates/tasks/JOLD_LL/tutorial.html:51
 msgid "Terminer"
 msgstr "Finish"
@@ -843,49 +849,40 @@ msgstr ""
 "final questionnaire (5 questions). All questions are optional, but please "
 "note that all your thoughts can be extremely useful to us."
 
-#: views.py:71
+#: views.py:72
 msgid "Vous avez terminé l'entraînement de Lunar Lander"
 msgstr "You have completed the Lunar Lander training"
 
-#: views.py:72
+#: views.py:73
 msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
 msgstr "Don't leave just yet! There is a questionnaire to fill in."
 
-#: views.py:85
-msgid "Lundi"
-msgstr "Monday"
+#~ msgid "Lundi"
+#~ msgstr "Monday"
 
-#: views.py:85
-msgid "Mardi"
-msgstr "Tuesday"
+#~ msgid "Mardi"
+#~ msgstr "Tuesday"
 
-#: views.py:85
-msgid "Mercredi"
-msgstr "Wednesday"
+#~ msgid "Mercredi"
+#~ msgstr "Wednesday"
 
-#: views.py:85
-msgid "Jeudi"
-msgstr "Thursday"
+#~ msgid "Jeudi"
+#~ msgstr "Thursday"
 
-#: views.py:85
-msgid "Vendredi"
-msgstr "Friday"
+#~ msgid "Vendredi"
+#~ msgstr "Friday"
 
-#: views.py:85
-msgid "Samedi"
-msgstr "Saturday"
+#~ msgid "Samedi"
+#~ msgstr "Saturday"
 
-#: views.py:85
-msgid "Dimanche"
-msgstr "Sunday"
+#~ msgid "Dimanche"
+#~ msgstr "Sunday"
 
-#: views.py:86
-msgid "La prochaine session est le {} ({})"
-msgstr "The next session is on {} ({})"
+#~ msgid "La prochaine session est le {} ({})"
+#~ msgstr "The next session is on {} ({})"
 
-#: views.py:87
-msgid "Le questionnaire est complet"
-msgstr "The questionnaire is complete"
+#~ msgid "Le questionnaire est complet"
+#~ msgstr "The questionnaire is complete"
 
 #~ msgid "Soumettez le formulaire rempli"
 #~ msgstr "Envoyez le formulaire de consentement que vous avez rempli"
