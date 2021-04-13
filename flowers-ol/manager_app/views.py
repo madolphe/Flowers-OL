@@ -136,25 +136,25 @@ def end_session(request):
 @login_required
 def thanks_page(request):
     participant = request.user.participantprofile
+    next_date = False
     if participant.session_stack_csv:
         heading = _('La session est terminée')
         next_session_pk = participant.session_stack_peek()
         if next_session_pk:
-            next_session = participant.sessions.get(pk=next_session_pk)
-            if not next_session.wait:
+            if not participant.sessions.get(pk=next_session_pk).wait:
                 text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
                        ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
-                next_date = next_session.get_valid_period(participant.ref_timestamp, string_format='%d/%M/%Y')[0]
-                text = _(f'Nous vous attendons la prochaine fois. Votre prochaine session est le {next_date}')
+                next_session_info = participant.get_next_session_info()
+                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')
         else:
             text = _('Nous vous attendons la prochaine fois.')
     else:
         heading = _('L\'étude est terminée')
         text = _('Merci, pour votre contribution à la science !')
     return render(request, 'thanks_page.html', {'CONTEXT': {
-        'heading': heading, 'text': text}})
+        'heading': heading, 'text': text, 'next_session_info': next_session_info}})
 
 
 @login_required
