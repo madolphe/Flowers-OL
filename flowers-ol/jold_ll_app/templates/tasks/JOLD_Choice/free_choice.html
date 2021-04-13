@@ -1,3 +1,4 @@
+{% load i18n %}
 {% block css%}
     <style>
         kbd#terminate {
@@ -10,8 +11,3 @@
 <p>
     {% trans "La session d'aujourd'hui est terminée. Vous pouvez maintenant quitter la page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 minutes. Vous pourrez stopper à tout moment en cliquant sur le bouton " %} <kbd id='terminate'>{% trans "Terminer" %}</kbd>.
 </p>
-<!--<div class="btn-box">-->
-<!--    <a class="btn" href={% url "jold_free_choice" choice=1 %}>-->
-<!--        Continuer à jouer-->
-<!--    </a>-->
-<!--</div>-->
