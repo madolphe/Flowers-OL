@@ -287,8 +287,8 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    print(task_stack)
-    task_stack = ['enumeration', 'workingmemory', 'gonogo', 'loadblindness', 'taskswitch']
+    # task_stack = ['enumeration', 'workingmemory', 'gonogo', 'loadblindness', 'taskswitch']
+    task_stack = ['enumeration']
     # random.Random(0).shuffle(task_stack)
     return task_stack
 
@@ -305,7 +305,8 @@ def get_current_task_context(participant, idx_task):
     else:
         participant.extra_json['cognitive_tests_current_task_idx'] = 0
         participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
-        return None, None
+        participant.save()
+        return None
 
 
 def update_task_index(participant):
@@ -322,9 +323,12 @@ def launch_task(request, participant, current_task_object):
     # The task results will have to be stored right after coming back to this view
     participant.extra_json['task_to_store'] = True
     participant.save()
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
     return render(request,
                   'pre-post-tasks/instructions/pre-post.html',
-                  {'CONTEXT': {'participant': participant, 'current_task': current_task_object}})
+                  {'CONTEXT': {'participant': participant,
+                               'current_task': current_task_object,
+                               'screen_params': screen_params}})
 
 
 def exit_for_break(participant):
@@ -366,10 +370,9 @@ def store_previous_task(request, participant, idx_task):
     res.save()
 
 
-
 def init_participant_extra_json(participant):
     participant.extra_json['cognitive_tests_task_stack'] = get_task_stack()
-    restart_participant_extra_json(participant, 'PRE_TEST', task_to_store=False)
+    restart_participant_extra_json(participant, test_title='PRE_TEST', task_index=0, task_to_store=False)
 
 
 def restart_participant_extra_json(participant, test_title, task_index=0, is_first_half=True, task_to_store=True):
@@ -382,6 +385,9 @@ def restart_participant_extra_json(participant, test_title, task_index=0, is_fir
 
 @login_required
 def tutorial(request, task_name):
-    return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html")
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html",
+                  {"CONTEXT": {"screen_params": screen_params}})
 
 

@@ -2,8 +2,9 @@
 
 // number of pixels per degres:
 let viewer_dist = 50;
-let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
-let ppd = get_ppd(viewer_dist, screen_params);
+// let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
+let ppcm = screen.availWidth / screen_params
+let ppd = get_ppd(viewer_dist, ppcm);
 
 //just for my local debug
 function get_ppd(viewer_dist, screen_params){

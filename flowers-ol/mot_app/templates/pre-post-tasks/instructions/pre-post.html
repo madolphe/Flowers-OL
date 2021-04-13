@@ -14,6 +14,8 @@
             }
         }
     </script>
+    <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    <script src="{% static 'js/utils/iframe_size.js' %}"></script>
 {% endblock %}
 {% block content%}
     <div class="side-panel">
@@ -33,7 +35,7 @@
         {% if CONTEXT.current_task %}
             {% include CONTEXT.current_task.template_instruction_path %}
             <div class="row justify-content-center">
-                <iframe id="" title="practice trials" width="640" height="480" src="{% url 'tutorial' task_name=CONTEXT.current_task.name %}"></iframe>
+                <iframe id="iframe_tutorial" title="practice trials" src="{% url 'tutorial' task_name=CONTEXT.current_task.name %}"></iframe>
             </div>
             <div class="btn-panel">
                 <a class="btn" href={% url CONTEXT.current_task.view_name %}>Start</a>
