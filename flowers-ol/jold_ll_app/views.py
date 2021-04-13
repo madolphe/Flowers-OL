@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from survey_app.models import Question, Answer
 from .forms import ConsentForm
 from .models import JOLD_LL_trial
-from .utils import add_message
+from manager_app.utils import add_message
 
 import json, datetime, random
 
