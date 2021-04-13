@@ -46,7 +46,7 @@ function draw() {
 }
 
 function keyPressed(){
-  if(keyCode===32){
+  if(keyCode===32 && !flag_practice){
     fullscreen(true);
   }
 }
