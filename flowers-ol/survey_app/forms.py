@@ -19,25 +19,32 @@ class QuestionnaireForm(forms.Form):
         validator_ = False
         self.rows = []
         # Build a row for each question:
-        for i, q in enumerate(questions, 1):
-            # Get all validators that match `vname` or get None if name does not match. Then filter out `None`s
-            validators_list = [getattr(validators, vname, None) for vname in q.validate.split(',')]
-            # Create a default charfield without label
-            self.fields[q.handle] = forms.CharField(label='', validators=[v for v in validators_list if v])
-            # Add help_text
-            self.fields[q.handle].help_text = q.help_text
-            # Add correct widget (possibly a custom one)
-            self.fields[q.handle].widget = get_custom_widget(q, num=i)
-            # Build the div object:
-            question_widget = [Div(q.handle)]
-            if hasattr(self.fields[q.handle].widget, "needs_validator") and self.fields[q.handle].widget.needs_validator:
-                self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
-                question_widget.append(Div(q.handle+'_validator', css_class='question-validator'))
-            row_list = [
-                HTML('<div class="question-prompt">{}. {}</div>'.format(i, q.prompt)),
-                Div(*question_widget, css_class='question-widget')
-            ]
-            self.rows.append(Row(*row_list, css_class='custom-form-row {}'.format(' odd' if i % 2 else '')))
+        q_idx = 1
+        for i, q in enumerate(questions):
+            if get_custom_widget(q, num=q_idx):
+                # Get all validators that match `vname` or get None if name does not match. Then filter out `None`s
+                validators_list = [getattr(validators, vname, None) for vname in q.validate.split(',')]
+                # Create a default charfield without label
+                self.fields[q.handle] = forms.CharField(label='', validators=[v for v in validators_list if v])
+                # Add help_text
+                self.fields[q.handle].help_text = q.help_text
+                # Add correct widget (possibly a custom one)
+                self.fields[q.handle].widget = get_custom_widget(q, num=q_idx)
+                # Build the div object:
+                question_widget = [Div(q.handle)]
+                if hasattr(self.fields[q.handle].widget, "needs_validator") and self.fields[q.handle].widget.needs_validator:
+                    self.fields[q.handle+'_validator'] = forms.BooleanField(label='')
+                    question_widget.append(Div(q.handle+'_validator', css_class='question-validator'))
+                row_elements = [
+                    HTML(f'<div class="question-prompt">{q_idx}. {q.prompt}</div>'),
+                    Div(*question_widget, css_class='question-widget')
+                ]
+                q_idx += 1
+            else:
+                row_elements = [
+                    HTML(f'<div class="question-header">{q.prompt}</div>')
+                ]
+            self.rows.append(Row(*row_elements, css_class=f'custom-form-row {" odd" if i % 2 else ""}'))
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.add_input(Submit('submit', _('Valider')))

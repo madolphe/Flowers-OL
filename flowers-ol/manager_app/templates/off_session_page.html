@@ -82,16 +82,13 @@
 {% block content %}
     <div class="side-panel">
         <h2>{% trans "Impossible d'attribuer une session" %}</h2>
-        <p>{% trans "Nous n'avons pas pu vous trouver de session. Cela pourrait être dû à plusieurs raisons :" %}</p>
+        <p>{% trans "Nous n'avons pas pu vous trouver de session. C'est parce que :" %} </p>
         <div class="side-info">
             <div class="content">
+                <p>
+                    <b>{{CONTEXT.reason}}</b> {{CONTEXT.instructions}} {% if CONTEXT.details %} <b class="highlight">{{CONTEXT.details}}</b> {% endif %}
+                </p>
             </div>
-            <ol>
-                <li><b>{% trans "Il n'y a pas de session pour vous aujourd'hui" %}</b>. {% trans "Dans ce cas, veuillez revenir à l'un des jours prévus (voir ci-dessous)." %}</li>
-                <li><b>{% trans "La session ne peut pas être lancée parce qu'il ne s'est pas écoulé suffisamment de temps depuis votre dernière session." %}</b> {% trans "Dans ce cas, revenez plus tard (voir le calendrier ci-dessous)." %}</li>
-                <li><b>{% trans "Vous avez commencé une session plus tôt mais ne l'avez pas terminée" %}</b>. {% trans "Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas poursuivre l'expérience." %}</li>
-            </ol>
-            {% trans "Your next session" %} <b class="highlight">{{CONTEXT.next_session_info}}</b> {% trans "We are kidnly asking you to to follow the schedule." %}
             {% comment %} <strong> {% trans "Vos sessions : " %}</strong>
             <ul class='next-dates'>
                 {% for entry in CONTEXT.schedule %}
