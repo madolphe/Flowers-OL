@@ -14,8 +14,8 @@
         "fields": {
             "study"         : "jold_ll",
             "index"         : 2,
-            "wait"          : {"days": 2},
-            "deadline"      : {"days": 2},
+            "wait"          : {"days": 1},
+            "deadline"      : {"days": 1},
             "tasks_csv"     : "jold-ll-practice,jold-questions-sess2,jold-free-choice"
         }
     },
@@ -25,8 +25,8 @@
         "fields": {
             "study"         : "jold_ll",
             "index"         : 5,
-            "wait"          : {"days": 3},
-            "deadline"      : {"days": 3},
+            "wait"          : {"days": 2},
+            "deadline"      : {"days": 2},
             "tasks_csv"     : "jold-ll-practice,jold-questions-sess3,jold-ux-questions,jold-profile-questions,jold-free-choice"
         }
     }
