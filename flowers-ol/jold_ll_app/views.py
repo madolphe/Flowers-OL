@@ -81,17 +81,7 @@ def jold_close_ll_practice(request):
 @login_required
 def jold_close_postsess_questionnaire(request):
     participant = request.user.participantprofile
-    if participant.future_sessions:
-        nextdate = (participant.date.date() + datetime.timedelta(days=participant.future_sessions[0].day-1))
-        wdays = [_('Lundi'),_('Mardi'),_('Mercredi'),_('Jeudi'),_('Vendredi'),_('Samedi'),_('Dimanche')]
-        add_message(request, _('La prochaine session est le {} ({})'.format(nextdate.strftime('%d/%m/%Y'), wdays[nextdate.weekday()])), 'info')
     add_message(request, _('Le questionnaire est complet'), 'success')
-    answer = Answer()
-    answer.question = Question.objects.get(handle='jold-0')
-    answer.participant = participant
-    answer.session = participant.current_session
-    answer.value = 0
-    answer.save()
     request.session['exit_view_done'] = True
     return redirect(reverse('end_task'))
 
