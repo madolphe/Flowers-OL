@@ -13,8 +13,9 @@ function get_ppd(viewer_dist, screen_params){
 
 let flag_practice = false;
 
-let num_rep = 20; 
-let array_stimcond = [5,6,7,8,9]; //Experimental condition. 
+//let num_rep = 20;
+let num_rep = 1;
+let array_stimcond = [5,6,7,8,9]; //Experimental condition.
 let time_stimduration = 50; //in ms Green & Bavelier (2006)
 let time_maskduration = 1000; //in ms
 

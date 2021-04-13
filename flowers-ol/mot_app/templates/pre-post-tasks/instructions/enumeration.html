@@ -1,16 +1,7 @@
-{% extends "base.html" %}
-{% block title %}TASK{% endblock %}
 {%load static%}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
-
-{% block content%}
-  <form id="request">{% csrf_token %}</form>
-
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
   <div class="explanation-text">
-
       <h3> Instructions </h3>
       <p>
           <li>The goal of this experiment is to measure human counting ability.</li> 
@@ -18,6 +9,4 @@
           <li>Your task is <b>to count these circles and answer how many circles were presented using a drop-down list</b>.</li> 
           <li>You can check the practice trials of this task from the following window. </li>
       </p>
-
   </div>
-{% endblock %}

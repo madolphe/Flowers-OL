@@ -147,7 +147,7 @@ function quit_task(){
       'results_ind_previous': Params.results_ind_previous,
       'results_targetvalue': Params.results_targetvalue
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 

@@ -1,34 +1,22 @@
-{% extends "base.html" %}
-{% block title %}TASK{% endblock %}
 {%load static%}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
-
-{% block content%}
-  <form id="request">{% csrf_token %}</form>
-
-  <div class="explanation-text">
-
-      <h3> Instructions </h3>
-      <p> 
-          <UL>  
-          <li>The goal of this experiment is to measure the ability of memory capacity for photographs.</li> 
-          <li>In this experiment, you will see a set of photographs one-by-one.  </li>
-          <li>Your task is to <b>remember each photograph </b>and answer <b>whether the photograph is presented twice or not by pressing the key "f" as soon as possible</b>. </li> 
-          <li>Some images will appear twice in a short-range, others in a long-range, and the others just once.</li>
-          <li>In each trial, you will get feedback as to if your response was correct.</li>
-          <UL>
-              <li>If you answer correctly (that is, if you don't press the key for the first-time-image or if you do press the key for the image presented twice), you will see the word "Correct answer". </li>
-          </UL>
-          <UL>
-              <li>If not, you will see the word "Wrong answer. "</li>
-          </UL>
-          <li>You can check the practice trials of this task from the following window.</li>
-          </UL>
-      </p>
-
-  </div>
-
-{% endblock %}
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
+  <h3> Instructions </h3>
+  <p>
+      <UL>
+      <li>The goal of this experiment is to measure the ability of memory capacity for photographs.</li>
+      <li>In this experiment, you will see a set of photographs one-by-one.  </li>
+      <li>Your task is to <b>remember each photograph </b>and answer <b>whether the photograph is presented twice or not by pressing the key "f" as soon as possible</b>. </li>
+      <li>Some images will appear twice in a short-range, others in a long-range, and the others just once.</li>
+      <li>In each trial, you will get feedback as to if your response was correct.</li>
+      <UL>
+          <li>If you answer correctly (that is, if you don't press the key for the first-time-image or if you do press the key for the image presented twice), you will see the word "Correct answer". </li>
+      </UL>
+      <UL>
+          <li>If not, you will see the word "Wrong answer. "</li>
+      </UL>
+      <li>You can check the practice trials of this task from the following window.</li>
+      </UL>
+  </p>
+</div>

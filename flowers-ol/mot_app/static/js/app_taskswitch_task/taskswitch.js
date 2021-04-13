@@ -167,7 +167,7 @@ function quit_task(){
       'results_colorcond': Params.results_colorcond,
       'results_shapecond': Params.results_shapecond
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 function create_restart_button(){

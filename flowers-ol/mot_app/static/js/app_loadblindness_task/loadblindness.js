@@ -221,7 +221,7 @@ function quit_task(){
       'results_targetvalue_fixation': Params.results_targetvalue_fixation,
       'results_target_distance': Params.results_target_distance
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 function create_restart_button(){

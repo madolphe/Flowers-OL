@@ -192,7 +192,7 @@ function quit_task(){
       'results_rt': Params.results_rt,
       'results_targetvalue_stim': Params.results_targetvalue_stim
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 function create_restart_button(){

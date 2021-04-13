@@ -214,7 +214,7 @@ function quit_task(){
       'results_ind_trial_target1':Params.results_ind_trial_target1,
       'results_ind_trial_target2':Params.results_ind_trial_target2
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 function create_restart_button(){

@@ -14,8 +14,9 @@ let flag_practice = false;
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
 
-let num_rep = 50; 
-let array_stimcond = [1,2,3,4,5,6,7,8,9]; //Experimental condition. 
+//let num_rep = 50;
+let num_rep = 1;
+let array_stimcond = [1,2,3,4,5,6,7,8,9]; //Experimental condition.
 let stim_target = 3;
 let stim_filler = [1,2,4,5,6,8,9];
 let stim_previous = 7;

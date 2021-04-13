@@ -1,16 +1,7 @@
-{% extends "base.html" %}
-{% block title %}TASK{% endblock %}
 {%load static%}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
-
-{% block content%}
-  <form id="request">{% csrf_token %}</form>
-
-  <div class="explanation-text">
-
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
       <h3> Instructions </h3>
       <p> 
           <UL>  
@@ -28,6 +19,4 @@
           <li>You can check the practice trials of this task from the following window.</li>
           </UL>
       </p>
-
   </div>
-{% endblock %}

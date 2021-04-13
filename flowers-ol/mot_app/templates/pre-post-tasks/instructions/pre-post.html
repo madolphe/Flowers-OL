@@ -32,9 +32,12 @@
     <div class="main-panel">
         {% if CONTEXT.current_task %}
             {% include CONTEXT.current_task.template_instruction_path %}
-            <iframe id="" title="practice trials" width="640" height="480" src="{% url 'tutorial' task_name=CONTEXT.current_task.name %}"></iframe>
-            <a class="btn" href={% url CONTEXT.current_task.view_name %}>{{CONTEXT.current_task.name}}</a>
+            <div class="row justify-content-center">
+                <iframe id="" title="practice trials" width="640" height="480" src="{% url 'tutorial' task_name=CONTEXT.current_task.name %}"></iframe>
+            </div>
+            <div class="btn-panel">
+                <a class="btn" href={% url CONTEXT.current_task.view_name %}>Start</a>
+            </div>
         {% endif %}
     </div>
 {% endblock %}
-

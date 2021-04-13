@@ -56,5 +56,5 @@ let pos_guide = Math.round(2*ppd);
 
 let x_ok = -Math.round(1.5*ppd);
 let y_ok = Math.round(4*ppd);
-let x_restart = -Math.round(6*ppd);; //in pixel
-let y_restart = -Math.round(5*ppd);; //in pixel
+let x_restart = -Math.round(6*ppd); //in pixel
+let y_restart = -Math.round(5*ppd); //in pixel

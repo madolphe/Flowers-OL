@@ -138,9 +138,8 @@
         "fields": {
             "name": "cognitive-task-practice",
             "description": "Cognitive assessment",
-            "prompt": "Start",
             "view_name": "cognitive_assessment_home",
-            "info_templates_csv": "Instructions=pre-post-tasks/instructions/instructions_cognitive_task.html"
+            "info_templates_csv": "Instructions=pre-post-tasks/instructions/pre-post.html"
         }
     },
     {

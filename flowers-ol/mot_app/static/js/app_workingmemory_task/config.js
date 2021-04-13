@@ -12,7 +12,8 @@ function get_ppd(viewer_dist, screen_params){
 
 let flag_practice = false;
 
-let num_rep = 20; // the experiment is conducted by psudo randomizing (common in psychological exps).
+// let num_rep = 20; // the experiment is conducted by psudo randomizing (common in psychological exps).
+let num_rep = 1; // the experiment is conducted by psudo randomizing (common in psychological exps).
 let num_memory = [4,5,6,7]; //Experimental condition.
 let array_stimcond = [0,1,2,3,4,5,6,7,8]; 
 

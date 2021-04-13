@@ -9,3 +9,4 @@ Pipfile.lock
 flowers-ol-db
 flowers-ol/static
 flowers-ol/mot_app/lib/kidlearn/
+flowers-ol/mot_app/static/images/pre-post-imgs

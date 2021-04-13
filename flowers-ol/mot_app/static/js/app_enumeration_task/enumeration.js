@@ -1,6 +1,6 @@
 //p5.js preload images
 function preload() {
-  img = loadImage('./img/noise.png');
+  img = loadImage('/static/images/pre-post-imgs/noise.png');
 }
 
 //p5.js initializing.
@@ -201,7 +201,7 @@ function quit_task(){
       'results_rt': Params.results_rt,
       'results_targetvalue': Params.results_targetvalue
     }
-  post('cognitive_assessment_home', parameters_to_save, 'post');
+  post('exit_view_cognitive_task', parameters_to_save, 'post');
 }
 
 

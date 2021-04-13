@@ -12,7 +12,8 @@ function get_ppd(viewer_dist, screen_params){
 
 let flag_practice = false;
 
-let num_rep = 10; 
+//let num_rep = 10;
+let num_rep = 1;
 let array_stimcond = [1,1,1,0,0,0];
 let array_taskcond = ['Color','Shape']; //Tasks switch condition.
 let array_textleft = ['Red:f','Circle:f'];

@@ -12,20 +12,23 @@ function get_ppd(viewer_dist, screen_params){
 
 let flag_practice = false;
 
-let num_rep = 20; 
+//let num_rep = 20;
+let num_rep = 1;
 
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
 
-let array_stimcond = [0,1,2,3]; //Experimental condition. 
+let array_stimcond = [0,1,2,3]; //Experimental condition.
 
 let array_fixation = [0,1];
 let length_longer = Math.round(0.8*ppd); //in pix
 
 
 let time_stimduration = 100; //in ms
-let time_maskduration = 1900; //in ms
-let time_fixation = 1000; // in millisecond
+//let time_maskduration = 1900; //in ms
+let time_maskduration = 10; //in ms
+//let time_fixation = 1000; // in millisecond
+let time_fixation = 10; // in millisecond
 let col_target = 255;
 
 let col_bkg = 128;

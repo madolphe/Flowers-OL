@@ -1,35 +1,25 @@
-{% extends "base.html" %}
-{% block title %}TASK{% endblock %}
 {%load static%}
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
+  <h3> Instructions </h3>
+  <p>
+      <UL>
+      <li>The goal of this experiment is to measure the attention ability of multiple targets. </li>
+      <li>In each trial, you will see a brief presentation of a cross target with four stripe objects. </li>
+      <li>You have to answer <b>two tasks </b>for each trial.</li>
+      <li>First, you have to answer <b>which of the lines are longer</b> using your keyboard.  </li>
+      <UL>
+      <li>If <b>the vertical line is longer</b>, then please press <b><kbd>"F"</kbd></b> key. </li>
+      <li>If <b>the horizontal line is longer</b>, then please press <b><kbd>"J"</kbd></b> key. </li>
+      </UL>
+      <li>After this response, you have to answer <b>which of the four objects had the strong contrast stripe </b> by clicking one of four buttons. </li>
+      <UL>
+      <li> The "strong contrast" means that white and black colors are more differentiated.</li>
+      </UL>
+      <li>Please keep in mind that you have to answer at least the first question correctly. If not, your response for the second question will not be recorded.</li>
+      <li>You can check the practice trials of this task from the following window.</li>
+      </UL>
+  </p>
+</div>
 
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
-{% endblock %}
-
-{% block content%}
-  <form id="request">{% csrf_token %}</form>
-  <div class="explanation-text">
-
-      <h3> Instructions </h3>
-      <p>  
-          <UL> 
-          <li>The goal of this experiment is to measure the attention ability of multiple targets. </li> 
-          <li>In each trial, you will see a brief presentation of a cross target with four stripe objects. </li>
-          <li>You have to answer <b>two tasks </b>for each trial.</li> 
-          <li>First, you have to answer <b>which of the lines are longer</b> using your keyboard.  </li>
-          <UL>
-          <li>If <b>the vertical line is longer</b>, then please press <b><kbd>"F"</kbd></b> key. </li>
-          <li>If <b>the horizontal line is longer</b>, then please press <b><kbd>"J"</kbd></b> key. </li>
-          </UL>
-          <li>After this response, you have to answer <b>which of the four objects had the strong contrast stripe </b> by clicking one of four buttons. </li>
-          <UL>
-          <li> The "strong contrast" means that white and black colors are more differentiated.</li>
-          </UL>
-          <li>Please keep in mind that you have to answer at least the first question correctly. If not, your response for the second question will not be recorded.</li>
-          <li>You can check the practice trials of this task from the following window.</li>
-          </UL>>
-      </p>
-
-  </div>
-
-{% endblock %}
