@@ -306,10 +306,14 @@ class ParticipantProfile(models.Model):
 
     @property
     def task_names_list(self):
+        # Clear whitespaces from task_stack_csv
         task_names = self.task_stack_csv.replace(' ','')
-        while task_names[-1] == ',': task_names = task_names[:-1]
-        task_names = task_names.split(',')
-        return task_names
+        if task_names:
+            # If task names is not an empty string, remove possible trailing commas
+            while task_names[-1] == ',': 
+                task_names = task_names[:-1]
+        # Finally return task name strings in a list
+        return task_names.split(',')
 
     # Miscelaneous
 
