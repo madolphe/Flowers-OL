@@ -74,10 +74,10 @@ def home(request):
     # I user tries to start session at a wrong time, redirect user to an appropriate page
     ref = participant.ref_timestamp
     if participant.current_session.in_future(ref):
-        return redirect(reverse(off_session_page))  # too early
+        return redirect(reverse(off_session_page, kwargs={'case': 'early'}))  # too early
     elif participant.current_session.in_past(ref):
         if participant.current_session.required:
-            return redirect(reverse(thanks_page))  # too late => can't proceed
+            return redirect(reverse(off_session_page, kwargs={'case': 'late'}))  # too late => can't proceed
         else:
             return redirect(reverse(end_session))  # too late => try next session
 
@@ -104,21 +104,24 @@ def start_task(request):
 
 
 @login_required
-def off_session_page(request):
+def off_session_page(request, case):
     participant = request.user.participantprofile
-
+    
     # Get next session if session stack is not empty, otherwise assign None to session
     session = None  # assigning None might be redundant, which is a good thing here!
     if participant.session_stack_peek():
-        session = ExperimentSession.objects.get(pk=participant.session_stack_peek())
-
-    if session:
-        valid_period = session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
-        start_info = f' opens on {valid_period[0]}' if valid_period[0] else ' opens whenever'
-        deadline_info = f' and closes on {valid_period[1]}' if valid_period[1] else ' and remains open until you complete it'
-        next_session_info = start_info + deadline_info
+        if case == 'early':
+            reason = _('La session ne peut pas être lancée parce qu\'il ne s\'est pas écoulé suffisamment de temps depuis votre dernière session.')
+            instructions = _('Dans ce cas, revenez plus tard. Votre prochaine session')
+            details = participant.get_next_session_info()
+        elif case == 'late':
+            reason = _('Vous avez manqué une des sessions prévues. Si vous avez commencé une session plus tôt mais que vous ne l\'avez pas terminée à la date limite, la session est considérée comme manquée.')
+            instructions = _('Dans ce cas, vous n\'avez pas respecté le programme et vous ne pouvez pas poursuivre l\'expérience. Merci de participer à notre recherche.')
+            details = None
         return render(request, 'off_session_page.html', {'CONTEXT': {
-            'next_session_info': _(next_session_info)}})
+            'reason': reason, 'instructions': instructions, 'details': details}})
+    else:
+        return redirect(reverse('thanks_page'))
 
 
 @login_required
@@ -170,7 +173,6 @@ def end_task(request):
 
     participant = request.user.participantprofile
     if participant.current_task.exit_view and not request.session.setdefault('exit_view_done', False):
-        print('Redirecting to exit view: {}'.format(participant.current_task.exit_view))
         return redirect(reverse(participant.current_task.exit_view))
     if 'exit_view_done' in request.session:
         del request.session['exit_view_done']

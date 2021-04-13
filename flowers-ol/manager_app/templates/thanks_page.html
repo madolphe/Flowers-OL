@@ -4,6 +4,9 @@
 {% block js%} {% endblock %}
 {% block css %}
     {%load static%} <link rel="stylesheet" href="{% static "css/common.css" %}">
+    <style>
+        b.highlight{color:#FFFD8C}
+    </style>
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block nav%} {%endblock%}
@@ -12,7 +15,7 @@
         <div class="side-info">
             <div class="content">
                 <h1>{{CONTEXT.heading}}</h1>
-                <p>{{CONTEXT.text}}</p>
+                {% trans "Votre prochaine session" %} <b class="highlight">{{CONTEXT.next_session_info}}</b>. {% trans "Nous vous demandons de bien vouloir suivre le programme." %}
                 <div class="fade-screen"></div>
             </div>
         </div>
