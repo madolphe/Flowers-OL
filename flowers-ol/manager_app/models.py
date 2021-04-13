@@ -272,34 +272,17 @@ class ParticipantProfile(models.Model):
             if commit:
                 self.save()
 
-    @property
-    def future_sessions(self):
-        if self.current_session:
-            if self.sessions.exclude(pk=self.current_session.pk):
-                return self.sessions.exclude(pk=self.current_session.pk)
-            else:
-                return []
-        else:
-            return self.sessions.all()
+    def session_stack_to_list(self):
+        return list(self.session_stack_csv.split(','))
 
-    def old_validator(self):
-        # If the current session is not today, not required and was skipped (i.e date in the past):
-        if not self.current_session.is_today(ref_date=self.ref_dt.date()):
-            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.ref_dt.date()):
-                # Store in participant extra_json when a session has been skipped:
-                if 'skipped_session' in self.extra_json:
-                    self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
-                else:
-                    self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
-                if 'game_time_to_end' in self.extra_json:
-                    del self.extra_json['game_time_to_end']
-                self.close_current_session()
-                self.set_current_session()
-                return self.current_session_valid
-            return False
-        if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
-            return False
-        return True
+    def get_next_session_info(self):
+        '''Return a string for when the next session starts/ends'''
+        session = self.sessions.get(pk=self.session_stack_peek())
+        valid_period = session.get_valid_period(self.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        start_info = _('commence le {}').format(valid_period[0]) if valid_period[0] else _('commence à tout moment')
+        deadline_info = _('et se termine le {}').format(valid_period[1]) if valid_period[1] else _('et reste ouverte jusqu\'à ce que vous la terminiez')
+        next_session_info = f'{start_info} {deadline_info}'
+        return next_session_info
 
     # Task management
 
