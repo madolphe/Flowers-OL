@@ -98,18 +98,30 @@ def jold_close_postsess_questionnaire(request):
 
 @login_required
 @ensure_csrf_cookie
-def jold_free_choice(request, choice=0):
+def jold_accept_optional_practice(request):
+    return redirect(reverse('jold_free_choice', kwargs={'choice': 1}))
+
+
+@login_required
+@ensure_csrf_cookie
+def jold_reject_optional_practice(request):
+    return redirect(reverse('jold_free_choice', kwargs={'choice': 0}))
+
+
+@login_required
+@ensure_csrf_cookie
+def jold_free_choice(request, choice):
     participant = request.user.participantprofile
-    question = Question.objects.get(handle='jold-0')
-    answer = Answer.objects.get(participant=participant, session=participant.current_session, question=question)
+    answer = Answer()
     answer.participant = participant
     answer.session = participant.current_session
-    answer.question = question
+    answer.question = Question.objects.get(handle='jold-0')
     answer.value = choice
     answer.save()
-    if choice:
+    if choice == 1:
         return redirect(reverse('jold_start_ll_practice'))
-    else: return redirect(reverse('end_task'))
+    else:
+        return redirect(reverse('end_task')) 
 
 
 @login_required
