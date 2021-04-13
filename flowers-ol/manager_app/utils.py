@@ -14,7 +14,7 @@ def add_message(request, message, tag='info'):
     request.session.setdefault('messages', {})[tag] = message
 
 
-# @background(schedule=0)
+@background(schedule=0)
 def send_delayed_email(to, sender, subject, message_template):
     print('Sending email to {}'.format(to))
     send_mail(
@@ -27,7 +27,7 @@ def send_delayed_email(to, sender, subject, message_template):
     )
 
 
-# @background(schedule=0)
+@background(schedule=0)
 def send_delayed_email_2():
     print('Sending email test')
     send_mail(
