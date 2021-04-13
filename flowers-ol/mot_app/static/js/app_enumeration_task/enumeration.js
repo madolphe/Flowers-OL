@@ -59,7 +59,7 @@ function scene_instruction(){
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
-    text( "Please click the mouse to start this experiment", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    text( prompt_start, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
   }
 }
 
@@ -143,7 +143,7 @@ function scene_response(){
   fill(col_text);
   textSize(size_text);
   textAlign(CENTER);
-  text( "How many circles are presented?", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text( prompt_question, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 // functions to run only when loading page:
@@ -183,7 +183,7 @@ function scene_end(){
   noStroke();
   textSize(size_text);
   textAlign(CENTER);
-  text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text( prompt_gratitude, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 function create_end_button(){
@@ -206,7 +206,7 @@ function quit_task(){
 
 
 function create_restart_button(){
-  button_restart = createButton('RESTART');
+  button_restart = createButton(prompt_button_restart);
   //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
   button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
   button_restart.mousePressed(restart_task);

@@ -10,11 +10,15 @@
       margin: 0;
     }
   </style>
-  {%load static%}
-    <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    {% load i18n %}
+    {%load static%}
+    {% get_current_language as LANGUAGE_CODE %}
+    <script>  screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %}; </script>
+    <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
     <script src="{% static 'js/p5.min.js' %}"></script>
     <script src="{% static 'js/app_enumeration_task/config_tutorial.js' %}"></script>
     <script src="{% static 'js/app_enumeration_task/enumeration.js' %}"></script>
+    <script src="{% static 'js/app_enumeration_task/prompt.js' %}"></script>
 </head>
 
 <body>
