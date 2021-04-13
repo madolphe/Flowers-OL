@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 class ConsentForm(forms.Form):
     understood = forms.BooleanField(label=_("En cochant cette case, vous reconnaissez avoir lu et compris les informations fournies sur l'étude."), required=True)
     agreed = forms.BooleanField(label=_("En cochant cette case, vous donnez votre consentement éclairé à participer à l'étude."), required=True)
-    request_reminder = forms.BooleanField(label=_('En cochant cette case, vous acceptez de tecevoir un rappel 1 jour avant la prochaine session (optionel).'), required=False)
+    request_reminder = forms.BooleanField(label=_('En cochant cette case, vous acceptez de recevoir un rappel 1 jour avant la prochaine session (optionel).'), required=False)
     email = forms.EmailField(label=_('À quelle adresse souhaitez-vous recevoir le(s) rappel(s) ? Indiquez votre adresse électronique ci-dessous (optionel)'), required=False)
     fields = ['understood', 'agreed']
 

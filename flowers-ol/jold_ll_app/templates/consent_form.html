@@ -1,12 +1,12 @@
 {% load i18n %}
 <section id="section-1">
-    <center><h1>{% trans "FORMULAIRE D’INFORMATION ET DE RECUEIL DE CONSENTEMENT ECLAIRÉ" %}</h1></center>
+    <center><h1>{% trans "INFORMATIONS SUR L'ÉTUDE" %}</h1></center>
     <p>
-        {% trans "Dans le cadre de leurs recherches, les chercheurs Inria sont amenés à demander à des personnes de participer à des études nécessaires pour l’avancement de leurs projets de recherche. Toute participation de personnes à une étude doit être précédée, d’une part, de la transmission d’une note d’information et, d’autre part, de la signature d’un formulaire de consentement éclairé. Ce document présente le formulaire d’information et de recueil de consentement éclairé que le COERLE recommande de faire signer aux personnes qui participent à des recherches menées par les chercheurs Inria." %}
+        {% trans "Dans le cadre de leurs recherches, les chercheurs Inria sont amenés à demander à des personnes de participer à des études nécessaires pour l’avancement de leurs projets de recherche. Conformément aux directives éthiques de <a href='https://www.inria.fr/fr/comite-operationnel-devaluation-des-risques-legaux-et-ethiques'>COERLE</a>, toute forme de participation à une étude doit être précédée de la transmission d'informations concernant la participation, suivie de la signature d'un formulaire de consentement éclairé.  Ce document présente le formulaire d’information et de recueil de consentement éclairé que le COERLE recommande de faire signer aux personnes qui participent à des recherches menées par les chercheurs Inria." %}
     </p>
 </section>
 <section id="section-2">
-    <center><h2>{% trans "INFORMATIONS COMMUNIQUÉES AUX PARTICIPANTS" %}</h2></center>
+    <center><h2>{% trans "INFORMATIONS POUR LES PARTICIPANTS" %}</h2></center>
     <b>{% trans "Votre collaboration est essentielle à la réalisation de notre projet et, l’équipe de recherche tient à vous en remercier." %}</b>
     <p>
         {% trans "Avant de donner votre consentement éclairé, il est important que vous compreniez pourquoi la recherche est faite, ce qu’elle implique et quels sont vos droits et obligations." %}
@@ -18,21 +18,22 @@
     <b>{% trans "Equipe-projet et CRI " %}</b>: {% trans "Équipe-projet FLOWERS – Inria Bordeaux Sud-Ouest " %}<br>
     <b>{% trans "Nom du projet " %}</b>: {{project}}<br>
     <p>
-        {% trans "Vous êtes invités à prendre part à ce projet dont la finalité est d’étudier dans quelle mesure les progrès d’apprentissage sont une motivation forte chez les humains à poursuivre un apprentissage sur une tâche donnée." %}
+        {% trans "Vous êtes invité à participer à une expérience comportementale qui vise à étudier les processus métacognitifs impliqués dans l'apprentissage sensorimoteur autorégulé." %}
     </p>
     <b>{% trans "Les modalités de réalisation du projet seront les suivantes :" %} </b>
     <p>
-        {% trans "Ce projet s'inscrit dans une démarche de compréhension des liens entre les mécanismes d'apprentissage et la motivation intrinsèque (propre à l’individu). En particulier, cette recherche vise à analyser les capacités de l’humain à suivre et évaluer son apprentissage (métacognition) pour mesurer ses progrès comme source de motivation à poursuivre ses efforts d’apprentissage. Notre but est d'observer à quel point les progrès d’apprentissage sont des moteurs d’endurance à une tâche et à mesurer la précision avec laquelle un individu est capable de les mesurer au cours de son apprentissage. Pour cela, vous serez amenés à utiliser une application numérique, un jeu sérieux d’attention, dans lequel sera évalué vos progrès d’apprentissage et vos comportements et perceptions vis-à-vis de celui-ci." %}
+        {% trans "Cette expérience est conçue pour étudier les liens entre l'apprentissage et les jugements subjectifs de l'apprentissage (propres à l'individu). Pour ce faire, il vous sera demandé de pratiquer à trois sessions d'un jeu vidéo appelé 'Lunar Lander' et de fournir vos évaluations subjectives de vos propres performances et progrès." %}
     </p>​
-    <b>{% trans "Les bénéfices attendus du projet sont les suivants :" %}</b>
+    <b>{% trans "Les résultats de l'expérience devraient nous permettre d'apprendre les choses suivantes :" %}</b>
     <p>
-        {% trans "Nous espérons déterminer des conditions dans lesquelles le progrès d’apprentissage est maximal. Nous espérons également établir un lien entre progrès d’apprentissage et la perception des progrès par l’apprenant. Le jeu proposé étant un serious games, il vous permettra dans tous les cas de vous stimuler cognitivement, et en particulier, vos capacités attentionnelles. Ce projet, financé par l’équipe Flowers (centre Inria Bordeaux SO) et a été autorisé par le Comité Opérationnel d’Evaluation des risques légaux et éthiques d’Inria. Pour de plus amples informations : http://www.inria.fr/institut/organisation/instances/coerle/presentation-du-coerle" %}</p>
+        {% trans "Nous cherchons à identifier les conditions dans lesquelles l'apprentissage est maximisé. Nous espérons également établir un lien entre le taux objectif d'apprentissage et la perception par l'apprenant de la progression de son propre apprentissage. Ce projet est financé par l'équipe Flowers (centre Inria Bordeaux Sud-Ouest) et a été autorisé par le Comité opérationnel d'évaluation d'Inria des risques légaux et éthiques. Pour plus d'informations, cliquez sur ce <a href='https://www.inria.fr/fr/comite-operationnel-devaluation-des-risques-legaux-et-ethiques'>lien</a>." %}
+    </p>
 ​</section>
 <section id="section-4">
     <center><h2>{% trans "VOTRE PARTICIPATION AU PROJET" %}</h2></center>
-    <b>{% trans "Modalités de votre participation:" %}</b>
+    <b>{% trans "Modalités de votre participation" %}</b>
     <p>
-        {% trans "Votre participation consiste, pour l’essentiel, à :" %}
+        {% trans "Votre participation consistera à :" %}
         <ul type=square>
 <!--            <li>-->
 <!--                Faire usage des outils mis à disposition par l’équipe de recherche (application/jeu sur ordinateur). La durée d'utilisation des outils est de 30 minutes à raison de 4 à 5 fois par semaine (ne pas faire 2 séances le même jour) et ce, pendant 8 semaines consécutives.-->
@@ -41,43 +42,43 @@
 <!--                Répondre à des questionnaires et à des évaluations psychométriques pour une durée totale de 1h20 à 2h (des pauses toutes les 30 mn). Pour certains questionnaires, une mesure sera faîte avant et après l'utilisation de l’application.-->
 <!--            </li>-->
            <li>
-               {% trans " Faire usage des outils mis à disposition par l’équipe de recherche (application/jeu sur ordinateur). La durée d'utilisation des outils est de 5 minutes à raison de 3 fois dans la semaine (ne pas faire 2 séances le même jour) et ce, pendant 1 semaine." %}
+               {% trans "Utiliser les outils fournis par l'équipe de recherche (application en ligne et jeu vidéo). L'ensemble de l'expérience durera 5 jours, pendant lesquels il vous sera demandé d'effectuer 3 sessions programmées, de 10 à 15 minutes chacune. La première session peut être commencée n'importe quel jour, mais les sessions suivantes devront être réalisées respectivement 1 et 4 jours après la première session." %}
             </li>
             <li>
-               {% trans " Il est impératif de suivre le planning des sessions, sans quoi, nous ne pourrons utiliser vos résultats pour notre étude. Le planning est comme suit : Jour 1 - session 1 -> Jour 2 session 2 -> Jour 5 - session 3. Par exemple, si votre première session est un lundi, vous devrez effectué la deuxième session le mardi et la dernière le vendredi." %}
+               {% trans "Il est important de suivre le programme des sessions, sans quoi, nous ne pourrons utiliser vos résultats pour notre étude. Le programme est le suivant : Jour 1 - session 1 -> Jour 2 - session 2 -> Jour 5 - session 3. Par exemple, si vous terminez votre première session à n'importe quel moment le mardi, la session suivante doit être terminée le jeudi (de 12h00 à 23h59), et la suivante doit être terminée le samedi (de 12h00 à 23h59)." %}
             </li>
             <li>
-              {% trans "  Répondre à des questionnaires au regard de la tâche que vous aurez effectuée." %}
+              {% trans "Répondre à des questionnaires sur votre activité." %}
             </li>
             <li>
-               {% trans " Aucun risque particulier n’est à déplorer concernant votre participation à cette étude. De plus, cette participation vous donne également l’opportunité de savoir que la recherche se mobilise pour répondre à des enjeux majeurs relatifs à l'apprentissage et aux capacités cognitives des humains." %}
+               {% trans "Aucun risque particulier n’est à déplorer concernant votre participation à cette étude. De plus, la participation vous donne également l'occasion de vous informer sur les recherches en cours portant sur des questions majeures liées à l'apprentissage et aux capacités cognitives humaines." %}
             </li>
             <li>
-               {% trans " Aucune compensation financière n’est prévue pour votre participation, qui ne repose que sur votre libre choix et votre droit de retrait que vous pouvez exercer à tout moment de l’étude." %}
+               {% trans "Aucune compensation financière n’est prévue pour votre participation, qui ne repose que sur votre décision. Vous avez le droit de vous retirer à tout moment de l'expérience." %}
             </li>
         </ul>
     </p>
     ​
-    <b>{% trans "Participation volontaire au projet :" %}</b>
+    <b>{% trans "Participation volontaire au projet" %}</b>
     <p>
-        {% trans "Après avoir lu et compris les informations contenues dans la partie « Présentation du projet», votre signature de ce formulaire indique que vous acceptez de participer au projet, et ce sans aucune contrainte ou pression extérieure. S’il vous manque des informations nécessaires à votre prise de décision, n’hésitez pas à demander un complément d’informations aux personnes contacts (voir ci-après)." %}
+        {% trans "Après avoir lu et compris les informations contenues dans la section 'PRÉSENTATION DU PROJET', l'envoi de ce formulaire indique que vous acceptez de participer au projet, sans aucune contrainte ni pression extérieure. S'il vous manque des informations nécessaires à votre décision, n'hésitez pas à demander des informations complémentaires aux personnes de contact (voir ci-dessous)." %}
     </p>
     ​
-    <b>{% trans "Retrait du projet à tout moment :" %}</b>
+    <b>{% trans "Retrait du projet à tout moment" %}</b>
     <p>
         {% trans "Vous êtes totalement libre de mettre fin à votre participation au projet à n’importe quel moment. Il vous suffit d’en informer les personnes contacts (ci-après). Vous n’aurez aucune justification à apporter à votre retrait et vous n’encourrez aucune responsabilité." %}
     </p>
-    <b>{% trans "Suite de votre retrait du projet :" %}</b>
+    <b>{% trans "Suite de votre retrait du projet" %}</b>
     <p>
         {% trans "L’équipe de recherche pourra continuer à utiliser les renseignements vous concernant jusqu’au retrait de votre consentement, sauf si vous vous y opposez en l’indiquant aux personnes contacts. Dans ce cas, les renseignements vous concernant seront détruits." %}
     </p>
-    <b>{% trans "Demande d’informations au cours du projet :" %}</b>
+    <b>{% trans "Demande d’informations au cours du projet" %}</b>
     <p>
-        {% trans "Si vous avez des questions additionnelles sur le projet ou sur les droits en tant que participant à ces travaux de recherche, n’hésitez pas à en faire part aux personnes contacts mentionnées ci-après." %}
+        {% trans "Si vous avez des questions additionnelles sur le projet ou sur les droits en tant que participant à ces travaux de recherche, n’hésitez pas à nous contactez." %}
     </p>
-    <b>{% trans "Information concernant les résultats principaux de la recherche :" %}</b>
+    <b>{% trans "Information concernant les résultats principaux de la recherche" %}</b>
     <p>
-        {% trans "Si vous souhaitez obtenir un résumé écrit des principaux résultats de cette recherche ainsi que de leur utilisation, veuillez en faire la demande aux personnes contacts." %}
+        {% trans "Si vous souhaitez obtenir un résumé écrit des principaux résultats de cette recherche ainsi que de leur utilisation, veuillez faire une demande auprès de l'un des contacts indiqués ci-dessous." %}
     </p>
 </section>
 <section id="section-5">
@@ -87,11 +88,11 @@
     </p>
     <b>{% trans "Ces données sont les suivantes :" %}</b>
     <p>
-        {% trans "Les données collectées à partir de l'application sont des scores de réussite enregistrés automatiquement lors de l’utilisation du jeu. Ces données sont totalement anonymes dans la mesure où votre nom et prénom ne sont pas renseignés dans la base de données où figurent uniquement des matricules." %}
+        {% trans "Les données collectées à partir de l'application sont les résultats du jeu enregistrés automatiquement lors de l’utilisation du jeu. Ces données sont totalement anonymes dans la mesure où vos nom et prénom ne sont pas saisis dans la base de données, qui ne contient que des identifiants numériques qui ne permettent pas de remonter jusqu'à vous." %}
     </p>
     <b>{% trans "Ces données seront traitées de la manière suivante :" %}</b>
     <p>
-        {% trans "Les données issues de l’application nous permettront d'étudier les mécanismes de l’apprentissage intrinsèquement motivés: les données collectées seront stockées dans une base de données, sur laquelle nous opérerons des analyses statistiques sur le progrès d’apprentissage et l’auto-évaluation de ces progrès lors de l’utilisation de l’application. Ces données anonymes ne seront pas utilisées à d’autres fins que l’étude des mécanismes d’apprentissage au travers de ce jeu." %}
+        {% trans "Les données issues de l’application nous permettront d'étudier les mécanismes de l’apprentissage intrinsèquement motivés: les données collectées seront stockées dans une base de données, sur laquelle nous opérerons des analyses statistiques sur le progrès d’apprentissage et l’auto-évaluation de ces progrès lors de l’utilisation de l’application. Ces données anonymes ne seront pas utilisées à d’autres fins que l'étude de l'apprentissage et des mécanismes métacognitifs." %}
     </p>
     <p>
         {% trans "Conformément à l'article 13 du Règlement relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE (règlement général sur la protection des données ou RGPD), veuillez trouver ci-dessous quelques informations concernant cette collecte de données :" %}
@@ -141,7 +142,7 @@
                    {% trans " Contacter le DPD par courrier postal : Le délégué à la protection des données Inria, 2004 route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex" %}
                 </li>
             </ul>
-           {% trans " Si vous estimez, après nous avoir contactés, que vos droits Informatique et Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles de protection des données, vous pouvez adresser une réclamation à la CNIL" %}
+           {% trans " Si vous estimez, après nous avoir contactés, que vos droits Informatique et Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles de protection des données, vous pouvez adresser une réclamation à la CNIL." %}
         </li>
     </ul>
     <p>
@@ -191,12 +192,12 @@
 <section id="section-7">
     <center><h2>{% trans "VOTRE CONSENTEMENT ÉCLAIRÉ" %}</h2></center>
     <p>
-        {% blocktrans %}Reconnais avoir lu et compris le présent formulaire d’informations concernant le projet "{{project}}" et consens volontairement à participer à ce projet de recherche.
+        {% blocktrans %}En remplissant les champs obligatoires du formulaire, vous consentez volontairement à participer au projet intitulé <b> "{{project}}" </b>. En donnant votre consentement éclairé, vous acceptez les points suivants :
         <ul>
-            <li>Je reconnais avoir été informé que je peux mettre fin à ma participation au projet à tout moment sans aucun motif à donner, en contactant simplement les personnes contacts référencées ci-dessus.</li>
-            <li>Je reconnais que j’ai été informé sur le but et les modalités du projet, ainsi que les avantages, risques et inconvénients du projet.</li>
-            <li>Je reconnais avoir obtenu les réponses mes questions de manière claire et précise.</li>
-            <li>Je reconnais enfin avoir la possibilité de poser des questions additionnelles sur le projet ou sur mes droits, à tout moment pendant le projet, en communiquant avec les personnes contacts.
+            <li>Vous avez été informé que vous pouvez mettre fin à votre participation au projet à tout moment sans donner de raison, simplement en contactant les personnes de contact indiquées ci-dessus.</li>
+            <li>Vous avez été informé de l'objectif et des modalités du projet, ainsi que de ses avantages, risques et inconvénients.</li>
+            <li>Vous avez reçu des réponses claires et précises à vos questions.</li>
+            <li>Vous avez la possibilité de poser des questions supplémentaires sur le projet ou vos droits à tout moment pendant le projet en contactant l'une des personnes de contact indiquées ci-dessus.
             </li>
         </ul>
         Fait en deux exemplaires dont un sera remis au participant et un sera conservé par le responsable du projet.{% endblocktrans %}
