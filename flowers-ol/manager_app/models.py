@@ -342,11 +342,11 @@ class ParticipantProfile(models.Model):
     def queue_reminder(self):
         if self.remind and self.sessions.all():
             next_session = self.sessions.get(pk=self.session_stack_peek())
-            next_session_date = next_session.get_valid_period(ref_timestamp=self.ref_timestamp, string_format='%d-%m-%Y')
+            next_session_start_datetime = next_session.get_valid_period(ref_timestamp=self.ref_timestamp)[0]
             message_template = render_to_string(self.study.reminder_template,
                 {'CONTEXT': {
                     'username': self.user.username,
-                    'valid_period' : next_session_date,
+                    'valid_period' : next_session_start_datetime,
                     'tasks': next_session.get_task_list,
                     'study_link': 'http://flowers-mot.bordeaux.inria.fr/study={}'.format(self.study.name),
                     'project_name': self.study.project,
@@ -360,8 +360,8 @@ class ParticipantProfile(models.Model):
                 sender=self.study.contact,
                 subject='Flowers OL | Rappel de la session #{}'.format(index+1),
                 message_template=message_template,
-                schedule=datetime.datetime(year=next_session_date.year,
-                                           month=next_session_date.month,
-                                           day=next_session_date.day,
-                                           hour=6)
+                schedule=datetime.datetime(year=next_session_start_datetime.year,
+                                           month=next_session_start_datetime.month,
+                                           day=next_session_start_datetime.day,
+                                           hour=0)
             )
