@@ -22,6 +22,9 @@
     </div>
 
     <div class="main-panel">
+        {% if messages %}
+            {% include "includes/message.html" with ms=messages %}
+        {% endif %}
         {% load crispy_forms_tags %}
         <form class="form" method="post">
             <div class="form-sheet">

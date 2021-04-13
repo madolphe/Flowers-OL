@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
+from django.contrib import messages as django_messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -27,11 +28,11 @@ def jold_start_ll_practice(request):
         game_params = {}
         participant.extra_json['game_params'] = game_params
         participant.save()
-    if task_name == 'JOLD-ll-practice':
+    if task_name == 'jold-ll-practice':
         participant.extra_json['game_params']['forced'] = True
         participant.extra_json['game_params']['time'] = 5 if settings.DEBUG else 5 * 60
         participant.save()
-    elif task_name == 'JOLD-free-choice':
+    elif task_name == 'jold-free-choice':
         participant.extra_json['game_params']['forced'] = False
         participant.extra_json['game_params']['time'] = 60 * 2
         participant.save()
@@ -115,10 +116,12 @@ def jold_free_choice(request, choice=0):
 def jold_consent_page(request):
     user = request.user
     participant = user.participantprofile
-    form = ConsentForm(request.POST or None)
+    form = ConsentForm(request.POST or None, request=request)
     if form.is_valid():
-        # TODO save participant data here (informed consent, email, and if reminder is requested)
         participant.consent = True
+        if form.cleaned_data['request_reminder']:
+            participant.remind = True
+            participant.email = form.cleaned_data['email']
         participant.save()
         return redirect(reverse('end_task'))
     return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
