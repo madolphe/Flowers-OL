@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}TASK{% endblock %}
 {%load static%}
+{% load i18n %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
@@ -11,6 +12,8 @@
 {% endblock %}
 
 {% block js%}
+    {% get_current_language as LANGUAGE_CODE %}
+    <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
     <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
     <script src="{% static 'js/utils/screen_params.js' %}"></script>
     <script src="{% static 'js/utils/utils.js' %}"></script>
@@ -20,5 +23,8 @@
     {% endwith %}
     {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/config.js" as task_config %}
         <script src="{% static task_config %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/prompt.js" as task_prompt %}
+        <script src="{% static task_prompt %}"></script>
     {% endwith %}
 {% endblock %}
