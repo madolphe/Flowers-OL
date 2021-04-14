@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 22:12+0200\n"
+"POT-Creation-Date: 2021-04-14 23:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,101 +18,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:14 forms.py:15 forms.py:28 forms.py:29
+#: manager_app/forms.py:14 manager_app/forms.py:15 manager_app/forms.py:28
+#: manager_app/forms.py:29
 msgid "Nom d'utilisateur"
 msgstr "Username"
 
-#: forms.py:16 forms.py:17 forms.py:30 forms.py:31 forms.py:33
+#: manager_app/forms.py:16 manager_app/forms.py:17 manager_app/forms.py:30
+#: manager_app/forms.py:31 manager_app/forms.py:33
 msgid "Mot de passe"
 msgstr "Password"
 
-#: forms.py:23
+#: manager_app/forms.py:23
 msgid "Se connecter"
 msgstr "Log in"
 
-#: forms.py:32
+#: manager_app/forms.py:32
 msgid "Confirmer le mot de passe"
 msgstr "Confirm password"
 
-#: forms.py:40
+#: manager_app/forms.py:40
 msgid "Créer un compte"
 msgstr "Register account"
 
-#: forms.py:66
+#: manager_app/forms.py:66
 msgid ""
 "Le nom d'utilisateur existe déjà, veuillez choisir un autre nom d'utilisateur"
 msgstr "This username is already taken, please choose another username"
 
-#: forms.py:70
+#: manager_app/forms.py:70
 msgid "Le mot de passe ne correspond pas"
 msgstr "Password does not match"
 
-#: models.py:95
+#: manager_app/models.py:95
 #, python-brace-format
 msgid ""
 "Cannot set wait={self.wait} and deadline={self.deadline}; wait timedelta "
 "cannot be greater than deadline timedelta."
 msgstr ""
 
-#: models.py:283
+#: manager_app/models.py:283
 msgid "commence le {}"
 msgstr "opens on {}"
 
-#: models.py:283
+#: manager_app/models.py:283
 msgid "commence à tout moment"
 msgstr "can begin at any time"
 
-#: models.py:284
+#: manager_app/models.py:284
 msgid "et se termine le {}"
 msgstr "and closes on {}"
 
-#: models.py:284
+#: manager_app/models.py:284
 msgid "et reste ouverte jusqu'à ce que vous la terminiez"
 msgstr "and remains open until you complete it"
 
-#: templates/home_page.html:20
+#: manager_app/templates/home_page.html:20
 msgid "Salut"
 msgstr "Hi"
 
-#: templates/home_page.html:21
+#: manager_app/templates/home_page.html:21
 msgid "Ici, vous pouvez voir votre progression dans l'expérience"
 msgstr "Here, you can see your progress in the experience"
 
-#: templates/home_page.html:29 templates/off_session_page.html:111
-#: templates/thanks_page.html:25
+#: manager_app/templates/home_page.html:29
+#: manager_app/templates/off_session_page.html:111
+#: manager_app/templates/thanks_page.html:25
 msgid "Se déconnecter"
 msgstr "Log out"
 
-#: templates/login_page.html:13
+#: manager_app/templates/login_page.html:13
 msgid "Se connecter ou s'inscrire pour accéder à l'expérience."
 msgstr "Sign in or sign up to complete your experiement."
 
-#: templates/login_page.html:20
+#: manager_app/templates/login_page.html:20
 msgid "Nom d'utilisateur ou mot de passe inconnu."
 msgstr "Username or password incorrect."
 
-#: templates/login_page.html:29
+#: manager_app/templates/login_page.html:29
 msgid "Cliquez ici pour s'inscrire"
 msgstr "Click here to sign up"
 
-#: templates/off_session_page.html:84
+#: manager_app/templates/off_session_page.html:84
 msgid "Impossible d'attribuer une session"
 msgstr "Unable to assign a session"
 
-#: templates/off_session_page.html:85
+#: manager_app/templates/off_session_page.html:85
 msgid "Nous n'avons pas pu vous trouver de session. C'est parce que :"
 msgstr ""
 "We could not find a session for you. This is due to the following reason:"
 
-#: templates/signup_page.html:12
+#: manager_app/templates/signup_page.html:12
 msgid "Inscription"
 msgstr "Registration"
 
-#: templates/signup_page.html:23
+#: manager_app/templates/signup_page.html:23
 msgid "Cliquez ici pour se connecter"
 msgstr "Click here to sign in"
 
-#: views.py:114
+#: manager_app/views.py:114
 msgid ""
 "La session ne peut pas être lancée parce qu'il ne s'est pas écoulé "
 "suffisamment de temps depuis votre dernière session."
@@ -120,11 +123,11 @@ msgstr ""
 "The session cannot be started because not enough time has passed since your "
 "last session."
 
-#: views.py:115
+#: manager_app/views.py:115
 msgid "Dans ce cas, revenez plus tard. Votre prochaine session"
 msgstr "In this case, come back later. Your next session"
 
-#: views.py:118
+#: manager_app/views.py:118
 msgid ""
 "Vous avez manqué une des sessions prévues. Si vous avez commencé une session "
 "plus tôt mais que vous ne l'avez pas terminée à la date limite, la session "
@@ -134,7 +137,7 @@ msgstr ""
 "but did not complete it by its deadline, the session is also considered "
 "missed."
 
-#: views.py:119
+#: manager_app/views.py:119
 msgid ""
 "Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas "
 "poursuivre l'expérience. Merci de participer à notre recherche."
@@ -142,11 +145,11 @@ msgstr ""
 "In this case, you have not followed the programme and you cannot continue "
 "the experiment. Thank you for participating in our research."
 
-#: views.py:142
+#: manager_app/views.py:142
 msgid "La session est terminée"
 msgstr "Your session has been closed"
 
-#: views.py:147
+#: manager_app/views.py:147
 msgid ""
 "Votre entraînement n'est pas fini pour aujourd'hui, il vous reste une "
 "session à effectuer durant la journée! Si vous voulez continuer "
@@ -157,15 +160,15 @@ msgstr ""
 "during the day! If you want to continue immediately, it is possible: Log "
 "out, log back in and start again!"
 
-#: views.py:153
+#: manager_app/views.py:153
 msgid "Nous vous attendons la prochaine fois. Votre prochaine session est le"
 msgstr "We look forward to seeing you next time. Your next session is on"
 
-#: views.py:155
+#: manager_app/views.py:155
 msgid "Nous vous attendons la prochaine fois."
 msgstr "We look forward to seeing you next time."
 
-#: views.py:157
+#: manager_app/views.py:157
 msgid ""
 "Votre participation a été interrompue. Vous pouvez nous contacter pour plus "
 "d'informations. Merci pour votre temps !"
@@ -173,11 +176,11 @@ msgstr ""
 "Your participation has been discontinued. You can contact us for more "
 "information. Thank you for your time!"
 
-#: views.py:160
+#: manager_app/views.py:160
 msgid "L'étude est terminée"
 msgstr "The study has been completed"
 
-#: views.py:161
+#: manager_app/views.py:161
 msgid "Merci, pour votre contribution à la science !"
 msgstr "Thank you for your contribution to science!"
 
