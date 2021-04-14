@@ -20,7 +20,7 @@ msgstr ""
 
 #: static/js/app_LL/game.js:103
 msgid "Vaisseau prêt!"
-msgstr "Ship ready!"
+msgstr "Ship is ready!"
 
 #: static/js/app_LL/game.js:110
 msgid "Appuyer sur 'Entrer' pour commencer"
@@ -32,23 +32,23 @@ msgstr "* full screen mode must be activated"
 
 #: static/js/app_LL/game.js:124
 msgid "Le vaisseau a atterri!"
-msgstr "The ship has landed!"
+msgstr "The ship has been landed!"
 
 #: static/js/app_LL/game.js:125
 msgid "Le vaisseau s'est écrasé"
-msgstr "The ship crashed"
+msgstr "The ship has crashed"
 
 #: static/js/app_LL/game.js:126
 msgid "Le vaisseau s'est perdu"
-msgstr "The ship is lost"
+msgstr "The ship has been lost"
 
 #: static/js/app_LL/game.js:127
 msgid "En pause"
-msgstr "On pause"
+msgstr "Paused"
 
 #: static/js/app_LL/game.js:128
 msgid "Fin de la session"
-msgstr "End of the session"
+msgstr "Time is up"
 
 #: static/js/app_LL/game.js:181
 msgid "Plein écran"
@@ -56,11 +56,11 @@ msgstr "Full screen"
 
 #: static/js/app_LL/game.js:185
 msgid "Terminer"
-msgstr "Finish"
+msgstr "Terminate"
 
 #: static/js/app_LL/game.js:523 static/js/app_LL/game.js:638
 msgid "Session interrompue"
-msgstr "Interrupted session"
+msgstr "Interruption"
 
 #: static/js/app_LL/game.js:524 static/js/app_LL/game.js:575
 #: static/js/app_LL/game.js:639
@@ -69,7 +69,7 @@ msgstr "Press 'Enter' to continue"
 
 #: static/js/app_LL/game.js:626
 msgid "Cliquez sur 'Terminer' pour continuer l'expérience"
-msgstr "Click on 'Finish' to continue the experiment"
+msgstr "Click on 'Terminate' to continue the experiment"
 
 #: static/js/app_LL/game.js:642
 msgid "Continuer ?"
