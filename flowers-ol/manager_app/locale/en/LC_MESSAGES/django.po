@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-13 23:58+0200\n"
+"POT-Creation-Date: 2021-04-14 22:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,19 +54,19 @@ msgid ""
 "cannot be greater than deadline timedelta."
 msgstr ""
 
-#: models.py:282
+#: models.py:283
 msgid "commence le {}"
 msgstr "opens on {}"
 
-#: models.py:282
+#: models.py:283
 msgid "commence à tout moment"
 msgstr "can begin at any time"
 
-#: models.py:283
+#: models.py:284
 msgid "et se termine le {}"
 msgstr "and closes on {}"
 
-#: models.py:283
+#: models.py:284
 msgid "et reste ouverte jusqu'à ce que vous la terminiez"
 msgstr "and remains open until you complete it"
 
@@ -75,11 +75,11 @@ msgid "Salut"
 msgstr "Hi"
 
 #: templates/home_page.html:21
-msgid ", vous pouvez voir votre progression dans l'expérience"
-msgstr ", you can see your progress in the experience"
+msgid "Ici, vous pouvez voir votre progression dans l'expérience"
+msgstr "Here, you can see your progress in the experience"
 
 #: templates/home_page.html:29 templates/off_session_page.html:111
-#: templates/thanks_page.html:23
+#: templates/thanks_page.html:25
 msgid "Se déconnecter"
 msgstr "Log out"
 
@@ -112,15 +112,7 @@ msgstr "Registration"
 msgid "Cliquez ici pour se connecter"
 msgstr "Click here to sign in"
 
-#: templates/thanks_page.html:18
-msgid "Votre prochaine session"
-msgstr "Your next session"
-
-#: templates/thanks_page.html:18
-msgid "Nous vous demandons de bien vouloir suivre le programme."
-msgstr "We kindly ask you to follow the schedule."
-
-#: views.py:119
+#: views.py:114
 msgid ""
 "La session ne peut pas être lancée parce qu'il ne s'est pas écoulé "
 "suffisamment de temps depuis votre dernière session."
@@ -128,18 +120,21 @@ msgstr ""
 "The session cannot be started because not enough time has passed since your "
 "last session."
 
-#: views.py:120
+#: views.py:115
 msgid "Dans ce cas, revenez plus tard. Votre prochaine session"
 msgstr "In this case, come back later. Your next session"
 
-#: views.py:123
+#: views.py:118
 msgid ""
 "Vous avez manqué une des sessions prévues. Si vous avez commencé une session "
 "plus tôt mais que vous ne l'avez pas terminée à la date limite, la session "
 "est considérée comme manquée."
-msgstr "You missed one of the scheduled sessions. If you started a session earler but did not complete it by its deadline, the session is also considered missed."
+msgstr ""
+"You missed one of the scheduled sessions. If you started a session earler "
+"but did not complete it by its deadline, the session is also considered "
+"missed."
 
-#: views.py:124
+#: views.py:119
 msgid ""
 "Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas "
 "poursuivre l'expérience. Merci de participer à notre recherche."
@@ -147,11 +142,11 @@ msgstr ""
 "In this case, you have not followed the programme and you cannot continue "
 "the experiment. Thank you for participating in our research."
 
-#: views.py:146
+#: views.py:142
 msgid "La session est terminée"
-msgstr "You have completed and closed the session"
+msgstr "Your session has been closed"
 
-#: views.py:150
+#: views.py:147
 msgid ""
 "Votre entraînement n'est pas fini pour aujourd'hui, il vous reste une "
 "session à effectuer durant la journée! Si vous voulez continuer "
@@ -162,21 +157,35 @@ msgstr ""
 "during the day! If you want to continue immediately, it is possible: Log "
 "out, log back in and start again!"
 
-#: views.py:155
+#: views.py:153
 msgid "Nous vous attendons la prochaine fois. Votre prochaine session est le"
 msgstr "We look forward to seeing you next time. Your next session is on"
 
-#: views.py:157
+#: views.py:155
 msgid "Nous vous attendons la prochaine fois."
 msgstr "We look forward to seeing you next time."
 
-#: views.py:159
+#: views.py:157
+msgid ""
+"Votre participation a été interrompue. Vous pouvez nous contacter pour plus "
+"d'informations. Merci pour votre temps !"
+msgstr ""
+"Your participation has been discontinued. You can contact us for more "
+"information. Thank you for your time!"
+
+#: views.py:160
 msgid "L'étude est terminée"
 msgstr "The study has been completed"
 
-#: views.py:160
+#: views.py:161
 msgid "Merci, pour votre contribution à la science !"
 msgstr "Thank you for your contribution to science!"
+
+#~ msgid "Votre prochaine session"
+#~ msgstr "Your next session"
+
+#~ msgid "Nous vous demandons de bien vouloir suivre le programme."
+#~ msgstr "We kindly ask you to follow the schedule."
 
 #, fuzzy
 #~| msgid "Vous avez commencé une session plus tôt mais ne l'avez pas terminée"
