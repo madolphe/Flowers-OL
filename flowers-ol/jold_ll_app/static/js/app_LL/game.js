@@ -193,29 +193,29 @@ function runBlockLL() {
     //Initializes keyboard events
     function initKeyboard() {
         document.addEventListener('keydown', function (event) {
-            if (32 == event.keyCode) {
+            if ('Space' == event.code) {
                 landerBody.GetUserData().thrusting = true && !gamePaused;
-            } else if (70 == event.keyCode) {
+            } else if ('KeyF' == event.code) {
                 landerBody.GetUserData().turningLeft = true && !gamePaused;
-            } else if (74 == event.keyCode) {
+            } else if ('KeyJ' == event.code) {
                 landerBody.GetUserData().turningRight = true && !gamePaused;
-            } else if (13 == event.keyCode) {
-                if (gamePaused && document.fullscreenElement && !outOfTime) {gamePaused = false};
-            } else if (68 == event.keyCode && event.shiftKey) {
+            } else if ('KeyD' == event.key && event.shiftKey) {
                 params.verbose = !params.verbose
-            } else if (event.keyCode == 32 && event.target == document.body) {
-              event.preventDefault();
+            } else if (event.code == 'Space' && event.target == document.body) {
+                event.preventDefault();
+            } else if ('Enter' == event.code && gamePaused && document.fullscreenElement && !outOfTime) {
+                gamePaused = false
             }
         });
 
         document.addEventListener('keyup', function (event) {
-            if (32 == event.keyCode) {
+            if ('Space' == event.code) {
                 landerBody.GetUserData().thrusting = false;
                 presses++;
-            } else if (70 == event.keyCode) {
+            } else if ('KeyF' == event.code) {
                 landerBody.GetUserData().turningLeft = false;
                 presses++;
-            } else if (74 == event.keyCode) {
+            } else if ('KeyJ' == event.code) {
                 landerBody.GetUserData().turningRight = false;
                 presses++;
             }
