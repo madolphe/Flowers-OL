@@ -108,7 +108,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "ux-questions",
+            "name": "jold-ux-questions",
             "description": "Questionnaire d'expérience utilisateur",
             "prompt": "Donnez votre avis sur l'application",
             "view_name": "questionnaire",
@@ -124,7 +124,7 @@
     {
         "model": "manager_app.Task",
         "fields": {
-            "name": "profile-questions",
+            "name": "jold-profile-questions",
             "description": "Complétez votre profil",
             "prompt": "Complétez votre profil",
             "view_name": "questionnaire",
