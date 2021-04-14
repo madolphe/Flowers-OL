@@ -1,10 +1,11 @@
+{% load i18n %}
 {%load static%}
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 <form id="request">{% csrf_token %}</form>
 <div class="explanation-text">
   <h3> Instructions </h3>
   <p>
-      <UL>
+      {% trans "<UL>
       <li>The goal of this experiment is to measure the attention ability of multiple targets. </li>
       <li>In each trial, you will see a brief presentation of a cross target with four stripe objects. </li>
       <li>You have to answer <b>two tasks </b>for each trial.</li>
@@ -19,7 +20,7 @@
       </UL>
       <li>Please keep in mind that you have to answer at least the first question correctly. If not, your response for the second question will not be recorded.</li>
       <li>You can check the practice trials of this task from the following window.</li>
-      </UL>
+      </UL>"%}
   </p>
 </div>
 

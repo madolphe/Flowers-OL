@@ -1,10 +1,11 @@
+{% load i18n %}
 {%load static%}
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 <form id="request">{% csrf_token %}</form>
 <div class="explanation-text">
   <h3> Instructions </h3>
   <p>
-      <UL>
+      {% trans "<UL>
       <li>The goal of this experiment is to measure the ability to switch your attention.</li>
       <li>In each trial, the instruction word <b>"Color"</b> or <b>"Shape"</b> will be shown to you. </li>
       <li>Depending on the instruction word, your task changes.</li>
@@ -17,6 +18,6 @@
           <li>Please press <b>"f"</b> or <b>"j"</b> for the <b>square</b> or <b>circle</b>, respectively, as soon as possible.</li>
       </UL>
       <li>You can check the practice trials of this task from the following window.</li>
-      </UL>
+      </UL>"%}
   </p>
 </div>

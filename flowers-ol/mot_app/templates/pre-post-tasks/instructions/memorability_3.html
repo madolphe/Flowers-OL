@@ -1,10 +1,11 @@
+{% load i18n %}
 {%load static%}
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 <form id="request">{% csrf_token %}</form>
 <div class="explanation-text">
       <h3> Instructions </h3>
       <p> 
-          <UL>  
+          {% trans "<UL>
           <li>The goal of this experiment is to measure the ability of memory capacity for photographs.</li> 
           <li>In this experiment, you will see a set of photographs one-by-one.  </li>
           <li>Your task is to <b>remember each photograph </b>and answer <b>whether the photograph is presented twice or not by pressing the key "f" as soon as possible</b>. </li> 
@@ -17,6 +18,6 @@
               <li>If not, you will see the word "Wrong answer. "</li>
           </UL>
           <li>You can check the practice trials of this task from the following window.</li>
-          </UL>
+          </UL>"%}
       </p>
   </div>
