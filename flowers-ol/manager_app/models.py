@@ -163,7 +163,7 @@ class ParticipantProfile(models.Model):
     # Participant preferences
     remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
-    email = models.EmailField(null=True, blank=True, )
+    email = models.EmailField(null=True, blank=True)
     
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
