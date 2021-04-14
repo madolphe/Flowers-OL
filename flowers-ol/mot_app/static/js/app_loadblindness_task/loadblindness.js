@@ -68,7 +68,7 @@ function scene_instruction(){
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
-    text( "Please click the mouse to start this experiment", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    text(prompt_start, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
   }
 }
 
@@ -136,8 +136,8 @@ function scene_key_response(){
   fill(col_text);
   textSize(size_text);
   textAlign(CENTER);
-  text( 'Which line was longer, vertical or horizontal?', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-  text( 'Vertical:press key "f"     Horizontal:press key"j"', CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+pos_guide);
+  text( prompt_question_direction, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text( prompt_question_input, CANVAS_WIDTH/2, (CANVAS_HEIGHT/2)+pos_guide);
   pop();
 }
 
@@ -148,7 +148,7 @@ function scene_response(){
   fill(col_text);
   textSize(size_text);
   textAlign(CENTER);
-  text( 'Which target contrast was strong?', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text(prompt_question_contrast, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
   pop();
 
   for (let i=0;i<4;i++){
@@ -162,7 +162,7 @@ function scene_response(){
 
 function create_answer_button(){
   for (let i=0;i<4;i++){
-    Buttons[i] = createButton("Here!"); 
+    Buttons[i] = createButton(prompt_button_here);
     Buttons[i].size(size_img, size_img);
     Buttons[i].style('font-size', size_text_button + 'px');
     Buttons[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
@@ -201,11 +201,11 @@ function scene_end(){
   noStroke();
   textSize(size_text);
   textAlign(CENTER);
-  text( "Thank you for joining the experiment.", CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+  text(prompt_gratitude, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
 }
 
 function create_end_button(){
-  button_end = createButton('END');
+  button_end = createButton(prompt_button_end);
   button_end.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
   button_end.mousePressed(quit_task);
   button_end.hide();
@@ -225,7 +225,7 @@ function quit_task(){
 }
 
 function create_restart_button(){
-  button_restart = createButton('RESTART');
+  button_restart = createButton(prompt_button_restart);
   //button_restart.position(x_ok+CANVAS_WIDTH/2, y_ok+CANVAS_HEIGHT/2);
   button_restart.position(x_restart+CANVAS_WIDTH/2, y_restart+CANVAS_HEIGHT/2);
   button_restart.mousePressed(restart_task);
