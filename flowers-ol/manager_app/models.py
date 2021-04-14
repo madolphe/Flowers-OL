@@ -324,7 +324,8 @@ class ParticipantProfile(models.Model):
     @property
     def progress_info(self, all_values=False):
         l = []
-        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+        sessions = [self.sessions.get(pk=pk) for pk in self.session_stack_to_list()]
+        for i, session in enumerate(sessions, 1):
             tasks = [task.description for task in session.get_task_list()]
             task_index = None
             if session == self.current_session:
