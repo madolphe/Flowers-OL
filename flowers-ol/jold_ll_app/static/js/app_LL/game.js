@@ -686,6 +686,31 @@ function runBlockLL() {
         }
     };
 
+    // Prevent closing the game prematurely
+    window.addEventListener('beforeunload', function (event) {
+        // Prevent default behavior of unloading the page if time is not up:
+        if (!outOfTime) {
+            event.preventDefault();
+            event.returnValue = '';
+            saveTrialData()
+        }
+    });
+
+    // Force pause if fullscreen is not on
+    document.addEventListener('fullscreenchange', (event) => {
+        if (document.fullscreenElement) {
+            console.log('Entering full-screen mode.');
+        } else {
+            console.log('Leaving full-screen mode.');
+            if (!gamePaused) {
+                pauseMessage.text = shrunkMsg
+                gamePaused = true
+                pauseUnpause(gamePaused)
+                interruptions++
+            }
+        }
+      });
+
 };
 
 function addChunk(xPos, yPos, chunkWidth, chunkHeight, left, right, world, stg) {
