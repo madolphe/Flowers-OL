@@ -63,12 +63,22 @@ class Deployer(object):
                 break
 
 
+locales = ['en']
+
+
 def main():
     deployer = Deployer()
     prefix = 'python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
-    # deployer.add(f'{}', '')
-    # If user wants to reset db:
     if args.reset_db or args.all:
+        # If user wants to reset db:
+        deployer.add(message='Removing migration directories')
+        # First clear migration directories
+        for app in apps:
+            if os.path.isdir(f'{app}/migrations'):
+                deployer.add(f'rm -rf {app}/migrations', f'  rm -rf {bold(app)}/migrations', plain_format=True)
+            else:
+                deployer.add(message=f'  No migration directy in {bold(app)}', plain_format=True)
+        # Then reset database
         deployer.add(command=f'{prefix} reset_db', message='Resetting DB')
     
     # Mogrations
@@ -84,8 +94,16 @@ def main():
         deployer.add(f'{prefix} makemigrations', 'Creating migrations')
         deployer.add(f'{prefix} migrate', 'Migrating')
 
+    # Internationalization routines
+    deployer.add(message='Checking locale directories')
+    for app in apps:
+        if os.path.isdir(f'{app}/locale'):
+            deployer.add(message=f'  locale directory found for {bold(app)} -- generating .po files', plain_format=True)
+        else:
+            deployer.add(message=f'  locale directory NOT found in {bold(app)} -- moving on', plain_format=True)
+    deployer.add(command=f'{prefix} makemessages -l en', message=f'Making messages for locales in {locales}')
+    deployer.add(command=f'{prefix} compilemessages', message='Compiling messages')
     # Register translation fields
-    # TODO add code to make messages in all apps
     if args.translations or args.all:
         deployer.add(f'{prefix} sync_translation_fields', 'Registering translation fields')
 
