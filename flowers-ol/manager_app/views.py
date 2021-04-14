@@ -68,7 +68,7 @@ def home(request):
     participant = request.user.participantprofile
 
     # If current session cannot be assigned (i.e. session stack is empty), redirect to thanks page
-    if not participant.set_current_session():
+    if not participant.set_current_session() or participant.excluded:
         return redirect(reverse(thanks_page))
 
     # I user tries to start session at a wrong time, redirect user to an appropriate page
@@ -150,6 +150,8 @@ def thanks_page(request):
                 text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')
         else:
             text = _('Nous vous attendons la prochaine fois.')
+        if participant.excluded:
+            text = _('Votre participation a été interrompue. Vous pouvez nous contacter pour plus d\'informations. Merci pour votre temps !')
     else:
         heading = _('L\'étude est terminée')
         text = _('Merci, pour votre contribution à la science !')

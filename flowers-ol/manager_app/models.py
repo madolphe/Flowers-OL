@@ -174,6 +174,7 @@ class ParticipantProfile(models.Model):
     last_session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
     extra_json = jsonfield.JSONField(default={}, blank=True)
+    excluded = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Participant'
