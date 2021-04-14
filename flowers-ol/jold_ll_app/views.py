@@ -25,16 +25,17 @@ def jold_start_ll_practice(request):
     task_name = participant.current_task.name
     # Randomly assign LL condition
     if 'game_params' not in participant.extra_json:
-        game_params = {}
-        participant.extra_json['game_params'] = game_params
+        participant.extra_json['game_params'] = {}
         participant.save()
+    # To determine the amount of time that the block should be played for, use `setdefault`
+    # If time_left key exists, use whatever value is stored. If not, use maximum time for block
     if task_name == 'jold-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params']['time'] = 5 if settings.DEBUG else 5 * 60
+        participant.extra_json['game_params'].setdefault('time_left', 5 if settings.DEBUG else 5 * 60)
         participant.save()
     elif task_name == 'jold-free-choice':
         participant.extra_json['game_params']['forced'] = False
-        participant.extra_json['game_params']['time'] = 60 * 2
+        participant.extra_json['game_params'].setdefault('time_left', 10 if settings.DEBUG else 2 * 60)
         participant.save()
     else:
         return redirect(reverse('home'))
@@ -51,10 +52,15 @@ def jold_save_ll_trial(request):
     trial = JOLD_LL_trial()
     for key, val in data.items():
         # Populate model fields with json data from POST request (keys in json object must correspond to model field keys)
+        if key.startswith('_'):
+            continue
         trial.__dict__[key] = val
     trial.participant = participant
     trial.session = participant.current_session
     trial.save()
+    # Update remaining time
+    participant.extra_json['game_params']['time_left'] = float(data['_time_left'])
+    participant.save()
     return HttpResponse(status=204) # 204 is a no-content response
 
 
@@ -66,6 +72,8 @@ def jold_close_ll_practice(request):
         participant = request.user.participantprofile
         block_complete = int(request.POST.get('blockComplete'))
         forced = int(request.POST.get('forced'))
+        participant.extra_json['game_params'].pop('time_left')
+        participant.save()
         # if block was completed, redirect to end task view
         if forced:
             if block_complete:
@@ -73,6 +81,8 @@ def jold_close_ll_practice(request):
                 add_message(request, _('Ne partez pas tout de suite ! Il y a un questionnaire à remplir.'), 'warning')
                 return JsonResponse({'success': True, 'url': reverse('end_task')})
             else:
+                participant.excluded = True
+                participant.save()
                 return JsonResponse({'success': True, 'url': reverse('thanks_page')})
         elif not forced:
             return JsonResponse({'success': True, 'url': reverse('end_task')})

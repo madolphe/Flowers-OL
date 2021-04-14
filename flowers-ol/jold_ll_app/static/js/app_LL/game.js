@@ -586,6 +586,7 @@ function runBlockLL() {
             outcome='termination'
         } else {outcome='unknown'}
         trialsCompleted++;
+        timeElapsed = inSec(blockElapsedTime+createjs.Ticker.getTime(true))
         // The keys must correspond to model keys in the database
         metrics = {
             'trial' : trialsCompleted,
@@ -600,7 +601,8 @@ function runBlockLL() {
             'wind' : round(wind, 2),
             'end_dist' : round(distToLandPoint, 2),
             'interruptions' : interruptions,
-            'forced' : xparams.forced
+            'forced' : xparams.forced,
+            '_time_left' : round(xparams.time_left - timeElapsed)
             // 'll_thrust' : round(params.lander.thrust, 2),
             // 'll_turn' : round(params.lander.turning, 2),
             // 'll_density' : round(params.lander.density, 2),
