@@ -138,14 +138,17 @@ def thanks_page(request):
     participant = request.user.participantprofile
     next_date = False
     if participant.session_stack_csv:
+        # If participant has sessions left
         heading = _('La session est terminée')
         next_session_pk = participant.session_stack_peek()
         if next_session_pk:
             if not participant.sessions.get(pk=next_session_pk).wait:
+                # If session can start immediately
                 text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
                        'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:'\
                        ' Déconnectez vous, reconnectez vous et recommencez !')
             else:
+                # If session has wait time
                 next_session_info = participant.get_next_session_info()
                 text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')
         else:
@@ -153,6 +156,7 @@ def thanks_page(request):
         if participant.excluded:
             text = _('Votre participation a été interrompue. Vous pouvez nous contacter pour plus d\'informations. Merci pour votre temps !')
     else:
+        # If participant has no sessions left
         heading = _('L\'étude est terminée')
         text = _('Merci, pour votre contribution à la science !')
     return render(request, 'thanks_page.html', {'CONTEXT': {
