@@ -163,7 +163,7 @@ class ParticipantProfile(models.Model):
     # Participant preferences
     remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
-    email = models.EmailField(null=True, blank=True, )
+    email = models.EmailField(null=True, blank=True)
     
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
@@ -174,6 +174,7 @@ class ParticipantProfile(models.Model):
     last_session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
     extra_json = jsonfield.JSONField(default={}, blank=True)
+    excluded = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Participant'
@@ -272,34 +273,17 @@ class ParticipantProfile(models.Model):
             if commit:
                 self.save()
 
-    @property
-    def future_sessions(self):
-        if self.current_session:
-            if self.sessions.exclude(pk=self.current_session.pk):
-                return self.sessions.exclude(pk=self.current_session.pk)
-            else:
-                return []
-        else:
-            return self.sessions.all()
+    def session_stack_to_list(self):
+        return list(self.session_stack_csv.split(','))
 
-    def old_validator(self):
-        # If the current session is not today, not required and was skipped (i.e date in the past):
-        if not self.current_session.is_today(ref_date=self.ref_dt.date()):
-            if not self.current_session.required and self.current_session.is_past(ref_datetime=self.ref_dt.date()):
-                # Store in participant extra_json when a session has been skipped:
-                if 'skipped_session' in self.extra_json:
-                    self.extra_json['skipped_session'].append((self.current_session.day, self.current_session.index))
-                else:
-                    self.extra_json['skipped_session'] = [(self.current_session.day, self.current_session.index)]
-                if 'game_time_to_end' in self.extra_json:
-                    del self.extra_json['game_time_to_end']
-                self.close_current_session()
-                self.set_current_session()
-                return self.current_session_valid
-            return False
-        if self.session_timestamp and not self.current_session.is_now(ref_datetime=self.session_timestamp):
-            return False
-        return True
+    def get_next_session_info(self):
+        '''Return a string for when the next session starts/ends'''
+        session = self.sessions.get(pk=self.session_stack_peek())
+        valid_period = session.get_valid_period(self.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        start_info = _('commence le {}').format(valid_period[0]) if valid_period[0] else _('commence à tout moment')
+        deadline_info = _('et se termine le {}').format(valid_period[1]) if valid_period[1] else _('et reste ouverte jusqu\'à ce que vous la terminiez')
+        next_session_info = f'{start_info} {deadline_info}'
+        return next_session_info
 
     # Task management
 
@@ -323,10 +307,14 @@ class ParticipantProfile(models.Model):
 
     @property
     def task_names_list(self):
+        # Clear whitespaces from task_stack_csv
         task_names = self.task_stack_csv.replace(' ','')
-        while task_names[-1] == ',': task_names = task_names[:-1]
-        task_names = task_names.split(',')
-        return task_names
+        if task_names:
+            # If task names is not an empty string, remove possible trailing commas
+            while task_names[-1] == ',': 
+                task_names = task_names[:-1]
+        # Finally return task name strings in a list
+        return task_names.split(',')
 
     # Miscelaneous
 
@@ -337,7 +325,8 @@ class ParticipantProfile(models.Model):
     @property
     def progress_info(self, all_values=False):
         l = []
-        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+        sessions = [self.sessions.get(pk=pk) for pk in self.session_stack_to_list()]
+        for i, session in enumerate(sessions, 1):
             tasks = [task.description for task in session.get_task_list()]
             task_index = None
             if session == self.current_session:
@@ -355,11 +344,11 @@ class ParticipantProfile(models.Model):
     def queue_reminder(self):
         if self.remind and self.sessions.all():
             next_session = self.sessions.get(pk=self.session_stack_peek())
-            next_session_date = next_session.get_valid_period(ref_timestamp=self.ref_timestamp, string_format='%d-%m-%Y')
+            next_session_start_datetime = next_session.get_valid_period(ref_timestamp=self.ref_timestamp)[0]
             message_template = render_to_string(self.study.reminder_template,
                 {'CONTEXT': {
                     'username': self.user.username,
-                    'valid_period' : next_session_date,
+                    'valid_period' : next_session_start_datetime,
                     'tasks': next_session.get_task_list,
                     'study_link': 'http://flowers-mot.bordeaux.inria.fr/study={}'.format(self.study.name),
                     'project_name': self.study.project,
@@ -373,8 +362,8 @@ class ParticipantProfile(models.Model):
                 sender=self.study.contact,
                 subject='Flowers OL | Rappel de la session #{}'.format(index+1),
                 message_template=message_template,
-                schedule=datetime.datetime(year=next_session_date.year,
-                                           month=next_session_date.month,
-                                           day=next_session_date.day,
-                                           hour=6)
+                schedule=datetime.datetime(year=next_session_start_datetime.year,
+                                           month=next_session_start_datetime.month,
+                                           day=next_session_start_datetime.day,
+                                           hour=0)
             )
