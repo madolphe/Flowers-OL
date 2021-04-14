@@ -186,7 +186,7 @@ function runBlockLL() {
         terminateButton.class('terminate');
         terminateButton.mousePressed(() => {terminate()});
 
-        timePane = createDiv(fmtMSS(Math.ceil(xparams.time)))
+        timePane = createDiv(fmtMSS(Math.ceil(xparams.time_left)))
         timePane.class('timer')
     };
 
@@ -501,8 +501,8 @@ function runBlockLL() {
         lastUpdateTime = currentTime;
         requestAnimationFrame(tick, canvas);
         timeElapsed = inSec(blockElapsedTime+createjs.Ticker.getTime(true))
-        if (!gamePaused) {timePane.html(fmtMSS(Math.ceil(xparams.time - timeElapsed)))}
-        if (timeElapsed > xparams.time) {closeBlock()};
+        if (!gamePaused) {timePane.html(fmtMSS(Math.ceil(xparams.time_left - timeElapsed)))}
+        if (timeElapsed > xparams.time_left) {closeBlock()};
     };
 
     // Check if lander is in land box
