@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 15:48+0200\n"
+"POT-Creation-Date: 2021-04-14 23:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:50 forms.py:83
+#: survey_app/forms.py:50 survey_app/forms.py:83
 msgid "Valider"
 msgstr "Confirm"
 
-#: forms.py:69
+#: survey_app/forms.py:69
 msgid "Oups, il semblerait que tu as oublié de répondre à certaines questions."
 msgstr "Oops, it seems you forgot to answer some questions."
 
-#: forms.py:76
+#: survey_app/forms.py:76
 msgid "J'ai lu et compris les termes de cette étude"
 msgstr ""
 
-#: forms.py:77
+#: survey_app/forms.py:77
 msgid "Consentement"
 msgstr ""
 
-#: forms.py:77
+#: survey_app/forms.py:77
 msgid "Ecrire \"Je consens\" dans la barre"
 msgstr ""
 
-#: forms.py:88
+#: survey_app/forms.py:88
 msgid ""
 "Veuillez donner votre consentement en écrivant \"Je consens\" pour valider "
 "votre participation"
 msgstr ""
 
-#: templates/includes/categories.html:13
+#: survey_app/templates/includes/categories.html:13
 msgid "Sélectionner un ou plusieurs"
 msgstr "Select one or more"
 
@@ -110,7 +110,7 @@ msgstr "Somewhat agree"
 msgid "Tout à fait d'accord"
 msgstr "Strongly agree"
 
-#: templates/tasks/JOLD_Questionnaire/instructions.html:3
+#: survey_app/templates/tasks/JOLD_Questionnaire/instructions.html:3
 msgid ""
 "A partir de maintenant, nous allons vous demander de répondre à différentes "
 "questions en rapport avec le jeu et ce que vous avez ressenti durant celui-"
@@ -120,15 +120,15 @@ msgstr ""
 "game and how you felt during it. You will be asked to answer in different "
 "ways."
 
-#: templates/tasks/JOLD_Questionnaire/instructions.html:6
+#: survey_app/templates/tasks/JOLD_Questionnaire/instructions.html:6
 msgid "Essayez de répondre aux questions le plus précisément possible."
 msgstr "Try to answer the questions as accurately as possible."
 
-#: templates/tasks/JOLD_Questionnaire/question_block.html:17
+#: survey_app/templates/tasks/JOLD_Questionnaire/question_block.html:17
 msgid "sur"
 msgstr "of"
 
-#: templates/tasks/JOLD_Questionnaire/question_block.html:19
+#: survey_app/templates/tasks/JOLD_Questionnaire/question_block.html:19
 msgid "Se déconnecter"
 msgstr "Log out"
 
