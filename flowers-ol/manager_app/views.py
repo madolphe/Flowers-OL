@@ -136,7 +136,7 @@ def end_session(request):
 @login_required
 def thanks_page(request):
     participant = request.user.participantprofile
-    next_date = False
+    next_date, next_session_info = None, None
     if participant.session_stack_csv:
         # If participant has sessions left
         heading = _('La session est terminée')
