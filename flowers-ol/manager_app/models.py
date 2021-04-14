@@ -163,7 +163,7 @@ class ParticipantProfile(models.Model):
     # Participant preferences
     remind = models.BooleanField(default=False)
     consent = models.BooleanField(default=False)
-    email = models.EmailField(null=True, blank=True, )
+    email = models.EmailField(null=True, blank=True)
     
     # Participant state
     study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
@@ -174,6 +174,7 @@ class ParticipantProfile(models.Model):
     last_session_timestamp = models.DateTimeField(null=True, blank=True, verbose_name='Date-time of last finished session')
     task_stack_csv = models.TextField(null=True, blank=True, default='')
     extra_json = jsonfield.JSONField(default={}, blank=True)
+    excluded = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Participant'
@@ -324,7 +325,8 @@ class ParticipantProfile(models.Model):
     @property
     def progress_info(self, all_values=False):
         l = []
-        for i, session in enumerate(ExperimentSession.objects.filter(study=self.study), 1):
+        sessions = [self.sessions.get(pk=pk) for pk in self.session_stack_to_list()]
+        for i, session in enumerate(sessions, 1):
             tasks = [task.description for task in session.get_task_list()]
             task_index = None
             if session == self.current_session:
