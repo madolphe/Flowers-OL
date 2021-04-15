@@ -18,6 +18,7 @@ pandas = "*"
 # kidlearn-lib = {editable = true, path = "./lib/kidlearn"}
 future = "*"
 django-background-tasks = "*"
+reportlab = "*"
 
 [requires]
 python_version = "3.8"

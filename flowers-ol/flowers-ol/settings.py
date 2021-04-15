@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'background_task',
     'django_extensions',
     'crispy_forms',
-    'modeltranslation'
+    'modeltranslation',
+    'reportlab'
 ]
 USER_APPS = [
     # This is the list of user-defined apps
