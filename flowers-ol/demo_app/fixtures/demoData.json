@@ -58,6 +58,8 @@
         "model": "manager_app.ExperimentSession",
         "fields": {
             "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
             "index"         : 3,
             "required"       : false,
             "tasks_csv"     : "demo-task"
