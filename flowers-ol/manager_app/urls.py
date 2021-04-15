@@ -16,9 +16,10 @@ urlpatterns = [
     path('end_task', views.end_task, name='end_task'),
     path('thanks_page', views.thanks_page, name='thanks_page'),
     path('end_session', views.end_session, name='end_session'),
+    path('pdf_test', views.pdf_test, name='pdf_test'),
 
     # Superuser urls
     path('fork_super', views.fork_super, name='fork_super'),
     path('home_super', views.home_super, name='home_super'),
-    path('reset_user_participant', views.reset_user_participant, name='reset_user_participant')   
+    path('reset_user_participant', views.reset_user_participant, name='reset_user_participant')
 ]
