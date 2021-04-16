@@ -43,6 +43,7 @@ class Deployer(object):
     def __init__(self):
         self.commands = []
         self.messages = []
+        self.rm_list = []
 
     def highlight_message(self, message):
         # return f'{bcolors.HEADER}{bcolors.PURPLE}* {message} ...{bcolors.ENDC}{bcolors.ENDC}'
@@ -71,38 +72,40 @@ def main():
     prefix = 'python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
     if args.reset_db or args.all:
         # If user wants to reset db:
+        # First reset database
+        deployer.add(command=f'{prefix} reset_db', message='Resetting DB')
+        # Then clear migration directories
         deployer.add(message='Removing migration directories')
-        # First clear migration directories
         for app in apps:
             if os.path.isdir(f'{app}/migrations'):
-                deployer.add(f'rm -rf {app}/migrations', f'  rm -rf {bold(app)}/migrations', plain_format=True)
+                deployer.add(f'rm -rf {app}/migrations', f'  rm -r -f {bold(app)}/migrations', plain_format=True)
+                deployer.rm_list.append(f'{app}/migrations')
             else:
-                deployer.add(message=f'  No migration directy in {bold(app)}', plain_format=True)
-        # Then reset database
-        deployer.add(command=f'{prefix} reset_db', message='Resetting DB')
+                deployer.add(message=f'  No migration directory in {bold(app)}', plain_format=True)
     
-    # Mogrations
+    # Migrations
     if args.migrations or args.all:
         deployer.add(message='Setting up migration directories')
         for app in apps:
             # Make sure a migration folder exists, if not create one and add __init__.py inside
-            if not os.path.isdir(f'{app}/migrations'):
-                deployer.add(f'mkdir {app}/migrations', f'  mkdir {bold(app)}/migrations', plain_format=True)
-                deployer.add(f'touch {app}/migrations/__init__.py', f'  touch {bold(app)}/migrations/__init__.py', plain_format=True)
+            if not os.path.isdir(f'{app}/migrations') or (f'{app}/migrations' in deployer.rm_list):
+                deployer.add(f'mkdir {app}/migrations ; touch {app}/migrations/__init__.py', f'  mkdir {bold(app)}/migrations ; touch {bold(app)}/migrations/__init__.py', plain_format=True)
             else:
-                deployer.add('', f'  migration directory is already set up for {bold(app)}', plain_format=True)
+                deployer.add('', f'  directory {bold(app)} already exists', plain_format=True)
+                deployer.add(f'ls {app}/migrations', '')
         deployer.add(f'{prefix} makemigrations', 'Creating migrations')
         deployer.add(f'{prefix} migrate', 'Migrating')
 
     # Internationalization routines
-    deployer.add(message='Checking locale directories')
-    for app in apps:
-        if os.path.isdir(f'{app}/locale'):
-            deployer.add(message=f'  locale directory found for {bold(app)} -- generating .po files', plain_format=True)
-        else:
-            deployer.add(message=f'  locale directory NOT found in {bold(app)} -- moving on', plain_format=True)
-    deployer.add(command=f'{prefix} makemessages -l en', message=f'Making messages for locales in {locales}')
-    deployer.add(command=f'{prefix} compilemessages', message='Compiling messages')
+    if args.translations or args.all:
+        deployer.add(message='Checking locale directories')
+        for app in apps:
+            if os.path.isdir(f'{app}/locale'):
+                deployer.add(message=f'  locale directory found for {bold(app)} -- generating .po files', plain_format=True)
+            else:
+                deployer.add(message=f'  locale directory NOT found in {bold(app)} -- moving on', plain_format=True)
+        deployer.add(command=f'{prefix} makemessages -l en', message=f'Making messages for locales in {locales}')
+        deployer.add(command=f'{prefix} compilemessages', message='Compiling messages')
     # Register translation fields
     # if args.translations or args.all:
     #     deployer.add(f'{prefix} sync_translation_fields', 'Registering translation fields')
