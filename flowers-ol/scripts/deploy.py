@@ -104,8 +104,8 @@ def main():
     deployer.add(command=f'{prefix} makemessages -l en', message=f'Making messages for locales in {locales}')
     deployer.add(command=f'{prefix} compilemessages', message='Compiling messages')
     # Register translation fields
-    if args.translations or args.all:
-        deployer.add(f'{prefix} sync_translation_fields', 'Registering translation fields')
+    # if args.translations or args.all:
+    #     deployer.add(f'{prefix} sync_translation_fields', 'Registering translation fields')
 
     # Install fixtures for each app
     if args.fixtures or args.all:
