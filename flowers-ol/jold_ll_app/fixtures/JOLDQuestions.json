@@ -1,1883 +1,2482 @@
 [
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Free-choice",
-            "group": 0,
-            "handle": "jold-0",
-            "order": 1,
-            "prompt": "Would you like to practice the task in your free time",
-            "reverse": 0,
-            "min_val": 0,
-            "max_val": 1,
-            "step": 1,
-            "annotations": "No~Yes",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Long-term",
-            "group": 1,
-            "handle": "jold-3",
-            "order": 3,
-            "prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis votre toute première partie",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 100,
-            "step": 1,
-            "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~TrèsExcellente",
-            "widget": "custom-range",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Short-term",
-            "group": 1,
-            "handle": "jold-2",
-            "order": 2,
-            "prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis la dernière session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 100,
-            "step": 1,
-            "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~TrèsExcellente",
-            "widget": "custom-range",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Recent",
-            "group": 1,
-            "handle": "jold-1",
-            "order": 1,
-            "prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis le début de la session d'aujourd'hui",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 100,
-            "step": 1,
-            "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~TrèsExcellente",
-            "widget": "custom-range",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Relative",
-            "group": 2,
-            "handle": "jold-4",
-            "order": 1,
-            "prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la toute première session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 10,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Relative",
-            "group": 2,
-            "handle": "jold-5",
-            "order": 2,
-            "prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la deuxième session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 10,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Relative",
-            "group": 2,
-            "handle": "jold-6",
-            "order": 2,
-            "prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la dernière session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 10,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "JOLD",
-            "component": "Relative",
-            "group": 1,
-            "handle": "jold-7",
-            "order": 4,
-            "prompt": "A quel point pensez-vous progresser dans l'apprentissage de ce jeu lors de la prochaine session?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 100,
-            "step": 1,
-            "annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~TrèsExcellente",
-            "widget": "custom-range",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Mental Demand",
-            "group": 1,
-            "handle": "tlx-1",
-            "order": 1,
-            "prompt": "Cette tâche vous a t-elle demandé beaucoup de réflexion (ex. réflexion, calcul, mémorisation, décision, recherche, ...) ? La tâche vous a-t-elle paru simple, nécessitant peu d’attention (faible) ou complexe, nécessitant beaucoup d’attention (élevée) ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Physical demand",
-            "group": 1,
-            "handle": "tlx-2",
-            "order": 2,
-            "prompt": "Cette tâche vous a t-elle demandé beaucoup d'effort physique (ex. pousser, porter, tourner, marcher, activer, etc.) ? La tâche vous a-t-elle paru facile et peu fatigante (faible) ou pénible et fatigante (élevée) ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Temporal demand",
-            "group": 1,
-            "handle": "tlx-3",
-            "order": 3,
-            "prompt": "Le temps donné pour réaliser la tâche était-il une source de pression pour vous ? Etait-ce un rythme lent et tranquille (faible) ou rapide et précipité (élevé) ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Performance",
-            "group": 1,
-            "handle": "tlx-4",
-            "order": 4,
-            "prompt": "A quel point pensez-vous avoir atteint les objectifs déterminés par la tâche ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Effort",
-            "group": 1,
-            "handle": "tlx-5",
-            "order": 5,
-            "prompt": "Est-ce que cette tâche vous a demandé beaucoup d'effort (mentalement et physiquement) ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "NASA-TLX",
-            "component": "Frustration",
-            "group": 1,
-            "handle": "tlx-6",
-            "order": 6,
-            "prompt": "Pendant l’exécution de la tâche; vous êtes-vous senti satisfait et détendu (niveau de frustration faible) ou plutôt découragé et stressé (niveau de frustration élevé) ?",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 20,
-            "step": 1,
-            "annotations": "Très faible~Très élevée",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Intrinsic goal orientation",
-            "group": 1,
-            "handle": "mslq-1",
-            "order": 1,
-            "prompt": "Dans un apprentissage pareil, le jeu utilisé me défi et me permet d'apprendre davantage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Intrinsic goal orientation",
-            "group": 1,
-            "handle": "mslq-2",
-            "order": 2,
-            "prompt": "Dans un apprentissage pareil, je préfère un jeu qui éveille ma curiosité même s'il s'agit d'un jeu Très difficile à apprendre",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Intrinsic goal orientation",
-            "group": 1,
-            "handle": "mslq-3",
-            "order": 3,
-            "prompt": "La chose la plus satisfaisante pour moi dans cette activité est d'essayer de comprendre son contenu le plus clairement possible",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Intrinsic goal orientation",
-            "group": 1,
-            "handle": "mslq-4",
-            "order": 4,
-            "prompt": "Quand j'en ai la possibilité, je préfère choisir une activité où j'ai des choses à apprendre même si je ne suis pas forcément bon dedans",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Extrinsic Goal Orientation",
-            "group": 2,
-            "handle": "mslq-5",
-            "order": 1,
-            "prompt": "Avoir de bons résultats dans cette activité est le but qui me satisfait le plus en ce moment même.",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Extrinsic Goal Orientation",
-            "group": 2,
-            "handle": "mslq-6",
-            "order": 2,
-            "prompt": "La chose la plus importante pour moi en ce moment est d'améliorer mes résultats globaux, ainsi ma préoccupation principale est de devenir meilleur à ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Extrinsic Goal Orientation",
-            "group": 2,
-            "handle": "mslq-7",
-            "order": 3,
-            "prompt": "Si je le peux, je veux avoir de meilleurs résultats que les autres personnes sur ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Extrinsic Goal Orientation",
-            "group": 2,
-            "handle": "mslq-8",
-            "order": 4,
-            "prompt": "Je veux bien réussir dans ce jeu parce qu'il est important de montrer ses aptitudes devant sa famille, ses amis ou les autres",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-9",
-            "order": 1,
-            "prompt": "Je pense que je vais être en mesure d'utiliser ce que j'apprends dans d'autres situations",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-10",
-            "order": 2,
-            "prompt": "C'est important pour moi d'apprendre à jouer à ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-11",
-            "order": 3,
-            "prompt": "Je suis Très intéressé par le sujet abordé par ce jeu et cette expérience",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-12",
-            "order": 4,
-            "prompt": "Je pense qu'apprendre à jouer à ce jeu est utile pour moi",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-13",
-            "order": 5,
-            "prompt": "J'aime le contenu du jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Task Value",
-            "group": 3,
-            "handle": "mslq-14",
-            "order": 6,
-            "prompt": "Comprendre le propos de cet apprentissage est important pour moi",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Control of Learning Beliefs",
-            "group": 4,
-            "handle": "mslq-15",
-            "order": 1,
-            "prompt": "Si j'apprends de manière appropriée, alors je serai capable d'apprendre à bien jouer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Control of Learning Beliefs",
-            "group": 4,
-            "handle": "mslq-16",
-            "order": 2,
-            "prompt": "C'est de ma faute si je n'arrive pas à bien jouer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Control of Learning Beliefs",
-            "group": 4,
-            "handle": "mslq-17",
-            "order": 3,
-            "prompt": "Si j'insiste dans mon apprentissage, je serai capable de bien jouer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Control of Learning Beliefs",
-            "group": 4,
-            "handle": "mslq-18",
-            "order": 4,
-            "prompt": "Si je n'arrive pas à bien jouer, c'est parce que je n'ai pas assez essayé",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-19",
-            "order": 1,
-            "prompt": "Je pense que j'aurai de Très bons résultats",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-20",
-            "order": 2,
-            "prompt": "Je suis certain d'être capable de jouer à un niveau plus compliqué de ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-21",
-            "order": 3,
-            "prompt": "Je suis confiant dans l'idée de comprendre et réussir ce jeu suite à cet apprentissage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-22",
-            "order": 4,
-            "prompt": "Je suis confiant dans l'idée de pouvoir comprendre et réussir dans une version beaucoup plus compliquée de ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-23",
-            "order": 5,
-            "prompt": "Je suis confiant dans l'idée de faire du bon travail dans l'apprentissage de ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-24",
-            "order": 6,
-            "prompt": "Je m'attends à bien faire dans ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-25",
-            "order": 7,
-            "prompt": "Je suis certains de pouvoir pleinement maîtriser ce jeu après mon apprentissage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "",
-            "component": "Self-Efficacy for Learning and Performance",
-            "group": 5,
-            "handle": "mslq-26",
-            "order": 8,
-            "prompt": "En considérant la difficulté du jeu, mes compétences et le niveau des autres, je pense être en mesure de bien réussir dans l'apprentissage de ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Rehearsal",
-            "group": 6,
-            "handle": "mslq-32",
-            "order": 1,
-            "prompt": "Quand je fais ce genre d'apprentissage, je pratique en boucle pendant longtemps",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Rehearsal",
-            "group": 6,
-            "handle": "mslq-33",
-            "order": 2,
-            "prompt": "Lors de cet apprentissage, je sais organiser les informations et autres situations auxquelles j'ai fait face et qui peuvent m'être utile dans celui-ci",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Rehearsal",
-            "group": 6,
-            "handle": "mslq-34",
-            "order": 3,
-            "prompt": "Je mémorise les aspects clés du jeu pour me rappeler les actions importantes à effectuer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Rehearsal",
-            "group": 6,
-            "handle": "mslq-35",
-            "order": 4,
-            "prompt": "Je fais une liste des choses importante à travailler dans cet apprentissage du jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-36",
-            "order": 1,
-            "prompt": "J'utilise d'autres ressources pour améliorer mon apprentissage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-37",
-            "order": 2,
-            "prompt": "J'essaie de trouver des ressemblances entre ce jeu et d'autres jeux que je connais quand c'est possible",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-38",
-            "order": 3,
-            "prompt": "Je tente de relier ce jeu à d'autres jeux auxquels je sais déjà jouer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-39",
-            "order": 4,
-            "prompt": "Quand j'apprends à jouer à ce jeu, j'essaie de noter un résumé des choses que je dois savoir faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-40",
-            "order": 5,
-            "prompt": "J'essaie de comprendre les mécaniques du jeu en ayant recours à des ressources externes",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Elaboration",
-            "group": 7,
-            "handle": "mslq-41",
-            "order": 6,
-            "prompt": "J'essaie d'appliquer mes connaissances des autres jeux dans cet apprentissage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-51",
-            "order": 1,
-            "prompt": "Durant mon apprentissage, je rate souvent des actions importantes parce que je pense à d'autres choses",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-52",
-            "order": 2,
-            "prompt": "Quand je joue au jeu, je me pose des questions pour m'aider à me concentrer et m'améliorer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-53",
-            "order": 3,
-            "prompt": "Quand je suis perdu ou bloqué dans le jeu, je repars de zéro et essaie de comprendre pourquoi",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-54",
-            "order": 4,
-            "prompt": "Si l'apprentissage est trop compliqué, je change ma manière de jouer",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-55",
-            "order": 5,
-            "prompt": "Avant de commencer un jeu, j'ai l'habitude de parcourir des informations sur sa présentation générale",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-56",
-            "order": 6,
-            "prompt": "Je me pose des questions pour être sûr de maîtriser mon apprentissage",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-57",
-            "order": 7,
-            "prompt": "J'essaie de changer ma manière d'apprendre pour m'adapter à cette activité et à la demande de l'instructeur",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-58",
-            "order": 8,
-            "prompt": "J'ai souvent eu l'impression de ne pas comprendre le fonctionnement du jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-59",
-            "order": 9,
-            "prompt": "J'essaie de me faire une idée générale des objectifs du jeu pour savoir ce que je dois apprendre plutôt que de les découvrir au fur et à mesure",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-60",
-            "order": 10,
-            "prompt": "Quand j'apprends à jouer, j'essaie de déterminer les actions que je ne maîtrise pas encore",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-61",
-            "order": 11,
-            "prompt": "Quand j'apprends à jouer, je me fixe des objectifs pour diriger mon apprentissage dans chaque session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
-            "group": 8,
-            "handle": "mslq-62",
-            "order": 12,
-            "prompt": "Quand je me sens perdu dans le jeu, j'essaie de comprendre pourquoi après coup",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-63",
-            "order": 1,
-            "prompt": "Généralement, j'apprends à jouer dans un lieu où je peux être concentré",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-64",
-            "order": 2,
-            "prompt": "J'uitlise efficacement mon temps d'apprentissage pour ce jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-65",
-            "order": 3,
-            "prompt": "Je trouve ça compliqué de suivre un planning d'entraînement précis",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-66",
-            "order": 4,
-            "prompt": "J'ai un lieu précis pour m'entraîner",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-67",
-            "order": 5,
-            "prompt": "Je m'assure de bien effectuer les différentes sessions de jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-68",
-            "order": 6,
-            "prompt": "Je suis assidu aux sessions de jeu",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-69",
-            "order": 7,
-            "prompt": "Je trouve que je ne passe pas beaucoup de temps sur ce jeu à cause d'autres activités",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Time and Study Environment",
-            "group": 9,
-            "handle": "mslq-70",
-            "order": 8,
-            "prompt": "Je ne trouve que Très rarement le temps de revoir mes notes avant mes examens",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Effort Regulation",
-            "group": 10,
-            "handle": "mslq-71",
-            "order": 1,
-            "prompt": "Je me sens souvent paresseux ou ennuyé quand je joue à ce jeu et je quitte avant d'avoir fini la session",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Effort Regulation",
-            "group": 10,
-            "handle": "mslq-72",
-            "order": 2,
-            "prompt": "Je m'entraîne dur pour être bon dans ce jeu même si je n'aime pas ce que je suis en train de faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Effort Regulation",
-            "group": 10,
-            "handle": "mslq-73",
-            "order": 3,
-            "prompt": "Quand cela devient trop difficile, j'abandonne ou me concentre sur la partie la partie la plus simple",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management Strategies: Effort Regulation",
-            "group": 10,
-            "handle": "mslq-74",
-            "order": 4,
-            "prompt": "Même quand le jeu est ennuyeux et inintéressant, j'essaie de l'apprendre jusqu'à le maîtriser",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Peer Learning",
-            "group": 11,
-            "handle": "mslq-75",
-            "order": 1,
-            "prompt": "Quand j'apprends à jouer, j'essaie aussi d'expliquer à d'autres participants ou amis",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Peer Learning",
-            "group": 11,
-            "handle": "mslq-76",
-            "order": 2,
-            "prompt": "J'essaie d'apprendre à jouer en même temps que d'autres personnes pour mieux réussir",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Peer Learning",
-            "group": 11,
-            "handle": "mslq-77",
-            "order": 3,
-            "prompt": "Après mes sessions, je discute du jeu avec d'autres personnes",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Help Seeking",
-            "group": 12,
-            "handle": "mslq-78",
-            "order": 1,
-            "prompt": "Même si j'ai du mal à apprendre, j'essaie de le faire par moi-même sans demander de l'aide",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Help Seeking",
-            "group": 12,
-            "handle": "mslq-79",
-            "order": 2,
-            "prompt": "Quand je ne comprend pas quelque chose, je demande à l'instructeur de clarifer cette chose",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Help Seeking",
-            "group": 12,
-            "handle": "mslq-80",
-            "order": 3,
-            "prompt": "Quand je n'arrive pas à comprendre quelque chose, je demande à une autre personne de m'aider",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "MSLQ",
-            "component": "Resource Management: Help Seeking",
-            "group": 12,
-            "handle": "mslq-81",
-            "order": 4,
-            "prompt": "J'essaie d'identifier des personnes qui pourrait m'aider dans cet apprentissage si nécessaire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
-            "widget": "custom-polar",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 1,
-            "handle": "sims-1",
-            "order": 1,
-            "prompt": "Je continue de participer à cette activité",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-header",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 1,
-            "handle": "sims-2",
-            "order": 2,
-            "prompt": "Parce que cette activité est vraiment plaisante",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation identifiée",
-            "group": 1,
-            "handle": "sims-3",
-            "order": 3,
-            "prompt": "Parce que j'ai choisi de la faire pour mon bien",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation externe",
-            "group": 1,
-            "handle": "sims-4",
-            "order": 4,
-            "prompt": "Parce que je sens que je suis supposé la faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Amotivation",
-            "group": 1,
-            "handle": "sims-5",
-            "order": 5,
-            "prompt": "Mais je ne vois pas ce que cela me procure",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 1,
-            "handle": "sims-6",
-            "order": 6,
-            "prompt": "Parce que je me sens bien en faisant cette activité",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation identifiée",
-            "group": 1,
-            "handle": "sims-7",
-            "order": 7,
-            "prompt": "Parce que je crois que cette activité est importante pour moi",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation externe",
-            "group": 1,
-            "handle": "sims-8",
-            "order": 8,
-            "prompt": "Parce que c'est quelque chose que je dois faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Amotivation",
-            "group": 1,
-            "handle": "sims-9",
-            "order": 9,
-            "prompt": "Mais je ne suis pas sûr si cela en vaut la peine",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 2,
-            "handle": "sims-10",
-            "order": 10,
-            "prompt": "Je continue de participer à cette activité",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-header",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 2,
-            "handle": "sims-11",
-            "order": 11,
-            "prompt": "Parce que je trouve cette activité intéressante",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation identifiée",
-            "group": 2,
-            "handle": "sims-12",
-            "order": 12,
-            "prompt": "Parce que je sens que je veux faire cette activité",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation externe",
-            "group": 2,
-            "handle": "sims-13",
-            "order": 13,
-            "prompt": "Parce que c'est quelque chose que je dois faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Amotivation",
-            "group": 2,
-            "handle": "sims-14",
-            "order": 14,
-            "prompt": "Mais en me demandant si je dois la faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Motivation intrinsèque",
-            "group": 2,
-            "handle": "sims-15",
-            "order": 15,
-            "prompt": "Parce que je trouve cette activité agréable",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation identifiée",
-            "group": 2,
-            "handle": "sims-16",
-            "order": 16,
-            "prompt": "Parce que je trouve que faire cette activité est bon pour moi",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Régulation externe",
-            "group": 2,
-            "handle": "sims-17",
-            "order": 17,
-            "prompt": "Parce que je sens que je n'ai pas d'autres choix que de la faire",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    },
-    {
-        "model": "survey_app.Question",
-        "fields": {
-            "instrument": "SIMS",
-            "component": "Amotivation",
-            "group": 2,
-            "handle": "sims-18",
-            "order": 18,
-            "prompt": "Mais personellement je ne vois pas de bonne raisons pour faire cette activité",
-            "reverse": 0,
-            "min_val": 1,
-            "max_val": 7,
-            "step": 1,
-            "annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-            "widget": "custom-likert",
-            "type": "integer",
-            "help_text": ""
-        }
-    }
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Free-choise",
+			"group": 0,
+			"handle": "jold-0",
+			"order": 1,
+			"prompt": "Souhaiteriez-vous pratiquer cette tâche pendant votre temps libre ?",
+			"prompt_en": "Would you like to practice the task in your free time?",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Non~Oui",
+			"annotations_en": "No~Yes",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Long-term",
+			"group": 1,
+			"handle": "jold-3",
+			"order": 3,
+			"prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis votre toute première partie",
+			"prompt_en": "Evaluate your progress in learning this game since your very first game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
+			"annotations_en": "Very Poor~Poor~Passable~Good~Excellent",
+			"widget": "custom-range",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Short-term",
+			"group": 1,
+			"handle": "jold-2",
+			"order": 2,
+			"prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis la dernière session",
+			"prompt_en": "Evaluate your progress in learning this game since the last session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
+			"annotations_en": "Very Poor~Poor~Passable~Good~Excellent",
+			"widget": "custom-range",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Recent",
+			"group": 1,
+			"handle": "jold-1",
+			"order": 1,
+			"prompt": "Evaluez votre progression dans l'apprentissage de ce jeu depuis le début de la session d'aujourd'hui",
+			"prompt_en": "Evaluate your progress in learning this game since the beginning of today's session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
+			"annotations_en": "Very Poor~Poor~Passable~Good~Excellent",
+			"widget": "custom-range",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Relative",
+			"group": 2,
+			"handle": "jold-4",
+			"order": 1,
+			"prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la toute première session",
+			"prompt_en": "By comparing your sessions with each other, assess your progress in the very first session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 10,
+			"step": 1,
+			"annotations": "Très faible~Très élevée",
+			"annotations_en": "Very low~Very high",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Relative",
+			"group": 2,
+			"handle": "jold-5",
+			"order": 2,
+			"prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la deuxième session",
+			"prompt_en": "By comparing your sessions with each other, assess your progress in the second session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 10,
+			"step": 1,
+			"annotations": "Très faible~Très élevée",
+			"annotations_en": "Very low~Very high",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Relative",
+			"group": 2,
+			"handle": "jold-6",
+			"order": 2,
+			"prompt": "En comparant vos sessions entre elles, evaluez votre progression lors de la dernière session",
+			"prompt_en": "By comparing your sessions with each other, evaluate your progress during the last session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 10,
+			"step": 1,
+			"annotations": "Très faible~Très élevée",
+			"annotations_en": "Very low~Very high",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "JOLD",
+			"component": "Relative",
+			"group": 1,
+			"handle": "jold-7",
+			"order": 4,
+			"prompt": "A quel point pensez-vous progresser dans l'apprentissage de ce jeu lors de la prochaine session?",
+			"prompt_en": "How much progress do you expect to make in learning the game in the next session?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 100,
+			"step": 1,
+			"annotations": "Très Mauvaise~Mauvaise~Passable~Bonne~Excellente",
+			"annotations_en": "Very Poor~Poor~Passable~Good~Excellent",
+			"widget": "custom-range",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Mental Demand",
+			"group": 1,
+			"handle": "tlx-1",
+			"order": 1,
+			"prompt": "Quelle a été l’importance de l’activité mentale et intellectuelle requise (ex. réflexion, décision, calcul, mémorisation, observation, recherche etc.) ? La tâche vous a-t-elle paru simple, nécessitant peu d’attention (faible) ou complexe, nécessitant beaucoup d’attention (élevée) ?",
+			"prompt_en": "How mentally demanding was the task?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevée",
+			"annotations_en": "Very Low~Very High",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Physical demand",
+			"group": 1,
+			"handle": "tlx-2",
+			"order": 2,
+			"prompt": "Quelle a été l’importance de l’activité physique requise (ex. pousser, porter, tourner, marcher, activer, etc.) ? La tâche vous a-t-elle paru facile, peu fatigante, calme (faible) ou pénible, fatigante, active (élevée) ?",
+			"prompt_en": "How physically demanding was the task?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevée",
+			"annotations_en": "Very Low~Very High",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Temporal demand",
+			"group": 1,
+			"handle": "tlx-3",
+			"order": 3,
+			"prompt": "Quelle a été l’importance de la pression temporelle causée par la rapidité nécessaire pour l’accomplissement de la tâche ? Etait-ce un rythme lent et tranquille (faible) ou rapide et précipité (élevé) ?",
+			"prompt_en": "How hurried or rushed was the pace of the task?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevé",
+			"annotations_en": "Very Low~Very High",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Performance",
+			"group": 1,
+			"handle": "tlx-4",
+			"order": 4,
+			"prompt": "Quelle réussite pensez-vous avoir eu dans l’accomplissement de votre tâche ? A quel point pensez-vous avoir atteint les objectifs déterminés par la tâche ?",
+			"prompt_en": "How successful were you in accomplishing what you were asked to do?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevé",
+			"annotations_en": "Perfect~Failure",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Effort",
+			"group": 1,
+			"handle": "tlx-5",
+			"order": 5,
+			"prompt": "Quel degré d’effort avez-vous dû fournir pour exécuter la tâche demandée (mentalement et physiquement) ?",
+			"prompt_en": "How hard did you have to work to accomplish your level of performance?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevé",
+			"annotations_en": "Very Low~Very High",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "NASA-TLX",
+			"component": "Frustration",
+			"group": 1,
+			"handle": "tlx-6",
+			"order": 6,
+			"prompt": "Pendant l’exécution du travail vous êtes-vous senti satisfait, relaxé, sûr de vous (niveau de frustration faible), ou plutôt découragé, irrité, stressé, sans assurance (niveau de frustration élevé) ?",
+			"prompt_en": "How insecure, discouraged, irritated, stressed, and annoyed wereyou?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 20,
+			"step": 1,
+			"annotations": "Trés faible~Trés élevé",
+			"annotations_en": "Very Low~Very High",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Intrinsic goal orientation",
+			"group": 1,
+			"handle": "mslq-1",
+			"order": 1,
+			"prompt": "Dans un apprentissage pareil, le jeu utilisé me défi et me permet d'apprendre davantage",
+			"prompt_en": "In a game like this, I prefer courses that really challenge me so that I can learn new things.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Intrinsic goal orientation",
+			"group": 1,
+			"handle": "mslq-2",
+			"order": 2,
+			"prompt": "Dans un apprentissage pareil, je préfère un jeu qui éveille ma curiosité même s'il s'agit d'un jeu très difficile à apprendre",
+			"prompt_en": "In a game like this, I prefer course material that arouses my curiosity, even if it is difficult to learn",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Intrinsic goal orientation",
+			"group": 1,
+			"handle": "mslq-3",
+			"order": 3,
+			"prompt": "La chose la plus satisfaisante pour moi dans cette activité est d'essayer de comprendre son contenu le plus clairement possible",
+			"prompt_en": "The most satisfying thing for me in this game is trying to understand the content as thoroughly as possible.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Intrinsic goal orientation",
+			"group": 1,
+			"handle": "mslq-4",
+			"order": 4,
+			"prompt": "Quand j'en ai la possibilité, je préfère choisir une activité où j'ai des choses à apprendre même si je ne suis pas forcément bon dedans",
+			"prompt_en": "When I have the opportunity, I prefer to choose an activity where I have something to learn even if I am not necessarily good at it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 2,
+			"handle": "mslq-5",
+			"order": 1,
+			"prompt": "Avoir de bons résultats dans cette activité est le but qui me satisfait le plus en ce moment même.",
+			"prompt_en": "Getting a good score in this game is the most satisfying thing for me right now.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 2,
+			"handle": "mslq-6",
+			"order": 2,
+			"prompt": "La chose la plus importante pour moi en ce moment est d'améliorer mes résultats globaux, ainsi ma préoccupation principale est de devenir meilleur à ce jeu",
+			"prompt_en": "The most important thing for me right now is improving my overall score point average, so my main concern in this game is getting a good score.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 2,
+			"handle": "mslq-7",
+			"order": 3,
+			"prompt": "Si je le peux, je veux avoir de meilleurs résultats que les autres personnes sur ce jeu",
+			"prompt_en": "If I can, I want to get better scores in this study than most of the participants.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 2,
+			"handle": "mslq-8",
+			"order": 4,
+			"prompt": "Je veux bien réussir dans ce jeu parce qu'il est important de montrer ses aptitudes devant sa famille, ses amis ou les autres",
+			"prompt_en": "I want to do well in this game because it is important to show my ability to my family, friends, employers, or others.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-9",
+			"order": 1,
+			"prompt": "Je pense que je vais être en mesure d'utiliser ce que j'apprends dans d'autres situations",
+			"prompt_en": "I think I will be able to use what I learn in this game in other games.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-10",
+			"order": 2,
+			"prompt": "C'est important pour moi d'apprendre à jouer à ce jeu",
+			"prompt_en": "It's important for me to learn to play this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-11",
+			"order": 3,
+			"prompt": "Je suis Très intéressé par le sujet abordé par ce jeu et cette expérience",
+			"prompt_en": "I am very interested in the content area of this game.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-12",
+			"order": 4,
+			"prompt": "Je pense qu'apprendre à jouer à ce jeu est utile pour moi",
+			"prompt_en": "I think learning to play this game is useful for me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-13",
+			"order": 5,
+			"prompt": "J'aime le contenu du jeu",
+			"prompt_en": "I like the content of the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "mslq-14",
+			"order": 6,
+			"prompt": "Comprendre le propos de cet apprentissage est important pour moi",
+			"prompt_en": "Understanding the purpose of this learning is important to me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 4,
+			"handle": "mslq-15",
+			"order": 1,
+			"prompt": "Si j'apprends de manière appropriée, alors je serai capable d'apprendre à bien jouer",
+			"prompt_en": "If I play in appropriate ways, then I will be able to learn how the game works",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 4,
+			"handle": "mslq-16",
+			"order": 2,
+			"prompt": "C'est de ma faute si je n'arrive pas à bien jouer",
+			"prompt_en": "It is my own fault if I don't learn how the game works",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 4,
+			"handle": "mslq-17",
+			"order": 3,
+			"prompt": "Si j'insiste dans mon apprentissage, je serai capable de bien jouer",
+			"prompt_en": "If I try hard enough, then I will understand how the game works",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 4,
+			"handle": "mslq-18",
+			"order": 4,
+			"prompt": "Si je n'arrive pas à bien jouer, c'est parce que je n'ai pas assez essayé",
+			"prompt_en": "If I don't understand how the game works, it is because I didn't try hard enough",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-19",
+			"order": 1,
+			"prompt": "Je pense que j'aurai de Très bons résultats",
+			"prompt_en": "I believe I will receive an excellent score in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-20",
+			"order": 2,
+			"prompt": "Je suis certain d'être capable de jouer à un niveau plus compliqué de ce jeu",
+			"prompt_en": "I'm certain I can play the most difficult mode in the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-21",
+			"order": 3,
+			"prompt": "Je suis confiant dans l'idée de comprendre et réussir ce jeu suite à cet apprentissage",
+			"prompt_en": "I'm confident I can understand the basic concepts presented in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-22",
+			"order": 4,
+			"prompt": "Je suis confiant dans l'idée de pouvoir comprendre et réussir dans une version beaucoup plus compliquée de ce jeu",
+			"prompt_en": "I'm confident I can understand the most complex mode presented in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-23",
+			"order": 5,
+			"prompt": "Je suis confiant dans l'idée de faire du bon travail dans l'apprentissage de ce jeu",
+			"prompt_en": "I'm confident I can do an excellent job on this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-24",
+			"order": 6,
+			"prompt": "Je m'attends à bien faire dans ce jeu",
+			"prompt_en": "I expect to do well in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "mslq-25",
+			"order": 7,
+			"prompt": "Je suis certains de pouvoir pleinement maîtriser ce jeu après mon apprentissage",
+			"prompt_en": "I'm certain I can master skills being taught in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
+			"group": 6,
+			"handle": "mslq-32",
+			"order": 1,
+			"prompt": "Quand je fais ce genre d'apprentissage, je pratique en boucle pendant longtemps",
+			"prompt_en": "When I do this kind of learning, I practice on a loop for a long time",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
+			"group": 6,
+			"handle": "mslq-33",
+			"order": 2,
+			"prompt": "Lors de cet apprentissage, je sais organiser les informations et autres situations auxquelles j'ai fait face et qui peuvent m'être utile dans celui-ci",
+			"prompt_en": "In this learning process, I am able to organise the information and other situations I have encountered that may be useful in this one",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
+			"group": 6,
+			"handle": "mslq-34",
+			"order": 3,
+			"prompt": "Je mémorise les aspects clés du jeu pour me rappeler les actions importantes à effectuer",
+			"prompt_en": "I memorise key aspects of the game to remember important actions to perform",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
+			"group": 6,
+			"handle": "mslq-35",
+			"order": 4,
+			"prompt": "Je fais une liste des choses importante à travailler dans cet apprentissage du jeu",
+			"prompt_en": "I make lists of important things to work on in this learning process",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-36",
+			"order": 1,
+			"prompt": "J'utilise d'autres ressources pour améliorer mon apprentissage",
+			"prompt_en": "I use other resources to improve my learning",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-37",
+			"order": 2,
+			"prompt": "J'essaie de trouver des ressemblances entre ce jeu et d'autres jeux que je connais quand c'est possible",
+			"prompt_en": "I try to relate ideas between this game and other games I know when possible",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-38",
+			"order": 3,
+			"prompt": "Je tente de relier ce jeu à d'autres jeux auxquels je sais déjà jouer",
+			"prompt_en": "I try to relate this game to other games I already know how to play",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-39",
+			"order": 4,
+			"prompt": "Quand j'apprends à jouer à ce jeu, j'essaie de noter un résumé des choses que je dois savoir faire",
+			"prompt_en": "When I learn to play this game, I try to write down a summary of the things I need to know",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-40",
+			"order": 5,
+			"prompt": "J'essaie de comprendre les mécaniques du jeu en ayant recours à des ressources externes",
+			"prompt_en": "I try to understand the mechanics of the game by using external resources",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Elaboration",
+			"group": 7,
+			"handle": "mslq-41",
+			"order": 6,
+			"prompt": "J'essaie d'appliquer mes connaissances des autres jeux dans cet apprentissage",
+			"prompt_en": "I try to apply my knowledge of other games in this learning",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-51",
+			"order": 1,
+			"prompt": "Durant mon apprentissage, je rate souvent des actions importantes parce que je pense à d'autres choses",
+			"prompt_en": "During my learning time I often miss important points because I'm thinking of other things",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-52",
+			"order": 2,
+			"prompt": "Quand je joue au jeu, je me pose des questions pour m'aider à me concentrer et m'améliorer",
+			"prompt_en": "When playing this game, I make up questions to help focus my learning",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-53",
+			"order": 3,
+			"prompt": "Quand je suis perdu ou bloqué dans le jeu, je repars de zéro et essaie de comprendre pourquoi",
+			"prompt_en": "When I become confused about something I'm doing in this game, I go back and try to figure it out",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-54",
+			"order": 4,
+			"prompt": "Si l'apprentissage est trop compliqué, je change ma manière de jouer",
+			"prompt_en": "If the game is difficult to understand, I change the way I play",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-55",
+			"order": 5,
+			"prompt": "Avant de commencer un jeu, j'ai l'habitude de parcourir des informations sur sa présentation générale",
+			"prompt_en": "Before starting a game, I usually browse information about its general presentation",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-56",
+			"order": 6,
+			"prompt": "Je me pose des questions pour être sûr de maîtriser mon apprentissage",
+			"prompt_en": "I ask myself questions to make use I master my learning",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-57",
+			"order": 7,
+			"prompt": "J'essaie de changer ma manière d'apprendre pour m'adapter à cette activité et à la demande de l'instructeur",
+			"prompt_en": "I try to change my way of learning to adapt to this activity and to the instructor's request",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-58",
+			"order": 8,
+			"prompt": "J'ai souvent eu l'impression de ne pas comprendre le fonctionnement du jeu",
+			"prompt_en": "I often find that I have beenplaying this game but don't know what is was all about",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-59",
+			"order": 9,
+			"prompt": "J'essaie de me faire une idée générale des objectifs du jeu pour savoir ce que je dois apprendre plutôt que de les découvrir au fur et à mesure",
+			"prompt_en": "I try to get a general idea of the objectives of the game so that I know what I need to learn rather than finding out as I go along",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-60",
+			"order": 10,
+			"prompt": "Quand j'apprends à jouer, j'essaie de déterminer les actions que je ne maîtrise pas encore",
+			"prompt_en": "When learning this game I try to determine which actions I don't master",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-61",
+			"order": 11,
+			"prompt": "Quand j'apprends à jouer, je me fixe des objectifs pour diriger mon apprentissage dans chaque session",
+			"prompt_en": "When I play this game, I set goals for myself in order to direct my learning in each session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "mslq-62",
+			"order": 12,
+			"prompt": "Quand je me sens perdu dans le jeu, j'essaie de comprendre pourquoi après coup",
+			"prompt_en": "If I feel lost in the game, I try to understand why afterwards",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-63",
+			"order": 1,
+			"prompt": "Généralement, j'apprends à jouer dans un lieu où je peux être concentré",
+			"prompt_en": "I usually learn to play in a place where I can concentrate",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-64",
+			"order": 2,
+			"prompt": "J'uitlise efficacement mon temps d'apprentissage pour ce jeu",
+			"prompt_en": "I make good use of my learning time for this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-65",
+			"order": 3,
+			"prompt": "Je trouve ça compliqué de suivre un planning d'entraînement précis",
+			"prompt_en": "I find it hard to stick to a precise training schedule",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-66",
+			"order": 4,
+			"prompt": "J'ai un lieu précis pour m'entraîner",
+			"prompt_en": "I have a regular place set aside for practicing",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-67",
+			"order": 5,
+			"prompt": "Je m'assure de bien effectuer les différentes sessions de jeu",
+			"prompt_en": "I make sure that I complete the various play sessions",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-68",
+			"order": 6,
+			"prompt": "Je suis assidu aux sessions de jeu",
+			"prompt_en": "I attend the play sessions",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-69",
+			"order": 7,
+			"prompt": "Je trouve que je ne passe pas beaucoup de temps sur ce jeu à cause d'autres activités",
+			"prompt_en": "I often find that I don't spend very much time on this game because of other activities",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Time and Study Environment",
+			"group": 9,
+			"handle": "mslq-70",
+			"order": 8,
+			"prompt": "Je ne trouve que très rarement le temps de revoir mes notes avant mes examens",
+			"prompt_en": "I rarely find time to review my notes before an exam",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 10,
+			"handle": "mslq-71",
+			"order": 1,
+			"prompt": "Je me sens souvent paresseux ou ennuyé quand je joue à ce jeu et je quitte avant d'avoir fini la session",
+			"prompt_en": "I often feel so lazt or bored when I play this game  and leave before finishing the session",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 10,
+			"handle": "mslq-72",
+			"order": 2,
+			"prompt": "Je m'entraîne dur pour être bon dans ce jeu même si je n'aime pas ce que je suis en train de faire",
+			"prompt_en": "I practice hard to do well in this game even if I don't like what I am doing",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 10,
+			"handle": "mslq-73",
+			"order": 3,
+			"prompt": "Quand cela devient trop difficile, j'abandonne ou me concentre sur la partie la partie la plus simple",
+			"prompt_en": "When it becomes too difficult, I give up or concentrate on the easier part",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 10,
+			"handle": "mslq-74",
+			"order": 4,
+			"prompt": "Même quand le jeu est ennuyeux et inintéressant, j'essaie de l'apprendre jusqu'à le maîtriser",
+			"prompt_en": "Even when the game is boring and uninteresting, I try to learn it until I master it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Peer Learning",
+			"group": 11,
+			"handle": "mslq-75",
+			"order": 1,
+			"prompt": "Quand j'apprends à jouer, j'essaie aussi d'expliquer à d'autres participants ou amis",
+			"prompt_en": "When learning this game, I often try to explain how it works to other participant",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Peer Learning",
+			"group": 11,
+			"handle": "mslq-76",
+			"order": 2,
+			"prompt": "J'essaie d'apprendre à jouer en même temps que d'autres personnes pour mieux réussir",
+			"prompt_en": "I try to learn to play with other people to be more successful",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Peer Learning",
+			"group": 11,
+			"handle": "mslq-77",
+			"order": 3,
+			"prompt": "Après mes sessions, je discute du jeu avec d'autres personnes",
+			"prompt_en": "After my sessions, I discuss the game with other people",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Help Seeking",
+			"group": 12,
+			"handle": "mslq-78",
+			"order": 1,
+			"prompt": "Même si j'ai du mal à apprendre, j'essaie de le faire par moi-même sans demander de l'aide",
+			"prompt_en": "Even if I have trouble learning, I try to do it on my own, without help from anyone",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Help Seeking",
+			"group": 12,
+			"handle": "mslq-79",
+			"order": 2,
+			"prompt": "Quand je ne comprend pas quelque chose, je demande à l'instructeur de clarifer cette chose",
+			"prompt_en": "When I don't understand something, I ask the instructor to clarify it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Help Seeking",
+			"group": 12,
+			"handle": "mslq-80",
+			"order": 3,
+			"prompt": "Quand je n'arrive pas à comprendre quelque chose, je demande à une autre personne de m'aider",
+			"prompt_en": "When I can't understand something, I ask another person to help me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "MSLQ",
+			"component": "Resource Management: Help Seeking",
+			"group": 12,
+			"handle": "mslq-81",
+			"order": 4,
+			"prompt": "J'essaie d'identifier des personnes qui pourrait m'aider dans cet apprentissage si nécessaire",
+			"prompt_en": "I am trying to identify people who could help me with this learning if necessary",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 1,
+			"handle": "sims-1",
+			"order": 1,
+			"prompt": "Je continue de participer à cette activité",
+			"prompt_en": "Why are you currently engaged in this activity?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 2,
+			"handle": "sims-10",
+			"order": 10,
+			"prompt": "Je continue de participer à cette activité",
+			"prompt_en": "Why are you currently engaged in this activity?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 2,
+			"handle": "sims-11",
+			"order": 11,
+			"prompt": "Parce que je trouve cette activité intéressante",
+			"prompt_en": "Because I think that this activity is interesting",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation identifiée",
+			"group": 2,
+			"handle": "sims-12",
+			"order": 12,
+			"prompt": "Parce que je sens que je veux faire cette activité",
+			"prompt_en": "By personal decision",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation externe",
+			"group": 2,
+			"handle": "sims-13",
+			"order": 13,
+			"prompt": "Parce que c'est quelque chose que je dois faire",
+			"prompt_en": "Because it is something that I have to do",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Amotivation",
+			"group": 2,
+			"handle": "sims-14",
+			"order": 14,
+			"prompt": "Mais en me demandant si je dois la faire",
+			"prompt_en": "I do this activity, but I am not sure it is a good thing to pursue it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 2,
+			"handle": "sims-15",
+			"order": 15,
+			"prompt": "Parce que je trouve cette activité agréable",
+			"prompt_en": "Because I think that this activity is pleasant",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation identifiée",
+			"group": 2,
+			"handle": "sims-16",
+			"order": 16,
+			"prompt": "Parce que je trouve que faire cette activité est bon pour moi",
+			"prompt_en": "Because I think that this activity is good for me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation externe",
+			"group": 2,
+			"handle": "sims-17",
+			"order": 17,
+			"prompt": "Parce que je sens que je n'ai pas d'autres choix que de la faire",
+			"prompt_en": "Because I don’t have any choice",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Amotivation",
+			"group": 2,
+			"handle": "sims-18",
+			"order": 18,
+			"prompt": "Mais personellement je ne vois pas de bonne raisons pour faire cette activité",
+			"prompt_en": "There may be good reasons to do this activity, but personally I don’t see any",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 1,
+			"handle": "sims-2",
+			"order": 2,
+			"prompt": "Parce que cette activité est vraiment plaisante",
+			"prompt_en": "Because this activity is fun",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation identifiée",
+			"group": 1,
+			"handle": "sims-3",
+			"order": 3,
+			"prompt": "Parce que j'ai choisi de la faire pour mon bien",
+			"prompt_en": "Because I am doing it for my own good",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation externe",
+			"group": 1,
+			"handle": "sims-4",
+			"order": 4,
+			"prompt": "Parce que je sens que je suis supposé la faire",
+			"prompt_en": "Because I am supposed to do it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Amotivation",
+			"group": 1,
+			"handle": "sims-5",
+			"order": 5,
+			"prompt": "Mais je ne vois pas ce que cela me procure",
+			"prompt_en": "I don’t know; I don’t see what this activity brings me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Motivation intrinsèque",
+			"group": 1,
+			"handle": "sims-6",
+			"order": 6,
+			"prompt": "Parce que je me sens bien en faisant cette activité",
+			"prompt_en": "Because I feel good when doing this activity",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation identifiée",
+			"group": 1,
+			"handle": "sims-7",
+			"order": 7,
+			"prompt": "Parce que je crois que cette activité est importante pour moi",
+			"prompt_en": "Because I believe that this activity is important for me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Régulation externe",
+			"group": 1,
+			"handle": "sims-8",
+			"order": 8,
+			"prompt": "Parce que c'est quelque chose que je dois faire",
+			"prompt_en": "Because I feel that I have to do it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "SIMS",
+			"component": "Amotivation",
+			"group": 1,
+			"handle": "sims-9",
+			"order": 9,
+			"prompt": "Mais je ne suis pas sûr si cela en vaut la peine",
+			"prompt_en": "I do this activity but I am not sure if it is worth it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
+			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"widget": "custom-likert",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-1",
+			"order": 1,
+			"prompt": "Agacant ou Agréable?",
+			"prompt_en": "annoying or enjoyable ?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Agacant~Agréable",
+			"annotations_en": "Annoying~Enjoyable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-2",
+			"order": 2,
+			"prompt": "Incompréhensible ou Compréhensible ?",
+			"prompt_en": "not understandable or understandable ?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Incompréhensible~Compréhensible",
+			"annotations_en": "Not understandable~Understandable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-3",
+			"order": 3,
+			"prompt": "Moderne ou Sans fantaisie ?",
+			"prompt_en": "creative or dull?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Moderne~Sans fantaisie",
+			"annotations_en": "Creative~Dull",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-4",
+			"order": 4,
+			"prompt": "Appropriation simple ou Appropriation compliquée ?",
+			"prompt_en": "easy to learn or difficult to learn?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Appropriation simple~Appropriation compliquée",
+			"annotations_en": "Easy to learn~Difficult to learn",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-5",
+			"order": 5,
+			"prompt": "Apporte de la valeur ou Peu de valeur ajoutée? ",
+			"prompt_en": "valuable or inferior?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
+			"annotations_en": "Valuable~Inferior",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-6",
+			"order": 6,
+			"prompt": "Ennuyeux ou Captivant ?",
+			"prompt_en": "boring or exciting?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Ennuyeux~Captivant",
+			"annotations_en": "Boring~Exciting",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-7",
+			"order": 7,
+			"prompt": "Inintéressant ou Intéressant ?",
+			"prompt_en": "not interesting or interesting?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Inintéressant~Intéressant",
+			"annotations_en": "Not interesting~Interesting",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-8",
+			"order": 8,
+			"prompt": "Imprévisible ou Prévisible ?",
+			"prompt_en": "unpredictable or predictable?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Imprévisible~Prévisible",
+			"annotations_en": "Unpredictable~Predictable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-9",
+			"order": 9,
+			"prompt": "Rapide ou Lent ?",
+			"prompt_en": "fast or slow?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Rapide~Lent",
+			"annotations_en": "Fast~Slow",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-10",
+			"order": 10,
+			"prompt": "Original ou Conventionnel ?",
+			"prompt_en": "inventive or conventional?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Original~Conventionnel",
+			"annotations_en": "Inventive~Conventional",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-11",
+			"order": 11,
+			"prompt": "Rigide ou Facilitant ?",
+			"prompt_en": "obstructive or supportive?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Rigide~Facilitant",
+			"annotations_en": "Obstructive~Supportive",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-12",
+			"order": 12,
+			"prompt": "Bien ou Médiocre ?",
+			"prompt_en": "good or bad?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Bien~Médiocre",
+			"annotations_en": "Good~bad",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-13",
+			"order": 13,
+			"prompt": "Compliqué ou Simple ?",
+			"prompt_en": "complicated or easy?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Compliqué~Simple",
+			"annotations_en": "Complicated~Easy",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-14",
+			"order": 14,
+			"prompt": "Repoussant ou Attractif ?",
+			"prompt_en": "unlikable or pleasing?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Repoussant~Attractif",
+			"annotations_en": "Unlikable~Pleasing",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-15",
+			"order": 15,
+			"prompt": "Habituel ou Avant-gardiste ?",
+			"prompt_en": "usual or leading edge?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Habituel~Avant-gardiste",
+			"annotations_en": "Usual~Leading edge",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-16",
+			"order": 16,
+			"prompt": "Désagréable ou Agréable ?",
+			"prompt_en": "unpleasant or pleasant?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Désagréable~Agréable",
+			"annotations_en": " Unpleasant~Pleasant",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-17",
+			"order": 17,
+			"prompt": "Sécurisant ou Insécurisant ?",
+			"prompt_en": "secure or not secure?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Sécurisant~Insécurisant",
+			"annotations_en": "Secure~Not secure",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-18",
+			"order": 18,
+			"prompt": "Stimulant ou Soporifique ?",
+			"prompt_en": "motivating or demotivating?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Stimulant~Soporifique",
+			"annotations_en": "Motivating~Demotivating",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-19",
+			"order": 19,
+			"prompt": "Répond aux attentes ou Ne répond pas aux attentes ?",
+			"prompt_en": "meets expectations or does not meet expectations?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
+			"annotations_en": "Meets expectations~Does not meet expectations",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-20",
+			"order": 20,
+			"prompt": "Inefficace ou Efficace ?",
+			"prompt_en": "inefficient or efficient?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Inefficace~Efficace ",
+			"annotations_en": "Inefficient~Efficient",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-21",
+			"order": 21,
+			"prompt": "Clair ou Déroutant ?",
+			"prompt_en": "clear or confusing?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Clair~Déroutant",
+			"annotations_en": "Clear~Confusing",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-22",
+			"order": 22,
+			"prompt": "Non pragmatique ou Pragmatique ?",
+			"prompt_en": "impractical or practical?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Non pragmatique~Pragmatique",
+			"annotations_en": "Impractical~Practical",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-23",
+			"order": 23,
+			"prompt": "Sobre ou Surchargé ?",
+			"prompt_en": "organized or cluttered?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Sobre~Surchargé",
+			"annotations_en": "Organized~Cluttered",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-24",
+			"order": 24,
+			"prompt": "Attrayant ou Rébarbatif ?",
+			"prompt_en": "attractive or unattractive?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Attrayant~Rébarbatif",
+			"annotations_en": "Attractive~Unattractive",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-25",
+			"order": 25,
+			"prompt": "Sympathique ou Inamical ?",
+			"prompt_en": "friendly or unfriendly?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Sympathique~Inamical",
+			"annotations_en": "Friendly~Unfriendly",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-26",
+			"order": 26,
+			"prompt": "Conservateur ou Innovant ?",
+			"prompt_en": "conservative or innovative?",
+			"reverse": 1,
+			"min_val": 7,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "Conservateur~Innovant",
+			"annotations_en": "Conservative~Innovative",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	}
 ]
