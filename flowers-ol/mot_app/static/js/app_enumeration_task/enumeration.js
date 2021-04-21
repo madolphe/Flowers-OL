@@ -1,8 +1,9 @@
+let bar, success;
 //p5.js preload images
 function preload() {
   img = loadImage('/static/images/pre-post-imgs/noise.png');
+  success = loadImage('static/images/icons/success.png');
 }
-
 //p5.js initializing.
 function setup() {
   if (flag_practice==true){
@@ -23,13 +24,14 @@ function setup() {
   }else{
     create_end_button();
   }
+  bar = new progressBar(5);
 }
 
 //p5.js frame animation.
 function draw() {
   background(col_bkg); //bkg color
   //Main experiment schedule
-
+  bar.draw();
   if(Time.scene==0){
     scene_instruction();
   }else if(Time.scene==1){
