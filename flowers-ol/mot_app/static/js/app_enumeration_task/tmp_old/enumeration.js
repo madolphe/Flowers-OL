@@ -2,7 +2,7 @@ let bar, success;
 //p5.js preload images
 function preload() {
   img = loadImage('/static/images/pre-post-imgs/noise.png');
-  success = loadImage('static/images/icons/success.png');
+  success = loadImage('static/images/icons/success.png'); ///here
 }
 //p5.js initializing.
 function setup() {
@@ -24,7 +24,7 @@ function setup() {
   }else{
     create_end_button();
   }
-  bar = new progressBar(5);
+  bar = new progressBar(5); ///here
 }
 
 //p5.js frame animation.
@@ -198,6 +198,7 @@ function create_end_button(){
 
 function quit_task(){
   fullscreen(false);
+  //here
   let parameters_to_save = {
       'results_responses': Params.results_responses,
       'results_rt': Params.results_rt,

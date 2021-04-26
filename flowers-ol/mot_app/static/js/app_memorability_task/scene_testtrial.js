@@ -114,6 +114,17 @@ function scene_instruction(){
   
   function quit_task(){
     fullscreen(false);
+    let parameters_to_save = {
+      'results_responses': Params.results_responses,
+      'results_rt': Params.results_rt,
+      'results_targetvalue': Params.results_targetvalue,
+      'results_flagcorrect':Params.results_flagcorrect,
+      'results_ind_trial_filler':Params.results_ind_trial_filler,
+      'results_ind_trial_target1':Params.results_ind_trial_target1,
+      'results_ind_trial_target2':Params.results_ind_trial_target2
+    }
+    post('exit_view_cognitive_task', parameters_to_save, 'post');
+  /*
     let parameters_to_save = [
         {'':['results_responses','results_rt','results_targetvalue','results_flagcorrect','results_ind_trial_filler','results_ind_trial_target1','results_ind_trial_target2']},
         {'':Params.results_responses},
@@ -128,6 +139,6 @@ function scene_instruction(){
       exportCSV(parameters_to_save,',', 'memorability');
       location.href='../index.html'
       //
-    //post('cognitive_assessment_home', parameters_to_save, 'post');
+  */
   }
   

@@ -3,9 +3,11 @@
 //////////////////////////Monitor 
 // number of pixels per degres:
 let viewer_dist = 50;
+/*
 function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
+*/
 let window_availw = window.screen.availWidth;
 let window_availh = window.screen.availHeight;
 
@@ -18,7 +20,8 @@ let screen_params = window_availw/size_screen_cm_w;
 let ppd = get_ppd(viewer_dist, screen_params);
 //////////////////////////Monitor 
 
-let fname_bkg = '../img/bkg_finger2.png';
+let fname_success = 'static/images/icons/success.png';
+let fname_bkg = 'static/images/pre-post-imgs/bkg_finger2.png';
 let size_bkg_width_orig = 1440; //original in pix
 let size_bkg_height_orig = 1080; //original in pix
 let ratio_center = 0.1111; 
@@ -28,10 +31,10 @@ Pos.adjust_to_bkg(size_bkg_width_orig,size_bkg_height_orig,ratio_center);
 let img_bkg;
 
 
-let fname_task1 = '../img/task1.png';
-let fname_task2 = '../img/task2.png';
-let fname_instruct1 = '../img/instruction1.png';
-let fname_instruct2 = '../img/instruction2.png';
+let fname_task1 = 'static/images/pre-post-imgs/task1.png';
+let fname_task2 = 'static/images/pre-post-imgs/task2.png';
+let fname_instruct1 = 'static/images/pre-post-imgs/instruction1.png';
+let fname_instruct2 = 'static/images/pre-post-imgs/instruction2.png';
 
 let flag_practice = true;
 let flag_break = true;
@@ -95,3 +98,5 @@ let y_restart = -Math.round(4*ppd);; //in pixel
 
 let text_start = "Please click the mouse to start this experiment";
 let text_end = "Thank you for joining the experiment.";
+
+let bar, success;

@@ -5,6 +5,7 @@ function preload() {
   img_task2 = loadImage(fname_task2);
   img_instruct1 = loadImage(fname_instruct1);
   img_instruct2 = loadImage(fname_instruct2);
+  success = loadImage(fname_success);
 }
 
 //p5.js initializing.
@@ -24,6 +25,8 @@ function setup() {
   create_next_button();
   create_previous_button();
   create_start_button(); 
+  
+  bar = new progressBar(5);
 }
 
 //p5.js frame animation.

@@ -137,8 +137,13 @@ function scene_instruction(){
   
   function quit_task(){
     fullscreen(false);
-  
-  
+    let parameters_to_save = {
+      'results_responses': Params.results_responses,
+      'results_targetvalue_stim': Params.results_targetvalue_stim,
+      'results_num_stim': Params.results_num_stim
+    }
+    post('exit_view_cognitive_task', parameters_to_save, 'post');
+    /*
     let parameters_to_save = [
         {'':['results_responses','results_targetvalue_stim','results_num_stim']},
         {'':Params.results_responses},
@@ -149,6 +154,6 @@ function scene_instruction(){
     exportCSV(parameters_to_save,',', 'workingmemory');
     location.href='../index.html'
     //
-    //post('cognitive_assessment_home', parameters_to_save, 'post');
+    */
   }
   

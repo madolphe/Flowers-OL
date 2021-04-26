@@ -2,6 +2,7 @@
 function preload() {
   img = loadImage(fname_noise);
   img_bkg = loadImage(fname_bkg);
+  success = loadImage(fname_success);
 }
 
 //p5.js initializing.
@@ -17,6 +18,8 @@ function setup() {
   create_next_button();
   create_previous_button();
   create_start_button();
+
+  bar = new progressBar(5);
 }
 
 //p5.js frame animation.

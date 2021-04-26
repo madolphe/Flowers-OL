@@ -7,6 +7,7 @@ function preload() {
   stats_targ = loadTable(fname_target);
   stats_filler = loadTable(fname_filler);
   img_bkg = loadImage(fname_bkg);
+  success = loadImage(fname_success);
   console.log('done preload')
 
 }
@@ -32,6 +33,8 @@ function setup() {
   create_next_button();
   create_previous_button();
   create_start_button();
+  
+  bar = new progressBar(5);
   
   console.log('done setup')
 }
