@@ -125,7 +125,7 @@
             "prompt_en":"Give your opinion on the application",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "UEQ"
