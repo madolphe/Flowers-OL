@@ -25,7 +25,8 @@
             "name": "jold-free-choice",
             "description": "Fin de session",
             "description_en":"End of session",
-            "actions": {"Terminer la session": "jold_reject_optional_practice", "Play more": "jold_accept_optional_practice"},
+            "actions": {"Terminer la session": "jold_reject_optional_practice", "Jouer encore": "jold_accept_optional_practice"},
+            "actions_en": {"End session": "jold_reject_optional_practice", "Play more": "jold_accept_optional_practice"},
             "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html"
         }
     },

@@ -7,7 +7,7 @@ class StudyTranslationOptions(TranslationOptions):
 
 
 class TaskTranslationOptions(TranslationOptions):
-    fields = ['prompt', 'description']
+    fields = ['prompt', 'description','actions']
 
 
 translator.register(Study, StudyTranslationOptions)
