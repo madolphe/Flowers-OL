@@ -18,7 +18,7 @@
 {% block content%}
     <div class="side-panel">
         <h2>{% trans "Salut" %}, {{CONTEXT.participant.user.username}} !</h2>
-        <p>{% trans ", vous pouvez voir votre progression dans l'expérience" %}</p>
+        <p>{% trans "Ici, vous pouvez voir votre progression dans l'expérience" %}</p>
         <div class="side-info">
             <div class="content">
                 {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}

@@ -44,12 +44,13 @@ def questionnaire(request):
     form = QuestionnaireForm(questions, request.POST or None)
     if form.is_valid():
         for q in questions:
-            answer = Answer()
-            answer.participant = participant
-            answer.session = participant.current_session
-            answer.question = q
-            answer.value = form.cleaned_data[q.handle]
-            answer.save()
+            if q.widget != 'custom-header':
+                answer = Answer()
+                answer.participant = participant
+                answer.session = participant.current_session
+                answer.question = q
+                answer.value = form.cleaned_data[q.handle]
+                answer.save()
         participant.extra_json['questions_extra']['ind'] += 1
         participant.save()
         if participant.extra_json['questions_extra']['ind'] == len(groups):
