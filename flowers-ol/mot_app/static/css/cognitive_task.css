@@ -1,0 +1,6 @@
+body{
+    cursor: url('../images/icons/circle.svg'), auto !important;
+}
+button:hover{
+    cursor: url('../images/icons/tap.svg') 30 1, pointer !important;
+}
