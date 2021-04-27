@@ -1,25 +1,53 @@
 //// parameters
 
+//////////////////////////Monitor 
 // number of pixels per degres:
 let viewer_dist = 50;
-// let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
-let ppcm = screen.availWidth / screen_params
-let ppd = get_ppd(viewer_dist, ppcm);
-
-//just for my local debug
+/*
 function get_ppd(viewer_dist, screen_params){
     return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
 }
+*/
+let window_availw = window.screen.availWidth;
+let window_availh = window.screen.availHeight;
 
+//let window_availw = window.screen.width;
+//let window_availh = window.screen.height;
 
-let flag_practice = false;
-let prac_num_rep = 30; //ignored in the main exp.
+let size_screen_cm_w = 34.25; // width pixels/cm in sawayama's monitor
+//let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
+let screen_params = window_availw/size_screen_cm_w;
+let ppd = get_ppd(viewer_dist, screen_params);
+//////////////////////////Monitor 
 
-let fname_target = './img/list_img_target1.csv';
-let fname_filler = './img/list_img_filler1.csv';
+let fname_success = 'static/images/icons/success.png';
+let fname_bkg = 'static/images/pre-post-imgs/bkg_finger1.png';
+let size_bkg_width_orig = 1440; //original in pix
+let size_bkg_height_orig = 1080; //original in pix
+let ratio_center = 0.1111; 
+let ratio_monitor = 0.706;
+Pos = new PositionManager(window_availw,window_availh);
+Pos.adjust_to_bkg(size_bkg_width_orig,size_bkg_height_orig,ratio_center);
+let img_bkg;
+//feedback params
+let col_correct = [0,0,128];
+let col_wrong = [128,0,0];
+let size_feedback = Math.round(4.5*ppd);
+let width_feedback = Math.round(1*ppd);
+let len_feedback = Math.round(2*ppd);
 
-let keyRes1 = 70; //f
-let keyRes2 = 74; //j
+let flag_practice = true;
+let flag_break = true;
+let count_break = 0;
+let max_break = 1;
+
+let prac_num_rep = 10; //ignored in the main exp.
+
+let fname_target = '../img/list_img_target1.csv';
+let fname_filler = '../img/list_img_filler1.csv';
+
+let keyRes1 = 74; //j
+//let keyRes2 = 70; //f
 
 let num_rep = 1; 
 
@@ -46,16 +74,16 @@ let time_stimduration = 1000; //in ms
 let time_fixation = 1400; // in millisecond
 let time_feedback = 1400; // in millisecond
 
-let col_bkg = 128;
+let col_bkg = 0;
 
 // fixation 
-let len_fixation = Math.round(1*ppd); // in pix
+let len_fixation = Math.round(0.5*ppd); // in pix
 let col_fixation = [20,20,20]; // in rgb
 let thick_fixation = Math.round(0.1*ppd); // in pix
 
 // text 
 let col_text = 255;
-let size_text = Math.round(1*ppd); //in pix
+let size_text = Math.round(0.7*ppd); //in pixel
 ////
 
 let Imgs_targ = [];
@@ -63,12 +91,6 @@ let Imgs_filler = [];
 let size_img = 700; 
 let size_rescale = Math.round(6.5*ppd); //in pix
 
-
-//feedback params
-let col_correct = [0,0,128];
-let size_correct = Math.round(1*ppd); //in pix
-let col_wrong = [128,0,0];
-let size_wrong = Math.round(1*ppd);  //in pix
 
 let x_ok = -Math.round(0*ppd);
 let y_ok = Math.round(4*ppd);
@@ -89,3 +111,7 @@ function make_array(val_start, val_stop, num_array) {
     return array;
   }
   
+  let text_start = "Please click the mouse to start this experiment";
+  let text_end = "Thank you for joining the experiment.";
+
+  let bar, success;

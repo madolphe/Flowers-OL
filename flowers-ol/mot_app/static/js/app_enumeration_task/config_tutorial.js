@@ -1,59 +1,60 @@
-/// For practice trials.
-//// parameters
+//general title text
+let text_title_0 = "Instruction";
+let pos_title_x = Pos.center_x;
+let pos_title_y = Pos.center_y - Math.round(5*ppd);
+let size_titletext = Math.round(2.5*ppd);
+let col_titletext = [170,170,60];
 
-// number of pixels per degres:
-let viewer_dist = 50;
-// let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
-let ppcm = screen.availWidth / screen_params
-let ppd = get_ppd(viewer_dist, ppcm);
+//general button
+let size_next_w = Math.round(2.5*ppd); //in pixel
+let size_next_h = Math.round(1.5*ppd); //in pixel
+let x_next = Pos.center_x+Math.round(6*ppd)-(size_next_w/2); //in pixel
+let y_next = Pos.canvas_height-Math.round(2*ppd)-(size_next_h/2); //in pixel
+let size_next_text = Math.round(0.5*ppd);
 
-function get_ppd(viewer_dist, screen_params){
-    return (viewer_dist*Math.tan(Math.PI/180)) * screen_params;
-}
-//console.log(ppd) //48.925 in my screen
+let size_previous_w = Math.round(2.5*ppd); //in pixel
+let size_previous_h = Math.round(1.5*ppd); //in pixel
+let x_previous = Pos.center_x-Math.round(6*ppd)-(size_previous_w/2); //in pixel
+let y_previous = Pos.canvas_height-Math.round(2*ppd)-(size_previous_h/2); //in pixel
+let size_previous_text = Math.round(0.5*ppd); //in pixel
 
-let flag_practice = true;
-let canvas_w = Math.round(12*ppd);
-let canvas_h = Math.round(10*ppd);
+//scene 0 
+let text_tutorial_0_0 = "The goal of this experiment is to measure your counting ability.";
+let text_tutorial_0_1 = "In each trial, you will see a brief flash of multiple white circles.";
+let text_tutorial_0_2 = "Your task is to count these circles and answer how many circles"; 
+let text_tutorial_0_3 = "were presented using a slider bar.";
+let pos_tutorialtext_x = Pos.center_x;
+let pos_tutorialtext_y = Pos.center_y;
+let size_tutorialtext = Math.round(0.5*ppd);
+let col_tutorialtext = [220,220,255];
+let shift_text = Math.round((1*ppd));
 
-let num_rep = 2; 
-let array_stimcond = [3,4,5]; //Experimental condition. 
-let time_stimduration = 700; //in ms Green & Bavelier (2006)
-let time_maskduration = 1000; //in ms
+//scene 1
+let flag_disp = false;
+let num_demotargnum = 5;
 
-//object condition
-let size_obj = Math.round(0.5*ppd); //in pix. in diameter
-let roi_obj = Math.round(5*ppd); //in pix. in diameter. Later, these value will be determined from the visual angle.
-let Objs = [];
+let text_tutorial_1_0 = "Please remember the number of these white circles.";
+let pos_tutorialtext_x1 = Pos.center_x;
+let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
 
-let col_bkg = 128;
+//scene 2
+let text_tutorial_2_0 = "Please answer how many circles were presented using a slider bar";
+let pos_tutorialtext_x2 = Pos.center_x;
+let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
 
-// for the mask image
-let img;
-let size_img = [1024,1024];
+//scene 3
+let text_tutorial_3_0 = "Let's do the practices.";
+let size_tutorialtext3 = Math.round(1*ppd);
+let pos_tutorialtext_x3 = Pos.center_x;
+let pos_tutorialtext_y3 = Pos.center_y-Math.round(0*ppd);
 
-// fixation 
-let len_fixation = Math.round(0.5*ppd); // in pix
-let col_fixation = 20; // in rgb
-let thick_fixation = Math.round(0.1*ppd); // in pix
-let time_fixation = 1000; // in millisecond
+let size_start_w = Math.round(2.5*ppd); //in pixel
+let size_start_h = Math.round(1.5*ppd); //in pixel
+let x_start = Pos.center_x- (size_start_w/2); //in pixel
+let y_start = Pos.center_y+Math.round(2*ppd)-(size_start_h/2); //in pixel
+let size_start_text = Math.round(0.5*ppd);
 
-// text 
-let col_text = 255;
-let size_text = Math.round(0.5*ppd); //in pixel
-
-//button
-
-let sel;
-let x_response = Math.round(1.5*ppd); //in pixel
-let y_response = Math.round(4*ppd); //in pixel
-let max_answer = 15;
-let x_ok = -Math.round(1.5*ppd);
-let y_ok = Math.round(4*ppd);
-let x_restart = -Math.round(6*ppd);; //in pixel
-let y_restart = -Math.round(5*ppd);; //in pixel
-let round_button = "5px";
-let size_button_x = "70px";
-let size_button_y = "70px";
-////
-
+//scene main ready
+let text_tutorial_4_0 = "Let's do the main experiment.";
+//scene break
+let text_tutorial_5_0 = "Break time.";
