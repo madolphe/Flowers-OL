@@ -48,6 +48,7 @@ def questionnaire(request):
                 answer = Answer()
                 answer.participant = participant
                 answer.session = participant.current_session
+                answer.study = participant.study
                 answer.question = q
                 answer.value = form.cleaned_data[q.handle]
                 answer.save()

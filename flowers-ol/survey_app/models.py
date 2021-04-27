@@ -1,5 +1,6 @@
 from django.db import models
-from manager_app.models import ParticipantProfile, ExperimentSession
+from manager_app.models import ParticipantProfile, ExperimentSession, Study
+import uuid
 
 
 class Question(models.Model):
@@ -31,3 +32,5 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     session = models.ForeignKey(ExperimentSession, null=True, on_delete=models.DO_NOTHING)
     value = models.CharField(null=True, max_length=100)
+    study = models.ForeignKey(Study, null=True, on_delete=models.CASCADE)
+    # study = ParticipantProfile.objects.values_list('study')
