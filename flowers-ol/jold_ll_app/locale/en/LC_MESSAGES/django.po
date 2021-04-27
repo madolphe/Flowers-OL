@@ -77,6 +77,7 @@ msgid ""
 "Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
 "corriger le formulaire"
 msgstr ""
+"The form is not valid. See the error messages to correct the form"
 
 #: jold_ll_app/templates/consent_form.html:3
 msgid "INFORMATIONS SUR L'ÉTUDE"
