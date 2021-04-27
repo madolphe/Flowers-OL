@@ -116,3 +116,19 @@ function deg2rad(degrees) {
   return degrees * (pi/180);
 }
   
+//// Draw characters and bubble:
+function draw_character(img_researcher, x, y, w, h){
+    push();
+    imageMode(CENTER);
+    image(img_researcher, x, y, w, h);
+    pop();
+}
+function draw_background_bubble(x, y, w, h){
+    push();
+    imageMode(CENTER);
+    stroke('white');
+    fill("rgba(255,255,255,0.1)")
+    image(bubble_img, x,y,w,h);
+    pop();
+
+}

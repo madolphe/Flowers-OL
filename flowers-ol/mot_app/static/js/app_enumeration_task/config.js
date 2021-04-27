@@ -18,6 +18,14 @@ let screen_params = window_availw/size_screen_cm_w;
 let ppd = get_ppd(viewer_dist, screen_params);
 //////////////////////////Monitor 
 
+// Characters:
+let researcher_1_path = 'static/images/pre-post-imgs/tutorial/researcher1.png';
+let researcher_2_path = 'static/images/pre-post-imgs/tutorial/researcher2.png';
+let bubble_path = 'static/images/pre-post-imgs/tutorial/bubble.png';
+let researcher_1, researcher_2;
+let researcher_width = window_availw/4;
+let researcher_height = researcher_width;
+let bubble_img;
 
 let fname_success = 'static/images/icons/success.png';
 let fname_bkg = 'static/images/pre-post-imgs/bkg_largewindow.png';

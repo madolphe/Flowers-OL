@@ -1,9 +1,11 @@
 //general title text
-let text_title_0 = "Instruction";
+//let text_title_0 = "Instruction";
+let text_title_0 = "INSTRUCTIONS";
 let pos_title_x = Pos.center_x;
 let pos_title_y = Pos.center_y - Math.round(5*ppd);
 let size_titletext = Math.round(2.5*ppd);
-let col_titletext = [170,170,60];
+//let col_titletext = [170,170,60];
+let col_titletext = '#172B4D';
 
 //general button
 let size_next_w = Math.round(2.5*ppd); //in pixel
@@ -23,10 +25,11 @@ let text_tutorial_0_0 = "The goal of this experiment is to measure your counting
 let text_tutorial_0_1 = "In each trial, you will see a brief flash of multiple white circles.";
 let text_tutorial_0_2 = "Your task is to count these circles and answer how many circles"; 
 let text_tutorial_0_3 = "were presented using a slider bar.";
-let pos_tutorialtext_x = Pos.center_x;
+let pos_tutorialtext_x = Pos.center_x - window_availw/4
 let pos_tutorialtext_y = Pos.center_y;
 let size_tutorialtext = Math.round(0.5*ppd);
-let col_tutorialtext = [220,220,255];
+//let col_tutorialtext = [220,220,255];
+let col_tutorialtext = 'white';
 let shift_text = Math.round((1*ppd));
 
 //scene 1

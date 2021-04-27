@@ -1,9 +1,12 @@
 // scene 6
 function scene_tutorial1(){
+    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y, window_availw/2,1.5*window_availh/4)
     //Title
     push();
     fill(col_titletext);
     textSize(size_titletext);
+    textFont(gill_font);
     textAlign(CENTER);
     text( text_title_0, pos_title_x, pos_title_y);
     pop();
@@ -12,10 +15,11 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y);
-    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
-    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y+2*shift_text);
-    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+3*shift_text);
+    textFont(gill_font);
+    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text, window_availw/2);
+    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text, window_availw/2);
+    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y, window_availw/2);
+    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text, window_availw/2);
     pop();
     //button
     button_next.mousePressed(()=>{
