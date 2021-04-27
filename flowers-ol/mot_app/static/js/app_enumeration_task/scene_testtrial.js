@@ -121,6 +121,8 @@ function scene_response(){
     //save the response and the stimulus condition
     Params.tmp_res_ob = sel.value();
     button_ok.hide();
+    div_ticks.hide();
+    array_span.forEach(element => element.hide());
     sel.hide();
     Time.update();    
     });
@@ -140,8 +142,23 @@ function create_selector_input(){
   sel = createSlider(1,max_answer,5,1);
   sel.size(size_slider_w,size_slider_h);
   sel.position(x_response, y_response);
+  sel.id('input_select');
   //sel.changed(active_button);
   sel.hide();
+  // Show ticks:
+  div_ticks = createDiv();
+  div_ticks.addClass('ticks');
+  for (i=0; i < max_answer; i++) {
+    var tmp_span = createSpan(`${i+1}`);
+    tmp_span.addClass('tick');
+    tmp_span.parent(div_ticks);
+    tmp_span.style('display: flex');
+    tmp_span.hide();
+    array_span.push(tmp_span);
+  }
+  div_ticks.position(x_response, y_response + shift_div_ticks);
+  div_ticks.size(size_slider_w,size_slider_h);
+  div_ticks.hide();
 }
 
 function create_answer_button(){
@@ -154,6 +171,8 @@ function create_answer_button(){
 
 function show_button(){
   sel.show();
+  div_ticks.style('display', 'flex');
+  array_span.forEach(element => element.show());
   button_ok.show();
 }
 /*

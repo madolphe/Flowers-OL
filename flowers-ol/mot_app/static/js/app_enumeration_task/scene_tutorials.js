@@ -1,4 +1,3 @@
-
 // scene 6
 function scene_tutorial1(){
     //Title
@@ -58,7 +57,10 @@ function scene_tutorial2(){
     button_next.mousePressed(()=>{
         sel.position(Pos.center_x-(size_slider_w/2), y_response);
         sel.show();
-        Time.update_tutorial_next();    
+        div_ticks.position(Pos.center_x-(size_slider_w/2), y_response + shift_div_ticks);
+        div_ticks.style('display', 'flex');
+        array_span.forEach(element => element.show());
+        Time.update_tutorial_next();
         });
     button_previous.mousePressed(()=>{
         button_previous.hide();
@@ -104,13 +106,18 @@ function scene_tutorial3(){
     button_next.mousePressed(()=>{
         sel.hide();
         sel.position(x_response, y_response);
+        div_ticks.hide();
+        array_span.forEach(element => element.hide());
+        div_ticks.position(x_response, y_response + shift_div_ticks);
         button_next.hide();
         button_start.show();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
         sel.hide();
-        sel.position(x_response, y_response);
+        div_ticks.hide();
+        array_span.forEach(element => element.hide());
+        button_start.show();
         Time.update_tutorial_previous();    
         });
 }
@@ -129,6 +136,9 @@ function scene_tutorial4(){
     button_previous.mousePressed(()=>{
         sel.position(Pos.center_x-(size_slider_w/2), y_response);
         sel.show();
+        div_ticks.position(Pos.center_x-(size_slider_w/2), y_response + shift_div_ticks);
+        div_ticks.style('display', 'flex');
+        array_span.forEach(element => element.show());
         button_next.show();
         button_start.hide();
         Time.update_tutorial_previous();    

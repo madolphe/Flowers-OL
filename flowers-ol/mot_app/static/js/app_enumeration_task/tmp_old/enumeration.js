@@ -1,4 +1,4 @@
-let bar, success;
+let bar, success, div_ticks;
 //p5.js preload images
 function preload() {
   img = loadImage('/static/images/pre-post-imgs/noise.png');
@@ -152,9 +152,16 @@ function scene_response(){
 function create_selector_input(){
   sel = createSelect();
   sel.position(x_response+CANVAS_WIDTH/2, y_response+CANVAS_HEIGHT/2);
+  sel.id('input_select');
+  div_ticks = createDiv('ticks');
+
   for (i=0; i < max_answer; i++) {
     sel.option(`${i+1}`);
+    var tmp_span = createSpan(`${i+1}`);
+    tmp_span.addClass('tick');
+    tmp_span.parent(div_ticks);
   }
+
   sel.changed(active_button);
   sel.hide();
 }

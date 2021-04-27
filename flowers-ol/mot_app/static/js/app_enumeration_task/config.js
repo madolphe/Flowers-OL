@@ -94,6 +94,10 @@ let tick_slider = Math.round(0.8*ppd);
 let tick_slider_width = Math.round(0.1*ppd);
 let xwidth = 16;
 let step_slider = (size_slider_w-2*xwidth)/(max_answer-1);
+let array_span = [];
+let div_ticks;
+let shift_div_ticks = 52;
+
 
 //end button;
 let size_end_w = Math.round(2.5*ppd); //in pixel
