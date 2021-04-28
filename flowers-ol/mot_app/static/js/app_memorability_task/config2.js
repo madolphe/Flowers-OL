@@ -42,7 +42,6 @@ let flag_break = true;
 let count_break = 0;
 let max_break = 1;
 
-let prac_num_rep = 10; //ignored in the main exp.
 
 let fname_target = '../img/list_img_target2.csv';
 let fname_filler = '../img/list_img_filler2.csv';
@@ -116,3 +115,5 @@ let text_start = "Please click the mouse to start this experiment";
 let text_end = "Thank you for joining the experiment.";
 
 let bar, success;
+
+let flag_load_end = false;

@@ -42,18 +42,18 @@ function scene_instruction(){
       //image(Imgs[0],CANVAS_WIDTH,CANVAS_HEIGHT);    
       
       if (Params.array_stim[Params.ind_stimcond]==0){
-        Imgs_filler[Params.trial_stimind[Params.ind_trial_filler]].resize(size_rescale, size_rescale);
-        image(Imgs_filler[Params.trial_stimind[Params.ind_trial_filler]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        Imgs_filler[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+        image(Imgs_filler[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
       }else if (Params.array_stim[Params.ind_stimcond]==1){
-        Imgs_targ[Params.ind_trial_target1].resize(size_rescale, size_rescale);
-        image(Imgs_targ[Params.ind_trial_target1],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+        image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
       }else if (Params.array_stim[Params.ind_stimcond]==2){
-        Imgs_targ[Params.ind_trial_target2].resize(size_rescale, size_rescale);
-        image(Imgs_targ[Params.ind_trial_target2],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+        image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
       }
-      
+      //console.log(Params.array_stim[Params.ind_stimcond])
+      pop();     
       /*
-      pop();
       push();
       fill(col_text);
       textSize(size_text);
@@ -119,9 +119,7 @@ function scene_instruction(){
       'results_rt': Params.results_rt,
       'results_targetvalue': Params.results_targetvalue,
       'results_flagcorrect':Params.results_flagcorrect,
-      'results_ind_trial_filler':Params.results_ind_trial_filler,
-      'results_ind_trial_target1':Params.results_ind_trial_target1,
-      'results_ind_trial_target2':Params.results_ind_trial_target2
+      'results_stimind':Params.results_stimind
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
   /*

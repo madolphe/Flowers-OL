@@ -35,14 +35,14 @@ let num_demotargnum = 5;
 
 let text_tutorial_1_0 = "Some images will appear twice, but the others just once.";
 let text_tutorial_1_1 = "If you notice the image is presented twice,";
-let text_tutorial_1_2 = "please press the key [J] as soon as possible";
+let text_tutorial_1_2 = "please press the key [J] as soon as possible.";
 let pos_tutorialtext_x1 = Pos.center_x;
-let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y1 = Pos.center_y-Math.round(6*ppd);
 
 //scene 2
 let text_tutorial_2_0 = "On each trial, you will get feedback about if your response was correct.";
 let pos_tutorialtext_x2 = Pos.center_x;
-let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y2 = Pos.center_y-Math.round(6*ppd);
 
 //scene 3
 let text_tutorial_3_0 = "Let's start the practices.";
@@ -60,3 +60,14 @@ let size_start_text = Math.round(0.5*ppd);
 let text_tutorial_4_0 = "Let's start the main experiment.";
 //scene break
 let text_tutorial_5_0 = "Break time.";
+
+//tutorial specific dataset.
+let fname_target_tutorial = '../img/list_img_target_tutorial.csv';
+let fname_filler_tutorial = '../img/list_img_filler_tutorial.csv';
+let num_targetlist_tutorial = 7;
+let num_fillerlist_tutorial = 6;
+let Imgs_targ_tutorial = [];
+let Imgs_filler_tutorial = [];
+let array_stim_tutorial = [1,2,0,1,1,0,0,2,0,2,0,1,0,1,1,2,2,2,0];
+let trial_stimind_tutorial = [1,1,0,2,3,1,2,3,3,2,4,4,5,5,6,5,6,4,6]
+let prac_num_rep = 12;

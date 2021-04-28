@@ -39,20 +39,14 @@ let fname_instruct2 = 'static/images/pre-post-imgs/instruction2.png';
 let flag_practice = true;
 let flag_break = true;
 let count_break = 0;
-let max_break = 1;
+let max_break = 3;
 
-let num_rep_main = 10; 
-let num_rep_practice = 1;
+let num_rep_main = 4; 
+let num_rep_practice = 4;
 
 let array_stimcond = [1,1,1,1,0,0,0,0];
 let array_target = [1,2,3,4,6,7,8,9];
-let array_taskcond = ['Color','Shape']; //Tasks switch condition.
-let array_textleft = ['Red:f','Circle:f'];
-let array_textright = ['Blue:j','Square:j']; 
-let array_colorcond = [0,1]; //0:color 0, 1:color 1
-let array_shapecond = [0,1]; //0:Circle, 1:Square
-let col_0 =[128,0,0];
-let col_1 = [0,0,128];
+let array_taskcond = [0,1]; 
 
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j

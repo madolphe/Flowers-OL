@@ -21,7 +21,7 @@ function scene_instruction(){
       textSize(size_instruct_txt);
       noStroke();
       textAlign(CENTER);
-      if (Params.shapecond[0] ==0){
+      if (Params.ind_task ==0){
         image(img_task1,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
         image(img_instruct1,x_instruct, y_instruct);
         text(text_1left,x_instruct_text1,y_instruct_text);
@@ -62,7 +62,7 @@ function scene_instruction(){
       textSize(size_instruct_txt);
       noStroke();
       textAlign(CENTER);
-      if (Params.shapecond[0] ==0){
+      if (Params.ind_task ==0){
         image(img_task1,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
         image(img_instruct1,x_instruct, y_instruct);
         text(text_1left,x_instruct_text1,y_instruct_text);
@@ -122,9 +122,7 @@ function scene_instruction(){
       'results_responses': Params.results_responses,
       'results_rt': Params.results_rt,
       'results_ind_switch': Params.results_ind_switch,
-      'results_taskcond': Params.results_taskcond,
-      'results_colorcond': Params.results_colorcond,
-      'results_shapecond': Params.results_shapecond
+      'results_indtask': Params.results_indtask
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
     /*

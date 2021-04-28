@@ -41,8 +41,6 @@ let flag_break = true;
 let count_break = 0;
 let max_break = 1;
 
-let prac_num_rep = 10; //ignored in the main exp.
-
 let fname_target = '../img/list_img_target1.csv';
 let fname_filler = '../img/list_img_filler1.csv';
 
@@ -115,3 +113,5 @@ function make_array(val_start, val_stop, num_array) {
   let text_end = "Thank you for joining the experiment.";
 
   let bar, success;
+
+  let flag_load_end = false;

@@ -17,9 +17,7 @@ class ParameterManager{
       this.results_rt = [];
       this.results_targetvalue = [];
       this.results_flagcorrect = [];
-      this.results_ind_trial_filler = [];
-      this.results_ind_trial_target1 = [];
-      this.results_ind_trial_target2 = [];
+      this.results_stimind = [];
     }
   
     initialize(){
@@ -29,23 +27,25 @@ class ParameterManager{
       dict_longtarget = shuffle(dict_longtarget);
       distance_shorttarget = shuffle(distance_shorttarget);
   
-      this.array_stim = Array(num_stimulus).fill(0)
-      this.trial_stimind = [];
-  
-      this.ind_trial_filler = 0
-      this.ind_trial_target1 = 0
-      this.ind_trial_target2 = 0
-  
+      this.array_stim = Array(num_stimulus).fill(0);
+      this.trial_stimind = Array(num_stimulus).fill(0);
+
       
       
       let j = 0;
+      let m = 0;
       while (j < num_longtarget){
         let tmp1 = this.array_stim[dict_longtarget[j]] + 1;
         distance_longtarget = shuffle(distance_longtarget);
         let tmp2 = this.array_stim[dict_longtarget[j]+distance_longtarget[0]]+1;
         if (tmp1==1 && tmp2==1){
-          this.array_stim[dict_longtarget[j]] = 1
-          this.array_stim[dict_longtarget[j]+distance_longtarget[0]] = 2
+          this.array_stim[dict_longtarget[j]] = 1;
+          this.array_stim[dict_longtarget[j]+distance_longtarget[0]] = 2;
+
+          
+          this.trial_stimind[dict_longtarget[j]] = m;
+          this.trial_stimind[dict_longtarget[j]+distance_longtarget[0]] = m; 
+          m = m+1;
           j = j+1;
         }
       }
@@ -59,41 +59,27 @@ class ParameterManager{
         if (tmp1==1 && tmp2==1){
           this.array_stim[ind_tmp] = 1;
           this.array_stim[ind_tmp+distance_shorttarget[j]] = 2;
+          this.trial_stimind[ind_tmp] = m;
+          this.trial_stimind[ind_tmp+distance_shorttarget[j]] = m;
+          m = m+1;
           j = j+1;
         }
       }
     
       let k = 0;
-      let l = 0;
-      let m = 0;
       for (let i=0;i<num_stimulus;i++){
         if (this.array_stim[i]==0){
-          this.trial_stimind.push(ind_fillerlist[k]);
+          this.trial_stimind[i] = k;
           k ++;
-        }else if (this.array_stim[i]==1){
-          //console.log(l)
-          this.trial_stimind.push(ind_targlist[l]);
-          l ++;
-        } else if (this.array_stim[i]==2){
-          //console.log(m)
-          this.trial_stimind.push(ind_targlist[m]);
-          m ++;
         }
+        //console.log(this.array_stim[i])
       }
     }
   
     next_trial(){
       this.save();
   
-      //set the next trial parameters
-      if (this.array_stim[this.ind_stimcond]==0){
-        this.ind_trial_filler ++;
-      }else if (this.array_stim[this.ind_stimcond]==1){
-        this.ind_trial_target1 ++;
-      } else if (this.array_stim[this.ind_stimcond]==2){
-        this.ind_trial_target2 ++;
-      }
-  
+      //set the next trial parameters  
       this.ind_stimcond ++;
       this.tmp_res_ob = 0;
       this.tmp_rt = null;
@@ -143,15 +129,7 @@ class ParameterManager{
       this.results_rt.push(this.tmp_rt);
       this.results_targetvalue.push(this.array_stim[this.ind_stimcond]);
       this.results_flagcorrect.push(this.flag_correct)
-  
-      //set the next trial parameters
-      if (this.array_stim[this.ind_stimcond]==0){
-        this.results_ind_trial_filler.push(this.ind_trial_filler);
-      }else if (this.array_stim[this.ind_stimcond]==1){
-        this.results_ind_trial_target1.push(this.ind_trial_target1);
-      } else if (this.array_stim[this.ind_stimcond]==2){
-        this.results_ind_trial_target2.push(this.ind_trial_target2);
-      }
+      this.results_stimind.push(this.trial_stimind[this.ind_stimcond]);
   
       //console.log('response is');
       //console.log(this.tmp_res_ob);

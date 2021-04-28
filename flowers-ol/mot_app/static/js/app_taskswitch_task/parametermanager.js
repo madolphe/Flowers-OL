@@ -13,9 +13,7 @@ class ParameterManager{
       this.results_responses = [];
       this.results_rt = [];
       this.results_ind_switch = [];
-      this.results_taskcond = [];
-      this.results_colorcond = [];
-      this.results_shapecond = [];
+      this.results_indtask = [];
       this.initialize();
     }
 
@@ -28,17 +26,8 @@ class ParameterManager{
       }
       this.ind_switch = shuffle(this.ind_switch);
   
-      this.ind_task = shuffle([0,1]); 
+      this.ind_task = shuffle(array_taskcond); 
       this.ind_task = int(this.ind_task[0]); //initialize the first task;
-  
-      this.taskcond = array_taskcond;
-      this.colorcond = shuffle(array_colorcond);
-      this.shapecond = shuffle(array_shapecond);
-      if (this.colorcond[0]==0){
-        this.color = col_0;
-      } else{
-        this.color = col_1;
-      }
     }
     
     next_trial(){
@@ -66,13 +55,6 @@ class ParameterManager{
         this.ind_task = Math.abs(this.ind_task -1);
       }
       this.trial_target = shuffle(array_target);
-      this.colorcond = shuffle(array_colorcond);
-      this.shapecond = shuffle(array_shapecond);
-      if (this.colorcond[0]==0){
-        this.color = col_0;
-      } else{
-        this.color = col_1;
-      }
     }
   
   
@@ -81,9 +63,7 @@ class ParameterManager{
       this.results_responses.push(this.tmp_res_ob);
       this.results_rt.push(this.tmp_rt);
       this.results_ind_switch.push(this.ind_switch[this.ind_stimcond]);
-      this.results_taskcond.push(this.taskcond[this.ind_task]);
-      this.results_colorcond.push(this.colorcond[0]);
-      this.results_shapecond.push(this.shapecond[0]);
+      this.results_indtask.push(this.ind_task);
     }
   }
   
