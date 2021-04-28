@@ -21,6 +21,8 @@ function scene_tutorial1(){
     //button
     button_next.mousePressed(()=>{
         button_previous.show();
+        Params.trial_ind_distance = ind_distance;
+        Params.initialize();
         Time.update_tutorial_next();    
         });
 }
@@ -45,7 +47,7 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
-    //demo_img0();
+    demo_img0();
     //text
     push();
     fill(col_tutorialtext);
@@ -56,7 +58,9 @@ function scene_tutorial2(){
 
     //buttons
     button_next.mousePressed(()=>{
-        Time.update_tutorial_next();    
+        Time.update_tutorial_next();  
+        button_fixanswer1.show();
+        button_fixanswer2.show();  
         });
     button_previous.mousePressed(()=>{
         button_previous.hide();
@@ -65,24 +69,25 @@ function scene_tutorial2(){
 }
 
 function demo_img0(){
-    if (flag_disp==false){
-        Objs = [];
-        for (let i=0; i < num_demotargnum; ++i) {
-            Objs.push(make_pos(Objs))
-        };
-        flag_disp=true;
-    }else {
-        
-        for (let i=0; i < num_demotargnum; ++i) {
-                Objs[i].display();
-        };
+    push();
+    for (let i=0;i<4;i++){
+      if (i==0){
+        image(img_correct,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+      } else{
+        image(img_wrong,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+      }     
     }
+    stroke(col_fixation); // define gray scale color (0 to 255) of lines
+    strokeWeight(thick_fixation);
+    line(Pos.center_x - len_fixation - Params.dict_fixation[Params.trial_fixation[0]][0], Pos.center_y, Pos.center_x + len_fixation+Params.dict_fixation[Params.trial_fixation[0]][0], Pos.center_y);
+    line(Pos.center_x, Pos.center_y - len_fixation-Params.dict_fixation[Params.trial_fixation[0]][1], Pos.center_x, Pos.center_y + len_fixation+Params.dict_fixation[Params.trial_fixation[0]][1]);
+    pop();
 }
 
 // scene 8
 function scene_tutorial3(){
     //image
-
+    demo_img1();
 
     //text
     push();
@@ -94,17 +99,38 @@ function scene_tutorial3(){
 
     //buttons
     button_next.mousePressed(()=>{
-        Time.update_tutorial_next();    
+        Time.update_tutorial_next();
+        button_fixanswer1.hide();
+        button_fixanswer2.hide();
+        for (let i=0;i<4;i++){
+              Buttons[i].show();
+          }
         });
     button_previous.mousePressed(()=>{
+        button_fixanswer1.hide();
+        button_fixanswer2.hide();
         Time.update_tutorial_previous();    
         });
+}
+
+function demo_img1(){
+    //button_fixanswer1.mousePressed(fnc_fixanswer1);
+    //button_fixanswer2.mousePressed(fnc_fixanswer2);
+    push();
+    stroke(col_fixation); // define gray scale color (0 to 255) of lines
+    strokeWeight(thick_fixation);
+    line(x_ans1[0],x_ans1[1],x_ans1[2],x_ans1[3]);
+    line(y_ans1[0],y_ans1[1],y_ans1[2],y_ans1[3]);
+  
+    line(x_ans2[0],x_ans2[1],x_ans2[2],x_ans2[3]);
+    line(y_ans2[0],y_ans2[1],y_ans2[2],y_ans2[3]);
+   pop();
 }
 
 // scene 8_1
 function scene_tutorial3_1(){
     //image
-
+    //demo_img2();
 
     //text
     push();
@@ -118,9 +144,17 @@ function scene_tutorial3_1(){
     button_next.mousePressed(()=>{
         button_next.hide();
         button_start.show();
+        for (let i=0;i<4;i++){
+            Buttons[i].hide();
+        }
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_fixanswer1.show();
+        button_fixanswer2.show();
+        for (let i=0;i<4;i++){
+            Buttons[i].hide();
+        }
         Time.update_tutorial_previous();    
         });
 }
@@ -156,13 +190,18 @@ function scene_tutorial4(){
     button_previous.mousePressed(()=>{
         button_next.show();
         button_start.hide();
+        for (let i=0;i<4;i++){
+            Buttons[i].show();
+        }
         Time.update_tutorial_previous();    
         });
     button_start.mousePressed(()=>{
         button_previous.hide();
         button_start.hide();
+        Params.trial_ind_distance = ind_distance;
         Params.num_rep = num_rep_practice;
         Params.time_stimduration = time_stimduration_practice;
+        Params.initialize();
         Time.start();    
         });    
 }

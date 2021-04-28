@@ -45,7 +45,7 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
-    //demo_img0();
+    demo_img0();
     //text
     push();
     fill(col_tutorialtext);
@@ -66,25 +66,25 @@ function scene_tutorial2(){
 }
 
 function demo_img0(){
-    if (flag_disp==false){
-        Objs = [];
-        for (let i=0; i < num_demotargnum; ++i) {
-            Objs.push(make_pos(Objs))
-        };
-        flag_disp=true;
+    //1 second flickering
+    let tmp_time = Time.starttime_block - Math.round(Date.now()/1000);
+    push();
+    fill(col_target);
+    textSize(size_target);
+    noStroke();
+    textAlign(CENTER);
+    if (tmp_time%2==0){
+        text("3", Pos.center_x, (Pos.center_y)+(size_target/2));
     }else {
-        
-        for (let i=0; i < num_demotargnum; ++i) {
-                Objs[i].display();
-        };
+        text("7", Pos.center_x, (Pos.center_y)+(size_target/2));
     }
+    pop();
 }
 
 // scene 8
 function scene_tutorial3(){
     //image
-
-
+    demo_img1();
     //text
     push();
     fill(col_tutorialtext);
@@ -104,6 +104,23 @@ function scene_tutorial3(){
         Time.update_tutorial_previous();    
         });
 }
+
+function demo_img1(){
+    //1 second flickering
+    let tmp_time = Time.starttime_block - Math.round(Date.now()/1000);
+    push();
+    fill(col_target);
+    textSize(size_target);
+    noStroke();
+    textAlign(CENTER);
+    if (tmp_time%2==0){
+        text("5", Pos.center_x, (Pos.center_y)+(size_target/2));
+    }else {
+        text("7", Pos.center_x, (Pos.center_y)+(size_target/2));
+    }
+    pop();
+}
+
 // scene 9
 function scene_tutorial4(){
 

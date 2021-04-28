@@ -35,12 +35,12 @@ let num_demotargnum = 5;
 
 let text_tutorial_1_0 = "This is an example of stimulus presentation.";
 let pos_tutorialtext_x1 = Pos.center_x;
-let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y1 = Pos.center_y-Math.round(6*ppd);
 
 //scene 2
 let text_tutorial_2_0 = "First, you have to answer which of the lines was longer.";
 let pos_tutorialtext_x2 = Pos.center_x;
-let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y2 = Pos.center_y-Math.round(6*ppd);
 
 //scene 2_2
 let text_tutorial_2_1 = "Next, you have to answer which of the four objects had the strong contrast";
