@@ -59,6 +59,7 @@ function scene_tutorial2(){
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_previous.hide();
         Time.update_tutorial_previous();    
         });
 }

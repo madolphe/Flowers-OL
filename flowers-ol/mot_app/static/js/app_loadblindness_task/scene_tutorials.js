@@ -59,6 +59,7 @@ function scene_tutorial2(){
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_previous.hide();
         Time.update_tutorial_previous();    
         });
 }
@@ -93,6 +94,28 @@ function scene_tutorial3(){
 
     //buttons
     button_next.mousePressed(()=>{
+        Time.update_tutorial_next();    
+        });
+    button_previous.mousePressed(()=>{
+        Time.update_tutorial_previous();    
+        });
+}
+
+// scene 8_1
+function scene_tutorial3_1(){
+    //image
+
+
+    //text
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    text( text_tutorial_2_1, pos_tutorialtext_x2, pos_tutorialtext_y2);
+    pop();
+
+    //buttons
+    button_next.mousePressed(()=>{
         button_next.hide();
         button_start.show();
         Time.update_tutorial_next();    
@@ -101,6 +124,8 @@ function scene_tutorial3(){
         Time.update_tutorial_previous();    
         });
 }
+
+
 // scene 9
 function scene_tutorial4(){
 
@@ -111,6 +136,21 @@ function scene_tutorial4(){
     textAlign(CENTER);
     text(text_tutorial_3_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    text( text_tutorial_3_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
+    pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    text( text_tutorial_3_2, pos_tutorialtext_x, pos_tutorialtext_y);
+    pop();
+
 
     //buttons
     button_previous.mousePressed(()=>{

@@ -16,8 +16,8 @@ class TimeManager{
 
       //for tutorial
       this.scene_tutorialstart = 6;
-      this.tutorial_end = 10;
-      this.scene_break = 11;
+      this.tutorial_end = 11;
+      this.scene_break = 12;
     
     }
   
@@ -42,10 +42,12 @@ class TimeManager{
           }else if(this.scene==8){
             scene_tutorial3();
           }else if(this.scene==9){
-            scene_tutorial4();
+            scene_tutorial3_1();
           }else if(this.scene==10){
-            scene_tutorial5();
+            scene_tutorial4();
           }else if(this.scene==11){
+            scene_tutorial5();
+          }else if(this.scene==12){
             scene_break();
           }        
     }

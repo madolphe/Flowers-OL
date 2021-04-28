@@ -52,6 +52,8 @@ function scene_tutorial2(){
     textSize(size_tutorialtext);
     textAlign(CENTER);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
+    text( text_tutorial_1_1, pos_tutorialtext_x1, pos_tutorialtext_y1+shift_text);
+    text( text_tutorial_1_2, pos_tutorialtext_x1, pos_tutorialtext_y1+2*shift_text);
     pop();
 
     //buttons
@@ -59,6 +61,7 @@ function scene_tutorial2(){
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_previous.hide();
         Time.update_tutorial_previous();    
         });
 }

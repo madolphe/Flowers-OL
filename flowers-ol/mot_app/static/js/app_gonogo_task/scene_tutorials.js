@@ -52,6 +52,7 @@ function scene_tutorial2(){
     textSize(size_tutorialtext);
     textAlign(CENTER);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
+    text( text_tutorial_1_1, pos_tutorialtext_x1, pos_tutorialtext_y1+shift_text);
     pop();
 
     //buttons
@@ -59,6 +60,7 @@ function scene_tutorial2(){
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_previous.hide();
         Time.update_tutorial_previous();    
         });
 }
@@ -91,6 +93,7 @@ function scene_tutorial3(){
     text( text_tutorial_2_0, pos_tutorialtext_x2, pos_tutorialtext_y2);
     pop();
 
+
     //buttons
     button_next.mousePressed(()=>{
         button_next.hide();
@@ -111,6 +114,14 @@ function scene_tutorial4(){
     textAlign(CENTER);
     text(text_tutorial_3_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    text( text_tutorial_3_1, pos_tutorialtext_x, pos_tutorialtext_y);
+    pop();
+
 
     //buttons
     button_previous.mousePressed(()=>{
@@ -142,6 +153,13 @@ function scene_tutorial5(){
     textSize(size_tutorialtext3);
     textAlign(CENTER);
     text(text_tutorial_4_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
+    pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    text( text_tutorial_4_1, pos_tutorialtext_x, pos_tutorialtext_y);
     pop();
 
     //buttons

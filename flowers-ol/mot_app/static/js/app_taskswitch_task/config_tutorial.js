@@ -19,10 +19,10 @@ let y_previous = Pos.center_y+Math.round(3.5*ppd)+(size_previous_h/2); //in pixe
 let size_previous_text = Math.round(0.5*ppd); //in pixel
 
 //scene 0 
-let text_tutorial_0_0 = "The goal of this experiment is to measure your counting ability.";
-let text_tutorial_0_1 = "In each trial, you will see a brief flash of multiple white circles.";
-let text_tutorial_0_2 = "Your task is to count these circles and answer how many circles"; 
-let text_tutorial_0_3 = "were presented using a slider bar.";
+let text_tutorial_0_0 = "The goal of this experiment is to measure the ability ";
+let text_tutorial_0_1 = "to switch your attention. On each trial, you will see a digit ";
+let text_tutorial_0_2 = "from the set {1– 4, 6–9} on the cue background of red or blue."; 
+let text_tutorial_0_3 = "Your tasks change with the cue background.";
 let pos_tutorialtext_x = Pos.center_x;
 let pos_tutorialtext_y = Pos.center_y;
 let size_tutorialtext = Math.round(0.5*ppd);
@@ -33,17 +33,21 @@ let shift_text = Math.round((1*ppd));
 let flag_disp = false;
 let num_demotargnum = 5;
 
-let text_tutorial_1_0 = "Please remember the number of these white circles.";
+let text_tutorial_1_0 = "When the cue was the blue diamond-shaped background,";
+let text_tutorial_1_1 = "you have to answer whether the target digit was odd/even";
+let text_tutorial_1_2 = "by using the key “F”/“J,” respectively."; 
 let pos_tutorialtext_x1 = Pos.center_x;
 let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
 
 //scene 2
-let text_tutorial_2_0 = "Please answer how many circles were presented using a slider bar";
+let text_tutorial_2_0 = "When the cue was the red square background,";
+let text_tutorial_2_1 = "to answer whether the target digit was higher/lower than 5";
+let text_tutorial_2_2 = "by using the key “F”/“J,” respectively."; 
 let pos_tutorialtext_x2 = Pos.center_x;
 let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
 
 //scene 3
-let text_tutorial_3_0 = "Let's do the practices.";
+let text_tutorial_3_0 = "Let's start the practices.";
 let size_tutorialtext3 = Math.round(1*ppd);
 let pos_tutorialtext_x3 = Pos.center_x;
 let pos_tutorialtext_y3 = Pos.center_y-Math.round(0*ppd);
@@ -55,7 +59,7 @@ let y_start = Pos.center_y+Math.round(2*ppd)-(size_start_h/2); //in pixel
 let size_start_text = Math.round(0.5*ppd);
 
 //scene main ready
-let text_tutorial_4_0 = "Let's do the main experiment.";
+let text_tutorial_4_0 = "Let's start the main experiment.";
 //scene break
 let text_tutorial_5_0 = "Break time.";
 
