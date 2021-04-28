@@ -35,12 +35,12 @@ let num_demotargnum = 5;
 
 let text_tutorial_1_0 = "This is the image presentation display.";
 let pos_tutorialtext_x1 = Pos.center_x;
-let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y1 = Pos.center_y-Math.round(6*ppd);
 
 //scene 2
 let text_tutorial_2_0 = "Your task is to click the buttons in order.";
 let pos_tutorialtext_x2 = Pos.center_x;
-let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y2 = Pos.center_y-Math.round(6*ppd);
 
 //scene 3
 let text_tutorial_3_0 = "Let's start the practices.";

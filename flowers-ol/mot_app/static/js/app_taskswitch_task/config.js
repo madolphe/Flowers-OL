@@ -57,14 +57,14 @@ let col_1 = [0,0,128];
 let keyRes1 = 70; //f
 let keyRes2 = 74; //j
 
-let time_stimduration = 4000; //in ms
+let time_stimduration = 6000; //in ms
 //let time_maskduration = 1000; //in ms
 let time_maskduration = 0; //in ms
 let time_fixation = 650; // in millisecond
 
 //object condition
-let size_obj = Math.round(7*ppd); //in pix. in diameter
-let size_instruct_x = Math.round(10*ppd); //in pix. in diameter
+let size_obj = Math.round(6*ppd); //in pix. in diameter
+let size_instruct_x = Math.round(7*ppd); //in pix. in diameter
 let size_instruct_y = Math.round(2*ppd); //in pix. in diameter
 let x_instruct = Pos.center_x-(size_instruct_x/2);
 let y_instruct = (Pos.canvas_height*ratio_monitor)-(size_instruct_y/2)-Math.round(1*ppd);

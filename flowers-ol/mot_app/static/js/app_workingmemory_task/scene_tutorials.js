@@ -20,6 +20,7 @@ function scene_tutorial1(){
     pop();
     //button
     button_next.mousePressed(()=>{
+        Params = new ParameterManager();
         button_previous.show();
         Time.update_tutorial_next();    
         });
@@ -45,7 +46,7 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
-    //demo_img0();
+    demo_img0();
     //text
     push();
     fill(col_tutorialtext);
@@ -56,6 +57,7 @@ function scene_tutorial2(){
 
     //buttons
     button_next.mousePressed(()=>{
+        show_button();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
@@ -65,24 +67,37 @@ function scene_tutorial2(){
 }
 
 function demo_img0(){
-    if (flag_disp==false){
-        Objs = [];
-        for (let i=0; i < num_demotargnum; ++i) {
-            Objs.push(make_pos(Objs))
-        };
-        flag_disp=true;
-    }else {
-        
-        for (let i=0; i < num_demotargnum; ++i) {
-                Objs[i].display();
-        };
+    Time.count();
+    if (Time.activetime_block < time_startblank+(Params.num_memory[Params.ind_stimcond]*time_onestimduration)){
+      
+      for (let i=0; i < array_stimcond.length; ++i) {
+        if (i==Params.count_color && i<Params.num_memory[Params.ind_stimcond]){
+          push();
+          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
+          fill(col_target);
+          noStroke();
+          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1],size_target,size_target);
+          pop();
+        }else{
+          push();
+          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+          pop();
+        }
+      }
+  
+    } else{
+      //Time.update();
+    }
+  
+    if (Time.activetime_block > time_startblank+((Params.count_color+1)*time_onestimduration)){
+      Params.count_color ++;
     }
 }
 
 // scene 8
 function scene_tutorial3(){
     //image
-
+    demo_img1();
 
     //text
     push();
@@ -94,14 +109,36 @@ function scene_tutorial3(){
 
     //buttons
     button_next.mousePressed(()=>{
+        for (let i=0; i < array_stimcond.length; ++i){
+            Button[i].hide(); 
+          }  
         button_next.hide();
         button_start.show();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        for (let i=0; i < array_stimcond.length; ++i){
+            Button[i].hide(); 
+          }  
+        Params = new ParameterManager();
         Time.update_tutorial_previous();    
         });
 }
+
+function demo_img1(){
+    for (let i=0; i < array_stimcond.length; ++i) {
+        Button[i].mousePressed(record_response);
+  
+        if (Params.flag_buttoncheck[i] == 1){
+          push();
+          fill(col_target);
+          noStroke();
+          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1],size_target,size_target);
+          pop();
+        }
+      }
+}
+
 // scene 9
 function scene_tutorial4(){
 
@@ -115,6 +152,7 @@ function scene_tutorial4(){
 
     //buttons
     button_previous.mousePressed(()=>{
+        show_button();
         button_next.show();
         button_start.hide();
         Time.update_tutorial_previous();    
@@ -122,6 +160,7 @@ function scene_tutorial4(){
     button_start.mousePressed(()=>{
         button_previous.hide();
         button_start.hide();
+        Params = new ParameterManager();
         Params.num_rep = num_rep_practice;
         Params.num_memory = num_memory_practice;
         Params.initialize();

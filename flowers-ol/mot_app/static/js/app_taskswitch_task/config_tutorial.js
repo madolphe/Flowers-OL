@@ -33,18 +33,18 @@ let shift_text = Math.round((1*ppd));
 let flag_disp = false;
 let num_demotargnum = 5;
 
-let text_tutorial_1_0 = "When the cue was the blue diamond-shaped background,";
-let text_tutorial_1_1 = "you have to answer whether the target digit was odd/even";
-let text_tutorial_1_2 = "by using the key “F”/“J,” respectively."; 
+let text_tutorial_1_0 = "When the cue is the blue diamond-shaped background,";
+let text_tutorial_1_1 = "you have to answer whether the target digit was odd or even";
+let text_tutorial_1_2 = "by using the key [F] or [J], respectively."; 
 let pos_tutorialtext_x1 = Pos.center_x;
-let pos_tutorialtext_y1 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y1 = Pos.center_y-Math.round(6*ppd);
 
 //scene 2
-let text_tutorial_2_0 = "When the cue was the red square background,";
-let text_tutorial_2_1 = "to answer whether the target digit was higher/lower than 5";
-let text_tutorial_2_2 = "by using the key “F”/“J,” respectively."; 
+let text_tutorial_2_0 = "When the cue is the red square background,";
+let text_tutorial_2_1 = "to answer whether the target digit was lower or higher than 5";
+let text_tutorial_2_2 = "by using the key [F] or [J], respectively."; 
 let pos_tutorialtext_x2 = Pos.center_x;
-let pos_tutorialtext_y2 = Pos.center_y-Math.round(5*ppd);
+let pos_tutorialtext_y2 = Pos.center_y-Math.round(6*ppd);
 
 //scene 3
 let text_tutorial_3_0 = "Let's start the practices.";

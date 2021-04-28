@@ -48,7 +48,7 @@ let array_stimcond = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 let time_onestimduration = 900; //in ms
 let time_startblank = 300;
 let time_fixation = 1000; // in millisecond
-let size_target = Math.round(3.0*ppd); //in pixel
+let size_target = Math.round(2.0*ppd); //in pixel
 
 let col_target = [255,0,0,128];
 
@@ -66,7 +66,7 @@ let size_text = Math.round(0.7*ppd); //in pixel
 let size_text_button = 1*ppd; //in pix
 ////
 
-let shift_position = 4.0*ppd; //in pix
+let shift_position = Math.round(3.0*ppd); //in pix
 
 let Button = [];
 

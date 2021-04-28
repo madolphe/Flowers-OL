@@ -7,6 +7,8 @@ class ParameterManager{
       this.flag_load = false;
       this.count_color = -1;
 
+      this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
+
       this.num_rep = num_rep_main;
       this.num_memory = num_memory_main;
   
@@ -55,6 +57,7 @@ class ParameterManager{
         this.tmp_res_ob = [];
         this.count_color = -1;
         this.order = -1;
+        this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
         this.trial_stimcond = shuffle(array_stimcond);
   
         if (this.ind_stimcond==this.num_memory.length-1){
@@ -69,6 +72,7 @@ class ParameterManager{
         this.tmp_res_ob = [];
         this.count_color = -1;
         this.order = -1;
+        this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
   
   
         this.flag_block = false;

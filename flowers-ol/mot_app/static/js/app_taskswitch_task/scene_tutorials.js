@@ -45,7 +45,7 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
-    //demo_img0();
+    demo_img0();
     //text
     push();
     fill(col_tutorialtext);
@@ -67,24 +67,32 @@ function scene_tutorial2(){
 }
 
 function demo_img0(){
-    if (flag_disp==false){
-        Objs = [];
-        for (let i=0; i < num_demotargnum; ++i) {
-            Objs.push(make_pos(Objs))
-        };
-        flag_disp=true;
-    }else {
-        
-        for (let i=0; i < num_demotargnum; ++i) {
-                Objs[i].display();
-        };
-    }
+    push();
+    fill(col_instruction);
+    textSize(size_instruct_txt);
+    noStroke();
+    textAlign(CENTER);
+    image(img_task1,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
+    image(img_instruct1,x_instruct, y_instruct);
+    text(text_1left,x_instruct_text1,y_instruct_text);
+    text(text_1right,x_instruct_text2,y_instruct_text);
+    pop();
+    push();
+    fill(col_instruction);
+    textSize(size_instruction);
+    noStroke();
+    textAlign(CENTER);
+    text("8", Pos.center_x, (Pos.center_y)+(size_instruction/2));    
+    pop();
+
 }
+
+
 
 // scene 8
 function scene_tutorial3(){
     //image
-
+    demo_img1();
 
     //text
     push();
@@ -106,6 +114,27 @@ function scene_tutorial3(){
         Time.update_tutorial_previous();    
         });
 }
+
+function demo_img1(){
+    push();
+    fill(col_instruction);
+    textSize(size_instruct_txt);
+    noStroke();
+    textAlign(CENTER);
+    image(img_task2,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
+    image(img_instruct2,x_instruct, y_instruct);
+    text(text_2left,x_instruct_text1,y_instruct_text);
+    text(text_2right,x_instruct_text2,y_instruct_text);
+    pop();
+    push();
+    fill(col_instruction);
+    textSize(size_instruction);
+    noStroke();
+    textAlign(CENTER);
+    text("8", Pos.center_x, (Pos.center_y)+(size_instruction/2));    
+    pop();
+}
+
 // scene 9
 function scene_tutorial4(){
 

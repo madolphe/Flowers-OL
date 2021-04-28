@@ -88,8 +88,17 @@ function scene_instruction(){
     // call function
     for (let i=0; i < array_stimcond.length; ++i) {
       Button[i].mousePressed(record_response);
+    
+      if (Params.flag_buttoncheck[i] == 1){
+        push();
+        fill(col_target);
+        noStroke();
+        rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1],size_target,size_target);
+        pop();
+      }
     }
-  
+
+
     if (Params.tmp_res_ob.length==Params.num_memory[Params.ind_stimcond]){
       Time.update();
     }
@@ -114,6 +123,7 @@ function scene_instruction(){
   
   
   function record_response(){
+    Params.flag_buttoncheck[this.value()] = 1;
     Params.order++;
     Params.tmp_res_ob.push(this.value());
     console.log(this.value())
