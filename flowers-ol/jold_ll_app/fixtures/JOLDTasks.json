@@ -1,0 +1,165 @@
+[
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-consent",
+            "description": "Informed consent",
+            "view_name": "jold_consent_page"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-ll-practice",
+            "description": "Entraînement au Lunar lander",
+            "description_en":"Lunar lander training",
+            "prompt": "Commencer la session",
+            "prompt_en":"Start the session",
+            "view_name": "jold_start_ll_practice",
+            "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutoriel=tasks/JOLD_LL/tutorial.html",
+            "info_templates_csv_en": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-free-choice",
+            "description": "Fin de session",
+            "description_en":"End of session",
+            "actions": {"Terminer la session": "jold_reject_optional_practice", "Jouer encore": "jold_accept_optional_practice"},
+            "actions_en": {"End session": "jold_reject_optional_practice", "Play more": "jold_accept_optional_practice"},
+            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html",
+            "info_templates_csv_en": "Optional training=tasks/JOLD_Choice/free_choice.html"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess1",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-2",
+                        "jold-4",
+                        "jold-5",
+                        "jold-6"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess2",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS",
+                    "MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-4",
+                        "jold-5",
+                        "jold-6"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess3",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "NASA-TLX",
+                    "SIMS"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-ux-questions",
+            "description": "Questionnaire d'expérience utilisateur",
+            "description_en":"User experience questionnaire",
+            "prompt": "Donnez votre avis sur l'application",
+            "prompt_en":"Give your opinion on the application",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "UEQ"
+                ]
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-profile-questions",
+            "description": "Complétez votre profil",
+            "description_en":"Complete your profile",
+            "prompt": "Complétez votre profil",
+            "prompt_en":"Complete your profile",
+            "view_name": "questionnaire",
+            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Please complete your profile=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": ["get_profil"],
+                "exclude": {
+                    "handle__in": [
+                        "prof-1",
+                        "prof-9",
+                        "prof-10"
+                    ]
+                }
+            }
+        }
+    }
+]

@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-22 11:45+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: static/js/app_LL/game.js:103
+msgid "Vaisseau prêt!"
+msgstr "Ship is ready!"
+
+#: static/js/app_LL/game.js:110
+msgid "Appuyer sur 'Entrer' pour commencer"
+msgstr "Press 'Enter' to begin"
+
+#: static/js/app_LL/game.js:116
+msgid "* le mode plein écran doit être activé"
+msgstr "* full screen mode must be activated"
+
+#: static/js/app_LL/game.js:124
+msgid "Le vaisseau a atterri!"
+msgstr "The ship has been landed!"
+
+#: static/js/app_LL/game.js:125
+msgid "Le vaisseau s'est écrasé"
+msgstr "The ship has crashed"
+
+#: static/js/app_LL/game.js:126
+msgid "Le vaisseau s'est perdu"
+msgstr "The ship has been lost"
+
+#: static/js/app_LL/game.js:127
+msgid "En pause"
+msgstr "Paused"
+
+#: static/js/app_LL/game.js:128
+msgid "Fin de la session"
+msgstr "Time is up"
+
+#: static/js/app_LL/game.js:181
+msgid "Plein écran"
+msgstr "Full screen"
+
+#: static/js/app_LL/game.js:185
+msgid "Terminer"
+msgstr "Terminate"
+
+#: static/js/app_LL/game.js:523 static/js/app_LL/game.js:638
+msgid "Session interrompue"
+msgstr "Interruption"
+
+#: static/js/app_LL/game.js:524 static/js/app_LL/game.js:575
+#: static/js/app_LL/game.js:639
+msgid "Appuyer sur 'Entrée' pour continuer"
+msgstr "Press 'Enter' to continue"
+
+#: static/js/app_LL/game.js:626
+msgid "Cliquez sur 'Terminer' pour continuer l'expérience"
+msgstr "Click on 'Terminate' to continue the experiment"
+
+#: static/js/app_LL/game.js:642
+msgid "Continuer ?"
+msgstr "Continue?"
+
+#: static/js/app_LL/game.js:644
+msgid ""
+"Cette session n'est pas encore terminée. Nous ne serons pas en mesure "
+"d'utiliser vos résultats si vous quittez maintenant. Etes-vous sûr de "
+"vouloir quitter ?"
+msgstr "This session is not yet over. We will not be able to use your results if you leave now. Are you sure you want to leave?"

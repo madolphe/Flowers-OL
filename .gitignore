@@ -7,3 +7,8 @@ Pipfile.lock
 *migrations/
 flowers-ol-db
 flowers-ol/static
+
+# Branch-specific ignores for JOLD
+flowers-ol/mot_app/*
+lib/kidlearn/*
+flowers-ol/mot_app/

@@ -192,7 +192,7 @@ def end_task(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def fork_super(request):
-    s = Study.objects.get(name='demo')
+    s = Study.objects.get(name='jold_ll')
     try:
         participant = request.user.participantprofile
     except Exception:
@@ -239,7 +239,6 @@ def home_super(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def reset_user_participant(request):
-    s = Study.objects.get(name='demo')
     request.user.participantprofile.delete()
     request.user.participantprofile = None
     request.user.save()
