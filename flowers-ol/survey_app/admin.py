@@ -4,8 +4,8 @@ from manager_app.utils import ExportCsvMixin
 
 
 class AnswerAdmin(admin.ModelAdmin, ExportCsvMixin):
-    list_display = ('__str__', 'participant', 'question', 'session', 'value')
-    list_filter = ['participant']
+    list_display = ('__str__', 'participant', 'question', 'session', 'value','study')
+    list_filter = ['participant','study','session']
     actions = ["export_as_csv"]
 
 
