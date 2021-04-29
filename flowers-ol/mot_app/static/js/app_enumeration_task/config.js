@@ -44,13 +44,16 @@ let flag_break = true;
 let count_break = 0;
 let max_break = 4;
 
-let num_rep_main = 5; 
-let num_rep_practice = 1; 
-let array_stimcond_main = [5,6,7,8,9]; //Experimental condition. 
-let array_stimcond_practice = [3,4,5]; //Experimental condition. 
+//let num_rep_main = 5;
+let num_rep_main = 1;
+let num_rep_practice = 1;
+let array_stimcond_main = [5,6,7,8,9]; //Experimental condition.
+let array_stimcond_practice = [3,4,5]; //Experimental condition.
 let time_stimduration_main = 50; //in ms Green & Bavelier (2006)
 let time_stimduration_practice = 1000; //in ms Green & Bavelier (2006)
+//let time_stimduration_practice = 0.1000; //in ms Green & Bavelier (2006)
 let time_maskduration = 1000; //in ms
+//let time_maskduration = 0.1000; //in ms
 
 //object condition
 let size_obj = Math.round(0.5*ppd); //in pix. in diameter

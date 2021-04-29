@@ -4,8 +4,8 @@ class progressBar{
         this.nb_ticks = 8;
         this.box_width = 350;
         this.box_height = 50;
-        this.box_x = 50;
-        this.box_y = 50;
+        this.box_x = 10;
+        this.box_y = 30;
         this.step_size = this.box_width / (this.nb_ticks + 1);
         this.circle_diameter = 24;
         this.middle_box_y = this.box_y + this.box_height/2 ;
@@ -20,7 +20,6 @@ class progressBar{
         this.margin_text = 10;
     }
     draw(){
-        this.draw_background();
         this.draw_backbone_bar();
         this.draw_circles();
         this.draw_active_task();
