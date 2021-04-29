@@ -11,7 +11,7 @@ input[type=range] {
     margin: 13.8px 0;
     background-color: transparent;
     -webkit-appearance: none;
-    cursor: grab;
+    cursor: pointer;
   }
   input[type=range]:focus {
     outline: none;
@@ -72,10 +72,14 @@ input[type=range] {
     background: #505096;
     color: white;
   }
+  button:focus{
+    outline: none
+  }
   .ticks {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  pointer-events: none;
   }
   .tick {
     position: relative;

@@ -8,6 +8,7 @@ function scene_instruction(){
       fill(col_text);
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_start, Pos.center_x, Pos.center_y);
       pop();
     }
@@ -60,7 +61,7 @@ function make_pos(Objs){
   let flag_overlap = false;
   while (Obj.length < 1){
     let x = int((Pos.center_x)-(roi_obj/2)) + int(random(roi_obj));
-    let y = int((Pos.center_y)-(roi_obj/2)) + int(random(roi_obj));
+    let y = int((pos_tutorialimage_y1)-(roi_obj/2)) + int(random(roi_obj));
     for (j=0;j < Objs.length; j++){
       flag_overlap = false;
       let d = dist(x,y,Objs[j].x,Objs[j].y);
@@ -106,6 +107,7 @@ function scene_response(){
   fill(col_text);
   textSize(size_text);
   textAlign(CENTER);
+  textFont(text_font);
   text( "How many circles are presented?", x_answer, y_answer);
   pop();
 
@@ -188,6 +190,7 @@ function scene_end(){
   noStroke();
   textSize(size_text);
   textAlign(CENTER);
+  textFont(text_font);
   text( text_end, Pos.center_x, Pos.center_y);
   pop();
 }

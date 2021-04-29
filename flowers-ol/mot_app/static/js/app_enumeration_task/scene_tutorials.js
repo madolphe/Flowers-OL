@@ -1,12 +1,12 @@
 // scene 6
 function scene_tutorial1(){
-    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y, window_availw/2,1.5*window_availh/4)
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 2.5*ppd, 8*ppd,2*ppd);
     //Title
     push();
     fill(col_titletext);
     textSize(size_titletext);
-    textFont(gill_font);
+    textFont(text_font);
     textAlign(CENTER);
     text( text_title_0, pos_title_x, pos_title_y);
     pop();
@@ -15,7 +15,7 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    textFont(gill_font);
+    textFont(text_font);
     text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text, window_availw/2);
     text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text, window_availw/2);
     text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y, window_availw/2);
@@ -48,20 +48,24 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
+    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
     demo_img0();
     //text
     push();
     fill(col_tutorialtext);
+    textFont(text_font);
     textSize(size_tutorialtext);
     textAlign(CENTER);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
     pop();
+    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
+
 
     //buttons
     button_next.mousePressed(()=>{
-        sel.position(Pos.center_x-(size_slider_w/2), y_response);
+        sel.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1);
         sel.show();
-        div_ticks.position(Pos.center_x-(size_slider_w/2), y_response + shift_div_ticks);
+        div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
         array_span.forEach(element => element.show());
         Time.update_tutorial_next();
@@ -89,13 +93,17 @@ function demo_img0(){
 
 // scene 8
 function scene_tutorial3(){
+    draw_character(researcher_1, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
     //image
     push();
     fill(col_answer);
     textSize(size_answer);
-    noStroke();
+    textFont(text_font);
+    stroke('black');
+    strokeWeight(3);
     textAlign(CENTER);
-    text("%d".replace("%d",sel.value()), Pos.center_x, Pos.center_y+(size_answer/2));;
+    text("%d".replace("%d",sel.value()), Pos.center_x, pos_answer_y2);
     pop();
 
     //text
@@ -121,8 +129,7 @@ function scene_tutorial3(){
         sel.hide();
         div_ticks.hide();
         array_span.forEach(element => element.hide());
-        button_start.show();
-        Time.update_tutorial_previous();    
+        Time.update_tutorial_previous();
         });
 }
 // scene 9
@@ -132,15 +139,16 @@ function scene_tutorial4(){
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
+    textFont(text_font);
     textAlign(CENTER);
     text(text_tutorial_3_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 
     //buttons
     button_previous.mousePressed(()=>{
-        sel.position(Pos.center_x-(size_slider_w/2), y_response);
+        sel.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1);
         sel.show();
-        div_ticks.position(Pos.center_x-(size_slider_w/2), y_response + shift_div_ticks);
+        div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
         array_span.forEach(element => element.show());
         button_next.show();
@@ -172,6 +180,7 @@ function scene_tutorial5(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
+    textFont(text_font);
     text(text_tutorial_4_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 

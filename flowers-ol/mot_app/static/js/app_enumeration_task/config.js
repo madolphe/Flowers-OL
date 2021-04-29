@@ -19,10 +19,11 @@ let ppd = get_ppd(viewer_dist, screen_params);
 //////////////////////////Monitor 
 
 // Characters:
-let researcher_1_path = 'static/images/pre-post-imgs/tutorial/researcher1.png';
-let researcher_2_path = 'static/images/pre-post-imgs/tutorial/researcher2.png';
-let bubble_path = 'static/images/pre-post-imgs/tutorial/bubble.png';
-let researcher_1, researcher_2;
+let researcher_1_path = 'static/images/researcher/researcher_1.png';
+let researcher_2_path = 'static/images/researcher/researcher_2.png';
+let researcher_3_path = 'static/images/researcher/researcher_3.png';
+let bubble_path = 'static/images/pre-post-imgs/tutorial/bubble_line.png';
+let researcher_1, researcher_2,researcher_3;
 let researcher_width = window_availw/4;
 let researcher_height = researcher_width;
 let bubble_img;
@@ -95,8 +96,8 @@ let size_text_button = Math.round(1*ppd);
 
 let x_answer = Pos.center_x; //in pixel
 let y_answer = Pos.center_y-Math.round(3*ppd);; //in pixel
-let col_answer = [164,72,72];;
-let size_answer = Math.round(4*ppd);;
+let col_answer = [164,72,72];
+let size_answer = Math.round(4*ppd);
 
 let tick_slider = Math.round(0.8*ppd);
 let tick_slider_width = Math.round(0.1*ppd);
