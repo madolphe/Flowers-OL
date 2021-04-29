@@ -132,3 +132,26 @@ function draw_background_bubble(x, y, w, h){
     pop();
 
 }
+function post(path, params, method='post') {
+    // Function to ask for parameters of new episode
+    // first create an hidden form:
+    let form = document.getElementById('request');
+    form.method = method;
+    form.action = path;
+    // Pass all parameters needed:
+    for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          const hiddenField = document.createElement('input');
+          hiddenField.type = 'hidden';
+          hiddenField.name = key;
+          hiddenField.value = params[key];
+          form.appendChild(hiddenField)}
+    }
+    document.body.appendChild(form);
+    form.submit();
+}
+p5.Vector.prototype.reflect = function reflect(surfaceNormal) {
+    // First normalize normal:
+    surfaceNormal.normalize();
+   return this.sub(surfaceNormal.mult(2 * this.dot(surfaceNormal)));
+};
