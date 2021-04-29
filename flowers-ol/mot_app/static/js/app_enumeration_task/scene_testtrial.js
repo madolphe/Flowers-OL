@@ -183,11 +183,13 @@ function active_button(){
 
 // scene 5
 function scene_end(){
+  push();
   fill(col_text);
   noStroke();
   textSize(size_text);
   textAlign(CENTER);
   text( text_end, Pos.center_x, Pos.center_y);
+  pop();
 }
 
 

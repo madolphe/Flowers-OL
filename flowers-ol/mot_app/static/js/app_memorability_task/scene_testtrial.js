@@ -41,15 +41,28 @@ function scene_instruction(){
       push();
       //image(Imgs[0],CANVAS_WIDTH,CANVAS_HEIGHT);    
       
-      if (Params.array_stim[Params.ind_stimcond]==0){
-        Imgs_filler[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
-        image(Imgs_filler[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
-      }else if (Params.array_stim[Params.ind_stimcond]==1){
-        Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
-        image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
-      }else if (Params.array_stim[Params.ind_stimcond]==2){
-        Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
-        image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+      if (flag_practice==true){
+        if (Params.array_stim[Params.ind_stimcond]==0){
+          Imgs_filler_tutorial[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_filler_tutorial[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }else if (Params.array_stim[Params.ind_stimcond]==1){
+          Imgs_targ_tutorial[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_targ_tutorial[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }else if (Params.array_stim[Params.ind_stimcond]==2){
+          Imgs_targ_tutorial[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_targ_tutorial[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }
+      }else{
+        if (Params.array_stim[Params.ind_stimcond]==0){
+          Imgs_filler[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_filler[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }else if (Params.array_stim[Params.ind_stimcond]==1){
+          Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }else if (Params.array_stim[Params.ind_stimcond]==2){
+          Imgs_targ[Params.trial_stimind[Params.ind_stimcond]].resize(size_rescale, size_rescale);
+          image(Imgs_targ[Params.trial_stimind[Params.ind_stimcond]],(Pos.center_x)-(size_rescale/2),(Pos.center_y)-(size_rescale/2));
+        }
       }
       //console.log(Params.array_stim[Params.ind_stimcond])
       pop();     
@@ -97,17 +110,21 @@ function scene_instruction(){
     if (mouseIsPressed) {
       Time.update();
     } else {
+      push();
       fill(col_text);
       noStroke();
       textSize(size_text);
       textAlign(CENTER);
       text( text_end, Pos.center_x, Pos.center_y);
+      pop();
     }
   }
   
   function create_end_button(){
     button_end = createButton('END');
-    button_end.position(x_ok+Pos.center_x, y_ok+Pos.center_y);
+    button_end.size(size_end_w,size_end_h);
+    button_end.style('font-size', size_end_text + 'px');
+    button_end.position(x_end, y_end);
     button_end.mousePressed(quit_task);
     button_end.hide();
   }

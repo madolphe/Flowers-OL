@@ -130,7 +130,7 @@ function demo_img1(){
 // scene 8_1
 function scene_tutorial3_1(){
     //image
-    //demo_img2();
+    demo_img2();
 
     //text
     push();
@@ -159,6 +159,11 @@ function scene_tutorial3_1(){
         });
 }
 
+function demo_img2(){
+    for (let i=0;i<4;i++){
+        Buttons[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
+    }
+}
 
 // scene 9
 function scene_tutorial4(){
@@ -202,7 +207,7 @@ function scene_tutorial4(){
         Params.num_rep = num_rep_practice;
         Params.time_stimduration = time_stimduration_practice;
         Params.initialize();
-        Time.start();    
+        Time.start();
         });    
 }
 
@@ -229,7 +234,7 @@ function scene_tutorial5(){
         Params = new ParameterManager();
         Params.num_rep = num_rep_main;
         Params.time_stimduration = time_stimduration_main;
-        flag_practice = true;
+        flag_practice = false;
         flag_break = true;
         Time.start();    
         });    
@@ -247,7 +252,9 @@ function scene_break(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        tmp_save();
         Params = new ParameterManager();
+        tmp_connect();
         Params.num_rep = num_rep_main;
         Params.time_stimduration = time_stimduration_main;
         flag_practice = false;
@@ -259,4 +266,28 @@ function scene_break(){
         }
         Time.start();    
         });    
+}
+
+let tmp1 = [];
+let tmp2 = [];
+let tmp3 = [];
+let tmp4 = [];
+let tmp5 = [];
+let tmp6 = [];
+
+function tmp_save(){
+    tmp1 = Params.results_responses_pos;
+    tmp2 = Params.results_responses_fix;
+    tmp3 = Params.results_rt;
+    tmp4 = Params.results_targetvalue_stim;
+    tmp5 = Params.results_targetvalue_fixation;
+    tmp6 = Params.results_target_distance;
+}
+function tmp_connect(){
+    Params.results_responses_pos.push(tmp1);
+    Params.results_responses_fix.push(tmp2);
+    Params.results_rt.push(tmp3);
+    Params.results_targetvalue_stim.push(tmp4);
+    Params.results_targetvalue_fixation.push(tmp5);
+    Params.results_target_distance.push(tmp6);
 }

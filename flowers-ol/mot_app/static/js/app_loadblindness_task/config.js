@@ -33,9 +33,9 @@ let img_bkg;
 let flag_practice = true;
 let flag_break = true;
 let count_break = 0;
-let max_break = 1;
+let max_break = 2;
 
-let num_rep_main = 20; 
+let num_rep_main = 10; 
 let num_rep_practice = 2;
 
 let time_stimduration_main = 50; //in ms Mani et al., (2005)
@@ -57,7 +57,7 @@ let col_bkg = 0;
 let len_fixation = Math.round(0.5*ppd); // in pix
 let col_fixation = 20; // in rgb
 let thick_fixation = Math.round(0.1*ppd); // in pix
-let length_longer = Math.round(0.25*ppd); //in pix
+let length_longer = Math.round(0.2*ppd); //in pix
 
 // text 
 let col_text = 255;

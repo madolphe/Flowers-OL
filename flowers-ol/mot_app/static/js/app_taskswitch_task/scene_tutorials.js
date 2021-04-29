@@ -201,7 +201,9 @@ function scene_break(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        tmp_save();
         Params = new ParameterManager();
+        tmp_connect();
         Params.num_rep = num_rep_main;
         flag_practice = false;
         count_break ++;
@@ -212,4 +214,22 @@ function scene_break(){
         }
         Time.start();    
         });    
+}
+
+let tmp1 = [];
+let tmp2 = [];
+let tmp3 = [];
+let tmp4 = [];
+
+function tmp_save(){
+    tmp1 = Params.results_responses;
+    tmp2 = Params.results_rt;
+    tmp3 = Params.results_rt;
+    tmp4 = Params.results_rt;
+}
+function tmp_connect(){
+    Params.results_responses.push(tmp1);
+    Params.results_rt.push(tmp2);
+    Params.results_ind_switch.push(tmp3);
+    Params.results_indtask.push(tmp4);
 }

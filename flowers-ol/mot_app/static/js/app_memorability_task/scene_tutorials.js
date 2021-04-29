@@ -155,7 +155,7 @@ function scene_tutorial5(){
     button_start.mousePressed(()=>{
         Params = new ParameterManager();
         flag_practice = false;
-        flag_break = true;  
+        flag_break = false;  
         
         button_start.hide();
         flag_practice = true;
@@ -175,9 +175,9 @@ function scene_break(){
 
     //buttons
     button_start.mousePressed(()=>{
+        tmp_save();
         Params = new ParameterManager();
-        flag_practice = false;
-        flag_break = true;  
+        tmp_connect();
         
         button_start.hide();
         flag_practice = false;
@@ -189,4 +189,25 @@ function scene_break(){
         }
         Time.start();    
         });    
+}
+
+let tmp1 = [];
+let tmp2 = [];
+let tmp3 = [];
+let tmp4 = [];
+let tmp5 = [];
+
+function tmp_save(){
+    tmp1 = Params.results_responses;
+    tmp2 = Params.results_rt;
+    tmp3 = Params.results_targetvalue;
+    tmp4 = Params.results_flagcorrect;
+    tmp5 = Params.results_stimind;
+}
+function tmp_connect(){
+    Params.results_responses.push(tmp1);
+    Params.results_rt.push(tmp2);
+    Params.results_targetvalue.push(tmp3);
+    Params.results_flagcorrect.push(tmp4);
+    Params.results_stimind.push(tmp5);
 }

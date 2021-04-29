@@ -35,9 +35,9 @@ let img_bkg;
 let flag_practice = true;
 let flag_break = true;
 let count_break = 0;
-let max_break = 1;
+let max_break = 5;
 
-let num_rep_main = 20; 
+let num_rep_main = 3; 
 let num_rep_practice = 1;
 
 let num_memory_main = [4,5,6,7]; //Experimental condition.
@@ -74,6 +74,14 @@ let x_ok = -Math.round(0*ppd);
 let y_ok = Math.round(4*ppd);
 let x_restart = -Math.round(5.5*ppd);; //in pixel
 let y_restart = -Math.round(4*ppd);; //in pixel
+
+//end button;
+let size_end_w = Math.round(2.5*ppd); //in pixel
+let size_end_h = Math.round(1.5*ppd); //in pixel
+let x_end = Pos.center_x- (size_end_w/2); //in pixel
+let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
+let size_end_text = Math.round(0.5*ppd);
+
 
 let text_start = "Please click the mouse to start this experiment";
 let text_end = "Thank you for joining the experiment.";

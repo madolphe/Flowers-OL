@@ -102,16 +102,20 @@ function scene_instruction(){
   
   // scene 3
   function scene_end(){
+    push();
     fill(col_text);
     noStroke();
     textSize(size_text);
     textAlign(CENTER);
     text( text_end, Pos.center_x, Pos.center_y);
+    pop();
   }
   
   function create_end_button(){
     button_end = createButton('END');
-    button_end.position(x_ok+Pos.center_x, y_ok+Pos.center_y);
+    button_end.size(size_end_w,size_end_h);
+    button_end.style('font-size', size_end_text + 'px');
+    button_end.position(x_end, y_end);
     button_end.mousePressed(quit_task);
     button_end.hide();
   }

@@ -88,6 +88,12 @@ let y_ok = Math.round(4*ppd);
 let x_restart = -Math.round(5.5*ppd);; //in pixel
 let y_restart = -Math.round(4*ppd);; //in pixel
 
+//end button;
+let size_end_w = Math.round(2.5*ppd); //in pixel
+let size_end_h = Math.round(1.5*ppd); //in pixel
+let x_end = Pos.center_x- (size_end_w/2); //in pixel
+let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
+let size_end_text = Math.round(0.5*ppd);
 
 
 let text_start = "Please click the mouse to start this experiment";
