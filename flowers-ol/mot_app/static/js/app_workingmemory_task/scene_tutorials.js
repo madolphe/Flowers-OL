@@ -1,6 +1,8 @@
 
 // scene 6
 function scene_tutorial1(){
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 2.5*ppd, 8*ppd,2*ppd);
     //Title
     push();
     fill(col_titletext);
@@ -13,10 +15,10 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y);
-    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
-    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y+2*shift_text);
-    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+3*shift_text);
+    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text);
+    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
+    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y);
+    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
     pop();
     //button
     button_next.mousePressed(()=>{
@@ -45,6 +47,8 @@ function create_previous_button(){
 
 // scene 7
 function scene_tutorial2(){
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 4*ppd, 8*ppd,2*ppd);
     //image
     demo_img0();
     //text
@@ -58,6 +62,7 @@ function scene_tutorial2(){
     //buttons
     button_next.mousePressed(()=>{
         show_button();
+        switch_buttons_position();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
@@ -73,14 +78,14 @@ function demo_img0(){
       for (let i=0; i < array_stimcond.length; ++i) {
         if (i==Params.count_color && i<Params.num_memory[Params.ind_stimcond]){
           push();
-          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
+          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1] - shift_tuto_y);
           fill(col_target);
           noStroke();
-          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1],size_target,size_target);
+          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]- shift_tuto_y,size_target,size_target);
           pop();
         }else{
           push();
-          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+          image(img_obj,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]- shift_tuto_y)
           pop();
         }
       }
@@ -96,6 +101,8 @@ function demo_img0(){
 
 // scene 8
 function scene_tutorial3(){
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 4*ppd, 8*ppd,2*ppd);
     //image
     demo_img1();
 
@@ -114,14 +121,16 @@ function scene_tutorial3(){
           }  
         button_next.hide();
         button_start.show();
-        Time.update_tutorial_next();    
+        Time.update_tutorial_next();
+        switch_buttons_position();
         });
     button_previous.mousePressed(()=>{
         for (let i=0; i < array_stimcond.length; ++i){
             Button[i].hide(); 
           }  
         Params = new ParameterManager();
-        Time.update_tutorial_previous();    
+        Time.update_tutorial_previous();
+        switch_buttons_position();
         });
 }
 
@@ -133,7 +142,7 @@ function demo_img1(){
           push();
           fill(col_target);
           noStroke();
-          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1],size_target,size_target);
+          rect(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1] - shift_tuto_y,size_target,size_target);
           pop();
         }
       }
@@ -141,7 +150,6 @@ function demo_img1(){
 
 // scene 9
 function scene_tutorial4(){
-
     //text
     push();
     fill(col_tutorialtext);
@@ -155,7 +163,8 @@ function scene_tutorial4(){
         show_button();
         button_next.show();
         button_start.hide();
-        Time.update_tutorial_previous();    
+        Time.update_tutorial_previous();
+        switch_buttons_position();
         });
     button_start.mousePressed(()=>{
         button_previous.hide();

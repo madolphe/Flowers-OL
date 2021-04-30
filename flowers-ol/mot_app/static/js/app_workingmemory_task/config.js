@@ -14,11 +14,21 @@ let window_availh = window.screen.availHeight;
 //let window_availw = window.screen.width;
 //let window_availh = window.screen.height;
 
-let size_screen_cm_w = 34.25; // width pixels/cm in sawayama's monitor
-//let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
+// let size_screen_cm_w = 34.25; // width pixels/cm in sawayama's monitor
+// let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
 let screen_params = window_availw/size_screen_cm_w;
 let ppd = get_ppd(viewer_dist, screen_params);
-//////////////////////////Monitor 
+//////////////////////////Monitor
+
+// Characters:
+let researcher_1_path = 'static/images/researcher/researcher_1.png';
+let researcher_2_path = 'static/images/researcher/researcher_2.png';
+let researcher_3_path = 'static/images/researcher/researcher_3.png';
+let bubble_path = 'static/images/pre-post-imgs/tutorial/bubble_line.png';
+let researcher_1, researcher_2,researcher_3;
+let researcher_width = window_availw/4;
+let researcher_height = researcher_width;
+let bubble_img;
 
 let fname_success = 'static/images/icons/success.png';
 let fname_bkg = 'static/images/pre-post-imgs/bkg_largewindow.png';

@@ -287,7 +287,7 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    task_stack = ['taskswitch', 'workingmemory', 'enumeration', 'loadblindness', 'gonogo']
+    task_stack = ['workingmemory','taskswitch','enumeration', 'loadblindness', 'gonogo']
     # random.Random(0).shuffle(task_stack)
     return task_stack
 

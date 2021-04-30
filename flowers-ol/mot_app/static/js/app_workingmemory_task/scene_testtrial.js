@@ -120,6 +120,16 @@ function scene_instruction(){
       Button[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
     }  
   }
+
+  function switch_buttons_position(){
+    var sign = 1;
+    if(Button[0].x===Params.dict_pos[Params.trial_stimcond[0]][0]){
+      sign = -1;
+    }
+    for (let i=0; i < array_stimcond.length; ++i) {
+      Button[i].position(Params.dict_pos[Params.trial_stimcond[i]][0], Params.dict_pos[Params.trial_stimcond[i]][1] + sign*shift_tuto_y);
+    }
+  }
   
   
   function record_response(){

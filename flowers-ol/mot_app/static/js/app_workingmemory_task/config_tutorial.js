@@ -3,7 +3,8 @@ let text_title_0 = "Instruction";
 let pos_title_x = Pos.center_x;
 let pos_title_y = Pos.center_y - Math.round(5*ppd);
 let size_titletext = Math.round(2.5*ppd);
-let col_titletext = [170,170,60];
+// let col_titletext = [170,170,60];
+let col_titletext = "white";
 
 //general button
 let size_next_w = Math.round(2.5*ppd); //in pixel
@@ -25,8 +26,9 @@ let text_tutorial_0_2 = "in the 12 objects. Your task is to remember the order o
 let text_tutorial_0_3 = "and to report the order after the sequence presentation is finished.";
 let pos_tutorialtext_x = Pos.center_x;
 let pos_tutorialtext_y = Pos.center_y;
-let size_tutorialtext = Math.round(0.5*ppd);
-let col_tutorialtext = [220,220,255];
+let size_tutorialtext = Math.round(0.8*ppd);
+// let col_tutorialtext = [220,220,255];
+let col_tutorialtext = "white";
 let shift_text = Math.round((1*ppd));
 
 //scene 1
@@ -35,12 +37,13 @@ let num_demotargnum = 5;
 
 let text_tutorial_1_0 = "This is the image presentation display.";
 let pos_tutorialtext_x1 = Pos.center_x;
-let pos_tutorialtext_y1 = Pos.center_y-Math.round(6*ppd);
+let pos_tutorialtext_y1 = Pos.center_y+Math.round(3*ppd);
+let shift_tuto_y = Math.round(4*ppd);
 
 //scene 2
 let text_tutorial_2_0 = "Your task is to click the buttons in order.";
 let pos_tutorialtext_x2 = Pos.center_x;
-let pos_tutorialtext_y2 = Pos.center_y-Math.round(6*ppd);
+let pos_tutorialtext_y2 = Pos.center_y+Math.round(3*ppd);
 
 //scene 3
 let text_tutorial_3_0 = "Let's start the practices.";
