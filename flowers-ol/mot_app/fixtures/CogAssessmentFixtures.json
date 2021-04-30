@@ -3,6 +3,7 @@
         "model": "mot_app.CognitiveTask",
         "pk": 1,
         "fields": {
+            "name": "gonogo",
             "name_fr": "gonogo-fr",
             "name_en": "gonogo-en",
             "view_name": "cognitive_task",
