@@ -7,6 +7,7 @@ function scene_instruction(){
       fill(col_text);
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_start, Pos.center_x, Pos.center_y);
     }
   }
@@ -68,6 +69,7 @@ function scene_instruction(){
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
+    textFont(text_font);
     text( 'Which was longer?', Pos.center_x, Pos.center_y);
     pop();
   
@@ -121,6 +123,7 @@ function scene_instruction(){
     fill(col_text);
     textSize(size_text);
     textAlign(CENTER);
+    textFont(text_font);
     text( 'Which target contrast was strong?', Pos.center_x, Pos.center_y);
     pop();
   
@@ -177,6 +180,7 @@ function scene_instruction(){
     noStroke();
     textSize(size_text);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_end, Pos.center_x, Pos.center_y);
     pop();
   }

@@ -225,7 +225,7 @@ function scene_break(){
             flag_break = true;
         }
         Time.start();    
-        });    
+        });
 }
 
 let tmp1 = [];

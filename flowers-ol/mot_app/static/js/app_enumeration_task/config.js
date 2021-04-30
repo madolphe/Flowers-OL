@@ -98,7 +98,7 @@ let size_slider_h = Math.round(2*ppd);
 let size_text_button = Math.round(1*ppd);
 
 let x_answer = Pos.center_x; //in pixel
-let y_answer = Pos.center_y-Math.round(3*ppd);; //in pixel
+let y_answer = Pos.center_y-Math.round(3*ppd); //in pixel
 let col_answer = [164,72,72];
 let size_answer = Math.round(4*ppd);
 

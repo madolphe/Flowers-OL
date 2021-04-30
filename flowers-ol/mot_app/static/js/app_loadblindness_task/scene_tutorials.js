@@ -1,11 +1,15 @@
 
 // scene 6
 function scene_tutorial1(){
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 2.5*ppd, 8*ppd,2*ppd);
+
     //Title
     push();
     fill(col_titletext);
     textSize(size_titletext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_title_0, pos_title_x, pos_title_y);
     pop();
 
@@ -13,10 +17,11 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y);
-    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
-    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y+2*shift_text);
-    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+3*shift_text);
+    textFont(text_font);
+    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text, window_availw/2);
+    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text, window_availw/2);
+    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y, window_availw/2);
+    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text, window_availw/2);
     pop();
     //button
     button_next.mousePressed(()=>{
@@ -48,17 +53,22 @@ function create_previous_button(){
 function scene_tutorial2(){
     //image
     demo_img0();
+    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
     //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
     pop();
+    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
 
     //buttons
     button_next.mousePressed(()=>{
-        Time.update_tutorial_next();  
+        Time.update_tutorial_next();
+        button_fixanswer1.position(x_fixation_answer1,y_fixation_answer-shift_imageposition); 
+        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer-shift_imageposition); 
         button_fixanswer1.show();
         button_fixanswer2.show();  
         });
@@ -72,9 +82,9 @@ function demo_img0(){
     push();
     for (let i=0;i<4;i++){
       if (i==0){
-        image(img_correct,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+        image(img_correct,Params.dict_pos[i][0],Params.dict_pos[i][1]);
       } else{
-        image(img_wrong,Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1])
+        image(img_wrong,Params.dict_pos[i][0],Params.dict_pos[i][1]);
       }     
     }
     stroke(col_fixation); // define gray scale color (0 to 255) of lines
@@ -88,27 +98,37 @@ function demo_img0(){
 function scene_tutorial3(){
     //image
     demo_img1();
+    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
 
     //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_tutorial_2_0, pos_tutorialtext_x2, pos_tutorialtext_y2);
     pop();
+    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
+
 
     //buttons
     button_next.mousePressed(()=>{
         Time.update_tutorial_next();
         button_fixanswer1.hide();
         button_fixanswer2.hide();
+        button_fixanswer1.position(x_fixation_answer1,y_fixation_answer); 
+        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer); 
+        /*
         for (let i=0;i<4;i++){
               Buttons[i].show();
           }
+        */
         });
     button_previous.mousePressed(()=>{
         button_fixanswer1.hide();
         button_fixanswer2.hide();
+        button_fixanswer1.position(x_fixation_answer1,y_fixation_answer); 
+        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer); 
         Time.update_tutorial_previous();    
         });
 }
@@ -119,42 +139,52 @@ function demo_img1(){
     push();
     stroke(col_fixation); // define gray scale color (0 to 255) of lines
     strokeWeight(thick_fixation);
-    line(x_ans1[0],x_ans1[1],x_ans1[2],x_ans1[3]);
-    line(y_ans1[0],y_ans1[1],y_ans1[2],y_ans1[3]);
+    line(x_ans1[0],x_ans1[1]-shift_imageposition,x_ans1[2],x_ans1[3]-shift_imageposition);
+    line(y_ans1[0],y_ans1[1]-shift_imageposition,y_ans1[2],y_ans1[3]-shift_imageposition);
   
-    line(x_ans2[0],x_ans2[1],x_ans2[2],x_ans2[3]);
-    line(y_ans2[0],y_ans2[1],y_ans2[2],y_ans2[3]);
+    line(x_ans2[0],x_ans2[1]-shift_imageposition,x_ans2[2],x_ans2[3]-shift_imageposition);
+    line(y_ans2[0],y_ans2[1]-shift_imageposition,y_ans2[2],y_ans2[3]-shift_imageposition);
    pop();
 }
 
 // scene 8_1
 function scene_tutorial3_1(){
     //image
-    demo_img2();
+    //demo_img2();
+    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
 
     //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_2_1, pos_tutorialtext_x2, pos_tutorialtext_y2);
+    textFont(text_font);
+    text( text_tutorial_2_1, pos_tutorialtext_x2, pos_tutorialtext_y2-shift_text);
+    text( text_tutorial_2_2, pos_tutorialtext_x2, pos_tutorialtext_y2);
     pop();
+    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
 
     //buttons
     button_next.mousePressed(()=>{
         button_next.hide();
         button_start.show();
+        /*
         for (let i=0;i<4;i++){
             Buttons[i].hide();
         }
+        */
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
+        button_fixanswer1.position(x_fixation_answer1,y_fixation_answer-shift_imageposition); 
+        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer-shift_imageposition); 
         button_fixanswer1.show();
         button_fixanswer2.show();
+        /*
         for (let i=0;i<4;i++){
             Buttons[i].hide();
         }
+        */
         Time.update_tutorial_previous();    
         });
 }
@@ -173,6 +203,7 @@ function scene_tutorial4(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
+    textFont(text_font);
     text(text_tutorial_3_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 
@@ -180,14 +211,9 @@ function scene_tutorial4(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_3_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
-    pop();
-
-    push();
-    fill(col_tutorialtext);
-    textSize(size_tutorialtext);
-    textAlign(CENTER);
-    text( text_tutorial_3_2, pos_tutorialtext_x, pos_tutorialtext_y);
+    textFont(text_font);
+    text( text_tutorial_3_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text, window_availw/2);
+    text( text_tutorial_3_2, pos_tutorialtext_x, pos_tutorialtext_y, window_availw/2);
     pop();
 
 
@@ -195,9 +221,11 @@ function scene_tutorial4(){
     button_previous.mousePressed(()=>{
         button_next.show();
         button_start.hide();
+        /*
         for (let i=0;i<4;i++){
             Buttons[i].show();
         }
+        */
         Time.update_tutorial_previous();    
         });
     button_start.mousePressed(()=>{
