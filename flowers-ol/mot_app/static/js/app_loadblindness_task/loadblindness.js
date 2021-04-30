@@ -2,14 +2,14 @@
 function preload() {
   img_bkg = loadImage(fname_bkg);
   success = loadImage(fname_success);
-  
+
   researcher_1 = loadImage(researcher_1_path);
   researcher_2 = loadImage(researcher_2_path);
   researcher_3 = loadImage(researcher_3_path);
   bubble_img = loadImage(bubble_path);
 
-  gill_font_light = loadFont('../font/gillsansstd/GillSansStd-Light.otf');
-  gill_font = loadFont('../font/gillsansstd/GillSansStd.otf');
+  gill_font_light = loadFont('static/font/gillsansstd/GillSansStd-Light.otf');
+  gill_font = loadFont('static/font/gillsansstd/GillSansStd.otf');
 }
 
 //p5.js initializing.

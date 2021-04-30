@@ -7,6 +7,7 @@ function scene_instruction(){
       fill(col_text);
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_start, Pos.center_x, (Pos.center_y)+(size_text/2));
     }
   }
@@ -115,6 +116,7 @@ function scene_instruction(){
       noStroke();
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_end, Pos.center_x, Pos.center_y);
       pop();
     }

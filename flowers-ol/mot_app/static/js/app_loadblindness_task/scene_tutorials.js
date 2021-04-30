@@ -253,6 +253,7 @@ function scene_tutorial5(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
+    textFont(text_font);
     text(text_tutorial_4_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 
@@ -274,6 +275,7 @@ function scene_break(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
+    textFont(text_font);
     text(text_tutorial_5_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 

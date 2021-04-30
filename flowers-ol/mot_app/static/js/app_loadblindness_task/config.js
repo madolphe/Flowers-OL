@@ -21,10 +21,10 @@ let ppd = get_ppd(viewer_dist, screen_params);
 //////////////////////////Monitor 
 
 // Characters:
-let researcher_1_path = '../img/researcher/researcher_1.png';
-let researcher_2_path = '../img/researcher/researcher_2.png';
-let researcher_3_path = '../img/researcher/researcher_3.png';
-let bubble_path = '../img/bubble_line.png';
+let researcher_1_path = 'static/images/researcher/researcher_1.png';
+let researcher_2_path = 'static/images/researcher/researcher_2.png';
+let researcher_3_path = 'static/images/researcher/researcher_3.png';
+let bubble_path = 'static/images/pre-post-imgs/tutorial/bubble_line.png';
 let researcher_1, researcher_2,researcher_3;
 let researcher_width = window_availw/4;
 let researcher_height = researcher_width;
