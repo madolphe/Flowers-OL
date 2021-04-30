@@ -14,9 +14,10 @@
 {% endblock %}
 
 {% block js%}
+
     {% get_current_language as LANGUAGE_CODE %}
     <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
-    <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    <script> size_screen_cm_w = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
     <script src="{% static 'js/utils/screen_params.js' %}"></script>
     <script src="{% static 'js/utils/utils.js' %}"></script>
 
