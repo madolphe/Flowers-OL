@@ -2,6 +2,10 @@
 function preload() {
   img_bkg = loadImage(fname_bkg);
   success = loadImage(fname_success);
+  researcher_1 = loadImage(researcher_1_path);
+  researcher_2 = loadImage(researcher_2_path);
+  researcher_3 = loadImage(researcher_3_path);
+  bubble_img = loadImage(bubble_path);
 }
 
 //p5.js initializing.
@@ -15,8 +19,6 @@ function setup() {
   create_next_button();
   create_previous_button();
   create_start_button();
-
-  bar = new progressBar(5);
 }
 
 //p5.js frame animation.

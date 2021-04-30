@@ -13,11 +13,14 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
-    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y);
-    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
-    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y+2*shift_text);
-    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+3*shift_text);
+    textFont(text_font);
+    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text);
+    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
+    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y);
+    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
     pop();
+    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 2*ppd, 8*ppd,2*ppd);
     //button
     button_next.mousePressed(()=>{
         button_previous.show();
@@ -54,6 +57,8 @@ function scene_tutorial2(){
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
     text( text_tutorial_1_1, pos_tutorialtext_x1, pos_tutorialtext_y1+shift_text);
     pop();
+    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + 2*ppd, 8*ppd,2*ppd);
 
     //buttons
     button_next.mousePressed(()=>{
@@ -74,9 +79,9 @@ function demo_img0(){
     noStroke();
     textAlign(CENTER);
     if (tmp_time%2==0){
-        text("3", Pos.center_x, (Pos.center_y)+(size_target/2));
+        text("3", Pos.center_x, pos_tutorialimage_y1);
     }else {
-        text("7", Pos.center_x, (Pos.center_y)+(size_target/2));
+        text("7", Pos.center_x, pos_tutorialimage_y1);
     }
     pop();
 }
@@ -92,8 +97,8 @@ function scene_tutorial3(){
     textAlign(CENTER);
     text( text_tutorial_2_0, pos_tutorialtext_x2, pos_tutorialtext_y2);
     pop();
-
-
+    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, Pos.center_y + ppd, 8*ppd,2*ppd);
     //buttons
     button_next.mousePressed(()=>{
         button_next.hide();
@@ -114,9 +119,9 @@ function demo_img1(){
     noStroke();
     textAlign(CENTER);
     if (tmp_time%2==0){
-        text("5", Pos.center_x, (Pos.center_y)+(size_target/2));
+        text("5", Pos.center_x, pos_tutorialimage_y2);
     }else {
-        text("7", Pos.center_x, (Pos.center_y)+(size_target/2));
+        text("7", Pos.center_x, pos_tutorialimage_y2);
     }
     pop();
 }
