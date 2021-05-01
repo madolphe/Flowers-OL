@@ -4,14 +4,22 @@ button:hover{
 #pre_post_panel{
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    padding-bottom: 2%;
+    height: 100%;
+    margin-left: 30%;
+    position: absolute;
+    overflow-y: scroll;
+    width: 70%;
 }
 .img_instructions{
     flex: 1;
     padding: 20px;
+    margin: 0;
 }
 #img_researcher_pre_post{
-    width: 50%;
-    height: 60%;
+    width: 350px;
+    height: 340px;
     align-self: center;
 }
 .instructions_container{
@@ -32,7 +40,7 @@ button:hover{
     height: 20px;
     left: -50px;
     position: relative;
-    top: -400px;
+    top: -275px;
     transform:             rotate( 45deg );
         -moz-transform:    rotate( 45deg );
         -ms-transform:     rotate( 45deg );

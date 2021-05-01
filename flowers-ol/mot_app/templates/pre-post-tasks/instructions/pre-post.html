@@ -33,11 +33,11 @@
             <p class="btn logout">{% trans "Se déconnecter" %}</p>
         </div>
     </div>
-    <div class="main-panel" id="pre_post_panel">
+    <div id="pre_post_panel">
         <div class="row img_instructions">
         {% if CONTEXT.current_task %}
-            <div class="container d-flex">
-                <img id="img_researcher_pre_post" src="{% static 'images/researcher/researcher_shadow.png' %}" style="width: 50%">
+            <div class="container d-flex justify-content-center">
+                <img id="img_researcher_pre_post" src="{% static 'images/researcher/researcher_shadow.png' %}">
                 <div class="container instructions_container bubble bubble-bottom-left">
                     <div class="row d-flex justify-content-center">
                         <h3>Thank you to be here,</h3>
