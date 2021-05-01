@@ -246,7 +246,7 @@ def cognitive_assessment_home(request):
     current_task_object = get_current_task_context(participant, idx_task)
     # 3 use cases: play / time for break / time to stop
     if current_task_object is not None and not participant.extra_json['cognitive_tests_break']:
-        return launch_task(request, participant, current_task_object)
+        return launch_task(request, participant, current_task_object, idx_task)
     elif current_task_object is not None:
         return exit_for_break(participant)
     else:
@@ -317,7 +317,7 @@ def update_task_index(participant):
     participant.save()
 
 
-def launch_task(request, participant, current_task_object):
+def launch_task(request, participant, current_task_object, idx_task):
     # No break + still tasks to play:
     # The task results will have to be stored right after coming back to this view
     participant.extra_json['task_to_store'] = True
@@ -327,7 +327,8 @@ def launch_task(request, participant, current_task_object):
                   'pre-post-tasks/instructions/pre-post.html',
                   {'CONTEXT': {'participant': participant,
                                'current_task': current_task_object,
-                               'screen_params': screen_params}})
+                               'screen_params': screen_params,
+                               'index_task': idx_task}})
 
 
 def exit_for_break(participant):

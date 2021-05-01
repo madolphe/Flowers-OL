@@ -7,8 +7,9 @@ function preload(){
 function setup(){
     let cnv = createCanvas(400, 90);
     cnv.parent("progress_bar");
-    bar = new progressBar(5);
+    bar = new progressBar(index_task);
 }
 function draw(){
+    frameRate(1);
     bar.draw();
 }
