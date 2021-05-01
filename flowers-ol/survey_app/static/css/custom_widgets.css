@@ -317,6 +317,12 @@
     border-radius: 10px;
     background-color: #F4F5F7;
 }
+.question-header {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
 .question-prompt {
     /* border: 1px solid cyan; */
     flex-basis: 35%;

@@ -156,3 +156,5 @@ def get_custom_widget(question_object, num):
         return DateInput()
     elif question_object.widget == 'multiple-widget':
         return CustomMultiWidget()
+    elif question_object.widget == 'custom-header':
+        return None
