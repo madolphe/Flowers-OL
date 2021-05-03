@@ -2,6 +2,14 @@
     {
         "model": "manager_app.Task",
         "fields": {
+            "name": "mot-consent",
+            "description": "Informed consent",
+            "view_name": "mot_consent_page"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
             "name": "additional-profile-general",
             "description": "Profil général",
             "prompt": "Commencer",
