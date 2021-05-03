@@ -8,11 +8,11 @@ from .models import SecondaryTask, Episode
 from manager_app.models import ParticipantProfile
 from survey_app.models import Question, Answer
 from survey_app.forms import QuestionnaireForm
-from \
-    manager_app.utils import add_message
+from manager_app.utils import add_message
 from .utils import assign_mot_condition
 from .sequence_manager.seq_manager import MotParamsWrapper
 from .models import CognitiveTask, CognitiveResult
+from .forms import ConsentForm
 
 from collections import defaultdict
 import json
@@ -24,6 +24,24 @@ from kidlearn_lib import functions as func
 
 # ### Views and utilities for mot_app-task ###
 NUMBER_OF_TASKS_PER_BATCH = 2
+
+
+@login_required
+def mot_consent_page(request):
+    user = request.user
+    participant = user.participantprofile
+    form = ConsentForm(request.POST or None, request=request)
+    if form.is_valid():
+        participant.consent = True
+        if form.cleaned_data['request_reminder']:
+            participant.remind = True
+            participant.email = form.cleaned_data['email']
+        participant.save()
+        return redirect(reverse('end_task'))
+    return render(request, 'introduction/consent_page.html', {'CONTEXT': {
+        'username': user.username,
+        'study': participant.study,
+        'form': form}})
 
 
 @login_required

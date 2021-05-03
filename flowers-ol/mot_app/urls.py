@@ -12,5 +12,6 @@ urlpatterns = [
     path('cognitive_assessment_home', views.cognitive_assessment_home, name='cognitive_assessment_home'),
     path('cognitive_task', views.cognitive_task, name='cognitive_task'),
     path('exit_view_cognitive_task', views.exit_view_cognitive_task, name='exit_view_cognitive_task'),
-    path('tutorial/<str:task_name>', views.tutorial, name="tutorial")
+    path('tutorial/<str:task_name>', views.tutorial, name="tutorial"),
+    path('mot_consent_page', views.mot_consent_page, name="mot_consent_page")
 ]
