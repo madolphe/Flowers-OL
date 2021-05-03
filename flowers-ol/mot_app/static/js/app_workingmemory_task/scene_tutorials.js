@@ -237,13 +237,19 @@ function scene_break(){
 let tmp1 = [];
 let tmp2 = [];
 let tmp3 = [];
+let tmp4 = [];
+let tmp5 = [];
 function tmp_save(){
-    tmp1 = Params.results_responses;
-    tmp2 = Params.results_targetvalue_stim;
-    tmp3 = Params.results_num_stim;
+  tmp1 = Params.results_responses;
+  tmp2 = Params.results_rt;
+  tmp3 = Params.results_targetvalue_stim;
+  tmp4 = Params.results_num_stim;
+  tmp5 = Params.results_correct;
 }
 function tmp_connect(){
-    Params.results_responses.push(tmp1);
-    Params.results_targetvalue_stim.push(tmp2);
-    Params.results_num_stim.push(tmp3);
+  Params.results_responses.push(tmp1);
+  Params.results_rt.push(tmp2);
+  Params.results_targetvalue_stim.push(tmp3);
+  Params.results_num_stim.push(tmp4);
+  Params.results_correct.push(tmp5);
 }

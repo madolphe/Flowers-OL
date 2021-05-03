@@ -8,6 +8,7 @@ function scene_instruction(){
       fill(col_text);
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_start, Pos.center_x, Pos.center_y);
       pop();
     }
@@ -67,6 +68,7 @@ function scene_instruction(){
       textSize(size_target);
       noStroke();
       textAlign(CENTER);
+      textFont(text_font);
       text("%d".replace("%d",Params.trial_stimcond[Params.ind_stimcond]), Pos.center_x, (Pos.center_y)+(size_target/2));
       pop();
     } else{
@@ -81,6 +83,7 @@ function scene_instruction(){
       noStroke();
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_end, Pos.center_x, Pos.center_y);
       pop();
   }

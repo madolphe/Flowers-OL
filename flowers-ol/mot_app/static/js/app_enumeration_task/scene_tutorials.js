@@ -64,6 +64,8 @@ function scene_tutorial2(){
     //buttons
     button_next.mousePressed(()=>{
         sel.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1);
+        let tmp = shuffle(make_array(1,max_answer,max_answer));
+        sel.value(tmp[0]);
         sel.show();
         div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
@@ -80,7 +82,7 @@ function demo_img0(){
     if (flag_disp==false){
         Objs = [];
         for (let i=0; i < num_demotargnum; ++i) {
-            Objs.push(make_pos(Objs))
+            Objs.push(make_pos_tutorial(Objs))
         };
         flag_disp=true;
     }else {
@@ -101,7 +103,7 @@ function scene_tutorial3(){
     textSize(size_answer);
     textFont(text_font);
     stroke('black');
-    strokeWeight(3);
+    strokeWeight(weight_stroke);
     textAlign(CENTER);
     text("%d".replace("%d",sel.value()), Pos.center_x, pos_answer_y2);
     pop();
@@ -147,6 +149,8 @@ function scene_tutorial4(){
     //buttons
     button_previous.mousePressed(()=>{
         sel.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1);
+        let tmp = shuffle(make_array(1,max_answer,max_answer));
+        sel.value(tmp[0]);
         sel.show();
         div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
@@ -230,11 +234,14 @@ function scene_break(){
 
 let tmp1 = [];
 let tmp2 = [];
+let tmp3 = [];
 function tmp_save(){
     tmp1 = Params.results_responses;
-    tmp2 = Params.results_targetvalue;
+    tmp2 = Params.results_rt;
+    tmp3 = Params.results_targetvalue;
 }
 function tmp_connect(){
     Params.results_responses.push(tmp1);
-    Params.results_targetvalue.push(tmp2);
+    Params.results_rt.push(tmp2);
+    Params.results_targetvalue.push(tmp3);
 }
