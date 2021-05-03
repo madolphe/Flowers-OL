@@ -7,6 +7,7 @@ function scene_instruction(){
       fill(col_text);
       textSize(size_text);
       textAlign(CENTER);
+      textFont(text_font);
       text( text_start, Pos.center_x, (Pos.center_y)+(size_text/2));
     }
   }
@@ -21,6 +22,7 @@ function scene_instruction(){
       textSize(size_instruct_txt);
       noStroke();
       textAlign(CENTER);
+      textFont(text_font);
       if (Params.ind_task ==0){
         image(img_task1,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
         image(img_instruct1,x_instruct, y_instruct);
@@ -62,6 +64,7 @@ function scene_instruction(){
       textSize(size_instruct_txt);
       noStroke();
       textAlign(CENTER);
+      textFont(text_font);
       if (Params.ind_task ==0){
         image(img_task1,Pos.center_x-(size_obj/2), Pos.center_y-(size_obj/2));
         image(img_instruct1,x_instruct, y_instruct);
@@ -79,6 +82,7 @@ function scene_instruction(){
       textSize(size_instruction);
       noStroke();
       textAlign(CENTER);
+      textFont(text_font);
       text("%d".replace("%d",Params.trial_target[0]), Pos.center_x, (Pos.center_y)+(size_instruction/2));    
       pop();
       
@@ -107,6 +111,7 @@ function scene_instruction(){
     noStroke();
     textSize(size_text);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_end, Pos.center_x, Pos.center_y);
     pop();
   }

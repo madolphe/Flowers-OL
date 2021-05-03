@@ -100,6 +100,7 @@ function scene_instruction(){
 
 
     if (Params.tmp_res_ob.length==Params.num_memory[Params.ind_stimcond]){
+      Time.count_response();
       Time.update();
     }
   }
@@ -136,7 +137,7 @@ function scene_instruction(){
     Params.flag_buttoncheck[this.value()] = 1;
     Params.order++;
     Params.tmp_res_ob.push(this.value());
-    console.log(this.value())
+    //console.log(this.value())
   }
   
   // scene 5
@@ -163,8 +164,10 @@ function scene_instruction(){
     fullscreen(false);
     let parameters_to_save = {
       'results_responses': Params.results_responses,
+      'results_rt': Params.results_rt,
       'results_targetvalue_stim': Params.results_targetvalue_stim,
-      'results_num_stim': Params.results_num_stim
+      'results_num_stim': Params.results_num_stim,
+      'results_correct': Params.results_correct
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
     /*

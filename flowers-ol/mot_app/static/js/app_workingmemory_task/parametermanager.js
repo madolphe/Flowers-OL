@@ -17,6 +17,7 @@ class ParameterManager{
       this.results_rt = [];
       this.results_targetvalue_stim = [];
       this.results_num_stim = [];
+      this.results_correct = [];
       this.initialize();  
     }
 
@@ -46,6 +47,7 @@ class ParameterManager{
     
         this.trial_stimcond = shuffle(array_stimcond); 
         this.tmp_res_ob = [];
+        this.tmp_rt = null;
         this.order = -1;  
       }
 
@@ -55,6 +57,7 @@ class ParameterManager{
         this.ind_stimcond ++;
         this.flag_load = false;
         this.tmp_res_ob = [];
+        this.tmp_rt = null;
         this.count_color = -1;
         this.order = -1;
         this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
@@ -70,6 +73,7 @@ class ParameterManager{
         //set the next block parameters
         this.flag_load = false;
         this.tmp_res_ob = [];
+        this.tmp_rt = null;
         this.count_color = -1;
         this.order = -1;
         this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
@@ -84,7 +88,19 @@ class ParameterManager{
     
       save(){
         // save the current result.
+        let tmp_ordercheck =0
+        let correct_order = make_array(0,this.tmp_res_ob.length-1,this.tmp_res_ob.length);
+        for (let i=0;i<this.tmp_res_ob.length;i++){
+        tmp_ordercheck = tmp_ordercheck+Math.abs(this.tmp_res_ob[i]-correct_order[i]);
+        }
+        if (tmp_ordercheck==0){
+          this.results_correct.push(1);
+        } else{
+          this.results_correct.push(0);
+        }
+
         this.results_responses.push(this.tmp_res_ob);
+        this.results_rt.push(this.tmp_rt);
         this.results_targetvalue_stim.push(this.trial_stimcond);
         this.results_num_stim.push(this.num_memory[this.ind_stimcond])
         //console.log('response is');

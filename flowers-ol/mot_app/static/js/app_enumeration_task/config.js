@@ -44,8 +44,7 @@ let flag_break = true;
 let count_break = 0;
 let max_break = 4;
 
-//let num_rep_main = 5;
-let num_rep_main = 1;
+let num_rep_main = 5;
 let num_rep_practice = 1;
 let array_stimcond_main = [5,6,7,8,9]; //Experimental condition.
 let array_stimcond_practice = [3,4,5]; //Experimental condition.
@@ -101,6 +100,7 @@ let x_answer = Pos.center_x; //in pixel
 let y_answer = Pos.center_y-Math.round(3*ppd); //in pixel
 let col_answer = [164,72,72];
 let size_answer = Math.round(4*ppd);
+let weight_stroke = 3;
 
 let tick_slider = Math.round(0.8*ppd);
 let tick_slider_width = Math.round(0.1*ppd);

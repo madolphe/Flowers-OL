@@ -56,7 +56,7 @@ function scene_stim(callback){
 }
 
 //make object class not overlapping with other positions.
-function make_pos(Objs){
+function make_pos_tutorial(Objs){
   let Obj = [];
   let flag_overlap = false;
   while (Obj.length < 1){
@@ -75,7 +75,28 @@ function make_pos(Objs){
     }
   }
   return Obj
-}
+  }
+  
+  function make_pos(Objs){
+    let Obj = [];
+    let flag_overlap = false;
+    while (Obj.length < 1){
+      let x = int((Pos.center_x)-(roi_obj/2)) + int(random(roi_obj));
+      let y = int((Pos.center_y)-(roi_obj/2)) + int(random(roi_obj));
+      for (j=0;j < Objs.length; j++){
+        flag_overlap = false;
+        let d = dist(x,y,Objs[j].x,Objs[j].y);
+        if (d < Objs[j].diameter){
+          flag_overlap = true;
+          break;
+        }
+      }
+      if (flag_overlap == false){
+        Obj = new DrawEllipse(size_obj,x,y)
+      }
+    }
+    return Obj
+    }
 
 class DrawEllipse {
   constructor(diameter,x,y) {
@@ -116,12 +137,15 @@ function scene_response(){
   textSize(size_answer);
   noStroke();
   textAlign(CENTER);
+  stroke('black');
+  strokeWeight(weight_stroke);
   text("%d".replace("%d",sel.value()), Pos.center_x, Pos.center_y+(size_answer/2));;
   pop();
 
   button_ok.mousePressed(()=>{
     //save the response and the stimulus condition
     Params.tmp_res_ob = sel.value();
+    Time.count_response();
     button_ok.hide();
     div_ticks.hide();
     array_span.forEach(element => element.hide());
@@ -172,6 +196,8 @@ function create_answer_button(){
 }
 
 function show_button(){
+  let tmp = shuffle(make_array(1,max_answer,max_answer));
+  sel.value(tmp[0]);
   sel.show();
   div_ticks.style('display', 'flex');
   array_span.forEach(element => element.show());
@@ -209,6 +235,7 @@ function quit_task(){
   fullscreen(false);
   let parameters_to_save = {
     'results_responses': Params.results_responses,
+    'results_rt': Params.results_rt,
     'results_targetvalue': Params.results_targetvalue
   }
   post('exit_view_cognitive_task', parameters_to_save, 'post');
