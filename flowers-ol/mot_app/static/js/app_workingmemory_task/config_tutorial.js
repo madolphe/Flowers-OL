@@ -1,5 +1,5 @@
 //general title text
-let text_title_0 = "Instruction";
+let text_title_0 = "INSTRUCTIONS";
 let pos_title_x = Pos.center_x;
 let pos_title_y = Pos.center_y - Math.round(5*ppd);
 let size_titletext = Math.round(2.5*ppd);
@@ -22,8 +22,8 @@ let size_previous_text = Math.round(0.5*ppd); //in pixel
 //scene 0 
 let text_tutorial_0_0 = "The goal of this experiment is to measure your memory ability.";
 let text_tutorial_0_1 = "On each trial, you will first see the sequence of color changes ";
-let text_tutorial_0_2 = "in the 12 objects. Your task is to remember the order of these changes"; 
-let text_tutorial_0_3 = "and to report the order after the sequence presentation is finished.";
+let text_tutorial_0_2 = "for the 12 objects. Your task is to remember these changes and "; 
+let text_tutorial_0_3 = "report their presentation order by button clicking.";
 let pos_tutorialtext_x = Pos.center_x;
 let pos_tutorialtext_y = Pos.center_y;
 let size_tutorialtext = Math.round(0.8*ppd);
@@ -35,13 +35,13 @@ let shift_text = Math.round((1*ppd));
 let flag_disp = false;
 let num_demotargnum = 5;
 
-let text_tutorial_1_0 = "This is the image presentation display.";
+let text_tutorial_1_0 = "This is an example of stimulus presentation.";
 let pos_tutorialtext_x1 = Pos.center_x;
 let pos_tutorialtext_y1 = Pos.center_y+Math.round(3*ppd);
 let shift_tuto_y = Math.round(4*ppd);
 
 //scene 2
-let text_tutorial_2_0 = "Your task is to click the buttons in order.";
+let text_tutorial_2_0 = "Your task is to click the buttons in the order you saw the color changes.";
 let pos_tutorialtext_x2 = Pos.center_x;
 let pos_tutorialtext_y2 = Pos.center_y+Math.round(3*ppd);
 

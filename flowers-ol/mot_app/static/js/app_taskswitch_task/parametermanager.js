@@ -14,6 +14,7 @@ class ParameterManager{
       this.results_rt = [];
       this.results_ind_switch = [];
       this.results_indtask = [];
+      this.results_trial_target = [];
       this.initialize();
     }
 
@@ -64,6 +65,7 @@ class ParameterManager{
       this.results_rt.push(this.tmp_rt);
       this.results_ind_switch.push(this.ind_switch[this.ind_stimcond]);
       this.results_indtask.push(this.ind_task);
+      this.results_trial_target.push(this.trial_target[0]);      
     }
   }
   

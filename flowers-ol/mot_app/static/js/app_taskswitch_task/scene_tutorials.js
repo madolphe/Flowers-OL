@@ -186,7 +186,7 @@ function scene_tutorial5(){
         button_start.hide();
         Params = new ParameterManager();
         Params.num_rep = num_rep_main;
-        flag_practice = true;
+        flag_practice = false;
         flag_break = true;
         Time.start();    
         });    
@@ -223,16 +223,19 @@ let tmp1 = [];
 let tmp2 = [];
 let tmp3 = [];
 let tmp4 = [];
+let tmp5 = [];
 
 function tmp_save(){
     tmp1 = Params.results_responses;
     tmp2 = Params.results_rt;
-    tmp3 = Params.results_rt;
-    tmp4 = Params.results_rt;
+    tmp3 = Params.results_ind_switch;
+    tmp4 = Params.results_indtask;
+    tmp5 = Params.results_trial_target;
 }
 function tmp_connect(){
     Params.results_responses.push(tmp1);
     Params.results_rt.push(tmp2);
     Params.results_ind_switch.push(tmp3);
     Params.results_indtask.push(tmp4);
+    Params.results_trial_target.push(tmp5);
 }

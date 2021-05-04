@@ -67,7 +67,7 @@ let col_bkg = 0;
 let len_fixation = Math.round(0.5*ppd); // in pix
 let col_fixation = 20; // in rgb
 let thick_fixation = Math.round(0.1*ppd); // in pix
-let length_longer = Math.round(0.2*ppd); //in pix
+let length_longer = Math.round(0.15*ppd); //in pix
 
 // text 
 let col_text = 255;

@@ -131,7 +131,8 @@ function scene_instruction(){
       'results_responses': Params.results_responses,
       'results_rt': Params.results_rt,
       'results_ind_switch': Params.results_ind_switch,
-      'results_indtask': Params.results_indtask
+      'results_indtask': Params.results_indtask,
+      'results_trial_target':Params.results_trial_target
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
     /*
