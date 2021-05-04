@@ -27,6 +27,13 @@ NUMBER_OF_TASKS_PER_BATCH = 2
 
 
 @login_required
+def general_tutorial(request):
+    user = request.user
+    participant = user.participantprofile
+    return render(request, 'introduction/general_tuto.html', {"CONTEXT": {"participant": participant}})
+
+
+@login_required
 def mot_consent_page(request):
     user = request.user
     participant = user.participantprofile

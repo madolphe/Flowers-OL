@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general_tuto.css' %}">
+    <link rel="stylesheet" href="{% static CONTEXT.participant.study.style %}">
+{% endblock %}
+
+{% block content%}
+        <div class="side-panel" style="visibility: hidden;">
+            <h2>{% trans "Salut" %}, {{CONTEXT.participant.user.username}} !</h2>
+            <p>{% trans "Ici, vous pouvez voir votre progression dans l'expérience" %}</p>
+            <div class="side-info">
+                <div class="content">
+                    {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}
+                    <div class="fade-screen"></div>
+                </div>
+            </div>
+            <div class="btn-box" id="logout-button" onclick="confirm_logout()" style="display:none">
+                <p class="btn logout">{% trans "Se déconnecter" %}</p>
+            </div>
+        </div>
+        <div class="main-panel">
+            {% if messages %}
+                {% include "includes/message.html" with ms=messages %}
+            {% endif %}
+        </div>
+        <div class="img_container">
+            <div class="subcontainer_img">
+                <img id="img_researcher_pre_post" src="{% static 'images/researcher/researcher_shadow.png' %}">
+            </div>
+            <div class="general_instructions_bubble bubble">
+                <div class="text" id="0">
+                    {% trans
+                    "Bonjour, je suis le docteur Flowers! Je serai votre accompagnant durant toute l'expérience.
+                    Tout d'abord, merci de votre participation. Avant toute chose, familiarisons nous avec l'interface."
+                    %}
+                </div>
+                <div class="text" style="display:none" id="1">
+                    {% trans
+                     "Voici maintenant la deuxieme scene :) !"
+                    %}
+                </div>
+                <div class="text" style="display:none" id="2">
+                    {% trans
+                     "Voici maintenant la troisieme scene :) !"
+                    %}
+                </div>
+                <div class="container-btn">
+                    <button class="btn" style="display:none;" value="Previous" id="previous_btn" onclick="previous_button_click()">Previous</button>
+                    <button class="btn" value="Next" id="next_btn" onclick="next_button_click()">Next</button>
+                    <button class="btn" value="Start" style="display:none;" id="start_btn">Start</button>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block js%}
+
+    {% get_current_language as LANGUAGE_CODE %}
+    <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
+    <script>
+        let step_nb = 0;
+        let next_button = document.getElementById("next_btn");
+        let previous_button = document.getElementById("previous_btn");
+        let start_button = document.getElementById("start_btn");
+        function next_button_click(){
+            step_nb ++;
+            show_side_pannel();
+            previous_button.style.display = 'inline-block';
+            if(step_nb===3){
+                start_button.style.display = 'inline-block';
+                next_button.style.display = 'none';
+            }
+            display_text_nb(step_nb);
+            hide_text_nb(step_nb-1);
+        }
+        function previous_button_click(){
+            step_nb --;
+            next_button.style.display = 'inline-block';
+            start_button.style.display = 'none';
+            if(step_nb === 0){
+                hide_side_pannel();
+                previous_button.style.display = 'none';
+            }
+            display_text_nb(step_nb);
+            hide_text_nb(step_nb+1);
+        }
+        function display_text_nb(step_nb){
+            var text_div = document.getElementById(step_nb);
+            text_div.style.display = 'inline-block';
+        }
+        function hide_text_nb(step_nb){
+            var text_div = document.getElementById(step_nb);
+            text_div.style.display = 'none';
+        }
+        function show_side_pannel(){
+            var side_pan = document.getElementsByClassName("side-panel");
+            side_pan[0].style.visibility = 'visible';
+            var char_container = document.getElementsByClassName("subcontainer_img");
+            char_container[0].style.flexGrow = "1";
+        }
+        function hide_side_pannel(){
+            var side_pan = document.getElementsByClassName("side-panel");
+            side_pan[0].style.visibility = 'hidden';
+            var char_container = document.getElementsByClassName("subcontainer_img");
+            char_container[0].style.flexGrow = "0";
+        }
+
+    </script>
+{% endblock %}

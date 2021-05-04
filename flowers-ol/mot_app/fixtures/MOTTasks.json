@@ -1,4 +1,11 @@
-[
+[    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "general-tutorial",
+            "description": "How to use the web app",
+            "view_name": "general_tutorial"
+        }
+    },
     {
         "model": "manager_app.Task",
         "fields": {
