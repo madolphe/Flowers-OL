@@ -211,6 +211,7 @@ let tmp2 = [];
 let tmp3 = [];
 let tmp4 = [];
 let tmp5 = [];
+let tmp6 = [];
 
 function tmp_save(){
     tmp1 = Params.results_responses;
@@ -218,6 +219,7 @@ function tmp_save(){
     tmp3 = Params.results_targetvalue;
     tmp4 = Params.results_flagcorrect;
     tmp5 = Params.results_stimind;
+    tmp6 = Params.results_trial;
 }
 function tmp_connect(){
     Params.results_responses.push(tmp1);
@@ -225,4 +227,5 @@ function tmp_connect(){
     Params.results_targetvalue.push(tmp3);
     Params.results_flagcorrect.push(tmp4);
     Params.results_stimind.push(tmp5);
+    Params.results_trial.push(tmp6);
 }

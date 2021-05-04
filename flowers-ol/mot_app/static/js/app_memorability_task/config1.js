@@ -61,18 +61,18 @@ let num_rep = 1;
 
 //number of lists
 let num_stimulus = 120;
-let num_targlist = 25;
-let num_fillerlist = 70;
+let num_targlist = 40;
+let num_fillerlist = 40;
 
 //Stimulus condition.
-let num_longtarget =  5;
-let dict_longtarget = [0,1,2,3,4,5,6,7,8,9];
+let num_longtarget =  8;
+let dict_longtarget = [0,1,2,3,4,5,6,7,8,9,10];
 let distance_longtarget = [100,101,102,103,104,105,106,107,108,109];
 
-let num_shorttarget = 20;
-let min_shorttarget = 1;
-let max_shorttarget = 92;
-let distance_shorttarget = [3,4,5,6,3,4,5,6,3,4,5,6,3,4,5,6,3,4,5,6];
+let num_shorttarget = 32;
+let min_shorttarget = 11;
+let max_shorttarget = 99;
+let distance_shorttarget = [2,3,4,5,2,3,4,5,2,3,4,5,2,3,4,5,2,3,4,5,2,3,4,5,2,3,4,5,2,3,4,5];
 
 let ind_targlist = make_array(0,num_targlist-1,num_targlist); 
 let ind_fillerlist = make_array(0,num_fillerlist-1,num_fillerlist); 

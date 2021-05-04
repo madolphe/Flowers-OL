@@ -138,7 +138,8 @@ function scene_instruction(){
       'results_rt': Params.results_rt,
       'results_targetvalue': Params.results_targetvalue,
       'results_flagcorrect':Params.results_flagcorrect,
-      'results_stimind':Params.results_stimind
+      'results_stimind':Params.results_stimind,
+      'results_trial':Params.results_trial
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
   /*

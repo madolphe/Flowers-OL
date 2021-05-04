@@ -18,6 +18,7 @@ class ParameterManager{
       this.results_targetvalue = [];
       this.results_flagcorrect = [];
       this.results_stimind = [];
+      this.results_trial = [];
     }
   
     initialize(){
@@ -130,6 +131,7 @@ class ParameterManager{
       this.results_targetvalue.push(this.array_stim[this.ind_stimcond]);
       this.results_flagcorrect.push(this.flag_correct)
       this.results_stimind.push(this.trial_stimind[this.ind_stimcond]);
+      this.results_trial.push(this.ind_stimcond);
   
       //console.log('response is');
       //console.log(this.tmp_res_ob);
