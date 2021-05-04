@@ -227,8 +227,8 @@ let tmp4 = [];
 function tmp_save(){
     tmp1 = Params.results_responses;
     tmp2 = Params.results_rt;
-    tmp3 = Params.results_rt;
-    tmp4 = Params.results_rt;
+    tmp3 = Params.results_ind_switch;
+    tmp4 = Params.results_indtask;
 }
 function tmp_connect(){
     Params.results_responses.push(tmp1);
