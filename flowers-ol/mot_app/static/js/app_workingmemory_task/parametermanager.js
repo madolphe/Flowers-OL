@@ -10,7 +10,7 @@ class ParameterManager{
       this.flag_buttoncheck = Array(array_stimcond.length).fill(0);
 
       this.num_rep = num_rep_main;
-      this.num_memory = num_memory_main;
+      this.num_memory = shuffle(num_memory_main);
   
       //save
       this.results_responses = [];
@@ -89,15 +89,16 @@ class ParameterManager{
       save(){
         // save the current result.
         let tmp_ordercheck =0
-        let correct_order = make_array(0,this.tmp_res_ob.length-1,this.tmp_res_ob.length);
         for (let i=0;i<this.tmp_res_ob.length;i++){
-        tmp_ordercheck = tmp_ordercheck+Math.abs(this.tmp_res_ob[i]-correct_order[i]);
+          tmp_ordercheck = tmp_ordercheck+Math.abs(this.tmp_res_ob[i]-i);
         }
         if (tmp_ordercheck==0){
           this.results_correct.push(1);
         } else{
           this.results_correct.push(0);
         }
+          //console.log(this.results_correct)
+          //console.log(tmp_ordercheck)
 
         this.results_responses.push(this.tmp_res_ob);
         this.results_rt.push(this.tmp_rt);

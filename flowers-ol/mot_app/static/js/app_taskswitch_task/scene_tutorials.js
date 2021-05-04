@@ -1,11 +1,14 @@
 
 // scene 6
 function scene_tutorial1(){
+    draw_character(researcher_2,pos_researcher_x,pos_researcher_y,researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, pos_bubble_y,size_bubble_x,size_bubble_y);
     //Title
     push();
     fill(col_titletext);
     textSize(size_titletext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_title_0, pos_title_x, pos_title_y);
     pop();
 
@@ -13,13 +16,13 @@ function scene_tutorial1(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text);
     text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
     text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y);
     text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
     pop();
-    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y + 2*ppd, 8*ppd,2*ppd);
+
     //button
     button_next.mousePressed(()=>{
         button_previous.show();
@@ -46,8 +49,8 @@ function create_previous_button(){
 
 // scene 7
 function scene_tutorial2(){
-    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y + 4*ppd, 8*ppd,2*ppd);
+    draw_character(researcher_3,pos_researcher_x,pos_researcher_y,researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x-3*shift_text, pos_bubble_y+3*shift_text,size_bubble_x,size_bubble_y);
     //image
     demo_img0();
     //text
@@ -55,6 +58,7 @@ function scene_tutorial2(){
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1+shift_text);
     text( text_tutorial_1_1, pos_tutorialtext_x1, pos_tutorialtext_y1+2*shift_text);
     text( text_tutorial_1_2, pos_tutorialtext_x1, pos_tutorialtext_y1+3*shift_text);
@@ -75,6 +79,7 @@ function demo_img0(){
     textSize(size_instruct_txt);
     noStroke();
     textAlign(CENTER);
+    textFont(text_font);
     image(img_task1,Pos.center_x-(size_obj/2), pos_image_y1);
     image(img_instruct1,x_instruct, pos_image_2_y1);
     text(text_1left,x_instruct_text1,y_instruct_text_tuto);
@@ -85,6 +90,7 @@ function demo_img0(){
     textSize(size_instruction);
     noStroke();
     textAlign(CENTER);
+    textFont(text_font);
     text("8", Pos.center_x, pos_image_y1+(size_obj/2)+(size_instruction/2));
     pop();
 
@@ -96,13 +102,14 @@ function demo_img0(){
 function scene_tutorial3(){
     //image
     demo_img1();
-    draw_character(researcher_3, window_availw/3, 0.62*window_availh, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y + 4*ppd, 8*ppd,2*ppd);
+    draw_character(researcher_2,pos_researcher_x,pos_researcher_y,researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x-3*shift_text, pos_bubble_y+3*shift_text,size_bubble_x,size_bubble_y);
     //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext);
     textAlign(CENTER);
+    textFont(text_font);
     text( text_tutorial_2_0, pos_tutorialtext_x1, pos_tutorialtext_y2+shift_text);
     text( text_tutorial_2_1, pos_tutorialtext_x1, pos_tutorialtext_y2+2*shift_text);
     text( text_tutorial_2_2, pos_tutorialtext_x1, pos_tutorialtext_y2+3*shift_text);
@@ -124,6 +131,7 @@ function demo_img1(){
     textSize(size_instruct_txt);
     noStroke();
     textAlign(CENTER);
+    textFont(text_font);
     image(img_task2,Pos.center_x-(size_obj/2), pos_image_y1);
     image(img_instruct2,x_instruct, pos_image_2_y1);
     text(text_2left,x_instruct_text1,y_instruct_text_tuto);
@@ -134,18 +142,22 @@ function demo_img1(){
     textSize(size_instruction);
     noStroke();
     textAlign(CENTER);
+    textFont(text_font);
     text("8", Pos.center_x, pos_image_y1+(size_obj/2)+(size_instruction/2));
     pop();
 }
 
 // scene 9
 function scene_tutorial4(){
+    draw_character(researcher_3, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+
 
     //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
+    textFont(text_font);
     text(text_tutorial_3_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
 
@@ -173,6 +185,8 @@ function create_start_button(){
 }
 
 function scene_tutorial5(){
+    draw_character(researcher_3, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+
     //text
     push();
     fill(col_tutorialtext);
@@ -194,12 +208,26 @@ function scene_tutorial5(){
 
 function scene_break(){
     //text
+    draw_character(researcher_3, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, pos_bubble_y2,size_bubble_x,size_bubble_y);
+    
+    //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
     text(text_tutorial_5_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    textFont(text_font);
+    text( text_tutorial_6_1, pos_tutorialtext_x, pos_tutorialtext_y2-shift_text);
+    text( text_tutorial_6_2, pos_tutorialtext_x, pos_tutorialtext_y2);
+    pop();
+
 
     //buttons
     button_start.mousePressed(()=>{

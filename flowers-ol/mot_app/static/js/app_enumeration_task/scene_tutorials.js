@@ -1,7 +1,7 @@
 // scene 6
 function scene_tutorial1(){
-    draw_character(researcher_3, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y + 2.5*ppd, 8*ppd,2*ppd);
+    draw_character(researcher_3,pos_researcher_x,pos_researcher_y,researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, pos_bubble_y,size_bubble_x,size_bubble_y);
     //Title
     push();
     fill(col_titletext);
@@ -16,10 +16,10 @@ function scene_tutorial1(){
     textSize(size_tutorialtext);
     textAlign(CENTER);
     textFont(text_font);
-    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text, window_availw/2);
-    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text, window_availw/2);
-    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y, window_availw/2);
-    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text, window_availw/2);
+    text( text_tutorial_0_0, pos_tutorialtext_x, pos_tutorialtext_y-2*shift_text);
+    text( text_tutorial_0_1, pos_tutorialtext_x, pos_tutorialtext_y-shift_text);
+    text( text_tutorial_0_2, pos_tutorialtext_x, pos_tutorialtext_y);
+    text( text_tutorial_0_3, pos_tutorialtext_x, pos_tutorialtext_y+shift_text);
     pop();
     //button
     button_next.mousePressed(()=>{
@@ -48,7 +48,7 @@ function create_previous_button(){
 // scene 7
 function scene_tutorial2(){
     //image
-    draw_character(researcher_2, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
+    draw_character(researcher_2,pos_researcher_x,pos_researcher_y,researcher_width, researcher_width);
     demo_img0();
     //text
     push();
@@ -58,14 +58,14 @@ function scene_tutorial2(){
     textAlign(CENTER);
     text( text_tutorial_1_0, pos_tutorialtext_x1, pos_tutorialtext_y1);
     pop();
-    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
+    draw_background_bubble(Pos.center_x, pos_bubble_y,size_bubble_x,size_bubble_y);
 
 
     //buttons
     button_next.mousePressed(()=>{
         sel.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1);
         let tmp = shuffle(make_array(1,max_answer,max_answer));
-        sel.value(tmp[0]);
+        sel.value(tmp[0]);  
         sel.show();
         div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
@@ -95,8 +95,8 @@ function demo_img0(){
 
 // scene 8
 function scene_tutorial3(){
-    draw_character(researcher_1, window_availw/3, 4*window_availh/5, researcher_width, researcher_width);
-    draw_background_bubble(Pos.center_x, Pos.center_y + 3*ppd, 8*ppd,2*ppd);
+    draw_character(researcher_3, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, pos_bubble_y,size_bubble_x,size_bubble_y);
     //image
     push();
     fill(col_answer);
@@ -136,6 +136,8 @@ function scene_tutorial3(){
 }
 // scene 9
 function scene_tutorial4(){
+    draw_character(researcher_2, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+
 
     //text
     push();
@@ -179,6 +181,8 @@ function create_start_button(){
 }
 
 function scene_tutorial5(){
+    draw_character(researcher_2, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+
     //text
     push();
     fill(col_tutorialtext);
@@ -204,12 +208,26 @@ function scene_tutorial5(){
 
 function scene_break(){
     //text
+    draw_character(researcher_2, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
+    draw_background_bubble(Pos.center_x, pos_bubble_y2,size_bubble_x,size_bubble_y);
+    
+    //text
     push();
     fill(col_tutorialtext);
     textSize(size_tutorialtext3);
     textAlign(CENTER);
     text(text_tutorial_5_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
+
+    push();
+    fill(col_tutorialtext);
+    textSize(size_tutorialtext);
+    textAlign(CENTER);
+    textFont(text_font);
+    text( text_tutorial_6_1, pos_tutorialtext_x, pos_tutorialtext_y2-shift_text);
+    text( text_tutorial_6_2, pos_tutorialtext_x, pos_tutorialtext_y2);
+    pop();
+
 
     //buttons
     button_start.mousePressed(()=>{
