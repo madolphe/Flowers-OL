@@ -1,5 +1,5 @@
 //general title text
-let text_title_0 = "Instruction";
+let text_title_0 = "INSTRUCTIONS";
 let pos_title_x = Pos.center_x;
 let pos_title_y = Pos.center_y - Math.round(5*ppd);
 let size_titletext = Math.round(2.5*ppd);
@@ -45,7 +45,7 @@ let pos_image_2_y1 = Pos.center_y-Math.round(2.8*ppd);
 let y_instruct_text_tuto = pos_image_2_y1 + 2*(size_instruct_txt);
 
 //scene 2
-let text_tutorial_2_0 = "When the cue is the red square background,";
+let text_tutorial_2_0 = "When the cue is the red square background, you have";
 let text_tutorial_2_1 = "to answer whether the target digit was lower or higher than 5";
 let text_tutorial_2_2 = "by using the key [F] or [J], respectively."; 
 let pos_tutorialtext_x2 = Pos.center_x;

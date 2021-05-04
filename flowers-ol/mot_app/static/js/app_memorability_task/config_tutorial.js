@@ -1,5 +1,5 @@
 //general title text
-let text_title_0 = "Instruction";
+let text_title_0 = "INSTRUCTIONS";
 let pos_title_x = Pos.center_x;
 let pos_title_y = Pos.center_y - Math.round(5*ppd);
 let size_titletext = Math.round(2.5*ppd);

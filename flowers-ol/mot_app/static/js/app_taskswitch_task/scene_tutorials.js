@@ -186,7 +186,7 @@ function scene_tutorial5(){
         button_start.hide();
         Params = new ParameterManager();
         Params.num_rep = num_rep_main;
-        flag_practice = true;
+        flag_practice = false;
         flag_break = true;
         Time.start();    
         });    
