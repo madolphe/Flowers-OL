@@ -133,6 +133,11 @@ class TimeManager{
       // Calculate the reaction time of the participant
       Params.tmp_rt = (Date.now() - this.starttime_block);
     }
+
+    count_response_fixation(){
+      // Calculate the reaction time of the participant
+      Params.tmp_rt_fixation = (Date.now() - this.starttime_block);
+    }
   
     blockstart(){
       this.starttime_block = Date.now();

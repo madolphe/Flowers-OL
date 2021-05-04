@@ -304,6 +304,7 @@ let tmp3 = [];
 let tmp4 = [];
 let tmp5 = [];
 let tmp6 = [];
+let tmp7 = [];
 
 function tmp_save(){
     tmp1 = Params.results_responses_pos;
@@ -312,6 +313,7 @@ function tmp_save(){
     tmp4 = Params.results_targetvalue_stim;
     tmp5 = Params.results_targetvalue_fixation;
     tmp6 = Params.results_target_distance;
+    tmp7 = Params.results_rt_fixation;
 }
 function tmp_connect(){
     Params.results_responses_pos.push(tmp1);
@@ -320,4 +322,5 @@ function tmp_connect(){
     Params.results_targetvalue_stim.push(tmp4);
     Params.results_targetvalue_fixation.push(tmp5);
     Params.results_target_distance.push(tmp6);
+    Params.results_rt_fixation.push(tmp7);
 }

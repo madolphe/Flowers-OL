@@ -101,7 +101,7 @@ function scene_instruction(){
     }
   
   function fnc_fixanswer1(){
-    Time.count_response();
+    Time.count_response_fixation();
     Params.tmp_res_fixation = 1;
     button_fixanswer1.hide();
     button_fixanswer2.hide();
@@ -109,7 +109,7 @@ function scene_instruction(){
   }
   
   function fnc_fixanswer2(){
-    Time.count_response();
+    Time.count_response_fixation();
     Params.tmp_res_fixation = 0;
     button_fixanswer1.hide();
     button_fixanswer2.hide();
@@ -201,7 +201,8 @@ function scene_instruction(){
       'results_rt': Params.results_rt,
       'results_targetvalue_stim': Params.results_targetvalue_stim,
       'results_targetvalue_fixation': Params.results_targetvalue_fixation,
-      'results_target_distance': Params.results_target_distance
+      'results_target_distance': Params.results_target_distance,
+      'results_rt_fixation':Params.results_rt_fixation
     }
     post('exit_view_cognitive_task', parameters_to_save, 'post');
   /*

@@ -16,13 +16,15 @@ class ParameterManager{
       this.tmp_res_ob = 0;
       this.tmp_res_fixation = null;
       this.tmp_rt = null;
+      this.tmp_rt_fixation = null;
 
       this.results_responses_pos = [];
       this.results_responses_fix = [];
       this.results_rt = [];
       this.results_targetvalue_stim = [];
       this.results_targetvalue_fixation = [];
-      this.results_target_distance = []
+      this.results_target_distance = [];
+      this.results_rt_fixation = [];
   
     }
 
@@ -49,6 +51,7 @@ class ParameterManager{
       this.tmp_res_ob = 0;
       this.tmp_res_fixation = null;
       this.tmp_rt = null;
+      this.tmp_rt_fixation = null;
       this.x_pos1 = (Pos.center_x)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
       this.x_pos2 = (Pos.center_x)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
       this.y_pos1 = (Pos.center_y)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
@@ -74,6 +77,7 @@ class ParameterManager{
       this.tmp_res_ob = 0;
       this.tmp_res_fixation = null;
       this.tmp_rt = null;
+      this.tmp_rt_fixation = null;
       this.x_pos1 = (Pos.center_x)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
       this.x_pos2 = (Pos.center_x)+distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2));
       this.y_pos1 = (Pos.center_y)-distance_from_center[this.trial_ind_distance[this.ind_stimcond]]*(1/Math.sqrt(2))-size_img;
@@ -89,6 +93,7 @@ class ParameterManager{
       this.results_responses_pos.push(this.tmp_res_ob);
       this.results_responses_fix.push(this.tmp_res_fixation);
       this.results_rt.push(this.tmp_rt);
+      this.results_rt_fixation.push(this.tmp_rt_fixation);
       this.results_targetvalue_stim.push(this.trial_stimcond[this.ind_stimcond]);
       this.results_targetvalue_fixation.push(this.trial_fixation[0]);
       this.results_target_distance.push(distance_from_center[this.trial_ind_distance[this.ind_stimcond]]);
