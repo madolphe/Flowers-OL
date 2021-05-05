@@ -92,7 +92,4 @@ let size_end_text = Math.round(0.5*ppd);
 let col_0 =[128,0,0];
 let col_1 = [0,0,128];
 
-let text_start = "Please click the mouse to start this experiment";
-let text_end = "Thank you for joining the experiment.";
-
 let bar, success;

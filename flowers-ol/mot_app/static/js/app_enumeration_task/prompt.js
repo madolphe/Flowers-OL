@@ -29,7 +29,7 @@ if(language_code==='fr'){
     text_tutorial_6_2 = "Veuillez cliquer sur le bouton de démarrage pour redémarrer" ;
     text_button_next = "Suivant";
     text_button_previous = "Précédent";
-    text_button_start = "Démarrer"
+    text_button_start = "Démarrer";
 }else{
     prompt_start = "Please click the mouse to start this experiment";
     prompt_question = "How many circles are presented?";
