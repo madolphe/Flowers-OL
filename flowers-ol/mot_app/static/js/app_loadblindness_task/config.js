@@ -108,21 +108,12 @@ let y_ans2 = [Pos.center_x+x_length_answer,
     Pos.center_x+x_length_answer, 
     Pos.center_y+len_fixation+length_longer+y_length_answer];
 
-
-
-text_fixation_answer1 = "Horizontal";
-text_fixation_answer2 = "Vertical";
 size_fixation_answer_x = Math.round(4*ppd);
 size_fixation_answer_y = Math.round(1.5*ppd);
 x_fixation_answer1 = Pos.center_x -(size_fixation_answer_x/2)-x_length_answer;
 x_fixation_answer2 = Pos.center_x -(size_fixation_answer_x/2) +x_length_answer;
 y_fixation_answer = Pos.center_y -(size_fixation_answer_y/2) +Math.round(6*ppd);
 
-
-
 let pos_guide = Math.round(1*ppd);
-
-let text_start = "Please click the mouse to start this experiment";
-let text_end = "Thank you for joining the experiment.";
 
 let bar, success;
