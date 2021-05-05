@@ -44,7 +44,7 @@ let img_bkg;
 let flag_practice = true;
 let flag_break = true;
 let count_break = 0;
-let max_break = 4;
+let max_break = 3;
 
 let num_rep_main = 5; 
 let num_rep_practice = 1;
@@ -52,14 +52,15 @@ let num_rep_practice = 1;
 let num_target_main = [5]; //Experimental condition.
 let num_target_practice = [5]; //Experimental condition.
 
-let array_stimcond = [1,4,8,10]; 
+let array_stimcond_main = [1,4,8]; 
+let array_stimcond_tutorial = [1,4]; 
 let velocity_dot = (1*ppd)/60; //in pix/frame 
 let direction_dot_mini = 5 //in degrees
 let direction_dot_range = 350 //in degrees
 let num_totaldot = 10;
 let duration_target = 1000; //in ms
-let time_totalstimduration = 10000; //in ms
-let duration_stop = 1000; //in ms
+let time_totalstimduration = 8000; //in ms
+let duration_stop = 500; //in ms
 let size_obj = Math.round(1.2*ppd); //in pix. in diameter
 
 let roi_obj = [Math.round(12*ppd),Math.round(12*ppd)]; //in pix. in diameter.
@@ -68,7 +69,7 @@ let col_target2 = [0,0,0,0];
 
 
 let time_startblank = 300;
-let time_fixation = 1000; // in millisecond
+let time_fixation = 500; // in millisecond
 let col_bkg = 0;
 
 // fixation 

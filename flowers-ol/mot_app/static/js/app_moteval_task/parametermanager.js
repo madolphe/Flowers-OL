@@ -20,7 +20,8 @@ class ParameterManager{
         this.num_target = num_target_main;
         this.flag_buttoncheck = Array(this.num_totaldot).fill(0);  
         //ConditionManager    
-        this.trial_stimcond = shuffle(array_stimcond); 
+        this.array_stimcond = array_stimcond_main;
+        this.trial_stimcond = shuffle(this.array_stimcond);  
         this.tmp_res_ob = [];
         this.tmp_rt = null;
       }
@@ -34,7 +35,7 @@ class ParameterManager{
         this.tmp_rt = null;
         this.flag_buttoncheck = Array(this.num_totaldot).fill(0);
         
-        if (this.ind_stimcond==array_stimcond.length-1){
+        if (this.ind_stimcond==this.array_stimcond.length-1){
           this.flag_block = true;
         }
       }
@@ -49,7 +50,7 @@ class ParameterManager{
   
         this.flag_block = false;
         this.repetition ++;
-        this.trial_stimcond = shuffle(array_stimcond); 
+        this.trial_stimcond = shuffle(this.array_stimcond); 
         this.ind_stimcond = 0;
         this.num_target = shuffle(this.num_target);
       }
