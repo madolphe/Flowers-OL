@@ -129,7 +129,7 @@ function scene_response(){
   textSize(size_text);
   textAlign(CENTER);
   textFont(text_font);
-  text( "How many circles are presented?", x_answer, y_answer);
+  text( prompt_question, x_answer, y_answer);
   pop();
 
   push();
