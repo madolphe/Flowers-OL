@@ -53,8 +53,8 @@ let count_break = 0;
 let max_break = 1;
 
 
-let fname_target = 'static/img/list_img_target2.csv';
-let fname_filler = 'static/img/list_img_filler2.csv';
+let fname_target = 'static/images/pre-post-imgs/list_img_target2.csv';
+let fname_filler = 'static/images/pre-post-imgs/list_img_filler2.csv';
 
 let keyRes1 = 74; //j
 //let keyRes2 = 70; //f

@@ -57,7 +57,7 @@ function setup() {
   create_next_button();
   create_previous_button();
   create_start_button();
-  
+
   console.log('done setup')
 }
 
