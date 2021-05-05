@@ -198,3 +198,26 @@ Le but de cette expérience est de mesurer la capacité des mémoires spatiales.
 Dans chaque essai, vous verrez d'abord la séquence des changements de couleur de neuf objets.
 Votre tâche est de souvenir de l'ordre de ces changements et de rapporter cet ordre une fois la présentation de la séquence terminée en cliquant sur les boutons dans l'ordre que vous avez vu..
 Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante.
+####################
+"Voici votre progression dans l'évaluation cognitive, bravo 👏👏! "
+This is your progression in the cognitive evaluation, well done 👏👏!
+
+<h3> Merci pour votre participation, </h3>
+<h3>Thank you for your participation,</h3>
+
+    Votre nouvelle activité est la tâche:&nbsp;<strong> {{ CONTEXT.current_task.name }} </strong>&nbsp;!
+    <br/>
+    Voici les consignes pour cette nouvelle activité:
+    {% if CONTEXT.current_task %}
+        {% include CONTEXT.current_task.template_instruction_path %}
+    {% endif %}
+    Quand vous êtes prêt, appuyez sur le boutton start en dessous. Vous suivrez un tutoriel rapide
+    puis vous pourrez pratiquer la tâche.
+    Your new activity is the &nbsp;<strong> {{ CONTEXT.current_task.name }} </strong>&nbsp; task!
+    <br/>
+    Here are the guidelines for the next activity:
+    {% if CONTEXT.current_task %}
+        {% include CONTEXT.current_task.template_instruction_path %}
+    {% endif %}
+    When you are ready, press the start button bellow. You will
+    follow a quick tutorial and practice the task!

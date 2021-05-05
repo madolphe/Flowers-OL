@@ -4,11 +4,11 @@
 <form id="request">{% csrf_token %}</form>
   <div class="explanation-text">
       <p>
-          {% trans
-          "<li>The goal of this experiment is to measure human counting ability.</li>
-          <li>In each rial, you will see a flash of multiple white circles. </li>
-          <li>Your task is <b>to count these circles and answer how many circles were presented using a drop-down list</b>.</li> 
-          <li>You can check the practice trials of this task from the following window. </li> "
-          %}
+          {% blocktrans %}
+              <li>Le but de cette expérience est de mesurer la capacité humaine d'énumération.</li>
+              <li>Dans chaque essai, vous verrez un flash de plusieurs cercles blancs.</li>
+              <li>Votre tâche est de compter ces cercles et de sélectionner le nombre de cercles présentés à l'aide d'une liste déroulante.</li>
+              <li>Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante.</li>
+          {% endblocktrans %}
       </p>
   </div>

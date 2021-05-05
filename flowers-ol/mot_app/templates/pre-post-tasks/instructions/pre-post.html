@@ -41,19 +41,23 @@
                 <img id="img_researcher_pre_post" src="{% static 'images/researcher/researcher_shadow.png' %}">
                 <div class="container instructions_container bubble bubble-bottom-left">
                     <div class="row d-flex justify-content-center">
-                        <h3>Thank you for your participation ,</h3>
+                        <h3>{%  trans "Merci pour votre participation," %}</h3>
                         <div id="progress_bar"></div>
-                        This is your progression in the cognitive evaluation, well done 👏👏!
+                        {% trans "Voici votre progression dans l'évaluation cognitive, bravo 👏👏! " %}
                     </div>
                     <div class="row justify-content-center">
-                        Your new activity is the &nbsp;<strong> {{ CONTEXT.current_task.name }} </strong>&nbsp; task!
+                    {% blocktrans %}
+                        Votre nouvelle activité est la tâche:&nbsp;<strong> {{ CONTEXT.current_task.name }} </strong>&nbsp;!
                         <br/>
-                        Here are the guidelines for the next activity:
+                        Voici les consignes pour cette nouvelle activité:
+                    {% endblocktrans %}
                         {% if CONTEXT.current_task %}
                             {% include CONTEXT.current_task.template_instruction_path %}
                         {% endif %}
-                        When you are ready, press the start button bellow. You will
-                        follow a quick tutorial and practice the task!
+                    {% blocktrans %}
+                        Quand vous êtes prêt, appuyez sur le boutton start en dessous. Vous suivrez un tutoriel rapide
+                        puis vous pourrez pratiquer la tâche.
+                    {% endblocktrans %}
                     </div>
                 </div>
             </div>
