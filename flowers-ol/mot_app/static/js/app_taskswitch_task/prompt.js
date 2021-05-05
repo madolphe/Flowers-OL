@@ -3,6 +3,7 @@ let text_title_0, text_tutorial_0_0, text_tutorial_0_1, text_tutorial_0_2, text_
 let text_tutorial_1_0, text_tutorial_1_1, text_tutorial_1_2, text_tutorial_2_0, text_tutorial_2_1, text_tutorial_2_2,
     text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2;
 let text_1left , text_1right,text_2left,text_2right,text_start, text_end;
+let text_button_next, text_button_previous, text_button_start;
 
 if(language_code==='fr'){
     prompt_start = "Cliquez sur la souris pour débuter l'activité";
@@ -30,6 +31,9 @@ if(language_code==='fr'){
     text_2right = "Supérieur" ;
     text_start = "Veuillez cliquer sur la souris pour commencer cette expérience" ;
     text_end = "Merci d'avoir participer à l'expérience" ;
+    text_button_next = "Suivant";
+    text_button_previous = "Précédent";
+    text_button_start = "Démarrer";
 }else{
     prompt_start = "Please click the mouse to start this experiment";
     prompt_gratitude = "Thank you for joining the experiment.";
@@ -58,4 +62,7 @@ if(language_code==='fr'){
     text_2right = "High";
     text_start = "Please click the mouse to start this experiment";
     text_end = "Thank you for joining the experiment.";
+    text_button_next = "Next";
+    text_button_previous = "Previous";
+    text_button_start = "Start";
 }
