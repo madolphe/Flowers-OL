@@ -61,7 +61,8 @@ function scene_tutorial2(){
 
   //buttons
   button_next.mousePressed(()=>{
-      Time.update_tutorial_next();    
+      Time.update_tutorial_next();
+      show_button();
       });
   button_previous.mousePressed(()=>{
       button_previous.hide();
@@ -127,7 +128,7 @@ function scene_tutorial3(){
 
   //buttons
   button_next.mousePressed(()=>{
-      for (let i=0; i < array_stimcond.length; ++i){
+      for (let i=0; i < num_totaldot; ++i){
           Button[i].hide(); 
         }  
       button_next.hide();
@@ -135,7 +136,7 @@ function scene_tutorial3(){
       Time.update_tutorial_next();
       });
   button_previous.mousePressed(()=>{
-      for (let i=0; i < array_stimcond.length; ++i){
+      for (let i=0; i < num_totaldot; ++i){
           Button[i].hide(); 
         }  
       Params = new ParameterManager();
