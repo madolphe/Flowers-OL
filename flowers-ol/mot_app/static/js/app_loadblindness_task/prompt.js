@@ -25,6 +25,7 @@ if(language_code==='fr'){
     text_tutorial_2_0 = "D'abord, vous devez répondre à la question : quelle ligne était la plus longue?" ;
     text_tutorial_2_1 = "Ensuite, vous devez répondre à la question: quel objet avait le plus fort contraste" ;
     text_tutorial_2_2 = "en cliquant sur l'un des quatre boutons" ;
+    text_tutorial_3_0 = "Commencons les exercices.";
     text_tutorial_3_1 = "N'oubliez pas que vous devez répondre correctement" ;
     text_tutorial_3_2 = "au moins à la première question concernant la longueur des lignes" ;
     text_tutorial_4_0 = "Commençons l'expérience principale" ;

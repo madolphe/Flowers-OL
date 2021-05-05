@@ -115,12 +115,7 @@ function scene_tutorial3(){
         button_fixanswer1.hide();
         button_fixanswer2.hide();
         button_fixanswer1.position(x_fixation_answer1,y_fixation_answer); 
-        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer); 
-        /*
-        for (let i=0;i<4;i++){
-              Buttons[i].show();
-          }
-        */
+        button_fixanswer2.position(x_fixation_answer2,y_fixation_answer);
         });
     button_previous.mousePressed(()=>{
         button_fixanswer1.hide();
@@ -177,12 +172,7 @@ function scene_tutorial3_1(){
         button_fixanswer2.position(x_fixation_answer2,y_fixation_answer-shift_imageposition); 
         button_fixanswer1.show();
         button_fixanswer2.show();
-        /*
-        for (let i=0;i<4;i++){
-            Buttons[i].hide();
-        }
-        */
-        Time.update_tutorial_previous();    
+        Time.update_tutorial_previous();
         });
 }
 
@@ -216,7 +206,9 @@ function scene_tutorial4(){
     text( text_tutorial_3_2, pos_tutorialtext_x, pos_tutorialtext_y2);
     pop();
 
-
+    button_previous.mousePressed(()=>{
+        Time.update_tutorial_previous();
+    });
     //buttons
     button_previous.mousePressed(()=>{
         button_next.show();
@@ -257,7 +249,6 @@ function scene_tutorial5(){
     textFont(text_font);
     text(text_tutorial_4_0, pos_tutorialtext_x3, pos_tutorialtext_y3);
     pop();
-
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
@@ -266,14 +257,14 @@ function scene_tutorial5(){
         Params.time_stimduration = time_stimduration_main;
         flag_practice = false;
         flag_break = true;
-        Time.start();    
-        });    
+        Time.start();
+        });
 }
 
 function scene_break(){
     draw_character(researcher_2, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
     draw_background_bubble(Pos.center_x, pos_bubble_y2,size_bubble_x,size_bubble_y);
-    
+
     //text
     push();
     fill(col_tutorialtext);
@@ -307,8 +298,8 @@ function scene_break(){
         }else{
             flag_break = true;
         }
-        Time.start();    
-        });    
+        Time.start();
+        });
 }
 
 let tmp1 = [];
