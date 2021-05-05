@@ -60,7 +60,7 @@ let num_totaldot = 10;
 let duration_target = 1000; //in ms
 let time_totalstimduration = 10000; //in ms
 let duration_stop = 1000; //in ms
-let size_obj = Math.round(1*ppd); //in pix. in diameter
+let size_obj = Math.round(1.2*ppd); //in pix. in diameter
 
 let roi_obj = [Math.round(12*ppd),Math.round(12*ppd)]; //in pix. in diameter.
 let col_target = [128,0,0,128];
