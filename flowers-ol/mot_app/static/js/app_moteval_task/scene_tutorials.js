@@ -62,8 +62,9 @@ function scene_tutorial2(){
   //buttons
   button_next.mousePressed(()=>{
       Time.update_tutorial_next();
-      show_button();
-      });
+      //show_button();
+    show_button_tutorial();
+  });
   button_previous.mousePressed(()=>{
       button_previous.hide();
       Time.update_tutorial_previous();    
@@ -159,7 +160,8 @@ function scene_tutorial4(){
 
   //buttons
   button_previous.mousePressed(()=>{
-      show_button();
+      //show_button();
+      show_button_tutorial();
       button_next.show();
       button_start.hide();
       Time.update_tutorial_previous();
@@ -263,4 +265,16 @@ function tmp_connect(){
   Params.results_rt.push(tmp2);
   Params.results_speed_stim.push(tmp4);
   Params.results_correct.push(tmp5);
+}
+
+function show_button_tutorial(){
+    function getRndInteger(min, max) {
+      return (Math.random() * (max - min) ) + min;
+    }
+    for (let i=0; i < num_totaldot; ++i){
+      var x = getRndInteger(Pos.center_x - Pos.size_bkg_x/4, Pos.center_x +Pos.size_bkg_x/4);
+      var y = getRndInteger(size_obj/2, Pos.center_y - shift_text);
+      Button[i].show();
+      Button[i].position(x,y);
+    }
 }
