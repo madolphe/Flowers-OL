@@ -72,10 +72,6 @@ let size_instruct_x = Math.round(7*ppd); //in pix. in diameter
 let size_instruct_y = Math.round(2*ppd); //in pix. in diameter
 let x_instruct = Pos.center_x-(size_instruct_x/2);
 let y_instruct = (Pos.canvas_height*ratio_monitor)-(size_instruct_y/2)-Math.round(1*ppd);
-let text_1left = "Odd";
-let text_1right = "Even";
-let text_2left = "Low";
-let text_2right = "High";
 let size_instruct_txt = Math.round(0.6*ppd);
 let x_instruct_text1 = Pos.center_x-(size_instruct_x/4);
 let y_instruct_text = (Pos.canvas_height*ratio_monitor)+(size_instruct_txt/2)-Math.round(1*ppd);
@@ -104,9 +100,5 @@ let size_end_h = Math.round(1.5*ppd); //in pixel
 let x_end = Pos.center_x- (size_end_w/2); //in pixel
 let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
 let size_end_text = Math.round(0.5*ppd);
-
-
-let text_start = "Please click the mouse to start this experiment";
-let text_end = "Thank you for joining the experiment.";
 
 let bar, success;
