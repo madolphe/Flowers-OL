@@ -33,7 +33,7 @@ function scene_tutorial1(){
 }
 
 function create_next_button(){
-    button_next = createButton('Next');
+    button_next = createButton(text_button_next);
     button_next.size(size_next_w,size_next_h);
     button_next.style('font-size', size_next_text + 'px');
     button_next.position(x_next, y_next);
@@ -41,7 +41,7 @@ function create_next_button(){
 }
 
 function create_previous_button(){
-    button_previous = createButton('Previous');
+    button_previous = createButton(text_button_previous);
     button_previous.size(size_previous_w,size_previous_h);
     button_previous.style('font-size', size_previous_text + 'px');
     button_previous.position(x_previous, y_previous);
@@ -240,7 +240,7 @@ function scene_tutorial4(){
 }
 
 function create_start_button(){
-    button_start = createButton('Start');
+    button_start = createButton(text_button_start);
     button_start.size(size_start_w,size_start_h);
     button_start.style('font-size', size_start_text + 'px');
     button_start.position(x_start, y_start);
