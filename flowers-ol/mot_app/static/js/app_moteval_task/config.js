@@ -101,8 +101,4 @@ let x_end = Pos.center_x- (size_end_w/2); //in pixel
 let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
 let size_end_text = Math.round(0.5*ppd);
 
-
-let text_start = "Please click the mouse to start this experiment";
-let text_end = "Thank you for joining the experiment.";
-
 let bar, success;
