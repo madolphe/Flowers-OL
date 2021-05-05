@@ -1,8 +1,8 @@
 let prompt_start, prompt_question , prompt_gratitude, prompt_button_restart;
 let text_title_0, text_tutorial_0_0, text_tutorial_0_1, text_tutorial_0_2, text_tutorial_0_3;
-let text_tutorial_1_0, text_tutorial_1_1, text_tutorial_1_2, text_tutorial_2_0, text_tutorial_2_1, text_tutorial_2_2,
-    text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2;
-let text_1left , text_1right,text_2left,text_2right,text_start, text_end;
+let text_tutorial_1_0, text_tutorial_2_0, text_tutorial_3_0, text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2;
+let text_start, text_end;
+let text_button_next, text_button_previous, text_button_start;
 
 if(language_code==='fr'){
     prompt_start = "Cliquez sur la souris pour débuter l'activité";
@@ -27,6 +27,9 @@ if(language_code==='fr'){
     text_tutorial_5_0 = "Temps de pause." ;
     text_tutorial_6_1 = "Merci pour votre effort. Lorsque vous êtes prêt," ;
     text_tutorial_6_2 = "Veuillez cliquer sur le bouton de démarrage pour redémarrer" ;
+    text_button_next = "Suivant";
+    text_button_previous = "Précédent";
+    text_button_start = "Démarrer"
 }else{
     prompt_start = "Please click the mouse to start this experiment";
     prompt_question = "How many circles are presented?";
@@ -50,4 +53,7 @@ if(language_code==='fr'){
     text_tutorial_5_0 = "Break time.";
     text_tutorial_6_1 = "Thank you for your effort. When you are ready,";
     text_tutorial_6_2 = "please click the start button to restart.";
+    text_button_next = "Next";
+    text_button_previous = "Previous";
+    text_button_start = "Start";
 }
