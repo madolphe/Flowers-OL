@@ -182,8 +182,8 @@ function create_selector_input(){
     tmp_span.hide();
     array_span.push(tmp_span);
   }
-  div_ticks.position(x_response, y_response + shift_div_ticks);
-  div_ticks.size(size_slider_w,size_slider_h);
+  div_ticks.position(x_response+size_slider_w/(2*(max_answer-1)), y_response + shift_div_ticks);
+  div_ticks.size(size_slider_w*((max_answer-2)/(max_answer-1)),size_slider_h);
   div_ticks.hide();
 }
 

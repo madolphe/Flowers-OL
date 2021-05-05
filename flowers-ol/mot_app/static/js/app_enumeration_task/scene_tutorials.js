@@ -67,7 +67,7 @@ function scene_tutorial2(){
         let tmp = shuffle(make_array(1,max_answer,max_answer));
         sel.value(tmp[0]);  
         sel.show();
-        div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
+        div_ticks.position(Pos.center_x-(size_slider_w/2)+size_slider_w/(2*(max_answer-1)), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
         array_span.forEach(element => element.show());
         Time.update_tutorial_next();
@@ -122,7 +122,7 @@ function scene_tutorial3(){
         sel.position(x_response, y_response);
         div_ticks.hide();
         array_span.forEach(element => element.hide());
-        div_ticks.position(x_response, y_response + shift_div_ticks);
+        div_ticks.position(x_response+size_slider_w/(2*(max_answer-1)), y_response + shift_div_ticks);
         button_next.hide();
         button_start.show();
         Time.update_tutorial_next();    
@@ -130,6 +130,7 @@ function scene_tutorial3(){
     button_previous.mousePressed(()=>{
         sel.hide();
         div_ticks.hide();
+        div_ticks.position(x_response+size_slider_w/(2*(max_answer-1)), y_response + shift_div_ticks);
         array_span.forEach(element => element.hide());
         Time.update_tutorial_previous();
         });
@@ -154,7 +155,7 @@ function scene_tutorial4(){
         let tmp = shuffle(make_array(1,max_answer,max_answer));
         sel.value(tmp[0]);
         sel.show();
-        div_ticks.position(Pos.center_x-(size_slider_w/2), pos_tutorialslider_y1 + shift_div_ticks);
+        div_ticks.position(Pos.center_x-(size_slider_w/2)+size_slider_w/(2*(max_answer-1)), pos_tutorialslider_y1 + shift_div_ticks);
         div_ticks.style('display', 'flex');
         array_span.forEach(element => element.show());
         button_next.show();
