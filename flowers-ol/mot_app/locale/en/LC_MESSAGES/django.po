@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 09:38+0200\n"
+"POT-Creation-Date: 2021-05-07 09:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -842,7 +842,7 @@ msgstr ""
 "the practice trials of this task from the following window.</li>\n"
 "      "
 
-#: mot_app/templates/pre-post-tasks/instructions/memorability_1.html:8
+#: mot_app/templates/pre-post-tasks/instructions/memorability.html:8
 #: mot_app/templates/pre-post-tasks/instructions/memorability_2.html:10
 #: mot_app/templates/pre-post-tasks/instructions/memorability_3.html:8
 msgid ""
@@ -892,6 +892,27 @@ msgstr ""
 "window.</li></UL>\n"
 "      "
 
+#: mot_app/templates/pre-post-tasks/instructions/moteval.html:7
+msgid ""
+"\n"
+"              <li>Le but de cette expérience est de mesurer votre capacité "
+"de suivi.</li>\n"
+"              <li>A chaque essai, cinq disques seront surlignés en rouge, "
+"puis tous les disques vont commencer à bouger.</li>\n"
+"              <li>Votre tâche consiste à vous souvenir des disques cibles en "
+"surbrillance et de suivre leurs positions.</li>\n"
+"              <li>Vous pouvez vérifier les essais pratiques de cette tâche à "
+"partir de la fenêtre suivante.</li>\n"
+"          "
+msgstr ""
+"\n"
+" <li>The goal of this experiment is to measure your tracking ability.</li> "
+"<li>On each trial,  five discs will be highlighted in red, and then all "
+"disks will start to move.</li> <li> Your task is to remember the highlighted "
+"target discs and track these positions.</li> <li>You can check the practice "
+"trials of this task from the following window.  </li>\n"
+"          "
+
 #: mot_app/templates/pre-post-tasks/instructions/pre-post.html:26
 msgid ", vous pouvez voir votre progression dans l'expérience"
 msgstr ", you can see your progress in the study"
@@ -927,8 +948,8 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"   When you are ready, press the start button bellow. You will follow a quick "
-"tutorial and practice the task!\n"
+"   When you are ready, press the start button bellow. You will follow a "
+"quick tutorial and practice the task!\n"
 "                    "
 
 #: mot_app/templates/pre-post-tasks/instructions/taskswitch.html:8
