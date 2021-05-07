@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 09:39+0200\n"
+"POT-Creation-Date: 2021-05-07 10:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -764,7 +764,7 @@ msgstr ""
 "of this task from the following window.  </li>\n"
 "          "
 
-#: mot_app/templates/pre-post-tasks/instructions/gonogo.html:8
+#: mot_app/templates/pre-post-tasks/instructions/gonogo.html:7
 msgid ""
 "\n"
 "          <li>Le but de cette expérience est de mesurer la capacité à faire "
@@ -793,7 +793,7 @@ msgstr ""
 "but no feedback in the main experiment.</li>\n"
 "      "
 
-#: mot_app/templates/pre-post-tasks/instructions/loadblindness.html:8
+#: mot_app/templates/pre-post-tasks/instructions/loadblindness.html:7
 msgid ""
 "\n"
 "            <li>Le but de cette expérience est de mesurer la capacité "
@@ -842,9 +842,9 @@ msgstr ""
 "the practice trials of this task from the following window.</li>\n"
 "      "
 
-#: mot_app/templates/pre-post-tasks/instructions/memorability.html:8
-#: mot_app/templates/pre-post-tasks/instructions/memorability_2.html:10
-#: mot_app/templates/pre-post-tasks/instructions/memorability_3.html:8
+#: mot_app/templates/pre-post-tasks/instructions/memorability.html:7
+#: mot_app/templates/pre-post-tasks/instructions/memorability_2.html:9
+#: mot_app/templates/pre-post-tasks/instructions/memorability_3.html:7
 msgid ""
 "\n"
 "          <UL>\n"
@@ -925,34 +925,41 @@ msgstr "Thank your for your participation:"
 msgid "Voici votre progression dans l'évaluation cognitive, bravo 👏👏! "
 msgstr "This is your progression in the cognitive evaluation, well done 👏👏!"
 
-#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:49
-#, python-format
+#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:48
 msgid ""
 "\n"
-"                        Votre nouvelle activité est la tâche:&nbsp;<strong> "
-"%(CONTEXT.current_task.name)s </strong>&nbsp;!\n"
-"                        <br/>\n"
-"                        Voici les consignes pour cette nouvelle activité:\n"
-"                    "
+"                            Votre nouvelle activité est la tâche:&nbsp;\n"
+"                        "
 msgstr ""
 "\n"
-"Your new activity is the &nbsp;<strong> %(CONTEXT.current_task.name)s </"
-"strong>&nbsp; task!<br/>Here are the guidelines for the next activity:"
+"<br/>Your new activity is the task:&nbsp;\n"
+"                        "
 
-#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:57
+#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:56
 msgid ""
 "\n"
-"                        Quand vous êtes prêt, appuyez sur le boutton start "
-"en dessous. Vous suivrez un tutoriel rapide\n"
-"                        puis vous pourrez pratiquer la tâche.\n"
-"                    "
+"                            Voici les consignes pour cette nouvelle "
+"activité:\n"
+"                        "
 msgstr ""
 "\n"
-"   When you are ready, press the start button bellow. You will follow a "
-"quick tutorial and practice the task!\n"
-"                    "
+"<br/>Here are the guidelines for the next activity:\n"
+"                        "
 
-#: mot_app/templates/pre-post-tasks/instructions/taskswitch.html:8
+#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:63
+msgid ""
+"\n"
+"                            Quand vous êtes prêt, appuyez sur le boutton "
+"start en dessous. Vous suivrez un tutoriel rapide\n"
+"                            puis vous pourrez pratiquer la tâche.\n"
+"                        "
+msgstr ""
+"\n"
+"When you are ready, press the start button below.You will be given a quick "
+"tutorial and then you can practice the task. \n"
+"                        "
+
+#: mot_app/templates/pre-post-tasks/instructions/taskswitch.html:7
 msgid ""
 "\n"
 "          <UL>\n"
@@ -992,7 +999,7 @@ msgstr ""
 "soon as possible.</li></UL><li>You can check the practice trials of this "
 "task from the following window.</li></UL>"
 
-#: mot_app/templates/pre-post-tasks/instructions/workingmemory.html:7
+#: mot_app/templates/pre-post-tasks/instructions/workingmemory.html:6
 msgid ""
 "\n"
 "            <li>Le but de cette expérience est de mesurer la capacité des "

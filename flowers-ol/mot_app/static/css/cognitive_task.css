@@ -24,6 +24,7 @@ button:hover{
 }
 .instructions_container{
     padding: 40px;
+    height: fit-content;
 }
 
 .bubble{
