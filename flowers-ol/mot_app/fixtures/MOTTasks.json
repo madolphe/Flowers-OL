@@ -23,7 +23,7 @@
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
-                "instruments": ["get_profil"],
+                "instruments": ["get_mot_profil"],
                 "exclude": {
                     "handle__in": [
                         "prof-mot-3",
@@ -67,7 +67,7 @@
             "view_name": "set_mot_params",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html",
             "extra_json": {
-                "instruments": ["get_profil"],
+                "instruments": ["get_mot_profil"],
                 "include": {
                     "handle__in": ["prof-mot-1"]
                 }
