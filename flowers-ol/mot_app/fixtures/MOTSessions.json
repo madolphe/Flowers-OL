@@ -28,7 +28,7 @@
             "wait"          : {},
             "deadline"      : {"days": 10},
             "index"         : 0,
-            "tasks_csv"     : "mot-consent,additional-profile-general,screen-size-params,cognitive-task-practice,additional-profile-attention,12-months-vgq,years-vgq,cognitive-task-practice,nasatlx-questionnaire",
+            "tasks_csv"     : "mot-consent,general-tutorial,additional-profile-general,cognitive-task-practice,additional-profile-attention,12-months-vgq,years-vgq,cognitive-task-practice,nasatlx-questionnaire",
             "required"      : true
         }
     },
