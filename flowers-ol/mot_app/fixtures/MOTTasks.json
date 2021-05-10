@@ -26,10 +26,10 @@
                 "instruments": ["get_profil"],
                 "exclude": {
                     "handle__in": [
-                        "prof-3",
-                        "prof-4",
-                        "prof-5",
-                        "prof-9"
+                        "prof-mot-3",
+                        "prof-mot-4",
+                        "prof-mot-5",
+                        "prof-mot-9"
                     ]
                 }
             }
@@ -69,7 +69,7 @@
             "extra_json": {
                 "instruments": ["get_profil"],
                 "include": {
-                    "handle__in": ["prof-1"]
+                    "handle__in": ["prof-mot-1"]
                 }
             }
         }

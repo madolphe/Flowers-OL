@@ -1,12 +1,11 @@
 [
    {
       "model":"survey_app.question",
-      "pk":100,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"1",
-         "handle":"prof-1",
+         "handle":"prof-mot-1",
          "order":1,
          "prompt":"Taille de la diagonale de votre écran en cm",
          "prompt_fr":"Taille de la diagonale de votre écran en cm",
@@ -28,12 +27,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":101,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"1",
-         "handle":"prof-2",
+         "handle":"prof-mot-2",
          "order":2,
          "prompt":"Genre",
          "prompt_fr":"Genre",
@@ -55,12 +53,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":102,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"1",
-         "handle":"prof-3",
+         "handle":"prof-mot-3",
          "order":3,
          "prompt":"Début de pratique des jeux vidéos",
          "prompt_fr":"Début de pratique des jeux vidéos",
@@ -82,12 +79,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":103,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"1",
-         "handle":"prof-4",
+         "handle":"prof-mot-4",
          "order":4,
          "prompt":"Fréquence de la pratique des jeux vidéos",
          "prompt_fr":"Fréquence de la pratique des jeux vidéos",
@@ -109,12 +105,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":104,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"1",
-         "handle":"prof-5",
+         "handle":"prof-mot-5",
          "order":5,
          "prompt":"A quelle(s) catégorie(s) de jeux jouez-vous ?",
          "prompt_fr":"A quelle(s) catégorie(s) de jeux jouez-vous ?",
@@ -136,12 +131,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":105,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"2",
-         "handle":"prof-6",
+         "handle":"prof-mot-6",
          "order":6,
          "prompt":"Permis de conduire",
          "prompt_fr":"Permis de conduire",
@@ -163,12 +157,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":106,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"2",
-         "handle":"prof-7",
+         "handle":"prof-mot-7",
          "order":7,
          "prompt":"Depuis quand conduisez-vous ?",
          "prompt_fr":"Depuis quand conduisez-vous ?",
@@ -190,12 +183,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":107,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"2",
-         "handle":"prof-8",
+         "handle":"prof-mot-8",
          "order":8,
          "prompt":"A quelle fréquence conduisez-vous ?",
          "prompt_fr":"A quelle fréquence conduisez-vous ?",
@@ -217,12 +209,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":108,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"2",
-         "handle":"prof-9",
+         "handle":"prof-mot-9",
          "order":9,
          "prompt":"Avez-vous déjà suivi un entraînement de l'attention ?",
          "prompt_fr":"Avez-vous déjà suivi un entraînement de l'attention ?",
@@ -244,12 +235,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":109,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"2",
-         "handle":"prof-10",
+         "handle":"prof-mot-10",
          "order":10,
          "prompt":"Avez-vous déjà suivi un cours en ligne ?",
          "prompt_fr":"Avez-vous déjà suivi un cours en ligne ?",
@@ -271,12 +261,11 @@
    },
    {
       "model":"survey_app.question",
-      "pk":110,
-      "fields":{
+         "fields":{
          "instrument":"get_profil",
          "component":"long_term",
          "group":"3",
-         "handle":"prof-11",
+         "handle":"prof-mot-11",
          "order":10,
          "prompt":"Combien d'années avez-vous étudié?",
          "prompt_fr":"Combien d'années avez-vous étudié?",

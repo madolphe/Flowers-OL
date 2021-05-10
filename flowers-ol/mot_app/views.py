@@ -94,7 +94,7 @@ def set_mot_params(request):
             participant.save()
             # also update answer:
             answers = Answer.objects.filter(participant=participant)
-            answer = answers.get(question__handle='prof-1')
+            answer = answers.get(question__handle='prof-mot-1')
             answer.value = request.POST['screen_params_input']
             answer.save()
             # update screen params and return home:
@@ -286,7 +286,7 @@ def cognitive_task(request):
         Render a base html file that uses a custom filter django tag to include the correct js scripts
     """
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     current_task_idx = participant.extra_json["cognitive_tests_current_task_idx"]
     stack_tasks = participant.extra_json["cognitive_tests_task_stack"]
     current_task = f"{stack_tasks[current_task_idx]}"
@@ -347,7 +347,7 @@ def launch_task(request, participant, current_task_object, idx_task):
     # The task results will have to be stored right after coming back to this view
     participant.extra_json['task_to_store'] = True
     participant.save()
-    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     return render(request,
                   'pre-post-tasks/instructions/pre-post.html',
                   {'CONTEXT': {'participant': participant,
@@ -411,7 +411,7 @@ def restart_participant_extra_json(participant, test_title, task_index=0, is_fir
 @login_required
 def tutorial(request, task_name):
     participant = ParticipantProfile.objects.get(user=request.user.id)
-    screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+    screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html",
                   {"CONTEXT": {"screen_params": screen_params}})
 
