@@ -1,0 +1,76 @@
+{% extends CONTEXT.participant.study.base_template %}
+{% load i18n %}
+{% load static %}
+{% block title %} Flowers OL | Home {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static CONTEXT.participant.study.style %}">
+    <link rel="stylesheet" href="{% static 'css/cognitive_task.css' %}">
+{% endblock %}
+{% block js %}
+    <script>
+        const sessionActive = {{request.session.active_session}}
+        function confirm_logout() {
+            if (sessionActive && confirm('Current session is not finished, continue ?')) {
+                window.location.href = "user_logout"
+            }
+        }
+    </script>
+    <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    <script> let index_task = {% autoescape off %}{{CONTEXT.index_task}}{% endautoescape %} </script>
+    <script src="{% static 'js/utils/progress_bar/progress_bar.js' %}"></script>
+    <script src="{% static 'js/utils/progress_bar/draw_pb.js' %}"></script>{% endblock %}
+
+{% block content%}
+    <div class="side-panel">
+        <h2>{% trans "Salut" %}, {{CONTEXT.participant.user.username}} !</h2>
+        <p>{% trans ", vous pouvez voir votre progression dans l'expérience" %}</p>
+        <div class="side-info">
+            <div class="content">
+                {% include "includes/study_progression.html" with info=CONTEXT.participant.progress_info %}
+                <div class="fade-screen"></div>
+            </div>
+        </div>
+        <div class="btn-box" id="logout-button" onclick="confirm_logout()">
+            <p class="btn logout">{% trans "Se déconnecter" %}</p>
+        </div>
+    </div>
+    <div id="pre_post_panel">
+        <div class="row img_instructions">
+        {% if CONTEXT.current_task %}
+            <div class="container d-flex justify-content-cente align-items-center">
+                <img id="img_researcher_pre_post" src="{% static 'images/researcher/researcher_shadow.png' %}">
+                <div class="container instructions_container bubble bubble-bottom-left">
+                    <div class="row d-flex justify-content-center">
+                        <h3>{%  trans "Merci pour votre participation," %}</h3>
+                        <div id="progress_bar"></div>
+                        {% trans "Voici votre progression dans l'évaluation cognitive, bravo 👏👏! " %}
+                        </br>
+                         {% blocktrans %}
+                            Votre nouvelle activité est la tâche:&nbsp;
+                        {% endblocktrans %}
+                        <strong> {{ CONTEXT.current_task.name }} </strong>&nbsp;!
+                    </div>
+                    <div class="row">
+                            </br>
+                        <u>
+                        {% blocktrans %}
+                            Voici les consignes pour cette nouvelle activité:
+                        {% endblocktrans %}
+                        </u>
+                            {% if CONTEXT.current_task %}
+                                {% include CONTEXT.current_task.template_instruction_path %}
+                            {% endif %}
+                        {% blocktrans %}
+                            Quand vous êtes prêt, appuyez sur le boutton start en dessous. Vous suivrez un tutoriel rapide
+                            puis vous pourrez pratiquer la tâche.
+                        {% endblocktrans %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-panel">
+            <a class="btn" href={% url CONTEXT.current_task.view_name %}>Start</a>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

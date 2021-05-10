@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load i18n %}
+    {%load static%}
+    {% get_current_language as LANGUAGE_CODE %}
+    <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
+    <script> screen_params = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    <script src="{% static 'js/p5.min.js' %}"></script>
+    <script src="{% static 'js/app_taskswitch_task/config_tutorial.js' %}"></script>
+    <script src="{% static 'js/app_taskswitch_task/taskswitch.js' %}"></script></head>
+    <script src="{% static 'js/app_taskswitch_task/prompt.js' %}"></script></head>
+
+<body>
+  <main>
+  </main>
+</body>
+
+</html>

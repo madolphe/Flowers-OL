@@ -1,0 +1,24 @@
+{% load i18n %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
+  <p>
+      {% blocktrans %}
+          <UL>
+            <li>Le but de cette expérience est de mesurer la capacité à rediriger votre attention.</li>
+            <li>Dans chaque essai, le mot d'instruction "Couleur" ou "Forme" vous sera montré.</li>
+            <li>Selon le mot d'instruction, votre tâche change.</li>
+            <li>Pour l'épreuve "Couleur", vous devez déterminer si l'objet présenté est "bleu" ou "rouge." .</li>
+              <UL>
+                <li>  Veuillez appuyer sur "f" ou "j" pour le rouge ou le bleu, respectivement, le plus rapidement possible.</li>
+              </UL>
+            <li>Pour l'épreuve "Forme", vous devez répondre si l'objet suivant est "carré" ou "cercle" .</li>
+              <UL>
+                <li>  Veuillez appuyer sur "f" ou "j" pour le carré ou le cercle, respectivement, dès que possible.</li>
+              </UL>
+            <li>Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante.</li>
+          </UL>
+        {% endblocktrans %}
+  </p>
+</div>

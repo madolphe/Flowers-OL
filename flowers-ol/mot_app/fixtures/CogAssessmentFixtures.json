@@ -1,0 +1,92 @@
+[
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 1,
+        "fields": {
+            "name": "gonogo",
+            "name_fr": "gonogo-fr",
+            "name_en": "gonogo-en",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/gonogo.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_gonogo.html"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 2,
+        "fields": {
+            "name": "loadblindness",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/loadblindness.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_loadblindness.html"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 3,
+        "fields": {
+            "name": "memorability_1",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/memorability_1.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_memorability_1.html"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 4,
+        "fields": {
+            "name": "taskswitch",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/taskswitch.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_taskswitch.html"
+        }
+    },
+    {
+        "model": "mot_app.CognitiveTask",
+        "pk": 5,
+        "fields": {
+            "name": "workingmemory",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/workingmemory.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_workingmemory.html"
+        }
+    },
+    {
+        "model": "mot_app.CognitiveTask",
+        "pk": 6,
+        "fields": {
+            "name": "enumeration",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/enumeration.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_enumeration.html"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 7,
+        "fields": {
+            "name": "memorability_2",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/memorability_2.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_memorability_2.html"
+        }
+    },
+        {
+        "model": "mot_app.CognitiveTask",
+        "pk": 8,
+        "fields": {
+            "name": "memorability_3",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/memorability_3.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_memorability_3.html"
+        }
+    }
+]

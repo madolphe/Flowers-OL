@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}TASK{% endblock %}
+{%load static%}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cognitive_task.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+{% endblock %}
+
+{% block content%}
+    <form id="request">{% csrf_token %}</form>
+{% endblock %}
+
+{% block js%}
+
+    {% get_current_language as LANGUAGE_CODE %}
+    <script>  let language_code = {% autoescape off %}"{{LANGUAGE_CODE}}"{% endautoescape %}; </script>
+    <script> size_screen_cm_w = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
+    <script src="{% static 'js/utils/screen_params.js' %}"></script>
+    <script src="{% static 'js/utils/utils.js' %}"></script>
+
+    {% load mot_app_extras %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/config.js" as task_config %}
+        <script src="{% static task_config %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/config_tutorial.js" as task_config_tutorial %}
+        <script src="{% static task_config_tutorial %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/parametermanager.js" as parametermanager %}
+        <script src="{% static parametermanager %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/timemanager.js" as timemanager %}
+        <script src="{% static timemanager %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/scene_testtrial.js" as scene_testtrial %}
+        <script src="{% static scene_testtrial %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/scene_tutorials.js" as scene_tutorials %}
+        <script src="{% static scene_tutorials %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/prompt.js" as task_prompt %}
+        <script src="{% static task_prompt %}"></script>
+    {% endwith %}
+    {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/"|addstr:CONTEXT.task|addstr:".js" as task_template %}
+        <script src="{% static task_template %}"></script>
+    {% endwith  %}
+{% endblock %}

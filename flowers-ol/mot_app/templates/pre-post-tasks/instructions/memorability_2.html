@@ -1,0 +1,29 @@
+{% load i18n %}
+{%load static%}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+{% endblock %}
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
+  <p>
+    {% blocktrans %}
+          <UL>
+            <li>Le but de cette expérience est de mesurer la capacité de mémorisation de photographies.</li>
+            <li>Dans cette expérience, vous allez voir un ensemble de photographies une par une.</li>
+            <li>Votre tâche est de vous souvenir de chaque photographie et de répondre si la photographie est présentée
+                deux fois ou non en appuyant sur la touche "f" le plus rapidement possible.</li>
+            <li>Certaines images apparaîtront deux fois dans une courte portée, d'autres dans une longue portée, et les autres une seule fois.</li>
+            <li>À chaque essai, vous aurez un retour pour savoir si votre réponse était correcte.</li>
+            <UL>
+                <li>  Si vous répondez correctement (c'est-à-dire si vous n'appuyez pas sur la touche pour l'image présentée
+                    pour la première fois ou si vous appuyez sur la touche pour l'image présentée deux fois),
+                    vous verrez le mot "Réponse correcte".</li>
+            </UL>
+            <UL>
+                <li>  Si ce n'est pas le cas, vous verrez le mot "Réponse erronée."</li>
+            </UL>
+            <li>Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante</li>
+          </UL>
+      {% endblocktrans %}
+  </p>
+</div>

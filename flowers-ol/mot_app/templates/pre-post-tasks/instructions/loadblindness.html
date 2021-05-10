@@ -1,0 +1,26 @@
+{% load i18n %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/style_app.css' %}">
+<form id="request">{% csrf_token %}</form>
+<div class="explanation-text">
+  <p>
+      {% blocktrans %}
+            <li>Le but de cette expérience est de mesurer la capacité d'attention vers des cibles multiples.</li>
+            <li>Dans chaque essai, vous verrez une brève présentation d'une cible (forme de croix) avec quatre objets à rayures.</li>
+            <li>Vous devez répondre à <b>deux tâches</b> pour chaque essai.</li>
+            <li>Premièrement, vous devez retrouver la direction (horizontale ou verticale) de la ligne la plus longue en utilisant votre clavier.</li>
+            <UL>
+            <li>Si la <b>ligne verticale</b> est plus longue, alors appuyez sur la touche <kbd>"F"</kbd>.</li>
+            <li>Si la <b>ligne horizontale</b> est plus longue, alors veuillez appuyer sur la touche <kbd>"J"</kbd>.</li>
+            </UL>
+             <li>Après cette réponse, vous devez retrouver <b>la position de l'objet avec le plus fort contraste</b> en cliquant sur l'un des quatre boutons.</li>
+            <UL>
+            <li>Le "fort contraste" signifie que les couleurs noires se distinguent nettement des couleurs blanches.</li>
+            </UL>
+            <li>N'oubliez pas que vous devez répondre correctement à au moins la première question. Dans le cas contraire,
+                votre réponse à la deuxième question ne sera pas enregistrée.</li>
+            <li>Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante.</li>
+      {% endblocktrans %}
+  </p>
+</div>
+
