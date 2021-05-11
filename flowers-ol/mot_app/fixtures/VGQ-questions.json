@@ -1,0 +1,172 @@
+[
+  {
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-1",
+			"order": 1,
+			"prompt": "First/Third Person Shooter (FPS/TPS) ",
+			"prompt_en": "First/Third Person Shooter (FPS/TPS) ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Call Of Duty, Halo, Battlefield, Half-Life, Overwatch, Counterstrike"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-2",
+			"order": 2,
+			"prompt": "Action - RPG / Aventure",
+			"prompt_en": "Action - RPG / Adventure",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex :The Witcher, Mass Effect, Fallout 4, Skyrim, GTA, Assassin’s Creed, Tomb Raider, The Last of Us"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-3",
+			"order": 3,
+			"prompt": "Sport / Pilotage",
+			"prompt_en": "Sport / Driving",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Fifa, NHL, Mario Kart, Need for Speed, Forza"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 1,
+			"handle": "vgq-4",
+			"order": 4,
+			"prompt": "Stratégie en temps réel / MOBA ",
+			"prompt_en": "Real time strategy / MOBA ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Starcraft, Warcraft I, II & III, DotA, Command & Conquer, League of Legends, Age of Empire"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-5",
+			"order": 5,
+			"prompt": "Jeux à base de tours / Jeu de rôle sans action / Fantasy ",
+			"prompt_en": "Turn-based / Non-action role playing / Fantasy ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: World of Warcraft, Final Fantasy, Fable, Pokemon, Dragon Age"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-6",
+			"order": 6,
+			"prompt": "Jeux à base de tours stratégique / Simulation de vie / Puzzle ",
+			"prompt_en": "Turn-based strategy / Life simulation / Puzzle ",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Civilization, Hearthstone, The Sims, Restaurant Empire, Puzzle Quest, Bejeweled, Solitaire, Candy Crush"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-7",
+			"order": 7,
+			"prompt": "Jeux de musique",
+			"prompt_en": "Music games",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Guitar Hero, DDR, Rock Band"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "VGQ",
+			"component": "game_habit",
+			"group": 2,
+			"handle": "vgq-8",
+			"order": 8,
+			"prompt": "Autres jeux qui ne correspondent à aucune catégories précédentes",
+			"prompt_en": "Other that don't fit into any of the categories",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Moins d'une heure~Entre 1 et 3 heures~Entre 3 et 5 heures~Plus de 10 heures",
+			"annotations_en": "never~less than 1 hour~between 1 and 3 hours~between 3 and 5 hours~more than 10 hours",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": "ex: Jeux mobiles, jeux sur navigateurs, jeux de combats",
+			"help_text_en": "ex: Phone games, Browser games, Fighting games, etc"
+
+		}
+	}
+]

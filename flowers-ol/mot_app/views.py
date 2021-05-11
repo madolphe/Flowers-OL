@@ -47,7 +47,7 @@ def mot_consent_page(request):
         return redirect(reverse('end_task'))
     return render(request, 'introduction/consent_page.html', {'CONTEXT': {
         'username': user.username,
-        'study': participant.study,
+        'project': participant.study.project,
         'form': form}})
 
 

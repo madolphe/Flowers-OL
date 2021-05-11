@@ -3,25 +3,25 @@
 <link rel="stylesheet" href="{% static 'css/style_app.css' %}">
 <form id="request">{% csrf_token %}</form>
 <div class="explanation-text">
-      <p>
+  <p>
       {% blocktrans %}
           <UL>
-            <li>Le but de cette expérience est de mesurer la capacité de mémorisation de photographies.</li>
+            <li>Le but de cette expérience est de mesurer votre capacité de mémorisation de photographies.</li>
             <li>Dans cette expérience, vous allez voir un ensemble de photographies une par une.</li>
             <li>Votre tâche est de vous souvenir de chaque photographie et de répondre si la photographie est présentée
-                deux fois ou non en appuyant sur la touche "f" le plus rapidement possible.</li>
-            <li>Certaines images apparaîtront deux fois dans une courte portée, d'autres dans une longue portée, et les autres une seule fois.</li>
+                deux fois ou non en appuyant sur la touche "J" le plus rapidement possible.</li>
+            <li>Certaines images apparaîtront deux fois dans une courte durée, d'autres deux fois dans une longue durée,
+                et les autres une seule fois.</li>
             <li>À chaque essai, vous aurez un retour pour savoir si votre réponse était correcte.</li>
             <UL>
                 <li>  Si vous répondez correctement (c'est-à-dire si vous n'appuyez pas sur la touche pour l'image présentée
                     pour la première fois ou si vous appuyez sur la touche pour l'image présentée deux fois),
-                    vous verrez le mot "Réponse correcte".</li>
+                    vous verrez un symbole indiquant une bonne réponse.</li>
             </UL>
             <UL>
-                <li>  Si ce n'est pas le cas, vous verrez le mot "Réponse erronée."</li>
+                <li>  Si ce n'est pas le cas, vous verrez un autre symbole.</li>
             </UL>
-            <li>Vous pouvez vérifier les essais pratiques de cette tâche à partir de la fenêtre suivante</li>
           </UL>
       {% endblocktrans %}
-      </p>
-  </div>
+  </p>
+</div>
