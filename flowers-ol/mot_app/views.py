@@ -23,7 +23,7 @@ import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
 # ### Views and utilities for mot_app-task ###
-NUMBER_OF_TASKS_PER_BATCH = 2
+NUMBER_OF_TASKS_PER_BATCH = 4
 
 
 @login_required
@@ -312,7 +312,7 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    task_stack = ['taskswitch','workingmemory','enumeration', 'loadblindness', 'gonogo']
+    task_stack = ['memorability_1','memorability_2','moteval','taskswitch','workingmemory','enumeration', 'loadblindness', 'gonogo']
     # random.Random(0).shuffle(task_stack)
     return task_stack
 
