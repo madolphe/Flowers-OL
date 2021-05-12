@@ -110,16 +110,22 @@ function scene_instruction(){
       Button[i] = createButton("",[i]);
       Button[i].style('font-size', size_text_button + 'px');
       Button[i].size(size_target, size_target);
+      Button[i].addClass('button_answer');
+      // Button[i].style('cursor', "url(\'static/images/icons/tap.svg\') 30 1, pointer !important;")
       Button[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
       Button[i].hide();
     }
   }
   
   function show_button(){
+    show_cursor_on_body();
     for (let i=0; i < array_stimcond.length; ++i){
       Button[i].show(); 
       Button[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
     }  
+  }
+  function show_cursor_on_body(){
+    document.getElementsByTagName('body')[0].style = 'cursor: url(\'static/images/icons/tap.svg\') 30 1, pointer !important;';
   }
 
   function switch_buttons_position(){

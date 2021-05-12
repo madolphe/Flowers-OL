@@ -49,3 +49,7 @@ button:hover{
         -webkit-transform: rotate( 45deg );
     width:  20px;
 }
+
+.button_answer{
+    cursor: url('../images/icons/tap.svg') 30 1, pointer !important;
+}
