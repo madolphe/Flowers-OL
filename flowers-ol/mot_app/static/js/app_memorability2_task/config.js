@@ -14,7 +14,7 @@ let window_availh = window.screen.availHeight;
 //let window_availw = window.screen.width;
 //let window_availh = window.screen.height;
 
-let size_screen_cm_w = 34.25; // width pixels/cm in sawayama's monitor
+//let size_screen_cm_w = 34.25; // width pixels/cm in sawayama's monitor
 //let screen_params = 1920/34.25; // width pixels/cm in sawayama's monitor
 let screen_params = window_availw/size_screen_cm_w;
 let ppd = get_ppd(viewer_dist, screen_params);

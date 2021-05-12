@@ -23,7 +23,7 @@ import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
 # ### Views and utilities for mot_app-task ###
-NUMBER_OF_TASKS_PER_BATCH = 2
+NUMBER_OF_TASKS_PER_BATCH = 4
 
 
 @login_required
@@ -47,7 +47,7 @@ def mot_consent_page(request):
         return redirect(reverse('end_task'))
     return render(request, 'introduction/consent_page.html', {'CONTEXT': {
         'username': user.username,
-        'study': participant.study,
+        'project': participant.study.project,
         'form': form}})
 
 
@@ -312,8 +312,8 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    task_stack = ['taskswitch','workingmemory','enumeration', 'loadblindness', 'gonogo']
-    # random.Random(0).shuffle(task_stack)
+    #task_stack = ['moteval','workingmemory','memorability_1','memorability_2','taskswitch','enumeration', 'loadblindness', 'gonogo']
+    random.Random(0).shuffle(task_stack)
     return task_stack
 
 
@@ -392,6 +392,7 @@ def store_previous_task(request, participant, idx_task):
     res.participant = participant
     res.idx = idx_task
     res.results = datas
+    res.status = participant.extra_json["cognitive_tests_status"]
     res.save()
 
 

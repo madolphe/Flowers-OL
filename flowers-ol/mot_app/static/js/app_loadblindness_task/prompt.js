@@ -4,7 +4,7 @@ let text_title_0, text_tutorial_0_0, text_tutorial_0_1, text_tutorial_0_2, text_
 let text_tutorial_1_0, text_tutorial_2_0, text_tutorial_2_1, text_tutorial_2_2, text_tutorial_3_1,text_tutorial_3_2,
     text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2;
 let text_start, text_end, text_fixation_answer1, text_fixation_answer2;
-let text_button_next, text_button_previous, text_button_start;
+let text_button_next, text_button_previous, text_button_start, text_question_target, text_question_length;
 
 if(language_code==='fr'){
     prompt_start = "Cliquez sur la souris pour débuter l'activité";
@@ -13,7 +13,7 @@ if(language_code==='fr'){
     prompt_question_contrast = "Quelle cible était la plus contrastée ?";
     prompt_button_here = "Ici!";
     prompt_gratitude = "Merci d'avoir participé à l'expérience";
-    prompt_button_end = "END";
+    prompt_button_end = "FIN";
     prompt_button_restart = "Redémarrer";
    // TUTORIAL
     text_title_0 = "INSTRUCTIONS" ;
@@ -40,6 +40,8 @@ if(language_code==='fr'){
     text_button_next = "Suivant";
     text_button_previous = "Précédent";
     text_button_start = "Démarrer";
+    text_question_target="Quelle cible était la plus contrastée?";
+    text_question_length = "Quelle ligne était la plus longue?";
 
 }else{
     prompt_start = "Please click the mouse to start this experiment";
@@ -75,4 +77,6 @@ if(language_code==='fr'){
     text_button_next = "Next";
     text_button_previous = "Previous";
     text_button_start = "Start";
+    text_question_target="Which target contrast was strong?";
+    text_question_length = "Which was longer?";
 }

@@ -71,3 +71,4 @@ class CognitiveResult(models.Model):
     cognitive_task = models.ForeignKey(CognitiveTask, on_delete=models.CASCADE)
     idx = models.IntegerField()
     results = models.JSONField(blank=True)
+    status = models.TextField(blank=True, default="pre_test")

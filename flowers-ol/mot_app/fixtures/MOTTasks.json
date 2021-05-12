@@ -2,7 +2,8 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "general-tutorial",
-            "description": "How to use the web app",
+            "description": "Fonctionnement de l'application",
+            "description_en": "How does the web app work?" ,
             "view_name": "general_tutorial"
         }
     },
@@ -10,7 +11,8 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "mot-consent",
-            "description": "Informed consent",
+            "description": "Consentement éclairé",
+            "description_en": "Informed consent",
             "view_name": "mot_consent_page"
         }
     },
@@ -19,7 +21,9 @@
         "fields": {
             "name": "additional-profile-general",
             "description": "Profil général",
+            "description_en": "General questions",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -40,6 +44,7 @@
         "fields": {
             "name": "additional-profile-attention",
             "description": "Profil général",
+            "description_en": "General questions",
             "prompt": "Commencer",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -52,7 +57,8 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "simple-mot-practice-admin",
-            "description": "Attention task",
+            "description": "Tâche attentionnelle",
+            "description_en": "Attention task",
             "prompt": "Commencer",
             "view_name": "app_MOT",
             "info_templates_csv": "Instructions=mot_app/instructions_admin.html, Paramètre d'écran=mot_app/screen_params.html-, Historique d'épisode=mot_app/link_to_progression.html-"
@@ -62,8 +68,10 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "screen-size-params",
-            "description": "Screen information",
+            "description": "Taille d'écran",
+            "description_en": "Monitor screen information",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "set_mot_params",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html",
             "extra_json": {
@@ -78,7 +86,9 @@
         "fields": {
             "name": "post-sess-questionnaire",
             "description": "Questionnaire post-session",
+            "description_en": "Post-session questionnaire",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -100,7 +110,9 @@
         "fields": {
             "name": "nasatlx-questionnaire",
             "description": "Questionnaire post-session",
+            "description_en": "Post-session questionnaire",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -115,6 +127,7 @@
         "fields": {
             "name": "12-months-vgq",
             "description": "Habitudes de jeux (1)",
+            "description_en": "Video game habits (1)",
             "prompt": "Commencer",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
@@ -128,7 +141,9 @@
         "fields": {
             "name": "years-vgq",
             "description": "Habitudes de jeux (2)",
+            "description_en": "Video game habits (2)",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -141,7 +156,9 @@
         "fields": {
             "name": "ueq",
             "description": "Questionnaire d'utilisabilité",
+            "description_en": "User experience questionnaire",
             "prompt": "Commencer",
+            "prompt_en": "Start",
             "view_name": "questionnaire",
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
@@ -153,7 +170,8 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "cognitive-task-practice",
-            "description": "Cognitive assessment",
+            "description": "Evaluation cognitive",
+            "description_en": "Cognitive assessment",
             "view_name": "cognitive_assessment_home",
             "info_templates_csv": "Instructions=pre-post-tasks/instructions/pre-post.html"
         }
@@ -162,8 +180,10 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "simple-mot-practice",
-            "description": "Attention task",
+            "description": "Tâche attentionnelle",
+            "description_en": "Attention task",
             "prompt": "Begin practice",
+            "prompt_en": "Start training",
             "view_name": "app_MOT",
             "info_templates_csv": "Instructions=mot_app/instructions.html"
         }

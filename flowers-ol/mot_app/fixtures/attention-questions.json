@@ -1,0 +1,128 @@
+[
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-1",
+			"order": 1,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à finaliser les derniers détails d’un projet une fois que les parties les plus stimulantes ont été faites?",
+			"prompt_en": "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-2",
+			"order": 2,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à mettre les choses en ordre lorsque vous devez faire quelque chose qui demande de l’organisation? ",
+			"prompt_en": "How often do you have difficulty getting things in order when you have to do a task that requires organization?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 1,
+			"handle": "att-3",
+			"order": 3,
+			"prompt": "À quelle fréquence vous arrive-t-il d’avoir des difficultés à vous rappeler vos rendez-vous ou vos obligations?",
+			"prompt_en": "How often do you have problems remembering appointments or obligations?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-4",
+			"order": 4,
+			"prompt": "Quand vous devez faire quelque chose qui demande beaucoup de réflexion, à quelle fréquence vous arrive-t-il d’éviter de le faire ou de le remettre à plus tard?",
+			"prompt_en": "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-5",
+			"order": 5,
+			"prompt": "À quelle fréquence vous arrive-t-il de remuer ou de tortiller les mains ou les pieds lorsque vous devez rester assis pendant une période prolongée?",
+			"prompt_en": "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "get_attention",
+			"component": "long_term",
+			"group": 2,
+			"handle": "att-6",
+			"order": 6,
+			"prompt": "À quelle fréquence vous arrive-t-il de vous sentir excessivement actif et contraint de faire quelque chose, comme si vous étiez entraîné malgré vous par un moteur?",
+			"prompt_en": "How often do you feel overly active and compelled to do things, like you were driven by a motor?",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 5,
+			"step": 1,
+			"annotations": "Jamais~Rarement~Quelques fois~Souvent~Très souvent",
+			"annotations_en": "Never~Rarely~Sometimes~Often~Very Often",
+			"widget": "custom-likert",
+			"type": "integer",
+			"help_text": ""
+		}
+	}
+]

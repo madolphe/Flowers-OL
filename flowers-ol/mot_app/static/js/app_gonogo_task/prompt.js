@@ -23,7 +23,7 @@ if(language_code==='fr'){
     text_tutorial_3_0 = "Commençons les pratiques." ;
     text_tutorial_3_1 = "Vous obtenez le feedback de la réponse pendant les pratiques." ;
     text_tutorial_4_0 = "Commençons l'expérience principale." ;
-    text_tutorial_4_1 = "Pas de retour de réponse pendant cette expérience." ;
+    text_tutorial_4_1 = "Attention, il n'y a pas de feedback sur votre réponse pendant l'expérience." ;
     text_tutorial_5_0 = "Temps de pause." ;
     text_tutorial_6_1 = "Merci pour votre effort. Quand vous êtes prêt," ;
     text_tutorial_6_2 = "Veuillez cliquer sur le bouton de démarrage pour redémarrer." ;
@@ -53,7 +53,7 @@ if(language_code==='fr'){
     text_tutorial_3_0 = "Let's start the practices.";
     text_tutorial_3_1 = "You get the response feedback during the practices.";
     text_tutorial_4_0 = "Let's start the main experiment.";
-    text_tutorial_4_1 = "No response feedback during this experiment.";
+    text_tutorial_4_1 = "You won't get any response feedback during the main experiment.";
     text_tutorial_5_0 = "Break time.";
     text_tutorial_6_1 = "Thank you for your effort. When you are ready,";
     text_tutorial_6_2 = "please click the start button to restart.";
