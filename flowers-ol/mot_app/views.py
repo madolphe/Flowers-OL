@@ -312,8 +312,8 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    task_stack = ['memorability_1','memorability_2','moteval','taskswitch','workingmemory','enumeration', 'loadblindness', 'gonogo']
-    # random.Random(0).shuffle(task_stack)
+    #task_stack = ['moteval','workingmemory','memorability_1','memorability_2','taskswitch','enumeration', 'loadblindness', 'gonogo']
+    random.Random(0).shuffle(task_stack)
     return task_stack
 
 
@@ -392,6 +392,7 @@ def store_previous_task(request, participant, idx_task):
     res.participant = participant
     res.idx = idx_task
     res.results = datas
+    res.status = participant.extra_json["cognitive_tests_status"]
     res.save()
 
 
