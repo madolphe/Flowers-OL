@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Study
+from .models import Study, Task
 
 
 class StudyTranslationOptions(TranslationOptions):
