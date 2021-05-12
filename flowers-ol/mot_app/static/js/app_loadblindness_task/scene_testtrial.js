@@ -70,7 +70,7 @@ function scene_instruction(){
     textSize(size_text);
     textAlign(CENTER);
     textFont(text_font);
-    text( 'Which was longer?', Pos.center_x, Pos.center_y);
+    text(text_question_length , Pos.center_x, Pos.center_y);
     pop();
   
     push();
@@ -124,7 +124,7 @@ function scene_instruction(){
     textSize(size_text);
     textAlign(CENTER);
     textFont(text_font);
-    text( 'Which target contrast was strong?', Pos.center_x, Pos.center_y);
+    text(text_question_target, Pos.center_x, Pos.center_y);
     pop();
   
     for (let i=0;i<4;i++){
@@ -138,7 +138,7 @@ function scene_instruction(){
   
   function create_answer_button(){
     for (let i=0;i<4;i++){
-      Buttons[i] = createButton("Here!"); 
+      Buttons[i] = createButton(prompt_button_here);
       Buttons[i].size(size_img, size_img);
       Buttons[i].style('font-size', size_text_button + 'px');
       Buttons[i].position(Params.dict_pos[Params.trial_stimcond[i]][0],Params.dict_pos[Params.trial_stimcond[i]][1]);
@@ -186,7 +186,7 @@ function scene_instruction(){
   }
   
   function create_end_button(){
-    button_end = createButton('END');
+    button_end = createButton(prompt_button_end);
     button_end.size(size_end_w,size_end_h);
     button_end.style('font-size', size_end_text + 'px');
     button_end.position(x_end, y_end);
