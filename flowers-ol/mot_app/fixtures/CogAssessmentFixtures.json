@@ -1,5 +1,5 @@
 [
-        {
+    {
         "model": "mot_app.CognitiveTask",
         "fields": {
             "name": "gonogo",
@@ -7,6 +7,16 @@
             "instructions_prompt_label": "Start",
             "template_instruction_path":"pre-post-tasks/instructions/gonogo.html",
             "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_gonogo.html"
+        }
+    },
+    {
+        "model": "mot_app.CognitiveTask",
+        "fields": {
+            "name": "moteval",
+            "view_name": "cognitive_task",
+            "instructions_prompt_label": "Start",
+            "template_instruction_path":"pre-post-tasks/instructions/moteval.html",
+            "template_tutorials_path":"pre-post-tasks/instructions/includes/tutorials_moteval.html"
         }
     },
         {
