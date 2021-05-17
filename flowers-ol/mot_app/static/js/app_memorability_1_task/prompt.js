@@ -51,7 +51,7 @@ if(language_code==='fr'){
     text_tutorial_0_3 = "the photograph is presented twice or not.";
     text_tutorial_1_0 = "Some images will appear twice, but the others just once.";
     text_tutorial_1_1 = "When you notice the image is presented twice,";
-    text_tutorial_1_2 = "please press the key [J] as soon as possible.";
+    text_tutorial_1_2 = "please press the key [J] on your keyboard as soon as possible.";
     text_tutorial_6_1 = "Thank you for your effort. When you are ready,";
     text_tutorial_6_2 = "please click the start button to restart.";
     text_tutorial_2_0 = "On each trial, you will get feedback about if your response is correct.";

@@ -49,7 +49,7 @@ let num_rep_main = 10;
 let num_rep_practice = 2;
 
 let time_stimduration_main = 50; //in ms Mani et al., (2005)
-let time_stimduration_practice = 1000; //in ms Mani et al., (2005)
+let time_stimduration_practice = 500; //The duration is still longer than main, but looks a flash.
 
 let array_stimcond = [1,2,3,4,5,6,7,8,9]; //Experimental condition. 
 let stim_target = 3;
