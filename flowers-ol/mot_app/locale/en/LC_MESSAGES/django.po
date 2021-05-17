@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-12 14:21+0200\n"
+"POT-Creation-Date: 2021-05-17 21:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -684,8 +684,8 @@ msgstr "Hi, I am Prof. Flowers! I'll be your guide during this experiment."
 
 #: mot_app/templates/introduction/general_tuto.html:36
 msgid ""
-" Tout d'abord, merci de votre participation. Je vous propose commencer par "
-"vous familiariser avec l'interface."
+" Tout d'abord, merci de votre participation. Je vous propose de commencer "
+"par vous familiariser avec l'interface."
 msgstr ""
 "Before anything else, thanks for you participation. Let's discover the basic "
 "features of this web interface."
@@ -749,7 +749,7 @@ msgid "Vous allez maintenant pouvoir commencer, à vous de jouer !"
 msgstr "It is time to start, good luck!"
 
 #: mot_app/templates/introduction/general_tuto.html:54
-msgid "Précédant"
+msgid "Précédent"
 msgstr "Previous"
 
 #: mot_app/templates/introduction/general_tuto.html:55
@@ -758,7 +758,7 @@ msgstr "Next"
 
 #: mot_app/templates/introduction/general_tuto.html:56
 msgid "Start"
-msgstr ""
+msgstr "Commencer"
 
 #: mot_app/templates/pre-post-tasks/instructions/enumeration.html:7
 msgid ""

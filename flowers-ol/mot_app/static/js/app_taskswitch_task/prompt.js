@@ -47,7 +47,7 @@ if(language_code==='fr'){
     text_tutorial_0_3 = "Your tasks will change with the cue background as follows.";
     text_tutorial_1_0 = "When the cue is the blue diamond-shaped background,";
     text_tutorial_1_1 = "you have to answer whether the target digit is odd or even";
-    text_tutorial_1_2 = "by using the key [F] or [J], respectively.";
+    text_tutorial_1_2 = "by using the key [F] or [J] on your keyboard, respectively.";
     text_tutorial_2_0 = "When the cue is the red square background, you have";
     text_tutorial_2_1 = "to answer whether the target digit is lower or higher than 5";
     text_tutorial_2_2 = "by using the key [F] or [J], respectively.";

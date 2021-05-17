@@ -41,3 +41,6 @@ input[type=email]{
     width: 100%;
     outline: none;
 }
+.invalid-feedback{
+    color: red;
+}

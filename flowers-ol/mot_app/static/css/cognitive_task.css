@@ -41,7 +41,7 @@ button:hover{
     height: 20px;
     left: -50px;
     position: relative;
-    top: -275px;
+    top: -150px;
     transform:             rotate( 45deg );
         -moz-transform:    rotate( 45deg );
         -ms-transform:     rotate( 45deg );
