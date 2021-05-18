@@ -42,8 +42,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -55,9 +55,9 @@
                         "jold-0",
                         "jold-3",
                         "jold-2",
-                        "jold-4",
                         "jold-5",
-                        "jold-6"
+                        "jold-6",
+                        "jold-7"
                     ]
                 }
             }
@@ -73,8 +73,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -86,9 +86,9 @@
                     "handle__in": [
                         "jold-0",
                         "jold-3",
-                        "jold-4",
                         "jold-5",
-                        "jold-6"
+                        "jold-6",
+                        "jold-7"
                     ]
                 }
             }
@@ -104,8 +104,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html",
+            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -130,8 +130,8 @@
             "prompt_en":"Give your opinion on the application",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html",
+            "info_templates_csv_en": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": [
                     "UEQ"
@@ -148,8 +148,8 @@
             "prompt": "Complétez votre profil",
             "prompt_en":"Complete your profile",
             "view_name": "questionnaire",
-            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Please complete your profile=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html",
+            "info_templates_csv_en": "Please complete your profile=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": ["get_profil"],
                 "exclude": {
