@@ -52,14 +52,6 @@
                     </div>
                     <div class="row">
                             </br>
-                        <u>
-                        {% blocktrans %}
-                            Voici les consignes pour cette nouvelle activité:
-                        {% endblocktrans %}
-                        </u>
-                            {% if CONTEXT.current_task %}
-                                {% include CONTEXT.current_task.template_instruction_path %}
-                            {% endif %}
                         {% blocktrans %}
                             Quand vous êtes prêt, appuyez sur le boutton start en dessous. Vous suivrez un tutoriel rapide
                             puis vous pourrez pratiquer la tâche.

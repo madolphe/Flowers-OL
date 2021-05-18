@@ -83,16 +83,10 @@ class ConsentForm(forms.Form):
         error = False
 
         if cleaned_data['request_reminder'] and not cleaned_data['email']:
-            error = True
             self.add_error('email', _(
                 'Veuillez fournir une adresse électronique si vous souhaitez recevoir un rappel de la future session 1 jour à l\'avance.'))
 
         if not cleaned_data['request_reminder'] and cleaned_data['email']:
-            error = True
             self.add_error('request_reminder', _(
                 'Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de tels rappels, décochez cette case et supprimez votre courriel ci-dessous.'))
-
-        if error:
-            django_messages.add_message(self.request, django_messages.ERROR, _(
-                'Le formulaire n\'est pas valide. Consultez les messages d\'erreur pour corriger le formulaire'))
         return cleaned_data
