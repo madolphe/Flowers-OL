@@ -150,7 +150,7 @@
 			"step": 1,
 			"annotations": "Moins de pogrès~Plus de pogrès",
 			"annotations_en": "Less improvement~More improvement",
-			"widget": "custom-range",
+			"widget": "custom-polar",
 			"type": "integer"
 		}
 	},
