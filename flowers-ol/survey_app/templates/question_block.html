@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}JOLD Questionnaire{% endblock %}
+{% block js%}
+    <script src="{% static 'js/customWidgetsBehavior.js' %}"></script>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/common.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom_widgets.css" %}">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="side-panel">
+        <div class="side-info">
+           <h2>Questionnaire</h2>
+           <p> Page {{CONTEXT.current_page}} {% trans "sur" %} {{CONTEXT.nb_pages}} </p>
+        </div>
+        <div class="btn-box logout"> <a class="btn logout" href={% url "user_logout" %}>{% trans "Se déconnecter" %}</a></div>
+    </div>
+
+    <div class="main-panel">
+        <div class="signup-form">
+            <form class="form" method="post">
+                {% crispy CONTEXT.form %}
+            </form>
+    </div>
+{% endblock %}
