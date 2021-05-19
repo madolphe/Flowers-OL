@@ -59,31 +59,31 @@ def questionnaire(request):
             participant.save()
             return redirect(reverse('end_task'))
         return redirect(reverse(questionnaire))
-    return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
+    return render(request, 'question_block.html', {'CONTEXT': {
         'form': form,
         'current_page': groups.index(groups[ind]) + 1,
         'nb_pages': len(groups)
     }})
 
 
-@login_required
-def consent_page(request):
-    user = request.user
-    participant = user.participantprofile
-    study = participant.study
-    greeting = "Salut, {0} !".format(user.username)
-    form = ConsentForm(request.POST or None)
-    if form.is_valid():
-        user.first_name = request.POST['nom']
-        user.last_name = request.POST['prenom']
-        user.save()
-        participant.consent = True
-        participant.save()
-        participant.populate_session_stack()
-        return redirect(reverse('home'))
-    if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
-    return render(request, 'consent_page.html', {'CONTEXT': {
-        'greeting': greeting,
-        'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
-        'study': study,
-        'form': form}})
+# @login_required
+# def consent_page(request):
+#     user = request.user
+#     participant = user.participantprofile
+#     study = participant.study
+#     greeting = "Salut, {0} !".format(user.username)
+#     form = ConsentForm(request.POST or None)
+#     if form.is_valid():
+#         user.first_name = request.POST['nom']
+#         user.last_name = request.POST['prenom']
+#         user.save()
+#         participant.consent = True
+#         participant.save()
+#         participant.populate_session_stack()
+#         return redirect(reverse('home'))
+#     if request.method == 'POST': person = [request.POST['nom'], request.POST['prenom']]
+#     return render(request, 'consent_page.html', {'CONTEXT': {
+#         'greeting': greeting,
+#         'person': [request.user.first_name.capitalize(), request.user.last_name.upper()],
+#         'study': study,
+#         'form': form}})
