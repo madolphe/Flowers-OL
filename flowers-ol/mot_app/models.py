@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from manager_app.models import ParticipantProfile
+import jsonfield
 
 
 class Episode(models.Model):
@@ -70,5 +71,5 @@ class CognitiveResult(models.Model):
     participant = models.ForeignKey(ParticipantProfile, on_delete=models.CASCADE)
     cognitive_task = models.ForeignKey(CognitiveTask, on_delete=models.CASCADE)
     idx = models.IntegerField()
-    results = models.JSONField(blank=True)
+    results = jsonfield.JSONField(blank=True)
     status = models.TextField(blank=True, default="pre_test")
