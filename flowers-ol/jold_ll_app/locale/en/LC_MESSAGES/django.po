@@ -719,7 +719,7 @@ msgstr "Fill in the consent form at the end"
 
 #: jold_ll_app/templates/tasks/JOLD_Consent/consent_page.html:18
 msgid "Envoyez le formulaire de consentement que vous avez rempli"
-msgstr "Fill in the consent form at the end"
+msgstr "Submit the form"
 
 #: jold_ll_app/templates/tasks/JOLD_Consent/consent_page.html:21
 msgid "Se déconnecter"
