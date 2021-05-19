@@ -2,302 +2,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "JOLD",
-			"component": "Free-choise",
-			"group": 0,
-			"handle": "jold-0",
-			"order": 1,
-			"prompt": "Souhaiteriez-vous pratiquer cette tâche pendant votre temps libre ?",
-			"prompt_en": "Would you like to practice the task in your free time?",
-			"reverse": 0,
-			"min_val": 0,
-			"max_val": 1,
-			"step": 1,
-			"annotations": "Non~Oui",
-			"annotations_en": "No~Yes",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Long-term",
-			"group": 1,
-			"handle": "jold-3",
-			"order": 3,
-			"prompt": "Évaluez la qualité de votre amélioration depuis la toute première session de l'expérience",
-			"prompt_en": "Rate the quality of your improvement since the very first session of the experiment",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 100,
-			"step": 1,
-			"annotations": "Très mauvaise~Mauvaise~Passable~Bonne~Excellente",
-			"annotations_en": "Very poor~Poor~Fair~Good~Excellent",
-			"widget": "custom-range",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Short-term",
-			"group": 1,
-			"handle": "jold-2",
-			"order": 2,
-			"prompt": "Évaluez la qualité de votre amélioration depuis la dernière session",
-			"prompt_en": "Rate the quality of your improvement since the previous session",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 100,
-			"step": 1,
-			"annotations": "Très mauvaise~Mauvaise~Passable~Bonne~Excellente",
-			"annotations_en": "Very poor~Poor~Fair~Good~Excellent",
-			"widget": "custom-range",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Recent",
-			"group": 1,
-			"handle": "jold-1",
-			"order": 1,
-			"prompt": "Évaluez la qualité de votre amélioration depuis le début de la session d'aujourd'hui",
-			"prompt_en": "Rate the quality of your improvement since the beginning of today's session",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 100,
-			"step": 1,
-			"annotations": "Très mauvaise~Mauvaise~Passable~Bonne~Excellente",
-			"annotations_en": "Very poor~Poor~Fair~Good~Excellent",
-			"widget": "custom-range",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Relative",
-			"group": 2,
-			"handle": "jold-4",
-			"order": 1,
-			"prompt": "Maintenant que vous avez complété les trois sessions, notez votre progression sur chacune d'entre elles par rapport aux autres. Combien pensez-vous avoir progressé pendant :",
-			"prompt_en": "Now that you have completed all three practice sessions, rate your improvement on each session relative to each other. How much do you think you have improved in:",
-			"reverse": 0,
-			"widget": "custom-header",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Relative",
-			"group": 2,
-			"handle": "jold-5",
-			"order": 1,
-			"prompt": "Session 1",
-			"prompt_en": "Session 1",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 10,
-			"step": 1,
-			"annotations": "Moins de pogrès~Plus de pogrès",
-			"annotations_en": "Less improvement~More improvement",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Relative",
-			"group": 2,
-			"handle": "jold-6",
-			"order": 2,
-			"prompt": "Session 2",
-			"prompt_en": "Session 2",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 10,
-			"step": 1,
-			"annotations": "Moins de pogrès~Plus de pogrès",
-			"annotations_en": "Less improvement~More improvement",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Relative",
-			"group": 2,
-			"handle": "jold-7",
-			"order": 2,
-			"prompt": "Session 3",
-			"prompt_en": "Session 3",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 10,
-			"step": 1,
-			"annotations": "Moins de pogrès~Plus de pogrès",
-			"annotations_en": "Less improvement~More improvement",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "JOLD",
-			"component": "Relative",
-			"group": 1,
-			"handle": "jold-8",
-			"order": 4,
-			"prompt": "A quel point pensez-vous progresser lors de la prochaine session ?",
-			"prompt_en": "Rate how much you expect to improve over the next session",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Très peu~Énormément",
-			"annotations_en": "Very little~Very much",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Mental Demand",
-			"group": 1,
-			"handle": "tlx-1",
-			"order": 1,
-			"prompt": "La tâche était-elle mentalement exigeante ?",
-			"prompt_en": "How mentally demanding was the task?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevée",
-			"annotations_en": "Very Low~Very High",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Physical demand",
-			"group": 1,
-			"handle": "tlx-2",
-			"order": 2,
-			"prompt": "La tâche était-elle physiquement exigeante ?",
-			"prompt_en": "How physically demanding was the task?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevée",
-			"annotations_en": "Very Low~Very High",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Temporal demand",
-			"group": 1,
-			"handle": "tlx-3",
-			"order": 3,
-			"prompt": "Le rythme de la tâche était-il rapide ou précipité ?",
-			"prompt_en": "How hurried or rushed was the pace of the task?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevé",
-			"annotations_en": "Very Low~Very High",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Performance",
-			"group": 1,
-			"handle": "tlx-4",
-			"order": 4,
-			"prompt": "Dans quelle mesure avez-vous réussi à accomplir ce qu'on vous avait demandé de faire ?",
-			"prompt_en": "How successful were you in accomplishing what you were asked to do?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevé",
-			"annotations_en": "Perfect~Failure",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Effort",
-			"group": 1,
-			"handle": "tlx-5",
-			"order": 5,
-			"prompt": "Dans quelle mesure avez-vous dû fournir des efforts pour atteindre votre niveau de performance ?",
-			"prompt_en": "How hard did you have to work to accomplish your level of performance?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevé",
-			"annotations_en": "Very Low~Very High",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "NASA-TLX",
-			"component": "Frustration",
-			"group": 1,
-			"handle": "tlx-6",
-			"order": 6,
-			"prompt": "A quel point vous êtes-vous senti découragé, irrité, stressé et ennuyé ?",
-			"prompt_en": "How insecure, discouraged, irritated, stressed, and annoyed wereyou?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 20,
-			"step": 1,
-			"annotations": "Trés faible~Trés élevé",
-			"annotations_en": "Very Low~Very High",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Intrinsic goal orientation",
 			"group": 1,
 			"handle": "mslq-1",
@@ -317,7 +22,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Intrinsic goal orientation",
 			"group": 1,
 			"handle": "mslq-2",
@@ -337,7 +42,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Intrinsic goal orientation",
 			"group": 1,
 			"handle": "mslq-3",
@@ -357,7 +62,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Intrinsic goal orientation",
 			"group": 1,
 			"handle": "mslq-4",
@@ -377,7 +82,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Extrinsic Goal Orientation",
 			"group": 2,
 			"handle": "mslq-5",
@@ -397,7 +102,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Extrinsic Goal Orientation",
 			"group": 2,
 			"handle": "mslq-6",
@@ -417,7 +122,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Extrinsic Goal Orientation",
 			"group": 2,
 			"handle": "mslq-7",
@@ -437,7 +142,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Extrinsic Goal Orientation",
 			"group": 2,
 			"handle": "mslq-8",
@@ -457,7 +162,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-9",
@@ -477,7 +182,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-10",
@@ -497,7 +202,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-11",
@@ -517,7 +222,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-12",
@@ -537,7 +242,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-13",
@@ -557,7 +262,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Task Value",
 			"group": 3,
 			"handle": "mslq-14",
@@ -577,7 +282,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Control of Learning Beliefs",
 			"group": 4,
 			"handle": "mslq-15",
@@ -597,7 +302,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Control of Learning Beliefs",
 			"group": 4,
 			"handle": "mslq-16",
@@ -617,7 +322,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Control of Learning Beliefs",
 			"group": 4,
 			"handle": "mslq-17",
@@ -637,7 +342,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Control of Learning Beliefs",
 			"group": 4,
 			"handle": "mslq-18",
@@ -657,7 +362,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-19",
@@ -677,7 +382,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-20",
@@ -697,7 +402,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-21",
@@ -717,7 +422,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-22",
@@ -737,7 +442,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-23",
@@ -757,7 +462,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-24",
@@ -777,7 +482,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Self-Efficacy for Learning and Performance",
 			"group": 5,
 			"handle": "mslq-25",
@@ -797,7 +502,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
 			"group": 6,
 			"handle": "mslq-32",
@@ -817,7 +522,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
 			"group": 6,
 			"handle": "mslq-33",
@@ -837,7 +542,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
 			"group": 6,
 			"handle": "mslq-34",
@@ -857,7 +562,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Rehearsal",
 			"group": 6,
 			"handle": "mslq-35",
@@ -877,7 +582,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-36",
@@ -897,7 +602,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-37",
@@ -917,7 +622,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-38",
@@ -937,7 +642,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-39",
@@ -957,7 +662,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-40",
@@ -977,7 +682,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Elaboration",
 			"group": 7,
 			"handle": "mslq-41",
@@ -997,7 +702,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-51",
@@ -1017,7 +722,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-52",
@@ -1037,7 +742,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-53",
@@ -1057,7 +762,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-54",
@@ -1077,7 +782,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-55",
@@ -1097,7 +802,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-56",
@@ -1117,7 +822,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-57",
@@ -1137,7 +842,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-58",
@@ -1157,7 +862,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-59",
@@ -1177,7 +882,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-60",
@@ -1197,7 +902,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-61",
@@ -1217,7 +922,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
 			"group": 8,
 			"handle": "mslq-62",
@@ -1237,7 +942,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-63",
@@ -1257,7 +962,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-64",
@@ -1277,7 +982,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-65",
@@ -1297,7 +1002,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-66",
@@ -1317,7 +1022,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-67",
@@ -1337,7 +1042,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-68",
@@ -1357,7 +1062,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-69",
@@ -1377,7 +1082,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Time and Study Environment",
 			"group": 9,
 			"handle": "mslq-70",
@@ -1397,7 +1102,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Effort Regulation",
 			"group": 10,
 			"handle": "mslq-71",
@@ -1417,7 +1122,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Effort Regulation",
 			"group": 10,
 			"handle": "mslq-72",
@@ -1437,7 +1142,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Effort Regulation",
 			"group": 10,
 			"handle": "mslq-73",
@@ -1457,7 +1162,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management Strategies: Effort Regulation",
 			"group": 10,
 			"handle": "mslq-74",
@@ -1477,7 +1182,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Peer Learning",
 			"group": 11,
 			"handle": "mslq-75",
@@ -1497,7 +1202,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Peer Learning",
 			"group": 11,
 			"handle": "mslq-76",
@@ -1517,7 +1222,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Peer Learning",
 			"group": 11,
 			"handle": "mslq-77",
@@ -1537,7 +1242,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Help Seeking",
 			"group": 12,
 			"handle": "mslq-78",
@@ -1557,7 +1262,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Help Seeking",
 			"group": 12,
 			"handle": "mslq-79",
@@ -1577,7 +1282,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Help Seeking",
 			"group": 12,
 			"handle": "mslq-80",
@@ -1597,7 +1302,7 @@
 	{
 		"model": "survey_app.Question",
 		"fields": {
-			"instrument": "MSLQ",
+			"instrument": "jold-MSLQ",
 			"component": "Resource Management: Help Seeking",
 			"group": 12,
 			"handle": "mslq-81",
@@ -1612,1021 +1317,6 @@
 			"annotations_en": "Not at all true for me~Very true for me",
 			"widget": "custom-polar",
 			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "NA",
-			"group": 1,
-			"handle": "sims-1",
-			"order": 1,
-			"prompt": "Pourquoi continuez-vous à vous entraîner à ce jeu ?",
-			"prompt_en": "Why do you keep practicing the game?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-header",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "NA",
-			"group": 2,
-			"handle": "sims-10",
-			"order": 10,
-			"prompt": "Pourquoi continuez-vous à vous entraîner à ce jeu ?",
-			"prompt_en": "Why do you keep practicing the game?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-header",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Intrinsic motivation",
-			"group": 2,
-			"handle": "sims-11",
-			"order": 11,
-			"prompt": "Parce que je trouve ce jeu intéressant",
-			"prompt_en": "Because I think that this game is interesting",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Identified regulation",
-			"group": 2,
-			"handle": "sims-12",
-			"order": 12,
-			"prompt": "Parce que j'ai envie de jouer à ce jeu",
-			"prompt_en": "Because I feel like playing this game",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "External regulation",
-			"group": 2,
-			"handle": "sims-13",
-			"order": 13,
-			"prompt": "Parce que c'est quelque chose que je dois faire",
-			"prompt_en": "Because it is something that I have to do",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Amotivation",
-			"group": 2,
-			"handle": "sims-14",
-			"order": 14,
-			"prompt": "Je continue à m'entraîner, mais je ne suis pas sûr de devoir continuer",
-			"prompt_en": "I keep practicing, but I am not sure I should continue",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Intrinsic motivation",
-			"group": 2,
-			"handle": "sims-15",
-			"order": 15,
-			"prompt": "Parce que je trouve cette activité agréable",
-			"prompt_en": "Because I think that this activity is pleasant",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Identified regulation",
-			"group": 2,
-			"handle": "sims-16",
-			"order": 16,
-			"prompt": "Parce que je trouve que faire cette activité est bon pour moi",
-			"prompt_en": "Because I think that this activity is good for me",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "External regulation",
-			"group": 2,
-			"handle": "sims-17",
-			"order": 17,
-			"prompt": "Parce que je sens que je n'ai pas d'autres choix que de la faire",
-			"prompt_en": "Because I don’t have any choice",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Amotivation",
-			"group": 2,
-			"handle": "sims-18",
-			"order": 18,
-			"prompt": "Il peut y avoir de bonnes raisons de jouer à ce jeu, mais personnellement je n'en vois aucune",
-			"prompt_en": "There may be good reasons for practicing this game, but personally I don’t see any",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Intrinsic motivation",
-			"group": 1,
-			"handle": "sims-2",
-			"order": 2,
-			"prompt": "Parce que ce jeu est amusant",
-			"prompt_en": "Because this game is fun",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Identified regulation",
-			"group": 1,
-			"handle": "sims-3",
-			"order": 3,
-			"prompt": "C'est pour mon propre bien",
-			"prompt_en": "It is for my own good",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "External regulation",
-			"group": 1,
-			"handle": "sims-4",
-			"order": 4,
-			"prompt": "Parce que je sens que je suis supposé la faire",
-			"prompt_en": "Because I am supposed to do it",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Amotivation",
-			"group": 1,
-			"handle": "sims-5",
-			"order": 5,
-			"prompt": "Je ne sais pas, je ne vois pas ce que ce jeu m'apporte",
-			"prompt_en": "I don’t know; I don’t see what this game brings me",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Intrinsic motivation",
-			"group": 1,
-			"handle": "sims-6",
-			"order": 6,
-			"prompt": "Parce que je me sens bien quand je joue à ce jeu",
-			"prompt_en": "Because I feel good when playing this game",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Identified regulation",
-			"group": 1,
-			"handle": "sims-7",
-			"order": 7,
-			"prompt": "Parce que je crois que ce jeu est important pour moi",
-			"prompt_en": "Because I believe that this game is important for me",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "External regulation",
-			"group": 1,
-			"handle": "sims-8",
-			"order": 8,
-			"prompt": "Parce que c'est quelque chose que je dois faire",
-			"prompt_en": "Because I feel that I have to do it",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "SIMS",
-			"component": "Amotivation",
-			"group": 1,
-			"handle": "sims-9",
-			"order": 9,
-			"prompt": "Mais je ne suis pas sûr si cela en vaut la peine",
-			"prompt_en": "I do this activity but I am not sure if it is worth it",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
-			"widget": "custom-likert",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-1",
-			"order": 1,
-			"prompt": "Agacant ou Agréable ?",
-			"prompt_en": "Annoying or enjoyable?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Agacant~Agréable",
-			"annotations_en": "Annoying~Enjoyable",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-2",
-			"order": 2,
-			"prompt": "Incompréhensible ou Compréhensible ?",
-			"prompt_en": "Not understandable or understandable?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Incompréhensible~Compréhensible",
-			"annotations_en": "Not understandable~Understandable",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-3",
-			"order": 3,
-			"prompt": "Moderne ou Sans fantaisie ?",
-			"prompt_en": "Creative or dull?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Moderne~Sans fantaisie",
-			"annotations_en": "Creative~Dull",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-4",
-			"order": 4,
-			"prompt": "Appropriation simple ou Appropriation compliquée ?",
-			"prompt_en": "Easy to learn or difficult to learn?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Appropriation simple~Appropriation compliquée",
-			"annotations_en": "Easy to learn~Difficult to learn",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-5",
-			"order": 5,
-			"prompt": "Apporte de la valeur ou Peu de valeur ajoutée? ",
-			"prompt_en": "Valuable or inferior?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
-			"annotations_en": "Valuable~Inferior",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-6",
-			"order": 6,
-			"prompt": "Ennuyeux ou Captivant ?",
-			"prompt_en": "Boring or exciting?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Ennuyeux~Captivant",
-			"annotations_en": "Boring~Exciting",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 1,
-			"handle": "ueq-7",
-			"order": 7,
-			"prompt": "Inintéressant ou Intéressant ?",
-			"prompt_en": "Not interesting or interesting?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Inintéressant~Intéressant",
-			"annotations_en": "Not interesting~Interesting",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-8",
-			"order": 8,
-			"prompt": "Imprévisible ou Prévisible ?",
-			"prompt_en": "Unpredictable or predictable?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Imprévisible~Prévisible",
-			"annotations_en": "Unpredictable~Predictable",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-9",
-			"order": 9,
-			"prompt": "Rapide ou Lent ?",
-			"prompt_en": "Fast or slow?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Rapide~Lent",
-			"annotations_en": "Fast~Slow",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-10",
-			"order": 10,
-			"prompt": "Original ou Conventionnel ?",
-			"prompt_en": "Inventive or conventional?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Original~Conventionnel",
-			"annotations_en": "Inventive~Conventional",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-11",
-			"order": 11,
-			"prompt": "Rigide ou Facilitant ?",
-			"prompt_en": "Obstructive or supportive?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Rigide~Facilitant",
-			"annotations_en": "Obstructive~Supportive",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-12",
-			"order": 12,
-			"prompt": "Bien ou Médiocre ?",
-			"prompt_en": "Good or bad?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Bien~Médiocre",
-			"annotations_en": "Good~bad",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-13",
-			"order": 13,
-			"prompt": "Compliqué ou Simple ?",
-			"prompt_en": "Complicated or easy?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Compliqué~Simple",
-			"annotations_en": "Complicated~Easy",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 2,
-			"handle": "ueq-14",
-			"order": 14,
-			"prompt": "Repoussant ou Attractif ?",
-			"prompt_en": "Unlikable or pleasing?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Repoussant~Attractif",
-			"annotations_en": "Unlikable~Pleasing",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-15",
-			"order": 15,
-			"prompt": "Habituel ou Avant-gardiste ?",
-			"prompt_en": "Usual or leading edge?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Habituel~Avant-gardiste",
-			"annotations_en": "Usual~Leading edge",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-16",
-			"order": 16,
-			"prompt": "Désagréable ou Agréable ?",
-			"prompt_en": "Unpleasant or pleasant?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Désagréable~Agréable",
-			"annotations_en": " Unpleasant~Pleasant",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-17",
-			"order": 17,
-			"prompt": "Sécurisant ou Insécurisant ?",
-			"prompt_en": "Secure or not secure?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Sécurisant~Insécurisant",
-			"annotations_en": "Secure~Not secure",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-18",
-			"order": 18,
-			"prompt": "Stimulant ou Soporifique ?",
-			"prompt_en": "Motivating or demotivating?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Stimulant~Soporifique",
-			"annotations_en": "Motivating~Demotivating",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-19",
-			"order": 19,
-			"prompt": "Répond aux attentes ou Ne répond pas aux attentes ?",
-			"prompt_en": "Meets expectations or does not meet expectations?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
-			"annotations_en": "Meets expectations~Does not meet expectations",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-20",
-			"order": 20,
-			"prompt": "Inefficace ou Efficace ?",
-			"prompt_en": "Inefficient or efficient?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Inefficace~Efficace ",
-			"annotations_en": "Inefficient~Efficient",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 3,
-			"handle": "ueq-21",
-			"order": 21,
-			"prompt": "Clair ou Déroutant ?",
-			"prompt_en": "Clear or confusing?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Clair~Déroutant",
-			"annotations_en": "Clear~Confusing",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 4,
-			"handle": "ueq-22",
-			"order": 22,
-			"prompt": "Non pragmatique ou Pragmatique ?",
-			"prompt_en": "Impractical or practical?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Non pragmatique~Pragmatique",
-			"annotations_en": "Impractical~Practical",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 4,
-			"handle": "ueq-23",
-			"order": 23,
-			"prompt": "Sobre ou Surchargé ?",
-			"prompt_en": "Organized or cluttered?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Sobre~Surchargé",
-			"annotations_en": "Organized~Cluttered",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 4,
-			"handle": "ueq-24",
-			"order": 24,
-			"prompt": "Attrayant ou Rébarbatif ?",
-			"prompt_en": "Attractive or unattractive?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Attrayant~Rébarbatif",
-			"annotations_en": "Attractive~Unattractive",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 4,
-			"handle": "ueq-25",
-			"order": 25,
-			"prompt": "Sympathique ou Inamical ?",
-			"prompt_en": "Friendly or unfriendly?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Sympathique~Inamical",
-			"annotations_en": "Friendly~Unfriendly",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "UEQ",
-			"component": "User Experience",
-			"group": 4,
-			"handle": "ueq-26",
-			"order": 26,
-			"prompt": "Conservateur ou Innovant ?",
-			"prompt_en": "Conservative or innovative?",
-			"reverse": 1,
-			"min_val": 1,
-			"max_val": 7,
-			"step": 1,
-			"annotations": "Conservateur~Innovant",
-			"annotations_en": "Conservative~Innovative",
-			"widget": "custom-polar",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 1,
-			"handle": "prof-1",
-			"order": 1,
-			"prompt": "Quel est votre âge ?",
-			"prompt_en": "What is your age?",
-			"reverse": 0,
-			"widget": "custom-int",
-			"type": "categories"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 1,
-			"handle": "prof-2",
-			"order": 2,
-			"prompt": "Genre",
-			"prompt_en": "What is your gender?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 4,
-			"step": 1,
-			"annotations": "Femme~Homme~Autre~Ommetre",
-			"annotations_en": "Female~Male~Other~Omit",
-			"widget": "custom-select",
-			"type": "categories"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 1,
-			"handle": "prof-3",
-			"order": 3,
-			"prompt": "A quel âge avez-vous commencé à jouer aux jeux vidéos? (0 si jamais)",
-			"prompt_en": "At what age did you start playing video games? (0 if never)",
-			"reverse": 0,
-			"min_val": 0,
-			"max_val": 99,
-			"step": 1,
-			"annotations": "Âge",
-			"annotations_en": "Age",
-			"widget": "custom-int",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 1,
-			"handle": "prof-4",
-			"order": 4,
-			"prompt": "Fréquence de la pratique des jeux vidéos",
-			"prompt_en": "Frequency of playing video games",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 100,
-			"step": 1,
-			"annotations": "Jamais~Occasionnellement~Une fois par semaine~Plus d'une fois par semaine",
-			"annotations_en": "Never~Occasionally~Once a week~More than once a week",
-			"widget": "custom-range",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 2,
-			"handle": "prof-5",
-			"order": 5,
-			"prompt": "Depuis combien d'années conduisez-vous ?",
-			"prompt_en": "How many years have you been driving for?",
-			"reverse": 0,
-			"min_val": 0,
-			"max_val": 99,
-			"step": 1,
-			"annotations": "Je ne conduis pas~Moins d'un an~1 à 2 ans~Plus de 2 ans",
-			"annotations_en": "I don't drive~Less than 1 year~1 to 2 years~More than 2 years",
-			"widget": "custom-select",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 2,
-			"handle": "prof-6",
-			"order": 6,
-			"prompt": "A quelle fréquence conduisez-vous ? ",
-			"prompt_en": "How frequently do you drive?",
-			"reverse": 0,
-			"min_val": 1,
-			"max_val": 100,
-			"step": 1,
-			"annotations": "Jamais~Occasionnellement~Plusieurs fois par semaine~Presque tous les jours~Tous les jours",
-			"annotations_en": "Never~Occasionally~Several times a week~Almost every day~Everyday",
-			"widget": "custom-select",
-			"type": "integer"
-		}
-	},
-	{
-		"model": "survey_app.Question",
-		"fields": {
-			"instrument": "jold_profile",
-			"component": "profile",
-			"group": 2,
-			"handle": "prof-7",
-			"order": 7,
-			"prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
-			"prompt_en": "Have you ever practiced attention training?",
-			"reverse": 0,
-			"min_val": 0,
-			"max_val": 1,
-			"step": 1,
-			"annotations": "Non~Oui",
-			"annotations_en": "No~Yes",
-			"widget": "custom-likert",
-			"type": "boolean"
 		}
 	}
 ]

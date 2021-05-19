@@ -27,7 +27,7 @@
             "index"         : 3,
             "wait"          : {"days": 2},
             "deadline"      : {"days": 2},
-            "tasks_csv"     : "jold-ll-practice,jold-questions-sess3,jold-ux-questions,jold-profile-questions,jold-free-choice"
+            "tasks_csv"     : "jold-ll-practice,jold-questions-sess3,jold-profile-questions,jold-ux-questions,jold-free-choice"
         }
     }
 ]
