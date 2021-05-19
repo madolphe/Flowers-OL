@@ -7,10 +7,10 @@
             "group": 1,
             "handle": "prof-1",
             "order": 1,
-            "prompt": "Genre",
+            "prompt": "Nous allons maintenant vous demander de fournir quelques informations supplémentaires vous concernant",
             "prompt_en": "Now we will ask you to provide some additional information about yourself",
             "reverse": 0,
-            "widget": "custom-int",
+            "widget": "custom-header",
             "type": "categories"
         }
     },
