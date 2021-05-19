@@ -76,8 +76,8 @@ class ExperimentSession(models.Model):
     extra_json = jsonfield.JSONField(default=dict, blank=True)
     index = models.IntegerField(default=0)  # TODO index determines how sessions are ordered (sessions with equal indexes are randomized)
     required = models.BooleanField(default=True)
-    wait = models.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
-    deadline = models.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
+    wait = jsonfield.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
+    deadline = jsonfield.JSONField(default=dict, blank=True, validators=[validate_timedelta_args])  # must provide valid daytime kwargs, see https://docs.python.org/3/library/datetime.html#datetime.timedelta
 
     class Meta:
         ordering = ['study', 'index', 'pk']
