@@ -39,7 +39,7 @@ def jold_start_ll_practice(request):
         participant.save()
     else:
         return redirect(reverse('home'))
-    return render(request, 'tasks/JOLD_LL/lunar_lander.html', {'CONTEXT': {
+    return render(request, 'tasks/lunar_lander/lunar_lander.html', {'CONTEXT': {
         'game_params': json.dumps(participant.extra_json['game_params'])
     }})
 
@@ -136,7 +136,7 @@ def jold_consent_page(request):
             participant.email = form.cleaned_data['email']
         participant.save()
         return redirect(reverse('end_task'))
-    return render(request, 'tasks/JOLD_Consent/consent_page.html', {'CONTEXT': {
+    return render(request, 'tasks/consent/consent_page.html', {'CONTEXT': {
         'username': user.username,
         'study': participant.study,
         'form': form}})

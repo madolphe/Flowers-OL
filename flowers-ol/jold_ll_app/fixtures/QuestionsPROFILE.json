@@ -1,0 +1,143 @@
+[
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "NA",
+            "group": 1,
+            "handle": "prof-1",
+            "order": 1,
+            "prompt": "Enfin, nous aimerions vous demander quelques informations supplémentaires sur vous-même",
+            "prompt_en": "Finally, we would like to ask you for some additional information about yourself",
+            "reverse": 0,
+            "widget": "custom-header",
+            "type": "categories"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Demographic",
+            "group": 1,
+            "handle": "prof-2",
+            "order": 2,
+            "prompt": "Votre âge (en années complètes)",
+            "prompt_en": "Your age (in full years)",
+            "reverse": 0,
+            "widget": "custom-int",
+            "type": "categories"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Demographic",
+            "group": 1,
+            "handle": "prof-3",
+            "order": 3,
+            "prompt": "Votre genre",
+            "prompt_en": "Your gender",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 4,
+            "step": 1,
+            "annotations": "Femme~Homme~Autre~Ommetre",
+            "annotations_en": "Female~Male~Other~Omit",
+            "widget": "custom-select",
+            "type": "categories"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Video game habits",
+            "group": 1,
+            "handle": "prof-4",
+            "order": 4,
+            "prompt": "Niveau d'expérience en matière de jeux vidéo",
+            "prompt_en": "Level of experience with video games",
+            "reverse": 0,
+            "annotations": "Je ne joue pas aux jeux vidéo~Je commence seulement à jouer aux jeux vidéo~Je joue aux jeux vidéo depuis des années",
+            "annotations_en": "I don't play video games~I am only started playing video games~I have been playing video games for years",
+            "widget": "custom-select",
+            "type": "integer"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Video game habits",
+            "group": 1,
+            "handle": "prof-5",
+            "order": 5,
+            "prompt": "Fréquence de la pratique des jeux vidéos",
+            "prompt_en": "Frequency of playing video games",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 4,
+            "step": 1,
+            "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+            "annotations_en": "Never~Occasionally~Once a week~More than once a week",
+            "widget": "custom-select",
+            "type": "integer"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Driving habits",
+            "group": 1,
+            "handle": "prof-6",
+            "order": 6,
+            "prompt": "Votre niveau d'expérience de la conduite",
+            "prompt_en": "Your level of experience with driving",
+            "reverse": 0,
+            "annotations": "Année obtention",
+            "annotations_en": "I don't drive~Less than 1 year~1 to 2 years~More than 2 years",
+            "widget": "custom-select",
+            "type": "integer"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Driving habits",
+            "group": 1,
+            "handle": "prof-7",
+            "order": 7,
+            "prompt": "Fréquence de conduite",
+            "prompt_en": "Frequency of driving",
+            "reverse": 0,
+            "min_val": 1,
+            "max_val": 100,
+            "step": 1,
+            "annotations": "Jamais~Rarement~De temps en temps~Souvent~Très souvent",
+            "annotations_en": "Never~Occasionally~Several times a week~Almost every day~Everyday",
+            "widget": "custom-select",
+            "type": "integer"
+        }
+    },
+    {
+        "model": "survey_app.Question",
+        "fields": {
+            "instrument": "jold-PROFILE",
+            "component": "Attention training",
+            "group": 1,
+            "handle": "prof-8",
+            "order": 8,
+            "prompt": "Avez-vous déjà suivi un entraînement de l'attention ? ",
+            "prompt_en": "Have you ever practiced attention training? ",
+            "reverse": 0,
+            "annotations": "Non~Oui",
+            "annotations_en": "No~Yes",
+            "widget": "custom-select",
+            "type": "boolean"
+        }
+    }
+]

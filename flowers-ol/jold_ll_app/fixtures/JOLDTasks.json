@@ -16,8 +16,8 @@
             "prompt": "Commencer la session",
             "prompt_en":"Start the session",
             "view_name": "jold_start_ll_practice",
-            "info_templates_csv": "Instructions=tasks/JOLD_LL/instructions.html,Tutoriel=tasks/JOLD_LL/tutorial.html",
-            "info_templates_csv_en": "Instructions=tasks/JOLD_LL/instructions.html,Tutorial=tasks/JOLD_LL/tutorial.html"
+            "info_templates_csv": "Instructions=tasks/lunar_lander/instructions.html,Tutoriel=tasks/lunar_lander/tutorial.html",
+            "info_templates_csv_en": "Instructions=tasks/lunar_lander/instructions.html,Tutorial=tasks/lunar_lander/tutorial.html"
         }
     },
     {
@@ -28,8 +28,8 @@
             "description_en":"End of session",
             "actions": {"Terminer la session": "jold_reject_optional_practice", "Jouer encore": "jold_accept_optional_practice"},
             "actions_en": {"End session": "jold_reject_optional_practice", "Play more": "jold_accept_optional_practice"},
-            "info_templates_csv": "Entrainement facultatif=tasks/JOLD_Choice/free_choice.html",
-            "info_templates_csv_en": "Optional training=tasks/JOLD_Choice/free_choice.html"
+            "info_templates_csv": "Entrainement facultatif=tasks/free_choice/free_choice.html",
+            "info_templates_csv_en": "Optional training=tasks/free_choice/free_choice.html"
         }
     },
     {
@@ -42,22 +42,25 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
-                    "NASA-TLX",
-                    "SIMS"
+                    "jold-NASA-TLX",
+                    "jold-SIMS"
                 ],
                 "exclude": {
                     "handle__in": [
                         "jold-0",
                         "jold-3",
                         "jold-2",
-                        "jold-4",
                         "jold-5",
-                        "jold-6"
+                        "jold-6",
+                        "jold-7"
+                    ],
+                    "component__in": [
+                        "Relative"
                     ]
                 }
             }
@@ -73,22 +76,28 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
-                    "NASA-TLX",
-                    "SIMS",
-                    "MSLQ"
+                    "jold-NASA-TLX",
+                    "jold-SIMS",
+                    "jold-MSLQ"
                 ],
                 "exclude": {
                     "handle__in": [
                         "jold-0",
                         "jold-3",
-                        "jold-4",
                         "jold-5",
-                        "jold-6"
+                        "jold-6",
+                        "jold-7"
+                    ],
+                    "component__in": [
+                        "Resource Management Strategies: Time and Study Environment",
+                        "Resource Management: Peer Learning",
+                        "Resource Management: Help Seeking",
+                        "Relative"
                     ]
                 }
             }
@@ -104,13 +113,13 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
-                    "NASA-TLX",
-                    "SIMS"
+                    "jold-NASA-TLX",
+                    "jold-SIMS"
                 ],
                 "exclude": {
                     "handle__in": [
@@ -125,16 +134,12 @@
         "fields": {
             "name": "jold-ux-questions",
             "description": "Questionnaire d'expérience utilisateur",
-            "description_en":"User experience questionnaire",
-            "prompt": "Donnez votre avis sur l'application",
-            "prompt_en":"Give your opinion on the application",
+            "description_en":"Profile and experience questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
-                    "UEQ"
+                    "jold-UEQ"
                 ]
             }
         }
@@ -145,20 +150,9 @@
             "name": "jold-profile-questions",
             "description": "Complétez votre profil",
             "description_en":"Complete your profile",
-            "prompt": "Complétez votre profil",
-            "prompt_en":"Complete your profile",
             "view_name": "questionnaire",
-            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Exemples=tasks/JOLD_Questionnaire/example_widgets.html-",
-            "info_templates_csv_en": "Please complete your profile=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
             "extra_json": {
-                "instruments": ["get_profil"],
-                "exclude": {
-                    "handle__in": [
-                        "prof-1",
-                        "prof-9",
-                        "prof-10"
-                    ]
-                }
+                "instruments": ["jold-PROFILE"]
             }
         }
     }

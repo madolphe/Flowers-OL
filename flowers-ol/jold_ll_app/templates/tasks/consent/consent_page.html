@@ -28,7 +28,7 @@
         {% load crispy_forms_tags %}
         <form class="form" method="post">
             <div class="form-sheet">
-                {% include CONTEXT.study.briefing_template with project=CONTEXT.study.project %}
+                {% include "tasks/consent/consent_form.html" with project=CONTEXT.study.project %}
                 {% crispy CONTEXT.form %}
             </div>
         </form>
