@@ -25,7 +25,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_mot_profil"],
                 "exclude": {
@@ -47,7 +47,7 @@
             "description_en": "General questions",
             "prompt": "Commencer",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_attention_profil_instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": ["get_attention"]
             }
@@ -90,19 +90,12 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "NASA-TLX",
                     "SIMS"
-                ],
-                "exclude": {
-                    "handle__in": [
-                        "jold-0",
-                        "jold-3",
-                        "jold-2"
-                    ]
-                }
+                ]
             }
         }
     }, {
@@ -114,7 +107,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/JOLD_Questionnaire/instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "NASA-TLX"
@@ -130,7 +123,7 @@
             "description_en": "Video game habits (1)",
             "prompt": "Commencer",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_1_instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": ["VGQ"]
             }
@@ -145,7 +138,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/vgq_2_instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": ["VGQ"]
             }
@@ -160,7 +153,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=tasks/JOLD_Questionnaire/example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/ueq_instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": ["UEQ"]
             }
