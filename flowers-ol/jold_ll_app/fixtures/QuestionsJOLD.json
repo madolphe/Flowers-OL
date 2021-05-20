@@ -87,8 +87,8 @@
 			"group": 2,
 			"handle": "jold-4",
 			"order": 1,
-			"prompt": "Maintenant que vous avez complété les trois sessions, notez votre progression sur chacune d'entre elles par rapport aux autres. Combien pensez-vous avoir progressé pendant :",
-			"prompt_en": "Now that you have completed all three practice sessions, rate your improvement on each session relative to each other. How much do you think you have improved in:",
+			"prompt": "Notez votre progression sur chacune d'entre elles par rapport aux autres. Combien pensez-vous avoir progressé pendant :",
+			"prompt_en": "Use the sliders below to rate your <b>relative improvement on each session</b>. How much do you think you have improved in each session, compared to other sessions?",
 			"reverse": 0,
 			"widget": "custom-header",
 			"type": "integer"
