@@ -87,7 +87,7 @@
 			"group": 2,
 			"handle": "jold-4",
 			"order": 1,
-			"prompt": "Notez votre progression sur chacune d'entre elles par rapport aux autres. Combien pensez-vous avoir progressé pendant :",
+			"prompt": "Utilisez les curseurs ci-dessous pour évaluer votre <b>amélioration relative sur chaque session</b>. Dans quelle mesure pensez-vous vous être amélioré à chaque session, par rapport aux autres sessions ?",
 			"prompt_en": "Use the sliders below to rate your <b>relative improvement on each session</b>. How much do you think you have improved in each session, compared to other sessions?",
 			"reverse": 0,
 			"widget": "custom-header",
