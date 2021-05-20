@@ -42,8 +42,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html",
-            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -76,8 +76,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html",
-            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -113,8 +113,8 @@
             "prompt_en":"Start the questionnaire",
             "view_name": "questionnaire",
             "exit_view": "jold_close_postsess_questionnaire",
-            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html",
-            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "JOLD",
@@ -150,11 +150,7 @@
             "name": "jold-profile-questions",
             "description": "Complétez votre profil",
             "description_en":"Complete your profile",
-            "prompt": "Complétez votre profil",
-            "prompt_en":"Complete your profile",
             "view_name": "questionnaire",
-            "info_templates_csv": "Veuillez compléter votre profil=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Exemples=tasks/questionnaire/example_widgets.html",
-            "info_templates_csv_en": "Please complete your profile=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=tasks/questionnaire/example_widgets.html",
             "extra_json": {
                 "instruments": ["jold-PROFILE"]
             }
