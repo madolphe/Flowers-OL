@@ -8,13 +8,13 @@
 			"handle": "sims-1",
 			"order": 1,
 			"prompt": "Pourquoi entraîner-vous le jeu Lunar Lander ?",
-			"prompt_en": "Read each item carefully. Using the scale below, please indicate the degree to which each item describes the reason why you are currently engaged in this activity (playing the Lunar Lander game).",
+			"prompt_en": "Read each item carefully. Using the scale below, please indicate the <i>how much each item describes the reason why you are engaged in this activity</i> (i.e., Lunar Lander game).",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-header",
 			"type": "integer"
 		}
@@ -28,13 +28,13 @@
 			"handle": "sims-10",
 			"order": 10,
 			"prompt": "Pourquoi entraîner-vous le jeu Lunar Lander ?",
-			"prompt_en": "Read each item carefully. Using the scale below, please indicate the degree to which each item describes the reason why you are currently engaged in this activity (playing the Lunar Lander game).",
+			"prompt_en": "Read each item carefully. Using the scale below, please indicate the <i>how much each item describes the reason why you are engaged in this activity</i> (i.e., Lunar Lander game).",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-header",
 			"type": "integer"
 		}
@@ -54,7 +54,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -74,7 +74,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -94,7 +94,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -114,7 +114,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -134,7 +134,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -154,7 +154,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -174,7 +174,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -194,7 +194,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -214,7 +214,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -234,7 +234,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -254,7 +254,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -274,7 +274,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -294,7 +294,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -314,7 +314,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -334,7 +334,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
@@ -354,7 +354,7 @@
 			"max_val": 7,
 			"step": 1,
 			"annotations": "Pas du tout~Très peu~Un peu~Moyennement~Assez~Beaucoup~Exactement",
-			"annotations_en": "Not at all~Very little~A little~Somewhat~A lot~Exactly",
+			"annotations_en": "Not at all~Very little~A little~Moderately~Enough~A lot~Exactly",
 			"widget": "custom-likert",
 			"type": "integer"
 		}
