@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 21:50+0200\n"
+"POT-Creation-Date: 2021-05-20 15:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,60 +98,3 @@ msgstr ""
 #: survey_app/validators.py:16
 msgid "Attention, la valeur doit être un nombre positif (ex: 21.32)"
 msgstr "Please note that the value must be a positive number (ex: 21.32)"
-
-#~ msgid " La réponse à cette question correspond à la position du curseur: "
-#~ msgstr ""
-#~ "The answer to this question is the position of the cursor; note that you "
-#~ "can adjust the cursor within each response category as you want:"
-
-#~ msgid "Par ici"
-#~ msgstr "Under here"
-
-#~ msgid "Ici"
-#~ msgstr "Here"
-
-#~ msgid "Ou ici"
-#~ msgstr "Or here"
-
-#~ msgid "Ou peut-être ici"
-#~ msgstr "Or maybe here"
-
-#~ msgid ""
-#~ "Comme pour (1), la réponse à cette question correspond à la position du "
-#~ "curseur: "
-#~ msgstr ""
-#~ "As with (1), the answer to this question corresponds to the position of "
-#~ "the cursor, but this time, there are fiewer possible positions:"
-
-#~ msgid "Il peut être très faible"
-#~ msgstr "It can be very low"
-
-#~ msgid "Ou très élevé"
-#~ msgstr "Or very high"
-
-#~ msgid "Vous pouvez également voir ce genre de format:"
-#~ msgstr "You can also see this kind of format:"
-
-#~ msgid "Pas du tout d'accord"
-#~ msgstr "Strongly disagree"
-
-#~ msgid "Plutôt pas d'accord"
-#~ msgstr "Somewhat disagree"
-
-#~ msgid "N'i d'accord ni pas d'accord"
-#~ msgstr "Neither agree or disagree"
-
-#~ msgid "Plutôt d'accord"
-#~ msgstr "Somewhat agree"
-
-#~ msgid "Tout à fait d'accord"
-#~ msgstr "Strongly agree"
-
-#~ msgid ""
-#~ "A partir de maintenant, nous allons vous demander de répondre à "
-#~ "différentes questions en rapport avec le jeu et ce que vous avez ressenti "
-#~ "durant celui-ci. Vous serez amenés à répondre de différentes manières."
-#~ msgstr ""
-#~ "From now on, we will ask you to answer different questions related to the "
-#~ "game and how you felt during it. You will be asked to answer in different "
-#~ "ways."

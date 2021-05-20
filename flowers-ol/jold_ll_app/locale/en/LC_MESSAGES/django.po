@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 21:50+0200\n"
+"POT-Creation-Date: 2021-05-20 15:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -844,61 +844,61 @@ msgstr ""
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:13
 msgid " La réponse à cette question correspond à la position du curseur: "
-msgstr ""
+msgstr "The answer to this question is the position of the cursor:"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:16
 msgid "Par ici"
-msgstr ""
+msgstr "Click here"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:17
 msgid "Ici"
-msgstr ""
+msgstr "Here"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:18
 msgid "Ou ici"
-msgstr ""
+msgstr "Or here"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:19
 msgid "Ou peut-être ici"
-msgstr ""
+msgstr "Or maybe here"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:28
 msgid ""
 "Comme pour (1), la réponse à cette question correspond à la position du "
 "curseur: "
-msgstr ""
+msgstr "As in (1), the answer to this question corresponds to the position of the cursor:"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:41
 msgid "Il peut être très faible"
-msgstr ""
+msgstr "It can be very low"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:42
 msgid "Ou très élevé"
-msgstr ""
+msgstr "Or very high"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:50
 msgid "Vous pouvez également voir ce genre de format:"
-msgstr ""
+msgstr "You can also see this kind of format:"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:53
 msgid "Pas du tout d'accord"
-msgstr ""
+msgstr "Strongly disagree"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:55
 msgid "Plutôt pas d'accord"
-msgstr ""
+msgstr "Somewhat disagree"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:57
-msgid "N'i d'accord ni pas d'accord"
-msgstr ""
+msgid "Ni d'accord ni pas d'accord"
+msgstr "Neither agree nor disagree"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:59
 msgid "Plutôt d'accord"
-msgstr ""
+msgstr "Somewhat agree"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:61
 msgid "Tout à fait d'accord"
-msgstr ""
+msgstr "Strongly agree"
 
 #: jold_ll_app/templates/tasks/questionnaire/feedback_info.html:2
 msgid ""
@@ -918,11 +918,11 @@ msgid ""
 "A partir de maintenant, nous allons vous demander de répondre à différentes "
 "questions en rapport avec le jeu et ce que vous avez ressenti durant celui-"
 "ci. Vous serez amenés à répondre de différentes manières."
-msgstr ""
+msgstr "From now on, we will ask you to answer different questions related to the game and how you felt while playing. You will be asked to answer in different ways."
 
 #: jold_ll_app/templates/tasks/questionnaire/instructions.html:6
 msgid "Essayez de répondre aux questions le plus précisément possible."
-msgstr ""
+msgstr "Try to answer the questions as accurately as possible."
 
 #: jold_ll_app/views.py:80
 msgid "Vous avez terminé l'entraînement de Lunar Lander"

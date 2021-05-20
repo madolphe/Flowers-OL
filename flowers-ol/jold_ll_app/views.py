@@ -31,11 +31,11 @@ def jold_start_ll_practice(request):
     # If time_left key exists, use whatever value is stored. If not, use maximum time for block
     if task_name == 'jold-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params'].setdefault('time_left', 5 if settings.DEBUG else 5 * 60)
+        participant.extra_json['game_params'].setdefault('time_left', 5 * 60)
         participant.save()
     elif task_name == 'jold-free-choice':
         participant.extra_json['game_params']['forced'] = False
-        participant.extra_json['game_params'].setdefault('time_left', 10 if settings.DEBUG else 2 * 60)
+        participant.extra_json['game_params'].setdefault('time_left', 2 * 60)
         participant.save()
     else:
         return redirect(reverse('home'))
