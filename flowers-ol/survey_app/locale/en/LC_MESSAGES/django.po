@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 14:22+0200\n"
+"POT-Creation-Date: 2021-05-19 21:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,122 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:50 forms.py:83
+#: survey_app/forms.py:50 survey_app/forms.py:83
 msgid "Valider"
 msgstr "Confirm"
 
-#: forms.py:69
+#: survey_app/forms.py:69
 msgid "Oups, il semblerait que tu as oublié de répondre à certaines questions."
 msgstr "Oops, it seems you forgot to answer some questions."
 
-#: forms.py:76
+#: survey_app/forms.py:76
 msgid "J'ai lu et compris les termes de cette étude"
 msgstr ""
 
-#: forms.py:77
+#: survey_app/forms.py:77
 msgid "Consentement"
 msgstr ""
 
-#: forms.py:77
+#: survey_app/forms.py:77
 msgid "Ecrire \"Je consens\" dans la barre"
 msgstr ""
 
-#: forms.py:88
+#: survey_app/forms.py:88
 msgid ""
 "Veuillez donner votre consentement en écrivant \"Je consens\" pour valider "
 "votre participation"
 msgstr ""
 
-#: templates/includes/categories.html:13
+#: survey_app/templates/includes/categories.html:14
 msgid "Sélectionner un ou plusieurs"
 msgstr "Select one or more"
 
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:13
-msgid " La réponse à cette question correspond à la position du curseur: "
-msgstr ""
-"The answer to this question is the position of the cursor; note that you can "
-"adjust the cursor within each response category as you want:"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:16
-msgid "Par ici"
-msgstr "Under here"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:17
-msgid "Ici"
-msgstr "Here"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:18
-msgid "Ou ici"
-msgstr "Or here"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:19
-msgid "Ou peut-être ici"
-msgstr "Or maybe here"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:28
-msgid ""
-"Comme pour (1), la réponse à cette question correspond à la position du "
-"curseur: "
-msgstr ""
-"As with (1), the answer to this question corresponds to the position of the "
-"cursor, but this time, there are fiewer possible positions:"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:41
-msgid "Il peut être très faible"
-msgstr "It can be very low"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:42
-msgid "Ou très élevé"
-msgstr "Or very high"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:50
-msgid "Vous pouvez également voir ce genre de format:"
-msgstr "You can also see this kind of format:"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:53
-msgid "Pas du tout d'accord"
-msgstr "Strongly disagree"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:55
-msgid "Plutôt pas d'accord"
-msgstr "Somewhat disagree"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:57
-msgid "N'i d'accord ni pas d'accord"
-msgstr "Neither agree or disagree"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:59
-msgid "Plutôt d'accord"
-msgstr "Somewhat agree"
-
-#: templates/tasks/JOLD_Questionnaire/example_widgets.html:61
-msgid "Tout à fait d'accord"
-msgstr "Strongly agree"
-
-#: templates/tasks/JOLD_Questionnaire/instructions.html:2
-msgid ""
-"A partir de maintenant, nous allons vous demander de répondre à différentes "
-"questions en rapport avec le jeu et ce que vous avez ressenti durant celui-"
-"ci. Vous serez amenés à répondre de différentes manières."
-msgstr ""
-"From now on, we will ask you to answer different questions related to the "
-"game and how you felt during it. You will be asked to answer in different "
-"ways."
-
-#: templates/tasks/JOLD_Questionnaire/instructions.html:5
-#: templates/tasks/ZPDES_Questionnaire/get_general_profil_instructions.html:8
-msgid "Essayez de répondre aux questions le plus précisément possible."
-msgstr "Try to answer the questions as accurately as possible."
-
-#: templates/tasks/JOLD_Questionnaire/question_block.html:17
+#: survey_app/templates/question_block.html:17
 msgid "sur"
 msgstr "of"
 
-#: templates/tasks/JOLD_Questionnaire/question_block.html:19
+#: survey_app/templates/question_block.html:19
 msgid "Se déconnecter"
 msgstr "Log out"
 
-#: templates/tasks/ZPDES_Questionnaire/get_general_profil_instructions.html:2
+#: survey_app/templates/tasks/ZPDES_Questionnaire/get_general_profil_instructions.html:3
 msgid ""
 "Merci de prendre quelques minutes de votre temps pour participer à notre "
 "expérience! Nous avons besoin\n"
@@ -143,9 +66,16 @@ msgid ""
 "d'autres buts. Pour valider,\n"
 "    appuyez sur le boutton \"valider\" situé en dessous du questionnaire."
 msgstr ""
-"Please take a few minutes of your time to participate in our experiment! We need to collect some additional information: this data will be needed to analyse the results. We assure you that it will not be used for any other purpose. To validate, press the \"submit\" button below the questionnaire."
+"Please take a few minutes of your time to participate in our experiment! We "
+"need to collect some additional information: this data will be needed to "
+"analyse the results. We assure you that it will not be used for any other "
+"purpose. To validate, press the \"submit\" button below the questionnaire."
 
-#: templates/tasks/ZPDES_Questionnaire/ueq_instructions.html:3
+#: survey_app/templates/tasks/ZPDES_Questionnaire/get_general_profil_instructions.html:9
+msgid "Essayez de répondre aux questions le plus précisément possible."
+msgstr "Try to answer the questions as accurately as possible."
+
+#: survey_app/templates/tasks/ZPDES_Questionnaire/ueq_instructions.html:3
 msgid ""
 " \"Afin d'évaluer l'expérience, merci de bien vouloir remplir le "
 "questionnaire ci-dessous. <br>\n"
@@ -165,6 +95,63 @@ msgstr ""
 "in every line. It is your personal opinion that counts. Please remember: "
 "there is no wrong or right answer!"
 
-#: validators.py:16
+#: survey_app/validators.py:16
 msgid "Attention, la valeur doit être un nombre positif (ex: 21.32)"
 msgstr "Please note that the value must be a positive number (ex: 21.32)"
+
+#~ msgid " La réponse à cette question correspond à la position du curseur: "
+#~ msgstr ""
+#~ "The answer to this question is the position of the cursor; note that you "
+#~ "can adjust the cursor within each response category as you want:"
+
+#~ msgid "Par ici"
+#~ msgstr "Under here"
+
+#~ msgid "Ici"
+#~ msgstr "Here"
+
+#~ msgid "Ou ici"
+#~ msgstr "Or here"
+
+#~ msgid "Ou peut-être ici"
+#~ msgstr "Or maybe here"
+
+#~ msgid ""
+#~ "Comme pour (1), la réponse à cette question correspond à la position du "
+#~ "curseur: "
+#~ msgstr ""
+#~ "As with (1), the answer to this question corresponds to the position of "
+#~ "the cursor, but this time, there are fiewer possible positions:"
+
+#~ msgid "Il peut être très faible"
+#~ msgstr "It can be very low"
+
+#~ msgid "Ou très élevé"
+#~ msgstr "Or very high"
+
+#~ msgid "Vous pouvez également voir ce genre de format:"
+#~ msgstr "You can also see this kind of format:"
+
+#~ msgid "Pas du tout d'accord"
+#~ msgstr "Strongly disagree"
+
+#~ msgid "Plutôt pas d'accord"
+#~ msgstr "Somewhat disagree"
+
+#~ msgid "N'i d'accord ni pas d'accord"
+#~ msgstr "Neither agree or disagree"
+
+#~ msgid "Plutôt d'accord"
+#~ msgstr "Somewhat agree"
+
+#~ msgid "Tout à fait d'accord"
+#~ msgstr "Strongly agree"
+
+#~ msgid ""
+#~ "A partir de maintenant, nous allons vous demander de répondre à "
+#~ "différentes questions en rapport avec le jeu et ce que vous avez ressenti "
+#~ "durant celui-ci. Vous serez amenés à répondre de différentes manières."
+#~ msgstr ""
+#~ "From now on, we will ask you to answer different questions related to the "
+#~ "game and how you felt during it. You will be asked to answer in different "
+#~ "ways."
