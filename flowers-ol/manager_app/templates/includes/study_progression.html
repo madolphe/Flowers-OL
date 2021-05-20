@@ -14,8 +14,7 @@
 <ul class="progress-list">
 <i class="fi-cloud"></i>
 {% for i in info %}
-    {% if i.current %} <li class="current"> {% else %} <li class="noncurrent"> {% endif %}
-        Session {{i.num}}
+    {% if i.current %}
         {% if i.current %} <ol class="current"> {% else %} <ol class="noncurrent"> {% endif %}
             {% for task in i.tasks %}
                 <li>
@@ -24,6 +23,6 @@
                 </li>
             {% endfor %}
         </ol>
-    </li>
+    {% endif %}
 {% endfor %}
 </ul>
