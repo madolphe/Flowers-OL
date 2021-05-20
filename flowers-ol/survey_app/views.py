@@ -30,7 +30,7 @@ def questionnaire(request):
                 tuple(questions.filter(
                     instrument__exact = group['instrument'],
                     group__exact = group['group']
-                ).values_list('handle', flat=True))
+                ).order_by('order').values_list('handle', flat=True))
             )
         participant.extra_json['questions_extra'] = {'grouped_handles': grouped_handles}
         participant.extra_json['questions_extra']['ind'] = 0
@@ -40,7 +40,7 @@ def questionnaire(request):
     ind = questions_extra['ind']
     questions = Question.objects.filter(
         handle__in = groups[ind]
-    )
+    ).order_by('order')
     form = QuestionnaireForm(questions, request.POST or None)
     if form.is_valid():
         for q in questions:
