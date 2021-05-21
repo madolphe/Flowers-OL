@@ -5,7 +5,7 @@
         "fields": {
             "study"         : "jold_ll",
             "index"         : 1,
-            "tasks_csv"     : "jold-consent,jold-ll-practice,jold-questions-sess1,jold-questions-sess2,jold-questions-sess3,jold-ux-questions,jold-profile-questions,jold-free-choice"
+            "tasks_csv"     : "jold-consent,jold-ll-practice,jold-questions-sess1,jold-free-choice"
         }
     },
     {
