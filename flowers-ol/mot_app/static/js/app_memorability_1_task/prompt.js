@@ -17,14 +17,14 @@ if(language_code==='fr'){
     text_end = "Merci de participer à l'expérience" ;
     // TUTORIAL
     text_title_0 = "INSTRUCTIONS" ;
-    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité de mémoire" ;
-    text_tutorial_0_1 = "A chaque essai, vous verrez un ensemble de photographies une par une" ;
+    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité de mémoire." ;
+    text_tutorial_0_1 = "A chaque essai, vous verrez un ensemble de photographies une par une." ;
     text_tutorial_0_2 = "Votre tâche est de vous souvenir de chaque photographie et de répondre si " ;
     text_tutorial_0_3 = "la photographie est présentée deux fois ou non." ;
     text_tutorial_1_0 = "Certaines images apparaîtront deux fois, mais les autres une seule fois.";
     text_tutorial_1_1 = "Lorsque vous remarquez que l'image est présentée deux fois," ;
-    text_tutorial_1_2 = "Veuillez appuyer sur la touche [J] dès que possible" ;
-    text_tutorial_2_0 = "A chaque essai, vous obtiendrez un retour d'information vous indiquant si votre réponse est correcte" ;
+    text_tutorial_1_2 = "veuillez appuyer sur la touche [J] dès que possible" ;
+    text_tutorial_2_0 = "A chaque essai, vous obtiendrez un retour d'information vous indiquant si votre réponse est correcte." ;
     text_tutorial_3_0 = "Commençons les essais." ;
     text_tutorial_4_0 = "Commençons l'expérience principale." ;
     text_tutorial_5_0 = "Temps de pause." ;

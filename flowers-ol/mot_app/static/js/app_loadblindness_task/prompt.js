@@ -18,20 +18,20 @@ if(language_code==='fr'){
    // TUTORIAL
     text_title_0 = "INSTRUCTIONS" ;
     text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité d'attention" ;
-    text_tutorial_0_1 = "à des cibles multiples. À chaque essai, vous verrez " ;
+    text_tutorial_0_1 = "vers des cibles multiples. À chaque essai, vous verrez " ;
     text_tutorial_0_2 = "une brève présentation d'une cible en croix ainsi que quatre objets à rayures" ;
-    text_tutorial_0_3 = "Vous devez compléter deux tâches pour chaque essai" ;
-    text_tutorial_1_0 = "Ceci est un exemple de présentation de stimulus" ;
+    text_tutorial_0_3 = "Vous devez compléter deux tâches pour chaque essai." ;
+    text_tutorial_1_0 = "Ceci est un exemple de présentation de stimulus." ;
     text_tutorial_2_0 = "D'abord, vous devez répondre à la question : quelle ligne était la plus longue?" ;
     text_tutorial_2_1 = "Ensuite, vous devez répondre à la question: quel objet avait le plus fort contraste" ;
     text_tutorial_2_2 = "en cliquant sur l'un des quatre boutons" ;
     text_tutorial_3_0 = "Commencons les exercices.";
     text_tutorial_3_1 = "N'oubliez pas que vous devez répondre correctement" ;
-    text_tutorial_3_2 = "au moins à la première question concernant la longueur des lignes" ;
-    text_tutorial_4_0 = "Commençons l'expérience principale" ;
+    text_tutorial_3_2 = "au moins à la première question concernant la longueur des lignes." ;
+    text_tutorial_4_0 = "Commençons l'expérience principale." ;
     text_tutorial_5_0 = "Temps de pause." ;
     text_tutorial_6_1 = "Merci pour votre effort. Lorsque vous êtes prêts, " ;
-    text_tutorial_6_2 = "Veuillez cliquer sur le bouton de démarrage pour redémarrer." ;
+    text_tutorial_6_2 = "veuillez cliquer sur le bouton de démarrage pour redémarrer." ;
     // TASK
     text_fixation_answer1 = "Horizontal" ;
     text_fixation_answer2 = "Vertical" ;
