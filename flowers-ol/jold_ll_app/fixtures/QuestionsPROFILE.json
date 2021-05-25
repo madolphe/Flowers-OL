@@ -61,7 +61,7 @@
             "prompt_en": "Level of experience with video games",
             "reverse": 0,
             "annotations": "Je ne joue pas aux jeux vidéo~Je commence seulement à jouer aux jeux vidéo~Je joue aux jeux vidéo depuis des années",
-            "annotations_en": "I don't play video games~I am only started playing video games~I have been playing video games for years",
+            "annotations_en": "I don't play video games~I have only started playing video games recently~I have been playing video games for years",
             "widget": "custom-select",
             "type": "integer"
         }
@@ -95,7 +95,7 @@
             "handle": "jold-prof-6",
             "order": 6,
             "prompt": "Votre niveau d'expérience de la conduite",
-            "prompt_en": "Your level of experience with driving",
+            "prompt_en": "Your level of driving experience",
             "reverse": 0,
             "annotations": "Année obtention",
             "annotations_en": "I don't drive~Less than 1 year~1 to 2 years~More than 2 years",
