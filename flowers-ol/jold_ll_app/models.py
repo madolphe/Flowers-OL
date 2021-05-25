@@ -25,3 +25,7 @@ class JOLD_LL_trial(models.Model):
     class Meta:
         verbose_name = 'Lunar lander trial'
         verbose_name_plural = 'Lunar lander trials'
+
+
+class JOLD_LL_divider(models.Model):
+    state = models.BooleanField(default=True)
