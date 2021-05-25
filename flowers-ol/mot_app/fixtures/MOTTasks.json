@@ -90,7 +90,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=instructions.html,Examples=example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "NASA-TLX",
@@ -107,7 +107,7 @@
             "prompt": "Commencer",
             "prompt_en": "Start",
             "view_name": "questionnaire",
-            "info_templates_csv": "Questionnaire=instructions.html,Examples=example_widgets.html-",
+            "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": [
                     "NASA-TLX"
