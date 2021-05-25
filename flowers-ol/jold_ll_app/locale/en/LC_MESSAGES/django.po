@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-20 15:00+0200\n"
+"POT-Creation-Date: 2021-05-26 00:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -358,11 +358,6 @@ msgid "Demande d’informations au cours du projet"
 msgstr "Request for information during the project"
 
 #: jold_ll_app/templates/tasks/consent/consent_form.html:77
-#, fuzzy
-#| msgid ""
-#| "Si vous avez des questions additionnelles sur le projet ou sur les droits "
-#| "en tant que participant à ces travaux de recherche, n’hésitez pas à nous "
-#| "contactez"
 msgid ""
 "Si vous avez des questions additionnelles sur le projet ou sur les droits en "
 "tant que participant à ces travaux de recherche, n’hésitez pas à nous "
@@ -577,16 +572,11 @@ msgid ""
 "\">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a href="
 "\"mailto:anne.combe@inria.fr\">anne.combe@inria.fr</a>)"
 msgstr ""
+"Contact the DPO by email: <a href=\"mailto:dpd@inria.fr\">dpd@inria.fr</a>. "
+"The representative at Inria is Madame Anne COMBE (<a href=\"mailto:anne."
+"combe@inria.fr\">anne.combe@inria.fr</a>)"
 
 #: jold_ll_app/templates/tasks/consent/consent_form.html:142
-msgid ""
-" Contacter le DPD par courrier postal : Le délégué à la protection des "
-"données Inria, 2004 route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex"
-msgstr ""
-"Contact the DPO by post: Le délégué à la protection des données Inria, 2004 "
-"route des Lucioles, BP 93, 06902 Sophia-Antipolis Cedex"
-
-#: jold_ll_app/templates/tasks/consent/consent_form.html:145
 msgid ""
 " Si vous estimez, après nous avoir contactés, que vos droits Informatique et "
 "Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles "
@@ -596,7 +586,7 @@ msgstr ""
 "have not been respected or that the study does not comply with the data "
 "protection rules, you can submit a complaint to the CNIL."
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:149
+#: jold_ll_app/templates/tasks/consent/consent_form.html:146
 msgid ""
 "Le présent formulaire d’information et de recueil de consentement éclairé "
 "est un document confidentiel et sensible, à ce titre il doit faire l’objet "
@@ -607,7 +597,7 @@ msgstr ""
 "document, and as such it must be treated with particular care, both in terms "
 "of storage and archiving"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:151
+#: jold_ll_app/templates/tasks/consent/consent_form.html:148
 msgid ""
 " L’exemplaire du formulaire dûment signé destiné au responsable du projet "
 "sera conservé au sein du service administratif et financier du Centre de "
@@ -619,28 +609,28 @@ msgstr ""
 "Centre concerned for a period of fifteen years and will then be transferred "
 "to the archives of the Inria Research Centre concerned."
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:155
+#: jold_ll_app/templates/tasks/consent/consent_form.html:152
 msgid "PERSONNES CONTACTS"
 msgstr "CONTACT PERSONS"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:160
-#: jold_ll_app/templates/tasks/consent/consent_form.html:168
+#: jold_ll_app/templates/tasks/consent/consent_form.html:157
+#: jold_ll_app/templates/tasks/consent/consent_form.html:165
 msgid "Doctorant"
 msgstr "PhD student"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:176
+#: jold_ll_app/templates/tasks/consent/consent_form.html:173
 msgid "Post-doctorant"
 msgstr "Post-doctoral fellow"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:184
+#: jold_ll_app/templates/tasks/consent/consent_form.html:181
 msgid "Stagiaire"
 msgstr "Intern"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:193
+#: jold_ll_app/templates/tasks/consent/consent_form.html:190
 msgid "VOTRE CONSENTEMENT ÉCLAIRÉ"
 msgstr "YOUR INFORMED CONSENT"
 
-#: jold_ll_app/templates/tasks/consent/consent_form.html:195
+#: jold_ll_app/templates/tasks/consent/consent_form.html:192
 #, python-format
 msgid ""
 "En remplissant les champs obligatoires du formulaire, vous consentez "
@@ -842,61 +832,43 @@ msgstr ""
 "Click on the window below to activate the controls; then, try controling the "
 "ship when the window turns orange"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:13
-msgid " La réponse à cette question correspond à la position du curseur: "
-msgstr "The answer to this question is the position of the cursor:"
-
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:16
-msgid "Par ici"
-msgstr "Click here"
-
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:17
-msgid "Ici"
-msgstr "Here"
-
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:18
-msgid "Ou ici"
-msgstr "Or here"
-
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:19
-msgid "Ou peut-être ici"
-msgstr "Or maybe here"
-
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:28
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:14
 msgid ""
 "Comme pour (1), la réponse à cette question correspond à la position du "
 "curseur: "
-msgstr "As in (1), the answer to this question corresponds to the position of the cursor:"
+msgstr ""
+"As in (1), the answer to this question corresponds to the position of the "
+"cursor:"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:41
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:27
 msgid "Il peut être très faible"
 msgstr "It can be very low"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:42
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:28
 msgid "Ou très élevé"
 msgstr "Or very high"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:50
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:36
 msgid "Vous pouvez également voir ce genre de format:"
 msgstr "You can also see this kind of format:"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:53
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:39
 msgid "Pas du tout d'accord"
 msgstr "Strongly disagree"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:55
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:41
 msgid "Plutôt pas d'accord"
 msgstr "Somewhat disagree"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:57
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:43
 msgid "Ni d'accord ni pas d'accord"
 msgstr "Neither agree nor disagree"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:59
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:45
 msgid "Plutôt d'accord"
 msgstr "Somewhat agree"
 
-#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:61
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:47
 msgid "Tout à fait d'accord"
 msgstr "Strongly agree"
 
@@ -918,7 +890,10 @@ msgid ""
 "A partir de maintenant, nous allons vous demander de répondre à différentes "
 "questions en rapport avec le jeu et ce que vous avez ressenti durant celui-"
 "ci. Vous serez amenés à répondre de différentes manières."
-msgstr "From now on, we will ask you to answer different questions related to the game and how you felt while playing. You will be asked to answer in different ways."
+msgstr ""
+"From now on, we will ask you to answer different questions related to the "
+"game and how you felt while playing. You will be asked to answer in "
+"different ways."
 
 #: jold_ll_app/templates/tasks/questionnaire/instructions.html:6
 msgid "Essayez de répondre aux questions le plus précisément possible."
@@ -935,6 +910,21 @@ msgstr "Don't leave just yet! There is a questionnaire to fill in."
 #: jold_ll_app/views.py:94
 msgid "Le questionnaire est complet"
 msgstr "The questionnaire is complete"
+
+#~ msgid " La réponse à cette question correspond à la position du curseur: "
+#~ msgstr "The answer to this question is the position of the cursor:"
+
+#~ msgid "Par ici"
+#~ msgstr "Click here"
+
+#~ msgid "Ici"
+#~ msgstr "Here"
+
+#~ msgid "Ou ici"
+#~ msgstr "Or here"
+
+#~ msgid "Ou peut-être ici"
+#~ msgstr "Or maybe here"
 
 #~ msgid "Lundi"
 #~ msgstr "Monday"

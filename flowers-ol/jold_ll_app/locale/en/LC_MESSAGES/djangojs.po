@@ -23,12 +23,12 @@ msgid "Vaisseau prêt!"
 msgstr "Ship is ready!"
 
 #: static/js/app_LL/game.js:110
-msgid "Appuyer sur 'Entrer' pour commencer"
-msgstr "Press 'Enter' to begin"
+msgid "Appuyer sur 'Entrer' pour commencer*"
+msgstr "Press 'Enter' to begin*"
 
 #: static/js/app_LL/game.js:116
-msgid "* le mode plein écran doit être activé"
-msgstr "* full screen mode must be activated"
+msgid "* Le mode plein écran doit être activé\nLe bouton en haut à gauche permet de basculer en plein écran."
+msgstr "* Full screen mode must be activated.\nThe button on the top-left toggles full screen"
 
 #: static/js/app_LL/game.js:124
 msgid "Le vaisseau a atterri!"
