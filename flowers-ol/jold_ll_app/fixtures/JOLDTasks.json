@@ -48,7 +48,8 @@
                 "instruments": [
                     "JOLD",
                     "jold-NASA-TLX",
-                    "jold-SIMS"
+                    "jold-SIMS",
+                    "jold-MSLQ"
                 ],
                 "exclude": {
                     "handle__in": [
@@ -60,7 +61,10 @@
                         "jold-7"
                     ],
                     "component__in": [
-                        "Relative"
+                        "Relative",
+                        "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+                        "Resource Management Strategies: Effort Regulation",
+                        "Learning Strategies Header"
                     ]
                 }
             }
@@ -119,11 +123,17 @@
                 "instruments": [
                     "JOLD",
                     "jold-NASA-TLX",
-                    "jold-SIMS"
+                    "jold-SIMS",
+                    "jold-MSLQ"
                 ],
                 "exclude": {
                     "handle__in": [
                         "jold-0"
+                    ],
+                    "component__in": [
+                        "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+                        "Resource Management Strategies: Effort Regulation",
+                        "Learning Strategies Header"
                     ]
                 }
             }
