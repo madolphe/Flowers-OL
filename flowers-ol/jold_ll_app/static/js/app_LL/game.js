@@ -107,13 +107,13 @@ function runBlockLL() {
     pauseMessage.y = canvas.height/2;
     pauseMessage.textAlign = 'center';
     pauseMessage.textBaseline = 'bottom';
-    const subMsg = gettext('Appuyer sur \'Entrer\' pour commencer')
+    const subMsg = gettext('Appuyer sur \'Entrer\' pour commencer*')
     const pauseSubMessage = new createjs.Text(subMsg, '28px Arial', params.colors.pauseText);
     pauseSubMessage.x = canvas.width/2;
     pauseSubMessage.y = canvas.height/2+20;
     pauseSubMessage.textAlign = 'center';
     pauseSubMessage.textBaseline = 'top';
-    const pauseSubSubMessage = new createjs.Text(gettext('* le mode plein écran doit être activé'), '18px Arial', params.colors.floor);
+    const pauseSubSubMessage = new createjs.Text(gettext('* Le mode plein écran doit être activé\nLe bouton en haut à gauche permet de basculer en plein écran.'), '18px Arial', params.colors.floor);
     pauseSubSubMessage.x = canvas.width-50;
     pauseSubSubMessage.y = canvas.height-50;
     pauseSubSubMessage.textAlign = 'right';

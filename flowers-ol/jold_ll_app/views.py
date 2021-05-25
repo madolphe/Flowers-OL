@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from survey_app.models import Question, Answer
 from .forms import ConsentForm
-from .models import JOLD_LL_trial
+from .models import JOLD_LL_trial, JOLD_LL_divider
 from manager_app.utils import add_message
 
 import json, datetime, random
@@ -31,7 +31,7 @@ def jold_start_ll_practice(request):
     # If time_left key exists, use whatever value is stored. If not, use maximum time for block
     if task_name == 'jold-ll-practice':
         participant.extra_json['game_params']['forced'] = True
-        participant.extra_json['game_params'].setdefault('time_left', 5 * 60)
+        participant.extra_json['game_params'].setdefault('time_left', participant.extra_json['time_cond']*60)
         participant.save()
     elif task_name == 'jold-free-choice':
         participant.extra_json['game_params']['forced'] = False
@@ -130,11 +130,17 @@ def jold_consent_page(request):
     participant = user.participantprofile
     form = ConsentForm(request.POST or None, request=request)
     if form.is_valid():
+        # Register consent
         participant.consent = True
         if form.cleaned_data['request_reminder']:
             participant.remind = True
             participant.email = form.cleaned_data['email']
+        # Assign time condition
+        divider = JOLD_LL_divider.objects.get()
+        participant.extra_json['time_cond'] = 20 if divider.state else 10
         participant.save()
+        divider.state = not divider.state
+        divider.save()
         return redirect(reverse('end_task'))
     return render(request, 'tasks/consent/consent_page.html', {'CONTEXT': {
         'username': user.username,

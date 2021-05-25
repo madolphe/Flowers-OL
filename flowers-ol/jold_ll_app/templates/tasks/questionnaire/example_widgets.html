@@ -9,20 +9,6 @@
     </style>
 {% endblock %}
 <div class="example-box" id="id-example-box">
-    <div class="example-question">
-        <div class="prompt"> 1. {% trans " La réponse à cette question correspond à la position du curseur: " %}</div>
-        <div class="range-likert-widget">
-            <div class="ticks">
-                <div class="tick" style="width:calc(100%/4)">{% trans "Par ici" %}</div>
-                <div class="tick" style="width:calc(100%/4)">{% trans "Ici" %}</div>
-                <div class="tick" style="width:calc(100%/4)">{% trans "Ou ici" %}</div>
-                <div class="tick" style="width:calc(100%/4)">{% trans "Ou peut-être ici" %}</div>
-            </div>
-            <input class="slider" type="range" name=example-range value=50 min=1 max=100 step=1>
-        </div>
-    </div>
-
-    <br style="display:block; margin: 50px 0;"/><hr/>
 
     <div class="example-question">
         <div class="prompt"> 2. {% trans "Comme pour (1), la réponse à cette question correspond à la position du curseur: " %}</div>
