@@ -10,16 +10,16 @@ if(language_code==='fr'){
     prompt_gratitude = "Merci d'avoir participé à l'expérience";
     prompt_button_restart = "Redémarrer";
     // CONFIG :
-    text_start = "Veuillez cliquer sur la souris pour commencer cette expérience" ;
-    text_end = "Merci de participer à l'expérience" ;
+    text_start = "Veuillez cliquer sur la souris pour commencer cette expérience." ;
+    text_end = "Merci de participer à l'expérience." ;
     // TUTORIAL :
     text_title_0 = "INSTRUCTIONS" ;
-    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité à compter" ;
-    text_tutorial_0_1 = "A chaque essai, vous verrez un bref flash de plusieurs cercles blancs" ;
+    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité à compter." ;
+    text_tutorial_0_1 = "A chaque essai, vous verrez un bref flash de plusieurs cercles blancs." ;
     text_tutorial_0_2 = "Votre tâche est de compter ces cercles et de répondre combien de cercles" ;
-    text_tutorial_0_3 = "ont été présentés à l'aide d'un selecteur coulissant" ;
-    text_tutorial_1_0 = "Souviens-toi du nombre de ces cercles blancs" ;
-    text_tutorial_2_0 = "Veuillez répondre au nombre de cercles présentés à l'aide du selecteur coulissante" ;
+    text_tutorial_0_3 = "ont été présentés à l'aide d'un selecteur coulissant." ;
+    text_tutorial_1_0 = "Souviens-toi du nombre de ces cercles blancs." ;
+    text_tutorial_2_0 = "Veuillez répondre au nombre de cercles présentés à l'aide du selecteur coulissant." ;
     text_tutorial_3_0 = "Pratiquons un peu" ;
     //scène principale prête
     text_tutorial_4_0 = "Commençons l'expérience principale." ; //scene main ready

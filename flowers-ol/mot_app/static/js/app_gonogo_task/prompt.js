@@ -16,9 +16,9 @@ if(language_code==='fr'){
     text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité à distinguer " ;
     text_tutorial_0_1 = "les informations pertinentes des informations non pertinentes. À chaque essai, vous verrez " ;
     text_tutorial_0_2 = "une séquence de chiffres. Votre tâche consiste à vous concentrer sur le chiffre [7] et " ;
-    text_tutorial_0_3 = "répondre si le nombre après le [7] est le [3] ou non" ;
+    text_tutorial_0_3 = "répondre si le chiffre après le [7] est le [3] ou non." ;
     text_tutorial_1_0 = "Si le nombre est 3 après 7," ;
-    text_tutorial_1_1 = "veuillez appuyer sur la touche J de votre clavier le plus rapidement possible" ;
+    text_tutorial_1_1 = "veuillez appuyer sur la touche J de votre clavier le plus rapidement possible." ;
     text_tutorial_2_0 = "Sinon, n'appuyez sur aucune touche." ;
     text_tutorial_3_0 = "Commençons les pratiques." ;
     text_tutorial_3_1 = "Vous obtenez le feedback de la réponse pendant les pratiques." ;

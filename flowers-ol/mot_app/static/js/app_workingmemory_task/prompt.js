@@ -12,20 +12,20 @@ if(language_code==='fr'){
     prompt_button_click = "Cliquer dans l'ordre";
     // TUTORIAL
     text_title_0 = "INSTRUCTIONS" ;
-    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité de mémoire";
+    text_tutorial_0_0 = "Le but de cette expérience est de mesurer votre capacité de mémoire.";
     text_tutorial_0_1 = "A chaque essai, vous verrez d'abord la séquence de changements de couleur " ;
     text_tutorial_0_2 = "pour les 12 objets. Votre tâche est de vous souvenir de ces changements et " ;
-    text_tutorial_0_3 = "de signaler leur ordre de présentation en cliquant sur les boutons" ;
-    text_tutorial_1_0 = "Ceci est un exemple de présentation de stimulus" ;
+    text_tutorial_0_3 = "de signaler leur ordre de présentation en cliquant sur les boutons." ;
+    text_tutorial_1_0 = "Ceci est un exemple de présentation de stimulus." ;
     text_tutorial_2_0 = "Votre tâche consiste à cliquer sur les boutons dans l'ordre de présentation que vous avez vu" ;
     text_tutorial_3_0 = "Commençons les exercices." ;
     text_tutorial_4_0 = "Commençons l'expérience principale." ;
     text_tutorial_5_0 = "Temps de pause." ;
     text_tutorial_6_1 = "Merci pour votre effort. Lorsque vous êtes prêts, " ;
-    text_tutorial_6_2 = "Veuillez cliquer sur le bouton de démarrage pour redémarrer." ;
+    text_tutorial_6_2 = "veuillez cliquer sur le bouton de démarrage pour redémarrer." ;
     // TASK
-    text_start = "Veuillez cliquer sur la souris pour commencer cette expérience" ;
-    text_end = "Merci de participer à l'expérience" ;
+    text_start = "Veuillez cliquer sur la souris pour commencer cette expérience." ;
+    text_end = "Merci de participer à l'expérience." ;
     text_button_next = "Suivant";
     text_button_previous = "Précédent";
     text_button_start = "Démarrer"
