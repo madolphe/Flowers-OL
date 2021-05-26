@@ -30,6 +30,8 @@ class QuestionnaireForm(forms.Form):
                 self.fields[q.handle].help_text = q.help_text
                 # Add correct widget (possibly a custom one)
                 self.fields[q.handle].widget = get_custom_widget(q, num=q_idx)
+                # Add an initial value if specified:
+                self.fields[q.handle].initial = self.parse_into(q.type, q.initial)
                 # Build the div object:
                 question_widget = [Div(q.handle)]
                 if hasattr(self.fields[q.handle].widget, "needs_validator") and self.fields[q.handle].widget.needs_validator:
@@ -67,6 +69,16 @@ class QuestionnaireForm(forms.Form):
                 self.fields[handle].widget.attrs['prev'] = cleaned_data[handle]
         if missing_data:
             raise ValidationError(_('Oups, il semblerait que tu as oublié de répondre à certaines questions.'))
+
+    @staticmethod
+    def parse_into(type, value):
+        if value.strip():
+            if type == 'integer':
+                return int(value)
+            elif type == 'float':
+                return float(value)
+        else:
+            return None
 
 
 class ConsentForm(forms.Form):

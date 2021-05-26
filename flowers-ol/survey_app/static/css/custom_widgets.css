@@ -175,8 +175,8 @@
     display: flex;
     justify-content: space-between;
 }
-.polar-likert-widget > .annotations > .lo {max-width: 15%; text-align: left}
-.polar-likert-widget > .annotations > .hi {max-width: 15%; text-align: right}
+.polar-likert-widget > .annotations > .lo {max-width: 15%; display: flex; text-align: left; justify-content: flex-start;}
+.polar-likert-widget > .annotations > .hi {max-width: 15%; display: flex; text-align: right; justify-content: flex-end;}
 
 
 /* RANGE LIKERT */
