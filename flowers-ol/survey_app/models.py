@@ -7,7 +7,7 @@ class Question(models.Model):
     instrument = models.CharField(max_length=100, null=True)
     component = models.CharField(max_length=100, null=True)
     group = models.CharField(max_length=50, null=True, blank=True)
-    handle = models.CharField(max_length=10, null=True, unique=True)
+    handle = models.CharField(max_length=50, null=True, unique=True)
     order = models.IntegerField(null=True, blank=True)
     prompt = models.CharField(max_length=300, null=True)
     reverse = models.BooleanField(null=True, blank=True)
