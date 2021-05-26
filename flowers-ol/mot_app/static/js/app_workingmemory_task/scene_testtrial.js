@@ -88,7 +88,7 @@ function scene_instruction(){
     // call function
     for (let i=0; i < array_stimcond.length; ++i) {
       Button[i].mousePressed(record_response);
-    
+
       if (Params.flag_buttoncheck[i] == 1){
         push();
         fill(col_target);
@@ -118,6 +118,7 @@ function scene_instruction(){
   }
   
   function show_button(){
+    remove_hide_cursor_class();
     show_cursor_on_body();
     for (let i=0; i < array_stimcond.length; ++i){
       Button[i].show(); 
@@ -125,7 +126,7 @@ function scene_instruction(){
     }  
   }
   function show_cursor_on_body(){
-    document.getElementsByTagName('body')[0].style = 'cursor: url(\'static/images/icons/tap.svg\') 30 1, pointer !important;';
+    document.getElementsByTagName('body')[0].style = 'cursor: url(\'static/images/icons/tap.svg\') 30 1, pointer;';
   }
 
   function switch_buttons_position(){
