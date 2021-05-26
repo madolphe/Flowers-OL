@@ -19,6 +19,7 @@ class Question(models.Model):
     widget = models.CharField(max_length=30, null=True)
     help_text = models.CharField(max_length=200, null=True, blank=True)
     validate = models.CharField(max_length=200, default='', blank=True)
+    initial = models.CharField(max_length=200, default='', blank=True)
 
     def __unicode__(self):
         return self.handle
