@@ -28,7 +28,9 @@
             "project"       : "Cognitive assessment",
             "base_template" : "base.html",
             "style"         : "css/common.css",
-            "briefing_template"  : "mot_app/consent_form.html"
+            "briefing_template"  : "mot_app/consent_form.html",
+            "reminder_template"  : "mails/reminder_email.html",
+            "contact" : "maxime.adolphe@inria.fr"
         }
     },
         {
@@ -48,7 +50,8 @@
             "project"       : "Cognitive assessment",
             "base_template" : "base.html",
             "style"         : "css/common.css",
-            "briefing_template"  : "mot_app/consent_form.html"
+            "briefing_template"  : "mot_app/consent_form.html",
+            "reminder_template"  : "reminder_email.html"
         }
     }
 ]
