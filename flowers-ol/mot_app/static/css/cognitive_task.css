@@ -53,3 +53,7 @@ button:hover{
 .button_answer{
     cursor: url('../images/icons/tap.svg') 30 1, pointer !important;
 }
+
+.hide_cursor{
+    cursor: none !important;
+}
