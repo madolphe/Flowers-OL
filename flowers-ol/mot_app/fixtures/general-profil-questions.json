@@ -65,7 +65,8 @@
          "reverse":false,
          "type":"integer",
          "widget":"custom-int",
-         "validate":""
+         "validate":"is_pos_num",
+         "initial": "1950"
       }
    },
    {
