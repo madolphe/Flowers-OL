@@ -31,7 +31,7 @@ SECURE_REFERRER_POLICY = 'same-origin'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', "127.0.0.1",  'flowers-ol.bordeaux.inria.fr',"flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
 LOGIN_URL = '/signup_page/'
