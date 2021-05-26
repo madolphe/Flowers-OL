@@ -107,6 +107,7 @@ function scene_tutorial3(){
     button_next.mousePressed(()=>{
         button_next.hide();
         button_start.show();
+        remove_hide_cursor_class();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
@@ -160,6 +161,7 @@ function scene_tutorial4(){
     button_start.mousePressed(()=>{
         button_previous.hide();
         button_start.hide();
+        add_hide_cursor_class();
         Params.num_rep = num_rep_practice;
         Params.time_stimduration = time_stimduration_practice;
         Time.start();    
@@ -196,6 +198,7 @@ function scene_tutorial5(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        add_hide_cursor_class();
         Params = new ParameterManager();
         Params.num_rep = num_rep_main;
         Params.time_stimduration = time_stimduration_main;
@@ -231,6 +234,7 @@ function scene_break(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        add_hide_cursor_class();
         tmp_save();
         Params = new ParameterManager();
         tmp_connect();
