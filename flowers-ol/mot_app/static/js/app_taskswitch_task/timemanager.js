@@ -91,13 +91,16 @@ class TimeManager{
         if (flag_practice==true){
           this.scene = this.tutorial_end;
           button_start.show();
+          remove_hide_cursor_class();
         }else{
           if (flag_break==true){
             this.scene = this.scene_break;
             button_start.show();
+            remove_hide_cursor_class();
           }else{
             this.scene = this.scene_end;
             button_end.show();
+            remove_hide_cursor_class();
           }
         }
       }else{
