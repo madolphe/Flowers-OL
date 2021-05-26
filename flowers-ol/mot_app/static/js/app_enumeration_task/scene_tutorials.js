@@ -125,6 +125,7 @@ function scene_tutorial3(){
         div_ticks.position(x_response+size_slider_w/(2*(max_answer-1)), y_response + shift_div_ticks);
         button_next.hide();
         button_start.show();
+        remove_hide_cursor_class();
         Time.update_tutorial_next();    
         });
     button_previous.mousePressed(()=>{
@@ -165,6 +166,7 @@ function scene_tutorial4(){
     button_start.mousePressed(()=>{
         button_previous.hide();
         button_start.hide();
+        add_hide_cursor_class();
         Params.array_stimcond = array_stimcond_practice;
         Params.trial_stimcond = shuffle(Params.array_stimcond);
         Params.num_rep = num_rep_practice;
@@ -196,6 +198,7 @@ function scene_tutorial5(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        add_hide_cursor_class();
         Params = new ParameterManager();
         Params.array_stimcond = array_stimcond_main;
         Params.trial_stimcond = shuffle(Params.array_stimcond);
@@ -233,6 +236,7 @@ function scene_break(){
     //buttons
     button_start.mousePressed(()=>{
         button_start.hide();
+        add_hide_cursor_class();
         tmp_save();
         Params = new ParameterManager();
         tmp_connect();

@@ -160,6 +160,7 @@ function scene_instruction(){
     for (let i=0;i<4;i++){
         Buttons[i].hide();
     }
+    add_hide_cursor_class();
     Time.update();
   }
   
@@ -169,6 +170,7 @@ function scene_instruction(){
     for (let i=0;i<4;i++){
         Buttons[i].hide();
     }
+    add_hide_cursor_class();
     Time.update();
   }
   

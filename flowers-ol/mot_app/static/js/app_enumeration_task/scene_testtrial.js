@@ -148,6 +148,7 @@ function scene_response(){
     Time.count_response();
     button_ok.hide();
     div_ticks.hide();
+    add_hide_cursor_class();
     array_span.forEach(element => element.hide());
     sel.hide();
     Time.update();    
@@ -202,6 +203,7 @@ function show_button(){
   div_ticks.style('display', 'flex');
   array_span.forEach(element => element.show());
   button_ok.show();
+  remove_hide_cursor_class();
 }
 /*
 function active_button(){

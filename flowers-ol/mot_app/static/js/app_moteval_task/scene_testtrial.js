@@ -170,7 +170,7 @@ function show_button(){
   for (let i=0; i < num_totaldot; ++i){
     Button[i].show();
     Button[i].position(Objs[i].x-(size_obj/2),Objs[i].y-(size_obj/2));
-  }  
+  }
 }
 
 function record_response(){
@@ -219,8 +219,10 @@ function quit_task(){
   */
   let parameters_to_save = {
     'results_responses': Params.results_responses,
+    'results_rt': Params.results_rt,
     'results_targetvalue_stim': Params.results_targetvalue_stim,
-    'results_num_stim': Params.results_num_stim
+    'results_speed_stim': Params.results_speed_stim,
+    'results_correct': Params.results_correct
   }
   post('exit_view_cognitive_task', parameters_to_save, 'post');
 }

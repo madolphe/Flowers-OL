@@ -145,8 +145,9 @@ function scene_tutorial4(){
         flag_break = true;  
         button_previous.hide();
         button_start.hide();
-        Time.start();    
-        });    
+        add_hide_cursor_class();
+        Time.start();
+        });
 }
 
 function create_start_button(){
@@ -173,18 +174,18 @@ function scene_tutorial5(){
     button_start.mousePressed(()=>{
         Params = new ParameterManager();
         flag_practice = false;
-        flag_break = false;  
-        
+        flag_break = false;
         button_start.hide();
-        Time.start();    
-        });    
+        add_hide_cursor_class();
+        Time.start();
+        });
 }
 
 function scene_break(){
     //text
     draw_character(researcher_2, pos_researcher_x,pos_researcher_y, researcher_width, researcher_width);
     draw_background_bubble(Pos.center_x, pos_bubble_y2,size_bubble_x,size_bubble_y);
-    
+
     //text
     push();
     fill(col_tutorialtext);
@@ -209,8 +210,8 @@ function scene_break(){
         tmp_save();
         Params = new ParameterManager();
         tmp_connect();
-                
         button_start.hide();
+        add_hide_cursor_class();
         flag_practice = false;
         count_break ++;
         if (count_break==max_break-1){

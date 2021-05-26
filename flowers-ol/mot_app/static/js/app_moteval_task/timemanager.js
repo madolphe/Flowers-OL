@@ -56,10 +56,12 @@ class TimeManager{
         for (let i=0; i < num_totaldot; ++i) {
           Button[i].hide();
         }
+        add_hide_cursor_class();
         this.repeat();
         this.starttime_block = Date.now();      
       }else if (this.scene==this.scene_key2) {
         show_button();
+        remove_hide_cursor_class();
         this.scene ++;
         this.starttime_block = Date.now();
       }else{
@@ -99,13 +101,16 @@ class TimeManager{
           if (flag_practice==true){
             this.scene = this.tutorial_end;
             button_start.show();
+            remove_hide_cursor_class();
           }else{
             if (flag_break==true){
               this.scene = this.scene_break;
               button_start.show();
+              remove_hide_cursor_class();
             }else{
               this.scene = this.scene_end;
               button_end.show();
+              remove_hide_cursor_class();
             }
           }
         }else{

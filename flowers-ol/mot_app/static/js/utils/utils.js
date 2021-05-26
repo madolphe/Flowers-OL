@@ -155,3 +155,10 @@ p5.Vector.prototype.reflect = function reflect(surfaceNormal) {
     surfaceNormal.normalize();
    return this.sub(surfaceNormal.mult(2 * this.dot(surfaceNormal)));
 };
+
+function add_hide_cursor_class(){
+    document.body.classList.add('hide_cursor');
+}
+function remove_hide_cursor_class(){
+    document.body.classList.remove('hide_cursor');
+}

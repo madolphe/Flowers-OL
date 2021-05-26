@@ -56,6 +56,7 @@ class TimeManager{
         for (let i=0; i < array_stimcond.length; ++i) {
           Button[i].hide();
         }
+        add_hide_cursor_class();
         this.repeat();
         this.starttime_block = Date.now();      
       }else if (this.scene==this.scene_key2) {
@@ -99,13 +100,16 @@ class TimeManager{
           if (flag_practice==true){
             this.scene = this.tutorial_end;
             button_start.show();
+            remove_hide_cursor_class();
           }else{
             if (flag_break==true){
               this.scene = this.scene_break;
+              remove_hide_cursor_class();
               button_start.show();
             }else{
               this.scene = this.scene_end;
               button_end.show();
+              remove_hide_cursor_class();
             }
           }
         }else{
