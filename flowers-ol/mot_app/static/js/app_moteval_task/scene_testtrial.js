@@ -220,7 +220,6 @@ function quit_task(){
   let parameters_to_save = {
     'results_responses': Params.results_responses,
     'results_rt': Params.results_rt,
-    'results_targetvalue_stim': Params.results_targetvalue_stim,
     'results_speed_stim': Params.results_speed_stim,
     'results_correct': Params.results_correct
   }
