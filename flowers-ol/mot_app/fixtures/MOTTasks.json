@@ -110,7 +110,7 @@
             "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/instructions.html,Examples=example_widgets.html-",
             "extra_json": {
                 "instruments": [
-                    "NASA-TLX"
+                    "mot-NASA-TLX"
                 ]
             }
         }
