@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 21:06+0200\n"
+"POT-Creation-Date: 2021-05-28 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Email address if you wish to receive reminders (not required):"
 msgid "Soumettre le consentement éclairé"
 msgstr "Submit informed consent"
 
-#: mot_app/forms.py:88
+#: mot_app/forms.py:87
 msgid ""
 "Veuillez fournir une adresse électronique si vous souhaitez recevoir un "
 "rappel de la future session 1 jour à l'avance."
@@ -76,7 +76,7 @@ msgstr ""
 "Please provide an email address if you would like to receive a reminder of "
 "the upcoming session 1 day in advance."
 
-#: mot_app/forms.py:93
+#: mot_app/forms.py:91
 msgid ""
 "Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine "
 "session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de "
@@ -85,12 +85,6 @@ msgstr ""
 "If you would like to receive an email reminder about the next session, "
 "please check this box. If you do not wish to receive such reminders, uncheck "
 "this box and delete your email below."
-
-#: mot_app/forms.py:97
-msgid ""
-"Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
-"corriger le formulaire"
-msgstr "The form is not valid. See the error messages to correct the form"
 
 #: mot_app/templates/introduction/consent_page.html:9
 msgid "INFORMATIONS SUR L'ÉTUDE"
@@ -757,8 +751,44 @@ msgid "Suivant"
 msgstr "Next"
 
 #: mot_app/templates/introduction/general_tuto.html:56
-msgid "Start"
-msgstr "Commencer"
+msgid "Démarrer"
+msgstr "Start"
+
+#: mot_app/templates/mails/reminder_email.html:10
+msgid "Vous participez à une étude en ligne"
+msgstr "You are being part to an online study"
+
+#: mot_app/templates/mails/reminder_email.html:10
+msgid ""
+"Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les "
+"tâches suivantes:"
+msgstr ""
+"You have a new session to practice today. You will be asked to complete the "
+"following tasks:"
+
+#: mot_app/templates/mails/reminder_email.html:19
+msgid "Il se peut qu'elle ne soit remplie qu'aujourd'hui"
+msgstr ""
+"Depending on the schedule of the experiment, it is possible to complete the "
+"task later"
+
+#: mot_app/templates/mails/reminder_email.html:19
+msgid ""
+"et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos "
+"données."
+msgstr "but if you skip a session, we won't be able to use your datas."
+
+#: mot_app/templates/mails/reminder_email.html:26
+msgid "Se connecter"
+msgstr "Log in"
+
+#: mot_app/templates/mails/reminder_email.html:33
+msgid ""
+" Si vous avez des questions concernant l'étude, ou si vous pensez que vous "
+"avez reçu ce courriel par erreur, écrivez à "
+msgstr ""
+"You have concerns regarding the study or if you think that you received this "
+"message by error, please contact "
 
 #: mot_app/templates/pre-post-tasks/instructions/enumeration.html:7
 msgid ""
@@ -942,18 +972,7 @@ msgstr ""
 "<br/>Your new activity is the task:&nbsp;\n"
 "                        "
 
-#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:56
-msgid ""
-"\n"
-"                            Voici les consignes pour cette nouvelle "
-"activité:\n"
-"                        "
-msgstr ""
-"\n"
-"<br/>Here are the guidelines for the next activity:\n"
-"                        "
-
-#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:63
+#: mot_app/templates/pre-post-tasks/instructions/pre-post.html:55
 msgid ""
 "\n"
 "                            Quand vous êtes prêt, appuyez sur le boutton "
@@ -1036,11 +1055,25 @@ msgstr ""
 "\n"
 "<h2>Adult ADHD Self-Report Scale</h2>\n"
 "<p>Please answer the following questions, rating yourself on each of the  "
-"criteriashown using the scale. As you answer each question, place the cursor "
-"below the word that best describes how you have felt and conducted yourself "
-"over the past 6 months.</p>\n"
+"criteria shown using the scale. As you answer each question, place the "
+"cursor below the word that best describes how you have felt and conducted "
+"yourself over the past 6 months.</p>\n"
 "<br/>\n"
 "<p><b>Try to answer the questions as accurately as possible.</b></p>\n"
+
+#: mot_app/templates/tasks/ZPDES_Questionnaire/instructions.html:3
+msgid ""
+"A partir de maintenant, nous allons vous demander de répondre à différentes "
+"questions en rapport avec le jeu et ce que vous avez ressenti durant celui-"
+"ci. Vous serez amenés à répondre de différentes manières."
+msgstr ""
+"From now on, we will ask you to answer different questions related to the "
+"game and your feeling during practice.You will be asked to answer with "
+"different inputs type."
+
+#: mot_app/templates/tasks/ZPDES_Questionnaire/instructions.html:6
+msgid "Essayez de répondre aux questions le plus précisément possible."
+msgstr "Try to be as accurate as possible."
 
 #: mot_app/templates/tasks/ZPDES_Questionnaire/vgq_1_instructions.html:2
 msgid ""
@@ -1125,3 +1158,21 @@ msgstr ""
 "    Minecraft = Puzzle <br>\n"
 "\n"
 "</p>\n"
+
+#~ msgid ""
+#~ "Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
+#~ "corriger le formulaire"
+#~ msgstr "The form is not valid. See the error messages to correct the form"
+
+#~ msgid "Start"
+#~ msgstr "Commencer"
+
+#~ msgid ""
+#~ "\n"
+#~ "                            Voici les consignes pour cette nouvelle "
+#~ "activité:\n"
+#~ "                        "
+#~ msgstr ""
+#~ "\n"
+#~ "<br/>Here are the guidelines for the next activity:\n"
+#~ "                        "
