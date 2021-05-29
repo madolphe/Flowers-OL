@@ -136,6 +136,8 @@ function runBlockLL() {
     let sinceEnter = 0;
     let fuel = 0;
     let interruptions = 0;
+    let xTrail = '';
+    let yTrail = '';
 
     let crash = false;
     let landed = false;
@@ -197,10 +199,13 @@ function runBlockLL() {
                 landerBody.GetUserData().thrusting = true && !gamePaused;
             } else if ('KeyF' == event.code) {
                 landerBody.GetUserData().turningLeft = true && !gamePaused;
+                console.log('F')
             } else if ('KeyJ' == event.code) {
                 landerBody.GetUserData().turningRight = true && !gamePaused;
-            } else if ('KeyD' == event.key && event.shiftKey) {
+                console.log('J')
+            } else if ('Equal' == event.code && event.shiftKey) {
                 params.verbose = !params.verbose
+                console.log('Toggle debug info')
             } else if (event.code == 'Space' && event.target == document.body) {
                 event.preventDefault();
             } else if ('Enter' == event.code && gamePaused && document.fullscreenElement && !outOfTime) {
@@ -352,6 +357,10 @@ function runBlockLL() {
         createjs.Ticker.useRAF = true;
         initFloor();
         initLander();
+
+        // Reset trial params
+        xTrail = '';
+        yTrail = '';
         crash = false;
         enterTime = false;
         landed = false;
@@ -412,10 +421,12 @@ function runBlockLL() {
             steeringPoint.y -= (shipData.height / 2 + 1) / params.scale;
             fuel += 1;
         }
+
         if (shipData.turningLeft) {
             impulse = new Box2D.Common.Math.b2Vec2(-shipData.turning, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
         }
+
         if (shipData.turningRight) {
             impulse = new Box2D.Common.Math.b2Vec2(shipData.turning, 0);
             landerBody.ApplyImpulse(impulse, steeringPoint);
@@ -434,7 +445,11 @@ function runBlockLL() {
 
         distToLandPoint = getEuclidDistance(
             u = landPoint,
-            w = [landerXpx, landerYpx]);
+            w = [landerXpx, landerYpx]
+        );
+
+        xTrail += ',' + landerXpx.toFixed(0).toString()
+        yTrail += ',' + landerYpx.toFixed(0).toString()
 
         world.Step(dt, params.hyper.velocityIterations, params.hyper.positionIterations);
     };
@@ -600,6 +615,9 @@ function runBlockLL() {
             'init_dist' : round(trueInitDistance, 2),
             'wind' : round(wind, 2),
             'end_dist' : round(distToLandPoint, 2),
+            'x_trail' : xTrail.substring(1).split(',').filter(function(d, i){ return (i+1)%2 !== 0}).join(','), // remove half of values
+            'y_trail' : yTrail.substring(1).split(',').filter(function(d, i){ return (i+1)%2 !== 0}).join(','), // remove half of values
+            'plat_xy' : landPoint[0].toFixed(0)+','+(landPoint[1]-5).toFixed(0),
             'interruptions' : interruptions,
             'forced' : xparams.forced,
             '_time_left' : round(xparams.time_left - timeElapsed)
