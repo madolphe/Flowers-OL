@@ -27,16 +27,18 @@
 			"group": 1,
 			"handle": "jold-3",
 			"order": 3,
-			"prompt": "Évaluez dans quelle mesure vous pensez avoir progressé depuis la toute première session de l'expérience",
-			"prompt_en": "Rate how much do you think you have improved since the very first session of the experiment",
+			"prompt": "Évaluez dans quelle mesure votre niveau de performance actuel a changé <i>par rapport à la toute première session de l'expérience</i>",
+			"prompt_en": "Rate how much you current level of performance has changed <i>compared to the very first session of the experiment</i>",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 11,
 			"step": 1,
-			"annotations": "Très peu~Énormément",
-			"annotations_en": "Very little~Very much",
+			"annotations": "Bien pire~Bien mieux",
+			"annotations_en": "Much worse~Much better",
 			"widget": "custom-polar",
-			"type": "integer"
+			"type": "integer",
+			"help_text": "Placez le curseur au milieu si vous pensez que votre performance <b>n'a pas changé</b>",
+			"help_text_en" : "Place the slider in the middle if you think your performance <b>has not changed</b>"
 		}
 	},
 	{
@@ -47,16 +49,18 @@
 			"group": 1,
 			"handle": "jold-2",
 			"order": 2,
-			"prompt": "Évaluez dans quelle mesure vous pensez avoir progressé depuis la session précédente",
-			"prompt_en": "Rate how much do you think you have improved since the previous session",
+			"prompt": "Évaluez dans quelle mesure votre niveau de performance actuel a changé <i>par rapport à la session précédente</i>",
+			"prompt_en": "Rate how much you current level of performance has changed <i>compared to the previous session</i>",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 11,
 			"step": 1,
-			"annotations": "Très peu~Énormément",
-			"annotations_en": "Very little~Very much",
+			"annotations": "Bien pire~Bien mieux",
+			"annotations_en": "Much worse~Much better",
 			"widget": "custom-polar",
-			"type": "integer"
+			"type": "integer",
+			"help_text": "Placez le curseur au milieu si vous pensez que votre performance <b>n'a pas changé</b>",
+			"help_text_en" : "Place the slider in the middle if you think your performance <b>has not changed</b>"
 		}
 	},
 	{
@@ -67,16 +71,18 @@
 			"group": 1,
 			"handle": "jold-1",
 			"order": 1,
-			"prompt": "Évaluez dans quelle mesure vous pensez vous être amélioré depuis le début de la session d'aujourd'hui",
-			"prompt_en": "Rate how much do you think you have improved since the beginning of today's session",
+			"prompt": "Évaluez dans quelle mesure votre niveau de performance actuel a changé <i>par rapport au début de la session d'aujourd'hui</i>",
+			"prompt_en": "Rate how much you current level of performance has changed <i>compared to the beginning of today's session</i>",
 			"reverse": 0,
 			"min_val": 1,
 			"max_val": 11,
 			"step": 1,
-			"annotations": "Très peu~Énormément",
-			"annotations_en": "Very little~Very much",
+			"annotations": "Bien pire~Bien mieux",
+			"annotations_en": "Much worse~Much better",
 			"widget": "custom-polar",
-			"type": "integer"
+			"type": "integer",
+			"help_text": "Placez le curseur au milieu si vous pensez que votre performance <b>n'a pas changé</b>",
+			"help_text_en" : "Place the slider in the middle if you think your performance <b>has not changed</b>"
 		}
 	},
 	{
@@ -171,7 +177,9 @@
 			"annotations": "Très peu~Énormément",
 			"annotations_en": "Very little~Very much",
 			"widget": "custom-polar",
-			"type": "integer"
+			"type": "integer",
+			"help_text": "Placez le curseur au milieu si vous <b>ne pensez pas</b> que votre niveau de performance va changer",
+			"help_text_en" : "Place the slider in the middle if you <b>do not</b> expect you performance level to change"
 		}
 	}
 ]
