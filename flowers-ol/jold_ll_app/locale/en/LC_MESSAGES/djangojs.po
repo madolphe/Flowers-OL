@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: static/js/app_LL/game.js:103
-msgid "Vaisseau prêt!"
+msgid "Vaisseau prêt !"
 msgstr "Ship is ready!"
 
 #: static/js/app_LL/game.js:110
@@ -31,7 +31,7 @@ msgid "* Le mode plein écran doit être activé\nLe bouton en haut à gauche pe
 msgstr "* Full screen mode must be activated.\nThe button on the top-left toggles full screen"
 
 #: static/js/app_LL/game.js:124
-msgid "Le vaisseau a atterri!"
+msgid "Le vaisseau a atterri !"
 msgstr "The ship has been landed!"
 
 #: static/js/app_LL/game.js:125
