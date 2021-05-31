@@ -834,10 +834,10 @@ msgstr ""
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:14
 msgid ""
-"Comme pour (1), la réponse à cette question correspond à la position du "
+"La réponse à cette question correspond à la position du "
 "curseur: "
 msgstr ""
-"As in (1), the answer to this question corresponds to the position of the "
+"The answer to this question corresponds to the position of the "
 "cursor:"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:27
