@@ -1,7 +1,7 @@
 let prompt_start, prompt_gratitude, prompt_button_end, prompt_button_restart;
 let text_title_0, text_tutorial_0_0, text_tutorial_0_1, text_tutorial_0_2, text_tutorial_0_3;
 let text_tutorial_1_0, text_tutorial_1_1, text_tutorial_1_2, text_tutorial_2_0, text_tutorial_2_1, text_tutorial_2_2,
-    text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2;
+    text_tutorial_4_0, text_tutorial_5_0, text_tutorial_6_1, text_tutorial_6_2, text_tutorial_3_0;
 let text_1left , text_1right,text_2left,text_2right,text_start, text_end;
 let text_button_next, text_button_previous, text_button_start;
 
@@ -21,6 +21,7 @@ if(language_code==='fr'){
     text_tutorial_2_0 = "Lorsque l'indice est le fond carré rouge, vous devez" ;
     text_tutorial_2_1 = "répondre si le chiffre cible est inférieur ou supérieur à 5" ;
     text_tutorial_2_2 = "en utilisant la touche [F] ou [J], respectivement." ;
+    text_tutorial_3_0 = "Pratiquons avant l'expérience principale."
     text_tutorial_4_0 = "Commençons l'expérience principale." ;
     text_tutorial_5_0 = "Temps de pause." ;
     text_tutorial_6_1 = "Merci pour votre effort. Lorsque vous êtes prêts, " ;
@@ -51,6 +52,7 @@ if(language_code==='fr'){
     text_tutorial_2_0 = "When the cue is the red square background, you have";
     text_tutorial_2_1 = "to answer whether the target digit is lower or higher than 5";
     text_tutorial_2_2 = "by using the key [F] or [J], respectively.";
+    text_tutorial_3_0 = "Let's start the practices.";
     text_tutorial_4_0 = "Let's start the main experiment.";
     text_tutorial_5_0 = "Break time.";
     text_tutorial_6_1 = "Thank you for your effort. When you are ready,";

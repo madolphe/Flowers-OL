@@ -43,7 +43,6 @@ let pos_tutorialtext_x2 = Pos.center_x;
 let pos_tutorialtext_y2 = Pos.center_y+Math.round(0.08*Pos.canvas_height);
 
 //scene 3
-let text_tutorial_3_0 = "Let's start the practices.";
 let size_tutorialtext3 = Math.round(0.04*Pos.canvas_height);
 let pos_tutorialtext_x3 = Pos.center_x;
 let pos_tutorialtext_y3 = Pos.center_y-Math.round(0.12*Pos.canvas_height);
