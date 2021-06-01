@@ -3,7 +3,8 @@
         "model": "manager_app.Task",
         "fields": {
             "name": "jold-consent",
-            "description": "Informed consent",
+            "description": "Consentement éclairé",
+            "description_en": "Informed consent",
             "view_name": "jold_consent_page"
         }
     },

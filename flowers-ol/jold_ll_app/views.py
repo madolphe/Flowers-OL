@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib import messages as django_messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.views.decorators.cache import never_cache
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
@@ -19,6 +19,8 @@ import json, datetime, random
 
 @login_required
 @never_cache # prevents users from navigating back to this view's page without requesting it from server (i.e. by using back button)
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_start_ll_practice(request):
     """Starts a Lunar Lander practice block if not already finished"""
     participant = request.user.participantprofile
@@ -43,7 +45,8 @@ def jold_start_ll_practice(request):
         'game_params': json.dumps(participant.extra_json['game_params'])
     }})
 
-
+@csrf_exempt
+# @ensure_csrf_cookie
 def jold_save_ll_trial(request):
     """Save data from lunar lander trial"""
     participant = request.user.participantprofile
@@ -65,7 +68,8 @@ def jold_save_ll_trial(request):
 
 
 @login_required
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_close_ll_practice(request):
     """Close lunar lander session redirect to post-sess questionnaire or the thanks page"""
     if request.is_ajax():
@@ -89,6 +93,8 @@ def jold_close_ll_practice(request):
 
 
 @login_required
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_close_postsess_questionnaire(request):
     participant = request.user.participantprofile
     add_message(request, _('Le questionnaire est complet'), 'success')
@@ -97,19 +103,22 @@ def jold_close_postsess_questionnaire(request):
 
 
 @login_required
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_accept_optional_practice(request):
     return redirect(reverse('jold_free_choice', kwargs={'choice': 1}))
 
 
 @login_required
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_reject_optional_practice(request):
     return redirect(reverse('jold_free_choice', kwargs={'choice': 0}))
 
 
 @login_required
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
+@csrf_exempt
 def jold_free_choice(request, choice):
     participant = request.user.participantprofile
     answer = Answer()
