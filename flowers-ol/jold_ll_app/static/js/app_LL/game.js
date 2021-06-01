@@ -100,7 +100,7 @@ function runBlockLL() {
     let trialStartTime;
     let accumulator = 0;
     let gamePaused = true;
-    const beginMsg = gettext('Vaisseau prêt!')
+    const beginMsg = gettext('Vaisseau prêt !')
 
     let pauseMessage = new createjs.Text(beginMsg, '40px Arial', params.colors.pauseText);
     pauseMessage.x = canvas.width/2;
@@ -121,7 +121,7 @@ function runBlockLL() {
 
     let pauseBackground = new createjs.Shape;
     pauseBackground.graphics.beginFill(params.colors.pauseBackground).drawRect(0, 0, canvas.width, canvas.height);
-    const landedMsg = gettext('Le vaisseau a atterri!')
+    const landedMsg = gettext('Le vaisseau a atterri !')
     const crashMsg = gettext('Le vaisseau s\'est écrasé')
     const offMsg = gettext('Le vaisseau s\'est perdu')
     const shrunkMsg = gettext('En pause')
