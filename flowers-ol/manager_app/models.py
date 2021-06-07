@@ -342,7 +342,7 @@ class ParticipantProfile(models.Model):
         return l
 
     def queue_reminder(self):
-        if self.remind and self.sessions.all():
+        if self.remind and self.sessions.all() and self.session_stack_peek():
             next_session = self.sessions.get(pk=self.session_stack_peek())
             next_session_start_datetime = next_session.get_valid_period(ref_timestamp=self.ref_timestamp)[0]
             message_template = render_to_string(self.study.reminder_template,
