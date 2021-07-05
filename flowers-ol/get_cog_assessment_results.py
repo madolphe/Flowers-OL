@@ -13,11 +13,11 @@ os.environ.setdefault(
     "flowers-ol.settings"
 )
 django.setup()
+
 from mot_app.models import CognitiveResult, CognitiveTask
 
-
 p = argparse.ArgumentParser("Connector to django DB for cognitive assessment", formatter_class=argparse.RawDescriptionHelpFormatter)
-p.add_argument('-a', '--export_all',action='store_true', help='Boolean flag to export all the cog assessments to CSV')
+p.add_argument('-a', '--export_all', action='store_true', help='Boolean flag to export all the cog assessments to CSV')
 args = p.parse_args()
 
 
@@ -85,14 +85,29 @@ def export_to_csv_for_task(dataset, task_name):
     for participant, results in enumerate(dataset):
         # results is supposed to be a 2-items array (result to PRE and POST-test)
         for result in results:
-            # result[0] is participant id
-            # result[1] is participant result for the task, a 2-items vector [task idx, dict of results, task_status]
-            dict_to_export['participant_id'].append(result[0])
-            dict_to_export['task_idx'].append(result[1][0])
-            dict_to_export['task_status'].append(result[1][2])
             dict_results = copy.deepcopy(result[1][1])
-            for columns, value in dict_results.items():
-                dict_to_export[columns].append(value)
+            problem = False
+            for key in dict_results.keys():
+                if not key in dict_to_export:
+                    problem = True
+            if not problem:
+                # result[0] is participant id
+                # result[1] is participant result for the task, a 3-items vector [task idx, dict of results, task_status]
+                dict_to_export['participant_id'].append(result[0])
+                dict_to_export['task_idx'].append(result[1][0])
+                dict_to_export['task_status'].append(result[1][2])
+                for column, value in dict_results.items():
+                    try:
+                        dict_to_export[column].append(value)
+                    except KeyError:
+                        print(f"First participants results keys for this activy are: {dict_to_export.keys()}")
+                        print(f"This participant presents keys: {dict_results.keys()}")
+                        print(f"Problem with column \"{column}\"")
+            else:
+                print(f"Problem with participant {result[0]}")
+                print(f"First participants results keys for this activy are: {dict_to_export.keys()}")
+                print(f"This participant presents keys: {dict_results.keys()}")
+
     csv_file = f"results/{task_name}.csv"
     df = pd.DataFrame(dict_to_export)
     if not os.path.isdir("results/"):
@@ -116,7 +131,8 @@ if __name__ == '__main__':
     # The format used for one task is: participant_id, [idx, {results}, status], ...., }]
     # (==> better to have separate columns for csv export)
     # print(retrieve_all_results_for_one_task(completed_session, 'workingmemory')[0])
-    if args.export_all:
+    # if args.export_all:
+    if True:
         task_list = ['moteval', 'workingmemory', 'memorability_1', 'memorability_2', 'taskswitch', 'enumeration',
                      'loadblindness', 'gonogo']
         for task_name in task_list:
