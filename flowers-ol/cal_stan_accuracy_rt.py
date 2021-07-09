@@ -7,7 +7,7 @@ asyncio.run(asyncio.sleep(1))
 
 #fname_csv1 = 'accuracy_data.csv'
 class CalStan_accuracy():
-    def __init__(self,dataframe,num_chains=4,num_samples=10000):
+    def __init__(self,dataframe,ind_corr_resp='corr_resp',ind_total_resp='total_resp',num_chains=4,num_samples=10000):
         self.binomial_code = """
         data {
           int nums;  //total number of participants
@@ -30,27 +30,30 @@ class CalStan_accuracy():
         }
 
         generated quantities{
-          real theta_across_obs;
-          for (n in 1:nums) theta_across_obs = theta_across_obs + theta[n]/nums; 
+          real theta_across_obs=0;
+          for (n in 1:nums) {
+            theta_across_obs = theta_across_obs + theta[n]/nums;
+            } 
         }
         """
         #df_read = pd.read_csv(fname_csv1)
         self.binomial_data = {"nums": len(dataframe),
-                        "corr_resp":dataframe.loc[:,0].tolist(),
-                        "total_resp":dataframe.loc[:,1].tolist()
+                        "corr_resp":dataframe[ind_corr_resp].tolist(),
+                        "total_resp":dataframe[ind_total_resp].tolist()
                         }
         print(self.binomial_data)
         self.posterior = stan.build(self.binomial_code, data=self.binomial_data)
-        self.fit = self.posterior.sample(num_chains, num_samples)
+        self.fit = self.posterior.sample(num_chains=num_chains, num_samples=num_samples)
         #corr_resp = self.fit["corr_resp"]  # array with shape (8, 4000)
-        self.df_results = fit.to_frame()  # pandas `DataFrame, requires pandas
+        self.df_results = self.fit.to_frame()  # pandas `DataFrame, requires pandas
         #plt.hist(df.loc[:,'diff_theta'])
-        self.ci_min = np.percentile(self.df_results.loc[:,'theta'],0.025)
-        self.ci_max = np.percentile(self.df_results.loc[:,'theta'],0.975)
+        self.mu_theta = np.mean(self.df_results.loc[:,'theta_across_obs'].values)
+        self.ci_min = np.percentile(self.df_results.loc[:,'theta_across_obs'],2.5)
+        self.ci_max = np.percentile(self.df_results.loc[:,'theta_across_obs'],97.5)
 
 
 class CalStan_rt():
-    def __init__(self,dataframe,num_chains=4,num_samples=10000):
+    def __init__(self,dataframe,ind_rt='rt',num_chains=4,num_samples=10000):
         self.binomial_code = """
         data {
           int nums;  //total number of participants
@@ -74,19 +77,22 @@ class CalStan_rt():
         }
 
         generated quantities{
-          real mu_across_obs;
-          for (n in 1:nums) mu_across_obs = mu_across_obs + mu[n]/nums;
+          real mu_across_obs=0;
+          for (n in 1:nums) { 
+            mu_across_obs = mu_across_obs + mu[n]/nums;
+            }
         }
         """
         #df_read = pd.read_csv(fname_csv1)
         self.binomial_data = {"nums": len(dataframe),
-                        "rt":dataframe.loc[:,0].tolist(),
+                        "rt":dataframe.loc[:,ind_rt].tolist(),
                         }
         print(self.binomial_data)
         self.posterior = stan.build(self.binomial_code, data=self.binomial_data)
-        self.fit = self.posterior.sample(num_chains, num_samples)
+        self.fit = self.posterior.sample(num_chains=num_chains,num_samples=num_samples)
         #corr_resp = self.fit["corr_resp"]  # array with shape (8, 4000)
-        self.df_results = fit.to_frame()  # pandas `DataFrame, requires pandas
+        self.df_results = self.fit.to_frame()  # pandas `DataFrame, requires pandas
         #plt.hist(df.loc[:,'diff_theta'])
-        self.ci_min = np.percentile(self.df_results.loc[:,'rt'],0.025)
-        self.ci_max = np.percentile(self.df_results.loc[:,'rt'],0.975)
+        self.mu_rt = np.mean(self.df_results.loc[:,'mu_across_obs'].values)
+        self.ci_min = np.percentile(self.df_results.loc[:,'mu_across_obs'],2.5)
+        self.ci_max = np.percentile(self.df_results.loc[:,'mu_across_obs'],97.5)
