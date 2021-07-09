@@ -60,8 +60,8 @@ class CalStan_rt():
           real rt[nums];  //rt distributions
         }
         parameters {
-          real<lower=0 > mu[nums]; //mean
-          real<lower=0 > sigma[nums]; //mean
+          real<lower=0> mu[nums]; //mean
+          real<lower=0> sigma[nums]; //sigma
         }
 
         model {
@@ -72,8 +72,10 @@ class CalStan_rt():
           }
           
           //priors
-          mu ~ uniform(0,9999999);
-          sigma ~ uniform(0,9999999);
+          for (n in 1:nums){
+            mu[n] ~ uniform(0,1000);
+            sigma[n] ~ uniform(0,1000);
+            }
         }
 
         generated quantities{
