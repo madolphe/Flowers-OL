@@ -84,6 +84,9 @@ class ParameterManager{
     }
   
     next_block(){
+      if (this.ind_stimcond==this.ind_previous+1){
+        this.save(); //This task saves the data once per block.
+      } 
       //set the next block parameters
       this.previous_buffer = this.trial_stimcond[this.ind_stimcond];
       this.repetition ++;
