@@ -116,6 +116,16 @@ def export_to_csv_for_task(dataset, task_name):
     print(f"Export to CSV {task_name}: success!")
 
 
+def delete_uncomplete_participants(dataframe: pd.DataFrame) -> pd.DataFrame:
+    """
+
+    """
+    mask = pd.DataFrame(dataframe.participant_id.value_counts() < 2)
+    participants_to_delete = mask[mask['participant_id'] == True].index.tolist()
+    for id in participants_to_delete:
+        dataframe = dataframe[dataframe['participant_id'] != id]
+    return dataframe
+
 all_cognitive_results = CognitiveResult.objects.all()
 # Create a dictionnary with participant_id as key and a list of CognitiveResults objects as values
 dataset = connect_db_python_dict(all_cognitive_results)
