@@ -2,28 +2,6 @@
     {
         "model": "manager_app.ExperimentSession",
         "fields": {
-            "study"         : "v0_prolific",
-            "wait"          : {},
-            "deadline"      : {"days": 10},
-            "index"         : 1,
-            "tasks_csv"     : "screen-size-params,cognitive-task-practice,mot-consent",
-            "required"      : true
-        }
-    },
-    {
-        "model": "manager_app.ExperimentSession",
-        "fields": {
-            "study"         : "v0_prolific",
-            "wait"          : {"days": 1},
-            "deadline"      : {"days": 1},
-            "index"         : 1,
-            "tasks_csv"     : "cognitive-task-practice",
-            "required"      : true
-        }
-    },
-    {
-        "model": "manager_app.ExperimentSession",
-        "fields": {
             "study"         : "v0_ubx",
             "wait"          : {},
             "deadline"      : {"days": 10},
@@ -37,7 +15,7 @@
         "fields": {
             "study"         : "v0_ubx",
             "wait"          : {"days": 1},
-            "deadline"      : {"days": 1},
+            "deadline"      : {},
             "index"         : 1,
             "tasks_csv"     : "cognitive-task-practice,ueq,cognitive-task-practice,nasatlx-questionnaire",
             "required"      : true
