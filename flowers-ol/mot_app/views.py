@@ -8,6 +8,7 @@ from .models import SecondaryTask, Episode
 from manager_app.models import ParticipantProfile
 from survey_app.models import Question, Answer
 from survey_app.forms import QuestionnaireForm
+from survey_app.views import questionnaire
 from manager_app.utils import add_message
 from .utils import assign_mot_condition
 from .sequence_manager.seq_manager import MotParamsWrapper
@@ -104,28 +105,7 @@ def set_mot_params(request):
     else:
         # Case 2: user has just applied and provide screen params for the first time:
         # Normaly current task should be retrieving screen_params:
-        instrument = participant.current_task.extra_json['instruments']
-        handle = participant.current_task.extra_json['include']['handle__in'][0]
-        # Warning here it works because of only one handle
-        questions = Question.objects.filter(instrument__in=instrument)
-        q = questions.get(handle=handle)
-        form = QuestionnaireForm([q], request.POST or None)
-        if form.is_valid():
-            answer = Answer()
-            answer.participant = participant
-            answer.session = participant.current_session
-            answer.question = q
-            answer.value = form.cleaned_data[q.handle]
-            answer.save()
-            # The line I really need is here:
-            participant.extra_json['screen_params'] = form.cleaned_data[q.handle]
-            participant.save()
-            print(participant.extra_json)
-            return redirect(reverse('end_task'))
-        return render(request, 'tasks/JOLD_Questionnaire/question_block.html', {'CONTEXT': {
-            'form': form,
-            'current_page': 1,
-            'nb_pages': 1}})
+        return questionnaire(request)
 
 
 @login_required

@@ -12,7 +12,7 @@ class MotParamsWrapper:
         if participant.study.name == 'zpdes_admin':
             admin_pannel = True
             game_time = 10*60*60
-        screen_params = Answer.objects.get(participant=participant, question__handle='prof-1').value
+        screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
         # Just init "fixed parameters":
         self.parameters = {'angle_max': 9, 'angle_min': 3, 'radius': 40, 'speed_min': 4, 'speed_max': 4,
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
