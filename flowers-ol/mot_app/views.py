@@ -300,9 +300,9 @@ def exit_view_cognitive_task(request):
     participant = ParticipantProfile.objects.get(user=request.user.id)
     idx_task = participant.extra_json['cognitive_tests_current_task_idx']
     # If the participant has just played, store results of last tasks:
-    store_previous_task(request, participant, idx_task)
-    # Update task index for next visit to the view
-    update_task_index(participant)
+    if store_previous_task(request, participant, idx_task):
+        # Update task index for next visit to the view
+        update_task_index(participant)
     return redirect(reverse(cognitive_assessment_home))
 
 
@@ -312,8 +312,9 @@ def get_task_stack():
     """
     all_tasks = CognitiveTask.objects.all().values('name')
     task_stack = [task['name'] for task in all_tasks]
-    #task_stack = ['moteval','workingmemory','memorability_1','memorability_2','taskswitch','enumeration', 'loadblindness', 'gonogo']
-    random.shuffle(task_stack)
+    # task_stack = ['moteval','workingmemory','memorability_1','memorability_2','taskswitch','enumeration', 'loadblindness', 'gonogo']
+    # task_stack = ['moteval' for i in range(8)]
+    # random.shuffle(task_stack)
     return task_stack
 
 
@@ -380,6 +381,12 @@ def end_task(participant):
     return redirect(reverse('end_task'))
 
 
+def cog_results_exists_in_db(task, participant):
+    """Returns True if object doesn't exist in database"""
+    return CognitiveResult.objects.filter(cognitive_task=task, participant=participant,
+                                          status=participant.extra_json["cognitive_tests_status"]).exists()
+
+
 def store_previous_task(request, participant, idx_task):
     datas = request.POST.dict()
     if 'csrfmiddlewaretoken' in datas:
@@ -387,13 +394,16 @@ def store_previous_task(request, participant, idx_task):
     # We need to store the PREVIOUS task, decrement task idx:
     task_name = participant.extra_json['cognitive_tests_task_stack'][idx_task]
     task = CognitiveTask.objects.get(name=task_name)
-    res = CognitiveResult()
-    res.cognitive_task = task
-    res.participant = participant
-    res.idx = idx_task
-    res.results = datas
-    res.status = participant.extra_json["cognitive_tests_status"]
-    res.save()
+    res = None
+    if not cog_results_exists_in_db(task, participant):
+        res = CognitiveResult()
+        res.cognitive_task = task
+        res.participant = participant
+        res.idx = idx_task
+        res.results = datas
+        res.status = participant.extra_json["cognitive_tests_status"]
+        res.save()
+    return res
 
 
 def init_participant_extra_json(participant):
@@ -415,5 +425,3 @@ def tutorial(request, task_name):
     screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html",
                   {"CONTEXT": {"screen_params": screen_params}})
-
-
