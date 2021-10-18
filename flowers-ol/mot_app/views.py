@@ -38,10 +38,12 @@ def general_tutorial(request):
 def mot_consent_page(request):
     user = request.user
     participant = user.participantprofile
-    form = ConsentForm(request.POST or None, request=request)
+    # In Prolific study, participants are not asked to provide their email adress
+    is_prolific_user = participant.study.name == "v0_Prolific"
+    form = ConsentForm(request.POST or None, request=request, is_prolific_user=is_prolific_user)
     if form.is_valid():
         participant.consent = True
-        if form.cleaned_data['request_reminder']:
+        if not is_prolific_user and form.cleaned_data['request_reminder']:
             participant.remind = True
             participant.email = form.cleaned_data['email']
         participant.save()
