@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Flowers OL | Sign-up {% endblock %}
+{% load static %}
+{% block  css %}
+    <link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="sidenav">
+    <div class="login-main-text">
+       <h2>{% trans "Inscription" %}</h2>
+    </div>
+ </div>
+ <div class="main">
+    <div class="col-md-7 col-sm-12">
+        <div class="signup-form">
+            <form action={% url "signup_page" %} class="form" method="post">
+                {% crispy CONTEXT.form_user %}
+                <div>
+                    <p class="text-center register-link">
+                        <a href="{% url "login_page"%}">
+                            {% trans "Cliquez ici pour se connecter" %}
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include "includes/license_note.html" %}
+{% endblock %}

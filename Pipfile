@@ -12,9 +12,10 @@ django = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 django-jsonfield = "*"
+django-modeltranslation = "*"
 jsonfield = "*"
 pandas = "*"
-kidlearn-lib = {editable = true,path = "./kidlearn"}
+# kidlearn-lib = {editable = true, path = "./lib/kidlearn"}
 future = "*"
 django-background-tasks = "*"
 
