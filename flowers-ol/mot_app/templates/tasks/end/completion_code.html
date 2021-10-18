@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% endblock %}
+{% block js%} {% endblock %}
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static "css/common.css" %}">
+    {%load static%} <link rel="stylesheet" href="{% static "css/end.css" %}">
+    <style>
+        b.highlight{color:#FFFD8C}
+    </style>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+            <div class="content">
+                <h1>{% trans "C'est bientôt terminé..." %}</h1>
+                {% trans "Vous avez complété l'ensemble des activités de notre expérience, bravo! Plus qu'une dernière étape avant de partir: récupérer votre gratification." %}
+                <div class="fade-screen"></div>
+            </div>
+        </div>
+        <div class="btn-box" id="logout-button">
+            <a class="btn logout" href={% url "user_logout" %}>{% trans "Se déconnecter" %}</a>
+        </div>
+    </div>
+    <div class="main-panel" style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;">
+            <h3>{% trans "Merci beaucoup pour votre participation!" %}</h3>
+        </br></br>
+            <div class="guidelines">
+            <p>
+                {% trans "Pour recevoir votre rémunération, merci de retourner sur la plateforme" %}
+                <a href="https://prolific.co/" target="_blank" rel="noopener noreferrer">Prolific </a>
+                {% trans "et de copier-coller le code suivant: "%}
+            </p>
+            <p class="code"> {{ CONTEXT.completion_code }} </p>
+            <p>
+                {% trans "Attention, ce code ne vous est fourni qu'une seule fois. Retenez le bien, sans celui-ci vous ne pourrez pas être rémunéré." %}
+            </p>
+            <p>
+                {% trans "Si vous avez le moindre soucis durant cette étape, vous pouvez nous contacter à l'adresse: maxime.adolphe@inria.fr" %}
+            </p>
+            </div>
+        <div class="btn-box" id="logout-button">
+            <a class="btn logout" href={% url "end_task" %}>{% trans "Fin de l'expérience" %}</a>
+        </div>
+    </div>
+
+{% endblock %}

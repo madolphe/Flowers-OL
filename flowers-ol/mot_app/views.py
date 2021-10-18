@@ -407,3 +407,15 @@ def tutorial(request, task_name):
     screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html",
                   {"CONTEXT": {"screen_params": screen_params}})
+
+
+@login_required
+def completion_code(request):
+    # Verification of the data:
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    dir_path = "static/JSON/config_files/completion.json"
+    with open(dir_path) as json_file:
+        data = json.load(json_file)
+        code = data[participant.study.name]
+    return render(request, "tasks/end/completion_code.html",
+                  {"CONTEXT": {"participant": participant, "completion_code": code}})
