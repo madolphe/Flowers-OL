@@ -39,7 +39,7 @@ def mot_consent_page(request):
     user = request.user
     participant = user.participantprofile
     # In Prolific study, participants are not asked to provide their email adress
-    is_prolific_user = participant.study.name == "v0_Prolific"
+    is_prolific_user = participant.study.name == "v0_prolific"
     form = ConsentForm(request.POST or None, request=request, is_prolific_user=is_prolific_user)
     if form.is_valid():
         participant.consent = True
