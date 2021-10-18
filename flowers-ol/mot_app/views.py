@@ -39,7 +39,7 @@ def mot_consent_page(request):
     user = request.user
     participant = user.participantprofile
     # In Prolific study, participants are not asked to provide their email adress
-    is_prolific_user = participant.study.name == "v0_Prolific"
+    is_prolific_user = participant.study.name == "v0_prolific"
     form = ConsentForm(request.POST or None, request=request, is_prolific_user=is_prolific_user)
     if form.is_valid():
         participant.consent = True
@@ -247,6 +247,7 @@ def cognitive_assessment_home(request):
     # Check if participant is doing the test for the first time:
     if 'cognitive_tests_status' not in participant.extra_json:
         init_participant_extra_json(participant)
+    add_participant_timestamp(participant)
     # task index is updated when the last task has been completed
     idx_task = participant.extra_json['cognitive_tests_current_task_idx']
     # Get current task context and name according to task idx:
@@ -314,6 +315,17 @@ def get_current_task_context(participant, idx_task):
         participant.extra_json['cognitive_tests_status'] = 'POST_TEST'
         participant.save()
         return None
+
+
+def add_participant_timestamp(participant):
+    if 'cog_test_date' in participant.extra_json:
+        participant.extra_json['cog_test_date'] += f"/{datetime.date.today()}"
+        hour = datetime.datetime.now().strftime("%H:%M:%S")
+        participant.extra_json['cog_test_hour'] += f"/{hour}"
+    else:
+        participant.extra_json['cog_test_date'] = datetime.date.today()
+        participant.extra_json['cog_test_hour'] = datetime.datetime.now().strftime("%H:%M:%S")
+    participant.save()
 
 
 def update_task_index(participant):
@@ -407,3 +419,15 @@ def tutorial(request, task_name):
     screen_params = Answer.objects.get(participant=participant, question__handle='prof-mot-1').value
     return render(request, f"pre-post-tasks/instructions/includes/tutorials_{task_name}.html",
                   {"CONTEXT": {"screen_params": screen_params}})
+
+
+@login_required
+def completion_code(request):
+    # Verification of the data:
+    participant = ParticipantProfile.objects.get(user=request.user.id)
+    dir_path = "static/JSON/config_files/completion.json"
+    with open(dir_path) as json_file:
+        data = json.load(json_file)
+        code = data[participant.study.name]
+    return render(request, "tasks/end/completion_code.html",
+                  {"CONTEXT": {"participant": participant, "completion_code": code}})

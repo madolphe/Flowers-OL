@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-02 20:41+0200\n"
+"POT-Creation-Date: 2021-10-18 12:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mot_app/forms.py:14
-msgid "Prolific_ID"
-msgstr ""
-
-#: mot_app/forms.py:15
-msgid "Prolific ID"
-msgstr ""
-
-#: mot_app/forms.py:16 mot_app/forms.py:17
-msgid "Password"
-msgstr "Mot de passe"
-
-#: mot_app/forms.py:40
-msgid "Remind my when a task is available with my Prolific account."
-msgstr ""
-
-#: mot_app/forms.py:61
+#: mot_app/forms.py:11
 msgid ""
 "En cochant cette case, vous reconnaissez avoir lu et compris les "
 "informations fournies sur l'étude."
@@ -42,7 +26,7 @@ msgstr ""
 "By checking this box, you acknowledge that you have read and understand the "
 "information provided on the study."
 
-#: mot_app/forms.py:64
+#: mot_app/forms.py:14
 msgid ""
 "En cochant cette case, vous donnez votre consentement éclairé à participer à "
 "l'étude."
@@ -50,7 +34,7 @@ msgstr ""
 "By checking this box, you are giving your informed consent to participate in "
 "the study."
 
-#: mot_app/forms.py:66
+#: mot_app/forms.py:16
 msgid ""
 "En cochant cette case, vous acceptez de recevoir un rappel 1 jour avant la "
 "prochaine session (optionnel)."
@@ -58,17 +42,17 @@ msgstr ""
 "By checking this box, you agree to receive a reminder 1 day before the next "
 "session (optional)."
 
-#: mot_app/forms.py:69
+#: mot_app/forms.py:19
 msgid ""
 "Adresse électronique si vous souhaitez recevoir des rappels (non "
 "obligatoire):"
 msgstr "Email address if you wish to receive reminders (not required):"
 
-#: mot_app/forms.py:79
+#: mot_app/forms.py:33
 msgid "Soumettre le consentement éclairé"
 msgstr "Submit informed consent"
 
-#: mot_app/forms.py:87
+#: mot_app/forms.py:40
 msgid ""
 "Veuillez fournir une adresse électronique si vous souhaitez recevoir un "
 "rappel de la future session 1 jour à l'avance."
@@ -76,7 +60,7 @@ msgstr ""
 "Please provide an email address if you would like to receive a reminder of "
 "the upcoming session 1 day in advance."
 
-#: mot_app/forms.py:91
+#: mot_app/forms.py:44
 msgid ""
 "Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine "
 "session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de "
@@ -667,6 +651,7 @@ msgstr "Here you can see your progression in the study"
 
 #: mot_app/templates/introduction/general_tuto.html:23
 #: mot_app/templates/pre-post-tasks/instructions/pre-post.html:34
+#: mot_app/templates/tasks/end/completion_code.html:24
 msgid "Se déconnecter"
 msgstr "Log out"
 
@@ -1191,6 +1176,53 @@ msgstr ""
 "    Minecraft = Puzzle <br>\n"
 "\n"
 "</p>\n"
+
+#: mot_app/templates/tasks/end/completion_code.html:18
+msgid "C'est bientôt terminé..."
+msgstr "It's almost done..."
+
+#: mot_app/templates/tasks/end/completion_code.html:19
+msgid ""
+"Vous avez complété l'ensemble des activités de notre expérience, bravo! Plus "
+"qu'une dernière étape avant de partir: récupérer votre gratification."
+msgstr ""
+"You just complete all activities, congratulations! One last step before "
+"leaving: getting paid for this work."
+
+#: mot_app/templates/tasks/end/completion_code.html:31
+msgid "Merci beaucoup pour votre participation!"
+msgstr "Thank your for your participation:"
+
+#: mot_app/templates/tasks/end/completion_code.html:35
+msgid "Pour recevoir votre rémunération, merci de retourner sur la plateforme"
+msgstr "In order to get paid for this participation, please get back to"
+
+#: mot_app/templates/tasks/end/completion_code.html:37
+msgid "et de copier-coller le code suivant: "
+msgstr "and copy and paste the following code:"
+
+#: mot_app/templates/tasks/end/completion_code.html:41
+msgid ""
+"Attention, ce code ne vous est fourni qu'une seule fois. Retenez le bien, "
+"sans celui-ci vous ne pourrez pas être rémunéré."
+msgstr ""
+"Please note that this code is provided to you only once. Do not lost it or "
+"you will not be able to be paid."
+
+#: mot_app/templates/tasks/end/completion_code.html:44
+msgid ""
+"Si vous avez le moindre soucis durant cette étape, vous pouvez nous "
+"contacter à l'adresse: maxime.adolphe@inria.fr"
+msgstr ""
+"If you encounter any trouble at this step, please contact us at: maxime."
+"adolphe@inria.fr"
+
+#: mot_app/templates/tasks/end/completion_code.html:48
+msgid "Fin de l'expérience"
+msgstr "End of experiment"
+
+#~ msgid "Password"
+#~ msgstr "Mot de passe"
 
 #~ msgid ""
 #~ "Le formulaire n'est pas valide. Consultez les messages d'erreur pour "

@@ -15,4 +15,5 @@ urlpatterns = [
     path('tutorial/<str:task_name>', views.tutorial, name="tutorial"),
     path('mot_consent_page', views.mot_consent_page, name="mot_consent_page"),
     path('general_tutorial', views.general_tutorial, name="general_tutorial"),
+    path('completion_code', views.completion_code, name="completion_code")
 ]

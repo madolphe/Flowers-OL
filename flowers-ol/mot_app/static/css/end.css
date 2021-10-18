@@ -1,0 +1,7 @@
+.code{
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    color: red;
+    font-size: 50px;
+}
