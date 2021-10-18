@@ -1,0 +1,13 @@
+{% load i18n %}
+{% block css%}
+    <style>
+        kbd#terminate {
+            background-color: #f07a56;
+            color: #2f3e59;
+            border: 2px solid #252938;
+            border-radius: 0;}
+    </style>
+{% endblock %}
+<p>
+    {% trans "La session d'aujourd'hui est terminée. Vous pouvez maintenant quitter la page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 minutes. Vous pourrez stopper à tout moment en cliquant sur le bouton " %} <kbd id='terminate'>{% trans "Terminer" %}</kbd>.
+</p>

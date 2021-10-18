@@ -1,0 +1,882 @@
+[
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 1,
+			"handle": "jold-mslq-5",
+			"order": 6,
+			"prompt": "Obtenir un bon score dans ce jeu est la chose la plus satisfaisante pour moi",
+			"prompt_en": "Getting a good score in this game is the most satisfying thing for me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 5,
+			"handle": "jold-mslq-6",
+			"order": 5,
+			"prompt": "La chose la plus importante pour moi est d'améliorer ma moyenne générale de points, donc ma principale préoccupation dans ce jeu est d'obtenir un bon score",
+			"prompt_en": "The most important thing for me is improving my overall score point average, so my main concern in this game is getting a good score",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 4,
+			"handle": "jold-mslq-7",
+			"order": 5,
+			"prompt": "Si je le peux, je veux avoir de meilleurs résultats que les autres personnes sur ce jeu",
+			"prompt_en": "If I can, I want to get better scores in this game than most of the participants.",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Extrinsic Goal Orientation",
+			"group": 3,
+			"handle": "jold-mslq-8",
+			"order": 5,
+			"prompt": "Je veux bien faire dans ce jeu parce qu'il est important de montrer mes aptitudes aux autres",
+			"prompt_en": "I want to do well in this game because it is important to show my ability to others",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 2,
+			"handle": "jold-mslq-9",
+			"order": 5,
+			"prompt": "Je pense que je serai en mesure d'utiliser ce que j'apprends dans d'autres situations",
+			"prompt_en": "I think I will be able to use what I learn in this game in other situations",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 1,
+			"handle": "jold-mslq-10",
+			"order": 5,
+			"prompt": "C'est important pour moi d'apprendre à jouer à ce jeu",
+			"prompt_en": "It's important for me to learn to play this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 5,
+			"handle": "jold-mslq-11",
+			"order": 4,
+			"prompt": "Je suis très intéressé par ce genre de jeu",
+			"prompt_en": "I am very interested in this kind of game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 4,
+			"handle": "jold-mslq-12",
+			"order": 4,
+			"prompt": "Je pense qu'apprendre à jouer à ce jeu est utile pour moi",
+			"prompt_en": "I think learning to play this game is useful for me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 3,
+			"handle": "jold-mslq-13",
+			"order": 4,
+			"prompt": "J'aime ce genre de jeu",
+			"prompt_en": "I like this kind of game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Task Value",
+			"group": 2,
+			"handle": "jold-mslq-14",
+			"order": 4,
+			"prompt": "Il est important pour moi de comprendre l'objectif de cette activité d'apprentissage",
+			"prompt_en": "Understanding the purpose of this learning activity is important to me",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 1,
+			"handle": "jold-mslq-15",
+			"order": 4,
+			"prompt": "Si j'apprends de manière appropriée, alors je serai capable de réussir dans le jeu",
+			"prompt_en": "If I learn in appropriate ways, then I will be able to succeed in the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 5,
+			"handle": "jold-mslq-16",
+			"order": 3,
+			"prompt": "C'est ma faute si je n'apprends pas comment réussir dans le jeu",
+			"prompt_en": "It is my own fault if I don't learn how to succeed in the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 4,
+			"handle": "jold-mslq-17",
+			"order": 3,
+			"prompt": "Si je fais suffisamment d'efforts, je comprendrai comment réussir dans le jeu",
+			"prompt_en": "If I try hard enough, then I will understand how to succeed in the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Control of Learning Beliefs",
+			"group": 3,
+			"handle": "jold-mslq-18",
+			"order": 3,
+			"prompt": "Si je ne comprends pas comment réussir dans ce jeu, c'est parce que je n'ai pas essayé suffisamment",
+			"prompt_en": "If I don't understand how to succeed in this game, it is because I didn't try hard enough",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 2,
+			"handle": "jold-mslq-19",
+			"order": 3,
+			"prompt": "Je crois que je vais obtenir de bons résultats dans ce jeu",
+			"prompt_en": "I believe I will achieve good results in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 1,
+			"handle": "jold-mslq-20",
+			"order": 3,
+			"prompt": "Je suis certain d'être capable de jouer à un niveau plus compliqué de ce jeu",
+			"prompt_en": "I'm certain I can play the most difficult mode in the game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 5,
+			"handle": "jold-mslq-21",
+			"order": 2,
+			"prompt": "Je suis sûr que je peux apprendre les compétences de base que ce jeu requiert",
+			"prompt_en": "I'm confident I can learn the basic skills this game requires",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 4,
+			"handle": "jold-mslq-22",
+			"order": 2,
+			"prompt": "Je suis sûr que je peux maîtriser la version la plus complexe de ce jeu",
+			"prompt_en": "I'm confident I can master the most complex version of this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 3,
+			"handle": "jold-mslq-23",
+			"order": 2,
+			"prompt": "Je suis sûr que je peux faire un excellent travail dans ce jeu",
+			"prompt_en": "I'm confident I can do an excellent job in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 2,
+			"handle": "jold-mslq-24",
+			"order": 2,
+			"prompt": "Je m'attends à bien faire dans ce jeu",
+			"prompt_en": "I expect to do well in this game",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Self-Efficacy for Learning and Performance",
+			"group": 1,
+			"handle": "jold-mslq-25",
+			"order": 2,
+			"prompt": "Je suis certain que je peux maîtriser les compétences que ce jeu enseigne",
+			"prompt_en": "I'm certain I can master skills this game teaches",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 6,
+			"handle": "jold-mslq-51",
+			"order": 5,
+			"prompt": "Durant mon apprentissage, je rate souvent des actions importantes parce que je pense à d'autres choses",
+			"prompt_en": "During my learning time I often miss important points because I'm thinking of other things",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 10,
+			"handle": "jold-mslq-52",
+			"order": 4,
+			"prompt": "Lorsque je joue à ce jeu, je me pose des questions pour m'aider à cibler mon apprentissage",
+			"prompt_en": "When playing this game, I ask myself questions to help focus my learning",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 9,
+			"handle": "jold-mslq-53",
+			"order": 4,
+			"prompt": "Quand je suis perdu ou bloqué dans le jeu, j'essaie de comprendre pourquoi",
+			"prompt_en": "When I become confused about something I'm doing in this game, I try to figure it out",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "jold-mslq-54",
+			"order": 4,
+			"prompt": "Si le jeu est difficile à comprendre, je change ma façon de jouer",
+			"prompt_en": "If the game is difficult to figure out, I change the way I play",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 7,
+			"handle": "jold-mslq-55",
+			"order": 4,
+			"prompt": "Avant de commencer ce jeu, j'ai lu les instructions",
+			"prompt_en": "Before starting this game, I read the instructions",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 6,
+			"handle": "jold-mslq-56",
+			"order": 4,
+			"prompt": "J'utilise quelques parties du jeu pour me tester",
+			"prompt_en": "I use some rounds of the game to test myself",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 10,
+			"handle": "jold-mslq-57",
+			"order": 3,
+			"prompt": "J'essaie de changer ma façon d'apprendre pour m'adapter à ce jeu et à ses instructions",
+			"prompt_en": "I try to change my way of learning to adapt to this game and its instructions",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 9,
+			"handle": "jold-mslq-58",
+			"order": 3,
+			"prompt": "Je me rends souvent compte que j'ai joué à ce jeu, mais je ne sais pas comment j'arrive à des résultats spécifiques",
+			"prompt_en": "I often find that I have been playing this game but I don’t know how I arrive at specific outcomes",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 8,
+			"handle": "jold-mslq-59",
+			"order": 3,
+			"prompt": "J'essaie d'avoir une idée générale de la bonne stratégie pour le jeu afin de savoir ce que je dois pratiquer plutôt que de le découvrir au fur et à mesure",
+			"prompt_en": "I try to get a general idea of the good strategy for the game so that I know what I need to practice rather than finding out as I go along",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 7,
+			"handle": "jold-mslq-60",
+			"order": 3,
+			"prompt": "Lorsque j'apprends ce jeu, j'essaie de déterminer quels sont les aspects que je ne maîtrise pas encore",
+			"prompt_en": "When learning this game I try to determine which aspects I haven't yet mastered",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 6,
+			"handle": "jold-mslq-61",
+			"order": 3,
+			"prompt": "Lorsque je joue à ce jeu, je me fixe des objectifs afin d'orienter mon apprentissage à chaque tour",
+			"prompt_en": "When I play this game, I set goals for myself in order to direct my learning in each round",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+			"group": 10,
+			"handle": "jold-mslq-62",
+			"order": 2,
+			"prompt": "Si j'échoue à un tour du jeu, j'essaie de comprendre pourquoi après coup",
+			"prompt_en": "If I fail a round of the game, I try to understand why afterwards",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 9,
+			"handle": "jold-mslq-71",
+			"order": 2,
+			"prompt": "Je me sens souvent tellement paresseux ou ennuyé quand je joue à ce jeu que je ne me donne pas la peine d'essayer de bien faire atterrir le vaisseau",
+			"prompt_en": "I often feel so lazy or bored when I play this game that I don't bother trying to land the lander well",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 8,
+			"handle": "jold-mslq-72",
+			"order": 2,
+			"prompt": "Je m'entraîne dur pour être bon dans ce jeu même si je n'aime pas ce que je suis en train de faire",
+			"prompt_en": "I practice hard to do well in this game even if I don't like what I am doing",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 7,
+			"handle": "jold-mslq-73",
+			"order": 2,
+			"prompt": "Quand le tour est trop difficile, j'abandonne jusqu'à ce que je trouve un tour plus facile.",
+			"prompt_en": "When the round is too difficult, I give up until I get an easier one",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Resource Management Strategies: Effort Regulation",
+			"group": 6,
+			"handle": "jold-mslq-74",
+			"order": 2,
+			"prompt": "Même quand le jeu est ennuyeux et inintéressant, j'essaie de l'apprendre jusqu'à le maîtriser",
+			"prompt_en": "Even when the game is boring and uninteresting, I try to learn it until I master it",
+			"reverse": 0,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Pas du tout vrai pour moi~Très vrai pour moi",
+			"annotations_en": "Not at all true for me~Very true for me",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Motivation Header",
+			"group": 1,
+			"handle": "jold-mslq-g1-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>motivation for and attitudes about</b> practicing the Lunar Lander game. Remember <i>there are no right or wrong answers</i>, just answer as accurately as possible. Use the scale below to answer the questions. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Motivation Header",
+			"group": 2,
+			"handle": "jold-mslq-g2-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>motivation for and attitudes about</b> practicing the Lunar Lander game. Remember <i>there are no right or wrong answers</i>, just answer as accurately as possible. Use the scale below to answer the questions. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Motivation Header",
+			"group": 3,
+			"handle": "jold-mslq-g3-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>motivation for and attitudes about</b> practicing the Lunar Lander game. Remember <i>there are no right or wrong answers</i>, just answer as accurately as possible. Use the scale below to answer the questions. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Motivation Header",
+			"group": 4,
+			"handle": "jold-mslq-g4-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>motivation for and attitudes about</b> practicing the Lunar Lander game. Remember <i>there are no right or wrong answers</i>, just answer as accurately as possible. Use the scale below to answer the questions. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Motivation Header",
+			"group": 5,
+			"handle": "jold-mslq-g5-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>motivation for and attitudes about</b> practicing the Lunar Lander game. Remember <i>there are no right or wrong answers</i>, just answer as accurately as possible. Use the scale below to answer the questions. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Learning Strategies Header",
+			"group": 6,
+			"handle": "jold-mslq-g6-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>learning strategies and study skills</b> for this class. Again, <i>there are no right or wrong answers</i>. Answer the questions about how you practice and learn in Lunar Lander as accurately as possible. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Learning Strategies Header",
+			"group": 7,
+			"handle": "jold-mslq-g7-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>learning strategies and study skills</b> for this class. Again, <i>there are no right or wrong answers</i>. Answer the questions about how you practice and learn in Lunar Lander as accurately as possible. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Learning Strategies Header",
+			"group": 8,
+			"handle": "jold-mslq-g8-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>learning strategies and study skills</b> for this class. Again, <i>there are no right or wrong answers</i>. Answer the questions about how you practice and learn in Lunar Lander as accurately as possible. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Learning Strategies Header",
+			"group": 9,
+			"handle": "jold-mslq-g9-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>learning strategies and study skills</b> for this class. Again, <i>there are no right or wrong answers</i>. Answer the questions about how you practice and learn in Lunar Lander as accurately as possible. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-MSLQ",
+			"component": "Learning Strategies Header",
+			"group": 10,
+			"handle": "jold-mslq-g10-dirs",
+			"order": 1,
+			"prompt": "Les questions suivantes portent sur votre <b>motivation et vos attitudes à l'égard</b> de la pratique du jeu Lunar Lander. Rappelez-vous <i>Il n'y a pas de bonnes ou de mauvaises réponses</i>, répondez simplement de la manière la plus précise possible. Utilisez l'échelle ci-dessous pour répondre aux questions. Si vous pensez que l'affirmation est très vraie pour vous, placez le curseur sur la position la plus à droite (Très vrai pour moi) ; si une affirmation n'est pas du tout vraie pour vous, placez le curseur sur la position la plus à gauche (Pas du tout vrai pour moi). Si l'affirmation est plus ou moins vraie pour vous, placez le curseur entre les deux pour indiquer au mieux ce que vous ressentez.",
+			"prompt_en": "The following questions ask about your <b>learning strategies and study skills</b> for this class. Again, <i>there are no right or wrong answers</i>. Answer the questions about how you practice and learn in Lunar Lander as accurately as possible. If you think the statement is very true of you, place the slider at the rightmost position (Very true for me); if a statement is not at all true of you, place the slider at the leftmost position (Not at all true for me). If the statement is more or less true of you, place the slider somwhere in-between to best indicate how you feel.",
+			"reverse": 0,
+			"widget": "custom-header"
+		}
+	}
+]

@@ -1,0 +1,602 @@
+[
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-1",
+			"order": 1,
+			"prompt": "Évaluez votre expérience globale de votre utilisation de notre plateforme d'expérimentation en ligne : Flowers Online Lab",
+			"prompt_en": "Evaluate your overall experience of using our online experimentation platform: Flowers Online Lab",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Agacant~Agréable",
+			"annotations_en": "Annoying~Enjoyable",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-2",
+			"order": 2,
+			"prompt": "Agacant ou Agréable ?",
+			"prompt_en": "Annoying or enjoyable?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Agacant~Agréable",
+			"annotations_en": "Annoying~Enjoyable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-3",
+			"order": 3,
+			"prompt": "Incompréhensible ou Compréhensible ?",
+			"prompt_en": "Not understandable or understandable?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Incompréhensible~Compréhensible",
+			"annotations_en": "Not understandable~Understandable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-4",
+			"order": 4,
+			"prompt": "Moderne ou Sans fantaisie ?",
+			"prompt_en": "Creative or dull?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Moderne~Sans fantaisie",
+			"annotations_en": "Creative~Dull",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-5",
+			"order": 5,
+			"prompt": "Appropriation simple ou Appropriation compliquée ?",
+			"prompt_en": "Easy to learn or difficult to learn?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Appropriation simple~Appropriation compliquée",
+			"annotations_en": "Easy to learn~Difficult to learn",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-6",
+			"order": 6,
+			"prompt": "Apporte de la valeur ou Peu de valeur ajoutée? ",
+			"prompt_en": "Valuable or inferior?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Apporte de la valeur~Peu de valeur ajoutée ",
+			"annotations_en": "Valuable~Inferior",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-7",
+			"order": 7,
+			"prompt": "Ennuyeux ou Captivant ?",
+			"prompt_en": "Boring or exciting?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Ennuyeux~Captivant",
+			"annotations_en": "Boring~Exciting",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 1,
+			"handle": "ueq-8",
+			"order": 8,
+			"prompt": "Inintéressant ou Intéressant ?",
+			"prompt_en": "Not interesting or interesting?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inintéressant~Intéressant",
+			"annotations_en": "Not interesting~Interesting",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-9",
+			"order": 9,
+			"prompt": "Évaluez votre expérience globale de votre utilisation de notre plateforme d'expérimentation en ligne : Flowers Online Lab",
+			"prompt_en": "Evaluate your overall experience of using our online experimentation platform: Flowers Online Lab",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Imprévisible~Prévisible",
+			"annotations_en": "Unpredictable~Predictable",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-10",
+			"order": 10,
+			"prompt": "Imprévisible ou Prévisible ?",
+			"prompt_en": "Unpredictable or predictable?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Imprévisible~Prévisible",
+			"annotations_en": "Unpredictable~Predictable",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-11",
+			"order": 11,
+			"prompt": "Rapide ou Lent ?",
+			"prompt_en": "Fast or slow?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rapide~Lent",
+			"annotations_en": "Fast~Slow",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-12",
+			"order": 12,
+			"prompt": "Original ou Conventionnel ?",
+			"prompt_en": "Inventive or conventional?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Original~Conventionnel",
+			"annotations_en": "Inventive~Conventional",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-13",
+			"order": 13,
+			"prompt": "Rigide ou Facilitant ?",
+			"prompt_en": "Obstructive or supportive?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Rigide~Facilitant",
+			"annotations_en": "Obstructive~Supportive",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-14",
+			"order": 14,
+			"prompt": "Bien ou Médiocre ?",
+			"prompt_en": "Good or bad?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Bien~Médiocre",
+			"annotations_en": "Good~bad",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-15",
+			"order": 15,
+			"prompt": "Compliqué ou Simple ?",
+			"prompt_en": "Complicated or easy?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Compliqué~Simple",
+			"annotations_en": "Complicated~Easy",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 2,
+			"handle": "ueq-16",
+			"order": 16,
+			"prompt": "Repoussant ou Attractif ?",
+			"prompt_en": "Unlikable or pleasing?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Repoussant~Attractif",
+			"annotations_en": "Unlikable~Pleasing",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-17",
+			"order": 17,
+			"prompt": "Évaluez votre expérience globale de votre utilisation de notre plateforme d'expérimentation en ligne : Flowers Online Lab",
+			"prompt_en": "Evaluate your overall experience of using our online experimentation platform: Flowers Online Lab",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Habituel~Avant-gardiste",
+			"annotations_en": "Usual~Leading edge",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-18",
+			"order": 18,
+			"prompt": "Habituel ou Avant-gardiste ?",
+			"prompt_en": "Usual or leading edge?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Habituel~Avant-gardiste",
+			"annotations_en": "Usual~Leading edge",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-19",
+			"order": 19,
+			"prompt": "Désagréable ou Agréable ?",
+			"prompt_en": "Unpleasant or pleasant?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Désagréable~Agréable",
+			"annotations_en": " Unpleasant~Pleasant",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-20",
+			"order": 20,
+			"prompt": "Sécurisant ou Insécurisant ?",
+			"prompt_en": "Secure or not secure?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sécurisant~Insécurisant",
+			"annotations_en": "Secure~Not secure",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-21",
+			"order": 21,
+			"prompt": "Stimulant ou Soporifique ?",
+			"prompt_en": "Motivating or demotivating?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Stimulant~Soporifique",
+			"annotations_en": "Motivating~Demotivating",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-22",
+			"order": 22,
+			"prompt": "Répond aux attentes ou Ne répond pas aux attentes ?",
+			"prompt_en": "Meets expectations or does not meet expectations?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Répond aux attentes~Ne répond pas aux attentes",
+			"annotations_en": "Meets expectations~Does not meet expectations",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-23",
+			"order": 23,
+			"prompt": "Inefficace ou Efficace ?",
+			"prompt_en": "Inefficient or efficient?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Inefficace~Efficace ",
+			"annotations_en": "Inefficient~Efficient",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 3,
+			"handle": "ueq-24",
+			"order": 24,
+			"prompt": "Clair ou Déroutant ?",
+			"prompt_en": "Clear or confusing?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Clair~Déroutant",
+			"annotations_en": "Clear~Confusing",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-25",
+			"order": 25,
+			"prompt": "Évaluez votre expérience globale de votre utilisation de notre plateforme d'expérimentation en ligne : Flowers Online Lab",
+			"prompt_en": "Evaluate your overall experience of using our online experimentation platform: Flowers Online Lab",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Non pragmatique~Pragmatique",
+			"annotations_en": "Impractical~Practical",
+			"widget": "custom-header",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-26",
+			"order": 26,
+			"prompt": "Non pragmatique ou Pragmatique ?",
+			"prompt_en": "Impractical or practical?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Non pragmatique~Pragmatique",
+			"annotations_en": "Impractical~Practical",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-27",
+			"order": 27,
+			"prompt": "Sobre ou Surchargé ?",
+			"prompt_en": "Organized or cluttered?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sobre~Surchargé",
+			"annotations_en": "Organized~Cluttered",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-28",
+			"order": 28,
+			"prompt": "Attrayant ou Rébarbatif ?",
+			"prompt_en": "Attractive or unattractive?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Attrayant~Rébarbatif",
+			"annotations_en": "Attractive~Unattractive",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-29",
+			"order": 29,
+			"prompt": "Sympathique ou Inamical ?",
+			"prompt_en": "Friendly or unfriendly?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Sympathique~Inamical",
+			"annotations_en": "Friendly~Unfriendly",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	},
+	{
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "jold-UEQ",
+			"component": "User Experience",
+			"group": 4,
+			"handle": "ueq-30",
+			"order": 30,
+			"prompt": "Conservateur ou Innovant ?",
+			"prompt_en": "Conservative or innovative?",
+			"reverse": 1,
+			"min_val": 1,
+			"max_val": 7,
+			"step": 1,
+			"annotations": "Conservateur~Innovant",
+			"annotations_en": "Conservative~Innovative",
+			"widget": "custom-polar",
+			"type": "integer"
+		}
+	}
+]

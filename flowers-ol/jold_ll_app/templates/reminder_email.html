@@ -1,0 +1,38 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<body class="bg" style="padding-top: 20px;padding-bottom: 20px;margin: 0;height: 100%;font-family: Arial;font-size: 14px;background-color: #E5E5E5;" content="text/html, charset=UTF-8">
+    <table class="sheet" style="max-width: 60%;min-width: 400px;text-align: center;margin-left: auto;margin-right: auto;background-color: white;padding-top: 30px;padding-bottom: 30px;">
+        <tr>
+            <td class="content" style="padding: 0 10px;text-align: left;line-height: 1.3em;">
+                <p class="greeting" style="font-size: 1.1em;">Salut {{CONTEXT.username}},</p>
+                <p>
+                    {% trans "Vous participez à une étude en ligne" %} <b>"{{CONTEXT.project_name}}"</b>. {% trans "Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les tâches suivantes:" %}
+                    <ul>
+                        {% for task in CONTEXT.tasks %}
+                            <li>{{task.description}}</li>
+                        {% endfor %}
+                    </ul>
+                </p>
+                <p style="border: 1px solid #9F6000;background-color: #FEEFB3;color: #9F6000; padding: 1em;border-radius: 15px">
+                    <span style="color: #9F6000;font-family:Verdana, Arial, Tahoma, Serif">[!]</span>
+                    {% trans "Il se peut qu'elle ne soit remplie qu'aujourd'hui" %} {{CONTEXT.valid_period}} {% trans "et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos données." %}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="link" style="padding: 0 10px;padding-top: 1em;padding-bottom: 1em;">
+                <a class="link" href="{{CONTEXT.study_link}}" style="text-align: center;border-radius: .25em;padding: 0.5em 1em;background-color: black;min-width: 150px;color: white !important;">
+                   {% trans "Se connecter" %}
+                </a>
+            </td>
+        </tr>
+        <tr><td><hr style="border-top: 1px solid #E5E5E5;"></td></tr>
+        <tr>
+            <td class="footer" style="padding: 0 10px;font-size: .75em;">
+               {% trans " Si vous avez des questions concernant l'étude, ou si vous pensez que vous avez reçu ce courriel par erreur, écrivez à " %}<a href="mailto:{{CONTEXT.contact}}">{{CONTEXT.study_contact}}</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

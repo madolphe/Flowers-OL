@@ -1,0 +1,13 @@
+[
+    {
+        "model": "manager_app.Study",
+        "fields": {
+            "name"          : "jold_ll",
+            "project"       : "Judgments of learning dynamics",
+            "base_template" : "base.html",
+            "style"         : "css/common.css",
+            "reminder_template"  : "reminder_email.html",
+            "contact"       : "alexandr.ten@inria.fr"
+        }
+    }
+]

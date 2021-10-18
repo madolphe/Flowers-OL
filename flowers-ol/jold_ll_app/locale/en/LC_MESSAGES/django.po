@@ -1,0 +1,989 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-26 01:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: jold_ll_app/forms.py:10
+msgid ""
+"En cochant cette case, vous reconnaissez avoir lu et compris les "
+"informations fournies sur l'étude."
+msgstr ""
+"By checking this box, you acknowledge that you have read and understood the "
+"information provided about the study"
+
+#: jold_ll_app/forms.py:11
+msgid ""
+"En cochant cette case, vous donnez votre consentement éclairé à participer à "
+"l'étude."
+msgstr ""
+"By checking this box you provide your informed consent to participate in the "
+"study"
+
+#: jold_ll_app/forms.py:12
+msgid ""
+"En cochant cette case, vous acceptez de recevoir un rappel 1 jour avant la "
+"prochaine session (optionel)."
+msgstr ""
+"By checking this box, you request to be reminded about the upcoming session "
+"1 day in advance (optional)"
+
+#: jold_ll_app/forms.py:13
+msgid ""
+"À quelle adresse souhaitez-vous recevoir le(s) rappel(s) ? Indiquez votre "
+"adresse électronique ci-dessous (optionel)"
+msgstr ""
+"Where should we send the reminder(s)? Provide your email adress below "
+"(optional)"
+
+#: jold_ll_app/forms.py:20
+msgid "Soumettre le consentement éclairé"
+msgstr "Submit informed consent"
+
+#: jold_ll_app/forms.py:30
+msgid ""
+"Veuillez fournir une adresse électronique si vous souhaitez recevoir un "
+"rappel de la future session 1 jour à l'avance."
+msgstr ""
+"Please provide an email address if you wish to be reminded of the future "
+"session 1 day in advance"
+
+#: jold_ll_app/forms.py:34
+msgid ""
+"Si vous souhaitez recevoir un rappel par courriel au sujet de la prochaine "
+"session, veuillez cocher cette case. Si vous ne souhaitez pas recevoir de "
+"tels rappels, décochez cette case et supprimez votre courriel ci-dessous."
+msgstr ""
+"If you want to receive an email reminder about the next session, please "
+"check this box. If you DO NOT want to receive such reminders, clear this box "
+"and delete your email below."
+
+#: jold_ll_app/forms.py:37
+msgid ""
+"Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
+"corriger le formulaire"
+msgstr "The form is not valid. See the error messages to correct the form"
+
+#: jold_ll_app/templates/reminder_email.html:10
+msgid "Vous participez à une étude en ligne"
+msgstr "You participate in an online study"
+
+#: jold_ll_app/templates/reminder_email.html:10
+msgid ""
+"Vous avez une session à compléter aujourd'hui. Vous devrez accomplir les "
+"tâches suivantes:"
+msgstr ""
+"You have one session to complete today. You will need to complete the "
+"following tasks:"
+
+#: jold_ll_app/templates/reminder_email.html:19
+msgid "Il se peut qu'elle ne soit remplie qu'aujourd'hui"
+msgstr "It may only be completed today"
+
+#: jold_ll_app/templates/reminder_email.html:19
+msgid ""
+"et si vous manquez un jour, nous ne pourrons pas faire bon usage de vos "
+"données."
+msgstr "and if you miss a day, we can't make good use of your data."
+
+#: jold_ll_app/templates/reminder_email.html:26
+msgid "Se connecter"
+msgstr "Log in"
+
+#: jold_ll_app/templates/reminder_email.html:33
+msgid ""
+" Si vous avez des questions concernant l'étude, ou si vous pensez que vous "
+"avez reçu ce courriel par erreur, écrivez à "
+msgstr ""
+"If you have any questions about the study, or if you think you have received "
+"this email in error, please write to"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:3
+msgid "INFORMATIONS SUR L'ÉTUDE"
+msgstr "INFORMATION ABOUT THE STUDY"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:5
+msgid ""
+"Dans le cadre de leurs recherches, les chercheurs Inria sont amenés à "
+"demander à des personnes de participer à des études nécessaires pour "
+"l’avancement de leurs projets de recherche. Conformément aux directives "
+"éthiques de <a href='https://www.inria.fr/fr/comite-operationnel-devaluation-"
+"des-risques-legaux-et-ethiques'>COERLE</a>, toute forme de participation à "
+"une étude doit être précédée de la transmission d'informations concernant la "
+"participation, suivie de la signature d'un formulaire de consentement "
+"éclairé.  Ce document présente le formulaire d’information et de recueil de "
+"consentement éclairé que le COERLE recommande de faire signer aux personnes "
+"qui participent à des recherches menées par les chercheurs Inria."
+msgstr ""
+"As part of their research, researchers of Inria ask individuals to "
+"participate in studies necessary for the progress of their research "
+"projects. In accordance with <a href='https://www.inria.fr/en/operational-"
+"committee-assesment-legal-and-ethical-risks'>OCELER</a> ethical guidelines, "
+"any kind of participation in a study must be preceded by the transmission of "
+"information regarding participantion, followed by the signing of an informed "
+"consent form. This document presents the information and an informed consent "
+"form recommended by OCELER for individuals participating in studies "
+"conducted by Inria researchers sign."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:9
+msgid "INFORMATIONS POUR LES PARTICIPANTS"
+msgstr "INFORMATION FOR PARTICIPANTS"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:10
+msgid ""
+"Votre collaboration est essentielle à la réalisation de notre projet et, "
+"l’équipe de recherche tient à vous en remercier."
+msgstr ""
+"Your collaboration is essential to the realisation of our project and the "
+"research team would like to thank you."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:12
+msgid ""
+"Avant de donner votre consentement éclairé, il est important que vous "
+"compreniez pourquoi la recherche est faite, ce qu’elle implique et quels "
+"sont vos droits et obligations."
+msgstr ""
+"Before you give your informed consent, it is important that you understand "
+"why the research is being done, what it involves and what your rights and "
+"obligations are."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:16
+msgid "PRESENTATION DU PROJET"
+msgstr "PRESENTATION OF THE PROJECT"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:17
+msgid "Responsables du projet"
+msgstr "Project leaders"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:18
+msgid "Equipe-projet et CRI "
+msgstr "Project team and IRC"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:18
+msgid "Équipe-projet FLOWERS – Inria Bordeaux Sud-Ouest "
+msgstr "FLOWERS project team - Inria Bordeaux Sud-Ouest"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:19
+msgid "Nom du projet "
+msgstr "Name of the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:21
+msgid ""
+"Vous êtes invité à participer à une expérience comportementale qui vise à "
+"étudier les processus métacognitifs impliqués dans l'apprentissage "
+"sensorimoteur autorégulé."
+msgstr ""
+"You are invited to participate in a behavioral experiment that aims to study "
+"metacognitive processes involved in self-regulated sensorimotor learning."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:23
+msgid "Les modalités de réalisation du projet seront les suivantes :"
+msgstr "The experiment will be implemented as follows:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:25
+msgid ""
+"Cette expérience est conçue pour étudier les liens entre l'apprentissage et "
+"les jugements subjectifs de l'apprentissage (propres à l'individu). Pour ce "
+"faire, il vous sera demandé de pratiquer à trois sessions d'un jeu vidéo "
+"appelé 'Lunar Lander' et de fournir vos évaluations subjectives de vos "
+"propres performances et progrès."
+msgstr ""
+"This experiment is designed to investigate the links between one'slearning "
+"and one's subjective judgments of learning (specific to the individual). In "
+"particular, this research aims to analyze the human capacity to monitor and "
+"evaluate their own learning (metacognition).To do this, you will be asked to "
+"practice three sessions of a video game called 'Lunar Lander' and provide "
+"your subjective evaluations of your own performance and progress."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:27
+msgid ""
+"Les résultats de l'expérience devraient nous permettre d'apprendre les "
+"choses suivantes :"
+msgstr "As a results of the experiment, we expect learn about the following:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:29
+msgid ""
+"Nous cherchons à identifier les conditions dans lesquelles l'apprentissage "
+"est maximisé. Nous espérons également établir un lien entre le taux objectif "
+"d'apprentissage et la perception par l'apprenant de la progression de son "
+"propre apprentissage. Ce projet est financé par l'équipe Flowers (centre "
+"Inria Bordeaux Sud-Ouest) et a été autorisé par le Comité opérationnel "
+"d'évaluation d'Inria des risques légaux et éthiques. Pour plus "
+"d'informations, cliquez sur ce <a href='https://www.inria.fr/fr/comite-"
+"operationnel-devaluation-des-risques-legaux-et-ethiques'>lien</a>."
+msgstr ""
+"We aim to identify conditions under which learning is maximised. We also "
+"hope to establish a link between the objective rate of learning and the "
+"learner's perception of progress of his or her own learning. This project is "
+"funded by the Flowers team (Inria Bordeaux Sud-Ouest centre) and has been "
+"authorised by Inria's Operational Committee for the assesment of Legal and "
+"Ethical risks. For more information, click on this <a href='https://www."
+"inria.fr/en/operational-committee-assesment-legal-and-ethical-risks'>link</"
+"a>."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:33
+msgid "VOTRE PARTICIPATION AU PROJET"
+msgstr "YOUR PARTICIPATION IN THE PROJECT"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:34
+msgid "Modalités de votre participation"
+msgstr "Details of your participation"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:36
+msgid "Votre participation consistera à :"
+msgstr "Your participation will consist of:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:45
+msgid ""
+"Utiliser les outils fournis par l'équipe de recherche (application en ligne "
+"et jeu vidéo). L'ensemble de l'expérience durera 5 jours, pendant lesquels "
+"il vous sera demandé d'effectuer 3 sessions programmées, de 10 à 15 minutes "
+"chacune. La première session peut être commencée n'importe quel jour, mais "
+"les sessions suivantes devront être réalisées respectivement 1 et 4 jours "
+"après la première session."
+msgstr ""
+"Using the tools provided by the research team (online application and the "
+"video game). The entire experiment will last 5 days, during which you will "
+"be asked to complete 3 scheduled sessions, 10-15 minutes each. The first "
+"session can be started on any day, but the following sessions will need to "
+"be completed 1 and 4 days after the first session, respectively."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:48
+msgid ""
+"Il est important de suivre le programme des sessions, sans quoi, nous ne "
+"pourrons utiliser vos résultats pour notre étude. Le programme est le "
+"suivant : Jour 1 - session 1 -> Jour 2 - session 2 -> Jour 5 - session 3. "
+"Par exemple, si vous terminez votre première session à n'importe quel moment "
+"le mardi, la session suivante doit être terminée le mercredi (de 12h00 à "
+"23h59), et la suivante doit être terminée le samedi (de 12h00 à 23h59)."
+msgstr ""
+"It is important that you follow the session schedule, otherwise we will not "
+"be able to use your results for our study. The schedule is as follows: Day 1 "
+"- session 1 -> Day 2 - session 2 -> Day 5 - session 3. For example, if you "
+"complete your first session on any time on Tuesday, the next session must be "
+"completed on Wednesday (from 12:00 AM to 11:59 PM), and the next one after "
+"that must be completed on Saturday (from 12:00 to 11:59 PM)"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:51
+msgid "Répondre à des questionnaires sur votre activité."
+msgstr "Respond to questionnaires about your activity."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:54
+msgid ""
+"Aucun risque particulier n’est à déplorer concernant votre participation à "
+"cette étude. De plus, la participation vous donne également l'occasion de "
+"vous informer sur les recherches en cours portant sur des questions majeures "
+"liées à l'apprentissage et aux capacités cognitives humaines."
+msgstr ""
+"There are no particular risks involved in participating in this study. "
+"Moreover, the participation also gives you an opportunity to learn about the "
+"ongoing research addressing major issues related to human learning and "
+"cognitive abilities."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:57
+msgid ""
+"Aucune compensation financière n’est prévue pour votre participation, qui ne "
+"repose que sur votre décision. Vous avez le droit de vous retirer à tout "
+"moment de l'expérience."
+msgstr ""
+"There is no financial compensation for your participation, which is based "
+"solely on your decision. You have the right to withdraw at any time during "
+"the experiment."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:62
+msgid "Participation volontaire au projet"
+msgstr "Voluntary participation in the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:64
+msgid ""
+"Après avoir lu et compris les informations contenues dans la section "
+"'PRÉSENTATION DU PROJET', l'envoi de ce formulaire indique que vous acceptez "
+"de participer au projet, sans aucune contrainte ni pression extérieure. S'il "
+"vous manque des informations nécessaires à votre décision, n'hésitez pas à "
+"demander des informations complémentaires aux personnes de contact (voir ci-"
+"dessous)."
+msgstr ""
+"Having read and understood the information in the 'PRESENTATION OF THE "
+"PROJECT' section, your submission of this form indicates that you agree to "
+"participate in the project, without any constraints or external pressure. If "
+"you are missing any information necessary for your decision, please do not "
+"hesitate to ask for further information from the contact persons (see below)."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:67
+msgid "Retrait du projet à tout moment"
+msgstr "Withdrawal of the project at any time"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:69
+msgid ""
+"Vous êtes totalement libre de mettre fin à votre participation au projet à "
+"n’importe quel moment. Il vous suffit d’en informer les personnes contacts "
+"(ci-après). Vous n’aurez aucune justification à apporter à votre retrait et "
+"vous n’encourrez aucune responsabilité."
+msgstr ""
+"You are completely free to end your participation in the project at any "
+"time. You just need to inform the contact persons (below). You will not have "
+"to justify your withdrawal and you will not incur any liability."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:71
+msgid "Suite de votre retrait du projet"
+msgstr "Following your withdrawal from the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:73
+msgid ""
+"L’équipe de recherche pourra continuer à utiliser les renseignements vous "
+"concernant jusqu’au retrait de votre consentement, sauf si vous vous y "
+"opposez en l’indiquant aux personnes contacts. Dans ce cas, les "
+"renseignements vous concernant seront détruits."
+msgstr ""
+"The research team may continue to use your information until you withdraw "
+"your consent, unless you object by telling the contact persons. In this "
+"case, your data will be destroyed."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:75
+msgid "Demande d’informations au cours du projet"
+msgstr "Request for information during the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:77
+msgid ""
+"Si vous avez des questions additionnelles sur le projet ou sur les droits en "
+"tant que participant à ces travaux de recherche, n’hésitez pas à nous "
+"contactez."
+msgstr ""
+"If you have any additional questions about the project or about your rights "
+"as a participant in this research, please do not hesitate to contact us."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:79
+msgid "Information concernant les résultats principaux de la recherche"
+msgstr "Information on the main results of the research"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:81
+msgid ""
+"Si vous souhaitez obtenir un résumé écrit des principaux résultats de cette "
+"recherche ainsi que de leur utilisation, veuillez faire une demande auprès "
+"de l'un des contacts indiqués ci-dessous."
+msgstr ""
+"If you would like to receive a written summary of the main results of this "
+"research and their use, please make a request from any of the contacts "
+"provided below."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:85
+msgid "CONFIDENTIALITE ET LOI INFORMATIQUE & LIBERTES"
+msgstr "CONFIDENTIALITY AND DATA PROTECTION LAW"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:87
+msgid ""
+"Inria est très attentif et vigilant concernant les questions de protection "
+"des données à caractère personnel (DCP), il s’est d’ailleurs doté d’un "
+"Délégué à la Protection des Données (DPD) qui est chargé de s'assurer de la "
+"conformité d'Inria avec le Règlement européen sur la Protection des Données "
+"(RGPD)."
+msgstr ""
+"Inria is very attentive and vigilant regarding issues of personal data "
+"protection (PDP), and has appointed a Data Protection Officer (DPO) who is "
+"responsible for ensuring that Inria complies with the General Data "
+"Protection Regulation (GDPR)."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:89
+msgid "Ces données sont les suivantes :"
+msgstr "These data are as follows:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:91
+msgid ""
+"Les données collectées à partir de l'application sont les résultats du jeu "
+"enregistrés automatiquement lors de l’utilisation du jeu. Ces données sont "
+"totalement anonymes dans la mesure où vos nom et prénom ne sont pas saisis "
+"dans la base de données, qui ne contient que des identifiants numériques qui "
+"ne permettent pas de remonter jusqu'à vous."
+msgstr ""
+"The data collected from the application are game outcomes automatically "
+"recorded when using the game. These data are completely anonymous in that "
+"your first and last names are not entered in the database, which only "
+"contains numerical identifyers that cannot be traced back to you."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:93
+msgid "Ces données seront traitées de la manière suivante :"
+msgstr "These data will be processed in the following way:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:95
+msgid ""
+"Les données issues de l’application nous permettront d'étudier les "
+"mécanismes de l’apprentissage intrinsèquement motivés: les données "
+"collectées seront stockées dans une base de données, sur laquelle nous "
+"opérerons des analyses statistiques sur le progrès d’apprentissage et l’auto-"
+"évaluation de ces progrès lors de l’utilisation de l’application. Ces "
+"données anonymes ne seront pas utilisées à d’autres fins que l'étude de "
+"l'apprentissage et des mécanismes métacognitifs."
+msgstr ""
+"The data from the application will allow us to study the mechanisms of "
+"intrinsically motivated learning: the data collected will be stored in a "
+"database, on which we will perform statistical analyses of the learning "
+"progress and the self-assessment of this progress when using the "
+"application. This anonymous data will not be used for any other purpose than "
+"the study of learning and metacognitive mechanisms."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:98
+msgid ""
+"Conformément à l'article 13 du Règlement relatif à la protection des "
+"personnes physiques à l'égard du traitement des données à caractère "
+"personnel et à la libre circulation de ces données, et abrogeant la "
+"directive 95/46/CE (règlement général sur la protection des données ou "
+"RGPD), veuillez trouver ci-dessous quelques informations concernant cette "
+"collecte de données :"
+msgstr ""
+"In accordance with Article 13 of the Regulation on the protection of "
+"individuals with regard to the processing of personal data and on the free "
+"movement of such data, and repealing Directive 95/46/EC (General Data "
+"Protection Regulation or GDPR), please find below some information about "
+"this data collection:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:101
+msgid ""
+"Cette collecte de données s’effectue sur la base du volontariat. Vous n’êtes "
+"en aucun cas tenu par voie réglementaire, contractuelle ou autres de fournir "
+"vos données."
+msgstr ""
+"This data collection is voluntary. You are not obliged in any way by "
+"regulation, contract or otherwise to provide your data."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:104
+msgid ""
+" À tout moment, vous pouvez décider d’arrêter le Projet et demander la "
+"suppression de vos données collectées."
+msgstr ""
+"At any time, you can decide to stop the Project and request the deletion of "
+"your collected data."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:107
+msgid ""
+" Il est entendu que les données personnelles recueillies lors du projet sont "
+"confidentielles et que seuls les membres de l’équipe de recherche, "
+"identifiés ci-après, auront accès à ces données :"
+msgstr ""
+"It is understood that the personal data collected during the project is "
+"confidential and that only the members of the research team, identified "
+"below, will have access to this data:"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:109
+msgid "M. OUDEYER Pierre-Yves, directeur d’équipe"
+msgstr "Dr. OUDEYER Pierre-Yves, Team Manager"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:110
+msgid "Mme. SAUZEON Hélène, professeure en Psychologie"
+msgstr "Pr. SAUZEON Hélène, Professor of Psychology"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:111
+msgid "M. CLEMENT Benjamin, Post-doctorant sur le projet"
+msgstr "Mr. CLEMENT Benjamin, Post-doctoral fellow on the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:112
+msgid "M. TEN Alexandr, Doctorant sur le projet"
+msgstr "Mr. TEN Alexandr, PhD student on the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:113
+msgid "M. ADOLPHE Maxime, Doctorant sur le projet"
+msgstr "Mr. ADOLPHE Maxime, PhD student on the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:114
+msgid "M. BALAN Maxime, Stagiaire sur le projet"
+msgstr "Mr. BALAN Maxime, Intern on the project"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:118
+msgid ""
+" Chaque traitement de données à caractère personnel au sein d’Inria doit "
+"faire l’objet d’une déclaration auprès du DPD d’Inria."
+msgstr ""
+"Any processing of personal data within Inria must be declared to the Inria "
+"DPO."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:121
+msgid ""
+" Le représentant du responsable de traitement est le Directeur du Centre de "
+"Recherche Inria Bordeaux Sud-Ouest : Nicolas Roussel."
+msgstr ""
+"The representative of the data controller is the Director of the Inria "
+"Bordeaux Sud-Ouest Research Centre: Nicolas Roussel."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:124
+msgid ""
+" Aucun transfert de vos données vers un pays tiers ou vers une organisation "
+"internationale ne sera effectué"
+msgstr ""
+"Your data will not be transferred to a third country or to an international "
+"organisation"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:127
+msgid ""
+" Vos données seront conservées pour une durée maximale de 10 ans (temps "
+"requis pour la valorisation scientifique et éventuellement, leur utilisation "
+"pour des métaanalyses postérieures)."
+msgstr ""
+"Your data will be kept for a maximum of 10 years (time required for "
+"scientific valorisation and possibly their use for subsequent meta-analyses)."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:130
+msgid ""
+" Conformément à la loi « informatique et libertés » du 6 janvier 1978 "
+"modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux "
+"informations qui vous concernent. Vous pouvez également, pour des motifs "
+"légitimes, vous opposer au traitement des données vous concernant."
+msgstr ""
+"In accordance with the French law on information technology and civil "
+"liberties of 6 January 1978, amended in 2004, you have the right to access "
+"and rectify any information concerning you. You may also, for legitimate "
+"reasons, oppose the processing of data concerning you."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:133
+msgid ""
+" Vous pouvez donc accéder aux données vous concernant ou demander leur "
+"effacement. Vous disposez également d'un droit d’opposition, d’un droit de "
+"rectification et d’un droit à la limitation du traitement de vos données "
+"(cf. cnil.fr pour plus d’informations sur vos droits)."
+msgstr ""
+"You can therefore access the data concerning you or request their deletion. "
+"You also have the right to object, the right to rectify and the right to "
+"limit the processing of your data (see cnil.fr for more information on your "
+"rights)."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:136
+msgid ""
+"Pour exercer ces droits ou pour toute question sur le traitement de vos "
+"données dans ce dispositif, vous pouvez contacter le DPD."
+msgstr ""
+"To exercise these rights or if you have any questions about the processing "
+"of your data under this scheme, you can contact the DPO."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:139
+msgid ""
+" Contacter le DPD par voie électronique : <a href=\"mailto:dpd@inria.fr"
+"\">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a href="
+"\"mailto:anne.combe@inria.fr\">anne.combe@inria.fr</a>)"
+msgstr ""
+"Contact the DPO by email: <a href=\"mailto:dpd@inria.fr\">dpd@inria.fr</a>. "
+"The representative at Inria is Madame Anne COMBE (<a href=\"mailto:anne."
+"combe@inria.fr\">anne.combe@inria.fr</a>)"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:142
+msgid ""
+" Si vous estimez, après nous avoir contactés, que vos droits Informatique et "
+"Libertés ne sont pas respectés ou que l’étude n’est pas conforme aux règles "
+"de protection des données, vous pouvez adresser une réclamation à la CNIL."
+msgstr ""
+"If you believe, after having contacted us, that your data protection rights "
+"have not been respected or that the study does not comply with the data "
+"protection rules, you can submit a complaint to the CNIL."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:146
+msgid ""
+"Le présent formulaire d’information et de recueil de consentement éclairé "
+"est un document confidentiel et sensible, à ce titre il doit faire l’objet "
+"d’un traitement particulier tant concernant sa conservation que son "
+"archivage."
+msgstr ""
+"This information and informed consent form is a confidential and sensitive "
+"document, and as such it must be treated with particular care, both in terms "
+"of storage and archiving"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:148
+msgid ""
+" L’exemplaire du formulaire dûment signé destiné au responsable du projet "
+"sera conservé au sein du service administratif et financier du Centre de "
+"recherche Inria concerné pendant une durée de quinze ans puis fera l’objet "
+"d’un versement au service des archives du Centre de recherche Inria concerné."
+msgstr ""
+"The copy of the duly signed form intended for the project leader will be "
+"kept in the administrative and financial department of the Inria Research "
+"Centre concerned for a period of fifteen years and will then be transferred "
+"to the archives of the Inria Research Centre concerned."
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:152
+msgid "PERSONNES CONTACTS"
+msgstr "CONTACT PERSONS"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:157
+#: jold_ll_app/templates/tasks/consent/consent_form.html:165
+msgid "Doctorant"
+msgstr "PhD student"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:173
+msgid "Post-doctorant"
+msgstr "Post-doctoral fellow"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:181
+msgid "Stagiaire"
+msgstr "Intern"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:190
+msgid "VOTRE CONSENTEMENT ÉCLAIRÉ"
+msgstr "YOUR INFORMED CONSENT"
+
+#: jold_ll_app/templates/tasks/consent/consent_form.html:192
+#, python-format
+msgid ""
+"En remplissant les champs obligatoires du formulaire, vous consentez "
+"volontairement à participer au projet intitulé <b> \"%(project)s\" </b>. En "
+"donnant votre consentement éclairé, vous acceptez les points suivants :\n"
+"        <ul>\n"
+"            <li>Vous avez été informé que vous pouvez mettre fin à votre "
+"participation au projet à tout moment sans donner de raison, simplement en "
+"contactant les personnes de contact indiquées ci-dessus.</li>\n"
+"            <li>Vous avez été informé de l'objectif et des modalités du "
+"projet, ainsi que de ses avantages, risques et inconvénients.</li>\n"
+"            <li>Vous avez reçu des réponses claires et précises à vos "
+"questions.</li>\n"
+"            <li>Vous avez la possibilité de poser des questions "
+"supplémentaires sur le projet ou vos droits à tout moment pendant le projet "
+"en contactant l'une des personnes de contact indiquées ci-dessus.\n"
+"            </li>\n"
+"        </ul>\n"
+"        Fait en deux exemplaires dont un sera remis au participant et un "
+"sera conservé par le responsable du projet."
+msgstr ""
+"By filling in the required form fields you voluntarily consent to "
+"participate in the project entitled <b>'%(project)s'</b>. By giving your "
+"informed consent you agree to the following:\n"
+"          <ul>\n"
+"            <li>You have been informed that you may terminate your "
+"participation in the project at any time without giving any reason, simply "
+"by contacting the contact persons listed above.</li>\n"
+"            <li>You have been informed about the purpose and modalities of "
+"the project, as well as the advantages, risks and disadvantages of the "
+"project.</li>\n"
+"            <li>You have received clear and precise answers to your "
+"questions.</li>\n"
+"            <li>You have the possibility to ask additional questions about "
+"the project or your rights at any time during the project by contacting any "
+"of the contact persons provided above. </li>\n"
+"        </ul>\n"
+"        Made in duplicate, one copy to be given to the participant and one "
+"copy to be kept by the project leader."
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:12
+msgid "Salut"
+msgstr "Hello"
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:14
+msgid ""
+"Avant de commencer, nous devons recueillir votre consentement éclairé. Pour "
+"donner votre consentement:"
+msgstr ""
+"Before you begin, we need to collect your informed consent. To provide your "
+"consent:"
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:16
+msgid "Lisez attentivement les informations à droite"
+msgstr "Read carefully the information on the right"
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:17
+msgid "Remplissez le formulaire de consentement à la fin"
+msgstr "Fill in the consent form at the end"
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:18
+msgid "Envoyez le formulaire de consentement que vous avez rempli"
+msgstr "Submit the form"
+
+#: jold_ll_app/templates/tasks/consent/consent_page.html:21
+msgid "Se déconnecter"
+msgstr "Log out"
+
+#: jold_ll_app/templates/tasks/free_choice/free_choice.html:12
+msgid ""
+"La session d'aujourd'hui est terminée. Vous pouvez maintenant quitter la "
+"page, ou si vous le souhaitez, continuer à jouer un petit peu, pas plus de 5 "
+"minutes. Vous pourrez stopper à tout moment en cliquant sur le bouton "
+msgstr ""
+"Today's session is over. You can now leave the page, or if you wish, "
+"continue to play for a little while, no more than 5 minutes. You can stop at "
+"any time by clicking on the"
+
+#: jold_ll_app/templates/tasks/free_choice/free_choice.html:12
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:51
+msgid "Terminer"
+msgstr "Terminate"
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:3
+msgid ""
+"Pour cette tâche, il vous sera demandé de vous entraîner à jouer au jeu "
+"Lunar Lander. Au cours de multiples essais, votre mission sera de faire "
+"atterrir un vaisseau spatial sur une plateforme d'atterissage. Chaque essai "
+"peut se terminer de 3 manières différentes :"
+msgstr ""
+"For this task, you will be asked to practice playing the game Lunar Lander. "
+"In multiple trials, your mission will be to land a spaceship on a landing "
+"platform. Each trial can end in 3 different ways:"
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:5
+msgid ""
+"Le vaisseau peut s'écraser si sa capsule entre en contact avec un élément de "
+"l'environnement."
+msgstr ""
+"The ship may crash if its capsule comes into contact with anything in the "
+"environment."
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:6
+msgid "Le vaisseau peut-être perdu, s'il sort de l'écran."
+msgstr "The ship can be lost, if it goes off the screen."
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:7
+msgid ""
+"Le vaisseau peut atterrir avec succès s'il reste posé debout sur la "
+"plateforme pendant au moins 3 secondes."
+msgstr ""
+"The ship can land successfully if it remains standing on the platform for at "
+"least 3 seconds."
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:9
+msgid ""
+"Dès que le vaisseau se trouve sur la plateforme, vous verrez apparaître une "
+"barre de progression qui indique le temps restant avant la réussite et la "
+"validation de l'atterrissage."
+msgstr ""
+"As soon as the ship is on the platform, you will see a progress bar that "
+"indicates the time remaining before the landing is successful and validated."
+
+#: jold_ll_app/templates/tasks/lunar_lander/instructions.html:11
+msgid ""
+"Pendant vos essais, et contrairement au tutoriel ci-dessous, vous devrez "
+"vous adapter à certaines forces environnementales afin de contrôler le "
+"vaisseau (gravité, vent, par exemple)"
+msgstr ""
+"During your tests, and contrary to the tutorial below, you will have to "
+"adapt to certain environmental forces in order to control the ship (gravity, "
+"wind, for example)"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:40
+msgid "Vous pouvez contrôler le vaisseau avec ces 3 touches :"
+msgstr "You can control the ship with these 3 keys:"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:42
+msgid "tourne le vaisseau vers la gauche"
+msgstr "rotates the ship to the counter-clockwise"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:43
+msgid "tourne le vaisseau vers la droite"
+msgstr "rotates the ship to the clockwise"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:44
+msgid "propulse le vaisseau en avant"
+msgstr "propels the ship forward"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:46
+msgid " Vous pouvez utiliser vos pouces pour appuyer sur "
+msgstr "You can use your thumbs to press"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:46
+msgid "mais assurez-vous que vous utilisez vos index pour appuyer sur "
+msgstr "but make sure you use your keep your index fingers on "
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:46
+msgid "et"
+msgstr "and"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:46
+msgid "comme dans l'image ci-dessous."
+msgstr "as shown in the image below."
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:48
+msgid "De plus, vous verrez 2 autres boutons en haut de l'écran :"
+msgstr "In addition, you will see 2 more buttons at the top of the screen:"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:50
+msgid "Plein écran"
+msgstr "Full screen"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:50
+msgid "met le jeu en mode plein écran."
+msgstr "puts the game in full screen mode."
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:50
+msgid "Le jeu ne peut être utilisé qu'en mode plein écran"
+msgstr "The game can only be used in full screen mode"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:51
+msgid "termine la sessione en cours. "
+msgstr "ends the current session. "
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:51
+msgid ""
+"Si vous terminez la session avant la fin du temps imparti, nous ne serons "
+"pas en mesure d'utiliser vos données pour notre étude"
+msgstr ""
+"If you abandon the session before the game time runs out, we will not be "
+"able to use your data for our study"
+
+#: jold_ll_app/templates/tasks/lunar_lander/tutorial.html:53
+msgid ""
+"Cliquez sur la fenêtre ci-dessous pour activer les contrôles ; puis, "
+"contrôlez le vaisseau lorsque la fenêtre devient orange."
+msgstr ""
+"Click on the window below to activate the controls; then, try controling the "
+"ship when the window turns orange"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:14
+msgid ""
+"La réponse à cette question correspond à la position du "
+"curseur: "
+msgstr ""
+"The answer to this question corresponds to the position of the "
+"cursor:"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:27
+msgid "Il peut être très faible"
+msgstr "It can be very low"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:28
+msgid "Ou très élevé"
+msgstr "Or very high"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:36
+msgid "Vous pouvez également voir ce genre de format:"
+msgstr "You can also see this kind of format:"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:39
+msgid "Pas du tout d'accord"
+msgstr "Strongly disagree"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:41
+msgid "Plutôt pas d'accord"
+msgstr "Somewhat disagree"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:43
+msgid "Ni d'accord ni pas d'accord"
+msgstr "Neither agree nor disagree"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:45
+msgid "Plutôt d'accord"
+msgstr "Somewhat agree"
+
+#: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:47
+msgid "Tout à fait d'accord"
+msgstr "Strongly agree"
+
+#: jold_ll_app/templates/tasks/questionnaire/feedback_info.html:2
+msgid ""
+"Merci d'avoir participé à cette étude pilote. Nous vous sommes très "
+"reconnaissants de votre temps ! Afin de connaître les problèmes potentiels, "
+"veuillez remplir un dernier questionnaire (5 questions). Toutes les "
+"questions sont facultatives, mais notez que toutes vos réflexions peuvent "
+"nous être extrêmement utiles."
+msgstr ""
+"Thank you for participating in this pilot study. We are very grateful for "
+"your time! In order to find out about potential problems, please complete a "
+"final questionnaire (5 questions). All questions are optional, but please "
+"note that all your thoughts can be extremely useful to us."
+
+#: jold_ll_app/templates/tasks/questionnaire/instructions.html:3
+msgid ""
+"Ensuite, nous allons vous demander de répondre à différentes questions en "
+"rapport avec le jeu et ce que vous avez ressenti durant celui-ci. Vous "
+"devrez fournir des réponses en utilisant différents widgets (voir les "
+"exemples ci-dessous)."
+msgstr ""
+"Next, we are going ask you to answer different questions related to the game "
+"and how you felt while playing it. You will need to provide answers using "
+"different widgets (see examples below)."
+
+#: jold_ll_app/templates/tasks/questionnaire/instructions.html:6
+msgid ""
+"Veuillez lire attentivement les questions et essayer d'y répondre le plus "
+"précisément possible."
+msgstr ""
+"Please, read the questions carefully and try to answer them as accurately as "
+"possible."
+
+#: jold_ll_app/views.py:80
+msgid "Vous avez terminé l'entraînement de Lunar Lander"
+msgstr "You have completed the Lunar Lander training"
+
+#: jold_ll_app/views.py:81
+msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
+msgstr "Don't leave just yet! There is a questionnaire to fill in."
+
+#: jold_ll_app/views.py:94
+msgid "Le questionnaire est complet"
+msgstr "The questionnaire is complete"
+
+#~ msgid " La réponse à cette question correspond à la position du curseur: "
+#~ msgstr "The answer to this question is the position of the cursor:"
+
+#~ msgid "Par ici"
+#~ msgstr "Click here"
+
+#~ msgid "Ici"
+#~ msgstr "Here"
+
+#~ msgid "Ou ici"
+#~ msgstr "Or here"
+
+#~ msgid "Ou peut-être ici"
+#~ msgstr "Or maybe here"
+
+#~ msgid "Lundi"
+#~ msgstr "Monday"
+
+#~ msgid "Mardi"
+#~ msgstr "Tuesday"
+
+#~ msgid "Mercredi"
+#~ msgstr "Wednesday"
+
+#~ msgid "Jeudi"
+#~ msgstr "Thursday"
+
+#~ msgid "Vendredi"
+#~ msgstr "Friday"
+
+#~ msgid "Samedi"
+#~ msgstr "Saturday"
+
+#~ msgid "Dimanche"
+#~ msgstr "Sunday"
+
+#~ msgid "La prochaine session est le {} ({})"
+#~ msgstr "The next session is on {} ({})"
+
+#~ msgid "Soumettez le formulaire rempli"
+#~ msgstr "Envoyez le formulaire de consentement que vous avez rempli"
+
+#~ msgid "Apprentissage intrinsèquement motivé chez l’homme "
+#~ msgstr "Judgments of learning dynamics"
+
+#~ msgid ""
+#~ "Le DPD nommé par Inria est Madame Anne COMBE – dpd@inria.fr – adresse "
+#~ "postale : Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis "
+#~ "cedex"
+#~ msgstr ""
+#~ "The DPO appointed by Inria is Mrs Anne COMBE - dpd@inria.fr - postal "
+#~ "address: Inria , 2004 route des lucioles, BP 93, 06902 Sophia-Antipolis "
+#~ "cedex"
+
+#~ msgid "Contacter le DPD par voie électronique : anne.combe@inria.fr"
+#~ msgstr "Contact the DPO electronically: anne.combe@inria.fr"
+
+#~ msgid ""
+#~ "reconnais avoir lu et compris le présent formulaire d’informations "
+#~ "concernant le projet "
+#~ msgstr ""
+#~ "acknowledge having read and understood this project information form"
+
+#~ msgid "Je soussigné.e:"
+#~ msgstr "I, the undersigned:"
+
+#~ msgid "Nom"
+#~ msgstr "Last name"
+
+#~ msgid "Prénom"
+#~ msgstr "First name"

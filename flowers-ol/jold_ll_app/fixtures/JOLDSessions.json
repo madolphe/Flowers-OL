@@ -1,0 +1,33 @@
+[
+    {
+        "model": "manager_app.ExperimentSession",
+        "pk": 1,
+        "fields": {
+            "study"         : "jold_ll",
+            "index"         : 1,
+            "tasks_csv"     : "jold-consent,jold-ll-practice,jold-questions-sess1,jold-free-choice"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "pk": 2,
+        "fields": {
+            "study"         : "jold_ll",
+            "index"         : 2,
+            "wait"          : {"days": 1},
+            "deadline"      : {"days": 1},
+            "tasks_csv"     : "jold-ll-practice,jold-questions-sess2,jold-free-choice"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "pk": 3,
+        "fields": {
+            "study"         : "jold_ll",
+            "index"         : 3,
+            "wait"          : {"days": 2},
+            "deadline"      : {"days": 2},
+            "tasks_csv"     : "jold-ll-practice,jold-questions-sess3,jold-profile-questions,jold-ux-questions,jold-free-choice"
+        }
+    }
+]

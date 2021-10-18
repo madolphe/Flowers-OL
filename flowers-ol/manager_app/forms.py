@@ -25,8 +25,8 @@ class SignInForm(forms.Form):
 
 class SignUpForm(forms.ModelForm):
     '''Class to generate a form for sign up page'''
-    username = forms.CharField(label=_('Nom d\'utilisateur'),
-                               widget=forms.TextInput(attrs={'placeholder': _('Nom d\'utilisateur')}))
+    username = forms.CharField(label=_('Nom d\'utilisateur (ou prolific ID)'),
+                               widget=forms.TextInput(attrs={'placeholder': _('Nom d\'utilisateur (ou prolific ID)')}))
     password = forms.CharField(label=_('Mot de passe'),
                                widget=forms.PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     password_confirm = forms.CharField(label=_('Confirmer le mot de passe'),

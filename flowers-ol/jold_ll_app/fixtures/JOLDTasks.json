@@ -1,0 +1,170 @@
+[
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-consent",
+            "description": "Consentement éclairé",
+            "description_en": "Informed consent",
+            "view_name": "jold_consent_page"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-ll-practice",
+            "description": "Entraînement au Lunar lander",
+            "description_en":"Lunar lander training",
+            "prompt": "Commencer la session",
+            "prompt_en":"Start the session",
+            "view_name": "jold_start_ll_practice",
+            "info_templates_csv": "Instructions=tasks/lunar_lander/instructions.html,Tutoriel=tasks/lunar_lander/tutorial.html",
+            "info_templates_csv_en": "Instructions=tasks/lunar_lander/instructions.html,Tutorial=tasks/lunar_lander/tutorial.html"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-free-choice",
+            "description": "Fin de session",
+            "description_en":"End of session",
+            "actions": {"Terminer la session": "jold_reject_optional_practice", "Jouer encore": "jold_accept_optional_practice"},
+            "actions_en": {"End session": "jold_reject_optional_practice", "Play more": "jold_accept_optional_practice"},
+            "info_templates_csv": "Entrainement facultatif=tasks/free_choice/free_choice.html",
+            "info_templates_csv_en": "Optional training=tasks/free_choice/free_choice.html"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess1",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "jold-NASA-TLX",
+                    "jold-SIMS",
+                    "jold-MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-2",
+                        "jold-5",
+                        "jold-6",
+                        "jold-7"
+                    ],
+                    "component__in": [
+                        "Relative",
+                        "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+                        "Resource Management Strategies: Effort Regulation",
+                        "Learning Strategies Header"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess2",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "jold-NASA-TLX",
+                    "jold-SIMS",
+                    "jold-MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0",
+                        "jold-3",
+                        "jold-5",
+                        "jold-6",
+                        "jold-7"
+                    ],
+                    "component__in": [
+                        "Resource Management Strategies: Time and Study Environment",
+                        "Resource Management: Peer Learning",
+                        "Resource Management: Help Seeking",
+                        "Relative"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-questions-sess3",
+            "description": "Questionnaire d'après-session",
+            "description_en":"Post-session questionnaire",
+            "prompt": "Commencer le questionnaire",
+            "prompt_en":"Start the questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "info_templates_csv": "Questionnaire=tasks/questionnaire/instructions.html,Exemples=tasks/questionnaire/example_widgets.html-",
+            "info_templates_csv_en": "Questionnaire=tasks/questionnaire/instructions.html,Examples=tasks/questionnaire/example_widgets.html-",
+            "extra_json": {
+                "instruments": [
+                    "JOLD",
+                    "jold-NASA-TLX",
+                    "jold-SIMS",
+                    "jold-MSLQ"
+                ],
+                "exclude": {
+                    "handle__in": [
+                        "jold-0"
+                    ],
+                    "component__in": [
+                        "Cognitive and Metacognitive Strategies: Metacognitive Self-Regulation",
+                        "Resource Management Strategies: Effort Regulation",
+                        "Learning Strategies Header"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-ux-questions",
+            "description": "Questionnaire d'expérience utilisateur",
+            "description_en":"Profile and experience questionnaire",
+            "view_name": "questionnaire",
+            "exit_view": "jold_close_postsess_questionnaire",
+            "extra_json": {
+                "instruments": [
+                    "jold-UEQ"
+                ]
+            }
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "jold-profile-questions",
+            "description": "Complétez votre profil",
+            "description_en":"Complete your profile",
+            "view_name": "questionnaire",
+            "extra_json": {
+                "instruments": ["jold-PROFILE"]
+            }
+        }
+    }
+]

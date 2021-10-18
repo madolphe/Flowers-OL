@@ -1,0 +1,6 @@
+[
+    {
+        "model": "jold_ll_app.JOLD_LL_divider",
+        "fields": {"state": true}
+    }
+]
