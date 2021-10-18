@@ -15,8 +15,11 @@ os.environ.setdefault(
 django.setup()
 
 from mot_app.models import CognitiveResult, CognitiveTask
+from manager_app.models import ParticipantProfile
+from survey_app.models import Answer
 
-p = argparse.ArgumentParser("Connector to django DB for cognitive assessment", formatter_class=argparse.RawDescriptionHelpFormatter)
+p = argparse.ArgumentParser("Connector to django DB for cognitive assessment",
+                            formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument('-a', '--export_all', action='store_true', help='Boolean flag to export all the cog assessments to CSV')
 args = p.parse_args()
 
@@ -40,7 +43,7 @@ def count_number_of_completed_session(dataset):
             # print(f"{key} has completed both sessions, ({len(value)} sessions in total)")
             completed_session[key] = value
         elif len(value) >= 8 and len(value) < 16:
-            # print(f"{key} has not finished session 2, ({len(value)} sessions in total)")
+            print(f"{key} has not finished session 2, ({len(value)} sessions in total)")
             half_completed_session[key] = value
         else:
             # print(f"{key} has not finished session 1, ({len(value)} sessions in total)")
@@ -53,7 +56,8 @@ def format_dictionnary(dataset):
         new_results = []
         for result in results:
             new_result = {}
-            new_result[result.cognitive_task.name] = [result.idx, result.results, result.status]
+            new_result[result.cognitive_task.name] = [result.idx, result.results, result.status,
+                                                      result.participant.user]
             # new_result[result.cognitive_task.name] = [result.idx, result.status]
             new_results.append(new_result)
         dataset[participant] = new_results
@@ -77,6 +81,7 @@ def export_to_csv_for_task(dataset, task_name):
     [ [[participant_id, [idx_task, dict_results, status_task] ], [same for POST-test]] , [same for other participant],]
     Returns None BUT export the dict as a csv
     """
+    # dict_to_export = {'participant_id': [], 'task_idx': [], 'task_status': [], 'participant_name': []}
     dict_to_export = {'participant_id': [], 'task_idx': [], 'task_status': []}
     # First create columns for results based on participant 1, pre-test results
     for columns in dataset[0][0][1][1].keys():
@@ -96,6 +101,7 @@ def export_to_csv_for_task(dataset, task_name):
                 dict_to_export['participant_id'].append(result[0])
                 dict_to_export['task_idx'].append(result[1][0])
                 dict_to_export['task_status'].append(result[1][2])
+                # dict_to_export['participant_name'].append(result[1][3])
                 for column, value in dict_results.items():
                     try:
                         dict_to_export[column].append(value)
@@ -126,6 +132,41 @@ def delete_uncomplete_participants(dataframe: pd.DataFrame) -> pd.DataFrame:
         dataframe = dataframe[dataframe['participant_id'] != id]
     return dataframe
 
+
+def get_mean_time(df):
+    id = []
+    pre = []
+    post = []
+    delta_days = []
+    delta_hours = []
+    for key in df.keys():
+        id.append(key)
+        participant = ParticipantProfile.objects.get(user__id=key)
+        pre.append(participant.origin_timestamp)
+        post.append(participant.last_session_timestamp)
+        delta = participant.last_session_timestamp - participant.origin_timestamp
+        delta_days.append(delta.days)
+        delta_hours.append((delta.seconds // 3600) + 24 * delta.days)
+    df = pd.DataFrame({'id': id, 'pre': pre, 'post': post, 'delta_days': delta_days, 'delta_hours': delta_hours})
+    delta_hours.sort()
+    print(f"Median period: {sum(delta_hours[14:16]) / 2}")
+    df.to_csv('mean_time.csv')
+
+
+def get_age_gender(df):
+    age = []
+    gender = []
+    id = []
+    for key in df.keys():
+        id.append(key)
+        participant = ParticipantProfile.objects.get(user__id=key)
+        age.append(2021 - int(Answer.objects.get(participant=participant, question__handle='prof-mot-12').value))
+        gender.append(int(Answer.objects.get(participant=participant, question__handle='prof-mot-2').value))
+    # 1 is male - 0 female
+    print(age)
+    print(f"Mean age: {int(sum(age) / len(age))}, nb male: {sum(gender)}")
+
+
 all_cognitive_results = CognitiveResult.objects.all()
 # Create a dictionnary with participant_id as key and a list of CognitiveResults objects as values
 dataset = connect_db_python_dict(all_cognitive_results)
@@ -142,6 +183,8 @@ if __name__ == '__main__':
     # (==> better to have separate columns for csv export)
     # print(retrieve_all_results_for_one_task(completed_session, 'workingmemory')[0])
     # if args.export_all:
+    get_mean_time(completed_session)
+    get_age_gender(completed_session)
     if True:
         task_list = ['moteval', 'workingmemory', 'memorability_1', 'memorability_2', 'taskswitch', 'enumeration',
                      'loadblindness', 'gonogo']
