@@ -428,6 +428,6 @@ def completion_code(request):
     dir_path = "static/JSON/config_files/completion.json"
     with open(dir_path) as json_file:
         data = json.load(json_file)
-        code = data[participant.study.name]
+        code = data[f"{participant.study}.{participant.current_session.index}.{participant.current_session.id}"]
     return render(request, "tasks/end/completion_code.html",
                   {"CONTEXT": {"participant": participant, "completion_code": code}})
