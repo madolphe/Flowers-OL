@@ -19,7 +19,7 @@
             {% for task in i.tasks %}
                 <li>
                     {# cti = current task index #}
-                    {{task}}{% if i.cti == forloop.counter0 %}<span class="blink-arrow">&#8592</span>{% endif %}
+                    <p style="display: flex; margin-bottom: 0;">{{task}}{% if i.cti == forloop.counter0 %}<span class="blink-arrow">&#8592</span>{% endif %}</p>
                 </li>
             {% endfor %}
         </ol>
