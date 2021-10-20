@@ -35,7 +35,7 @@ function init_pannel(){
     n_distractors_slider = createSlider(0, 15, 1);
     speed_max_slider = createSlider(0.5, 10, 0.2);
     speed_min_slider = createSlider(0.5, 10, 0.2);
-    radius_slider = createSlider(20, 150, 5);
+    radius_slider = createSlider(0.5, 2, 1, 0.2);
     presentation_time_slider = createSlider(0.5, 30, 0.5);
     fixation_time_slider = createSlider(0.5, 30, 0.5);
     tracking_time_slider = createSlider(0.5, 30, 0.5);
@@ -241,7 +241,7 @@ function restart(){
             if(!dict_pannel[key].hasOwnProperty(key+'_slider')){
                 parameter_dict[key] = dict_pannel[key][key+'_input'].value();
             }else{
-                parameter_dict[key] = int(dict_pannel[key][key+'_input'].value());
+                parameter_dict[key] = parseFloat(dict_pannel[key][key+'_input'].value());
             }
         }
     }

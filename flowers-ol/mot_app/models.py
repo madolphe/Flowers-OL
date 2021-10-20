@@ -10,7 +10,7 @@ class Episode(models.Model):
     participant = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Description of the task
-    date = models.DateTimeField(default=datetime.date.today)
+    date = models.DateTimeField(auto_now_add=True)
     secondary_task = models.CharField(max_length=20, default='none')
     episode_number = models.IntegerField(default=0)
 
@@ -19,7 +19,7 @@ class Episode(models.Model):
     n_targets = models.IntegerField(default=0)
     angle_max = models.IntegerField(default=0)
     angle_min = models.IntegerField(default=0)
-    radius = models.IntegerField(default=0)
+    radius = models.FloatField(default=0)
     speed_min = models.FloatField(default=0)
     speed_max = models.FloatField(default=0)
     RSI = models.FloatField(default=0)
