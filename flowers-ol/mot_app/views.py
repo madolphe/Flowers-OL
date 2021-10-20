@@ -111,7 +111,6 @@ def MOT_task(request):
         mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
         request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
     parameters = get_first_session_activity(request)
-    print(parameters)
     return render(request, 'mot_app/app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
 
 

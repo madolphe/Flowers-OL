@@ -1,7 +1,7 @@
 {
     "algo_name" : "ZpdesHssbg",
     "graph": { 
-        "file_name": "mot_graph_v1",
+        "file_name": "mot_graph_v3",
         "_commentpath" : "flowers-ol/mot_app/static/JSON/config_files",
         "path" : "static/JSON/config_files",
         "main_act": "MAIN"
