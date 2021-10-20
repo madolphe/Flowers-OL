@@ -190,20 +190,20 @@ function start_episode(){
     // Init the proper app (gamin mode, with sec task etc)
     // console.log(parameter_dict);
     // delete app;
-    if(parameter_dict['debug']==1){
+    if(parameter_dict['debug']===1){
          app = new MOT(parameter_dict['n_targets'],parameter_dict['n_distractors'],
               Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
-              parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max']);
+              parameter_dict['radius'], parameter_dict['speed_max'], parameter_dict['speed_max']);
     }else{
-        if(parameter_dict['gaming']==0){
+        if(parameter_dict['gaming']===0){
             app = new MOT_Game_Light(parameter_dict['n_targets'],parameter_dict['n_distractors'],
                 Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
                 parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], 'green', 'red');
-        }else if(parameter_dict['gaming']==1){
+        }else if(parameter_dict['gaming']===1){
             app = new MOT_Game(parameter_dict['n_targets'], parameter_dict['n_distractors'],
                 Math.round(ppd*parameter_dict['angle_max']), Math.round(ppd*parameter_dict['angle_min']),
                 parameter_dict['radius'],parameter_dict['speed_max'], parameter_dict['speed_max'], goblin_image, guard_image);
-            if(parameter_dict['secondary_task']!='none'){
+            if(parameter_dict['secondary_task']!=='none'){
                 sec_task = new Secondary_Task(leaf_image, parameter_dict['secondary_task'], parameter_dict['SRI_max']*1000,
                     parameter_dict['RSI']*1000, parameter_dict['tracking_time']*1000, parameter_dict['delta_orientation'],
                          app.all_objects)

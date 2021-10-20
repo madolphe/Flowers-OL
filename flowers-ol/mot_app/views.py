@@ -23,9 +23,8 @@ import random
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
-# ### Views and utilities for mot_app-task ###
-NUMBER_OF_TASKS_PER_BATCH = 4
 
+# ### Views and utilities for general-task ###
 
 @login_required
 def general_tutorial(request):
@@ -54,33 +53,7 @@ def mot_consent_page(request):
         'form': form}})
 
 
-@login_required
-def mot_close_task(request):
-    participant = request.user.participantprofile
-    params = request.POST.dict()
-    game_end = False
-    # Game is over:
-    if params['game_end'] == 'true':
-        game_end = True
-    if not game_end:
-        min = int(request.POST.dict()['game_time']) // 60
-        sec = int(request.POST.dict()['game_time']) - (min * 60)
-        request.session['mot_wrapper'].set_parameter('game_time', request.POST.dict()['game_time'])
-        add_message(request, 'Il vous reste encore du temps de jeu: {} min et {} sec, continuez!'.format(min, sec),
-                    tag='WARNING')
-        # Store that participant just paused the game:
-        participant.extra_json['paused_mot_start'] = str(datetime.time)
-        participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
-        participant.save()
-        return redirect(reverse('home'))
-    else:
-        # If mot close and time is over, just remove game_time_to_end:
-        if 'game_time_to_end' in participant.extra_json:
-            del participant.extra_json['game_time_to_end']
-            participant.save()
-        add_message(request, 'Vous avez terminé la session de jeu!', 'success')
-        request.session['exit_view_done'] = True
-        return redirect(reverse('end_task'))
+# ### Views and utilities for MOT training ###
 
 
 @login_required
@@ -117,9 +90,7 @@ def MOT_task(request):
     :param request:
     :return:
     """
-    # Var to placed in a config file :
     dir_path = "static/JSON/config_files"
-    # Get participant :
     participant = ParticipantProfile.objects.get(user=request.user.id)
     # First assign condition if first connexion:
     if "condition" not in participant.extra_json:
@@ -127,9 +98,11 @@ def MOT_task(request):
         assign_mot_condition(participant)
     # Set new mot_wrapper (erase old one if exists):
     request.session['mot_wrapper'] = MotParamsWrapper(participant)
+
     if 'game_time_to_end' in participant.extra_json:
         # If players has already played / reload page (and delete cache) for this session, game_time has to be set:
         request.session['mot_wrapper'].parameters['game_time'] = int(participant.extra_json['game_time_to_end'])
+
     # Set new sequence_manager (erase the previous one if exists):
     if participant.extra_json['condition'] == 'zpdes':
         zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
@@ -137,6 +110,12 @@ def MOT_task(request):
     else:
         mot_baseline_params = func.load_json(file_name="mot_baseline_params", dir_path=dir_path)
         request.session['seq_manager'] = k_lib.seq_manager.MotBaselineSequence(mot_baseline_params)
+    parameters = get_first_session_activity(request)
+    print(parameters)
+    return render(request, 'mot_app/app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
+
+
+def get_first_session_activity(request):
     # Build his history :
     history = Episode.objects.filter(participant=request.user)
     for episode in history:
@@ -146,14 +125,10 @@ def MOT_task(request):
     parameters = request.session['mot_wrapper'].sample_task(request.session['seq_manager'])
     # Serialize it to pass it to js_mot:
     parameters = json.dumps(parameters)
-    return render(request, 'mot_app/app_MOT.html', {'CONTEXT': {'parameter_dict': parameters}})
+    return parameters
 
 
-@login_required
-@csrf_exempt
-def next_episode(request):
-    mot_wrapper = request.session['mot_wrapper']
-    params = request.POST.dict()
+def save_episode(request, params):
     # Save episode and results:
     episode = Episode()
     episode.participant = request.user
@@ -161,21 +136,39 @@ def next_episode(request):
         if key in episode.__dict__:
             episode.__dict__[key] = val
     episode.save()
+    return episode
+
+
+def save_secondary_tasks_results(params, episode):
+    for res in params['sec_task_results']:
+        sec_task = SecondaryTask()
+        sec_task.episode = episode
+        sec_task.type = params['secondary_task']
+        sec_task.delta_orientation = res[0]
+        sec_task.answer_duration = res[1]
+        sec_task.success = res[2]
+        sec_task.save()
+
+
+@login_required
+@csrf_exempt
+def next_episode(request):
+    mot_wrapper = request.session['mot_wrapper']
+    params = request.POST.dict()
+
+    # Always save last episode and return ref to this last episode in order to link it with sec tasks results
+    episode = save_episode(request, params)
+
     # In case of secondary task:
     if params['secondary_task'] != 'none' and params['gaming'] == 1:
         params['sec_task_results'] = eval(params['sec_task_results'])
-        for res in params['sec_task_results']:
-            sec_task = SecondaryTask()
-            sec_task.episode = episode
-            sec_task.type = params['secondary_task']
-            sec_task.delta_orientation = res[0]
-            sec_task.answer_duration = res[1]
-            sec_task.success = res[2]
-            sec_task.save()
-    # In case the user reloads page, we save in participant extra_json the game_time_to_end:
+        save_secondary_tasks_results(params, episode)
+
+    # To keep track to participant last update, remaining game time is updated each time:
     participant = request.user.participantprofile
-    participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
+    participant.extra_json['game_time_to_end'] = params['game_time']
     participant.save()
+
     # Sample new episode:
     request.session['seq_manager'] = mot_wrapper.update(episode, request.session['seq_manager'])
     parameters = mot_wrapper.sample_task(request.session['seq_manager'])
@@ -200,6 +193,35 @@ def restart_episode(request):
 
 
 @login_required
+def mot_close_task(request):
+    participant = request.user.participantprofile
+    params = request.POST.dict()
+    game_end = False
+    # Game is over:
+    if params['game_end'] == 'true':
+        game_end = True
+    if not game_end:
+        min = int(request.POST.dict()['game_time']) // 60
+        sec = int(request.POST.dict()['game_time']) - (min * 60)
+        request.session['mot_wrapper'].set_parameter('game_time', request.POST.dict()['game_time'])
+        add_message(request, 'Il vous reste encore du temps de jeu: {} min et {} sec, continuez!'.format(min, sec),
+                    tag='WARNING')
+        # Store that participant just paused the game:
+        participant.extra_json['paused_mot_start'] = str(datetime.time)
+        participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
+        participant.save()
+        return redirect(reverse('home'))
+    else:
+        # If mot close and time is over, just remove game_time_to_end:
+        if 'game_time_to_end' in participant.extra_json:
+            del participant.extra_json['game_time_to_end']
+            participant.save()
+        add_message(request, 'Vous avez terminé la session de jeu!', 'success')
+        request.session['exit_view_done'] = True
+        return redirect(reverse('end_task'))
+
+
+@login_required
 def display_progression(request):
     participant = request.user.participantprofile
     # Retrieve all played episodes:
@@ -217,6 +239,8 @@ def display_progression(request):
 
 
 # ### Views and utilities for pre-post-task ###
+NUMBER_OF_TASKS_PER_BATCH = 4
+
 
 @login_required
 @never_cache
