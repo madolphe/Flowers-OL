@@ -28,7 +28,7 @@ class MotParamsWrapper:
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
                        'speed_max': np.linspace(2, 7, 11, dtype=float),
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
-                       'probe_time': np.linspace(4, 2, 11, dtype=float),
+                       'probe_time': np.linspace(12, 6, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float),
                        'radius': np.array([1.3, 1.1, 0.9, 0.7, 0.5], dtype=float)}
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
