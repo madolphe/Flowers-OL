@@ -1,0 +1,259 @@
+[
+  {
+    "model": "manager_app.Task",
+    "fields": {
+      "name": "UES-questionnaire",
+      "description": "Questionnaire d'engagement'",
+      "description_en": "User engagement questionnaire",
+      "prompt": "Commencer",
+      "prompt_en": "Start",
+      "view_name": "questionnaire",
+      "info_templates_csv": "Questionnaire=tasks/ZPDES_Questionnaire/get_general_profil_instructions.html,Examples=example_widgets.html-",
+      "extra_json": {
+        "instruments": [
+          "mot-UES"
+        ]
+      }
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "FA-S.1",
+      "group": 1,
+      "handle": "mot-UES-1",
+      "order": 1,
+      "prompt": "I lost myself in this experience.",
+      "prompt_en": "I lost myself in this experience.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+    {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "FA-S.2",
+      "group": 1,
+      "handle": "mot-UES-2",
+      "order": 2,
+      "prompt": "The time I spent using the game just slipped away.",
+      "prompt_en": "The time I spent using the game just slipped away.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+    {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "FA-S.3",
+      "group": 1,
+      "handle": "mot-UES-3",
+      "order": 3,
+      "prompt": "I was absorbed in this experience.",
+      "prompt_en": "I was absorbed in this experience.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+    {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "PU-S.1",
+      "group": 1,
+      "handle": "mot-UES-4",
+      "order": 4,
+      "prompt": "I felt frustrated while using this game.",
+      "prompt_en": "I felt frustrated while using this game.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "PU-S.2",
+      "group": 1,
+      "handle": "mot-UES-5",
+      "order": 5,
+      "prompt": "I found this game confusing to use.",
+      "prompt_en": "I found this game confusing to use.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+    {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "PU-S.3",
+      "group": 1,
+      "handle": "mot-UES-6",
+      "order": 6,
+      "prompt": "Using this game was taxing.",
+      "prompt_en": "Using this game was taxing.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "AE-S.1",
+      "group": 2,
+      "handle": "mot-UES-7",
+      "order": 7,
+      "prompt": "This game was attractive.",
+      "prompt_en": "This game was attractive.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "AE-S.2",
+      "group": 2,
+      "handle": "mot-UES-8",
+      "order": 8,
+      "prompt": "This game was aesthetically appealing.",
+      "prompt_en": "This game was aesthetically appealing.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "AE-S.3",
+      "group": 2,
+      "handle": "mot-UES-9",
+      "order": 9,
+      "prompt": "This game appealed to my senses.",
+      "prompt_en": "This game appealed to my senses.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+    {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "RW-S.1",
+      "group": 2,
+      "handle": "mot-UES-10",
+      "order": 10,
+      "prompt": "Using this game was worthwhile.",
+      "prompt_en": "Using this game was worthwhile.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "RW-S.2",
+      "group": 2,
+      "handle": "mot-UES-11",
+      "order": 11,
+      "prompt": "My experience was rewarding.",
+      "prompt_en": "My experience was rewarding.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  },
+  {
+    "model": "survey_app.Question",
+    "fields": {
+      "instrument": "mot-UES",
+      "component": "RW-S.3",
+      "group": 2,
+      "handle": "mot-UES-12",
+      "order": 12,
+      "prompt": "I felt interested in this experience.",
+      "prompt_en": "I felt interested in this experience.",
+      "reverse": 0,
+      "min_val": 1,
+      "max_val": 5,
+      "step": 1,
+      "annotations": "Pas du tout d'accord~Pas d'accord~Ni d'accord ni pas d'accord~D'accord~Tout à fait d'accord",
+      "annotations_en": "Strongly disagree~Disagree~Neither agree nor disagree~Agree~Strongly agree",
+      "widget": "custom-likert",
+      "type": "integer"
+    }
+  }
+]
