@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.utils.translation import gettext_lazy as _
 
 from .models import SecondaryTask, Episode
 from manager_app.models import ParticipantProfile
@@ -203,7 +204,8 @@ def mot_close_task(request):
         min = int(request.POST.dict()['game_time']) // 60
         sec = int(request.POST.dict()['game_time']) - (min * 60)
         request.session['mot_wrapper'].set_parameter('game_time', request.POST.dict()['game_time'])
-        add_message(request, 'Il vous reste encore du temps de jeu: {} min et {} sec, continuez!'.format(min, sec),
+        add_message(request,
+                    _('Il vous reste encore du temps de jeu: ') + str(min) + _(' min et ') + str(sec) + _(' secondes, continuez!'),
                     tag='WARNING')
         # Store that participant just paused the game:
         participant.extra_json['paused_mot_start'] = str(datetime.time)

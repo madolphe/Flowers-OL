@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 12:21+0200\n"
+"POT-Creation-Date: 2021-10-26 16:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -775,6 +775,58 @@ msgstr ""
 "You have concerns regarding the study or if you think that you received this "
 "message by error, please contact "
 
+#: mot_app/templates/mot_app/instructions.html:3
+msgid "Bienvenue dans notre expérimentation"
+msgstr "Welcome in the main experiment!"
+
+#: mot_app/templates/mot_app/instructions.html:5
+msgid ""
+"Tout d'abord, merci d'avoir pris le temps de répondre aux questionnaires "
+"précédents, l'expèrience peut enfin débuter. Pour rappel, notre objectif est "
+"d'évaluer un dispositif d'entraînement de l'attention. Alors, en plus de "
+"pouvoir améliorer cette capacité, vous nous permettrez de mieux comprendre "
+"les caractériques importantes d'un tel protocole."
+msgstr ""
+"First of all, thank you for your participation. Our goal in this experiment "
+"is to assess an attentional training program."
+
+#: mot_app/templates/mot_app/instructions.html:7
+msgid "Déroulement du protocole:"
+msgstr "Guidelines:"
+
+#: mot_app/templates/mot_app/instructions.html:9
+msgid "Tâche principale:"
+msgstr "Main task:"
+
+#: mot_app/templates/mot_app/instructions.html:11
+msgid ""
+"Après lancement de l'expèrience (boutton 'Begin session'), il vous sera "
+"demandé de suivre les gobelins de la forme:"
+msgstr ""
+"After you start the game (button 'begin session'), you will be asked to "
+"track the gobelins which look like this:"
+
+#: mot_app/templates/mot_app/instructions.html:13
+msgid "Attention, ces gobelins se déplacent dans un espace rempli de guardes:"
+msgstr "Be aware that the gobelins are moving in a scene full of guards:"
+
+#: mot_app/templates/mot_app/instructions.html:15
+msgid ""
+"Quand les gobelins se transforment en guardes, ne les perdez pas de vue, il "
+"vous sera demandé de les retrouver!"
+msgstr ""
+"When the gobelins turn into guards, please keep tracking them. It will be "
+"asked to retrieve where the gobelins are."
+
+#: mot_app/templates/mot_app/instructions.html:17
+msgid "Attention, la session dure 30 minutes!"
+msgstr "The session lasts 30 minutes."
+
+#: mot_app/templates/mot_app/instructions.html:18
+msgid ""
+"Vous pouvez observer le temps restant en bas à droite de l'image suivante."
+msgstr "You can have a look at the time in the bottom right corner."
+
 #: mot_app/templates/pre-post-tasks/instructions/enumeration.html:7
 msgid ""
 "\n"
@@ -1221,23 +1273,14 @@ msgstr ""
 msgid "Fin de l'expérience"
 msgstr "End of experiment"
 
-#~ msgid "Password"
-#~ msgstr "Mot de passe"
+#: mot_app/views.py:208
+msgid "Il vous reste encore du temps de jeu: "
+msgstr "There is still time for you to play: "
 
-#~ msgid ""
-#~ "Le formulaire n'est pas valide. Consultez les messages d'erreur pour "
-#~ "corriger le formulaire"
-#~ msgstr "The form is not valid. See the error messages to correct the form"
+#: mot_app/views.py:208
+msgid " min et "
+msgstr " minutes and "
 
-#~ msgid "Start"
-#~ msgstr "Commencer"
-
-#~ msgid ""
-#~ "\n"
-#~ "                            Voici les consignes pour cette nouvelle "
-#~ "activité:\n"
-#~ "                        "
-#~ msgstr ""
-#~ "\n"
-#~ "<br/>Here are the guidelines for the next activity:\n"
-#~ "                        "
+#: mot_app/views.py:208
+msgid " secondes, continuez!"
+msgstr " seconds, keep playing!"
