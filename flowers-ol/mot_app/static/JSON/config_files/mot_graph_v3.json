@@ -4,7 +4,7 @@
     "MAIN":{
         "actions":["MOT"],
         "ordered":[1],
-        "init_ssb": [[0]],
+        "init_ssb": [[0,1]],
         "do_h_promote":[1],
 
         "ssbg":[["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]],
