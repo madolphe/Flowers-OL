@@ -29,39 +29,39 @@ function setup(){
     canvas.style('position: absolute; z-index: -1000;');
 
     // Creer methode
-    button_answer = createButton('REPONSE');
+    button_answer = createButton(button_answer_label);
     button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_answer.size(120,60);
     button_answer.mousePressed(answer_button_clicked);
     button_answer.hide();
 
 
-    button_play = createButton('DEMARRER');
+    button_play = createButton(button_play_label);
     button_play.position(windowWidth/2-(button_width/2), windowHeight/2  - (button_height/2));
     button_play.size(button_width,button_height);
     button_play.mousePressed(launch_app);
     button_play.hide();
 
-    button_exit = createButton('SORTIE');
+    button_exit = createButton(button_exit_label);
     button_exit.position(windowWidth-(100*1.3), 50 - (45/2));
     button_exit.size(button_exit_width,button_exit_height);
     button_exit.mousePressed(quit_game);
 
-    button_pause = createButton('PAUSE');
+    button_pause = createButton(button_pause_label);
     button_pause.hide();
 
     button_tuto = createButton('TUTO');
     button_tuto.hide();
 
 
-    button_next_episode = createButton('EPISODE SUIVANT');
+    button_next_episode = createButton(button_next_episode_label);
     button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
     button_next_episode.size(button_width,button_height);
     button_next_episode.hide();
     button_next_episode.mousePressed(next_episode);
 
 
-    button_keep = createButton('JOUER');
+    button_keep = createButton(button_keep_label);
     button_keep.hide();
     button_keep.position(windowWidth/2 - button_width/2, windowHeight/2 + windowHeight/9);
     button_keep.size(button_width, button_height);
