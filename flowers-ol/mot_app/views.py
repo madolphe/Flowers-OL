@@ -213,7 +213,8 @@ def mot_close_task(request):
             participant.extra_json['game_time_to_end'] = request.POST.dict()['game_time']
             participant.save()
         add_message(request,
-                    _('Il vous reste encore du temps de jeu: ') + str(min) + _(' min et ') + str(sec) + _(' secondes, continuez!'),
+                    _('Il vous reste encore du temps de jeu: %(min)s minutes et %(sec)s secondes, continuez ') % {
+                        'min': str(min), 'sec': str(sec)},
                     tag='WARNING')
         return redirect(reverse('home'))
     else:

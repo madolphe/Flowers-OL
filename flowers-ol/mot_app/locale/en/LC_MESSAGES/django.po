@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-26 16:28+0200\n"
+"POT-Creation-Date: 2021-10-28 15:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1273,14 +1273,10 @@ msgstr ""
 msgid "Fin de l'expérience"
 msgstr "End of experiment"
 
-#: mot_app/views.py:208
-msgid "Il vous reste encore du temps de jeu: "
-msgstr "There is still time for you to play: "
-
-#: mot_app/views.py:208
-msgid " min et "
-msgstr " minutes and "
-
-#: mot_app/views.py:208
-msgid " secondes, continuez!"
-msgstr " seconds, keep playing!"
+#: mot_app/views.py:216
+#, python-format
+msgid ""
+"Il vous reste encore du temps de jeu: %(min)s minutes et %(sec)s secondes, "
+"continuez "
+msgstr ""
+"There is still time for you to play: %(min)s minutes and %(sec)s secondes."
