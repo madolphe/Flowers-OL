@@ -87,9 +87,9 @@ class MotParamsWrapper:
         episode_status = True
         for key, value in episode.__dict__.items():
             if key in self.values:
-                if value not in self.values[key]:
+                if float(value) not in self.values[key]:
                     episode_status = False
-                    break
+                    # break
         if episode_status:
             speed_i = np.where(self.values['speed_max'] == float(episode.speed_max))[0][0]
             n_targets_i = np.where(self.values['n_targets'] == float(episode.n_targets))[0][0]
