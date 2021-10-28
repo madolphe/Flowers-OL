@@ -25,8 +25,10 @@ def assign_mot_condition(participant):
         # If score is to high, turn extra_json['attention_pb'] to true:
         participant.extra_json['attention_pb'] = (score >= 4)
         # Then assign a condition depending on the cardinal of the population:
-        zpdes_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='zpdes'))
-        baseline_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='baseline'))
+        zpdes_group_nb = len(
+            models.ParticipantProfile.objects.filter(extra_json__contains='zpdes', study=participant.study))
+        baseline_group_nb = len(
+            models.ParticipantProfile.objects.filter(extra_json__contains='baseline', study=participant.study))
         print("Number in zpdes/baseline: ({}/{})".format(zpdes_group_nb, baseline_group_nb))
         # Assign user in the smallest group
         if zpdes_group_nb > baseline_group_nb:
@@ -34,7 +36,9 @@ def assign_mot_condition(participant):
         else:
             participant.extra_json['condition'] = 'zpdes'
         # print("Condition saved:", participant.extra_json['condition'])
-        zpdes_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='zpdes'))
-        baseline_group_nb = len(models.ParticipantProfile.objects.filter(extra_json__contains='baseline'))
+        zpdes_group_nb = len(
+            models.ParticipantProfile.objects.filter(extra_json__contains='zpdes', study=participant.study))
+        baseline_group_nb = len(
+            models.ParticipantProfile.objects.filter(extra_json__contains='baseline', study=participant.study))
         print("Number in zpdes/baseline: ({}/{})".format(zpdes_group_nb, baseline_group_nb))
         participant.save()
