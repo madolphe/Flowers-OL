@@ -10,7 +10,7 @@ hiplot = "*"
 jupyter = "*"
 
 [packages]
-django = "*"
+django = "==3.1.7"
 django-extensions = "*"
 django-background-tasks = "*"
 django-crispy-forms = "*"
