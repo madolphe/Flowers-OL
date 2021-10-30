@@ -18,7 +18,7 @@ class MotParamsWrapper:
                            'screen_params': float(screen_params), 'episode_number': 0, 'nb_target_retrieved': 0,
                            'nb_distract_retrieved': 0, 'id_session': 0, 'presentation_time': 1, 'fixation_time': 1,
                            'debug': 0, 'secondary_task': 'none', 'SRI_max': 2, 'RSI': 1, 'delta_orientation': 45,
-                           'gaming': 1, 'game_time': game_time, 'admin_pannel': admin_pannel}
+                           'gaming': 1, 'game_time': game_time, 'admin_pannel': admin_pannel, 'total_nb_objects': 16}
         if 'score' in participant.extra_json:
             # if the participant has already a score:
             self.parameters['score'] = participant.extra_json['score']
@@ -30,7 +30,7 @@ class MotParamsWrapper:
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
                        'probe_time': np.linspace(12, 6, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float),
-                       'radius': np.array([1.3, 1.1, 0.9, 0.7, 0.5], dtype=float)}
+                       'radius': np.array([1.0, 0.8, 0.7, 0.6, 0.5], dtype=float)}
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
@@ -46,7 +46,7 @@ class MotParamsWrapper:
                         'tracking_time': self.values['tracking_time'][act[self.lvls[act['MAIN'][0]]][1]],
                         'probe_time': self.values['probe_time'][act[self.lvls[act['MAIN'][0]]][2]],
                         'radius': self.values['radius'][act[self.lvls[act['MAIN'][0]]][3]],
-                        'n_distractors': self.values['n_targets'][act['MAIN'][0]]
+                        'n_distractors': self.parameters['total_nb_objects'] - self.values['n_targets'][act['MAIN'][0]]
         }
         for key, value in parameters.items():
             self.parameters[key] = value
