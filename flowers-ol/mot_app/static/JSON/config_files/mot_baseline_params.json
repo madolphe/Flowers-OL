@@ -3,7 +3,7 @@
     "params": {
         "Targets_Min": 2,
         "Targets_Max": 7,
-        "N_Down": 3
+        "N_Down": 2
     },
     "graph" : {
         "file_name": "mot_discrimin",
