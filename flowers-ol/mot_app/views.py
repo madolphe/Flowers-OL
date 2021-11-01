@@ -199,7 +199,10 @@ def mot_close_task(request):
     game_end = False
     # Game is over:
     if params['game_end'] == 'true':
+        if 'messages' in request.session:
+            del request.session['messages']
         game_end = True
+
     if not game_end:
         if request.POST.dict()['game_time'] == 'undefined':
             min = 30
