@@ -30,8 +30,8 @@ function setup(){
 
     // Creer methode
     button_answer = createButton(button_answer_label);
-    button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
-    button_answer.size(120,60);
+    button_answer.position((windowWidth/2)-(button_width/2), 0.93*windowHeight - (button_height/2));
+    button_answer.size(button_width,button_height);
     button_answer.mousePressed(answer_button_clicked);
     button_answer.hide();
 
@@ -55,7 +55,7 @@ function setup(){
 
 
     button_next_episode = createButton(button_next_episode_label);
-    button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
+    button_next_episode.position((windowWidth/2)-(button_width/2), 0.93*windowHeight - (button_height/2));
     button_next_episode.size(button_width,button_height);
     button_next_episode.hide();
     button_next_episode.mousePressed(next_episode);
@@ -105,8 +105,8 @@ function windowResized(){
     // nommer tous les coefficients
     // Pq toutes ces formules ? --> variable explicite
     // ex: heightCenter = windowWidth / 2 same heightCenter
-    button_next_episode.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
-    button_answer.position((windowWidth/2)-60, windowHeight - 0.07*windowHeight);
+    button_next_episode.position((windowWidth/2)-(button_width/2), 0.93*windowHeight - (button_height/2));
+    button_answer.position((windowWidth/2)-(button_width/2), 0.93*windowHeight - (button_height/2));
     button_play.position(windowWidth/2-(button_width/2), windowHeight/2  - (button_height/2));
     button_exit.position(windowWidth-(100*1.3), 50 - (45/2));
     button_keep.position(windowWidth/2 - button_width/2, windowHeight/2 + windowHeight/9);

@@ -251,6 +251,8 @@ function answer_button_clicked() {
     clearTimeout(probe_timer);
     button_answer.hide();
     parameter_dict['game_time'] = game_time;
+    clearTimeout(game_timer);
+    timer_end_game();
     let res = app.get_results();
     parameter_dict['nb_target_retrieved'] = res[0];
     parameter_dict['nb_distract_retrieved'] = res[1];
