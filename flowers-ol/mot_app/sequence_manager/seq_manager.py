@@ -30,7 +30,7 @@ class MotParamsWrapper:
                        'tracking_time': np.linspace(3, 7, 9, dtype=float),
                        'probe_time': np.linspace(12, 6, 11, dtype=float),
                        'n_distractors': np.linspace(1, 4, 4, dtype=float),
-                       'radius': np.array([1.0, 0.8, 0.7, 0.6, 0.5], dtype=float)}
+                       'radius': np.array([1.0, 0.8, 0.6, 0.4, 0.2], dtype=float)}
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
