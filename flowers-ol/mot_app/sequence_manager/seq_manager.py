@@ -26,11 +26,11 @@ class MotParamsWrapper:
             self.parameters['score'] = 0
         # Could be obtained through reading graph (to be automated!):
         self.values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
-                       'speed_max': np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5], dtype=float),
-                       'tracking_time': np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5], dtype=float),
-                       'probe_time': np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0], dtype=float),
+                       'speed_max': np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], dtype=float),
+                       'tracking_time': np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0], dtype=float),
+                       'probe_time': np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0], dtype=float),
                        'n_distractors': np.linspace(14, 7, 8, dtype=float),
-                       'radius': np.array([1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4], dtype=float)}
+                       'radius': np.array([1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5], dtype=float)}
         self.lvls = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
 
     def sample_task(self, seq):
