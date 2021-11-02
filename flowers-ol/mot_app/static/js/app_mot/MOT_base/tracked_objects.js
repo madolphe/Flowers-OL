@@ -42,7 +42,6 @@ class Tracked_Object {
         while (!search) {
             let idx = parseInt(random(0, positions.length));
             var param = positions[idx];
-            console.log(param);
             this.r = positions[idx][1];
             this.theta = Math.PI * positions[idx][0] / 180;
             this.index = idx;

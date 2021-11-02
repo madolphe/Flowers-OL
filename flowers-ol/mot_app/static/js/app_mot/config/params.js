@@ -67,7 +67,9 @@ let default_params = {
         debug: 0, secondary_task: 'none', SRI_max: 2, RSI: 1,
         delta_orientation: 45, gaming: 1, probe_time: 3 };
 
-
+let idle_start_1 = new Date().getTime();
+let idle_start_2 = new Date().getTime();
+let idle_duration_1, idle_duration_2;
 // clear session storage:
 sessionStorage.clear();
 

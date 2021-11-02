@@ -191,6 +191,9 @@ function timer(app, presentation_time, fixation_time, tracking_time, probe_time)
 
 // functions to parametrized game, timer and user interactions:
 function start_episode() {
+    // idle time
+    var time_now = new Date().getTime();
+    idle_duration_1 = time_now - idle_start_1;
     // Some variable for transition, probe_timer..:
     message = '';
     fill_bar_size = 0;
@@ -245,6 +248,8 @@ function show_answer_button() {
 }
 
 function answer_button_clicked() {
+    // launch idle timer
+    idle_start_2 = new Date().getTime();
     // reset few variables:
     fill_bar_size = 0;
     show_probe_timer = false;
@@ -270,6 +275,12 @@ function answer_button_clicked() {
 }
 
 function next_episode() {
+    // First stop idle_timer from answer_button_clicked
+    var time_now = new Date().getTime();
+    idle_duration_2 = time_now - idle_start_2;
+    // Then start idle_timer until start_episode function
+    idle_start_1 = new Date().getTime();
+    parameter_dict['idle_time'] = idle_duration_1 + idle_duration_2;
     // update score
     parameter_dict['score'] = parameter_dict['score'] + (parameter_dict['nb_target_retrieved'] * 10) - ((app.n_distractors - parameter_dict['nb_distract_retrieved']) * 10);
     if (parameter_dict['score'] < 0) {
