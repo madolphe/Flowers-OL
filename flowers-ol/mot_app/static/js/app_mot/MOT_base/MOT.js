@@ -11,9 +11,7 @@ class MOT {
         this.phase = 'init';
         this.speed_min = speed_min;
         this.speed_max = speed_max;
-        console.log("radius in deg=", radius)
         this.radius = radius * ppd;
-        console.log("radius in px=", this.radius)
         this.positions = this.discrete_space();
         this.init_lists();
         this.all_objects = this.targets.concat(this.distractors);

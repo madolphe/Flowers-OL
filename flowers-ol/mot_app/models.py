@@ -28,6 +28,7 @@ class Episode(models.Model):
     fixation_time = models.FloatField(default=0)
     tracking_time = models.FloatField(default=0)
     probe_time = models.FloatField(default=0)
+    idle_time = models.FloatField(default=0)
 
     # User Score:
     nb_target_retrieved = models.IntegerField(default=0)
