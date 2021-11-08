@@ -24,6 +24,8 @@ import random
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
+from .get_participant_progression import get_exp_status
+
 
 # ### Views and utilities for general-task ###
 
@@ -464,3 +466,18 @@ def completion_code(request):
         code = data[f"{participant.study}.{participant.current_session.index}.{participant.current_session.id}"]
     return render(request, "tasks/end/completion_code.html",
                   {"CONTEXT": {"participant": participant, "completion_code": code}})
+
+
+# Dashboards:
+@login_required
+def dashboard(request):
+    nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict = get_exp_status("v1_ubx")
+    CONTEXT = {'sessions': [f"S{i}" for i in range(1, 11)],
+               'user_status': {**descriptive_dict['zpdes'], **descriptive_dict['baseline'],
+                               **descriptive_dict['cog']},
+               'nb_participants': nb_participants,
+               'nb_participants_in': nb_participants_in,
+               'nb_participants_zpdes': nb_zpdes,
+               'nb_participants_baseline': nb_baseline,
+               }
+    return render(request, "tools/dashboard.html", CONTEXT)

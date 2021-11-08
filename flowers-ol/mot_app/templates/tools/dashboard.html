@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container general_info">
+    <div class="row"><p class="title_exp">EXPERIMENT STATUS</p></div>
+    <div class="row numbers-row">
+        <div class="elt-border"><p class="label_number">ZPDES</p><span class="number">{{ nb_participants_zpdes }}</span>
+        </div>
+        <div class="elt-border"><p class="label_number">BASELINE</p><span
+                class="number">{{ nb_participants_baseline }}</span></div>
+        <div class="elt-border"><p class="label_number">COG-ass1</p><span class="number">{{ nb_participants_in }}</span>
+        </div>
+        <div class="elt-border"><p class="label_number">TOTAL</p><span class="number">{{ nb_participants }}</span></div>
+    </div>
+</div>
+<div class="container table-progression">
+    <table id="table">
+        <tr>
+            <th class="right_separation">Participant_name</th>
+            <th class="right_separation">Study</th>
+            {% for session in sessions %}
+                <th>{{ session }}</th>
+            {% endfor %}
+            <th class="left_separation right_separation">Nb_episodes</th>
+            <th class="right_separation">Idle_time</th>
+        </tr>
+        {% for user, user_data in user_status.items %}
+            <tr>
+                <td class="participant_label left_separation right_separation">{{ user }}</td>
+                <td class="participant_label right_separation">{{ user_data.0 }}</td>
+                {% for activity in user_data.1 %}
+                    {% if activity == 1 %}
+                        <td class="green"></td>
+                    {% elif activity == 0 %}
+                        <td class="grey"></td>
+                    {% elif activity == -1 %}
+                        <td class="orange"></td>
+                    {% elif activity == -2 %}
+                        <td class="red"></td>
+                    {% endif %}
+                {% endfor %}
+                {% for none_block in user_data.2 %}
+                        <td class="empty"></td>
+                {% endfor %}
+                <td class="participant_label left_separation right_separation">{{ user_data.3 }}</td>
+                <td class="participant_label right_separation">{{ user_data.4 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
