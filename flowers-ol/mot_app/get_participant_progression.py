@@ -1,18 +1,5 @@
-import importlib
-import os
-import django
-import pandas as pd
 from datetime import datetime
 import pytz
-
-# Connection to flowers-DB:
-# flowers_ol = importlib.import_module("flowers-ol.settings")
-#
-# os.environ.setdefault(
-#     "DJANGO_SETTINGS_MODULE",
-#     "flowers-ol.settings"
-# )
-# django.setup()
 
 from .models import Episode, CognitiveResult
 from manager_app.models import ParticipantProfile
