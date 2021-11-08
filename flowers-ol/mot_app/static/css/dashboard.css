@@ -1,0 +1,78 @@
+body{
+    background: black;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.numbers-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 100%;
+}
+
+.elt-border {
+    border: 4px solid white;
+    flex: 1;
+    height: 10em;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+
+.number {
+    font-size: 5em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: whitesmoke
+}
+
+.label_number {
+    align-self: end;
+    margin: 5px;
+    font-family: 'Open Sans', sans-serif;
+    color: whitesmoke
+}
+.title_exp{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+#table{
+    color: whitesmoke;
+    border: 4px solid white;
+    padding: 5px;
+    flex: 1;
+    border-collapse: collapse;
+}
+.green{
+    background: green;
+}
+.grey{
+    background: grey;
+}
+.red{
+    background: red;
+}
+.orange{
+    background: orange;
+}
+.table-progression{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.participant_label{
+    text-align: center;
+}
+th{
+    border-bottom: 4px solid whitesmoke;
+}
+.right_separation{
+    border-right: 4px solid whitesmoke;
+}
+.left_separation{
+    border-left: 4px solid whitesmoke;
+}
