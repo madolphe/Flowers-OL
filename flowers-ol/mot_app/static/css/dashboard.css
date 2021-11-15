@@ -1,8 +1,9 @@
-body{
+body {
     background: black;
     margin-left: 50px;
     margin-right: 50px;
 }
+
 .numbers-row {
     display: flex;
     justify-content: space-around;
@@ -34,45 +35,68 @@ body{
     font-family: 'Open Sans', sans-serif;
     color: whitesmoke
 }
-.title_exp{
+
+.title_exp {
     color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 2em;
     margin-bottom: 10px;
 }
-#table{
+
+#table {
     color: whitesmoke;
     border: 4px solid white;
     padding: 5px;
     flex: 1;
     border-collapse: collapse;
 }
-.green{
+
+.green {
     background: green;
 }
-.grey{
+
+.grey {
     background: grey;
 }
-.red{
+
+.red {
     background: red;
 }
-.orange{
+
+.orange {
     background: orange;
 }
-.table-progression{
+
+.table-progression {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-.participant_label{
+
+.participant_label {
     text-align: center;
 }
-th{
+
+th {
     border-bottom: 4px solid whitesmoke;
 }
-.right_separation{
+
+.right_separation {
     border-right: 4px solid whitesmoke;
 }
-.left_separation{
+
+.left_separation {
     border-left: 4px solid whitesmoke;
+}
+
+#plotly_div_stairase {
+    border: 4px solid whitesmoke;
+    padding: 15px;
+}
+.container_staircase{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
 }

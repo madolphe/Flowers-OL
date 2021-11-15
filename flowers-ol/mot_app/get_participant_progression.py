@@ -4,6 +4,8 @@ import pytz
 from .models import Episode, CognitiveResult
 from manager_app.models import ParticipantProfile
 
+from statistics import mean, stdev
+
 
 def get_mean_idle_time(participant):
     all_episodes = Episode.objects.all().filter(participant__username=participant)
@@ -98,8 +100,9 @@ def get_progression(participants_list):
             cond = 'no_group'
             nb_episode = 0
             idle_time = 0
-        none_blocks = [0 for i in range(10-len(participant_progression))]
-        descriptive_dict[participant.user.username] = (cond, participant_progression, none_blocks, nb_episode, idle_time)
+        none_blocks = [0 for i in range(10 - len(participant_progression))]
+        descriptive_dict[participant.user.username] = (
+            cond, participant_progression, none_blocks, nb_episode, idle_time)
     return descriptive_dict
 
 
@@ -119,6 +122,36 @@ def get_time_since_last_session(participant):
     Return -2 if available but not finished in more than 3 days
     """
     return (datetime.now(pytz.utc) - participant.last_session_timestamp).days
+
+
+def get_staircase_episodes(study, parser):
+    participants = ParticipantProfile.objects.all().filter(study__name=study)
+    all_participants = {}
+    for participant in participants:
+        if 'condition' in participant.extra_json:
+            if participant.extra_json['condition'] == 'baseline':
+                episodes = Episode.objects.all().filter(participant=participant.user)
+                average_dict, std_dict = get_staircase(participant, episodes, parser)
+                all_participants[participant.user.username] = [average_dict, std_dict]
+    return all_participants
+
+
+def get_staircase(participant, episodes, parser):
+    # main_list = [f'nb{i}' for i in range(2, 8)]
+    current_dict = {}
+    for episode in episodes:
+        # activity = parser.parse_activity(episode)
+        # main = activity['act']['MAIN'][0]
+        # activity_lvl = activity['act']['MAIN'][0] + activity['act'][main_list[main]][0]
+        # activity_lvl = activity['act']['MAIN'][0]
+        if str(episode.date.date()) not in current_dict:
+            current_dict[str(episode.date.date())] = []
+        current_dict[str(episode.date.date())].append(episode.n_targets)
+    average_dict, std_dict = {}, {}
+    for date, values in current_dict.items():
+        average_dict[date] = mean(values)
+        std_dict[date] = stdev(values)
+    return average_dict, std_dict
 
 
 if __name__ == '__main__':

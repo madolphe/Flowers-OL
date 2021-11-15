@@ -55,5 +55,15 @@
         {% endfor %}
     </table>
 </div>
+<div class="row"><p class="title_exp">STAIRCASE PROGRESSION</p></div>
+<div class="container_staircase">
+    <div id="plotly_div_stairase"></div>
+</div>
 </body>
 </html>
+{% block js%}
+     <script>let participants_staircase_array = {% autoescape off %}{{ baseline_participant_name }}{% endautoescape %};</script>
+     <script>let participants_staircase_data = {% autoescape off %}{{ all_staircase_participant }}{% endautoescape %};</script>
+     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+     <script src="{% static 'js/utils/plotly_app.js' %}"></script>
+{% endblock %}
