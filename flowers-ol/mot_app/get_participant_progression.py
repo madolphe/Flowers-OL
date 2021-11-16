@@ -134,8 +134,10 @@ def get_staircase_episodes(study):
             if participant.extra_json['condition'] == 'baseline':
                 episodes = Episode.objects.all().filter(participant=participant.user)
                 average_lvl_dict, std_lvl_dict, mean_idle_time_dict = get_staircase_lvl(episodes)
+                traj_dict = get_trajectory(episodes)
                 if len(average_lvl_dict.keys()) > 1:
-                    all_participants[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict]
+                    all_participants[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict,
+                                                                   traj_dict]
     return all_participants
 
 
@@ -145,7 +147,7 @@ def get_staircase_lvl(episodes):
     for date, values in current_dict.items():
         average_lvl_dict[date] = mean([episode.n_targets for episode in values])
         std_lvl_dict[date] = stdev([episode.n_targets for episode in values])
-        mean_idle_time_dict[date] = mean([episode.idle_time/1000 for episode in values])
+        mean_idle_time_dict[date] = mean([episode.idle_time / 1000 for episode in values])
     return average_lvl_dict, std_lvl_dict, mean_idle_time_dict
 
 
@@ -156,6 +158,17 @@ def sort_episodes_by_date(episodes):
             dict[str(episode.date.date())] = []
         dict[str(episode.date.date())].append(episode)
     return dict
+
+
+def get_trajectory(episodes):
+    final_dict = {'n_targets': [], 'speed': [], 'probe_duration': [], 'tracking_duration': [], 'radius': []}
+    for episode in episodes:
+        final_dict['n_targets'].append(episode.n_targets)
+        final_dict['speed'].append(episode.speed_min)
+        final_dict['probe_duration'].append(episode.probe_time)
+        final_dict['tracking_duration'].append(episode.tracking_time)
+        final_dict['radius'].append(episode.radius)
+    return final_dict
 
 
 if __name__ == '__main__':

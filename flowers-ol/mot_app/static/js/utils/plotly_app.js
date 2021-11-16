@@ -1,4 +1,5 @@
 console.log(participants_staircase_data)
+let index_frame = 0;
 // create buttons_array for each participant in the baseline
 // each button should be a dict like: {method:'restyle', args:[...], label: participant_name}
 let buttons_participant = []
@@ -114,6 +115,53 @@ let layout_idle = {
     ]
 }
 
+let layout_traj = {
+    legend: {font: {color: "white"}},
+    autosize: true,
+    title: {
+        text: 'Evolution of mean idle through training',
+        font: {color: 'white'}
+    },
+    paper_bgcolor: "black",
+    plot_bgcolor: "black",
+    xaxis: {
+        automargin: true,
+        title: {
+            text: 'Session date',
+            font: {color: 'white'},
+            standoff: 20
+        },
+        tickmode: 'linear',
+        zerolinecolor: 'white',
+        linecolor: 'white',
+        tickfont: {
+            color: 'white',
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'mean_idle',
+            font: {color: 'white'}
+        },
+        linecolor: 'white',
+        zerolinecolor: 'white',
+        gridcolor: 'grey',
+        tickfont: {
+            color: 'white'
+        }
+    },
+    margin: {
+        b: 50,
+    },
+    polar: {
+        radialaxis: {
+            visible: true,
+            range: [0, 15]
+        }
+    }
+}
+
+
 function makeTrace_nb(participant) {
     let y_mean = [];
     let y_std = [];
@@ -155,6 +203,24 @@ function makeTrace_idle(participant) {
     };
 }
 
+function makeTrace_traj(participant) {
+    let r = [];
+    if(participants_staircase_data[participant][3]['n_targets'].length > index_frame){
+        r.push(participants_staircase_data[participant][3]['n_targets'][index_frame])
+        r.push(participants_staircase_data[participant][3]['speed'][index_frame])
+        r.push(participants_staircase_data[participant][3]['tracking_duration'][index_frame])
+        r.push(participants_staircase_data[participant][3]['probe_duration'][index_frame])
+        r.push(participants_staircase_data[participant][3]['radius'][index_frame])
+        r.push(participants_staircase_data[participant][3]['n_targets'][index_frame])
+    }
+    console.log(index_frame, r);
+    return {
+        r: r,
+        type: 'scatterpolar',
+        theta: ['n_targets', 'speed', 'tracking_duration', 'probe_duration', 'radius', 'n_targets'],
+        name: participant,
+    };
+}
 
 // for now just print the average lvl for each session
 Plotly.newPlot(
@@ -167,3 +233,43 @@ Plotly.newPlot(
     participants_staircase_array.map(makeTrace_idle),
     layout_idle
 )
+Plotly.newPlot(
+    'plotly_div_animate',
+    participants_staircase_array.map(makeTrace_traj),
+    layout_traj
+)
+
+function launch_animation() {
+    update();
+}
+
+var my_req;
+
+function update() {
+    index_frame++;
+    console.log(participants_staircase_array.map(makeTrace_traj));
+    Plotly.animate(
+        'plotly_div_animate',
+        {data: participants_staircase_array.map(makeTrace_traj)},
+        {
+            transition: {
+                duration: 1
+            },
+            frame: {
+                duration: 5,
+                redraw: true
+            }
+        },
+    layout_traj
+)
+    if (index_frame < 10000) {
+        my_req = requestAnimationFrame(update);
+    } else {
+        index_frame = 0;
+    }
+}
+function stop_animation(){
+    index_frame = 0;
+    cancelAnimationFrame(my_req);
+}
+
