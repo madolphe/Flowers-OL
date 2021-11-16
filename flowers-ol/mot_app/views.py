@@ -473,20 +473,7 @@ def completion_code(request):
 @login_required
 def dashboard(request):
     nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict = get_exp_status("v1_ubx")
-    try:
-        user_useless = User.objects.create_user('useless')
-        useless = ParticipantProfile(user=user_useless, study=Study.objects.get(name='v1_ubx'))
-        ans = Answer(participant=useless, question=Question.objects.get(handle='prof-mot-1'),
-                     study=Study.objects.get(name='v1_ubx'), value=0)
-        ans.value = 0
-        useless.save()
-        user_useless.save()
-        ans.save()
-    except:
-        user_useless = User.objects.get(username='useless')
-        useless = ParticipantProfile.objects.get(user=user_useless, study=Study.objects.get(name='v1_ubx'))
-    parser = MotParamsWrapper(participant=useless)
-    all_staircase_participants = get_staircase_episodes("v1_ubx", parser)
+    all_staircase_participants = get_staircase_episodes("v1_ubx")
     CONTEXT = {'sessions': [f"S{i}" for i in range(1, 11)],
                'user_status': {**descriptive_dict['zpdes'], **descriptive_dict['baseline'],
                                **descriptive_dict['cog']},

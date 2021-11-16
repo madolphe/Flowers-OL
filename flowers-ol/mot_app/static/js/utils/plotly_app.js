@@ -27,20 +27,21 @@ participants_staircase_array.forEach(element => {
     }
 )
 
-let layout = {
-    legend:{font:{color:"white"}},
+let layout_nb = {
+    legend: {font: {color: "white"}},
     autosize: true,
+    showlegend: false,
     title: {
         text: 'Evolution of mean nb_targets through training',
-        font:{color:'white'}
+        font: {color: 'white'}
     },
     paper_bgcolor: "black",
     plot_bgcolor: "black",
     xaxis: {
         automargin: true,
-        title:{
+        title: {
             text: 'Session date',
-            font:{color: 'white'},
+            font: {color: 'white'},
             standoff: 20
         },
         tickmode: 'linear',
@@ -51,9 +52,9 @@ let layout = {
         }
     },
     yaxis: {
-        title:{
+        title: {
             text: 'nb_targets',
-            font:{color: 'white'}
+            font: {color: 'white'}
         },
         linecolor: 'white',
         zerolinecolor: 'white',
@@ -66,11 +67,54 @@ let layout = {
         b: 50,
     },
     updatemenus: [
-        {y: 0.8, yanchor: 'top', pad: {'r':20 },buttons: buttons_participant}
+        {y: 0.5, yanchor: 'top', pad: {'r': 40}, buttons: buttons_participant}
     ]
 }
 
-function makeTrace(participant) {
+let layout_idle = {
+    legend: {font: {color: "white"}},
+    autosize: true,
+    title: {
+        text: 'Evolution of mean idle through training',
+        font: {color: 'white'}
+    },
+    paper_bgcolor: "black",
+    plot_bgcolor: "black",
+    xaxis: {
+        automargin: true,
+        title: {
+            text: 'Session date',
+            font: {color: 'white'},
+            standoff: 20
+        },
+        tickmode: 'linear',
+        zerolinecolor: 'white',
+        linecolor: 'white',
+        tickfont: {
+            color: 'white',
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'mean_idle',
+            font: {color: 'white'}
+        },
+        linecolor: 'white',
+        zerolinecolor: 'white',
+        gridcolor: 'grey',
+        tickfont: {
+            color: 'white'
+        }
+    },
+    margin: {
+        b: 50,
+    },
+    updatemenus: [
+        {y: 0.5, yanchor: 'top', pad: {'r': 40}, buttons: buttons_participant}
+    ]
+}
+
+function makeTrace_nb(participant) {
     let y_mean = [];
     let y_std = [];
     let x = [];
@@ -94,10 +138,32 @@ function makeTrace(participant) {
     };
 }
 
+function makeTrace_idle(participant) {
+    let y_mean = [];
+    let x = [];
+    for (var key in participants_staircase_data[participant][0]) {
+        y_mean.push(participants_staircase_data[participant][2][key]);
+        x.push(key);
+    }
+    return {
+        y: y_mean,
+        x: x,
+        line: {
+            shape: 'scatter',
+        },
+        name: participant,
+    };
+}
+
+
 // for now just print the average lvl for each session
 Plotly.newPlot(
-    'plotly_div_stairase',
-    participants_staircase_array.map(makeTrace),
-    layout
+    'plotly_div_stairase_nb',
+    participants_staircase_array.map(makeTrace_nb),
+    layout_nb
 );
-
+Plotly.newPlot(
+    'plotly_div_stairase_idle',
+    participants_staircase_array.map(makeTrace_idle),
+    layout_idle
+)

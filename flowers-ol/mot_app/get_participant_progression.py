@@ -100,6 +100,8 @@ def get_progression(participants_list):
             cond = 'no_group'
             nb_episode = 0
             idle_time = 0
+        if 'stop' in participant.extra_json:
+            participant_progression = [-3 for i in range(10)]
         none_blocks = [0 for i in range(10 - len(participant_progression))]
         descriptive_dict[participant.user.username] = (
             cond, participant_progression, none_blocks, nb_episode, idle_time)
@@ -124,34 +126,36 @@ def get_time_since_last_session(participant):
     return (datetime.now(pytz.utc) - participant.last_session_timestamp).days
 
 
-def get_staircase_episodes(study, parser):
+def get_staircase_episodes(study):
     participants = ParticipantProfile.objects.all().filter(study__name=study)
     all_participants = {}
     for participant in participants:
         if 'condition' in participant.extra_json:
             if participant.extra_json['condition'] == 'baseline':
                 episodes = Episode.objects.all().filter(participant=participant.user)
-                average_dict, std_dict = get_staircase(participant, episodes, parser)
-                all_participants[participant.user.username] = [average_dict, std_dict]
+                average_lvl_dict, std_lvl_dict, mean_idle_time_dict = get_staircase_lvl(episodes)
+                if len(average_lvl_dict.keys()) > 1:
+                    all_participants[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict]
     return all_participants
 
 
-def get_staircase(participant, episodes, parser):
-    # main_list = [f'nb{i}' for i in range(2, 8)]
-    current_dict = {}
-    for episode in episodes:
-        # activity = parser.parse_activity(episode)
-        # main = activity['act']['MAIN'][0]
-        # activity_lvl = activity['act']['MAIN'][0] + activity['act'][main_list[main]][0]
-        # activity_lvl = activity['act']['MAIN'][0]
-        if str(episode.date.date()) not in current_dict:
-            current_dict[str(episode.date.date())] = []
-        current_dict[str(episode.date.date())].append(episode.n_targets)
-    average_dict, std_dict = {}, {}
+def get_staircase_lvl(episodes):
+    current_dict = sort_episodes_by_date(episodes)
+    average_lvl_dict, std_lvl_dict, mean_idle_time_dict = {}, {}, {}
     for date, values in current_dict.items():
-        average_dict[date] = mean(values)
-        std_dict[date] = stdev(values)
-    return average_dict, std_dict
+        average_lvl_dict[date] = mean([episode.n_targets for episode in values])
+        std_lvl_dict[date] = stdev([episode.n_targets for episode in values])
+        mean_idle_time_dict[date] = mean([episode.idle_time/1000 for episode in values])
+    return average_lvl_dict, std_lvl_dict, mean_idle_time_dict
+
+
+def sort_episodes_by_date(episodes):
+    dict = {}
+    for episode in episodes:
+        if str(episode.date.date()) not in dict:
+            dict[str(episode.date.date())] = []
+        dict[str(episode.date.date())].append(episode)
+    return dict
 
 
 if __name__ == '__main__':

@@ -44,6 +44,8 @@
                         <td class="orange"></td>
                     {% elif activity == -2 %}
                         <td class="red"></td>
+                    {% elif activity == -3 %}
+                        <td class="black"></td>
                     {% endif %}
                 {% endfor %}
                 {% for none_block in user_data.2 %}
@@ -57,7 +59,8 @@
 </div>
 <div class="row"><p class="title_exp">STAIRCASE PROGRESSION</p></div>
 <div class="container_staircase">
-    <div id="plotly_div_stairase"></div>
+    <div id="plotly_div_stairase_nb"></div>
+    <div id="plotly_div_stairase_idle"></div>
 </div>
 </body>
 </html>
