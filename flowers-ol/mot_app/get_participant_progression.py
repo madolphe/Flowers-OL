@@ -4,6 +4,9 @@ import pytz
 from .models import Episode, CognitiveResult
 from manager_app.models import ParticipantProfile
 
+from statistics import mean, stdev
+import numpy as np
+
 
 def get_mean_idle_time(participant):
     all_episodes = Episode.objects.all().filter(participant__username=participant)
@@ -98,8 +101,11 @@ def get_progression(participants_list):
             cond = 'no_group'
             nb_episode = 0
             idle_time = 0
-        none_blocks = [0 for i in range(10-len(participant_progression))]
-        descriptive_dict[participant.user.username] = (cond, participant_progression, none_blocks, nb_episode, idle_time)
+        if 'stop' in participant.extra_json:
+            participant_progression = [-3 for i in range(10)]
+        none_blocks = [0 for i in range(10 - len(participant_progression))]
+        descriptive_dict[participant.user.username] = (
+            cond, participant_progression, none_blocks, nb_episode, idle_time)
     return descriptive_dict
 
 
@@ -119,6 +125,66 @@ def get_time_since_last_session(participant):
     Return -2 if available but not finished in more than 3 days
     """
     return (datetime.now(pytz.utc) - participant.last_session_timestamp).days
+
+
+def get_staircase_episodes(study):
+    participants = ParticipantProfile.objects.all().filter(study__name=study)
+    all_participants = {}
+    for participant in participants:
+        if 'condition' in participant.extra_json:
+            if participant.extra_json['condition'] == 'baseline':
+                episodes = Episode.objects.all().filter(participant=participant.user)
+                average_lvl_dict, std_lvl_dict, mean_idle_time_dict = get_staircase_lvl(episodes)
+                traj_dict = get_trajectory(episodes)
+                if len(average_lvl_dict.keys()) > 1:
+                    all_participants[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict,
+                                                                   traj_dict]
+    return all_participants
+
+
+def get_staircase_lvl(episodes):
+    current_dict = sort_episodes_by_date(episodes)
+    average_lvl_dict, std_lvl_dict, mean_idle_time_dict = {}, {}, {}
+    for date, values in current_dict.items():
+        average_lvl_dict[date] = mean([episode.n_targets for episode in values])
+        std_lvl_dict[date] = stdev([episode.n_targets for episode in values])
+        mean_idle_time_dict[date] = mean([episode.idle_time / 1000 for episode in values])
+    return average_lvl_dict, std_lvl_dict, mean_idle_time_dict
+
+
+def sort_episodes_by_date(episodes):
+    dict = {}
+    for episode in episodes:
+        if str(episode.date.date()) not in dict:
+            dict[str(episode.date.date())] = []
+        dict[str(episode.date.date())].append(episode)
+    return dict
+
+
+def get_trajectory(episodes):
+    final_dict = {'n_targets': [], 'speed': [], 'probe_duration': [], 'tracking_duration': [], 'radius': []}
+    for episode in episodes:
+        parsed_episode = parse_episode(episode)
+        for key in parsed_episode.keys():
+            final_dict[key].append(parsed_episode[key])
+    return final_dict
+
+
+def parse_episode(episode):
+    # Just not to break everything:
+    values_ref = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
+                  'speed': np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], dtype=float),
+                  'tracking_duration': np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0], dtype=float),
+                  'probe_duration': np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0], dtype=float),
+                  'radius': np.array([1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6], dtype=float)}
+    lvls_ref = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
+    episode_dict = {}
+    episode_dict['speed'] = np.where(values_ref['speed'] == float(episode.speed_max))[0][0]
+    episode_dict['n_targets'] = np.where(values_ref['n_targets'] == float(episode.n_targets))[0][0]
+    episode_dict['tracking_duration'] = np.where(values_ref['tracking_duration'] == float(episode.tracking_time))[0][0]
+    episode_dict['probe_duration'] = np.where(values_ref['probe_duration'] == float(episode.probe_time))[0][0]
+    episode_dict['radius'] = np.where(values_ref['radius'] == float(episode.radius))[0][0]
+    return episode_dict
 
 
 if __name__ == '__main__':

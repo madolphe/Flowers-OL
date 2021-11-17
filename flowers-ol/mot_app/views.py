@@ -4,9 +4,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 from .models import SecondaryTask, Episode
-from manager_app.models import ParticipantProfile
+from manager_app.models import ParticipantProfile, Study
 from survey_app.models import Question, Answer
 from survey_app.forms import QuestionnaireForm
 from survey_app.views import questionnaire
@@ -24,7 +25,7 @@ import random
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
-from .get_participant_progression import get_exp_status
+from .get_participant_progression import get_exp_status, get_staircase_episodes
 
 
 # ### Views and utilities for general-task ###
@@ -472,6 +473,7 @@ def completion_code(request):
 @login_required
 def dashboard(request):
     nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict = get_exp_status("v1_ubx")
+    all_staircase_participants = get_staircase_episodes("v1_ubx")
     CONTEXT = {'sessions': [f"S{i}" for i in range(1, 11)],
                'user_status': {**descriptive_dict['zpdes'], **descriptive_dict['baseline'],
                                **descriptive_dict['cog']},
@@ -479,5 +481,7 @@ def dashboard(request):
                'nb_participants_in': nb_participants_in,
                'nb_participants_zpdes': nb_zpdes,
                'nb_participants_baseline': nb_baseline,
+               'baseline_participant_name': [participant for participant in all_staircase_participants.keys()],
+               'all_staircase_participant': all_staircase_participants
                }
     return render(request, "tools/dashboard.html", CONTEXT)
