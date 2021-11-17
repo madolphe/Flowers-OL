@@ -37,15 +37,15 @@
                 <td class="participant_label right_separation">{{ user_data.0 }}</td>
                 {% for activity in user_data.1 %}
                     {% if activity == 1 %}
-                        <td class="green"></td>
+                        <td class="green sep_bottom"></td>
                     {% elif activity == 0 %}
-                        <td class="grey"></td>
+                        <td class="grey sep_bottom"></td>
                     {% elif activity == -1 %}
-                        <td class="orange"></td>
+                        <td class="orange sep_bottom"></td>
                     {% elif activity == -2 %}
-                        <td class="red"></td>
+                        <td class="red sep_bottom"></td>
                     {% elif activity == -3 %}
-                        <td class="black"></td>
+                        <td class="black sep_bottom"></td>
                     {% endif %}
                 {% endfor %}
                 {% for none_block in user_data.2 %}
@@ -65,8 +65,16 @@
 <div class="row"><p class="title_exp">ACTIVITY SPACE TRAJECTORY</p></div>
 <div class="container_staircase">
     <div id="plotly_div_animate"></div>
-    <button id="randomize" onclick="launch_animation()">START</button>
-    <button id="randomize" onclick="stop_animation()">STOP</button>
+    <div class="animation_control">
+        <div class="display_button">
+            <button class="font_button" id="randomize" onclick="launch_animation()">START</button>
+            <button class="font_button" id="randomize" onclick="stop_animation()">STOP</button>
+        </div>
+        <div class="display_time_step">
+            <p class="display_font">Time step:  </p>
+            <p class="display_font" id="time_step" style="margin-left: 5px">0</p>
+        </div>
+    </div>
 </div>
 </body>
 </html>

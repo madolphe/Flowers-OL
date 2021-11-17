@@ -5,6 +5,7 @@ from .models import Episode, CognitiveResult
 from manager_app.models import ParticipantProfile
 
 from statistics import mean, stdev
+import numpy as np
 
 
 def get_mean_idle_time(participant):
@@ -163,12 +164,27 @@ def sort_episodes_by_date(episodes):
 def get_trajectory(episodes):
     final_dict = {'n_targets': [], 'speed': [], 'probe_duration': [], 'tracking_duration': [], 'radius': []}
     for episode in episodes:
-        final_dict['n_targets'].append(episode.n_targets)
-        final_dict['speed'].append(episode.speed_min)
-        final_dict['probe_duration'].append(episode.probe_time)
-        final_dict['tracking_duration'].append(episode.tracking_time)
-        final_dict['radius'].append(episode.radius)
+        parsed_episode = parse_episode(episode)
+        for key in parsed_episode.keys():
+            final_dict[key].append(parsed_episode[key])
     return final_dict
+
+
+def parse_episode(episode):
+    # Just not to break everything:
+    values_ref = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
+                  'speed': np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], dtype=float),
+                  'tracking_duration': np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0], dtype=float),
+                  'probe_duration': np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0], dtype=float),
+                  'radius': np.array([1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6], dtype=float)}
+    lvls_ref = ["nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
+    episode_dict = {}
+    episode_dict['speed'] = np.where(values_ref['speed'] == float(episode.speed_max))[0][0]
+    episode_dict['n_targets'] = np.where(values_ref['n_targets'] == float(episode.n_targets))[0][0]
+    episode_dict['tracking_duration'] = np.where(values_ref['tracking_duration'] == float(episode.tracking_time))[0][0]
+    episode_dict['probe_duration'] = np.where(values_ref['probe_duration'] == float(episode.probe_time))[0][0]
+    episode_dict['radius'] = np.where(values_ref['radius'] == float(episode.radius))[0][0]
+    return episode_dict
 
 
 if __name__ == '__main__':

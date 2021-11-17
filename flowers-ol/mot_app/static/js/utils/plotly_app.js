@@ -1,5 +1,8 @@
-console.log(participants_staircase_data)
+let my_req;
 let index_frame = 0;
+update_timestep_display();
+
+// Prepare some variables
 // create buttons_array for each participant in the baseline
 // each button should be a dict like: {method:'restyle', args:[...], label: participant_name}
 let buttons_participant = []
@@ -28,6 +31,7 @@ participants_staircase_array.forEach(element => {
     }
 )
 
+// Layout used to display the data
 let layout_nb = {
     legend: {font: {color: "white"}},
     autosize: true,
@@ -71,7 +75,6 @@ let layout_nb = {
         {y: 0.5, yanchor: 'top', pad: {'r': 40}, buttons: buttons_participant}
     ]
 }
-
 let layout_idle = {
     legend: {font: {color: "white"}},
     autosize: true,
@@ -114,54 +117,44 @@ let layout_idle = {
         {y: 0.5, yanchor: 'top', pad: {'r': 40}, buttons: buttons_participant}
     ]
 }
-
 let layout_traj = {
     legend: {font: {color: "white"}},
     autosize: true,
     title: {
-        text: 'Evolution of mean idle through training',
+        text: 'Trajectories of participants through training',
         font: {color: 'white'}
     },
     paper_bgcolor: "black",
     plot_bgcolor: "black",
-    xaxis: {
-        automargin: true,
-        title: {
-            text: 'Session date',
-            font: {color: 'white'},
-            standoff: 20
-        },
-        tickmode: 'linear',
-        zerolinecolor: 'white',
-        linecolor: 'white',
-        tickfont: {
-            color: 'white',
-        }
-    },
-    yaxis: {
-        title: {
-            text: 'mean_idle',
-            font: {color: 'white'}
-        },
-        linecolor: 'white',
-        zerolinecolor: 'white',
-        gridcolor: 'grey',
-        tickfont: {
-            color: 'white'
-        }
-    },
     margin: {
         b: 50,
     },
     polar: {
+        angularaxis: {
+            visible: true,
+            color: "white",
+            gridcolor: "black",
+            range: [0, 7],
+            title: {
+                font: {
+                    color: "white"
+                }
+            }
+        },
         radialaxis: {
             visible: true,
-            range: [0, 15]
-        }
+            range: [0, 7],
+            title: {
+                font: {
+                    color: "white"
+                }
+            }
+        },
+
     }
 }
 
-
+// Data to be displayed for each plot (and for all participants)
 function makeTrace_nb(participant) {
     let y_mean = [];
     let y_std = [];
@@ -185,7 +178,6 @@ function makeTrace_nb(participant) {
         name: participant,
     };
 }
-
 function makeTrace_idle(participant) {
     let y_mean = [];
     let x = [];
@@ -202,7 +194,6 @@ function makeTrace_idle(participant) {
         name: participant,
     };
 }
-
 function makeTrace_traj(participant) {
     let r = [];
     if(participants_staircase_data[participant][3]['n_targets'].length > index_frame){
@@ -213,7 +204,6 @@ function makeTrace_traj(participant) {
         r.push(participants_staircase_data[participant][3]['radius'][index_frame])
         r.push(participants_staircase_data[participant][3]['n_targets'][index_frame])
     }
-    console.log(index_frame, r);
     return {
         r: r,
         type: 'scatterpolar',
@@ -222,7 +212,7 @@ function makeTrace_traj(participant) {
     };
 }
 
-// for now just print the average lvl for each session
+// Draw all the plots:
 Plotly.newPlot(
     'plotly_div_stairase_nb',
     participants_staircase_array.map(makeTrace_nb),
@@ -239,15 +229,16 @@ Plotly.newPlot(
     layout_traj
 )
 
+// Animations functions:
+function update_timestep_display(){
+    document.getElementById('time_step').innerHTML = index_frame
+}
 function launch_animation() {
     update();
 }
-
-var my_req;
-
 function update() {
     index_frame++;
-    console.log(participants_staircase_array.map(makeTrace_traj));
+    update_timestep_display();
     Plotly.animate(
         'plotly_div_animate',
         {data: participants_staircase_array.map(makeTrace_traj)},
@@ -261,7 +252,7 @@ function update() {
             }
         },
     layout_traj
-)
+    )
     if (index_frame < 10000) {
         my_req = requestAnimationFrame(update);
     } else {
@@ -270,6 +261,21 @@ function update() {
 }
 function stop_animation(){
     index_frame = 0;
+    update_timestep_display();
     cancelAnimationFrame(my_req);
+    Plotly.animate(
+        'plotly_div_animate',
+        {data: participants_staircase_array.map(makeTrace_traj)},
+        {
+            transition: {
+                duration: 1
+            },
+            frame: {
+                duration: 5,
+                redraw: true
+            }
+        },
+    layout_traj
+    )
 }
 

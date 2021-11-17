@@ -3,6 +3,20 @@ body {
     margin-left: 50px;
     margin-right: 50px;
 }
+.display_font{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: whitesmoke
+}
+.font_button{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: black
+}
+.font_button:hover{
+    color: white;
+    background: black;
+}
 
 .numbers-row {
     display: flex;
@@ -69,6 +83,9 @@ body {
 .black {
     background: #233472;
 }
+.sep_bottom{
+    border-bottom: solid #ffffff1c 0.1px;
+}
 .table-progression {
     display: flex;
     justify-content: center;
@@ -101,4 +118,12 @@ th {
     justify-content: center;
     margin-bottom: 50px;
     border: 4px solid whitesmoke;
+}
+.animation_control{
+    display: flex;
+    flex-direction: column;
+}
+.display_time_step{
+    display: flex;
+    flex-direction: row;
 }
