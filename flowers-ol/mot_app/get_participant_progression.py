@@ -1,4 +1,8 @@
+import copy
 from datetime import datetime
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import pytz
 
 from .models import Episode, CognitiveResult
@@ -7,15 +11,16 @@ from manager_app.models import ParticipantProfile
 from statistics import mean, stdev
 import numpy as np
 
+from scipy import spatial
 
-def get_mean_idle_time(participant):
+
+def print_mean_idle_time(participant):
     all_episodes = Episode.objects.all().filter(participant__username=participant)
     sessions = {}
     for episode in all_episodes:
         if episode.id_session not in sessions:
             sessions[episode.id_session] = []
         sessions[episode.id_session].append(episode)
-    check_episode_date()
     idle_times = {}
     for session_key, session_content in sessions.items():
         shift_session = session_content[1::]
@@ -26,10 +31,6 @@ def get_mean_idle_time(participant):
                 episode_length = episode.tracking_time + episode.presentation_time + episode.fixation_time + episode.probe_time
                 idle_times[session_key].append((delta.total_seconds() - episode_length))
         print(sum(idle_times[session_key]) / len(idle_times[session_key]))
-
-
-def check_episode_date():
-    pass
 
 
 def get_exp_status(study):
@@ -43,7 +44,8 @@ def get_exp_status(study):
     descriptive_dict = {'zpdes': get_progression(zpdes_participants),
                         'baseline': get_progression(baseline_participants),
                         'cog': get_progression(none_participants)}
-    return nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict
+    return nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict, zpdes_participants, \
+           baseline_participants
 
 
 def get_nb_cog_assessment_for_participant(participant):
@@ -127,22 +129,27 @@ def get_time_since_last_session(participant):
     return (datetime.now(pytz.utc) - participant.last_session_timestamp).days
 
 
-def get_staircase_episodes(study):
-    participants = ParticipantProfile.objects.all().filter(study__name=study)
-    all_participants = {}
-    for participant in participants:
-        if 'condition' in participant.extra_json:
-            if participant.extra_json['condition'] == 'baseline':
-                episodes = Episode.objects.all().filter(participant=participant.user)
-                average_lvl_dict, std_lvl_dict, mean_idle_time_dict = get_staircase_lvl(episodes)
-                traj_dict = get_trajectory(episodes)
-                if len(average_lvl_dict.keys()) > 1:
-                    all_participants[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict,
-                                                                   traj_dict]
-    return all_participants
+def get_staircase_episodes(participant_list):
+    """
+    Returns a dict with participant name as key and list of mean episode per sess, mean idle per sess and all episodes
+    (with real values)
+    """
+    participants_episodes = {}
+    for participant in participant_list:
+        episodes = Episode.objects.all().filter(participant=participant.user)
+        average_lvl_dict, std_lvl_dict, mean_idle_time_dict = get_staircase_lvl(episodes)
+        traj_dict = get_trajectory(episodes)
+        # Just make sure there are activities to display
+        if len(average_lvl_dict.keys()) > 1:
+            participants_episodes[participant.user.username] = [average_lvl_dict, std_lvl_dict, mean_idle_time_dict,
+                                                                traj_dict]
+    return participants_episodes
 
 
 def get_staircase_lvl(episodes):
+    """
+    Get mean lvl + std activity per session
+    """
     current_dict = sort_episodes_by_date(episodes)
     average_lvl_dict, std_lvl_dict, mean_idle_time_dict = {}, {}, {}
     for date, values in current_dict.items():
@@ -153,6 +160,7 @@ def get_staircase_lvl(episodes):
 
 
 def sort_episodes_by_date(episodes):
+    """Sort activities per session"""
     dict = {}
     for episode in episodes:
         if str(episode.date.date()) not in dict:
@@ -162,6 +170,9 @@ def sort_episodes_by_date(episodes):
 
 
 def get_trajectory(episodes):
+    """
+        Parse trajectory into physical world
+    """
     final_dict = {'n_targets': [], 'speed': [], 'probe_duration': [], 'tracking_duration': [], 'radius': []}
     for episode in episodes:
         parsed_episode = parse_episode(episode)
@@ -187,7 +198,108 @@ def parse_episode(episode):
     return episode_dict
 
 
+# Useless because already moved:
+def get_zpdes_hull_episodes(participant_list):
+    """
+    salut Denis
+    """
+    cumu_all_hull_points_per_participant, cumu_true_hull_points_per_participant = {}, {}
+    ps_all_hull_points_per_participant, ps_true_hull_points_per_participant = {}, {}
+    delta_ps_all_hull_points_per_participant, delta_ps_true_hull_points_per_participant = {}, {}
+    delta_cumu_all_hull_points_per_participant, delta_cumu_true_hull_points_per_participant = {}, {}
+    for participant in participant_list:
+        episodes = Episode.objects.all().filter(participant=participant.user)
+        sort_episodes = sort_episodes_by_date(episodes)
+        sort_episodes = split_in_blocks(sort_episodes)
+        sort_episodes_true = {k: list(filter(lambda episode: episode.get_results == 1, v)) for k, v in
+                              sort_episodes.items()}
+        cumulative_episodes_true, len_cumulative_episodes_true = get_cumulative_episode(sort_episodes_true)
+        cumulative_episodes, len_cumulative_episodes = get_cumulative_episode(sort_episodes)
+
+        # Get hulls for cumulative episodes:
+        cumu_all_hull, cumu_true_hull = get_participant_hull(cumulative_episodes, cumulative_episodes_true)
+        cumu_all_hull_points_per_participant[participant.user.username] = cumu_all_hull
+        cumu_true_hull_points_per_participant[participant.user.username] = cumu_true_hull
+        # get_mean_hull(cumu_true_hull)
+
+        # Get hulls for episodes per session:
+        ps_all_hull, ps_true_hull = get_participant_hull(sort_episodes, sort_episodes_true)
+        ps_all_hull_points_per_participant[participant.user.username] = ps_all_hull
+        ps_true_hull_points_per_participant[participant.user.username] = ps_true_hull
+
+    return [cumu_all_hull_points_per_participant, cumu_true_hull_points_per_participant, \
+            ps_all_hull_points_per_participant, ps_true_hull_points_per_participant]
+
+
+def get_mean_hull(hull_dict):
+    mean_per_target = [[], [], [], [], [], []]
+    for session_key, value in hull_dict[0].items():
+        mean_per_target[int(value[0])].append(value[1:])
+
+
+def get_participant_hull(all_episodes, true_episodes):
+    hull_all, hull_true = {}, {}
+    hull_all_volumes, hull_true_volumes = {}, {}
+    for (session_id_all, session_points_all), (session_id_true, session_points_true) in zip(all_episodes.items(),
+                                                                                            true_episodes.items()):
+        if len(session_points_all) > 5 and len(session_points_true) > 5:
+            tmp_hull = get_hull_per_session(session_points_all)
+            hull_all[session_id_all] = tmp_hull.points[tmp_hull.vertices, :].tolist()
+            hull_all_volumes[session_id_all] = tmp_hull.volume
+            tmp_hull = get_hull_per_session(session_points_true)
+            hull_true[session_id_true] = tmp_hull.points[tmp_hull.vertices, :].tolist()
+            hull_true_volumes[session_id_true] = tmp_hull.volume
+    return [hull_all, hull_all_volumes], [hull_true, hull_true_volumes]
+
+
+def get_hull_per_session(session_points):
+    episode_array = list(
+        map(lambda episode: [episode.n_targets, episode.speed_max, episode.tracking_time, episode.probe_time,
+                             episode.radius],
+            session_points))
+    episode_array = np.array(episode_array)
+    hull = spatial.ConvexHull(episode_array)
+    return hull
+
+
+def split_in_blocks(episodes, nb_blocks=4):
+    return episodes
+
+
+def get_cumulative_episode(episodes):
+    cumulative_episodes = {}
+    len_cumulative_episodes = {}
+    episodes_tmp = []
+    for key in episodes:
+        episodes_tmp += episodes[key]
+        cumulative_episodes[key] = copy.deepcopy(episodes_tmp)
+        len_cumulative_episodes[key] = len(cumulative_episodes[key])
+    return cumulative_episodes, len_cumulative_episodes
+
+
+def display_from_hull(hull, episode_array):
+    hull = spatial.ConvexHull(episode_array)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    for s in hull.simplices:
+        s = np.append(s, s[0])  # Here we cycle back to the first coordinate
+        ax.plot(episode_array[s, 0], episode_array[s, 1], episode_array[s, 2], "r-")
+    plt.title(hull.volume)
+    plt.show()
+
+
+def display_volume_hull(hull_volumes_true, hull_volumes, participant):
+    plt.figure()
+    # plt.plot(len_cumulative_episodes.values(), hull_volumes.values(), '-bo')
+    # plt.plot(len_cumulative_episodes_true.values(), hull_volumes_true.values(), '-ro')
+    plt.plot(np.arange(0, len(hull_volumes_true)), hull_volumes_true.values(), '-ro')
+    plt.plot(np.arange(0, len(hull_volumes)), hull_volumes.values(), '-bo')
+    plt.title(participant.user.username)
+    plt.show()
+
+
 if __name__ == '__main__':
     # get_mean_idle_time("v1_ubx")
-    nb_participants, nb_participants_in, descriptive_dict = get_exp_status("v1_ubx")
-    print(nb_participants, nb_participants_in, descriptive_dict)
+    # nb_participants, nb_participants_in, descriptive_dict = get_exp_status("v1_ubx")
+    # print(nb_participants, nb_participants_in, descriptive_dict)
+    pass
