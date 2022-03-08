@@ -153,6 +153,26 @@ let layout_traj = {
 
     }
 }
+let layout_para_hull = {
+    legend: {font: {color: "white"}},
+    autosize: true,
+    title: {
+        text: 'Parallel plot of convex hulls points',
+        font: {color: 'white'}
+    },
+    color: {
+        line: {
+            color: 'white'
+        }
+    },
+
+    paper_bgcolor: "black",
+    plot_bgcolor: "black",
+    margin: {
+        b: 50,
+    }
+}
+
 
 // Data to be displayed for each plot (and for all participants)
 function makeTrace_nb(participant) {
@@ -178,6 +198,7 @@ function makeTrace_nb(participant) {
         name: participant,
     };
 }
+
 function makeTrace_idle(participant) {
     let y_mean = [];
     let x = [];
@@ -194,9 +215,10 @@ function makeTrace_idle(participant) {
         name: participant,
     };
 }
+
 function makeTrace_traj(participant) {
     let r = [];
-    if(participants_staircase_data[participant][3]['n_targets'].length > index_frame){
+    if (participants_staircase_data[participant][3]['n_targets'].length > index_frame) {
         r.push(participants_staircase_data[participant][3]['n_targets'][index_frame])
         r.push(participants_staircase_data[participant][3]['speed'][index_frame])
         r.push(participants_staircase_data[participant][3]['tracking_duration'][index_frame])
@@ -210,6 +232,119 @@ function makeTrace_traj(participant) {
         theta: ['n_targets', 'speed', 'tracking_duration', 'probe_duration', 'radius', 'n_targets'],
         name: participant,
     };
+}
+
+function makeTrace_para_hull(participant, dict) {
+    let [session_id, values_ntargets, values_speed, values_probe_time, values_tracking_time, values_radius] = [[], [], [], [], [], []];
+    let session_index = 0
+    for (var session in dict[participant][0]) {
+        for (var i = 0; i < dict[participant][0][session].length; i++) {
+            session_id.push(session_index)
+            values_ntargets.push(dict[participant][0][session][i][0])
+            values_speed.push(dict[participant][0][session][i][1])
+            values_probe_time.push(dict[participant][0][session][i][2])
+            values_tracking_time.push(dict[participant][0][session][i][3])
+            values_radius.push(dict[participant][0][session][i][4])
+        }
+        session_index ++;
+    }
+    return [{
+        type: 'parcoords',
+        line: {
+            color: session_id
+        },
+        dimensions: [
+        {
+            range: [0, 10],
+            label: 'session_index',
+            values: session_id,
+            constraintrange: [0,1]
+        },
+            {
+            range: [0, 8],
+            label: 'n_targets',
+            values: values_ntargets,
+        }, {
+            range: [1, 6],
+            label: 'speed',
+            values: values_speed,
+        }, {
+            range: [2, 7],
+            label: 'probe_time',
+            values: values_probe_time
+        },
+        {
+            range: [5.5, 13],
+            label: 'tracking_time',
+            values: values_tracking_time,
+        },
+        {
+            range: [0.5, 1.5],
+            label: 'radius',
+            values: values_radius,
+        }
+        ]
+    }]
+}
+
+function makeTrace_mean_para_hull(participant, dict) {
+    let [session_id, values_ntargets, values_speed, values_probe_time, values_tracking_time, values_radius] = [[], [], [], [], [], []];
+    let session_index = 0
+    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+    for (var session in dict[participant][0]) {
+        let [tmp_values_ntargets, tmp_values_speed, tmp_values_probe_time, tmp_values_tracking_time, tmp_values_radius] = [[], [], [], [], []];
+        for (var i = 0; i < dict[participant][0][session].length; i++) {
+            tmp_values_ntargets.push(dict[participant][0][session][i][0])
+            tmp_values_speed.push(dict[participant][0][session][i][1])
+            tmp_values_probe_time.push(dict[participant][0][session][i][2])
+            tmp_values_tracking_time.push(dict[participant][0][session][i][3])
+            tmp_values_radius.push(dict[participant][0][session][i][4])
+        }
+        session_id.push(session_index)
+        values_ntargets.push(average(tmp_values_ntargets))
+        values_speed.push(average(tmp_values_speed))
+        values_probe_time.push(average(tmp_values_probe_time))
+        values_tracking_time.push(average(tmp_values_tracking_time))
+        values_radius.push(average(tmp_values_radius))
+        session_index ++;
+    }
+    return [{
+        type: 'parcoords',
+        line: {
+            color: session_id
+        },
+        dimensions: [
+        {
+            range: [0, 10],
+            label: 'session_index',
+            values: session_id,
+            constraintrange: [0,1]
+        },
+            {
+            range: [0, 8],
+            label: 'n_targets',
+            values: values_ntargets,
+        }, {
+            range: [1, 6],
+            label: 'speed',
+            values: values_speed,
+        }, {
+            range: [2, 7],
+            label: 'probe_time',
+            values: values_probe_time
+        },
+        {
+            range: [5.5, 13],
+            label: 'tracking_time',
+            values: values_tracking_time,
+        },
+        {
+            range: [0.5, 1.5],
+            label: 'radius',
+            values: values_radius,
+        }
+        ]
+    }]
 }
 
 // Draw all the plots:
@@ -228,14 +363,60 @@ Plotly.newPlot(
     participants_staircase_array.map(makeTrace_traj),
     layout_traj
 )
+var trace = {
+  type: 'parcoords',
+  line: {
+    color: 'blue'
+  },
+  dimensions: [{
+    range: [1, 5],
+    constraintrange: [1, 2],
+    label: 'A',
+    values: [1,4]
+  }, {
+    range: [1,5],
+    label: 'B',
+    values: [3,1.5],
+    tickvals: [1.5,3,4.5]
+  }, {
+    range: [1, 5],
+    label: 'C',
+    values: [2,4],
+    tickvals: [1,2,4,5],
+    ticktext: ['text 1','text 2','text 4','text 5']
+  }, {
+    range: [1, 5],
+    label: 'D',
+    values: [4,2]
+  }]
+};
+
+var data = [trace]
+
+// Plotly.newPlot(
+//     'plotly_div_hull_para',
+//     //participants_zpdes_array.map(makeTrace_para_hull),
+//     makeTrace_para_hull('Axelle', cumu_true_hull_points_per_participant)
+//     // data
+// )
+Plotly.newPlot(
+    'plotly_div_hull_para',
+    //participants_zpdes_array.map(makeTrace_para_hull),
+    makeTrace_mean_para_hull('Axelle', ps_true_hull_points_per_participant)
+    // data
+)
+
+
 
 // Animations functions:
-function update_timestep_display(){
+function update_timestep_display() {
     document.getElementById('time_step').innerHTML = index_frame
 }
+
 function launch_animation() {
     update();
 }
+
 function update() {
     index_frame++;
     update_timestep_display();
@@ -251,7 +432,7 @@ function update() {
                 redraw: true
             }
         },
-    layout_traj
+        layout_traj
     )
     if (index_frame < 10000) {
         my_req = requestAnimationFrame(update);
@@ -259,7 +440,8 @@ function update() {
         index_frame = 0;
     }
 }
-function stop_animation(){
+
+function stop_animation() {
     index_frame = 0;
     update_timestep_display();
     cancelAnimationFrame(my_req);
@@ -275,7 +457,7 @@ function stop_animation(){
                 redraw: true
             }
         },
-    layout_traj
+        layout_traj
     )
 }
 
