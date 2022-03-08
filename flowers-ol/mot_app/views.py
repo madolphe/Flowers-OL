@@ -1,3 +1,4 @@
+import pandas as pd
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -25,7 +26,7 @@ import random
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
 
-from .get_participant_progression import get_exp_status, get_staircase_episodes
+from .get_participant_progression import get_exp_status, get_staircase_episodes, get_zpdes_hull_episodes
 
 
 # ### Views and utilities for general-task ###
@@ -472,8 +473,10 @@ def completion_code(request):
 # Dashboards:
 @login_required
 def dashboard(request):
-    nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict = get_exp_status("v1_ubx")
-    all_staircase_participants = get_staircase_episodes("v1_ubx")
+    nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict, zpdes_participants, \
+    baseline_participants = get_exp_status("v1_ubx")
+    all_staircase_participants = get_staircase_episodes(baseline_participants)
+    hull_data = get_zpdes_hull_episodes(zpdes_participants)
     CONTEXT = {'sessions': [f"S{i}" for i in range(1, 11)],
                'user_status': {**descriptive_dict['zpdes'], **descriptive_dict['baseline'],
                                **descriptive_dict['cog']},
@@ -482,6 +485,26 @@ def dashboard(request):
                'nb_participants_zpdes': nb_zpdes,
                'nb_participants_baseline': nb_baseline,
                'baseline_participant_name': [participant for participant in all_staircase_participants.keys()],
-               'all_staircase_participant': all_staircase_participants
+               'zpdes_participant_name': [participant for participant in hull_data[0].keys()],
+               'all_staircase_participant': all_staircase_participants,
+               'cumu_all_hull_points_per_participant': json.dumps(hull_data[0]),
+               'cumu_true_hull_points_per_participant': json.dumps(hull_data[1]),
+               'ps_all_hull_points_per_participant': json.dumps(hull_data[2]),
+               'ps_true_hull_points_per_participant': json.dumps(hull_data[3])
                }
     return render(request, "tools/dashboard.html", CONTEXT)
+
+
+@login_required
+def zpdes_app(request):
+    df = pd.read_csv('static/JSON/zpdes_states.csv')
+    df_baseline = pd.read_csv('static/JSON/baseline_states.csv')
+    participant_max = {participant: len(df[df['participant'] == participant]) // 6 for participant in
+                             df.participant.unique()}
+    participant_max_baseline = {participant: len(df_baseline[df_baseline['participant'] == participant]) for
+                                participant in df_baseline.participant.unique()}
+    participant_max.update(participant_max_baseline)
+    participant_list = {'zpdes': list(df.participant.unique()), 'baseline': list(df_baseline.participant.unique())}
+    CONTEXT = {'participant_dict': participant_list,
+               'participant_max': json.dumps(participant_max)}
+    return render(request, 'tools/zpdes_app.html', CONTEXT)
