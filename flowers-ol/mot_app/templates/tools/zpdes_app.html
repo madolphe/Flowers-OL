@@ -13,7 +13,7 @@
         <select id="participant_selector" name="participant_selector">
             {% for cdt, participants_list in participant_dict.items %}
                 {% for participant in participants_list %}
-                    <option value={{ participant }}>{{ participant }} {{ cdt }}: {{ forloop.counter0 }}</option>
+                    <option value={{ participant }}>{{ cdt }}: participant_id {{ forloop.counter0 }}</option>
                 {% endfor %}
             {% endfor %}
         </select>
@@ -37,20 +37,20 @@
     </div>
     <div class="upper_row">
         <div class="main_graph">
-            <!--- Path is initialized on participant mangdoline and episode 0---->
+            <!--- Path is initialized on participant nolan and episode 0---->
             <img id="main_graph_img_bandit"
-                 src={% static 'images/zpdes_app/zpdes/Axelle/main_distrib/bandits_0.png' %}>
+                 src={% static 'images/zpdes_app/zpdes/nolan/main_distrib/bandits_0.png' %}>
             <img id="main_graph_img_success"
-                 src={% static 'images/zpdes_app/zpdes/Axelle/main_distrib/success_0.png' %}>
+                 src={% static 'images/zpdes_app/zpdes/nolan/main_distrib/success_0.png' %}>
         </div>
         <div class="sub_graphs">
-            <img id="sub_graphs_img" src={% static 'images/zpdes_app/zpdes/Axelle/radar_subs/0.png' %}>
+            <img id="sub_graphs_img" src={% static 'images/zpdes_app/zpdes/nolan/radar_subs/0.png' %}>
         </div>
     </div>
     <div class="trajectory">
         <!---
-        <img id="trajectory_main_img" src={% static 'images/zpdes_app/zpdes/Axelle/trajectory/main/0.png' %}>
-        <img id="trajectory_results_img" src={% static 'images/zpdes_app/zpdes/Axelle/trajectory/results/0-10.png' %}>
+        <img id="trajectory_main_img" src={% static 'images/zpdes_app/zpdes/nolan/trajectory/main/0.png' %}>
+        <img id="trajectory_results_img" src={% static 'images/zpdes_app/zpdes/nolan/trajectory/results/0-10.png' %}>
     -->
     </div>
 {% endblock %}
@@ -59,7 +59,7 @@
 <script>let participant_dict = {% autoescape off %}{{ participant_dict | safe }}{% endautoescape %};</script>
 <script>
     // Django template doesn't work, as a work around we us js:
-    document.getElementById("slider").max = participant_max['Axelle'] - 5;
+    document.getElementById("slider").max = participant_max['nolan'] - 5;
     // Initialize to first participant and index 0
     let select = document.getElementById('participant_selector');
     let slider = document.getElementById('slider');
