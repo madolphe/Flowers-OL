@@ -495,16 +495,19 @@ def dashboard(request):
     return render(request, "tools/dashboard.html", CONTEXT)
 
 
-@login_required
 def zpdes_app(request):
-    df = pd.read_csv('static/JSON/zpdes_states.csv')
-    df_baseline = pd.read_csv('static/JSON/baseline_states.csv')
-    participant_max = {participant: len(df[df['participant'] == participant]) // 6 for participant in
-                             df.participant.unique()}
-    participant_max_baseline = {participant: len(df_baseline[df_baseline['participant'] == participant]) for
-                                participant in df_baseline.participant.unique()}
-    participant_max.update(participant_max_baseline)
-    participant_list = {'zpdes': list(df.participant.unique()), 'baseline': list(df_baseline.participant.unique())}
+    # For local debug:
+    # df = pd.read_csv('static/JSON/zpdes_states.csv')
+    # df_baseline = pd.read_csv('static/JSON/baseline_states.csv')
+    # participant_max = {participant: len(df[df['participant'] == participant]) // 6 for participant in
+    #                          df.participant.unique()}
+    # participant_max_baseline = {participant: len(df_baseline[df_baseline['participant'] == participant]) for
+    #                             participant in df_baseline.participant.unique()}
+    # participant_max.update(participant_max_baseline)
+    # participant_list = {'zpdes': list(df.participant.unique()), 'baseline': list(df_baseline.participant.unique())}
+    # For prod:
+    participant_list = {'zpdes': ['nolan', 'kelly.vin'], 'baseline': ['Johanie', 'βen10']}
+    participant_max = {'nolan': 1340, 'kelly.vin': 2286, 'Johanie': 2320, 'βen10': 2408}
     CONTEXT = {'participant_dict': participant_list,
                'participant_max': json.dumps(participant_max)}
     return render(request, 'tools/zpdes_app.html', CONTEXT)
