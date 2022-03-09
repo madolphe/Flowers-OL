@@ -17,6 +17,9 @@ django-crispy-forms = "*"
 jsonfield = "*"
 kidlearn-lib = {editable = true,path = "./flowers-ol/mot_app/lib/kidlearn"}
 django-modeltranslation = "*"
+imageio = "*"
+jupyter = "*"
+ipywidgets = "*"
 
 [requires]
 python_version = "3.8"

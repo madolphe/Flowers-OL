@@ -49,7 +49,7 @@
                     {% endif %}
                 {% endfor %}
                 {% for none_block in user_data.2 %}
-                        <td class="empty"></td>
+                    <td class="empty"></td>
                 {% endfor %}
                 <td class="participant_label left_separation right_separation">{{ user_data.3 }}</td>
                 <td class="participant_label right_separation">{{ user_data.4 }}</td>
@@ -62,7 +62,7 @@
     <div id="plotly_div_stairase_nb"></div>
     <div id="plotly_div_stairase_idle"></div>
 </div>
-<div class="row"><p class="title_exp">ACTIVITY SPACE TRAJECTORY</p></div>
+<div class="row"><p class="title_exp">ACTIVITY SPACE TRAJECTORY STAIRCASE</p></div>
 <div class="container_staircase">
     <div id="plotly_div_animate"></div>
     <div class="animation_control">
@@ -71,16 +71,26 @@
             <button class="font_button" id="randomize" onclick="stop_animation()">STOP</button>
         </div>
         <div class="display_time_step">
-            <p class="display_font">Time step:  </p>
+            <p class="display_font">Time step: </p>
             <p class="display_font" id="time_step" style="margin-left: 5px">0</p>
         </div>
     </div>
 </div>
+<div class="row"><p class="title_exp">ACTIVITY SPACE TRAJECTORY ZPDES</p></div>
+<div class="container_hull_zpdes">
+    <div id="plotly_div_hull_para"></div>
+    <div id="plotly_div_hull_hull_volume"></div>
+</div>
 </body>
 </html>
-{% block js%}
-     <script>let participants_staircase_array = {% autoescape off %}{{ baseline_participant_name }}{% endautoescape %};</script>
-     <script>let participants_staircase_data = {% autoescape off %}{{ all_staircase_participant }}{% endautoescape %};</script>
-     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
-     <script src="{% static 'js/utils/plotly_app.js' %}"></script>
+{% block js %}
+<script> let participants_staircase_array = {% autoescape off %}{{ baseline_participant_name }}{% endautoescape %};</script>
+<script> let participants_zpdes_array = {% autoescape off %}{{ zpdes_participant_name }}{% endautoescape %};</script>
+<script> let participants_staircase_data = {% autoescape off %}{{ all_staircase_participant }}{% endautoescape %};</script>
+<script>let cumu_all_hull_points_per_participant = {% autoescape off %}{{ cumu_all_hull_points_per_participant|safe }}{% endautoescape %};</script>
+<script>let cumu_true_hull_points_per_participant = {% autoescape off %}{{ cumu_true_hull_points_per_participant|safe }}{% endautoescape %};</script>
+<script>let ps_all_hull_points_per_participant = {% autoescape off %}{{ ps_all_hull_points_per_participant|safe }}{% endautoescape %};</script>
+<script>let ps_true_hull_points_per_participant = {% autoescape off %}{{ ps_true_hull_points_per_participant|safe }}{% endautoescape %};</script>
+<script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+<script src="{% static 'js/utils/plotly_app.js' %}"></script>
 {% endblock %}
