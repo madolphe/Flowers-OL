@@ -1,0 +1,9 @@
+[submodule "flowers-ol/mot_app"]
+	path = flowers-ol/mot_app
+	url = https://github.com/madolphe/mot_app.git
+[submodule "flowers-ol/jold_ll_app"]
+	path = flowers-ol/jold_ll_app
+	url = https://github.com/madolphe/jold_ll_app.git
+[submodule "flowers-ol/survey_app"]
+	path = flowers-ol/survey_app
+	url = https://github.com/madolphe/survey_app.git
