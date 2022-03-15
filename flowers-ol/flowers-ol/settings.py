@@ -31,9 +31,9 @@ SECURE_REFERRER_POLICY = 'same-origin'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', "127.0.0.1", "flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
+ALLOWED_HOSTS = ['localhost', "127.0.0.1",  'flowers-ol.bordeaux.inria.fr',"flowers-mot.bordeaux.inria.fr", "flowers_mot.bordeaux.inria.fr"]
 LOGIN_URL = '/signup_page/'
 
 # Application definition
@@ -54,8 +54,9 @@ INSTALLED_APPS = [
 USER_APPS = [
     # This is the list of user-defined apps
     'manager_app',
-    'demo_app',
-    'survey_app'
+    'survey_app',
+    'jold_ll_app',
+    'mot_app'
 ]
 INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -159,3 +160,4 @@ MAX_ATTEMPTS = 10 # controls how many times a task will be attempted (default 25
 # MAX_RUN_TIME # maximum possible task run time, after which tasks will be unlocked and tried again (default 3600 seconds)
 # BACKGROUND_TASK_ASYNC_THREADS # Specifies number of concurrent threads. Default is multiprocessing.cpu_count().
 # BACKGROUND_TASK_PRIORITY_ORDERING # Control the ordering of tasks in the queue. Default is "DESC" (tasks with a higher number are processed first). Choose "ASC" to switch to the “niceness” ordering. A niceness of −20 is the highest priority and 19 is the lowest priority.
+X_FRAME_OPTIONS = 'ALLOWALL'

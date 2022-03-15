@@ -4,20 +4,25 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pandas = "*"
+streamlit = "*"
+hiplot = "*"
+jupyter = "*"
 
 [packages]
-django = "*"
-# mysqlclient = "==1.3.13"
-# pymysql = "*"
-django-crispy-forms = "*"
+django = "==3.1.7"
 django-extensions = "*"
-django-jsonfield = "*"
-django-modeltranslation = "*"
-jsonfield = "*"
-pandas = "*"
-# kidlearn-lib = {editable = true, path = "./lib/kidlearn"}
-future = "*"
 django-background-tasks = "*"
+django-crispy-forms = "*"
+jsonfield = "*"
+kidlearn-lib = {editable = true,path = "./flowers-ol/mot_app/lib/kidlearn"}
+django-modeltranslation = "*"
+imageio = "*"
+jupyter = "*"
+ipywidgets = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+runserver = "python flowers-ol/manage.py runserver"
