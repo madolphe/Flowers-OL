@@ -1,21 +1,15 @@
 # Flowers-OL project
 
-The aim of this project is to propose several tools to organize scientific tele-experimentations. Currently several 
-applications (following the django terminology) can be used:
-- An experiment manager app:
+The aim of this project is to propose several tools to organize scientific tele-experimentations. This repository contains the core of the project and a toy example.
+
+- Experiment manager app is the main component of the project, features included are:
     - Sign in and login page
     - Schedule tasks according to your experimental design
     - Automaticaly send emails to ask your participant to come back
     - Fit with Prolific guidelines (e.g user redirection after participation)
 
-- A survey app:
-    - Add your questionaires in the form of JSON files
-    - Use several widgets (e.g likert scale)
-    
-- A Multi-object tracking task:
-    - As describe here: []
+- Demo app is a toy example, it showcases cool features of this work
 
-*A documentation is still in progress*
 
 
 ## How to install
