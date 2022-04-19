@@ -37,7 +37,7 @@ class Task(models.Model):
     name = models.CharField(max_length=50, default='', unique=True)
     description = models.TextField(default='', blank=True)
     prompt = models.CharField(max_length=100, default='', blank=True)
-    view_name = models.CharField(max_length=50, default='')
+    view_name = models.CharField(max_length=50, default='', blank=True)
     exit_view = models.CharField(max_length=50, default='', blank=True)
     info_templates_csv = models.TextField(null=True, blank=True)
     extra_json = jsonfield.JSONField(default={}, blank=True)
