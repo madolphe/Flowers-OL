@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Lato sans-serif";
+    src: url("../font/Lato/Lato-Regular.ttf");
+}
 :root {
     --main-panel-width: 70%;
 }
@@ -6,7 +10,8 @@
 }
 /* || GENERAL STYLES */
 html, body {
-    font-family: "Lato", sans-serif;
+    /*font-family: "Lato", sans-serif;*/
+    font-family: "Lato sans-serif";
     display: flex;
     justify-content: space-between;
     margin: 0;
