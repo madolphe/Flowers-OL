@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Flowers OL | Off-session {% endblock %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/common.css" %}>
+    <style>
+        ul.next-dates {font-size: 16px; list-style-type: none; margin-top: 1em}
+        strong {font-size: 18px}
+        img {display: block; margin: auto;}
+        .checkbox {
+            display: inline-flex;
+            cursor: default;
+            position: relative;
+        }
+        .checkbox > span {
+            color: white;
+            padding-left: 1em;
+        }
+        .checkbox > input {
+            height: 20px;
+            width: 20px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            border: 1px solid white;
+            outline: none;
+            cursor: default;
+          }
+        .checkbox > input:checked {
+            border: 2px solid white;
+        }
+        .checkbox#skipped > input:checked {
+            border: 2px solid #FF2011;
+        }
+        .checkbox#skipped > input:checked + span::before {
+            content: '\d7';
+            display: block;
+            color: #FF2011;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
+        .checkbox#skipped > span {
+            color: #FF2011;
+            padding-left: 1em;
+        }
+        .checkbox#not_skipped > input:checked {
+            border: 2px solid #78BC73;
+        }
+        .checkbox#not_skipped > input:checked + span::before {
+            content: '\2714';
+            display: block;
+            color: #78BC73;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
+        .checkbox#not_skipped > span {
+            color: #78BC73;
+            padding-left: 1em;
+        }
+        .checkbox > input:checked + span::before {
+            content: '\2714';
+            display: block;
+            color: white;
+            position: absolute;
+            left: 5px;
+            font-size: .8em;
+        }
+        b.highlight{color:#FFFD8C}
+    </style>
+{% endblock %}
+{% block js %}
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+{% endblock js %}
+{% block content %}
+    <div class="side-panel">
+        <h2>{% trans "Impossible d'attribuer une session" %}</h2>
+        <p>{% trans "Nous n'avons pas pu vous trouver de session. C'est parce que :" %} </p>
+        <div class="side-info">
+            <div class="content">
+                <p>
+                    <b>{{CONTEXT.reason}}</b> {{CONTEXT.instructions}} {% if CONTEXT.details %} <b class="highlight">{{CONTEXT.details}}</b> {% endif %}
+                </p>
+            </div>
+            {% comment %} <strong> {% trans "Vos sessions : " %}</strong>
+            <ul class='next-dates'>
+                {% for entry in CONTEXT.schedule %}
+                    <li>
+                        {% if not entry.2 %}
+                            <label class="checkbox">
+                        {% else %}
+                            <label class="checkbox" {% if entry.3 %} id="skipped" {% else %} id="not_skipped" {% endif %}>
+                        {% endif %}
+                            <input type="checkbox" type="checkbox" onclick="return false" {% if entry.2 %}checked{% endif %}>
+                            <span> <div data-original-title="{{entry.1}}", class="details", data-toggle="tooltip" data-placement="top">{{entry.0}}</div> {% if entry.3 %} <span style="color: red">{% trans "(Pas d'entraînement)" %}</span> {% endif %}</span>
+                        </label>
+                    </li>
+                {% endfor %}
+            </ul> {% endcomment %}
+            <div class="fade-screen"></div>
+        </div>
+        <div class="btn-box" id="logout-button">
+            <a class="btn logout" href={% url "user_logout" %}>{% trans "Se déconnecter" %}</a>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <div class="svg-frame">
+            <div class="svg-image"><img src={% static "images/off_session.svg" %}></div>
+        </div>
+    </div>
+{% endblock %}

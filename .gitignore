@@ -1,0 +1,19 @@
+*.pyc
+.vscode
+.idea/
+lib/kidlearn/
+flowers-ol/manager_app/static/admin/
+# Pipfile
+Pipfile.lock
+*migrations/
+flowers-ol/flowers-ol-db
+flowers-ol-db
+flowers-ol/static
+flowers-ol/mot_app/lib/kidlearn/
+flowers-ol/mot_app/static/images/pre-post-imgs
+flowers-ol/mot_app/static/JSON/config_files/completion.json
+flowers-ol/.ipynb_checkpoints/
+flowers-ol/mot_app/analysis_extraction
+flowers-ol/mot_app/analysis_extraction/zpdes_states.csv
+flowers-ol/mot_app/static/JSON/zpdes_states.csv
+flowers-ol/mot_app/static/JSON/baseline_states.csv

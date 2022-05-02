@@ -1,0 +1,115 @@
+[
+    {
+        "model": "manager_app.Study",
+        "fields": {
+            "name"          : "demo",
+            "project"       : "Demo study",
+            "base_template" : "base.html",
+            "style"         : "css/common.css",
+            "briefing_template"  : "mot_app/consent_form.html",
+            "contact"       : "alexandr.ten@inria.fr"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {},
+            "deadline"      : {},
+            "index"         : 1,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 0.1},
+            "deadline"      : {"minutes": 1},
+            "index"         : 2,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"minutes": 5},
+            "deadline"      : {"minutes": 6},
+            "index"         : 3,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.ExperimentSession",
+        "fields": {
+            "study"         : "demo",
+            "wait"          : {"days": 10},
+            "deadline"      : {"minutes": 6},
+            "index"         : 4,
+            "required"       : false,
+            "tasks_csv"     : "demo-task"
+        }
+    },
+    {
+        "model": "manager_app.Task",
+        "fields": {
+            "name": "demo-task",
+            "description": "Demo task",
+            "prompt": "Start demo task",
+            "view_name": "questionnaire",
+            "exit_view": "exit_demo_task",
+            "info_templates_csv": "Basic information tabs=basic_tab.html",
+            "extra_json": {
+                "instruments": [
+                    "DEMO"
+                ]
+            }
+        }
+    },
+    {
+		"model": "survey_app.Question",
+		"fields": {
+			"instrument": "DEMO",
+			"component": "long_term",
+			"group": 1,
+			"handle": "prof-1",
+			"order": 1,
+			"prompt": "Taille de la diagonale de votre écran en cm",
+			"reverse": 0,
+			"min_val": 0,
+			"max_val": 1,
+			"step": 1,
+			"annotations": "none",
+			"widget": "multiple-widget",
+			"type": "float",
+			"help_text": "Taille en cm (ce paramètre peut être retrouvé dans les paramètres d'écran)",
+			"validate": "is_pos_num"
+		}
+	}
+]

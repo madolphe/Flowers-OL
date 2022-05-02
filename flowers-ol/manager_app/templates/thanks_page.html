@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% endblock %}
+{% block js%} {% endblock %}
+{% block css %}
+    {%load static%} <link rel="stylesheet" href="{% static "css/common.css" %}">
+    <style>
+        b.highlight{color:#FFFD8C}
+    </style>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block nav%} {%endblock%}
+{% block content%}
+    <div class="side-panel">
+        <div class="side-info">
+            <div class="content">
+                <h1>{{CONTEXT.heading}}</h1>
+                {{CONTEXT.text}} {% if CONTEXT.next_session_info %}{{CONTEXT.next_session_info}}.{% endif %}
+                {% comment %} {% trans "Votre prochaine session" %} <b class="highlight">{{CONTEXT.next_session_info}}</b>. {% trans "Nous vous demandons de bien vouloir suivre le programme." %} {% endcomment %}
+                <div class="fade-screen"></div>
+            </div>
+        </div>
+        <div class="btn-box" id="logout-button">
+            <a class="btn logout" href={% url "user_logout" %}>{% trans "Se déconnecter" %}</a>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <div class="svg-frame">
+            <div class="svg-image"><img src={% static "images/done.svg" %}></div>
+        </div>
+    </div>
+
+{% endblock %}
