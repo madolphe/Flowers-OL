@@ -1,0 +1,11 @@
+asgiref==3.5.1
+Django==3.1.7
+django-background-tasks==1.2.5
+django-compat==1.0.15
+django-crispy-forms==1.14.0
+django-extensions==3.1.5
+django-modeltranslation==0.17.6
+jsonfield==3.1.0
+pytz==2022.1
+six==1.16.0
+sqlparse==0.4.2
