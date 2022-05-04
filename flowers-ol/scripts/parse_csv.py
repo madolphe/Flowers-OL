@@ -2,8 +2,8 @@ import csv
 import copy
 import json
 
-file_name = "Rania_questions-fixed_questions"
-
+file_name = "Rania_questions-context_questions"
+model = "survey_app.ContextQuestionnaire"
 json_body = []
 
 with open(f"{file_name}.csv", newline='') as csvfile:
@@ -13,7 +13,7 @@ with open(f"{file_name}.csv", newline='') as csvfile:
             header = copy.deepcopy(row)
         else:
             new_question = {}
-            new_question["model"] = "survey_app.Question"
+            new_question["model"] = model
             new_question["fields"] = {}
             for key, value in zip(header,row):
                 new_question["fields"][key] = value
