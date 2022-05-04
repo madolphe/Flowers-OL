@@ -31,7 +31,7 @@ SECURE_REFERRER_POLICY = 'same-origin'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', "127.0.0.1"]
 LOGIN_URL = '/signup_page/'
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 ]
 USER_APPS = [
     # This is the list of user-defined apps
-    'manager_app']
+    'manager_app', 'survey_app']
 INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
