@@ -1,4 +1,3 @@
-
 [submodule "flowers-ol/survey_app"]
 	path = flowers-ol/survey_app
 	url = https://github.com/madolphe/survey_app.git
