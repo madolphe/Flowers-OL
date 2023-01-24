@@ -1,0 +1,649 @@
+2023-01-23 17:24:07,252 - ERROR - Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 413, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: manager_app_study
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/manager_app/views.py", line 29, in login_page
+    valid_study_title = bool(Study.objects.filter(name=study).count())
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/models/query.py", line 411, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/models/sql/query.py", line 515, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/models/sql/query.py", line 500, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1156, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py", line 413, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: manager_app_study
+2023-01-23 17:24:07,313 - WARNING - Not Found: /favicon.ico
+2023-01-23 17:27:05,889 - INFO - Unlinking django.db.backends.sqlite3 database
+2023-01-23 17:28:39,520 - INFO - Unlinking django.db.backends.sqlite3 database
+2023-01-23 17:29:19,664 - WARNING - Not Found: /static/js/csrfControl.js
+2023-01-23 17:29:19,665 - WARNING - Not Found: /static/css/style_signup.css
+2023-01-23 17:29:19,665 - WARNING - Not Found: /static/js/p5.min.js
+2023-01-23 17:29:19,665 - WARNING - Not Found: /static/js/jquery-3.4.1.min.js
+2023-01-23 17:29:19,666 - WARNING - Not Found: /static/js/addScreenPositionFunction.js
+2023-01-24 11:14:22,405 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 11:20:59,654 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 11:21:48,839 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:25:35,934 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/urls.py changed, reloading.
+2023-01-24 11:25:37,865 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task' with arguments '('',)' not found. 1 pattern(s) tried: ['launch_demo_cog_task/(?P<task_name>[^/]+)$']
+2023-01-24 11:25:37,988 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task' with arguments '('',)' not found. 1 pattern(s) tried: ['launch_demo_cog_task/(?P<task_name>[^/]+)$']
+2023-01-24 11:25:38,125 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:25:38,871 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task' with arguments '('',)' not found. 1 pattern(s) tried: ['launch_demo_cog_task/(?P<task_name>[^/]+)$']
+2023-01-24 11:25:38,966 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:38,667 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:38,743 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:39,235 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:39,316 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:39,438 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:39,508 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:39,959 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:40,060 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:40,078 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:40,140 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:40,145 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:40,221 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:28:40,226 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:40,304 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:28:40,318 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py", line 517, in flowers_demo
+    return render(request, 'tools/flowers_demo.html')
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/template/defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/urls/resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'launch_demo_cog_task/enumeration' not found. 'launch_demo_cog_task/enumeration' is not a valid view function or pattern name.
+2023-01-24 11:30:18,451 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:30:20,718 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:30:20,721 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:30:20,722 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:30:20,723 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:30:20,730 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:30:20,732 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:30:20,742 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:30:20,743 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:30:20,747 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:30:20,749 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:30:20,755 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:30:20,757 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:33:11,099 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 11:33:12,796 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:33:12,820 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:33:12,829 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:33:12,835 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:33:12,839 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:33:12,842 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:33:12,844 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:33:12,847 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:33:12,855 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:33:12,857 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:33:12,859 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:33:12,862 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:33:12,864 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:33:15,370 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:33:15,371 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:33:15,372 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:33:15,375 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:33:15,377 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:33:15,378 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:33:15,414 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:33:15,416 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:33:15,419 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:33:15,422 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:33:15,426 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:33:15,428 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:33:19,325 - WARNING - Not Found: /launch_demo_cog_task/
+2023-01-24 11:33:21,157 - WARNING - Not Found: /launch_demo_cog_task/
+2023-01-24 11:33:21,276 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:33:23,981 - WARNING - Not Found: /launch_demo_cog_task
+2023-01-24 11:33:45,556 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:33:46,113 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:33:46,638 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:33:46,923 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:35:13,718 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:35:20,387 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:35:28,864 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:35:28,866 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:35:28,868 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:35:28,870 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:35:28,873 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:35:28,874 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:35:28,884 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd.otf
+2023-01-24 11:35:28,887 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 11:35:28,892 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:35:28,893 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:35:28,896 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:35:28,900 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:35:28,903 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:35:28,906 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:35:38,409 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:36:07,083 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:36:07,148 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 11:38:06,078 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 11:38:07,820 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:38:09,545 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:38:09,547 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:38:09,551 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:38:09,556 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:38:09,561 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:38:09,565 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:38:09,570 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:38:09,583 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:38:09,587 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:38:09,589 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:38:09,590 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:38:09,592 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:38:09,596 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:38:09,600 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:43:10,333 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:50:55,987 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:51:09,350 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:52:07,538 - ERROR - Internal Server Error: /questionnaire
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/survey_app/views.py", line 18, in questionnaire
+    instrument__in = task_extra['instruments']
+KeyError: 'instruments'
+2023-01-24 11:52:10,335 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:52:43,518 - WARNING - Not Found: /demo_flowers
+2023-01-24 11:52:53,993 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:52:53,995 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:52:53,997 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:52:53,999 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:52:54,001 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:52:54,005 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:52:54,014 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:52:54,016 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:52:54,018 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:52:54,020 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:52:54,023 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:52:54,028 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:52:54,031 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:52:54,033 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:53:06,110 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:06,115 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:53:06,116 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:06,118 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:06,121 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:06,125 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:06,131 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:06,134 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:06,136 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/noise.png
+2023-01-24 11:53:06,138 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:06,141 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:06,143 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:08,553 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:08,555 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:08,557 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:08,560 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:08,566 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:08,569 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:08,571 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd.otf
+2023-01-24 11:53:08,573 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:08,577 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:08,582 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 11:53:08,587 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:08,589 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:08,590 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:08,593 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:11,194 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 11:53:11,196 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:11,200 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:11,204 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:11,205 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:11,209 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:11,214 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:11,217 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd.otf
+2023-01-24 11:53:11,221 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:53:11,223 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:11,228 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:11,230 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:11,232 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:11,233 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:11,237 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:44,486 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:53:44,488 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:44,489 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:44,491 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:44,492 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:44,494 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:44,510 - WARNING - Not Found: /favicon.ico
+2023-01-24 11:53:44,511 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:53:44,513 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:53:44,515 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:53:44,516 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:53:44,524 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:53:44,526 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:53:44,529 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:53:44,531 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:56:38,470 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:56:51,214 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:56:53,007 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:56:54,458 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:56:55,182 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:57:08,216 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:57:08,813 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:57:09,551 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 11:58:22,688 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 11:58:22,690 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 11:58:22,692 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 11:58:22,694 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 11:58:22,695 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 11:58:22,699 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 11:58:22,704 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 12:04:20,451 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 12:04:20,463 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 12:06:37,998 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 12:06:37,999 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 12:06:38,011 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 12:06:38,012 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 12:06:38,022 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 12:06:38,033 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 12:06:38,048 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 12:06:38,074 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/obj_mot.png
+2023-01-24 12:06:38,087 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_3.png
+2023-01-24 12:06:38,093 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_2.png
+2023-01-24 12:06:38,104 - WARNING - Not Found: /launch_demo_cog_task/static/images/icons/success.png
+2023-01-24 12:06:38,113 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/tutorial/bubble_line.png
+2023-01-24 12:06:38,126 - WARNING - Not Found: /launch_demo_cog_task/static/images/pre-post-imgs/bkg_largewindow.png
+2023-01-24 12:06:38,127 - WARNING - Not Found: /launch_demo_cog_task/static/images/researcher/researcher_1.png
+2023-01-24 12:06:46,629 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 12:06:46,645 - WARNING - Not Found: /launch_demo_cog_task/static/font/gillsansstd/GillSansStd-Light.otf
+2023-01-24 12:12:28,748 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/urls.py changed, reloading.
+2023-01-24 12:14:52,419 - WARNING - Not Found: /launch_demo_cog_task/moteval
+2023-01-24 12:14:52,595 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:14:57,722 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:15:14,054 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:15:29,526 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 12:15:31,983 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:15:32,990 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:15:34,870 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:15:34,991 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:15:45,331 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:15:45,484 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:15:47,860 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:15:49,065 - WARNING - Forbidden (CSRF token missing or incorrect.): /flowers_demo
+2023-01-24 12:16:18,436 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:17:44,489 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:18:36,004 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:18:57,090 - WARNING - Not Found: /favicon.ico
+2023-01-24 12:21:32,750 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/urls.py changed, reloading.
+2023-01-24 13:53:48,924 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:02:21,058 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 14:02:24,224 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:02:24,668 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:02:53,372 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:03:33,156 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 14:03:35,911 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:03:37,587 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:35:45,689 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:48:01,411 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:48:44,213 - WARNING - Not Found: /favicon.ico
+2023-01-24 14:51:19,538 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:05:55,219 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:11:01,135 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:11:10,331 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 309, in check_response
+    raise ValueError(
+ValueError: The view mot_app.views.flowers_demo didn't return an HttpResponse object. It returned None instead.
+2023-01-24 15:11:52,275 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 309, in check_response
+    raise ValueError(
+ValueError: The view mot_app.views.flowers_demo didn't return an HttpResponse object. It returned None instead.
+2023-01-24 15:12:44,502 - WARNING - Not Found: /favicon.ico
+2023-01-24 15:15:04,145 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:15:48,874 - ERROR - Internal Server Error: /flowers_demo
+Traceback (most recent call last):
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/Users/m.adolphe/.local/share/virtualenvs/Flowers-OL-ZrktkI4i/lib/python3.8/site-packages/django/core/handlers/base.py", line 309, in check_response
+    raise ValueError(
+ValueError: The view mot_app.views.flowers_demo didn't return an HttpResponse object. It returned None instead.
+2023-01-24 15:16:19,511 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:17:56,984 - INFO - /Users/m.adolphe/Documents/projects/Flowers-OL/flowers-ol/mot_app/views.py changed, reloading.
+2023-01-24 15:18:00,259 - WARNING - Not Found: /favicon.ico
+2023-01-24 15:23:11,008 - WARNING - Not Found: /favicon.ico
+2023-01-24 15:23:47,736 - WARNING - Not Found: /favicon.ico
+2023-01-24 15:26:45,206 - WARNING - Not Found: /favicon.ico

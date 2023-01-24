@@ -120,3 +120,17 @@ let size_end_text = Math.round(0.5*ppd);
 
 ////
 let bar, success;
+
+// exit task
+let exit_view = "exit_view_cognitive_task"
+
+let debug = true;
+if(debug){
+    num_rep_main = 1; // debug
+    array_stimcond_main = [5,6]; //debug
+    time_stimduration_main = 50; //in ms Green & Bavelier (2006)
+    time_stimduration_practice = 100; //in ms Green & Bavelier (2006)
+    time_maskduration = 100; //in ms
+    time_fixation = 100; // in millisecond
+
+}

@@ -204,24 +204,11 @@ function create_end_button(){
 
 function quit_task(){
   fullscreen(false);
-  /*
-  let parameters_to_save = [
-      {'':['results_responses','results_rt','results_speed_stim','results_correct']},
-      {'':Params.results_responses},
-      {'':Params.results_rt},
-      {'':Params.results_speed_stim},
-      {'':Params.results_correct}
-      ]
-    //for loacl debugging
-  //exportCSV(parameters_to_save,',', 'workingmemory');
-  //location.href='../index.html'
-  //
-  */
   let parameters_to_save = {
     'results_responses': Params.results_responses,
     'results_rt': Params.results_rt,
     'results_speed_stim': Params.results_speed_stim,
-    'results_correct': Params.results_correct
+    'results_correct': Params.results_correct,
   }
-  post('exit_view_cognitive_task', parameters_to_save, 'post');
+  post(exit_view, parameters_to_save, 'post');
 }

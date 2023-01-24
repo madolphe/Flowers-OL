@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-18 08:50+0200\n"
+"POT-Creation-Date: 2023-01-23 17:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,45 +75,6 @@ msgstr "and closes on {}"
 msgid "et reste ouverte jusqu'à ce que vous la terminiez"
 msgstr "and remains open until you complete it"
 
-#: manager_app/templates/consent_page.html:13
-msgid "Pour donner votre consentement et participer à l'expérience:"
-msgstr "To give your consent and participate in the experiment:"
-
-#: manager_app/templates/consent_page.html:15
-msgid "Lisez attentivement le formulaire de consentement sur la droite"
-msgstr "Read the consent form on the right carefully"
-
-#: manager_app/templates/consent_page.html:16
-msgid "Cochez la case "
-msgstr "Check the box"
-
-#: manager_app/templates/consent_page.html:16
-msgid "J'ai lu et compris les termes de cette étude"
-msgstr "I have read and understood the terms of this study"
-
-#: manager_app/templates/consent_page.html:17
-msgid "Écrivez "
-msgstr "Write"
-
-#: manager_app/templates/consent_page.html:17
-msgid "Je consens"
-msgstr "I consent"
-
-#: manager_app/templates/consent_page.html:18
-msgid "Cliquez ensuite sur"
-msgstr "Then click on"
-
-#: manager_app/templates/consent_page.html:18
-msgid "Valider"
-msgstr "Confirm"
-
-#: manager_app/templates/consent_page.html:21
-#: manager_app/templates/home_page.html:29
-#: manager_app/templates/off_session_page.html:111
-#: manager_app/templates/thanks_page.html:25
-msgid "Se déconnecter"
-msgstr "Log out"
-
 #: manager_app/templates/home_page.html:20
 msgid "Salut"
 msgstr "Hi"
@@ -121,6 +82,12 @@ msgstr "Hi"
 #: manager_app/templates/home_page.html:21
 msgid "Ici, vous pouvez voir votre progression dans la session en cours"
 msgstr "Here, you can see your progress in the current session"
+
+#: manager_app/templates/home_page.html:29
+#: manager_app/templates/off_session_page.html:111
+#: manager_app/templates/thanks_page.html:25
+msgid "Se déconnecter"
+msgstr "Log out"
 
 #: manager_app/templates/login_page.html:13
 msgid "Se connecter ou s'inscrire pour accéder à l'expérience."
@@ -219,6 +186,30 @@ msgstr "The study has been completed"
 #: manager_app/views.py:167
 msgid "Merci, pour votre contribution à la science !"
 msgstr "Thank you for your contribution to science!"
+
+#~ msgid "Pour donner votre consentement et participer à l'expérience:"
+#~ msgstr "To give your consent and participate in the experiment:"
+
+#~ msgid "Lisez attentivement le formulaire de consentement sur la droite"
+#~ msgstr "Read the consent form on the right carefully"
+
+#~ msgid "Cochez la case "
+#~ msgstr "Check the box"
+
+#~ msgid "J'ai lu et compris les termes de cette étude"
+#~ msgstr "I have read and understood the terms of this study"
+
+#~ msgid "Écrivez "
+#~ msgstr "Write"
+
+#~ msgid "Je consens"
+#~ msgstr "I consent"
+
+#~ msgid "Cliquez ensuite sur"
+#~ msgstr "Then click on"
+
+#~ msgid "Valider"
+#~ msgstr "Confirm"
 
 #~ msgid "Votre prochaine session"
 #~ msgstr "Your next session"

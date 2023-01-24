@@ -20,7 +20,6 @@
     <script> size_screen_cm_w = {% autoescape off %}{{CONTEXT.screen_params}}{% endautoescape %} </script>
     <script src="{% static 'js/utils/screen_params.js' %}"></script>
     <script src="{% static 'js/utils/utils.js' %}"></script>
-
     {% load mot_app_extras %}
     {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/config.js" as task_config %}
         <script src="{% static task_config %}"></script>
@@ -46,4 +45,7 @@
     {% with "js/app_"|addstr:CONTEXT.task|addstr:"_task/"|addstr:CONTEXT.task|addstr:".js" as task_template %}
         <script src="{% static task_template %}"></script>
     {% endwith  %}
+    <script> if({% autoescape off %}"{{ CONTEXT.is_demo }}"{% endautoescape %}){
+        exit_view = {% autoescape off %}"{{ CONTEXT.is_demo }}"{% endautoescape %};
+    }</script>
 {% endblock %}

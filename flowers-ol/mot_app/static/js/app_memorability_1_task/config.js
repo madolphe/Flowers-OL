@@ -126,6 +126,12 @@ function make_array(val_start, val_stop, num_array) {
     return array;
   }
 
-  let bar, success;
+let bar, success;
 
-  let flag_load_end = false;
+let flag_load_end = false;
+// exit task
+let exit_view = "exit_view_cognitive_task"
+let debug = true;
+if(debug){
+
+}

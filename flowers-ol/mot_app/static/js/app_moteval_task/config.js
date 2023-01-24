@@ -90,8 +90,8 @@ let Button = [];
 
 let x_ok = -Math.round(0*ppd);
 let y_ok = Math.round(4*ppd);
-let x_restart = -Math.round(5.5*ppd);; //in pixel
-let y_restart = -Math.round(4*ppd);; //in pixel
+let x_restart = -Math.round(5.5*ppd); //in pixel
+let y_restart = -Math.round(4*ppd); //in pixel
 
 let col_check = [128,0,0,128];
 
@@ -103,3 +103,17 @@ let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
 let size_end_text = Math.round(0.5*ppd);
 
 let bar, success;
+
+// exit task
+let exit_view = "exit_view_cognitive_task"
+
+let debug = true;
+if(debug){
+    num_rep_main = 1;//debug
+    duration_target = 100; //debug
+    time_totalstimduration = 100; //debug
+    time_fixation = 100; //debug
+    duration_stop = 100; //debug
+    num_target_main = [1]; //Experimental condition.
+    num_target_practice = [1]; //Experimental condition.
+}

@@ -473,7 +473,7 @@ def completion_code(request):
 @login_required
 def dashboard(request):
     nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict, zpdes_participants, \
-    baseline_participants = get_exp_status("v1_ubx")
+        baseline_participants = get_exp_status("v1_ubx")
     all_staircase_participants = get_staircase_episodes(baseline_participants)
     hull_data = get_zpdes_hull_episodes(zpdes_participants)
     CONTEXT = {'sessions': [f"S{i}" for i in range(1, 11)],
@@ -510,3 +510,20 @@ def zpdes_app(request):
     CONTEXT = {'participant_dict': participant_list,
                'participant_max': json.dumps(participant_max)}
     return render(request, 'tools/zpdes_app.html', CONTEXT)
+
+
+def flowers_demo(request):
+    CONTEXT = {
+        'tasks': ["moteval", "enumeration", "loadblindness", "gonogo", "memorability_1", "taskswitch", "workingmemory"]}
+    if request.method == "POST" and not request_from_demo_cog(request):
+        screen_params = 33
+        task = request.POST.get("task")
+        return render(request,
+                      'pre-post-tasks/base_pre_post_app.html',
+                      {"CONTEXT": {"screen_params": screen_params, "task": task, "is_demo": "flowers_demo"}})
+    else:
+        return render(request, 'tools/flowers_demo.html', CONTEXT)
+
+
+def request_from_demo_cog(request):
+    return len([elt for elt in request.POST.keys() if "results" in elt]) > 0

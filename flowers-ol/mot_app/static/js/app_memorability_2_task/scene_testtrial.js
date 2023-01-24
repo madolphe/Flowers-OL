@@ -141,7 +141,7 @@ function scene_instruction(){
       'results_stimind':Params.results_stimind,
       'results_trial':Params.results_trial
     }
-    post('exit_view_cognitive_task', parameters_to_save, 'post');
+    post(exit_view, parameters_to_save, 'post');
   /*
     let parameters_to_save = [
         {'':['results_responses','results_rt','results_targetvalue','results_flagcorrect','results_ind_trial_filler','results_ind_trial_target1','results_ind_trial_target2']},

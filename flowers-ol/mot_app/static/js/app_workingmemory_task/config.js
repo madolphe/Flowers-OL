@@ -92,6 +92,10 @@ let x_end = Pos.center_x- (size_end_w/2); //in pixel
 let y_end = Pos.center_y+Math.round(2*ppd)-(size_end_h/2); //in pixel
 let size_end_text = Math.round(0.5*ppd);
 
-
-
 let bar, success;
+let debug = true;
+// exit task
+let exit_view = "exit_view_cognitive_task"
+if(debug){
+
+}

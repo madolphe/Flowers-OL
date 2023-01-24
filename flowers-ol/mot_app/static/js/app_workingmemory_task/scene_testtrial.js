@@ -176,7 +176,7 @@ function scene_instruction(){
       'results_num_stim': Params.results_num_stim,
       'results_correct': Params.results_correct
     }
-    post('exit_view_cognitive_task', parameters_to_save, 'post');
+    post(exit_view, parameters_to_save, 'post');
     /*
     let parameters_to_save = [
         {'':['results_responses','results_targetvalue_stim','results_num_stim']},

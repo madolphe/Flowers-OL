@@ -117,3 +117,9 @@ y_fixation_answer = Pos.center_y -(size_fixation_answer_y/2) +Math.round(6*ppd);
 let pos_guide = Math.round(1*ppd);
 
 let bar, success;
+// exit task
+let exit_view = "exit_view_cognitive_task"
+let debug = true;
+if(debug){
+
+}

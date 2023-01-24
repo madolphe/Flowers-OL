@@ -105,7 +105,7 @@ function scene_instruction(){
       'results_ind_previous': Params.results_ind_previous,
       'results_targetvalue': Params.results_targetvalue
     }
-  post('exit_view_cognitive_task', parameters_to_save, 'post');
+  post(exit_view, parameters_to_save, 'post');
   /*
     let parameters_to_save = [
       {'':['results_responses','results_rt','results_ind_previous','results_targetvalue']},

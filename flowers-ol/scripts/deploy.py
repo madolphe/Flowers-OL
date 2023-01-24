@@ -70,6 +70,7 @@ locales = ['en']
 def main():
     deployer = Deployer()
     prefix = 'python manage.py' if os.getenv('PIPENV_ACTIVE') != '1' else 'pipenv run python manage.py'
+    prefix = 'python manage.py'
     if args.reset_db or args.all:
         # If user wants to reset db:
         # First reset database

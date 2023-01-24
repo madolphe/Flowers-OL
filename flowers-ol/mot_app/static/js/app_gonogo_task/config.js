@@ -93,3 +93,9 @@ let col_0 =[128,0,0];
 let col_1 = [0,0,128];
 
 let bar, success;
+// exit task
+let exit_view = "exit_view_cognitive_task"
+let debug = true;
+if(debug){
+
+}

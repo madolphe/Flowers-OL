@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load static %}
+{% block css %}
+{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Flowers</title>
+</head>
+<body>
+    <h2>Cognitive battery</h2>
+    <form method="post">
+    {% csrf_token %}
+        {% for task in tasks %}
+            <button name="task" value={{ task }}>{{ task }}</button>
+        {% endfor %}
+    </form>
+    <h2>Multi-object tracking training</h2>
+</body>
+</html>
+{% block js %}
+
+{% endblock %}

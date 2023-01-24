@@ -207,7 +207,7 @@ function scene_instruction(){
       'results_target_distance': Params.results_target_distance,
       'results_rt_fixation':Params.results_rt_fixation
     }
-    post('exit_view_cognitive_task', parameters_to_save, 'post');
+    post(exit_view, parameters_to_save, 'post');
   /*
       let parameters_to_save = [
         {'':['results_responses_pos','results_responses_fix','results_rt','results_targetvalue_stim','results_targetvalue_fixation','results_target_distance']},

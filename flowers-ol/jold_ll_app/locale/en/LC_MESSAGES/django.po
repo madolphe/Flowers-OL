@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 01:07+0200\n"
+"POT-Creation-Date: 2023-01-23 17:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -568,9 +568,9 @@ msgstr ""
 
 #: jold_ll_app/templates/tasks/consent/consent_form.html:139
 msgid ""
-" Contacter le DPD par voie électronique : <a href=\"mailto:dpd@inria.fr"
-"\">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a href="
-"\"mailto:anne.combe@inria.fr\">anne.combe@inria.fr</a>)"
+" Contacter le DPD par voie électronique : <a href=\"mailto:dpd@inria."
+"fr\">dpd@inria.fr</a>. Le DPD nommé par Inria est Madame Anne COMBE (<a "
+"href=\"mailto:anne.combe@inria.fr\">anne.combe@inria.fr</a>)"
 msgstr ""
 "Contact the DPO by email: <a href=\"mailto:dpd@inria.fr\">dpd@inria.fr</a>. "
 "The representative at Inria is Madame Anne COMBE (<a href=\"mailto:anne."
@@ -833,12 +833,8 @@ msgstr ""
 "ship when the window turns orange"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:14
-msgid ""
-"La réponse à cette question correspond à la position du "
-"curseur: "
-msgstr ""
-"The answer to this question corresponds to the position of the "
-"cursor:"
+msgid "La réponse à cette question correspond à la position du curseur: "
+msgstr "The answer to this question corresponds to the position of the cursor:"
 
 #: jold_ll_app/templates/tasks/questionnaire/example_widgets.html:27
 msgid "Il peut être très faible"
@@ -904,15 +900,15 @@ msgstr ""
 "Please, read the questions carefully and try to answer them as accurately as "
 "possible."
 
-#: jold_ll_app/views.py:80
+#: jold_ll_app/views.py:84
 msgid "Vous avez terminé l'entraînement de Lunar Lander"
 msgstr "You have completed the Lunar Lander training"
 
-#: jold_ll_app/views.py:81
+#: jold_ll_app/views.py:85
 msgid "Ne partez pas tout de suite ! Il y a un questionnaire à remplir."
 msgstr "Don't leave just yet! There is a questionnaire to fill in."
 
-#: jold_ll_app/views.py:94
+#: jold_ll_app/views.py:100
 msgid "Le questionnaire est complet"
 msgstr "The questionnaire is complete"
 
