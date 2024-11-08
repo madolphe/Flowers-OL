@@ -1,0 +1,64 @@
+[project]
+authors = [{ name = "Maxime Adolphe", email = "maxime.adolphe@inria.fr" }]
+name = "flowers-ol"
+description = ""
+readme = "README.md"
+requires-python = ">=3.8"
+dynamic = ["version"]
+dependencies = [
+  "django-background-task>=0.1.8",
+  "django-crispy-forms>=1.14.0",
+  "django-extensions>=3.1.5",
+  "django-modeltranslation>=0.18.2",
+  "django==3.1.7",
+  "jsonfield>=3.1.0",
+]
+
+[project.urls]
+Repository = "https://github.com/madolphe/Flowers-OL"
+
+[project.scripts]
+runserver = "flowers-ol.manage:runserver"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "flowers-ol/__version__.py"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["flowers-ol"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310"]
+preview = true
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.vscode
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+exclude = [".git", "__pycache__", "dist", "build"]
+
+[tool.uv]
+dev-dependencies = [
+  "black>=24.8.0",
+  "hiplot>=0.1.33",
+  "jupyter>=1.1.1",
+  "pandas>=2.0.3",
+  "pytest>=8.3.3",
+  "pytest-cov>=5.0.0",
+  "ruff>=0.7.2",
+  "streamlit>=1.39.0",
+]
