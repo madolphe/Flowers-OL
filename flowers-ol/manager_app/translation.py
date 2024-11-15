@@ -4,11 +4,11 @@ from .models import Study, Task
 
 
 class StudyTranslationOptions(TranslationOptions):
-    fields = ['project']
+    fields = ["project"]
 
 
 class TaskTranslationOptions(TranslationOptions):
-    fields = ['prompt', 'description','actions','info_templates_csv']
+    fields = ["prompt", "description", "actions", "info_templates_csv"]
 
 
 translator.register(Study, StudyTranslationOptions)

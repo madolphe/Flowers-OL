@@ -12,25 +12,27 @@ from .models import Study
 # TRY TO CONNECT WITH NO ACCOUNT #
 # ASSERT THAT IT IS NOT POSSIBLE TO SIGN IN WHEN NOT THE PROPER URL #
 
+
 @pytest.mark.django_db
 def test_studies_in_db():
-    study = Study.objects.get(name='zpdes_mot')
-    assert study.name == 'zpdes_mot'
+    study = Study.objects.get(name="zpdes_mot")
+    assert study.name == "zpdes_mot"
 
 
 # Create a general fixture to create user:
 @pytest.fixture
 def test_password():
-    return 'test_password'
+    return "test_password"
 
 
 @pytest.fixture
 def create_user(db, django_user_model, test_password):
     def make_user(**kwargs):
-        kwargs['password'] = test_password
-        if 'username' not in kwargs:
-            kwargs['username'] = str(uuid.uuid4())
+        kwargs["password"] = test_password
+        if "username" not in kwargs:
+            kwargs["username"] = str(uuid.uuid4())
         return django_user_model.objects.create_user(**kwargs)
+
     return make_user
 
 
@@ -40,7 +42,7 @@ def test_user_create():
     Create a user and check that it is the only one in db
     :return:
     """
-    User.objects.create_user('test_user', 'test_user@mail.com', 'password')
+    User.objects.create_user("test_user", "test_user@mail.com", "password")
     assert User.objects.count() == 1
 
 
@@ -52,7 +54,7 @@ def test_view(client):
     :key
     """
     # Rq: fixture admin_client also exists (for super user)
-    url = reverse('login_page')
+    url = reverse("login_page")
     response = client.get(url)
     assert response.status_code == 200
 
@@ -65,7 +67,7 @@ def test_view(client):
     :key
     """
     # Rq: fixture admin_client also exists (for super user)
-    url = reverse('home')
+    url = reverse("home")
     response = client.get(url)
     assert response.status_code == 302
 
@@ -78,6 +80,7 @@ def auto_login_user(db, client, create_user, test_password):
             user = create_user()
         client.login(username=user.username, password=test_password)
         return client, user
+
     return make_auto_login
 
 
@@ -88,8 +91,6 @@ def test_auth_view(auto_login_user):
     :key
     """
     client, user = auto_login_user()
-    url = reverse('login_page')
+    url = reverse("login_page")
     response = client.get(url)
     assert response.status_code == 200
-
-

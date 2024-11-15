@@ -26,5 +26,5 @@ urlpatterns = [
         "reset_user_participant",
         views.reset_user_participant,
         name="reset_user_participant",
-    )
+    ),
 ]
