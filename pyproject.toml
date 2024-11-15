@@ -6,12 +6,15 @@ readme = "README.md"
 requires-python = ">=3.8,<3.9"
 dynamic = ["version"]
 dependencies = [
+  "black>=24.8.0",
   "django-background-tasks==1.2.5",
   "django-crispy-forms>=1.14.0",
   "django-extensions>=3.1.5",
   "django-modeltranslation>=0.18.2",
   "django==3.1.7",
+  "flake8>=5.0.4",
   "gunicorn>=23.0.0",
+  "isort>=5.13.2",
   "jsonfield>=3.1.0",
 ]
 
@@ -51,6 +54,11 @@ exclude = '''
 line-length = 88
 target-version = "py38"
 exclude = [".git", "__pycache__", "dist", "build"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_third_party = ["uv"]  # Add external libraries here
 
 [tool.uv]
 dev-dependencies = [
