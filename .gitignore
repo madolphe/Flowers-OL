@@ -17,3 +17,4 @@ flowers-ol/mot_app/analysis_extraction
 flowers-ol/mot_app/analysis_extraction/zpdes_states.csv
 flowers-ol/mot_app/static/JSON/zpdes_states.csv
 flowers-ol/mot_app/static/JSON/baseline_states.csv
+.env
