@@ -158,3 +158,6 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+
+# MacOS DS_Store
+.DS_Store
