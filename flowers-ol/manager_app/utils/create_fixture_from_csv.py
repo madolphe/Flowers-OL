@@ -1,5 +1,6 @@
-import pandas as pd
 import json
+
+import pandas as pd
 
 
 def parse_to_fixture(path_to_csv, path_to_save):

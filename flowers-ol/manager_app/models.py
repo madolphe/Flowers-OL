@@ -1,15 +1,20 @@
-from random import shuffle
-from django.db import models
-from django.utils import timezone
-import datetime, uuid, json, jsonfield
+import datetime
+import json
+import uuid
 from datetime import timedelta as delta
+from random import shuffle
+
+import jsonfield
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.db import models
 from django.forms import ModelForm
+from django.template.loader import render_to_string
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 from .utils import send_delayed_email
 from .validators import validate_session_stack, validate_timedelta_args
-from django.core.exceptions import ValidationError
-from django.template.loader import render_to_string
-from django.utils.translation import gettext_lazy as _
 
 
 class Study(models.Model):

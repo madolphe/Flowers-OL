@@ -1,10 +1,11 @@
-from django import forms
-from .models import ParticipantProfile
-from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Div, HTML
-from django.utils.translation import gettext_lazy as _
+from crispy_forms.layout import HTML, Div, Layout, Row, Submit
+from django import forms
 from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+
+from .models import ParticipantProfile
 
 
 class SignInForm(forms.Form):

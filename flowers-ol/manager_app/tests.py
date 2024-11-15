@@ -1,9 +1,10 @@
-import pytest
 import uuid
+
+import pytest
 from django.contrib.auth.models import User
-from .models import Study
 from django.urls import reverse
 
+from .models import Study
 
 # FIRST TESTS ON DB : LOOK FOR STUDY, TASKS AND QUESTIONS #
 # THEN CREATE USER AND PARTICIPANT THKS TO SIGN IN VIEW #

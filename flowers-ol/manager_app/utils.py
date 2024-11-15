@@ -1,13 +1,15 @@
-from datetime import date, timedelta, datetime
-from django.contrib import messages
+import csv
+from datetime import date, datetime, timedelta
+
 from background_task import background
 from django.conf import settings
+from django.contrib import messages
 from django.core.mail import send_mail
-from django.utils.html import strip_tags
-from django.utils import timezone
-from . import models
-import csv
 from django.http import HttpResponse
+from django.utils import timezone
+from django.utils.html import strip_tags
+
+from . import models
 
 
 def add_message(request, message, tag='info'):

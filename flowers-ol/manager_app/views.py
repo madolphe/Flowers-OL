@@ -1,18 +1,19 @@
-from django.shortcuts import render, redirect, HttpResponse
-from django.urls import reverse, resolve
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth import authenticate, login, logout
+import datetime
+import json
+
 from django.contrib import messages as django_messages
-from django.views.decorators.cache import never_cache
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
+from django.shortcuts import HttpResponse, redirect, render
+from django.urls import resolve, reverse
 from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.cache import never_cache
 
-import json, datetime
-
-from .models import ParticipantProfile, Study, ExperimentSession
 from .forms import SignInForm, SignUpForm
+from .models import ExperimentSession, ParticipantProfile, Study
 
 
 def login_page(request, study=''):
