@@ -13,16 +13,23 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.utils.translation import gettext_lazy as _
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mc9e-tp)bkt0+0d^fj&dowldv_vvl5ekdzw#y(cnab5+ne=x-c'
+# Attempt to load SECRET_KEY from environment variable
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+# If SECRET_KEY is missing, prompt the user to enter one (development use only)
+if not SECRET_KEY:
+    if os.getenv('DJANGO_ENV') == 'development':  # Only prompt in development
+        SECRET_KEY = input("Enter your Django SECRET_KEY: ")
+    else:
+        raise ValueError("Missing DJANGO_SECRET_KEY in environment for production!")
+
 SECURE_REFERRER_POLICY = 'same-origin'
 # SECURE_HSTS_SECONDS = 3600*24*30
 # SECURE_SSL_REDIRECT = True
@@ -31,9 +38,9 @@ SECURE_REFERRER_POLICY = 'same-origin'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['localhost', "127.0.0.1"]
+ALLOWED_HOSTS = ['localhost', "127.0.0.1", "0.0.0.0"]
 LOGIN_URL = '/signup_page/'
 
 # Application definition
@@ -85,14 +92,13 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = 'flowers-ol.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-  'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'flowers-ol-db')
-      }
+    }
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -112,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -135,7 +140,6 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-
 # Emails
 EMAIL_HOST = 'smtp.inria.fr'
 DEFAULT_FROM_EMAIL = 'noreply-flowers@inria.fr'
@@ -149,10 +153,14 @@ EMAIL_USE_TLS = True
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 
+# SUPERUSER
+DJANGO_SUPERUSER_USERNAME = os.getenv("DJANGO_SUPERUSER_USERNAME", "admin")
+DJANGO_SUPERUSER_PASSWORD = os.getenv("DJANGO_SUPERUSER_PASSWORD", "admin")
+DJANGO_SUPERUSER_EMAIL = os.getenv("DJANGO_SUPERUSER_EMAIL", None)
 
 # Background tasks
-BACKGROUND_TASK_RUN_ASYNC = True # if True, will run the tasks asynchronous. This means the tasks will be processed in parallel (at the same time) instead of processing one by one (one after the other).
-MAX_ATTEMPTS = 10 # controls how many times a task will be attempted (default 25)
+BACKGROUND_TASK_RUN_ASYNC = True  # if True, will run the tasks asynchronous. This means the tasks will be processed in parallel (at the same time) instead of processing one by one (one after the other).
+MAX_ATTEMPTS = 10  # controls how many times a task will be attempted (default 25)
 # MAX_RUN_TIME # maximum possible task run time, after which tasks will be unlocked and tried again (default 3600 seconds)
 # BACKGROUND_TASK_ASYNC_THREADS # Specifies number of concurrent threads. Default is multiprocessing.cpu_count().
 # BACKGROUND_TASK_PRIORITY_ORDERING # Control the ordering of tasks in the queue. Default is "DESC" (tasks with a higher number are processed first). Choose "ASC" to switch to the “niceness” ordering. A niceness of −20 is the highest priority and 19 is the lowest priority.
