@@ -1,0 +1,32 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+        DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
+        DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+        DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+    container_name: django_app
+    expose:
+      - "8000"
+    env_file:
+      - .env
+    volumes:
+      - ./flowers-ol/static:/src/flowers-ol/static
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - ./flowers-ol/static:/src/flowers-ol/static
+      - ./server/nginx.conf:/etc/nginx/conf.d/default.conf

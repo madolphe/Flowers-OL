@@ -3,14 +3,15 @@ authors = [{ name = "Maxime Adolphe", email = "maxime.adolphe@inria.fr" }]
 name = "flowers-ol"
 description = ""
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.8,<3.9"
 dynamic = ["version"]
 dependencies = [
-  "django-background-task>=0.1.8",
+  "django-background-tasks==1.2.5",
   "django-crispy-forms>=1.14.0",
   "django-extensions>=3.1.5",
   "django-modeltranslation>=0.18.2",
   "django==3.1.7",
+  "gunicorn>=23.0.0",
   "jsonfield>=3.1.0",
 ]
 
