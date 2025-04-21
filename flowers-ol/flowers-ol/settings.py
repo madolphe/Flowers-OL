@@ -56,7 +56,8 @@ USER_APPS = [
     'manager_app',
     'survey_app',
     'jold_ll_app',
-    'mot_app'
+    'mot_app',
+    'cogbattery4kids'
 ]
 INSTALLED_APPS += USER_APPS  # append USER_APPS to list of INSTALLED_APPS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
