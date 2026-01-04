@@ -18,7 +18,10 @@ urlpatterns = [
     path('end_session', views.end_session, name='end_session'),
 
     # Superuser urls
-    path('fork_super', views.fork_super, name='fork_super'),
-    path('home_super', views.home_super, name='home_super'),
-    path('reset_user_participant', views.reset_user_participant, name='reset_user_participant')   
+    path('admin_login/', views.admin_login_page, name='admin_login'),
+    path('admin_home', views.admin_home, name="admin_home"),
+    path('admin_home/<str:pannel_name>/', views.admin_home, name='admin_pannel'),
+    path('admin_myprofile', views.admin_myprofile, name='admin_myprofile'),   
+    path('reset_user_participant', views.reset_user_participant, name='reset_user_participant'),   
+    path('switch_participant', views.switch_participant, name='switch_participant'),   
 ]

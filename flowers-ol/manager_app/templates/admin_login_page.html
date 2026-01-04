@@ -1,0 +1,32 @@
+{% extends "base_admin.html" %}
+{% load static %}
+
+{% block title %}Connexion administrateur{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Connexion administrateur</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">
+            Identifiants invalides ou droits insuffisants.
+        </div>
+    {% endif %}
+
+    <form method="post" class="form">
+        {% csrf_token %}
+
+        <div class="field">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+
+        <div class="field">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+</div>
+{% endblock %}

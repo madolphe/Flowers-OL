@@ -1,0 +1,80 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Admin – Mon profil{% endblock %}
+
+{% block content %}
+
+{# Toast (dernier message Django) #}
+{% if messages %}
+  {% for message in messages %}
+    {% if forloop.last %}
+      <div class="toast toast-{{ message.tags }}" role="status" aria-live="polite" data-toast>
+        <div class="toast-body">{{ message }}</div>
+        <button type="button" class="toast-close" aria-label="Fermer" data-toast-close>×</button>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="card card-md">
+  <div class="stack">
+    <div>
+      <h1>Gestion de mon profil</h1>
+      <p>Étude associée : {{ participant.study.name }}</p>
+      <p>Dernière session jouée : {{ time_stamp }}</p>
+      <p>Validité session : {{ valid_period }}</p>
+    </div>
+
+    <div class="actions">
+      <a href="{% url 'home' %}" class="btn">
+        Démarrer / Continuer l’étude
+      </a>
+
+      <form method="post" action="{% url 'reset_user_participant' %}">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">
+          Reset Profile
+        </button>
+      </form>
+    </div>
+
+    <div>
+      <form method="post" action="{% url 'switch_participant' %}">
+        {% csrf_token %}
+
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <label class="switch" style="margin:0;">
+            <input
+              type="checkbox"
+              name="debug"
+              {% if debug %}checked{% endif %}
+              onchange="this.form.submit()"
+            >
+            <span class="slider"></span>
+          </label>
+
+          <span class="switch-label" style="margin:0;">Mode debug</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const toast = document.querySelector('[data-toast]');
+    if (!toast) return;
+
+    const closeBtn = toast.querySelector('[data-toast-close]');
+    const hide = () => {
+      toast.classList.add('toast-hide');
+      window.setTimeout(() => toast.remove(), 220);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', hide);
+    window.setTimeout(hide, 3500);
+  })();
+</script>
+
+{% endblock %}
+

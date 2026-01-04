@@ -1,0 +1,678 @@
+/* =========================
+   Base (clean / modern / sober)
+   ========================= */
+
+/* Design tokens */
+:root {
+  --bg: #0b0f19;
+  --surface: #111827;
+  --surface-2: #0f172a;
+  --border: rgba(255, 255, 255, 0.10);
+
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+
+  --danger: #ef4444;
+
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans",
+          "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(59, 130, 246, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(37, 99, 235, 0.12), transparent 55%),
+    linear-gradient(180deg, var(--bg), #060812);
+  line-height: 1.5;
+}
+
+/* Layout helpers */
+.page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5) var(--space-3);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.92));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-5);
+  backdrop-filter: blur(10px);
+}
+
+/* Card width variants */
+.card-sm { max-width: 420px; }
+.card-md { max-width: 720px; }
+.card-lg { max-width: 980px; }
+.card-xl { max-width: 1200px; }
+
+/* Optionnel: un peu plus d'air sur les grandes cartes */
+.card-md, .card-lg, .card-xl {
+  padding: calc(var(--space-5) + 6px);
+}
+
+/* Typography */
+h1, h2, h3 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.35rem;
+}
+
+p {
+  margin: 0 0 var(--space-3);
+  color: var(--muted);
+}
+
+/* Form */
+.form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+label {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="username"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.40);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(59, 130, 246, 0.65);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Buttons */
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.98), rgba(37, 99, 235, 0.92));
+}
+
+/* Alerts */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 12px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.alert-danger {
+  border-color: rgba(239, 68, 68, 0.40);
+  background: rgba(239, 68, 68, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Django form errors */
+.errorlist {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.errorlist li {
+  margin: 6px 0;
+  color: rgba(239, 68, 68, 0.95);
+}
+
+/* Links */
+a {
+  color: rgba(59, 130, 246, 0.95);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+  .card {
+    padding: var(--space-4);
+    border-radius: 12px;
+  }
+}
+
+/* Admin panels list */
+.pannel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.pannel-tile {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  color: var(--text);
+}
+
+.pannel-tile:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  text-decoration: none;
+}
+
+.pannel-logo {
+  width: 100%;
+  height: 92px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.pannel-logo.placeholder {
+  height: 92px;
+}
+
+.pannel-title {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.90);
+}
+
+@media (max-width: 520px) {
+  .pannel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   Admin carousel (home)
+   ========================= */
+
+.admin-home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.carousel-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.carousel {
+  margin-top: var(--space-4);
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding: 6px 4px 10px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+}
+
+/* Masquer scrollbar tout en gardant le scroll */
+.carousel-track::-webkit-scrollbar {
+  height: 10px;
+}
+.carousel-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+.carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+}
+.carousel-track:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.carousel-item {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 290px;
+  padding: var(--space-3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.carousel-item:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.carousel-thumb {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.carousel-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.carousel-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-title {
+  margin-top: var(--space-2);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.90);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Focus visible */
+.carousel-track:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+}
+
+/* Mobile tweaks */
+@media (max-width: 520px) {
+  .carousel-item {
+    width: 200px;
+  }
+}
+
+.carousel-wrap {
+  position: relative;
+}
+
+/* Fades gauche/droite pour indiquer scroll */
+.carousel-wrap::before,
+.carousel-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  z-index: 2;
+}
+
+.carousel-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0));
+}
+
+.carousel-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0));
+}
+
+/* On active les fades via classes (JS) */
+.carousel-wrap.has-left::before { opacity: 1; }
+.carousel-wrap.has-right::after { opacity: 1; }
+
+/* Hint flèche à droite */
+.carousel-hint {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: auto; cursor: pointer;
+}
+
+.carousel-hint-left {
+  left: 10px;
+}
+
+.carousel-hint-right {
+  right: 10px;
+}
+
+/* Affichage conditionnel via classes posées par JS */
+.carousel-wrap.has-left .carousel-hint-left {
+  opacity: 1;
+}
+
+.carousel-wrap.has-right .carousel-hint-right {
+  opacity: 1;
+}
+
+/* Scrollbar discrète mais visible */
+.carousel-track {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.carousel-track::-webkit-scrollbar {
+  height: 10px;
+}
+.carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+.carousel-track:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.20);
+}
+/* Switch toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  vertical-align: middle;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  transition: 0.2s;
+  border-radius: 999px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #3b82f6;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.switch-label {
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+/* =========================
+   Toast (Django messages)
+   ========================= */
+
+.toast {
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  z-index: 9999;
+
+  width: min(460px, calc(100vw - 36px));
+  padding: 12px 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(17, 24, 39, 0.92);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  animation: toast-in 180ms ease-out;
+}
+
+.toast-body {
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.35;
+}
+
+.toast-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Variantes selon message.tags (success, error, warning, info) */
+.toast-success {
+  border-color: rgba(34, 197, 94, 0.35);
+  background: rgba(17, 24, 39, 0.92);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(34, 197, 94, 0.10);
+}
+
+.toast-error {
+  border-color: rgba(239, 68, 68, 0.40);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(239, 68, 68, 0.10);
+}
+
+.toast-warning {
+  border-color: rgba(245, 158, 11, 0.40);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(245, 158, 11, 0.10);
+}
+
+.toast-info {
+  border-color: rgba(59, 130, 246, 0.40);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(59, 130, 246, 0.10);
+}
+
+/* Hide animation */
+.toast-hide {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   Admin topbar + page layout
+   ========================= */
+
+.admin-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 50;
+  background: rgba(6, 8, 18, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+}
+
+.admin-topbar-inner {
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* home à droite */
+  gap: var(--space-2);
+}
+
+.admin-home-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.admin-home-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+  text-decoration: none;
+}
+
+.admin-home-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.92;
+}
+
+/* La page doit laisser de la place au header fixe */
+.admin-page {
+  padding-top: calc(64px + var(--space-5));
+  padding-bottom: var(--space-5);
+}
+
+/* Layout de contenu plus aéré dans les cartes */
+.stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* Range les actions verticalement, et rend les boutons full width dans les cartes */
+.actions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.actions .btn {
+  width: 100%;
+  justify-content: center;
+}

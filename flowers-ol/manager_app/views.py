@@ -8,10 +8,12 @@ from django.views.decorators.cache import never_cache
 from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.utils.translation import gettext_lazy as _
+from django.utils.module_loading import import_string
+from django.http import Http404, HttpResponseNotAllowed
 
 import json, datetime
 
-from .models import ParticipantProfile, Study, ExperimentSession
+from .models import ParticipantProfile, Study, ExperimentSession, AdminPannel
 from .forms import SignInForm, SignUpForm
 
 
@@ -39,7 +41,7 @@ def login_page(request, study=''):
         if user:
             login(request, user)
             if request.user.is_superuser:
-                return redirect(reverse(fork_super))
+                return redirect(reverse(admin_home))
             return redirect(reverse(home))
         else:  # show error if user not in DB
             error = True
@@ -195,58 +197,166 @@ def end_task(request):
     return redirect(reverse(home))
 
 
-@login_required
-@user_passes_test(lambda u: u.is_superuser)
-def fork_super(request):
-    s = Study.objects.get(name='jold_ll')
-    try:
-        participant = request.user.participantprofile
-    except Exception:
-        participant = ParticipantProfile()
-        participant.user = request.user
-        participant.study = s
-        participant.save()
-        participant.populate_session_stack()
-    return render(request, 'fork_super.html')
+# All views below are for admin management pages
 
+def admin_login_page(request):
+    error = False
+    form_sign_in = SignInForm(request.POST or None)
 
-@user_passes_test(lambda u: u.is_superuser)
-def home_super(request):
-    p = request.user.participantprofile
-    if not p.set_current_session():
-        return redirect(reverse(thanks_page))
-
-    time_stamp = p.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if p.last_session_timestamp else None
-    valid_period = p.current_session.get_valid_period(p.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
-
-    now = timezone.now().strftime('%d %b %Y (%H:%M:%S)')
-    now_is, destination = f'good time [{now}]', 'start_task'
-    if p.current_session.in_future(p.ref_timestamp):
-        now_is, destination = f'too early [{now}]', 'off_session_page'
-    elif p.current_session.in_past(p.ref_timestamp):
-        now_is = f'too late [{now}]'
-        if p.current_session.required:
-            destination = 'thanks_page'
+    if form_sign_in.is_valid():
+        username = form_sign_in.cleaned_data['username']
+        password = form_sign_in.cleaned_data['password']
+        user = authenticate(request, username=username, password=password)
+        # User doesn't exist
+        if user is None:
+            error = True
+        # User authenticated but not superuser
+        elif not user.is_superuser:
+            error = True
+        # Superuser
         else:
-            destination = 'end_session'
+            login(request, user)
+            return redirect(reverse(admin_home))
+    return render(request, 'admin_login_page.html', {
+            'error': error,
+            'form': form_sign_in
+        })
 
-    return render(request, 'home_super.html',
-                  {
-                      'CONTEXT': {
-                          'p': p,
-                          'time_stamp': time_stamp,
-                          'valid_period': valid_period,
-                          'now_is': now_is,
-                          'destination': destination
-                      }
-                  }
-                  )
+def _resolve_panel_view(panel_view: str):
+    """
+    Allows two formats:
+    - dotted path: 'manager_app.views.some_view'
+    - url_name: 'some_url_name' (resolved via URLConf)
+    """
+    if "." in panel_view:
+        return import_string(panel_view)
 
+    match = resolve(reverse(panel_view))
+    return match.func
+
+def _get_user_study(user):
+    """
+    Matching User -> Study.
+    """
+    if hasattr(user, "participantprofile") and hasattr(user.participantprofile, "study"):
+        return user.participantprofile.study
+    raise AttributeError("Impossible de déterminer la Study de l'utilisateur. Implémente _get_user_study().")
+
+@user_passes_test(lambda u: u.is_authenticated and u.is_superuser, login_url="admin_login")
+def admin_home(request, pannel_name=None):
+    """
+    - If pannel_name is None:
+        load the 'home_pannel' for the user's Study
+        and display a carousel (list) of panels for that Study.
+    - Otherwise:
+        load the requested panel (same Study) and:
+          - if panel.view: call the view
+          - otherwise: render the panel.html_page template
+        + provide panel.css_page to the template
+    """
+    study = _get_user_study(request.user)
+
+    if pannel_name is None:
+        panel = AdminPannel.objects.filter(
+            study=study,
+            is_home=True
+        ).first()
+        if panel is None:
+            raise Http404("Admin home panel 'home_pannel' introuvable pour cette Study.")
+        panels = (
+            AdminPannel.objects
+            .filter(study=study, is_home=False)
+            .order_by("name")
+        )
+        return render(request, "admin_home_pannel.html", {
+            "panel": panel,
+            "panels": panels,
+            "panel_css": panel.css_page,
+        })
+    panel = AdminPannel.objects.filter(study=study, name=pannel_name).first()
+    if panel is None:
+        raise Http404(f"Admin panel '{pannel_name}' introuvable pour cette Study.")
+    # 1) Dispatch to a view if defined
+    if panel.view:
+        view_func = _resolve_panel_view(panel.view)
+        return view_func(request)
+    # 2) Otherwise render template
+    if panel.html_page:
+        return render(request, panel.html_page, {
+            "panel": panel,
+            "panel_css": panel.css_page,
+        })
+    # Should not happen if data integrity is ensured
+    raise Http404("Panel mal configuré (ni view ni html_page).")
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_myprofile(request, study_name: str = "jold_ll"):
+    """
+    Page profil admin: GET.
+    Assure qu'un participant existe, puis rend le template.
+    """
+    participant = _ensure_participant(request.user)
+    debug = False
+    if hasattr(participant, "extra_json") and isinstance(participant.extra_json, dict):
+        debug = bool(participant.extra_json.get("debug", False))
+
+    time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
+    valid_period = participant.current_session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+
+    return render(request, "admin_pannels/myprofile.html", {
+        "participant": participant,
+        "debug": debug,
+        "time_stamp": time_stamp,
+        "valid_period": valid_period,
+    })
 
 @user_passes_test(lambda u: u.is_superuser)
 def reset_user_participant(request):
-    request.user.participantprofile.delete()
-    request.user.participantprofile = None
-    request.user.save()
-    django_messages.add_message(request, django_messages.SUCCESS, 'Participant reset succesfully.')
-    return redirect(reverse('fork_super'))
+    """
+    Action destructive: POST-only.
+    Supprime le ParticipantProfile existant puis en recrée un proprement.
+    """
+    if request.method != "POST":
+        return HttpResponseNotAllowed(["POST"])
+    user = request.user
+    study = _get_user_study(user)
+    # Supprime l'existant si présent
+    participant = getattr(user, "participantprofile", None)
+    if participant is not None:
+        participant.delete()
+        # invalider le cache de relation
+        if hasattr(user, "_state") and hasattr(user._state, "fields_cache"):
+            user._state.fields_cache.pop("participantprofile", None)
+    # Recrée un participant propre
+    _ensure_participant(user, study=study)
+    django_messages.success(request, "Participant remis à zéro.")
+    return redirect('admin_myprofile')
+
+def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
+    """
+    Garantit qu'un ParticipantProfile existe pour l'utilisateur et la Study donnée.
+    Ne fait AUCUN render/redirect: utilitaire pur.
+    """
+    participant = getattr(user, "participantprofile", None)
+    if participant is None:
+        if study is None:
+            raise ValueError("Study doit être fournie si le ParticipantProfile n'existe pas.")
+        participant = ParticipantProfile(user=user, study=study)
+        participant.save()
+        participant.populate_session_stack()
+        _ = participant.set_current_session()
+        
+    return participant
+
+@user_passes_test(lambda u: u.is_superuser)
+def switch_participant(request):
+    participant = request.user.participantprofile
+    if request.method == "POST":
+        if hasattr(participant, 'extra_json'):
+            debug_value = request.POST.get('debug') == 'on'
+            participant.extra_json['debug'] = debug_value
+            participant.save()
+            django_messages.success(request, 'Mode debug mis à jour.')
+        else:
+            django_messages.error(request, 'Participant has no extra_json field.')
+    return redirect('admin_myprofile')

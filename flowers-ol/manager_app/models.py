@@ -367,3 +367,69 @@ class ParticipantProfile(models.Model):
                                            day=next_session_start_datetime.day,
                                            hour=0)
             )
+
+
+class AdminPannel(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    logo = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Path (string) to an image (thumbnail) for this panel.",
+    )
+    view = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        default=None,
+        help_text="View to call (ex: 'manager_app.views.some_view' or 'some_url_name').",
+    )
+    html_page = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        default=None,
+        help_text="Path to template Django (ex: 'admin/panels/my_panel.html').",
+    )
+    css_page = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        default=None,
+        help_text="Path to static CSS (ex: 'css/admin/panels/my_panel.css').",
+    )
+    is_home = models.BooleanField(
+        default=False,
+        help_text="Indicates whether this panel is the admin home.",
+    )
+    study = models.ForeignKey(
+        Study,
+        on_delete=models.CASCADE,
+        related_name="admin_pannels",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def clean(self):
+        """
+        Ensure at least one of 'view' or 'html_page' is provided.
+        Both cannot be None or empty.
+        """
+        if not self.is_home and not self.view and not self.html_page:
+            raise ValidationError(
+                "Un AdminPannel non-home doit définir soit 'view' soit 'html_page'."
+            )
+
+        if self.is_home and self.view and self.html_page:
+            # Optionnel mais recommandé: éviter une ambiguïté inutile
+            raise ValidationError(
+                "Un AdminPannel home ne doit pas définir à la fois 'view' et 'html_page'."
+            )
+
+    def save(self, *args, **kwargs):
+        # Ensure validation is applied when saving as well
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.name} (study={self.study_id})"

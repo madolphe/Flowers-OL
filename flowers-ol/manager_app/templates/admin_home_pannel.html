@@ -1,0 +1,129 @@
+{% extends "base_admin.html" %}
+{% load static %}
+
+{% block title %}Admin - Accueil{% endblock %}
+
+{% block content %}
+<div class="card card-lg">
+  <div class="admin-home-header">
+    <div>
+      <h1>Administration</h1>
+    </div>
+  </div>
+
+<div class="carousel" aria-label="Panneaux d'administration">
+  <div class="carousel-wrap" data-carousel-wrap>
+    <div class="carousel-track" data-carousel-track tabindex="0">
+      {% for p in panels %}
+        <a class="carousel-item" href="{% url 'admin_pannel' p.name %}">
+          <div class="carousel-thumb">
+            {% if p.logo %}
+              <img src="{% static p.logo %}" alt="{{ p.name }}">
+            {% else %}
+              <div class="carousel-thumb-placeholder" aria-hidden="true"></div>
+            {% endif %}
+          </div>
+          <div class="carousel-title">{{ p.name }}</div>
+        </a>
+      {% endfor %}
+    </div>
+    <!-- Visual indicator that there's content to the right and left -->
+    <div class="carousel-hint carousel-hint-left" aria-hidden="true">←</div>
+    <div class="carousel-hint carousel-hint-right" aria-hidden="true">→</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  (function () {
+    const track = document.querySelector('[data-carousel-track]');
+    const wrap = document.querySelector('[data-carousel-wrap]');
+    const hintLeft = document.querySelector('.carousel-hint-left');
+    const hintRight = document.querySelector('.carousel-hint-right');
+
+    if (!track || !wrap) return;
+
+    function getItems() {
+      return Array.from(track.querySelectorAll('.carousel-item'));
+    }
+
+    function getActiveIndex() {
+      const items = getItems();
+      if (!items.length) return 0;
+
+      const trackRect = track.getBoundingClientRect();
+      let bestIdx = 0;
+      let bestDist = Infinity;
+
+      items.forEach((item, idx) => {
+        const r = item.getBoundingClientRect();
+        const dist = Math.abs(r.left - trackRect.left);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = idx;
+        }
+      });
+
+      return bestIdx;
+    }
+
+    function scrollToIndex(idx) {
+      const items = getItems();
+      if (!items.length) return;
+
+      const clamped = Math.max(0, Math.min(idx, items.length - 1));
+      items[clamped].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest'
+      });
+    }
+
+    function updateAffordance() {
+      const maxScrollLeft = track.scrollWidth - track.clientWidth;
+
+      const hasLeft = track.scrollLeft > 4;
+      const hasRight = track.scrollLeft < (maxScrollLeft - 4);
+
+      wrap.classList.toggle('has-left', hasLeft);
+      wrap.classList.toggle('has-right', hasRight);
+
+    }
+    // Hints cliquables
+    if (hintLeft) {
+      hintLeft.addEventListener('click', () =>
+        scrollToIndex(getActiveIndex() - 1)
+      );
+    }
+
+    if (hintRight) {
+      hintRight.addEventListener('click', () =>
+        scrollToIndex(getActiveIndex() + 1)
+      );
+    }
+
+    // Clavier
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        scrollToIndex(getActiveIndex() - 1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        scrollToIndex(getActiveIndex() + 1);
+      }
+    });
+
+    // Scroll / resize
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateAffordance);
+    });
+
+    updateAffordance();
+    window.addEventListener('resize', updateAffordance);
+  })();
+</script>
+
+{% endblock %}
+

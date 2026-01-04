@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Administration{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/admin_common.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  <!-- Header admin global -->
+  <header class="admin-topbar">
+    <div class="admin-topbar-inner">
+      {% block topbar_left %}{% endblock %}
+
+      <a class="admin-home-btn" href="{% url 'admin_home' %}" aria-label="Retour au panneau admin">
+        <img src="{% static 'images/admin_pannels/home.png' %}" alt="" />
+      </a>
+    </div>
+  </header>
+
+  <main class="page admin-page">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
