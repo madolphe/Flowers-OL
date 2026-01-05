@@ -299,7 +299,7 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
     debug = False
     if hasattr(participant, "extra_json") and isinstance(participant.extra_json, dict):
         debug = bool(participant.extra_json.get("debug", False))
-
+    task_stack = participant.task_stack_csv or ""
     time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
     valid_period = participant.current_session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
 
@@ -308,6 +308,7 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
         "debug": debug,
         "time_stamp": time_stamp,
         "valid_period": valid_period,
+        "task_stack": task_stack,
     })
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -345,7 +346,7 @@ def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
         participant.save()
         participant.populate_session_stack()
         _ = participant.set_current_session()
-        
+
     return participant
 
 @user_passes_test(lambda u: u.is_superuser)
