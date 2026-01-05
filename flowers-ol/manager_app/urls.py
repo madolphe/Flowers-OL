@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin_home/<str:pannel_name>/', views.admin_home, name='admin_pannel'),
     path('admin_myprofile', views.admin_myprofile, name='admin_myprofile'),   
     path('reset_user_participant', views.reset_user_participant, name='reset_user_participant'),   
-    path('switch_participant', views.switch_participant, name='switch_participant'),   
+    path('switch_participant', views.switch_participant, name='switch_participant'), 
+    path('admin_change_user_password', views.admin_change_user_password, name='admin_change_user_password'),
 ]

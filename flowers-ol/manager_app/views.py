@@ -14,7 +14,7 @@ from django.http import Http404, HttpResponseNotAllowed
 import json, datetime
 
 from .models import ParticipantProfile, Study, ExperimentSession, AdminPannel
-from .forms import SignInForm, SignUpForm
+from .forms import SignInForm, SignUpForm, ChangeUserPasswordForm
 
 
 def login_page(request, study=''):
@@ -40,7 +40,7 @@ def login_page(request, study=''):
         user = authenticate(request, username=username, password=password)  # Check if data are valid
         if user:
             login(request, user)
-            if request.user.is_superuser:
+            if is_admin_team(user):
                 return redirect(reverse(admin_home))
             return redirect(reverse(home))
         else:  # show error if user not in DB
@@ -198,6 +198,8 @@ def end_task(request):
 
 
 # All views below are for admin management pages
+def is_admin_team(user) -> bool:
+    return user.groups.filter(name="ADMIN_TEAM").exists()
 
 def admin_login_page(request):
     error = False
@@ -211,7 +213,7 @@ def admin_login_page(request):
         if user is None:
             error = True
         # User authenticated but not superuser
-        elif not user.is_superuser:
+        elif not is_admin_team(user):
             error = True
         # Superuser
         else:
@@ -242,7 +244,7 @@ def _get_user_study(user):
         return user.participantprofile.study
     raise AttributeError("Impossible de déterminer la Study de l'utilisateur. Implémente _get_user_study().")
 
-@user_passes_test(lambda u: u.is_authenticated and u.is_superuser, login_url="admin_login")
+@user_passes_test(lambda u: u.is_authenticated and is_admin_team(u), login_url="admin_login")
 def admin_home(request, pannel_name=None):
     """
     - If pannel_name is None:
@@ -289,7 +291,7 @@ def admin_home(request, pannel_name=None):
     # Should not happen if data integrity is ensured
     raise Http404("Panel mal configuré (ni view ni html_page).")
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: is_admin_team(u))
 def admin_myprofile(request, study_name: str = "jold_ll"):
     """
     Page profil admin: GET.
@@ -300,8 +302,12 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
     if hasattr(participant, "extra_json") and isinstance(participant.extra_json, dict):
         debug = bool(participant.extra_json.get("debug", False))
     task_stack = participant.task_stack_csv or ""
-    time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
-    valid_period = participant.current_session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+    try:
+        time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
+        valid_period = participant.current_session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+    except AttributeError:
+        time_stamp = None
+        valid_period = "Pas de session en cours, reset nécessaire"
 
     return render(request, "admin_pannels/myprofile.html", {
         "participant": participant,
@@ -311,7 +317,7 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
         "task_stack": task_stack,
     })
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: is_admin_team(u))
 def reset_user_participant(request):
     """
     Action destructive: POST-only.
@@ -349,7 +355,7 @@ def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
 
     return participant
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: is_admin_team(u))
 def switch_participant(request):
     participant = request.user.participantprofile
     if request.method == "POST":
@@ -361,3 +367,37 @@ def switch_participant(request):
         else:
             django_messages.error(request, 'Participant has no extra_json field.')
     return redirect('admin_myprofile')
+
+@user_passes_test(lambda u: is_admin_team(u), login_url="admin_login")
+def admin_change_user_password(request):
+    form = ChangeUserPasswordForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        username = form.cleaned_data["username"]
+        new_password = form.cleaned_data["new_password"]
+        try:
+            user = User.objects.get(username=username)
+            if user.participantprofile.study != _get_user_study(request.user):
+                raise PermissionError(
+                    "Vous ne pouvez pas modifier le mot de passe d’un utilisateur d'une autre étude."
+                )
+            if is_admin_team(user) and user != request.user:
+                raise PermissionError(
+                        "Vous ne pouvez pas modifier le mot de passe d’un autre administrateur."
+                    )
+            user.set_password(new_password)
+            user.save()
+            django_messages.success(
+                request,
+                f"Le mot de passe de l’utilisateur « {username} » a été modifié."
+            )
+        except User.DoesNotExist:
+            django_messages.error(
+                request,
+                f"Impossible de modifier le mot de passe : l’utilisateur « {username} » n’existe pas."
+            )
+        except PermissionError as e:
+            django_messages.error(request, str(e))
+        return redirect("admin_change_user_password")
+    return render(request, "admin_pannels/change_usr_password.html", {
+        "form": form,
+    })

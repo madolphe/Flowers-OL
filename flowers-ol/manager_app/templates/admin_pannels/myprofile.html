@@ -4,18 +4,6 @@
 
 {% block content %}
 
-{# Toast (dernier message Django) #}
-{% if messages %}
-  {% for message in messages %}
-    {% if forloop.last %}
-      <div class="toast toast-{{ message.tags }}" role="status" aria-live="polite" data-toast>
-        <div class="toast-body">{{ message }}</div>
-        <button type="button" class="toast-close" aria-label="Fermer" data-toast-close>×</button>
-      </div>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
 <div class="card card-md">
   <div class="stack">
     <div>
@@ -60,22 +48,5 @@
     </div>
   </div>
 </div>
-
-<script>
-  (function () {
-    const toast = document.querySelector('[data-toast]');
-    if (!toast) return;
-
-    const closeBtn = toast.querySelector('[data-toast-close]');
-    const hide = () => {
-      toast.classList.add('toast-hide');
-      window.setTimeout(() => toast.remove(), 220);
-    };
-
-    if (closeBtn) closeBtn.addEventListener('click', hide);
-    window.setTimeout(hide, 3500);
-  })();
-</script>
-
 {% endblock %}
 

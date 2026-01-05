@@ -70,3 +70,16 @@ class SignUpForm(forms.ModelForm):
             self.add_error('password_confirm', _('Le mot de passe ne correspond pas'))
 
         return cleaned_data
+
+
+class ChangeUserPasswordForm(forms.Form):
+    username = forms.CharField(
+        label="Nom d’utilisateur",
+        max_length=150,
+        widget=forms.TextInput(attrs={"placeholder": "username"})
+    )
+
+    new_password = forms.CharField(
+        label="Nouveau mot de passe",
+        widget=forms.PasswordInput(attrs={"placeholder": "nouveau mot de passe"})
+    )
