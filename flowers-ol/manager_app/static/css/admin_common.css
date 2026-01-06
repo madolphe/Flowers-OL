@@ -47,11 +47,24 @@ body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
+  background: #060812; /* fond de fallback */
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
   background:
     radial-gradient(1200px 600px at 20% 0%, rgba(59, 130, 246, 0.18), transparent 60%),
     radial-gradient(900px 500px at 80% 20%, rgba(37, 99, 235, 0.12), transparent 55%),
-    linear-gradient(180deg, var(--bg), #060812);
-  line-height: 1.5;
+    linear-gradient(180deg, #0b0f19, #060812);
 }
 
 /* Layout helpers */
@@ -118,6 +131,7 @@ label {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="username"],
 input[type="password"],
 input[type="email"],
@@ -675,4 +689,41 @@ a:hover {
 .actions .btn {
   width: 100%;
   justify-content: center;
+}
+/* Admin tables base */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-4);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  text-align: left;
+}
+
+.admin-table th {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 600;
+}
+
+.admin-table tr:hover td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.pagination-info {
+  color: var(--muted);
+  padding: 0 6px;
 }

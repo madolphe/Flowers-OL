@@ -13,6 +13,7 @@ from django.http import Http404, HttpResponseNotAllowed
 
 import json, datetime
 
+from .utils import is_admin_team, _get_user_study
 from .models import ParticipantProfile, Study, ExperimentSession, AdminPannel
 from .forms import SignInForm, SignUpForm, ChangeUserPasswordForm
 
@@ -198,9 +199,6 @@ def end_task(request):
 
 
 # All views below are for admin management pages
-def is_admin_team(user) -> bool:
-    return user.groups.filter(name="ADMIN_TEAM").exists()
-
 def admin_login_page(request):
     error = False
     form_sign_in = SignInForm(request.POST or None)
@@ -235,14 +233,6 @@ def _resolve_panel_view(panel_view: str):
 
     match = resolve(reverse(panel_view))
     return match.func
-
-def _get_user_study(user):
-    """
-    Matching User -> Study.
-    """
-    if hasattr(user, "participantprofile") and hasattr(user.participantprofile, "study"):
-        return user.participantprofile.study
-    raise AttributeError("Impossible de déterminer la Study de l'utilisateur. Implémente _get_user_study().")
 
 @user_passes_test(lambda u: u.is_authenticated and is_admin_team(u), login_url="admin_login")
 def admin_home(request, pannel_name=None):
@@ -401,3 +391,4 @@ def admin_change_user_password(request):
     return render(request, "admin_pannels/change_usr_password.html", {
         "form": form,
     })
+

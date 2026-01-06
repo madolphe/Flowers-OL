@@ -55,3 +55,15 @@ class ExportCsvMixin:
             row = writer.writerow([getattr(obj, field) for field in field_names])
         return response
     export_as_csv.short_description = "Export Selected"
+
+def is_admin_team(user) -> bool:
+    return user.groups.filter(name="ADMIN_TEAM").exists()
+
+def _get_user_study(user):
+    """
+    Matching User -> Study.
+    """
+    if hasattr(user, "participantprofile") and hasattr(user.participantprofile, "study"):
+        return user.participantprofile.study
+    raise AttributeError("Impossible de déterminer la Study de l'utilisateur. Implémente _get_user_study().")
+
