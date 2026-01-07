@@ -290,7 +290,7 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
     participant = _ensure_participant(request.user)
     debug = False
     if hasattr(participant, "extra_json") and isinstance(participant.extra_json, dict):
-        debug = bool(participant.extra_json.get("debug", False))
+        debug = bool(participant.extra_json.get("debug_mode", False))
     task_stack = participant.task_stack_csv or ""
     try:
         time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
@@ -351,7 +351,7 @@ def switch_participant(request):
     if request.method == "POST":
         if hasattr(participant, 'extra_json'):
             debug_value = request.POST.get('debug') == 'on'
-            participant.extra_json['debug'] = debug_value
+            participant.extra_json['debug_mode'] = debug_value
             participant.save()
             django_messages.success(request, 'Mode debug mis à jour.')
         else:
