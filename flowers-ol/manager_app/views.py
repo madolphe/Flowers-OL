@@ -10,6 +10,7 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.utils.translation import gettext_lazy as _
 from django.utils.module_loading import import_string
 from django.http import Http404, HttpResponseNotAllowed
+from django.views.decorators.http import require_POST
 
 import json, datetime
 
@@ -392,3 +393,7 @@ def admin_change_user_password(request):
         "form": form,
     })
 
+@require_POST
+def logout_admin(request):
+    logout(request)
+    return redirect("/")

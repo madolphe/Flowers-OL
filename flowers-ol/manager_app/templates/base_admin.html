@@ -10,16 +10,48 @@
 </head>
 
 <body>
-  <!-- Header admin global -->
-  <header class="admin-topbar">
-    <div class="admin-topbar-inner">
-      {% block topbar_left %}{% endblock %}
+<!-- Header admin global -->
+<header class="admin-topbar">
+  <div class="admin-topbar-inner">
+    {% block topbar_left %}{% endblock %}
 
-      <a class="admin-home-btn" href="{% url 'admin_home' %}" aria-label="Retour au panneau admin">
+    <div class="admin-topbar-actions">
+      <!-- Bouton Django admin -->
+      <a class="admin-django-btn"
+         href="/admin/"
+         target="_blank"
+         rel="noopener"
+         aria-label="Ouvrir l’admin Django"
+         title="Admin Django">
+        <img src="{% static 'images/admin_pannels/django.png' %}" alt="Django admin" />
+      </a>
+
+      <!-- Bouton retour admin home -->
+      <a class="admin-home-btn"
+         href="{% url 'admin_home' %}"
+         aria-label="Retour au panneau admin">
         <img src="{% static 'images/admin_pannels/home.png' %}" alt="" />
       </a>
+
+      <!-- Bouton logout -->
+      {% if user.is_authenticated %}
+        <form method="post"
+              action="{% url 'logout' %}"
+              class="admin-logout-form">
+          {% csrf_token %}
+          <button type="submit"
+                  class="admin-logout-btn"
+                  aria-label="Se déconnecter"
+                  title="Se déconnecter">
+            ⏻
+          </button>
+        </form>
+      {% endif %}
     </div>
-  </header>
+  </div>
+</header>
+
+
 
   <main class="page admin-page">
     {# Global admin toasts (Django messages) #}
