@@ -900,3 +900,90 @@ a:hover {
   text-decoration: dotted underline;
   text-decoration-color: rgba(255, 255, 255, 0.25);
 }
+
+.nav-logout-form {
+  margin: 0;
+}
+
+.nav-logout-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.nav-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-logout-form {
+  margin: 0;
+}
+
+.admin-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: background 120ms ease,
+              border-color 120ms ease,
+              color 120ms ease;
+}
+
+.admin-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.admin-django-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+
+  transition: background 120ms ease,
+              border-color 120ms ease,
+              box-shadow 120ms ease;
+}
+
+.admin-django-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.admin-django-btn:hover {
+  background: rgba(9, 121, 105, 0.18); /* vert Django */
+  border-color: rgba(9, 121, 105, 0.45);
+  box-shadow: 0 0 0 3px rgba(9, 121, 105, 0.20);
+}
