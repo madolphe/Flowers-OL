@@ -727,3 +727,176 @@ a:hover {
   color: var(--muted);
   padding: 0 6px;
 }
+
+/* Dashboard helpers */
+.muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 650;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.badge-success {
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.10);
+}
+
+.badge-warning {
+  border-color: rgba(246, 7, 7, 0.4);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.10);
+}
+
+.badge-muted {
+  opacity: 0.85;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.compact-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.compact-list li {
+  margin: 6px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.task-ok {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.task-bad {
+  color: #ef4444;
+  font-weight: 700;
+}
+.task-badges {
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+
+  /* UX */
+  scrollbar-width: thin;               /* Firefox */
+  scrollbar-color: rgba(255,255,255,.25) transparent;
+}
+
+.task-badges::-webkit-scrollbar {
+  height: 6px;
+}
+
+.task-badges::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.task-badges::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dates-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dates-last {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 600;
+}
+
+.dates-count {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.85);
+}
+/* Tooltip wrapper */
+.dates-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip content */
+.dates-tooltip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  z-index: 50;
+
+  min-width: 220px;
+  max-width: 320px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+
+  transition: opacity 0.05s ease, transform 0.05s ease;
+}
+
+/* Show tooltip instantly on hover */
+.dates-tooltip-wrapper:hover .dates-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Tooltip items */
+.dates-tooltip-item {
+  padding: 4px 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+}
+
+.dates-tooltip-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.inscription-date {
+  cursor: help;
+  text-decoration: dotted underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+}
