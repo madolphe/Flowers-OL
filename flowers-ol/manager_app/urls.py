@@ -25,4 +25,5 @@ urlpatterns = [
     path('reset_user_participant', views.reset_user_participant, name='reset_user_participant'),   
     path('switch_participant', views.switch_participant, name='switch_participant'), 
     path('admin_change_user_password', views.admin_change_user_password, name='admin_change_user_password'),
+    path("logout/", views.logout_admin, name="logout")
 ]

@@ -987,3 +987,18 @@ a:hover {
   border-color: rgba(9, 121, 105, 0.45);
   box-shadow: 0 0 0 3px rgba(9, 121, 105, 0.20);
 }
+
+.export-actions {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.export-actions form {
+  margin: 0;
+}
+
+.export-actions .btn {
+  width: 100%;
+  justify-content: center;
+}
