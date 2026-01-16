@@ -251,14 +251,14 @@ def admin_home(request, pannel_name=None):
 
     if pannel_name is None:
         panel = AdminPannel.objects.filter(
-            study=study,
+            studies=study,
             is_home=True
         ).first()
         if panel is None:
             raise Http404("Admin home panel 'home_pannel' introuvable pour cette Study.")
         panels = (
             AdminPannel.objects
-            .filter(study=study, is_home=False)
+            .filter(studies=study, is_home=False)
             .order_by("name")
         )
         return render(request, "admin_home_pannel.html", {
@@ -266,7 +266,7 @@ def admin_home(request, pannel_name=None):
             "panels": panels,
             "panel_css": panel.css_page,
         })
-    panel = AdminPannel.objects.filter(study=study, name=pannel_name).first()
+    panel = AdminPannel.objects.filter(studies=study, name=pannel_name).first()
     if panel is None:
         raise Http404(f"Admin panel '{pannel_name}' introuvable pour cette Study.")
     # 1) Dispatch to a view if defined

@@ -1,0 +1,86 @@
+[
+{
+  "model": "manager_app.participantprofile",
+  "pk": 44,
+  "fields": {
+    "user": 4,
+    "remind": false,
+    "consent": false,
+    "email": null,
+    "study": 11,
+    "origin_timestamp": "2026-01-05T20:56:51Z",
+    "session_stack_csv": "",
+    "current_session": null,
+    "last_session_timestamp": "2026-01-10T15:10:44Z",
+    "task_stack_csv": "",
+    "extra_json": "{\"debug_mode\": true, \"current_task\": \"workingmemory\", \"current_idx_task\": 4, \"start_time_task\": \"2026-01-10T15:10:14.234444+00:00\", \"tasks_duration\": [0.35197144999999996, 0.2384394, 0.7756149, 11.413555116666666, 0.49920223333333336], \"dates_tasks\": [\"2026-01-10T14:57:48.052397+00:00\", \"2026-01-10T14:58:02.483589+00:00\", \"2026-01-10T14:58:49.169755+00:00\", \"2026-01-10T15:10:14.108715+00:00\", \"2026-01-10T15:10:44.186613+00:00\"]}",
+    "excluded": false,
+    "sessions": [
+      61
+    ]
+  }
+},
+{
+  "model": "manager_app.participantprofile",
+  "pk": 47,
+  "fields": {
+    "user": 1,
+    "remind": false,
+    "consent": false,
+    "email": null,
+    "study": 11,
+    "origin_timestamp": "2026-01-07T21:32:51.568Z",
+    "session_stack_csv": "61",
+    "current_session": 61,
+    "last_session_timestamp": null,
+    "task_stack_csv": "ufov,memorability1,memorability2,workingmemory",
+    "extra_json": "{\"debug_mode\": true, \"current_task\": \"ufov\", \"current_idx_task\": 1, \"start_time_task\": \"2026-01-15T15:51:37.123102+00:00\", \"tasks_duration\": [1.6956493666666668]}",
+    "excluded": false,
+    "sessions": [
+      61
+    ]
+  }
+},
+{
+  "model": "manager_app.participantprofile",
+  "pk": 48,
+  "fields": {
+    "user": 20,
+    "remind": false,
+    "consent": false,
+    "email": null,
+    "study": 11,
+    "origin_timestamp": "2026-01-10T14:54:44Z",
+    "session_stack_csv": "61",
+    "current_session": 61,
+    "last_session_timestamp": null,
+    "task_stack_csv": "moteval,ufov,memorability1,memorability2,workingmemory",
+    "extra_json": "{\"current_task\": \"moteval\", \"current_idx_task\": 0, \"start_time_task\": \"2026-01-10T14:54:52.718241+00:00\", \"debug_mode\": true}",
+    "excluded": false,
+    "sessions": [
+      61
+    ]
+  }
+},
+{
+  "model": "manager_app.participantprofile",
+  "pk": 49,
+  "fields": {
+    "user": 21,
+    "remind": false,
+    "consent": false,
+    "email": null,
+    "study": 11,
+    "origin_timestamp": "2026-01-10T14:55:11Z",
+    "session_stack_csv": "61",
+    "current_session": 61,
+    "last_session_timestamp": null,
+    "task_stack_csv": "moteval,ufov,memorability1,memorability2,workingmemory",
+    "extra_json": "{\"current_task\": \"moteval\", \"current_idx_task\": 0, \"start_time_task\": \"2026-01-10T14:55:19.240245+00:00\", \"debug_mode\": true}",
+    "excluded": false,
+    "sessions": [
+      61
+    ]
+  }
+}
+]

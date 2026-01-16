@@ -402,9 +402,8 @@ class AdminPannel(models.Model):
         default=False,
         help_text="Indicates whether this panel is the admin home.",
     )
-    study = models.ForeignKey(
+    studies = models.ManyToManyField(
         Study,
-        on_delete=models.CASCADE,
         related_name="admin_pannels",
     )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -432,4 +431,4 @@ class AdminPannel(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.name} (study={self.study_id})"
+        return f"{self.name}"

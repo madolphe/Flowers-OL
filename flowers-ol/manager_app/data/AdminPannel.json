@@ -1,0 +1,92 @@
+[
+{
+  "model": "manager_app.adminpannel",
+  "pk": 1,
+  "fields": {
+    "name": "home_pannel",
+    "logo": "",
+    "view": null,
+    "html_page": null,
+    "css_page": null,
+    "is_home": true,
+    "created_at": "2026-01-04T16:17:52.090Z",
+    "updated_at": "2026-01-04T16:17:52.090Z",
+    "studies": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+  }
+},
+{
+  "model": "manager_app.adminpannel",
+  "pk": 2,
+  "fields": {
+    "name": "Mon profil",
+    "logo": "images/admin_pannels/myprofile.png",
+    "view": "admin_myprofile",
+    "html_page": null,
+    "css_page": null,
+    "is_home": false,
+    "created_at": "2026-01-04T16:24:25.339Z",
+    "updated_at": "2026-01-04T18:43:55.130Z",
+    "studies": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+  }
+},
+{
+  "model": "manager_app.adminpannel",
+  "pk": 3,
+  "fields": {
+    "name": "Mot de passe",
+    "logo": "images/admin_pannels/padlock.png",
+    "view": "admin_change_user_password",
+    "html_page": null,
+    "css_page": null,
+    "is_home": false,
+    "created_at": "2026-01-04T16:26:48.160Z",
+    "updated_at": "2026-01-05T18:44:43.491Z",
+    "studies": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+  }
+},
+{
+  "model": "manager_app.adminpannel",
+  "pk": 4,
+  "fields": {
+    "name": "Paramètres visuels",
+    "logo": "images/admin_pannels/diagonal.png",
+    "view": "cogbattery4kids.views.admin_change_screen_size",
+    "html_page": null,
+    "css_page": null,
+    "is_home": false,
+    "created_at": "2026-01-04T16:27:11.488Z",
+    "updated_at": "2026-01-06T18:55:42.937Z",
+    "studies": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+  }
+},
+{
+  "model": "manager_app.adminpannel",
+  "pk": 5,
+  "fields": {
+    "name": "Suivi passations",
+    "logo": "images/admin_pannels/calendar.png",
+    "view": "admin_dashboard4kids",
+    "html_page": null,
+    "css_page": null,
+    "is_home": false,
+    "created_at": "2026-01-04T16:39:24.532Z",
+    "updated_at": "2026-01-09T17:03:27.545Z",
+    "studies": [17]
+  }
+},
+{
+  "model": "manager_app.adminpannel",
+  "pk": 6,
+  "fields": {
+    "name": "Sauvegarde",
+    "logo": "images/admin_pannels/save.png",
+    "view": "admin_export",
+    "html_page": null,
+    "css_page": null,
+    "is_home": false,
+    "created_at": "2026-01-04T18:01:32.978Z",
+    "updated_at": "2026-01-11T09:54:08.994Z",
+    "studies": [17]
+  }
+}
+]
