@@ -1002,3 +1002,103 @@ a:hover {
   width: 100%;
   justify-content: center;
 }
+
+/* Scope dashboard wide table behavior to the wrapper only */
+.admin-table-wrap--wide {
+  overflow-x: auto;
+  overflow-y: visible; /* IMPORTANT : permet au sticky header + tooltips */
+  max-width: 100%;
+  max-height: calc(100vh - 240px); /* ajuste selon ta page */
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--space-4); /* ou 8px / 12px selon ton scale */
+
+}
+/* Ne modifie PAS .admin-table global, seulement lorsqu'il est dans le wrapper */
+.admin-table-wrap--wide > .admin-table {
+  width: max-content;  /* permet au tableau de dépasser sans "sortir" */
+  min-width: 100%;     /* conserve le 100% si peu de colonnes */
+}
+.admin-table-wrap--wide .admin-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10; /* au-dessus du body */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+}
+.admin-table-wrap--wide .admin-table .sticky-col-1,
+.admin-table-wrap--wide .admin-table .sticky-col-2 {
+  position: sticky;
+  z-index: 12; /* légèrement au-dessus du th sticky */
+  background: rgba(12, 18, 32, 0.92);
+}
+.admin-table-wrap--wide .admin-table .sticky-col-1 { left: 0; min-width: 120px; }
+.admin-table-wrap--wide .admin-table .sticky-col-2 { left: 120px; min-width: 220px; }
+
+.session-header-label {
+  cursor: help;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+.session-header-label:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.session-tooltip-tasks {
+  white-space: normal;      /* autorise retours à la ligne */
+  max-width: 320px;         /* évite un tooltip trop large */
+  line-height: 1.35;
+  opacity: 0.95;
+}
+.admin-table-wrap--wide .dates-tooltip {
+  z-index: 999;
+}
+.dates-tooltip {
+  z-index: 999;
+}
+/* Tooltip orienté vers le bas (évite la navbar) */
+.tooltip-down .dates-tooltip {
+  top: calc(100% + 8px);
+  bottom: auto;
+  margin-top: 0;
+}
+
+/* Optionnel : petite flèche vers le haut */
+.tooltip-down .dates-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 16px;
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent rgba(20, 20, 30, 0.95) transparent;
+}
+/* Le <th> survolé passe devant les autres headers sticky */
+.admin-table-wrap--wide .admin-table thead th:hover {
+  z-index: 30;
+}
+
+/* Le wrapper du tooltip crée un contexte au-dessus */
+.admin-table-wrap--wide .dates-tooltip-wrapper {
+  position: relative;
+}
+
+/* Tooltip au-dessus de tout */
+.admin-table-wrap--wide .dates-tooltip {
+  z-index: 60;
+}
+/* Bloque le scroll global sur cette page */
+.admin-page-lockscroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Assure que le contenu prend la hauteur restante sous la topbar */
+.admin-page-lockscroll .admin-main {
+  height: calc(100vh - var(--admin-topbar-h, 64px));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
