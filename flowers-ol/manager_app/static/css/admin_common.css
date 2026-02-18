@@ -7,7 +7,7 @@
   --bg: #0b0f19;
   --surface: #111827;
   --surface-2: #0f172a;
-  --border: rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.1);
 
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.68);
@@ -28,8 +28,9 @@
   --space-4: 24px;
   --space-5: 32px;
 
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans",
-          "Apple Color Emoji", "Segoe UI Emoji";
+  --font:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 /* Base reset */
@@ -39,7 +40,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -53,7 +55,6 @@ body {
   overflow-x: hidden;
 }
 
-
 body::before {
   content: "";
   position: fixed;
@@ -62,8 +63,16 @@ body::before {
   pointer-events: none;
 
   background:
-    radial-gradient(1200px 600px at 20% 0%, rgba(59, 130, 246, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 80% 20%, rgba(37, 99, 235, 0.12), transparent 55%),
+    radial-gradient(
+      1200px 600px at 20% 0%,
+      rgba(59, 130, 246, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 80% 20%,
+      rgba(37, 99, 235, 0.12),
+      transparent 55%
+    ),
     linear-gradient(180deg, #0b0f19, #060812);
 }
 
@@ -78,7 +87,11 @@ body::before {
 .card {
   width: 100%;
   max-width: 420px;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.92));
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.92),
+    rgba(15, 23, 42, 0.92)
+  );
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -87,18 +100,30 @@ body::before {
 }
 
 /* Card width variants */
-.card-sm { max-width: 420px; }
-.card-md { max-width: 720px; }
-.card-lg { max-width: 980px; }
-.card-xl { max-width: 1200px; }
+.card-sm {
+  max-width: 420px;
+}
+.card-md {
+  max-width: 720px;
+}
+.card-lg {
+  max-width: 980px;
+}
+.card-xl {
+  max-width: 1200px;
+}
 
 /* Optionnel: un peu plus d'air sur les grandes cartes */
-.card-md, .card-lg, .card-xl {
+.card-md,
+.card-lg,
+.card-xl {
   padding: calc(var(--space-5) + 6px);
 }
 
 /* Typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0 0 var(--space-3);
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -144,12 +169,15 @@ textarea {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   outline: none;
-  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(255, 255, 255, 0.40);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 input:focus,
@@ -170,11 +198,23 @@ textarea:focus {
   padding: 12px 14px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  /* --- AJOUTS POUR UNIFIER <a> et <button> --- */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* évite le décalage vertical */
+  text-decoration: none; /* au cas où c'est un <a> */
+  font-size: 0.8rem; /* stabilise la taille (ou "inherit" si tu préfères) */
+  /* ------------------------------------------ */
+
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
@@ -184,11 +224,19 @@ textarea:focus {
 
 .btn-primary {
   border-color: rgba(59, 130, 246, 0.45);
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.95),
+    rgba(37, 99, 235, 0.95)
+  );
 }
 
 .btn-primary:hover {
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.98), rgba(37, 99, 235, 0.92));
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.98),
+    rgba(37, 99, 235, 0.92)
+  );
 }
 
 /* Alerts */
@@ -201,8 +249,8 @@ textarea:focus {
 }
 
 .alert-danger {
-  border-color: rgba(239, 68, 68, 0.40);
-  background: rgba(239, 68, 68, 0.10);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
   color: rgba(255, 255, 255, 0.92);
 }
 
@@ -251,7 +299,10 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
   color: var(--text);
 }
 
@@ -268,7 +319,7 @@ a:hover {
   object-fit: contain;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pannel-logo.placeholder {
@@ -278,7 +329,7 @@ a:hover {
 .pannel-title {
   font-weight: 650;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 520px) {
@@ -325,7 +376,7 @@ a:hover {
   background: transparent;
 }
 .carousel-track::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 999px;
 }
 .carousel-track:hover::-webkit-scrollbar-thumb {
@@ -340,7 +391,10 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
   color: var(--text);
   text-decoration: none;
 }
@@ -356,7 +410,7 @@ a:hover {
   height: 150px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -380,7 +434,7 @@ a:hover {
   margin-top: var(--space-2);
   font-weight: 650;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -419,17 +473,29 @@ a:hover {
 
 .carousel-wrap::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0));
+  background: linear-gradient(
+    90deg,
+    rgba(17, 24, 39, 0.95),
+    rgba(17, 24, 39, 0)
+  );
 }
 
 .carousel-wrap::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0));
+  background: linear-gradient(
+    270deg,
+    rgba(17, 24, 39, 0.95),
+    rgba(17, 24, 39, 0)
+  );
 }
 
 /* On active les fades via classes (JS) */
-.carousel-wrap.has-left::before { opacity: 1; }
-.carousel-wrap.has-right::after { opacity: 1; }
+.carousel-wrap.has-left::before {
+  opacity: 1;
+}
+.carousel-wrap.has-right::after {
+  opacity: 1;
+}
 
 /* Hint flèche à droite */
 .carousel-hint {
@@ -448,7 +514,8 @@ a:hover {
   z-index: 3;
   opacity: 0;
   transition: opacity 160ms ease;
-  pointer-events: auto; cursor: pointer;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .carousel-hint-left {
@@ -481,7 +548,7 @@ a:hover {
   border-radius: 999px;
 }
 .carousel-track:hover::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.2);
 }
 /* Switch toggle */
 .switch {
@@ -548,7 +615,7 @@ a:hover {
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(17, 24, 39, 0.92);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
 
   display: flex;
@@ -585,34 +652,50 @@ a:hover {
 .toast-success {
   border-color: rgba(34, 197, 94, 0.35);
   background: rgba(17, 24, 39, 0.92);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(34, 197, 94, 0.10);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(34, 197, 94, 0.1);
 }
 
 .toast-error {
-  border-color: rgba(239, 68, 68, 0.40);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(239, 68, 68, 0.10);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(239, 68, 68, 0.1);
 }
 
 .toast-warning {
-  border-color: rgba(245, 158, 11, 0.40);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(245, 158, 11, 0.10);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(245, 158, 11, 0.1);
 }
 
 .toast-info {
-  border-color: rgba(59, 130, 246, 0.40);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.40), 0 0 0 4px rgba(59, 130, 246, 0.10);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 /* Hide animation */
 .toast-hide {
   opacity: 0;
   transform: translateY(-8px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 @keyframes toast-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================
@@ -627,7 +710,7 @@ a:hover {
   height: 64px;
   z-index: 50;
   background: rgba(6, 8, 18, 0.55);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -650,12 +733,15 @@ a:hover {
   place-items: center;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease;
 }
 
 .admin-home-btn:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.18);
   text-decoration: none;
 }
@@ -690,6 +776,7 @@ a:hover {
   width: 100%;
   justify-content: center;
 }
+
 /* Admin tables base */
 .admin-table {
   width: 100%;
@@ -700,13 +787,13 @@ a:hover {
 .admin-table th,
 .admin-table td {
   padding: 12px 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: left;
 }
 
 .admin-table th {
   background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 }
 
@@ -746,12 +833,12 @@ a:hover {
 
 .badge-success {
   border-color: rgba(34, 197, 94, 0.35);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.10);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
 .badge-warning {
   border-color: rgba(246, 7, 7, 0.4);
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.10);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
 
 .badge-muted {
@@ -803,8 +890,8 @@ a:hover {
   padding-bottom: 6px;
 
   /* UX */
-  scrollbar-width: thin;               /* Firefox */
-  scrollbar-color: rgba(255,255,255,.25) transparent;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 
 .task-badges::-webkit-scrollbar {
@@ -834,7 +921,7 @@ a:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 }
 
@@ -844,7 +931,7 @@ a:hover {
   padding: 2px 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.85);
 }
 /* Tooltip wrapper */
@@ -874,7 +961,9 @@ a:hover {
   transform: translateY(4px);
   pointer-events: none;
 
-  transition: opacity 0.05s ease, transform 0.05s ease;
+  transition:
+    opacity 0.05s ease,
+    transform 0.05s ease;
 }
 
 /* Show tooltip instantly on hover */
@@ -913,7 +1002,10 @@ a:hover {
   border-radius: 10px;
   cursor: pointer;
 
-  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
 }
 
 .nav-logout-btn:hover {
@@ -948,9 +1040,10 @@ a:hover {
   font-size: 16px;
 
   cursor: pointer;
-  transition: background 120ms ease,
-              border-color 120ms ease,
-              color 120ms ease;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
 }
 
 .admin-logout-btn:hover {
@@ -971,9 +1064,10 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
 
-  transition: background 120ms ease,
-              border-color 120ms ease,
-              box-shadow 120ms ease;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .admin-django-btn img {
@@ -985,7 +1079,7 @@ a:hover {
 .admin-django-btn:hover {
   background: rgba(9, 121, 105, 0.18); /* vert Django */
   border-color: rgba(9, 121, 105, 0.45);
-  box-shadow: 0 0 0 3px rgba(9, 121, 105, 0.20);
+  box-shadow: 0 0 0 3px rgba(9, 121, 105, 0.2);
 }
 
 .export-actions {
@@ -1011,13 +1105,12 @@ a:hover {
   max-height: calc(100vh - 240px); /* ajuste selon ta page */
   border-radius: var(--radius);
   -webkit-overflow-scrolling: touch;
-    margin-bottom: var(--space-4); /* ou 8px / 12px selon ton scale */
-
+  margin-bottom: var(--space-4); /* ou 8px / 12px selon ton scale */
 }
 /* Ne modifie PAS .admin-table global, seulement lorsqu'il est dans le wrapper */
 .admin-table-wrap--wide > .admin-table {
-  width: max-content;  /* permet au tableau de dépasser sans "sortir" */
-  min-width: 100%;     /* conserve le 100% si peu de colonnes */
+  width: max-content; /* permet au tableau de dépasser sans "sortir" */
+  min-width: 100%; /* conserve le 100% si peu de colonnes */
 }
 .admin-table-wrap--wide .admin-table thead th {
   position: sticky;
@@ -1032,8 +1125,14 @@ a:hover {
   z-index: 12; /* légèrement au-dessus du th sticky */
   background: rgba(12, 18, 32, 0.92);
 }
-.admin-table-wrap--wide .admin-table .sticky-col-1 { left: 0; min-width: 120px; }
-.admin-table-wrap--wide .admin-table .sticky-col-2 { left: 120px; min-width: 220px; }
+.admin-table-wrap--wide .admin-table .sticky-col-1 {
+  left: 0;
+  min-width: 120px;
+}
+.admin-table-wrap--wide .admin-table .sticky-col-2 {
+  left: 120px;
+  min-width: 220px;
+}
 
 .session-header-label {
   cursor: help;
@@ -1047,8 +1146,8 @@ a:hover {
 }
 
 .session-tooltip-tasks {
-  white-space: normal;      /* autorise retours à la ligne */
-  max-width: 320px;         /* évite un tooltip trop large */
+  white-space: normal; /* autorise retours à la ligne */
+  max-width: 320px; /* évite un tooltip trop large */
   line-height: 1.35;
   opacity: 0.95;
 }
@@ -1101,4 +1200,81 @@ a:hover {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+/* Cache la checkbox mais garde l'accessibilité */
+.task-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Base (non sélectionné) : lisible sur fond bleu nuit */
+.task-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  /* Fond légèrement éclairci par rapport au bleu nuit */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* Texte bien lisible */
+  color: rgba(255, 255, 255, 0.88);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.05s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+/* Légère mise en avant au survol */
+.task-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+/* Icône cachée par défaut */
+.task-btn__icon {
+  display: none;
+  line-height: 1;
+}
+
+/* État sélectionné : plus lumineux + bordure plus nette */
+.task-toggle:checked + .task-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.98);
+}
+
+/* ✅ visible seulement si sélectionné */
+.task-toggle:checked + .task-btn .task-btn__icon {
+  display: inline;
+}
+
+/* Feedback au clic */
+.task-btn:active {
+  transform: translateY(1px);
+}
+
+/* Focus clavier */
+.task-toggle:focus + .task-btn {
+  outline: 3px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+.task-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px; /* espace entre les boutons (augmente si besoin) */
+  padding: 8px 0; /* léger padding autour du groupe */
 }

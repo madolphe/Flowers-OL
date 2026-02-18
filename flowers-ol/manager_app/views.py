@@ -19,27 +19,31 @@ from .models import ParticipantProfile, Study, ExperimentSession, AdminPannel
 from .forms import SignInForm, SignUpForm, ChangeUserPasswordForm
 
 
-def login_page(request, study=''):
+def login_page(request, study=""):
     # If study key exists in request.session dict, get its values. This works when user requests the login page without
     # specifying study extension and when the user already has a session
-    if 'study' in request.session:
-        study = request.session.get('study')
+    if "study" in request.session:
+        study = request.session.get("study")
     # If user requests login page with a specific study extension, e.g. http://web-address.fr/study=name_of_study,
     # the name_of_study will be assigned to the study variable
     # This also overwrites study name currently stored in user's session
-    if 'study' in request.GET.dict():
-        study = request.GET.dict().get('study')
+    if "study" in request.GET.dict():
+        study = request.GET.dict().get("study")
     # Validate study name by checking with the database
     valid_study_title = bool(Study.objects.filter(name=study).count())
     if valid_study_title:
         # Normally, a participant has link to only one study. Thus, this should only be performed once
-        request.session['study'] = study  # store 'study' extension only once per session
+        request.session["study"] = (
+            study  # store 'study' extension only once per session
+        )
     error = False
     form_sign_in = SignInForm(request.POST or None)
     if form_sign_in.is_valid():
-        username = form_sign_in.cleaned_data['username']
-        password = form_sign_in.cleaned_data['password']
-        user = authenticate(request, username=username, password=password)  # Check if data are valid
+        username = form_sign_in.cleaned_data["username"]
+        password = form_sign_in.cleaned_data["password"]
+        user = authenticate(
+            request, username=username, password=password
+        )  # Check if data are valid
         if user:
             login(request, user)
             if is_admin_team(user):
@@ -48,23 +52,23 @@ def login_page(request, study=''):
         else:  # show error if user not in DB
             error = True
     # Plutôt utiliser un code erreur
-    return render(request, 'login_page.html', {'CONTEXT': {
-        'study': valid_study_title,
-        'error': error,
-        'form': form_sign_in
-    }})
+    return render(
+        request,
+        "login_page.html",
+        {"CONTEXT": {"study": valid_study_title, "error": error, "form": form_sign_in}},
+    )
 
 
 def signup_page(request):
     # Get study name from session
-    study = Study.objects.get(name=request.session['study'])
+    study = Study.objects.get(name=request.session["study"])
     # Create form, validate, and save user credentials and (implicitly) create a ParticipantProfile object
     sign_up_form = SignUpForm(request.POST or None)
     if sign_up_form.is_valid():
         user = sign_up_form.save(study=study, commit=False)
         login(request, user)
         return redirect(reverse(home))
-    return render(request, 'signup_page.html', {'CONTEXT': {'form_user': sign_up_form}})
+    return render(request, "signup_page.html", {"CONTEXT": {"form_user": sign_up_form}})
 
 
 @login_required
@@ -80,10 +84,14 @@ def home(request):
     # I user tries to start session at a wrong time, redirect user to an appropriate page
     ref = participant.ref_timestamp
     if participant.current_session.in_future(ref):
-        return redirect(reverse(off_session_page, kwargs={'case': 'early'}))  # too early
+        return redirect(
+            reverse(off_session_page, kwargs={"case": "early"})
+        )  # too early
     elif participant.current_session.in_past(ref):
         if participant.current_session.required:
-            return redirect(reverse(off_session_page, kwargs={'case': 'late'}))  # too late => can't proceed
+            return redirect(
+                reverse(off_session_page, kwargs={"case": "late"})
+            )  # too late => can't proceed
         else:
             return redirect(reverse(end_session))  # too late => try next session
 
@@ -93,19 +101,21 @@ def home(request):
 
     # If participant has a session assigned, set request.session.active_session to True
     if participant.current_session:
-        request.session['active_session'] = json.dumps(True)
+        request.session["active_session"] = json.dumps(True)
 
     # If there are any messages, add them to django messages see https://docs.djangoproject.com/en/dev/ref/contrib/messages/
-    if 'messages' in request.session:
-        for tag, content in request.session['messages'].items():
-            django_messages.add_message(request, getattr(django_messages, tag.upper()), content)
-    return render(request, 'home_page.html', {'CONTEXT': {'participant': participant}})
+    if "messages" in request.session:
+        for tag, content in request.session["messages"].items():
+            django_messages.add_message(
+                request, getattr(django_messages, tag.upper()), content
+            )
+    return render(request, "home_page.html", {"CONTEXT": {"participant": participant}})
 
 
 @login_required
 def start_task(request):
-    if 'messages' in request.session:
-        del request.session['messages']
+    if "messages" in request.session:
+        del request.session["messages"]
     return redirect(reverse(request.user.participantprofile.current_task.view_name))
 
 
@@ -116,28 +126,40 @@ def off_session_page(request, case):
     # Get next session if session stack is not empty, otherwise assign None to session
     session = None  # assigning None might be redundant, which is a good thing here!
     if participant.session_stack_peek():
-        if case == 'early':
+        if case == "early":
             reason = _(
-                'La session ne peut pas être lancée parce qu\'il ne s\'est pas écoulé suffisamment de temps depuis votre dernière session.')
-            instructions = _('Dans ce cas, revenez plus tard. Votre prochaine session')
+                "La session ne peut pas être lancée parce qu'il ne s'est pas écoulé suffisamment de temps depuis votre dernière session."
+            )
+            instructions = _("Dans ce cas, revenez plus tard. Votre prochaine session")
             details = participant.get_next_session_info()
-        elif case == 'late':
+        elif case == "late":
             reason = _(
-                'Vous avez manqué une des sessions prévues. Si vous avez commencé une session plus tôt mais que vous ne l\'avez pas terminée à la date limite, la session est considérée comme manquée.')
+                "Vous avez manqué une des sessions prévues. Si vous avez commencé une session plus tôt mais que vous ne l'avez pas terminée à la date limite, la session est considérée comme manquée."
+            )
             instructions = _(
-                'Dans ce cas, vous n\'avez pas respecté le programme et vous ne pouvez pas poursuivre l\'expérience. Merci de participer à notre recherche.')
+                "Dans ce cas, vous n'avez pas respecté le programme et vous ne pouvez pas poursuivre l'expérience. Merci de participer à notre recherche."
+            )
             details = None
-        return render(request, 'off_session_page.html', {'CONTEXT': {
-            'reason': reason, 'instructions': instructions, 'details': details}})
+        return render(
+            request,
+            "off_session_page.html",
+            {
+                "CONTEXT": {
+                    "reason": reason,
+                    "instructions": instructions,
+                    "details": details,
+                }
+            },
+        )
     else:
-        return redirect(reverse('thanks_page'))
+        return redirect(reverse("thanks_page"))
 
 
 @login_required
 def end_session(request):
     participant = request.user.participantprofile
     participant.close_current_session()
-    request.session['active_session'] = json.dumps(False)
+    request.session["active_session"] = json.dumps(False)
     participant.queue_reminder()
     return redirect(reverse(thanks_page))
 
@@ -148,29 +170,43 @@ def thanks_page(request):
     next_date, next_session_info = None, None
     if participant.session_stack_csv:
         # If participant has sessions left
-        heading = _('La session est terminée')
+        heading = _("La session est terminée")
         next_session_pk = participant.session_stack_peek()
         if next_session_pk:
             if not participant.sessions.get(pk=next_session_pk).wait:
                 # If session can start immediately
-                text = _('Votre entraînement n\'est pas fini pour aujourd\'hui, il vous reste une ' \
-                         'session à effectuer durant la journée! Si vous voulez continuer immédiatement c\'est possible:' \
-                         ' Déconnectez vous, reconnectez vous et recommencez !')
+                text = _(
+                    "Votre entraînement n'est pas fini pour aujourd'hui, il vous reste une "
+                    "session à effectuer durant la journée! Si vous voulez continuer immédiatement c'est possible:"
+                    " Déconnectez vous, reconnectez vous et recommencez !"
+                )
             else:
                 # If session has wait time
                 next_session_info = participant.get_next_session_info()
-                text = _('Nous vous attendons la prochaine fois. Votre prochaine session est le')
+                text = _(
+                    "Nous vous attendons la prochaine fois. Votre prochaine session est le"
+                )
         else:
-            text = _('Nous vous attendons la prochaine fois.')
+            text = _("Nous vous attendons la prochaine fois.")
         if participant.excluded:
             text = _(
-                'Votre participation a été interrompue. Vous pouvez nous contacter pour plus d\'informations. Merci pour votre temps !')
+                "Votre participation a été interrompue. Vous pouvez nous contacter pour plus d'informations. Merci pour votre temps !"
+            )
     else:
         # If participant has no sessions left
-        heading = _('L\'étude est terminée')
-        text = _('Merci, pour votre contribution à la science !')
-    return render(request, 'thanks_page.html', {'CONTEXT': {
-        'heading': heading, 'text': text, 'next_session_info': next_session_info}})
+        heading = _("L'étude est terminée")
+        text = _("Merci, pour votre contribution à la science !")
+    return render(
+        request,
+        "thanks_page.html",
+        {
+            "CONTEXT": {
+                "heading": heading,
+                "text": text,
+                "next_session_info": next_session_info,
+            }
+        },
+    )
 
 
 @login_required
@@ -179,19 +215,21 @@ def user_logout(request):
     # if participant.current_session:
     # if current session is incomplete, warn user
     logout(request)
-    return redirect(reverse('login_page', args=[study]))
+    return redirect(reverse("login_page", args=[study]))
 
 
 @login_required
 def end_task(request):
-    ''' A task exit_view function must change the 'exit_view_done' field of the request.session dict to True,
-    in order to be run just once. The exit_view must also redirect back to this view. '''
+    """A task exit_view function must change the 'exit_view_done' field of the request.session dict to True,
+    in order to be run just once. The exit_view must also redirect back to this view."""
 
     participant = request.user.participantprofile
-    if participant.current_task.exit_view and not request.session.setdefault('exit_view_done', False):
+    if participant.current_task.exit_view and not request.session.setdefault(
+        "exit_view_done", False
+    ):
         return redirect(reverse(participant.current_task.exit_view))
-    if 'exit_view_done' in request.session:
-        del request.session['exit_view_done']
+    if "exit_view_done" in request.session:
+        del request.session["exit_view_done"]
     participant.pop_task()
     # Check if participant has no more task in current session
     if participant.current_session and not participant.current_task:
@@ -205,8 +243,8 @@ def admin_login_page(request):
     form_sign_in = SignInForm(request.POST or None)
 
     if form_sign_in.is_valid():
-        username = form_sign_in.cleaned_data['username']
-        password = form_sign_in.cleaned_data['password']
+        username = form_sign_in.cleaned_data["username"]
+        password = form_sign_in.cleaned_data["password"]
         user = authenticate(request, username=username, password=password)
         # User doesn't exist
         if user is None:
@@ -218,10 +256,10 @@ def admin_login_page(request):
         else:
             login(request, user)
             return redirect(reverse(admin_home))
-    return render(request, 'admin_login_page.html', {
-            'error': error,
-            'form': form_sign_in
-        })
+    return render(
+        request, "admin_login_page.html", {"error": error, "form": form_sign_in}
+    )
+
 
 def _resolve_panel_view(panel_view: str):
     """
@@ -235,7 +273,10 @@ def _resolve_panel_view(panel_view: str):
     match = resolve(reverse(panel_view))
     return match.func
 
-@user_passes_test(lambda u: u.is_authenticated and is_admin_team(u), login_url="admin_login")
+
+@user_passes_test(
+    lambda u: u.is_authenticated and is_admin_team(u), login_url="admin_login"
+)
 def admin_home(request, pannel_name=None):
     """
     - If pannel_name is None:
@@ -250,22 +291,23 @@ def admin_home(request, pannel_name=None):
     study = _get_user_study(request.user)
 
     if pannel_name is None:
-        panel = AdminPannel.objects.filter(
-            studies=study,
-            is_home=True
-        ).first()
+        panel = AdminPannel.objects.filter(studies=study, is_home=True).first()
         if panel is None:
-            raise Http404("Admin home panel 'home_pannel' introuvable pour cette Study.")
-        panels = (
-            AdminPannel.objects
-            .filter(studies=study, is_home=False)
-            .order_by("name")
+            raise Http404(
+                "Admin home panel 'home_pannel' introuvable pour cette Study."
+            )
+        panels = AdminPannel.objects.filter(studies=study, is_home=False).order_by(
+            "name"
         )
-        return render(request, "admin_home_pannel.html", {
-            "panel": panel,
-            "panels": panels,
-            "panel_css": panel.css_page,
-        })
+        return render(
+            request,
+            "admin_home_pannel.html",
+            {
+                "panel": panel,
+                "panels": panels,
+                "panel_css": panel.css_page,
+            },
+        )
     panel = AdminPannel.objects.filter(studies=study, name=pannel_name).first()
     if panel is None:
         raise Http404(f"Admin panel '{pannel_name}' introuvable pour cette Study.")
@@ -275,12 +317,17 @@ def admin_home(request, pannel_name=None):
         return view_func(request)
     # 2) Otherwise render template
     if panel.html_page:
-        return render(request, panel.html_page, {
-            "panel": panel,
-            "panel_css": panel.css_page,
-        })
+        return render(
+            request,
+            panel.html_page,
+            {
+                "panel": panel,
+                "panel_css": panel.css_page,
+            },
+        )
     # Should not happen if data integrity is ensured
     raise Http404("Panel mal configuré (ni view ni html_page).")
+
 
 @user_passes_test(lambda u: is_admin_team(u))
 def admin_myprofile(request, study_name: str = "jold_ll"):
@@ -293,20 +340,58 @@ def admin_myprofile(request, study_name: str = "jold_ll"):
     if hasattr(participant, "extra_json") and isinstance(participant.extra_json, dict):
         debug = bool(participant.extra_json.get("debug_mode", False))
     task_stack = participant.task_stack_csv or ""
+    current_tasks = task_stack.split(",")
+    tasks = participant.current_session.get_task_list()
+    tasks = [t.name for t in tasks]
     try:
-        time_stamp = participant.last_session_timestamp.strftime('%d %b %Y (%H:%M:%S)') if participant.last_session_timestamp else None
-        valid_period = participant.current_session.get_valid_period(participant.ref_timestamp, string_format='%d %b %Y (%H:%M:%S)')
+        time_stamp = (
+            participant.last_session_timestamp.strftime("%d %b %Y (%H:%M:%S)")
+            if participant.last_session_timestamp
+            else None
+        )
+        valid_period = participant.current_session.get_valid_period(
+            participant.ref_timestamp, string_format="%d %b %Y (%H:%M:%S)"
+        )
     except AttributeError:
         time_stamp = None
         valid_period = "Pas de session en cours, reset nécessaire"
 
-    return render(request, "admin_pannels/myprofile.html", {
-        "participant": participant,
-        "debug": debug,
-        "time_stamp": time_stamp,
-        "valid_period": valid_period,
-        "task_stack": task_stack,
-    })
+    return render(
+        request,
+        "admin_pannels/myprofile.html",
+        {
+            "participant": participant,
+            "debug": debug,
+            "time_stamp": time_stamp,
+            "valid_period": valid_period,
+            "task_stack": task_stack,
+            "tasks": tasks,
+            "current_tasks": current_tasks,
+        },
+    )
+
+
+@user_passes_test(lambda u: is_admin_team(u))
+def reset_stack(request):
+    if request.method != "POST":
+        return HttpResponseNotAllowed(["POST"])
+    tasks = request.POST.getlist("tasks")
+    tasks = [t.strip() for t in tasks if t and t.strip()]
+    if not tasks:
+        django_messages.error(
+            request, "Aucune tâche n'a été envoyée, participant non modifié."
+        )
+        return redirect("admin_myprofile")
+    task_stack_csv = ",".join(tasks)
+    participant = getattr(request.user, "participantprofile", None)
+    if participant is None:
+        django_messages.error(request, "Participant introuvable.")
+        return redirect("admin_myprofile")
+    participant.task_stack_csv = task_stack_csv
+    participant.save()  # <- IMPORTANT
+    django_messages.success(request, "Participant stack mise à jour")
+    return redirect("admin_myprofile")
+
 
 @user_passes_test(lambda u: is_admin_team(u))
 def reset_user_participant(request):
@@ -328,9 +413,10 @@ def reset_user_participant(request):
     # Recrée un participant propre
     _ensure_participant(user, study=study)
     django_messages.success(request, "Participant remis à zéro.")
-    return redirect('admin_myprofile')
+    return redirect("admin_myprofile")
 
-def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
+
+def _ensure_participant(user, study: Study = None) -> ParticipantProfile:
     """
     Garantit qu'un ParticipantProfile existe pour l'utilisateur et la Study donnée.
     Ne fait AUCUN render/redirect: utilitaire pur.
@@ -338,7 +424,9 @@ def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
     participant = getattr(user, "participantprofile", None)
     if participant is None:
         if study is None:
-            raise ValueError("Study doit être fournie si le ParticipantProfile n'existe pas.")
+            raise ValueError(
+                "Study doit être fournie si le ParticipantProfile n'existe pas."
+            )
         participant = ParticipantProfile(user=user, study=study)
         participant.save()
         participant.populate_session_stack()
@@ -346,18 +434,20 @@ def _ensure_participant(user, study: Study=None) -> ParticipantProfile:
 
     return participant
 
+
 @user_passes_test(lambda u: is_admin_team(u))
 def switch_participant(request):
     participant = request.user.participantprofile
     if request.method == "POST":
-        if hasattr(participant, 'extra_json'):
-            debug_value = request.POST.get('debug') == 'on'
-            participant.extra_json['debug_mode'] = debug_value
+        if hasattr(participant, "extra_json"):
+            debug_value = request.POST.get("debug") == "on"
+            participant.extra_json["debug_mode"] = debug_value
             participant.save()
-            django_messages.success(request, 'Mode debug mis à jour.')
+            django_messages.success(request, "Mode debug mis à jour.")
         else:
-            django_messages.error(request, 'Participant has no extra_json field.')
-    return redirect('admin_myprofile')
+            django_messages.error(request, "Participant has no extra_json field.")
+    return redirect("admin_myprofile")
+
 
 @user_passes_test(lambda u: is_admin_team(u), login_url="admin_login")
 def admin_change_user_password(request):
@@ -373,27 +463,33 @@ def admin_change_user_password(request):
                 )
             if is_admin_team(user) and user != request.user:
                 raise PermissionError(
-                        "Vous ne pouvez pas modifier le mot de passe d’un autre administrateur."
-                    )
+                    "Vous ne pouvez pas modifier le mot de passe d’un autre administrateur."
+                )
             user.set_password(new_password)
             user.save()
             django_messages.success(
                 request,
-                f"Le mot de passe de l’utilisateur « {username} » a été modifié."
+                f"Le mot de passe de l’utilisateur « {username} » a été modifié.",
             )
         except User.DoesNotExist:
             django_messages.error(
                 request,
-                f"Impossible de modifier le mot de passe : l’utilisateur « {username} » n’existe pas."
+                f"Impossible de modifier le mot de passe : l’utilisateur « {username} » n’existe pas.",
             )
         except PermissionError as e:
             django_messages.error(request, str(e))
         return redirect("admin_change_user_password")
-    return render(request, "admin_pannels/change_usr_password.html", {
-        "form": form,
-    })
+    return render(
+        request,
+        "admin_pannels/change_usr_password.html",
+        {
+            "form": form,
+        },
+    )
+
 
 @require_POST
 def logout_admin(request):
     logout(request)
     return redirect("/")
+

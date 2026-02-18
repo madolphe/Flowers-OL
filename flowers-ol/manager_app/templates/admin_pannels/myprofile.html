@@ -11,11 +11,43 @@
       <p>Étude associée : {{ participant.study.name }}</p>
       <p>Dernière session jouée : {{ time_stamp }}</p>
       <p>Validité session : {{ valid_period }}</p>
-      <p>Tâche à accomplir : {{ task_stack }}</p>
+      <p>Tâches courantes : {{ task_stack }}</p>
+    </div>
+    <div class="task-stack">
+        <h3 class="task-stack__title">Tâches à accomplir</h3>
+
+        <form method="post" action="{% url 'reset_stack' %}">
+            {% csrf_token %}
+
+            <div class="task-grid">
+                {% for task in tasks %}
+                  {% with task_value=task.value|default:task task_label=task.label|default:task %}
+                    <input
+                      class="task-toggle"
+                      type="checkbox"
+                      id="task_{{ forloop.counter }}"
+                      name="tasks"
+                      value="{{ task_value }}"
+                      {% if current_tasks and task_value in current_tasks %}checked{% endif %}
+                    >
+                    <label class="task-btn" for="task_{{ forloop.counter }}">
+                      <span class="task-btn__icon" aria-hidden="true">✅</span>
+                      <span class="task-btn__text">{{ task_label }}</span>
+                    </label>
+                  {% endwith %}
+                {% endfor %}            
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">
+                  Mise à jour tâches 
+                </button>
+            </div>
+        </form>
     </div>
 
+
     <div class="actions">
-      <a href="{% url 'home' %}" class="btn">
+      <a href="{% url 'home' %}" class="btn btn-primary">
         Démarrer / Continuer l’étude
       </a>
 
