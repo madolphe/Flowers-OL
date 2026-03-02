@@ -1,7 +1,12 @@
+from __future__ import annotations
+
+from typing import Callable, Hashable, Iterable, List, Sequence, Tuple, Any, Dict
 import os
 import django
 import copy
 import math
+from collections import defaultdict
+
 
 import matplotlib.pyplot as plt
 import matplotlib
@@ -21,10 +26,7 @@ import imageio
 # Connection to flowers-DB:
 flowers_ol = importlib.import_module("flowers-ol.settings")
 
-os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE",
-    "flowers-ol.settings"
-)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "flowers-ol.settings")
 django.setup()
 import kidlearn_lib as k_lib
 from kidlearn_lib import functions as func
@@ -42,25 +44,40 @@ NB_COG_TASKS = 18
 def get_exp_status(study, exclude_unfinished=True):
     all_participants = ParticipantProfile.objects.all().filter(study__name=study)
     nb_participants = len(all_participants)
-    nb_cog_assessment_list = [(participant, get_nb_cog_assessment_for_participant(participant)) for participant in
-                              all_participants]
-    nb_participants_in = sum([nb == NB_COG_TASKS // 2 for (participant, nb) in nb_cog_assessment_list])
+    nb_cog_assessment_list = [
+        (participant, get_nb_cog_assessment_for_participant(participant))
+        for participant in all_participants
+    ]
+    nb_participants_in = sum(
+        [nb == NB_COG_TASKS // 2 for (participant, nb) in nb_cog_assessment_list]
+    )
     if exclude_unfinished:
-        for (participant, nb) in nb_cog_assessment_list:
+        for participant, nb in nb_cog_assessment_list:
             if nb != NB_COG_TASKS:
                 all_participants.get(user_id=participant.user.id).delete()
-    zpdes_participants, baseline_participants, none_participants = get_groups(all_participants)
+    zpdes_participants, baseline_participants, none_participants = get_groups(
+        all_participants
+    )
     nb_baseline, nb_zpdes = len(baseline_participants), len(zpdes_participants)
     # descriptive_dict = {'zpdes': get_progression(zpdes_participants),
     #                     'baseline': get_progression(baseline_participants),
     #                     'cog': get_progression(none_participants)}
     descriptive_dict = {}
-    return nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict, zpdes_participants, \
-        baseline_participants
+    return (
+        nb_participants,
+        nb_participants_in,
+        nb_baseline,
+        nb_zpdes,
+        descriptive_dict,
+        zpdes_participants,
+        baseline_participants,
+    )
 
 
 def get_nb_cog_assessment_for_participant(participant):
-    particpants_cog_results = CognitiveResult.objects.all().filter(participant=participant)
+    particpants_cog_results = CognitiveResult.objects.all().filter(
+        participant=participant
+    )
     return len(particpants_cog_results)
 
 
@@ -110,23 +127,31 @@ def get_progression(participants_list):
                 else:
                     # session is available but has not started it yet --> -1 or -2
                     participant.current_session = s
-                    if get_time_since_last_session(participant) < 3 + participant.current_session.wait['days']:
+                    if (
+                        get_time_since_last_session(participant)
+                        < 3 + participant.current_session.wait["days"]
+                    ):
                         participant_progression.append(-1)
                     else:
                         participant_progression.append(-2)
-        if 'condition' in participant.extra_json:
-            cond = participant.extra_json['condition']
+        if "condition" in participant.extra_json:
+            cond = participant.extra_json["condition"]
             nb_episode = get_number_episode_played(participant)
             idle_time = get_mean_idle_time(participant) / 1000
         else:
-            cond = 'no_group'
+            cond = "no_group"
             nb_episode = 0
             idle_time = 0
-        if 'stop' in participant.extra_json:
+        if "stop" in participant.extra_json:
             participant_progression = [-3 for i in range(10)]
         none_blocks = [0 for i in range(10 - len(participant_progression))]
         descriptive_dict[participant.user.username] = (
-            cond, participant_progression, none_blocks, nb_episode, idle_time)
+            cond,
+            participant_progression,
+            none_blocks,
+            nb_episode,
+            idle_time,
+        )
     return descriptive_dict
 
 
@@ -183,7 +208,9 @@ def get_cumulative_episode(episodes):
         for session_idx, session_episode in episodes_participant.items():
             episodes_tmp += session_episode
             cumulative_episodes[participant][session_idx] = copy.deepcopy(episodes_tmp)
-            len_cumulative_episodes[participant][session_idx] = len(cumulative_episodes[participant])
+            len_cumulative_episodes[participant][session_idx] = len(
+                cumulative_episodes[participant]
+            )
     return cumulative_episodes, len_cumulative_episodes
 
 
@@ -193,9 +220,15 @@ def split_sessions_in_blocks(episodes, nb_episodes=30):
     for session_key, session_values in episodes.items():
         nb_blocks = (len(session_values) // nb_episodes) + 1
         for block in range(nb_blocks):
-            if len(session_values[block * nb_episodes:(block + 1) * (nb_episodes)]) >= (nb_episodes // 2):
-                return_dict[f"{session_key}_{block}"] = session_values[block * nb_episodes:(block + 1) * (nb_episodes)]
-                nb_dict[f"{session_key}_{block}"] = len(session_values[block * nb_episodes:(block + 1) * (nb_episodes)])
+            if len(
+                session_values[block * nb_episodes : (block + 1) * (nb_episodes)]
+            ) >= (nb_episodes // 2):
+                return_dict[f"{session_key}_{block}"] = session_values[
+                    block * nb_episodes : (block + 1) * (nb_episodes)
+                ]
+                nb_dict[f"{session_key}_{block}"] = len(
+                    session_values[block * nb_episodes : (block + 1) * (nb_episodes)]
+                )
     return return_dict, nb_dict
 
 
@@ -207,26 +240,43 @@ def get_true_episodes(participant_list, nb_episodes=20, keep_ntargets=None):
     """
     keep_ntargets: int , specification of a certain nb_target lvl to keep (i.e keep only episodes with n_targets = 2)
     """
-    sort_episodes, sort_episodes_true, participants_nb_per_block, participants_nb_per_block_true = {}, {}, {}, {}
+    (
+        sort_episodes,
+        sort_episodes_true,
+        participants_nb_per_block,
+        participants_nb_per_block_true,
+    ) = {}, {}, {}, {}
     for participant in participant_list:
         episodes = Episode.objects.all().filter(participant=participant.user)
         participant_sort_episodes = sort_episodes_by_date(episodes)
         if keep_ntargets:
-            participant_sort_episodes = {k: list(filter(lambda episode: episode.n_targets == keep_ntargets, v)) for k, v
-                                         in participant_sort_episodes.items()}
+            participant_sort_episodes = {
+                k: list(filter(lambda episode: episode.n_targets == keep_ntargets, v))
+                for k, v in participant_sort_episodes.items()
+            }
         # We split the sessions into blocks at this stage so that the get_true_episodes will be automaticaly split:
-        participant_sort_episodes, participant_nb_per_block = split_sessions_in_blocks(participant_sort_episodes,
-                                                                                       nb_episodes=nb_episodes)
-        participant_sort_episodes_true = {k: list(filter(lambda episode: episode.get_results == 1, v)) for k, v in
-                                          participant_sort_episodes.items()}
-        nb_per_block_true = {k: len(episodes) for k, episodes in participant_sort_episodes_true.items()}
+        participant_sort_episodes, participant_nb_per_block = split_sessions_in_blocks(
+            participant_sort_episodes, nb_episodes=nb_episodes
+        )
+        participant_sort_episodes_true = {
+            k: list(filter(lambda episode: episode.get_results == 1, v))
+            for k, v in participant_sort_episodes.items()
+        }
+        nb_per_block_true = {
+            k: len(episodes) for k, episodes in participant_sort_episodes_true.items()
+        }
         sort_episodes[participant] = participant_sort_episodes
         sort_episodes_true[participant] = participant_sort_episodes_true
         participants_nb_per_block[participant] = participant_nb_per_block
         participants_nb_per_block_true[participant] = nb_per_block_true
     # sort_episodes = exclude_participant(sort_episodes, nb_episodes=nb_episodes)
     # sort_episodes_true = exclude_participant(sort_episodes_true, nb_episodes=nb_episodes)
-    return sort_episodes, sort_episodes_true, participants_nb_per_block, participants_nb_per_block_true
+    return (
+        sort_episodes,
+        sort_episodes_true,
+        participants_nb_per_block,
+        participants_nb_per_block_true,
+    )
 
 
 def get_mean_success_ps(all_episodes, true_episodes):
@@ -235,9 +285,11 @@ def get_mean_success_ps(all_episodes, true_episodes):
         particpant_mean_success = {}
         for session_id, episodes_list in participant_sessions.items():
             try:
-                particpant_mean_success[session_id] = len(true_episodes[participant][session_id]) / len(episodes_list)
+                particpant_mean_success[session_id] = len(
+                    true_episodes[participant][session_id]
+                ) / len(episodes_list)
             except ZeroDivisionError:
-                print('Cest biwzarre')
+                print("Cest biwzarre")
         participants_success_ps[participant] = particpant_mean_success
     return participants_success_ps
 
@@ -249,7 +301,9 @@ def get_frequency_of_ntargets(episodes):
         participant_sessions_freq = {}
         for session_id, episodes in participant_sessions.items():
             tmp_session = [episode.n_targets for episode in episodes]
-            tmp_freq = [tmp_session.count(ntarget_value) for ntarget_value in n_targets_range]
+            tmp_freq = [
+                tmp_session.count(ntarget_value) for ntarget_value in n_targets_range
+            ]
             tmp_freq = list(np.array(tmp_freq) / sum(tmp_freq))
             participant_sessions_freq[session_id] = tmp_freq
         participants_frequency_ntargets[participant] = participant_sessions_freq
@@ -265,13 +319,25 @@ def get_average_activity(episodes):
         tmp_sort_episode_nb_target = {k: {} for k in range(2, 8)}
         for session_id, episodes in participant_sessions.items():
             for episode in episodes:
-                tmp_episode = [episode.speed_max, episode.tracking_time, episode.probe_time, episode.radius]
+                tmp_episode = [
+                    episode.speed_max,
+                    episode.tracking_time,
+                    episode.probe_time,
+                    episode.radius,
+                ]
                 if session_id not in tmp_sort_episode_nb_target[episode.n_targets]:
-                    tmp_sort_episode_nb_target[episode.n_targets][session_id] = tmp_episode
+                    tmp_sort_episode_nb_target[episode.n_targets][session_id] = (
+                        tmp_episode
+                    )
                 else:
                     # Compute the mean of new episode
-                    tmp_sort_episode_nb_target[episode.n_targets][session_id] = list(0.5 * np.add(
-                        tmp_sort_episode_nb_target[episode.n_targets][session_id], tmp_episode))
+                    tmp_sort_episode_nb_target[episode.n_targets][session_id] = list(
+                        0.5
+                        * np.add(
+                            tmp_sort_episode_nb_target[episode.n_targets][session_id],
+                            tmp_episode,
+                        )
+                    )
         participants_average_episode[participant] = tmp_sort_episode_nb_target
     return participants_average_episode
 
@@ -296,10 +362,12 @@ def get_accuracy_per_episode(episodes):
 # Then some graph about exploration
 # 1) Iterate over participants:
 def get_participants_hulls_per_session(episodes):
-    """ Iter through all participants to retrieve the array of all hull per sessions"""
+    """Iter through all participants to retrieve the array of all hull per sessions"""
     hull_volume_per_participant = {}
     for participant, participant_sessions in episodes.items():
-        hull_volume_per_participant[participant.user.username] = get_participant_hull_volume(participant_sessions)
+        hull_volume_per_participant[participant.user.username] = (
+            get_participant_hull_volume(participant_sessions)
+        )
     return hull_volume_per_participant
 
 
@@ -320,13 +388,23 @@ def get_participant_hull_volume(participant_sessions):
 def get_hull_per_session(session_points):
     """Transform all points from a session to array of episodes and compute the hull of the session"""
     episode_array = list(
-        map(lambda episode: [episode.n_targets, episode.speed_max, episode.tracking_time, episode.probe_time,
-                             episode.radius],
-            session_points))
+        map(
+            lambda episode: [
+                episode.n_targets,
+                episode.speed_max,
+                episode.tracking_time,
+                episode.probe_time,
+                episode.radius,
+            ],
+            session_points,
+        )
+    )
     episode_array = np.array(episode_array)
-    valid_dims = [np.any(episode_array[:, col] != episode_array[0, col]) for col in range(5)]
+    valid_dims = [
+        np.any(episode_array[:, col] != episode_array[0, col]) for col in range(5)
+    ]
     if all(valid_dims):
-        hull = spatial.ConvexHull(points=episode_array, qhull_options='QJ')
+        hull = spatial.ConvexHull(points=episode_array, qhull_options="QJ")
     else:
         index = []
         array_kept = []
@@ -335,18 +413,29 @@ def get_hull_per_session(session_points):
                 index.append(episode_array[0, valid_dim_index])
             else:
                 array_kept.append(episode_array[:, valid_dim_index])
-        hull = spatial.ConvexHull(points=np.array(array_kept).T, qhull_options='QJ')
+        hull = spatial.ConvexHull(points=np.array(array_kept).T, qhull_options="QJ")
     return hull
 
 
-def display_volumes(participants_hull, title, nb_episodes, participant_hull_ref=None, y_min=0, y_max=120):
+def display_volumes(
+    participants_hull, title, nb_episodes, participant_hull_ref=None, y_min=0, y_max=120
+):
     mean = []
     plt.close()
     if participant_hull_ref:
         for participant_key, value in participant_hull_ref.items():
-            plt.plot([i for i in range(len(value))], value.values(), '-o', linewidth='0.4', alpha=0.3, color='grey')
+            plt.plot(
+                [i for i in range(len(value))],
+                value.values(),
+                "-o",
+                linewidth="0.4",
+                alpha=0.3,
+                color="grey",
+            )
     for participant_key, value in participants_hull.items():
-        plt.plot([i for i in range(len(value))], value.values(), '-o', label=participant_key)
+        plt.plot(
+            [i for i in range(len(value))], value.values(), "-o", label=participant_key
+        )
         # if len(value) == nb_blocks:
         #     mean.append([val for key, val in value.items()])
     # plt.plot([i for i in range(nb_blocks)], np.mean(mean, axis=0), 'o', linestyle='solid', color='red')
@@ -354,17 +443,19 @@ def display_volumes(participants_hull, title, nb_episodes, participant_hull_ref=
     # plt.yticks([i * 10 for i in range(0, 13)])
     plt.ylim(y_min, y_max)
     plt.title(title)
-    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.legend(loc="center left", bbox_to_anchor=(1, 0.5))
     # plt.show()
-    plt.savefig(f'{title}.png', bbox_inches="tight")
+    plt.savefig(f"{title}.png", bbox_inches="tight")
     plt.close()
 
 
 def get_participants_hypercube_per_session(episodes):
-    """ Iter through all participants to retrieve the array of all hypercube volumes per sessions"""
+    """Iter through all participants to retrieve the array of all hypercube volumes per sessions"""
     hull_volume_per_participant = {}
     for participant, participant_sessions in episodes.items():
-        hull_volume_per_participant[participant.user.username] = get_participant_hypercube_volume(participant_sessions)
+        hull_volume_per_participant[participant.user.username] = (
+            get_participant_hypercube_volume(participant_sessions)
+        )
     return hull_volume_per_participant
 
 
@@ -388,47 +479,91 @@ def get_all_hypercubes_volumes_per_session(session_points):
     max_radius = 1.2
     # Map each episodes to a corresponding hypercube hypervolume
     episode_array = list(
-        map(lambda episode: episode.n_targets * episode.speed_max * episode.tracking_time * (
-                max_probe_time - episode.probe_time) * (max_radius - episode.radius), session_points))
+        map(
+            lambda episode: (
+                episode.n_targets
+                * episode.speed_max
+                * episode.tracking_time
+                * (max_probe_time - episode.probe_time)
+                * (max_radius - episode.radius)
+            ),
+            session_points,
+        )
+    )
     return episode_array
 
 
 # ######################################################################################################################
 # Let's display all the data:
-def display_participants_success_ps(participants_success_ps, participant_success_ref=None, condition='zpdes',
-                                    nb_episodes=50, success_type_title="binary", participant_std=None):
+def display_participants_success_ps(
+    participants_success_ps,
+    participant_success_ref=None,
+    condition="zpdes",
+    nb_episodes=50,
+    success_type_title="binary",
+    participant_std=None,
+):
     fig = plt.figure()
     nb_values_max = 0
     if participant_success_ref:
         for participant, participant_sessions in participant_success_ref.items():
             points = participant_sessions.values()
-            plt.plot([i for i in range(len(points))], points, '-o', linewidth='0.4', alpha=0.3, color='grey')
+            plt.plot(
+                [i for i in range(len(points))],
+                points,
+                "-o",
+                linewidth="0.4",
+                alpha=0.3,
+                color="grey",
+            )
             if len(points) > nb_values_max:
                 nb_values_max = len(points)
     if participant_std:
-        for (participant, participant_sessions), (participant_std, participant_sessions_std) in zip(
-                participants_success_ps.items(), participant_std.items()):
+        for (participant, participant_sessions), (
+            participant_std,
+            participant_sessions_std,
+        ) in zip(participants_success_ps.items(), participant_std.items()):
             points_std = np.array(list(participant_sessions_std.values()))
             points = participant_sessions.values()
-            plt.plot([i for i in range(len(points))], points, 'o', linestyle='solid', label=participant.user.username)
-            plt.fill_between([i for i in range(len(points))],
-                             np.array(list(participant_sessions.values())) - points_std,
-                             np.array(list(participant_sessions.values())) + points_std, alpha=0.3)
+            plt.plot(
+                [i for i in range(len(points))],
+                points,
+                "o",
+                linestyle="solid",
+                label=participant.user.username,
+            )
+            plt.fill_between(
+                [i for i in range(len(points))],
+                np.array(list(participant_sessions.values())) - points_std,
+                np.array(list(participant_sessions.values())) + points_std,
+                alpha=0.3,
+            )
             if len(points) > nb_values_max:
                 nb_values_max = len(points)
     else:
         for participant, participant_sessions in participants_success_ps.items():
             points = participant_sessions.values()
-            plt.plot([i for i in range(len(points))], points, 'o', linestyle='solid', label=participant.user.username)
+            plt.plot(
+                [i for i in range(len(points))],
+                points,
+                "o",
+                linestyle="solid",
+                label=participant.user.username,
+            )
             if len(points) > nb_values_max:
                 nb_values_max = len(points)
 
     # plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-    plt.xticks([i for i in range(nb_values_max)], [str(i * nb_episodes) for i in range(1, nb_values_max + 1)],
-               rotation=45)
+    plt.xticks(
+        [i for i in range(nb_values_max)],
+        [str(i * nb_episodes) for i in range(1, nb_values_max + 1)],
+        rotation=45,
+    )
     plt.yticks(np.arange(0, 1.1, 0.1))
-    plt.title(f'{success_type_title}: ' + condition + ' ntargets=All')
-    plt.savefig(f'SR_{condition}_{nb_episodes}_{success_type_title}', bbox_inches="tight")
+    plt.title(f"{success_type_title}: " + condition + " ntargets=All")
+    plt.savefig(
+        f"SR_{condition}_{nb_episodes}_{success_type_title}", bbox_inches="tight"
+    )
     # plt.show()
 
 
@@ -436,33 +571,78 @@ def display_mean_zpdes_vs_baseline(zpdes, baseline, title, nb_blocks=5, fill_std
     mean_zpdes, std_zpdes = compute_mean_std(zpdes, nb_blocks=nb_blocks)
     mean_baseline, std_baseline = compute_mean_std(baseline, nb_blocks=nb_blocks)
     plt.figure()
-    plt.plot([i for i in range(len(mean_zpdes))], mean_zpdes, marker='D', linestyle='solid', linewidth=5, label='zpdes',
-             color='red')
+    plt.plot(
+        [i for i in range(len(mean_zpdes))],
+        mean_zpdes,
+        marker="D",
+        linestyle="solid",
+        linewidth=5,
+        label="zpdes",
+        color="red",
+    )
 
-    plt.plot([i for i in range(len(mean_baseline))], mean_baseline, marker='D', linestyle='solid', linewidth=5,
-             label='baseline',
-             color='blue')
+    plt.plot(
+        [i for i in range(len(mean_baseline))],
+        mean_baseline,
+        marker="D",
+        linestyle="solid",
+        linewidth=5,
+        label="baseline",
+        color="blue",
+    )
     if fill_std:
-        plt.fill_between([i for i in range(len(mean_zpdes))], mean_zpdes - std_zpdes, linestyle='solid', color='red',
-                         alpha=0.1)
-        plt.fill_between([i for i in range(len(mean_zpdes))], mean_zpdes + std_zpdes, linestyle='solid', color='red',
-                         alpha=0.1)
-        plt.fill_between([i for i in range(len(mean_baseline))], mean_baseline - std_baseline, linestyle='solid',
-                         color='blue', alpha=0.1)
-        plt.fill_between([i for i in range(len(mean_baseline))], mean_baseline + std_baseline, linestyle='solid',
-                         color='blue', alpha=0.1)
+        plt.fill_between(
+            [i for i in range(len(mean_zpdes))],
+            mean_zpdes - std_zpdes,
+            linestyle="solid",
+            color="red",
+            alpha=0.1,
+        )
+        plt.fill_between(
+            [i for i in range(len(mean_zpdes))],
+            mean_zpdes + std_zpdes,
+            linestyle="solid",
+            color="red",
+            alpha=0.1,
+        )
+        plt.fill_between(
+            [i for i in range(len(mean_baseline))],
+            mean_baseline - std_baseline,
+            linestyle="solid",
+            color="blue",
+            alpha=0.1,
+        )
+        plt.fill_between(
+            [i for i in range(len(mean_baseline))],
+            mean_baseline + std_baseline,
+            linestyle="solid",
+            color="blue",
+            alpha=0.1,
+        )
     else:
         for key_participant, value in zpdes.items():
             value = [val for val in list(value.values())]
-            plt.plot([i for i in range(len(value))], value, '-o', linewidth='0.5', alpha=0.3,
-                     color='red')
+            plt.plot(
+                [i for i in range(len(value))],
+                value,
+                "-o",
+                linewidth="0.5",
+                alpha=0.3,
+                color="red",
+            )
         for key_participant, value in baseline.items():
             value = [val for val in list(value.values())]
-            plt.plot([i for i in range(len(value))], value, '-o', linewidth='0.5', alpha=0.3,
-                     color='blue')
+            plt.plot(
+                [i for i in range(len(value))],
+                value,
+                "-o",
+                linewidth="0.5",
+                alpha=0.3,
+                color="blue",
+            )
     plt.legend()
     plt.title(title)
-    plt.savefig(f'{title}.png', bbox_inches="tight")
+    plt.savefig(f"{title}.png", bbox_inches="tight")
     plt.close()
 
 
@@ -475,25 +655,38 @@ def compute_mean_std(condition, nb_blocks=8):
     # nb_participants_per_session = [np.sum(np.array(trans_data)[:, i] > 0) for i in range(nb_blocks)]
     # mean_session = np.divide(np.sum(trans_data, axis=0), nb_participants_per_session)
     # return np.mean(trans_data, axis=0), np.std(trans_data, axis=0)
-    return np.mean(np.array(trans_data), axis=0), np.array([np.std(np.array(elt), axis=0) for elt in trans_data])
+    return np.mean(np.array(trans_data), axis=0), np.array(
+        [np.std(np.array(elt), axis=0) for elt in trans_data]
+    )
 
 
-def display_histo_frequency_ntargets(participants_frequency, nb_episodes, participants_nb_per_block, group):
-    if not os.path.isdir('../../../outputs/v3_utl/v1/frequency_prolific_histo'): os.mkdir(
-        '../../../outputs/v3_utl/v1/frequency_prolific_histo')
+def display_histo_frequency_ntargets(
+    participants_frequency, nb_episodes, participants_nb_per_block, group
+):
+    if not os.path.isdir("../../../outputs/v3_utl/v1/frequency_prolific_histo"):
+        os.mkdir("../../../outputs/v3_utl/v1/frequency_prolific_histo")
     for participant, frequency_sessions in participants_frequency.items():
         plt.figure()
-        plt.title(f"n_targets distribution through time : \n {participant} \n group {group}")
+        plt.title(
+            f"n_targets distribution through time : \n {participant} \n group {group}"
+        )
         barwidth = 0.1
         # shift = np.linspace(-(len(frequency_sessions) / 2) * 0.1, (len(frequency_sessions) / 2) * 0.1, len(frequency_sessions))
         # shift = np.linspace(-0.3, 0.3, 8)
         shift = [-0.4, -0.25, -0.1, 0.05, 0.20, 0.35, 0.50]
         for session_index, (session_id, freqs) in enumerate(frequency_sessions.items()):
-            plt.bar([session_index + shift[i] for i in range(len(freqs))], freqs, width=barwidth, label=session_id)
+            plt.bar(
+                [session_index + shift[i] for i in range(len(freqs))],
+                freqs,
+                width=barwidth,
+                label=session_id,
+            )
         # plt.legend()
         xticks_labels = []
         sum = 0
-        for index, session_id in enumerate(participants_nb_per_block[participant].keys(), 1):
+        for index, session_id in enumerate(
+            participants_nb_per_block[participant].keys(), 1
+        ):
             sum += participants_nb_per_block[participant][session_id]
             xticks_labels.append(sum)
         plt.xticks([i for i in range(len(frequency_sessions))], xticks_labels)
@@ -502,12 +695,16 @@ def display_histo_frequency_ntargets(participants_frequency, nb_episodes, partic
         plt.close()
 
 
-def display_frequency_ntargets(participants_frequency, nb_episodes, participants_nb_per_block, group):
-    if not os.path.isdir('../../../outputs/v3_utl/v1/frequency_prolific_histo'): os.mkdir(
-        '../../../outputs/v3_utl/v1/frequency_prolific_histo')
+def display_frequency_ntargets(
+    participants_frequency, nb_episodes, participants_nb_per_block, group
+):
+    if not os.path.isdir("../../../outputs/v3_utl/v1/frequency_prolific_histo"):
+        os.mkdir("../../../outputs/v3_utl/v1/frequency_prolific_histo")
     for participant, frequency_sessions in participants_frequency.items():
         plt.figure()
-        plt.title(f"n_targets distribution through time : \n {participant} \n group {group}")
+        plt.title(
+            f"n_targets distribution through time : \n {participant} \n group {group}"
+        )
         barwidth = 0.1
         # shift = np.linspace(-(len(frequency_sessions) / 2) * 0.1, (len(frequency_sessions) / 2) * 0.1, len(frequency_sessions))
         # shift = np.linspace(-0.3, 0.3, 8)
@@ -515,11 +712,13 @@ def display_frequency_ntargets(participants_frequency, nb_episodes, participants
         session_id = [i for i in range(len(frequency_sessions))]
         values = np.array(list(frequency_sessions.values()))
         for i in range(5, -1, -1):
-            plt.plot(session_id, np.squeeze(values[:, i]), label=i, marker='*')
+            plt.plot(session_id, np.squeeze(values[:, i]), label=i, marker="*")
         plt.legend()
         xticks_labels = []
         sum = 0
-        for index, session_id in enumerate(participants_nb_per_block[participant].keys(), 1):
+        for index, session_id in enumerate(
+            participants_nb_per_block[participant].keys(), 1
+        ):
             sum += participants_nb_per_block[participant][session_id]
             if index % 2 == 0:
                 xticks_labels.append(sum)
@@ -537,9 +736,11 @@ def display_frequency_ntargets(participants_frequency, nb_episodes, participants
 def display_average_activity(participants_average_activity):
     angles = [2 * math.pi / n for n in range(1, 6)]
     angles += [angles[0]]
-    categories = ['session_id', 'speed', 'tracking_time', 'probe_duration', 'radius']
+    categories = ["session_id", "speed", "tracking_time", "probe_duration", "radius"]
     for participant, average_activities in participants_average_activity.items():
-        fig, axs = plt.subplots(3, 2, subplot_kw={'projection': 'polar'}, constrained_layout=True)
+        fig, axs = plt.subplots(
+            3, 2, subplot_kw={"projection": "polar"}, constrained_layout=True
+        )
         fig.suptitle(participant.user.username)
         for i, ax in enumerate(axs.flat):
             if int(i + 2) in average_activities:
@@ -547,7 +748,7 @@ def display_average_activity(participants_average_activity):
                 chart_values = list(average_activities[i + 2].values())
                 for session_idx, session in enumerate(chart_values):
                     line = [session_idx] + session + [session_idx]
-                    ax.plot(angles, line, linewidth=1, linestyle='solid')
+                    ax.plot(angles, line, linewidth=1, linestyle="solid")
             else:
                 # This target nb has not been proposed to the participant
                 pass
@@ -561,11 +762,16 @@ def list_division(list, scalar):
 
 
 def normalize(lists_values):
-    return list(map(lambda list_values: list_division(list_values, sum(lists_values)), lists_values))
+    return list(
+        map(
+            lambda list_values: list_division(list_values, sum(lists_values)),
+            lists_values,
+        )
+    )
 
 
 def reformat_matrix(matrix):
-    """ Just for visualization purposes """
+    """Just for visualization purposes"""
     # Insert columns:
     matrix = np.insert(matrix, 7, -np.ones((1, 6)), axis=1)
     matrix = np.insert(matrix, 15, -np.ones((1, 6)), axis=1)
@@ -583,13 +789,14 @@ def save_matrix(matrix, participant, episode_number):
     plt.colorbar()
     plt.clim(-1, 1)
     plt.tick_params(
-        axis='x',  # changes apply to the x-axis
-        which='both',  # both major and minor ticks are affected
+        axis="x",  # changes apply to the x-axis
+        which="both",  # both major and minor ticks are affected
         bottom=False,  # ticks along the bottom edge are off
         top=False,  # ticks along the top edge are off
-        labelbottom=False)
-    plt.yticks(np.arange(11), ('0', '', '1', '', '2', '', '3', '', '4', '', '5'))
-    plt.savefig(f'outputs_results/{participant.user.username}/{episode_number}.png')
+        labelbottom=False,
+    )
+    plt.yticks(np.arange(11), ("0", "", "1", "", "2", "", "3", "", "4", "", "5"))
+    plt.savefig(f"outputs_results/{participant.user.username}/{episode_number}.png")
     plt.close()
 
 
@@ -615,10 +822,24 @@ def get_matrix_bandvals(dict_vals):
 
 def get_matrices(all_episodes):
     saved_zpdes_participants = pd.DataFrame(
-        columns=['participant', 'episode', 'main_index', 'main_value', 'main_success', 'speed_values',
-                 'tracking_duration_values',
-                 'probe_duration_values', 'radius_values', 'speed_success', 'tracking_duration_success',
-                 'probe_duration_success', 'radius_success', 'episode_sample', 'results'])
+        columns=[
+            "participant",
+            "episode",
+            "main_index",
+            "main_value",
+            "main_success",
+            "speed_values",
+            "tracking_duration_values",
+            "probe_duration_values",
+            "radius_values",
+            "speed_success",
+            "tracking_duration_success",
+            "probe_duration_success",
+            "radius_success",
+            "episode_sample",
+            "results",
+        ]
+    )
     for participant, sessions in all_episodes.items():
         participant_wrapper = MotParamsWrapper(participant)
         participant_zpdes = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
@@ -632,47 +853,67 @@ def get_matrices(all_episodes):
                 #     SSBG_key: [(SSB.bandval, parse_success_into_ALP(SSB.success, SSB.bandval)) for SSB in SSBG.SSB] for
                 #     SSBG_key, SSBG in participant_zpdes.SSBGs.items()}
                 bandvals = {
-                    SSBG_key: [(SSB.bandval, get_SR(SSB.success)) for SSB in SSBG.SSB] for
-                    SSBG_key, SSBG in participant_zpdes.SSBGs.items()}
-                episode_summary = get_row_for_zpdes_csv(participant, episode, bandvals, participant_wrapper)
+                    SSBG_key: [(SSB.bandval, get_SR(SSB.success)) for SSB in SSBG.SSB]
+                    for SSBG_key, SSBG in participant_zpdes.SSBGs.items()
+                }
+                episode_summary = get_row_for_zpdes_csv(
+                    participant, episode, bandvals, participant_wrapper
+                )
                 # Feed results of past exercices
                 # matrix = get_matrix_bandvals(bandvals)
                 # save_matrix(matrix, participant, episode.episode_number)
-                saved_zpdes_participants = saved_zpdes_participants.append(copy.deepcopy(episode_summary),
-                                                                           ignore_index=True)
+                saved_zpdes_participants = saved_zpdes_participants.append(
+                    copy.deepcopy(episode_summary), ignore_index=True
+                )
                 participant_wrapper.update(episode, participant_zpdes)
                 # check_ALP(participant_zpdes, bandvals)
         print(participant)
         # create_gif()
-    saved_zpdes_participants.to_csv('zpdes_states_exploration.csv')
+    saved_zpdes_participants.to_csv("zpdes_states_exploration.csv")
 
 
-def get_LP_trajectory(all_episodes, get_reward, LP_type, group, add_trajectory=False, get_current=False,
-                      keep_history=False):
+def get_LP_trajectory(
+    all_episodes,
+    get_reward,
+    LP_type,
+    group,
+    add_trajectory=False,
+    get_current=False,
+    keep_history=False,
+):
     create_folder(["trajectories"], root=None)
     create_folder(["baseline", "zpdes"], root="trajectories")
-    create_folder(["n_targets", "speed", "tracking", "probe", "radius"], root="trajectories/zpdes")
-    create_folder(["n_targets", "speed", "tracking", "probe", "radius"], root="trajectories/baseline")
-    values = {'n_targets': np.array([2, 3, 4, 5, 6, 7], dtype=float),
-              'speed_max': np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], dtype=float),
-              'tracking_time': np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0], dtype=float),
-              'probe_time': np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0], dtype=float),
-              'n_distractors': np.linspace(14, 7, 8, dtype=float),
-              'radius': np.array([1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6], dtype=float)}
+    create_folder(
+        ["n_targets", "speed", "tracking", "probe", "radius"], root="trajectories/zpdes"
+    )
+    create_folder(
+        ["n_targets", "speed", "tracking", "probe", "radius"],
+        root="trajectories/baseline",
+    )
+    values = {
+        "n_targets": np.array([2, 3, 4, 5, 6, 7], dtype=float),
+        "speed_max": np.array([2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], dtype=float),
+        "tracking_time": np.array([3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0], dtype=float),
+        "probe_time": np.array([12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0], dtype=float),
+        "n_distractors": np.linspace(14, 7, 8, dtype=float),
+        "radius": np.array([1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6], dtype=float),
+    }
     for participant, sessions in all_episodes.items():
         # Init all placeholders for data trajectories:
         participant_targets_history = [[] for i in range(6)]
         participant_targets_LP = [[0 for i in range(6)]]
         participant_subdims_history = {
-            'speed': [[[] for i in range(7)] for i in range(6)],
-            'tracking': [[[] for i in range(7)] for i in range(6)],
-            'probe': [[[] for i in range(7)] for i in range(6)],
-            'radius': [[[] for i in range(7)] for i in range(6)]}
+            "speed": [[[] for i in range(7)] for i in range(6)],
+            "tracking": [[[] for i in range(7)] for i in range(6)],
+            "probe": [[[] for i in range(7)] for i in range(6)],
+            "radius": [[[] for i in range(7)] for i in range(6)],
+        }
         participant_subdims_LP = {
-            'speed': [[[0 for i in range(7)]] for i in range(6)],
-            'tracking': [[[0 for i in range(7)]] for i in range(6)],
-            'probe': [[[0 for i in range(7)]] for i in range(6)],
-            'radius': [[[0 for i in range(7)]] for i in range(6)]}
+            "speed": [[[0 for i in range(7)]] for i in range(6)],
+            "tracking": [[[0 for i in range(7)]] for i in range(6)],
+            "probe": [[[0 for i in range(7)]] for i in range(6)],
+            "radius": [[[0 for i in range(7)]] for i in range(6)],
+        }
         n_targets = []
         # Get a nice structure of the player's history and update LP
         episode_step = 0
@@ -689,15 +930,19 @@ def get_LP_trajectory(all_episodes, get_reward, LP_type, group, add_trajectory=F
                 for ii, sub_dim_key in enumerate(participant_subdims_history.keys()):
                     # mapped_episode[0] = corresponding n_targets
                     # mapped_episode[ii] correct subvalue
-                    participant_subdims_history[sub_dim_key][mapped_episode[0]][mapped_episode[ii + 1]].append(score)
+                    participant_subdims_history[sub_dim_key][mapped_episode[0]][
+                        mapped_episode[ii + 1]
+                    ].append(score)
                 # Update LP:
-                participant_targets_LP, participant_subdims_LP = update_LP_values(mapped_episode,
-                                                                                  participant_targets_LP,
-                                                                                  participant_targets_history,
-                                                                                  participant_subdims_LP,
-                                                                                  participant_subdims_history,
-                                                                                  get_current=get_current,
-                                                                                  keep_history=keep_history)
+                participant_targets_LP, participant_subdims_LP = update_LP_values(
+                    mapped_episode,
+                    participant_targets_LP,
+                    participant_targets_history,
+                    participant_subdims_LP,
+                    participant_subdims_history,
+                    get_current=get_current,
+                    keep_history=keep_history,
+                )
                 # print(episode_step)
                 # print("n_target=", mapped_episode[0], " result=", episode.get_results)
                 # for i in range(6):
@@ -714,12 +959,25 @@ def get_LP_trajectory(all_episodes, get_reward, LP_type, group, add_trajectory=F
             n_targets = None
         bounds = list(np.arange(0, 5, 0.5))
         bounds.insert(0, -1)
-        plot_matrice_LP(participant_targets_LP, participant_name=participant, LP_type=LP_type, trajectory=n_targets,
-                        bounds=bounds, group=group)
+        plot_matrice_LP(
+            participant_targets_LP,
+            participant_name=participant,
+            LP_type=LP_type,
+            trajectory=n_targets,
+            bounds=bounds,
+            group=group,
+        )
         for key, data in participant_subdims_LP.items():
             for main_dim_index, LP in enumerate(data):
-                plot_matrice_LP(LP, participant_name=participant, LP_type=LP_type, group=group, parameter=key,
-                                main_dim=str(main_dim_index), nb_class=7)
+                plot_matrice_LP(
+                    LP,
+                    participant_name=participant,
+                    LP_type=LP_type,
+                    group=group,
+                    parameter=key,
+                    main_dim=str(main_dim_index),
+                    nb_class=7,
+                )
 
 
 def create_folder(folder_list, root=None):
@@ -731,12 +989,21 @@ def create_folder(folder_list, root=None):
                 os.mkdir(name)
 
 
-def update_LP_values(mapped_episode, participant_targets_LP, participant_targets_history,
-                     participant_subdims_LP, participant_subdims_history, get_current=False, keep_history=False):
+def update_LP_values(
+    mapped_episode,
+    participant_targets_LP,
+    participant_targets_history,
+    participant_subdims_LP,
+    participant_subdims_history,
+    get_current=False,
+    keep_history=False,
+):
     # Retrieve last LP and copy all values into new array and concatenate it to LP history objects:
     participant_targets_LP.append(copy.deepcopy(participant_targets_LP[-1]))
     # Then compute empirical LP :
-    participant_targets_LP[-1][mapped_episode[0]] = compute_ES_LP(participant_targets_history[mapped_episode[0]])
+    participant_targets_LP[-1][mapped_episode[0]] = compute_ES_LP(
+        participant_targets_history[mapped_episode[0]]
+    )
     # Same for subdims:
     previous_LP_subdims = {}
     for ii, (key, array) in enumerate(participant_subdims_LP.items()):
@@ -744,11 +1011,17 @@ def update_LP_values(mapped_episode, participant_targets_LP, participant_targets
         for i in range(len(array)):
             participant_subdims_LP[key][i].append(copy.deepcopy(array[i][-1]))
         # participant_subdims_LP[key][mapped_episode[0]].append(copy.deepcopy(array[mapped_episode[0]][-1]))
-        participant_subdims_LP[key][mapped_episode[0]][-1][mapped_episode[ii + 1]] = compute_ES_LP(
-            participant_subdims_history[key][mapped_episode[0]][mapped_episode[ii + 1]])
+        participant_subdims_LP[key][mapped_episode[0]][-1][mapped_episode[ii + 1]] = (
+            compute_ES_LP(
+                participant_subdims_history[key][mapped_episode[0]][
+                    mapped_episode[ii + 1]
+                ]
+            )
+        )
     if get_current:
         participant_targets_LP[-1][mapped_episode[0]] = get_current_state(
-            participant_targets_history[mapped_episode[0]])
+            participant_targets_history[mapped_episode[0]]
+        )
     if not keep_history:
         for i in range(6):
             if i != mapped_episode[0]:
@@ -765,7 +1038,9 @@ def compute_ES_LP(history_array):
     elif length >= window_max:
         history_array = history_array[-10:]
         length = 10
-    alp = np.abs(np.mean(history_array[-length // 2:]) - np.mean(history_array[:length // 2]))
+    alp = np.abs(
+        np.mean(history_array[-length // 2 :]) - np.mean(history_array[: length // 2])
+    )
     # normalized_alp = alp / len(history_array[-length // 2:])
     # if normalized_alp > 1:
     #     print("problemos")
@@ -778,11 +1053,11 @@ def get_current_state(history_array):
 
 
 def map_episode(episode, values):
-    speed_i = np.where(values['speed_max'] == float(episode.speed_max))[0][0]
-    n_targets_i = np.where(values['n_targets'] == float(episode.n_targets))[0][0]
-    track_i = np.where(values['tracking_time'] == float(episode.tracking_time))[0][0]
-    probe_i = np.where(values['probe_time'] == float(episode.probe_time))[0][0]
-    radius_i = np.where(values['radius'] == float(episode.radius))[0][0]
+    speed_i = np.where(values["speed_max"] == float(episode.speed_max))[0][0]
+    n_targets_i = np.where(values["n_targets"] == float(episode.n_targets))[0][0]
+    track_i = np.where(values["tracking_time"] == float(episode.tracking_time))[0][0]
+    probe_i = np.where(values["probe_time"] == float(episode.probe_time))[0][0]
+    radius_i = np.where(values["radius"] == float(episode.radius))[0][0]
     return [n_targets_i, speed_i, track_i, probe_i, radius_i]
 
 
@@ -804,13 +1079,17 @@ def extract_F1(episode):
     if (episode.nb_target_retrieved + nb_missed_distrac) == 0:
         precision = 0
     else:
-        precision = episode.nb_target_retrieved / (episode.nb_target_retrieved + nb_missed_distrac)
+        precision = episode.nb_target_retrieved / (
+            episode.nb_target_retrieved + nb_missed_distrac
+        )
     # Within everything that actually is positive, how many did the model succeed to find:
     # TP / (TP + FN)
     if (episode.nb_target_retrieved + nb_missed_targets) == 0:
         recall = 0
     else:
-        recall = episode.nb_target_retrieved / (episode.nb_target_retrieved + nb_missed_targets)
+        recall = episode.nb_target_retrieved / (
+            episode.nb_target_retrieved + nb_missed_targets
+        )
     if precision + recall == 0:
         f1_score = 0
     else:
@@ -823,21 +1102,31 @@ def extract_recall(episode):
     if (episode.nb_target_retrieved + nb_missed_targets) == 0:
         recall = 0
     else:
-        recall = episode.nb_target_retrieved / (episode.nb_target_retrieved + nb_missed_targets)
+        recall = episode.nb_target_retrieved / (
+            episode.nb_target_retrieved + nb_missed_targets
+        )
     return recall
 
 
 def get_customized_cmap():
-    cmap = plt.cm.get_cmap('jet')
+    cmap = plt.cm.get_cmap("jet")
     colors_ = cmap(np.arange(cmap.N))
     colors_[0, :] = [0, 0, 0, 1]
     colors_[1, :] = [255, 255, 255, 1]
     return LinearSegmentedColormap.from_list(cmap.name + "_gray", colors_, cmap.N)
 
 
-def plot_matrice_LP(participant_LP, participant_name, LP_type, bounds=None, trajectory=None, parameter="n_targets",
-                    group="zpdes",
-                    main_dim="main", nb_class=6):
+def plot_matrice_LP(
+    participant_LP,
+    participant_name,
+    LP_type,
+    bounds=None,
+    trajectory=None,
+    parameter="n_targets",
+    group="zpdes",
+    main_dim="main",
+    nb_class=6,
+):
     plt.close()
     plt.rcParams["figure.figsize"] = (20, 3)
     img = []
@@ -878,39 +1167,50 @@ def plot_matrice_LP(participant_LP, participant_name, LP_type, bounds=None, traj
     for i in range(0, nb_class):
         y_ticks_array.append(tick_step + (i * height_per_class))
     # tell imshow about color map so that only set colors are used
-    if parameter == 'main':
+    if parameter == "main":
         plt.yticks(y_ticks_array, [f"nb-{i}" for i in range(2, nb_class + 2)])
     else:
         plt.yticks(y_ticks_array, [f"lvl-{i}" for i in range(nb_class)])
     # plt.imshow(img, interpolation='nearest', origin='lower', cmap=cmap, norm=norm)
     # plt.imshow(img, interpolation='nearest', origin='lower', cmap="plasma", vmin=0, vmax=1)
-    my_cmap = matplotlib.cm.get_cmap('viridis')
-    my_cmap.set_under('black')
-    my_cmap.set_over('w')
-    plt.imshow(img, interpolation='nearest', origin='lower', cmap=my_cmap, vmax=1, vmin=0)
+    my_cmap = matplotlib.cm.get_cmap("viridis")
+    my_cmap.set_under("black")
+    my_cmap.set_over("w")
+    plt.imshow(
+        img, interpolation="nearest", origin="lower", cmap=my_cmap, vmax=1, vmin=0
+    )
     # cbar = plt.colorbar(ticks=bounds[1:])
     cbar = plt.colorbar()
     if trajectory:
         # plt.plot([i for i in range(len(trajectory))], list(map(lambda x: 25 + (x) * 50, trajectory)), linewidth=0.5, c='white')
-        plt.scatter(x=[i for i in range(len(trajectory))], y=list(map(lambda x: 25 + (x) * 50, trajectory)), marker='.',
-                    c='white', edgecolors='k')
+        plt.scatter(
+            x=[i for i in range(len(trajectory))],
+            y=list(map(lambda x: 25 + (x) * 50, trajectory)),
+            marker=".",
+            c="white",
+            edgecolors="k",
+        )
     # cbar.ax.set_yticklabels([''])
     # plt.show()
     create_folder([f"{participant_name}"], root=f"trajectories/{group}/{parameter}")
-    plt.savefig(f"trajectories/{group}/{parameter}/{participant_name}/{participant_name}_{LP_type}_{main_dim}.png")
+    plt.savefig(
+        f"trajectories/{group}/{parameter}/{participant_name}/{participant_name}_{LP_type}_{main_dim}.png"
+    )
 
 
 def get_SR(success_list):
     # To get mean performance:
     # return [np.mean(value_list_success) if len(value_list_success) > 0 else 0 for value_list_success in sucess_list]
     filter = 0.8
-    return [filter * compute_ES_LP(value_list_success) if len(value_list_success) > 0 else 0 for value_list_success in
-            success_list]
+    return [
+        filter * compute_ES_LP(value_list_success) if len(value_list_success) > 0 else 0
+        for value_list_success in success_list
+    ]
 
 
 def get_entropy(episodes):
     participants_entropy = {}
-    dims = ['MAIN', 'nb2', 'nb3', 'nb4', 'nb5', 'nb6', 'nb7']
+    dims = ["MAIN", "nb2", "nb3", "nb4", "nb5", "nb6", "nb7"]
     for participant, dict_values in episodes.items():
         participant_wrapper = MotParamsWrapper(participant)
         participant_zpdes = k_lib.seq_manager.ZpdesHssbg(zpdes_params)
@@ -918,15 +1218,20 @@ def get_entropy(episodes):
         for session_key, session_episodes in dict_values.items():
             for episode in session_episodes:
                 # Status of zpdes at that time step
-                bandval_main = np.array(participant_zpdes.SSBGs['MAIN'].SSB[0].bandval)
-                open_values = dims[0:len(bandval_main[bandval_main != 0]) + 1]
+                bandval_main = np.array(participant_zpdes.SSBGs["MAIN"].SSB[0].bandval)
+                open_values = dims[0 : len(bandval_main[bandval_main != 0]) + 1]
                 for SSBG_key in open_values:
                     SSBG = participant_zpdes.SSBGs[SSBG_key]
                     if SSBG_key not in participants_entropy[participant]:
                         participants_entropy[participant][SSBG_key] = {}
                     for SSB_index, SSB in enumerate(SSBG.SSB):
-                        if f"{SSBG_key}_{SSB_index}" not in participants_entropy[participant][SSBG_key]:
-                            participants_entropy[participant][SSBG_key][f"{SSBG_key}_{SSB_index}"] = []
+                        if (
+                            f"{SSBG_key}_{SSB_index}"
+                            not in participants_entropy[participant][SSBG_key]
+                        ):
+                            participants_entropy[participant][SSBG_key][
+                                f"{SSBG_key}_{SSB_index}"
+                            ] = []
                         distrib = parse_quality_to_distribution(SSB.bandval)
                         distrib = distrib[distrib != 0]
                         entropy = get_entropy_from_distribution(distrib)
@@ -934,8 +1239,9 @@ def get_entropy(episodes):
                             normalized_entropy = 1
                         else:
                             normalized_entropy = entropy / np.log10(len(distrib))
-                        participants_entropy[participant][SSBG_key][f"{SSBG_key}_{SSB_index}"].append(
-                            normalized_entropy)
+                        participants_entropy[participant][SSBG_key][
+                            f"{SSBG_key}_{SSB_index}"
+                        ].append(normalized_entropy)
                 participant_wrapper.update(episode, participant_zpdes)
     return participants_entropy
 
@@ -950,40 +1256,44 @@ def get_entropy_from_distribution(distrib):
 
 def baseline_csv(episodes):
     baseline_participants = pd.DataFrame(
-        columns=['participant', 'episode', 'main_index', 'episode_sample', 'results'])
+        columns=["participant", "episode", "main_index", "episode_sample", "results"]
+    )
     for participant, dict_values in episodes.items():
         participant_wrapper = MotParamsWrapper(participant)
         print(participant)
         for session_key, session_episodes in dict_values.items():
             for episode in session_episodes:
                 # Status of zpdes at that time step
-                episode_summary = {'participant': participant.user.username}
-                episode_summary['episode'] = episode.episode_number
-                ep = participant_wrapper.parse_activity(episode)['act']
-                episode_summary['main_index'] = ep['MAIN'][0]
-                episode_summary['episode_sample'] = ep
-                episode_summary['results'] = episode.get_results
-                baseline_participants = baseline_participants.append(copy.deepcopy(episode_summary),
-                                                                     ignore_index=True)
-    baseline_participants.to_csv('baseline_states.csv')
+                episode_summary = {"participant": participant.user.username}
+                episode_summary["episode"] = episode.episode_number
+                ep = participant_wrapper.parse_activity(episode)["act"]
+                episode_summary["main_index"] = ep["MAIN"][0]
+                episode_summary["episode_sample"] = ep
+                episode_summary["results"] = episode.get_results
+                baseline_participants = baseline_participants.append(
+                    copy.deepcopy(episode_summary), ignore_index=True
+                )
+    baseline_participants.to_csv("baseline_states.csv")
 
 
 def check_ALP(participant_zpdes, bandvals):
-    newbandvals = {SSBG_key: [SSB.bandval for SSB in SSBG.SSB] for SSBG_key, SSBG in
-                   participant_zpdes.SSBGs.items()}
+    newbandvals = {
+        SSBG_key: [SSB.bandval for SSB in SSBG.SSB]
+        for SSBG_key, SSBG in participant_zpdes.SSBGs.items()
+    }
     for key in bandvals.keys():
         for sub_dim_old, sub_dim_new in zip(bandvals[key], newbandvals[key]):
             assert_calcul(sub_dim_old[0], sub_dim_old[1], sub_dim_new)
 
 
 def create_gif():
-    print('creating gif\n')
+    print("creating gif\n")
     filenames = [f"outputs_results/Axelle/{i}.png" for i in range(852)]
-    with imageio.get_writer(f'Axelle.gif', mode='I') as writer:
+    with imageio.get_writer(f"Axelle.gif", mode="I") as writer:
         for filename in filenames:
             image = imageio.imread(filename)
             writer.append_data(image)
-    print('gif complete\n')
+    print("gif complete\n")
 
 
 def parse_success_into_ALP(success_list, bandval):
@@ -1009,40 +1319,66 @@ def parse_success_into_ALP(success_list, bandval):
 
 def assert_calcul(oldbanditval, reward, banditval):
     """
-        Function to check that ALP computed makes sens :)
+    Function to check that ALP computed makes sens :)
     """
     filter1 = 0.2
     filter2 = 0.8
     if not all(
-            np.isclose(np.array(banditval), filter1 * np.array(reward) + filter2 * np.array(oldbanditval), rtol=1e-10)):
+        np.isclose(
+            np.array(banditval),
+            filter1 * np.array(reward) + filter2 * np.array(oldbanditval),
+            rtol=1e-10,
+        )
+    ):
         print(oldbanditval, banditval)
 
 
 def get_row_for_zpdes_csv(participant, episode, bandvals, wrapper):
     episode_summary = []
-    for main_index, main_value in enumerate(bandvals['MAIN'][0][0]):
-        participant_row = {'participant': participant.user.username}
-        participant_row['episode'] = episode.episode_number
-        participant_row['main_index'] = main_index
-        participant_row['main_value'] = main_value
-        participant_row['main_success'] = copy.deepcopy(bandvals[f'MAIN'][0][1][main_index])
-        participant_row['speed_values'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][0][0])
-        participant_row['speed_success'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][0][1])
-        participant_row['tracking_duration_values'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][1][0])
-        participant_row['tracking_duration_success'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][1][1])
-        participant_row['probe_duration_values'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][2][0])
-        participant_row['probe_duration_success'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][2][1])
-        participant_row['radius_values'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][3][0])
-        participant_row['radius_success'] = copy.deepcopy(bandvals[f'nb{main_index + 2}'][3][1])
-        participant_row['episode_sample'] = wrapper.parse_activity(episode)['act']
-        participant_row['results'] = episode.get_results
+    for main_index, main_value in enumerate(bandvals["MAIN"][0][0]):
+        participant_row = {"participant": participant.user.username}
+        participant_row["episode"] = episode.episode_number
+        participant_row["main_index"] = main_index
+        participant_row["main_value"] = main_value
+        participant_row["main_success"] = copy.deepcopy(
+            bandvals[f"MAIN"][0][1][main_index]
+        )
+        participant_row["speed_values"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][0][0]
+        )
+        participant_row["speed_success"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][0][1]
+        )
+        participant_row["tracking_duration_values"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][1][0]
+        )
+        participant_row["tracking_duration_success"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][1][1]
+        )
+        participant_row["probe_duration_values"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][2][0]
+        )
+        participant_row["probe_duration_success"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][2][1]
+        )
+        participant_row["radius_values"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][3][0]
+        )
+        participant_row["radius_success"] = copy.deepcopy(
+            bandvals[f"nb{main_index + 2}"][3][1]
+        )
+        participant_row["episode_sample"] = wrapper.parse_activity(episode)["act"]
+        participant_row["results"] = episode.get_results
         episode_summary.append(participant_row)
     return pd.DataFrame(episode_summary)
 
 
 def exclude_participant(dict_group, nb_blocks):
-    return {participant_index: participant_sessions_dict for participant_index, participant_sessions_dict in
-            dict_group.items() if len(participant_sessions_dict) >= nb_blocks}
+    return {
+        participant_index: participant_sessions_dict
+        for participant_index, participant_sessions_dict in dict_group.items()
+        if len(participant_sessions_dict) >= nb_blocks
+    }
 
 
 def get_novelty(group):
@@ -1051,9 +1387,17 @@ def get_novelty(group):
         novelties_metric[participant_id] = {}
         for session_id, session_values in participant_sessions.items():
             episode_array = list(
-                map(lambda episode: [episode.n_targets, episode.speed_max, episode.tracking_time, episode.probe_time,
-                                     episode.radius],
-                    session_values))
+                map(
+                    lambda episode: [
+                        episode.n_targets,
+                        episode.speed_max,
+                        episode.tracking_time,
+                        episode.probe_time,
+                        episode.radius,
+                    ],
+                    session_values,
+                )
+            )
             nb_tot = len(episode_array)
             unique = len(np.unique(np.array(episode_array), axis=0))
             print(participant_id, session_id, nb_tot, unique)
@@ -1067,7 +1411,9 @@ def get_feature_from_sessions(group, feature_extractor):
     for participant_id, participant_sessions in group.items():
         idle_metric[participant_id] = []
         for session_id, session_values in participant_sessions.items():
-            episode_array = list(map(lambda episode: feature_extractor(episode), session_values))
+            episode_array = list(
+                map(lambda episode: feature_extractor(episode), session_values)
+            )
             idle_metric[participant_id].append(np.mean(episode_array))
         idle_metric[participant_id] = np.mean(idle_metric[participant_id])
     return idle_metric
@@ -1098,17 +1444,33 @@ def display_main_entropy(entropy_zpdes, entropy_zpdes_ref, nb_episodes):
     means_windows = []
     if entropy_zpdes_ref:
         for participant, entropies in entropy_zpdes_ref.items():
-            mean = average_window(entropies['MAIN']['MAIN_0'], nb_episodes)
+            mean = average_window(entropies["MAIN"]["MAIN_0"], nb_episodes)
             means_windows.append(mean)
         means, std = get_means_of_array_w_different_size(means_windows)
-        plt.bar([i for i in range(len(means))], means, yerr=std, align='center', alpha=0.3, ecolor='grey', capsize=2)
+        plt.bar(
+            [i for i in range(len(means))],
+            means,
+            yerr=std,
+            align="center",
+            alpha=0.3,
+            ecolor="grey",
+            capsize=2,
+        )
     for participant, entropies in entropy_zpdes.items():
-        mean = average_window(entropies['MAIN']['MAIN_0'], nb_episodes)
-        plt.plot([i for i in range(len(mean))], mean, linewidth=3, marker='o', label=participant)
+        mean = average_window(entropies["MAIN"]["MAIN_0"], nb_episodes)
+        plt.plot(
+            [i for i in range(len(mean))],
+            mean,
+            linewidth=3,
+            marker="o",
+            label=participant,
+        )
     # plt.legend()
     plt.yticks(np.arange(0, 1.1, 0.1))
     plt.title("Previous experiment represented in bars")
-    plt.suptitle(f"Participants in ZPDES, \n Average normalized entropy on a window of {nb_episodes} nb_episodes")
+    plt.suptitle(
+        f"Participants in ZPDES, \n Average normalized entropy on a window of {nb_episodes} nb_episodes"
+    )
     plt.tight_layout()
     plt.savefig("main_entropy.png")
 
@@ -1118,7 +1480,7 @@ def display_sub_dims_entropy(entropy_zpdes, entropy_zpdes_ref, nb_episodes):
     means_ref = {}
     for participant, entropies in entropy_zpdes_ref.items():
         for nb_target_key in entropies.keys():
-            if nb_target_key != 'MAIN':
+            if nb_target_key != "MAIN":
                 for sub_dims_name, sub_dims_entropy in entropies[nb_target_key].items():
                     mean_sub_dim = average_window(sub_dims_entropy, nb_episodes)
                     if sub_dims_name not in means_ref:
@@ -1129,13 +1491,13 @@ def display_sub_dims_entropy(entropy_zpdes, entropy_zpdes_ref, nb_episodes):
     means_new = {}
     for participant, entropies in entropy_zpdes.items():
         for nb_target_key in entropies.keys():
-            if nb_target_key != 'MAIN':
+            if nb_target_key != "MAIN":
                 for sub_dims_name, sub_dims_entropy in entropies[nb_target_key].items():
                     mean = average_window(sub_dims_entropy, nb_episodes)
                     if sub_dims_name not in means_new:
                         means_new[sub_dims_name] = {}
                     means_new[sub_dims_name][participant] = mean
-    subdims = ['speed', 'tracking_duration', 'probe_duration', 'radius']
+    subdims = ["speed", "tracking_duration", "probe_duration", "radius"]
     la = []
     # Display everything:
     for sub_dims_name, sub_dim in means_ref.items():
@@ -1144,19 +1506,38 @@ def display_sub_dims_entropy(entropy_zpdes, entropy_zpdes_ref, nb_episodes):
         if sub_dims_name in means_new:
             for participant, mean in means_new[sub_dims_name].items():
                 la.append({sub_dims_name: mean})
-                plt.plot([i for i in range(len(mean))], mean, linewidth=3, marker='o', label=participant)
+                plt.plot(
+                    [i for i in range(len(mean))],
+                    mean,
+                    linewidth=3,
+                    marker="o",
+                    label=participant,
+                )
         # plt.legend(loc='lower right')
-        plt.title(f"Component : {sub_dims_name[:-2]} - {subdims[int(sub_dims_name[-1])]}")
-        plt.suptitle(f"Participants in ZPDES, \n Average normalized entropy on a window of {nb_episodes} nb_episodes")
+        plt.title(
+            f"Component : {sub_dims_name[:-2]} - {subdims[int(sub_dims_name[-1])]}"
+        )
+        plt.suptitle(
+            f"Participants in ZPDES, \n Average normalized entropy on a window of {nb_episodes} nb_episodes"
+        )
         plt.tight_layout()
-        plt.bar([i for i in range(len(means))], means, align='center', alpha=0.3, ecolor='grey', capsize=2)
+        plt.bar(
+            [i for i in range(len(means))],
+            means,
+            align="center",
+            alpha=0.3,
+            ecolor="grey",
+            capsize=2,
+        )
         plt.yticks(np.arange(0, 1.1, 0.1))
         # plt.show()
         plt.savefig(f"{sub_dims_name}-entropy.png")
 
 
 def average_window(values, nb_episodes):
-    return [np.mean(values[i:i + nb_episodes]) for i in range(0, len(values), nb_episodes)]
+    return [
+        np.mean(values[i : i + nb_episodes]) for i in range(0, len(values), nb_episodes)
+    ]
 
 
 def get_means_of_array_w_different_size(means):
@@ -1175,24 +1556,39 @@ def get_means_of_array_w_different_size(means):
 
 def get_params_total_frequency(episodes_dict):
     return_dict, trajectory = {}, {}
-    sub_dims = ['speed', 'tracking_duration', 'probe_duration', 'radius']
+    sub_dims = ["speed", "tracking_duration", "probe_duration", "radius"]
     main_dim_names = [f"nb{i}" for i in range(2, 8)]
     for participant, episodes_dict in episodes_dict.items():
         episode_nb = 0
         participant_wrapper = MotParamsWrapper(participant)
-        return_dict[participant] = {nb_target: {sub_dim: np.zeros(7) for sub_dim in sub_dims} for nb_target in range(6)}
-        trajectory[participant] = {nb_target: {sub_dim: np.zeros(7) for sub_dim in sub_dims} for nb_target in range(6)}
+        return_dict[participant] = {
+            nb_target: {sub_dim: np.zeros(7) for sub_dim in sub_dims}
+            for nb_target in range(6)
+        }
+        trajectory[participant] = {
+            nb_target: {sub_dim: np.zeros(7) for sub_dim in sub_dims}
+            for nb_target in range(6)
+        }
         for session_id, session_episodes in episodes_dict.items():
             for episode in session_episodes:
                 episode_nb += 1
-                parse_episode = participant_wrapper.parse_activity(episode)['act']
-                main_dim = parse_episode['MAIN'][0]
+                parse_episode = participant_wrapper.parse_activity(episode)["act"]
+                main_dim = parse_episode["MAIN"][0]
                 main_dim_name = main_dim_names[main_dim]
                 for index, sub_dim in enumerate(sub_dims):
                     # If it's the first time to use this activity, store the episode_nb
-                    if return_dict[participant][main_dim][sub_dim][parse_episode[main_dim_name][index]] == 0:
-                        trajectory[participant][main_dim][sub_dim][parse_episode[main_dim_name][index]] = episode_nb
-                    return_dict[participant][main_dim][sub_dim][parse_episode[main_dim_name][index]] += 1
+                    if (
+                        return_dict[participant][main_dim][sub_dim][
+                            parse_episode[main_dim_name][index]
+                        ]
+                        == 0
+                    ):
+                        trajectory[participant][main_dim][sub_dim][
+                            parse_episode[main_dim_name][index]
+                        ] = episode_nb
+                    return_dict[participant][main_dim][sub_dim][
+                        parse_episode[main_dim_name][index]
+                    ] += 1
     return return_dict, trajectory
 
 
@@ -1201,45 +1597,76 @@ def plot_params_total_frequency(frequency_dict, trajectory, nb_per_block, group)
     label_loc = np.linspace(start=0, stop=360, num=5)
     positions = [i for i in range(0, 7)]
     target_mapper = [f"{i + 2} targets" for i in range(6)]
-    cmap = matplotlib.cm.get_cmap('inferno')
-    for (participant, episodes_dict), (_, trajectory_dict) in zip(frequency_dict.items(), trajectory.items()):
-        trajectory_dict = {session_key: {dim: array for dim, array in session.items()} for session_key, session in
-                           trajectory_dict.items()}
+    cmap = matplotlib.cm.get_cmap("inferno")
+    for (participant, episodes_dict), (_, trajectory_dict) in zip(
+        frequency_dict.items(), trajectory.items()
+    ):
+        trajectory_dict = {
+            session_key: {dim: array for dim, array in session.items()}
+            for session_key, session in trajectory_dict.items()
+        }
         plt.close()
-        fig, axs = plt.subplots(2, 3, subplot_kw={'projection': 'polar'}, figsize=(15, 15), constrained_layout=True)
+        fig, axs = plt.subplots(
+            2,
+            3,
+            subplot_kw={"projection": "polar"},
+            figsize=(15, 15),
+            constrained_layout=True,
+        )
         nb_episodes_participant = sum(nb_per_block[participant].values())
         norm = plt.Normalize(0, nb_episodes_participant)
         for idx, ax in enumerate(axs.flat):
-            ax.set_title(f'Dim {target_mapper[idx]}')
-            ax.set_thetagrids(angles=label_loc, labels=['speed', 'tracking', 'probe', 'radius', 'speed'])
-            ax.set_rgrids(range(0, 8), labels='')
+            ax.set_title(f"Dim {target_mapper[idx]}")
+            ax.set_thetagrids(
+                angles=label_loc,
+                labels=["speed", "tracking", "probe", "radius", "speed"],
+            )
+            ax.set_rgrids(range(0, 8), labels="")
             # Plot point per point:
             for position in positions:
-                for (index, (key, dim)), (traj_key, dim_traj) in zip(enumerate(episodes_dict[idx].items()),
-                                                                     trajectory_dict[idx].items()):
+                for (index, (key, dim)), (traj_key, dim_traj) in zip(
+                    enumerate(episodes_dict[idx].items()), trajectory_dict[idx].items()
+                ):
                     rgba = cmap(norm(dim_traj[position]))
-                    ax.scatter(np.deg2rad(label_loc)[index], [position], c=[rgba], s=dim[position] * 10)
+                    ax.scatter(
+                        np.deg2rad(label_loc)[index],
+                        [position],
+                        c=[rgba],
+                        s=dim[position] * 10,
+                    )
         sm = ScalarMappable(norm=norm, cmap=cmap)
         sm.set_array([])
-        cbar = fig.colorbar(sm, ax=axs[:, :], location='right', shrink=0.6)
+        cbar = fig.colorbar(sm, ax=axs[:, :], location="right", shrink=0.6)
         cbar.ax.set_title("Episode_nb")
         fig.savefig(f"{participant}-{group}.png")
 
 
 def get_nb_episodes(sessions):
-    return sum(dict(map(lambda item: (item[0], len(item[1])), sessions.items())).values())
+    return sum(
+        dict(map(lambda item: (item[0], len(item[1])), sessions.items())).values()
+    )
 
 
 def get_age(participant):
-    return 2022 - int(Answer.objects.get(participant_id=participant.id, question__handle="prof-mot-12").value)
+    return 2022 - int(
+        Answer.objects.get(
+            participant_id=participant.id, question__handle="prof-mot-12"
+        ).value
+    )
 
 
 def get_study_duration(participant):
-    return int(Answer.objects.get(participant_id=participant.id, question__handle="prof-mot-11").value)
+    return int(
+        Answer.objects.get(
+            participant_id=participant.id, question__handle="prof-mot-11"
+        ).value
+    )
 
 
 def get_attention_deficit(participant):
-    attention_responses = Answer.objects.filter(participant_id=participant.id, question__instrument="get_attention")
+    attention_responses = Answer.objects.filter(
+        participant_id=participant.id, question__instrument="get_attention"
+    )
     attention_score = 0
     for index, resp in enumerate(attention_responses):
         if index < 3 and int(resp.value) > 2:
@@ -1252,14 +1679,27 @@ def get_attention_deficit(participant):
 def get_dict_mean_activity(episodes, session_id):
     return_dict = {}
     for participant, sessions in episodes.items():
-        return_dict[participant] = get_mean_activity(sessions[list(sessions.keys())[session_id]])
+        return_dict[participant] = get_mean_activity(
+            sessions[list(sessions.keys())[session_id]]
+        )
     return return_dict
 
 
 def get_mean_activity(session):
-    mapped_array = np.array(list(
-        map(lambda episode: [episode.n_targets, episode.speed_max, episode.tracking_time, episode.probe_time,
-                             episode.radius], session)))
+    mapped_array = np.array(
+        list(
+            map(
+                lambda episode: [
+                    episode.n_targets,
+                    episode.speed_max,
+                    episode.tracking_time,
+                    episode.probe_time,
+                    episode.radius,
+                ],
+                session,
+            )
+        )
+    )
     return np.mean(mapped_array, axis=0)
 
 
@@ -1267,86 +1707,362 @@ def map_keys(dict):
     return {k.id: v for k, v in dict.items()}
 
 
-def get_intra_evaluation(study, full_participant=True):
-    all_binary, all_F1 = {}, {}
+def trim_block(
+    episodes_block: Sequence[Any],
+    scores_block: Sequence[float],
+) -> Tuple[List[Any], List[float]]:
+    """
+    Retire le premier et le dernier élément du bloc (mêmes index pour épisodes et scores).
+    Un bloc de 50 -> 48 éléments.
+    """
+    if len(episodes_block) < 2:
+        return [], []
+    return list(episodes_block[2:]), list(scores_block[2:])
+
+
+def build_block_trajectory_group_then_sort(
+    episodes_block: Sequence[Any],
+    scores_block: Sequence[float],
+    group_key_fn: Callable[[Any], Hashable],
+    sort_key_fn: Callable[[Any], Tuple],
+    returns_float: bool,
+) -> List[float]:
+    """
+    - Trim (retire 1er + dernier)
+    - Regroupe les épisodes par group_key_fn, somme les scores par groupe
+    - Trie les groupes via sort_key_fn (sur la 1ère occurrence du groupe)
+      + tie-breaker stable sur la clé de groupe
+
+    Retour: liste des sommes ordonnées (longueur attendue: 12 par bloc si ton design le garantit).
+    """
+    eps, scs = trim_block(episodes_block, scores_block)
+
+    sums: Dict[Hashable, float] = defaultdict(float)
+    first_sort_key: Dict[Hashable, Tuple] = {}
+
+    for ep, sc in zip(eps, scs):
+        gk = group_key_fn(ep)
+        if returns_float:
+            sums[gk] += float(sc)
+        else:
+            sums[gk] += int(sc)
+        if gk not in first_sort_key:
+            first_sort_key[gk] = sort_key_fn(ep)
+
+    # tri: sort_key puis tie-breaker par gk pour stabilité
+    gks_sorted = sorted(sums.keys(), key=lambda gk: (first_sort_key[gk], gk))
+    return [sums[gk] for gk in gks_sorted]
+
+
+def build_full_trajectory(
+    episodes: Sequence[Any],
+    scores: Sequence[float],
+    group_key_fn: Callable[[Any], Hashable],
+    sort_key_fn: Callable[[Any], Tuple],
+    block_size: int = 50,
+    returns_float: bool = True,
+) -> List[float]:
+    """
+    Concatène les trajectoires de blocs successifs (par défaut 4 blocs de 50 sur 200 épisodes).
+    Chaque bloc est trim (1er+dernier) avant groupby/sort.
+
+    Retour: liste concaténée (attendu: 48 si 12 groupes par bloc * 4).
+    """
+    if len(episodes) != len(scores):
+        raise ValueError("episodes et scores doivent avoir la même longueur")
+    if len(episodes) % block_size != 0:
+        raise ValueError("len(episodes) doit être multiple de block_size")
+
+    traj: List[float] = []
+    for start in range(0, len(episodes), block_size):
+        eps_block = episodes[start : start + block_size]
+        sc_block = scores[start : start + block_size]
+        traj.extend(
+            build_block_trajectory_group_then_sort(
+                eps_block,
+                sc_block,
+                group_key_fn=group_key_fn,
+                sort_key_fn=sort_key_fn,
+                returns_float=returns_float,
+            )
+        )
+    return traj
+
+
+def block_means_with_trim(
+    scores: Sequence[float],
+    block_size: int = 50,
+) -> List[float]:
+    """
+    Calcule la moyenne par bloc de 50 en retirant le 1er et le dernier score de chaque bloc.
+    """
+    means: List[float] = []
+    for start in range(0, len(scores), block_size):
+        block = list(scores[start : start + block_size])
+        block_trim = block[1:-1]
+        means.append(float(np.mean(block_trim)) if len(block_trim) else float("nan"))
+    return means
+
+
+# -----------------------------
+# Main function (intra eval)
+# -----------------------------
+
+
+def get_intra_evaluation(study: str, full_participant: bool = True) -> None:
+    """
+    Exporte deux CSV:
+      - {study}_F1_intra.csv
+      - {study}_binary_intra.csv
+
+    Colonnes:
+      participant_id, condition, s_0..s_3, trajectory
+
+    trajectory:
+      - sur 200 épisodes non-training
+      - split en 4 blocs de 50
+      - dans chaque bloc: on retire le premier et le dernier épisode
+      - puis on regroupe et somme par groupe (group_key)
+      - et on trie par: n_targets asc, radius desc, speed_max asc
+    """
     stud = Study.objects.get(name=study)
-    p = ParticipantProfile.objects.all().filter(study__name="v3_utl")
-    df_F1, df_binary = pd.DataFrame(columns=["participant_id", "condition", "s_0", "s_1", "s_2", "s_3"]), pd.DataFrame(
-        columns=["participant_id", "condition", "s_0", "s_1", "s_2", "s_3"])
-    for participant in p:
-        episodes = Episode.objects.all().filter(participant=participant.user).filter(is_training=False)
+    participants = ParticipantProfile.objects.all().filter(study__name=study)
+
+    df_F1 = pd.DataFrame(
+        columns=[
+            "participant_id",
+            "condition",
+            "s_0",
+            "s_1",
+            "s_2",
+            "s_3",
+            "trajectory",
+        ]
+    )
+    df_binary = pd.DataFrame(
+        columns=[
+            "participant_id",
+            "condition",
+            "s_0",
+            "s_1",
+            "s_2",
+            "s_3",
+            "trajectory",
+        ]
+    )
+
+    # Grouping key (the actual partition)
+    # Note: we round floats to prevent float representation artifacts.
+    group_key_fn = lambda ep: (
+        int(ep.n_targets),
+        round(float(ep.radius), 4),
+        round(float(ep.speed_max), 4),
+    )
+
+    # Sorting rule: n_targets asc, radius DESC, speed_max asc
+    sort_key_fn = lambda ep: (
+        int(ep.n_targets),
+        round(float(ep.speed_max), 4),
+        -round(float(ep.radius), 4),
+    )
+
+    block_size = 50
+
+    for participant in participants:
+        episodes = list(
+            Episode.objects.all()
+            .filter(participant=participant.user)
+            .filter(is_training=False)
+            .order_by(
+                "episode_number"
+            )  # adapte si ton découpage dépend d'un autre ordre
+        )
+
         # Only takes participant that did the whole training:
-        if len(episodes) == 200:
-            dict_info = {"participant_id": participant.user.id, "condition": participant.extra_json['condition']}
-            # Map episodes to results:
-            binary_results = get_binary_results(episodes)
-            F1_results = get_F1_results(episodes)
-            # Map episodes to session and to mean per session:
-            mean_binary = [np.mean(binary_results[step: step + 50]) for step in range(0, 151, 50)]
-            mean_F1 = [np.mean(F1_results[step: step + 50]) for step in range(0, 151, 50)]
-            # all_binary[participant.id] = {f"s_{i}": mean_binary[i] for i in range(len(mean_binary))}
-            # all_F1[participant.id] = {f"s_{i}": mean_F1[i] for i in range(len(mean_F1))}
-            df_F1.loc[len(df_F1)] = {**dict_info, **{f"s_{i}": mean_F1[i] for i in range(len(mean_F1))}}
-            df_binary.loc[len(df_binary)] = {**dict_info, **{f"s_{i}": mean_binary[i] for i in range(len(mean_binary))}}
+        if len(episodes) != 200:
+            continue
+
+        dict_info = {
+            "participant_id": participant.user.id,
+            "condition": participant.extra_json.get("condition", None),
+        }
+
+        # Per-episode scores
+        binary_results = get_binary_results(episodes)  # expected length 200
+        F1_results = get_F1_results(episodes)  # expected length 200
+
+        if len(binary_results) != 200 or len(F1_results) != 200:
+            # fail safe if helper functions behave unexpectedly
+            continue
+
+        # Block means with trim (drop first + last of each block)
+        mean_binary = block_means_with_trim(
+            binary_results, block_size=block_size
+        )  # len 4
+        mean_F1 = block_means_with_trim(F1_results, block_size=block_size)  # len 4
+
+        # Trajectories (concatenated over 4 blocks)
+        trajectory_binary = build_full_trajectory(
+            episodes=episodes,
+            scores=binary_results,
+            group_key_fn=group_key_fn,
+            sort_key_fn=sort_key_fn,
+            block_size=block_size,
+            returns_float=False,
+        )
+        trajectory_F1 = build_full_trajectory(
+            episodes=episodes,
+            scores=F1_results,
+            group_key_fn=group_key_fn,
+            sort_key_fn=sort_key_fn,
+            block_size=block_size,
+            returns_float=True,
+        )
+
+        # Optional: sanity checks (comment out if you don't want logs)
+        # Expectation: 12 groups/block -> 48 values total
+        if len(trajectory_binary) != 48:
+            print(
+                f"[WARN] participant {participant.user.id}: trajectory_binary len={len(trajectory_binary)} (attendu 48)"
+            )
+        if len(trajectory_F1) != 48:
+            print(
+                f"[WARN] participant {participant.user.id}: trajectory_F1 len={len(trajectory_F1)} (attendu 48)"
+            )
+
+        df_F1.loc[len(df_F1)] = {
+            **dict_info,
+            **{f"s_{i}": mean_F1[i] for i in range(4)},
+            "trajectory": trajectory_F1,
+        }
+        df_binary.loc[len(df_binary)] = {
+            **dict_info,
+            **{f"s_{i}": mean_binary[i] for i in range(4)},
+            "trajectory": [int(x) for x in trajectory_binary],
+        }
+
+    # Optional: if you want strict JSON in the CSV trajectory column:
+    # import json
+    # df_F1["trajectory"] = df_F1["trajectory"].apply(json.dumps)
+    # df_binary["trajectory"] = df_binary["trajectory"].apply(json.dumps)
+    df_F1["trajectory"] = df_F1["trajectory"].apply(
+        lambda xs: "[" + " ".join(f"{float(x):g}" for x in xs) + "]"
+    )
+    df_binary["trajectory"] = df_binary["trajectory"].apply(
+        lambda xs: "[" + " ".join(f"{float(x):g}" for x in xs) + "]"
+    )
     df_F1.to_csv(f"{study}_F1_intra.csv", index=False)
     df_binary.to_csv(f"{study}_binary_intra.csv", index=False)
 
 
 def get_binary_results(episodes):
-    return [ep.get_results for ep in episodes]
+    return [int(ep.get_results) for ep in episodes]
 
 
 def get_F1_results(episodes):
     return [ep.get_F1_score for ep in episodes]
 
 
-if __name__ == '__main__':
-    get_volume, get_frequency_radar_plots, get_zpdes_entropy, get_frequency_histograms = True, True, True, True
-    get_accuracy, get_summary_trajectories, get_novelty_trajectories, create_ID_csv = True, True, True, True
-    get_lp_traj = True
+if __name__ == "__main__":
+    get_volume = False
+    get_frequency_radar_plots = False
+    get_zpdes_entropy = False
+    get_frequency_histograms = False
+    get_accuracy = False
+    get_summary_trajectories = False
+    get_novelty_trajectories = False
+    create_ID_csv = False
     get_intra_eval = True
+    get_lp_traj = False
     study = "v3_utl"
     nb_episodes = 100
-    dir_path = "../../../static/JSON/config_files"
-    zpdes_params = func.load_json(file_name='ZPDES_mot', dir_path=dir_path)
+    dir_path = "mot_app/static/JSON/config_files"
+    zpdes_params = func.load_json(file_name="ZPDES_mot", dir_path=dir_path)
     # #########################################################################################################@
     # (1) Get episodes
     # #########################################################################################################@
-    nb_participants, nb_participants_in, nb_baseline, nb_zpdes, descriptive_dict, zpdes_participants, \
-        baseline_participants = get_exp_status(study)
-    all_episodes, true_episodes, nb_per_blocks, nb_per_blocks_true = get_true_episodes(zpdes_participants,
-                                                                                       nb_episodes=nb_episodes,
-                                                                                       keep_ntargets=None)
-    # get_LP_trajectory(all_episodes, extract_F1, LP_type="F1_int_with_trajectory", group="zpdes")
-    baseline_episodes, baseline_true_episodes, baseline_nb_per_blocks, baseline_nb_per_blocks_true = get_true_episodes(
+    (
+        nb_participants,
+        nb_participants_in,
+        nb_baseline,
+        nb_zpdes,
+        descriptive_dict,
+        zpdes_participants,
         baseline_participants,
-        nb_episodes=nb_episodes,
-        keep_ntargets=None)
+    ) = get_exp_status(study)
+    all_episodes, true_episodes, nb_per_blocks, nb_per_blocks_true = get_true_episodes(
+        zpdes_participants, nb_episodes=nb_episodes, keep_ntargets=None
+    )
+    # get_LP_trajectory(all_episodes, extract_F1, LP_type="F1_int_with_trajectory", group="zpdes")
+    (
+        baseline_episodes,
+        baseline_true_episodes,
+        baseline_nb_per_blocks,
+        baseline_nb_per_blocks_true,
+    ) = get_true_episodes(
+        baseline_participants, nb_episodes=nb_episodes, keep_ntargets=None
+    )
 
     if get_intra_eval:
         get_intra_evaluation(study)
 
     if get_lp_traj:
         print("PLOT ZPDES")
-        get_LP_trajectory(all_episodes, extract_F1, LP_type="F1_score", group="zpdes",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
-        get_LP_trajectory(all_episodes, extract_recall, LP_type="Recall_score", group="zpdes",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
-        get_LP_trajectory(all_episodes, extract_binary, LP_type="Binary_score", group="zpdes",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
+        get_LP_trajectory(
+            all_episodes,
+            extract_F1,
+            LP_type="F1_score",
+            group="zpdes",
+            add_trajectory=False,
+            get_current=False,
+            keep_history=True,
+        )
+        get_LP_trajectory(
+            all_episodes,
+            extract_recall,
+            LP_type="Recall_score",
+            group="zpdes",
+            add_trajectory=True,
+            get_current=False,
+            keep_history=True,
+        )
+        get_LP_trajectory(
+            all_episodes,
+            extract_binary,
+            LP_type="Binary_score",
+            group="zpdes",
+            add_trajectory=True,
+            get_current=False,
+            keep_history=True,
+        )
         print("PLOT BASELINE")
-        get_LP_trajectory(baseline_episodes, extract_F1, LP_type="F1_score", group="baseline",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
-        get_LP_trajectory(baseline_episodes, extract_recall, LP_type="Recall_score", group="baseline",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
-        get_LP_trajectory(baseline_episodes, extract_binary, LP_type="Binary_score", group="baseline",
-                          add_trajectory=False,
-                          get_current=False, keep_history=True)
+        get_LP_trajectory(
+            baseline_episodes,
+            extract_F1,
+            LP_type="F1_score",
+            group="baseline",
+            add_trajectory=True,
+            get_current=False,
+            keep_history=True,
+        )
+        get_LP_trajectory(
+            baseline_episodes,
+            extract_recall,
+            LP_type="Recall_score",
+            group="baseline",
+            add_trajectory=True,
+            get_current=False,
+            keep_history=True,
+        )
+        get_LP_trajectory(
+            baseline_episodes,
+            extract_binary,
+            LP_type="Binary_score",
+            group="baseline",
+            add_trajectory=True,
+            get_current=False,
+            keep_history=True,
+        )
 
     # nb_participants_axa, nb_participants_in_axa, nb_baseline_axa, nb_zpdes_axa, descriptive_dict_axa, zpdes_participants_axa, \
     # baseline_participants_axa = get_exp_status("v0_axa")
@@ -1375,17 +2091,36 @@ if __name__ == '__main__':
     if get_frequency_radar_plots:
         return_dict, trajectory = get_params_total_frequency(all_episodes)
         return_dict_true, trajectory_true = get_params_total_frequency(true_episodes)
-        plot_params_total_frequency(frequency_dict=return_dict, trajectory=trajectory, nb_per_block=nb_per_blocks,
-                                    group='zpdes')
-        plot_params_total_frequency(frequency_dict=return_dict_true, trajectory=trajectory_true,
-                                    nb_per_block=nb_per_blocks_true, group='zpdes_true')
-        return_dict_baseline, trajectory_baseline = get_params_total_frequency(baseline_episodes)
-        return_dict_baseline_true, trajectory_baseline_true = get_params_total_frequency(baseline_true_episodes)
-        plot_params_total_frequency(frequency_dict=return_dict_baseline, trajectory=trajectory_baseline,
-                                    nb_per_block=baseline_nb_per_blocks, group='baseline')
-        plot_params_total_frequency(frequency_dict=return_dict_baseline_true, trajectory=trajectory_baseline_true,
-                                    nb_per_block=baseline_nb_per_blocks_true,
-                                    group='baseline_true')
+        plot_params_total_frequency(
+            frequency_dict=return_dict,
+            trajectory=trajectory,
+            nb_per_block=nb_per_blocks,
+            group="zpdes",
+        )
+        plot_params_total_frequency(
+            frequency_dict=return_dict_true,
+            trajectory=trajectory_true,
+            nb_per_block=nb_per_blocks_true,
+            group="zpdes_true",
+        )
+        return_dict_baseline, trajectory_baseline = get_params_total_frequency(
+            baseline_episodes
+        )
+        return_dict_baseline_true, trajectory_baseline_true = (
+            get_params_total_frequency(baseline_true_episodes)
+        )
+        plot_params_total_frequency(
+            frequency_dict=return_dict_baseline,
+            trajectory=trajectory_baseline,
+            nb_per_block=baseline_nb_per_blocks,
+            group="baseline",
+        )
+        plot_params_total_frequency(
+            frequency_dict=return_dict_baseline_true,
+            trajectory=trajectory_baseline_true,
+            nb_per_block=baseline_nb_per_blocks_true,
+            group="baseline_true",
+        )
     # #########################################################################################################@
     # (4) Get entropies to summarize learning trajectories:
     # #########################################################################################################@
@@ -1399,13 +2134,25 @@ if __name__ == '__main__':
     # ########################################################################################################
     if get_frequency_histograms:
         participants_all_frequency_ntargets = get_frequency_of_ntargets(all_episodes)
-        participants_all_frequency_ntargets_baseline = get_frequency_of_ntargets(baseline_episodes)
+        participants_all_frequency_ntargets_baseline = get_frequency_of_ntargets(
+            baseline_episodes
+        )
         participants_true_frequency_ntargets = get_frequency_of_ntargets(true_episodes)
-        participants_true_frequency_ntargets_baseline = get_frequency_of_ntargets(baseline_true_episodes)
-        display_frequency_ntargets(participants_all_frequency_ntargets, nb_episodes=nb_episodes,
-                                   participants_nb_per_block=nb_per_blocks, group="ZPDES")
-        display_frequency_ntargets(participants_all_frequency_ntargets_baseline, nb_episodes=nb_episodes,
-                                   participants_nb_per_block=baseline_nb_per_blocks, group="BASELINE")
+        participants_true_frequency_ntargets_baseline = get_frequency_of_ntargets(
+            baseline_true_episodes
+        )
+        display_frequency_ntargets(
+            participants_all_frequency_ntargets,
+            nb_episodes=nb_episodes,
+            participants_nb_per_block=nb_per_blocks,
+            group="ZPDES",
+        )
+        display_frequency_ntargets(
+            participants_all_frequency_ntargets_baseline,
+            nb_episodes=nb_episodes,
+            participants_nb_per_block=baseline_nb_per_blocks,
+            group="BASELINE",
+        )
     # #########################################################################################################
     # Focus on the mean activity for each nb_target per session (6 graph) @TODO: plot graph - doesnt work
     # Dict should look like participant: {nb_t_2: [[session_id, speed, radius, ...], [session_id, x,x,x]]}
@@ -1420,33 +2167,60 @@ if __name__ == '__main__':
     if get_accuracy:
         # First the "binary" accuracy i.e nb_episodes_success / nb_episodes_tot
         participants_success_ps = get_mean_success_ps(all_episodes, true_episodes)
-        participants_baseline_success_ps = get_mean_success_ps(baseline_episodes, baseline_true_episodes)
+        participants_baseline_success_ps = get_mean_success_ps(
+            baseline_episodes, baseline_true_episodes
+        )
         # participants_success_ps_ubx = get_mean_success_ps(all_episodes_ubx, true_episodes_ubx)
-        display_participants_success_ps(participants_success_ps=participants_success_ps,
-                                        participant_success_ref=None, nb_episodes=nb_episodes)
+        display_participants_success_ps(
+            participants_success_ps=participants_success_ps,
+            participant_success_ref=None,
+            nb_episodes=nb_episodes,
+        )
         # participants_success_ps_ubx = get_mean_success_ps(baseline_episodes_ubx, baseline_true_episodes_ubx)
-        display_participants_success_ps(participants_baseline_success_ps,
-                                        participant_success_ref=None, condition='baseline',
-                                        nb_episodes=nb_episodes)
+        display_participants_success_ps(
+            participants_baseline_success_ps,
+            participant_success_ref=None,
+            condition="baseline",
+            nb_episodes=nb_episodes,
+        )
         # Then - more interesting - the accuracy per episodes (i.e 3/4 targets)
-        participants_success_continuous, participants_success_std = get_accuracy_per_episode(all_episodes)
-        display_participants_success_ps(participants_success_ps=participants_success_continuous,
-                                        participant_success_ref=None, nb_episodes=nb_episodes,
-                                        success_type_title="continuous_F1_rate")
-        display_participants_success_ps(participants_success_ps=participants_success_continuous,
-                                        participant_success_ref=None, nb_episodes=nb_episodes,
-                                        success_type_title="continuous_F1_rate_std",
-                                        participant_std=participants_success_std)
-        participants_baseline_success_continuous, participants_baseline_success_std = get_accuracy_per_episode(
-            baseline_episodes)
-        display_participants_success_ps(participants_success_ps=participants_baseline_success_continuous,
-                                        participant_success_ref=None, nb_episodes=nb_episodes, condition='baseline',
-                                        success_type_title="continuous_F1_rate")
-        display_participants_success_ps(participants_success_ps=participants_baseline_success_continuous,
-                                        participant_success_ref=None, nb_episodes=nb_episodes, condition='baseline',
-                                        success_type_title="continuous_baseline_F1_rate_std",
-                                        participant_std=participants_baseline_success_std)
-        display_mean_zpdes_vs_baseline(participants_success_ps, participants_baseline_success_ps, title="Mean SR")
+        participants_success_continuous, participants_success_std = (
+            get_accuracy_per_episode(all_episodes)
+        )
+        display_participants_success_ps(
+            participants_success_ps=participants_success_continuous,
+            participant_success_ref=None,
+            nb_episodes=nb_episodes,
+            success_type_title="continuous_F1_rate",
+        )
+        display_participants_success_ps(
+            participants_success_ps=participants_success_continuous,
+            participant_success_ref=None,
+            nb_episodes=nb_episodes,
+            success_type_title="continuous_F1_rate_std",
+            participant_std=participants_success_std,
+        )
+        participants_baseline_success_continuous, participants_baseline_success_std = (
+            get_accuracy_per_episode(baseline_episodes)
+        )
+        display_participants_success_ps(
+            participants_success_ps=participants_baseline_success_continuous,
+            participant_success_ref=None,
+            nb_episodes=nb_episodes,
+            condition="baseline",
+            success_type_title="continuous_F1_rate",
+        )
+        display_participants_success_ps(
+            participants_success_ps=participants_baseline_success_continuous,
+            participant_success_ref=None,
+            nb_episodes=nb_episodes,
+            condition="baseline",
+            success_type_title="continuous_baseline_F1_rate_std",
+            participant_std=participants_baseline_success_std,
+        )
+        display_mean_zpdes_vs_baseline(
+            participants_success_ps, participants_baseline_success_ps, title="Mean SR"
+        )
     # #########################################################################################################@
     # (7) Get some csv to get zpdes images (trajectory + internal states)
     # #########################################################################################################@
@@ -1457,10 +2231,16 @@ if __name__ == '__main__':
     # (8) In order to see the evolution of exploration : get cumulative version of all_episodes / true_episodes
     # #########################################################################################################
     if get_novelty_trajectories or get_volume:
-        cumu_true_episodes, len_cumu_true_episodes = get_cumulative_episode(true_episodes)
+        cumu_true_episodes, len_cumu_true_episodes = get_cumulative_episode(
+            true_episodes
+        )
         cumu_all_episodes, len_cumu_all_episodes = get_cumulative_episode(all_episodes)
-        cumu_true_episodes_baseline, len_cumu_true_episodes_baseline = get_cumulative_episode(baseline_true_episodes)
-        cumu_all_episodes_baseline, len_cumu_all_episodes_baseline = get_cumulative_episode(baseline_episodes)
+        cumu_true_episodes_baseline, len_cumu_true_episodes_baseline = (
+            get_cumulative_episode(baseline_true_episodes)
+        )
+        cumu_all_episodes_baseline, len_cumu_all_episodes_baseline = (
+            get_cumulative_episode(baseline_episodes)
+        )
         # pickle.dump(cumu_true_episodes_zpdes, open('cumu_true_zpdes_32.pkl', 'wb'))
         # pickle.dump(cumu_all_episodes_zpdes, open('cumu_all_zpdes_32.pkl', 'wb'))
         # cumu_true_episodes_baseline = pickle.load(open('cumu_true_baseline_32.pkl', 'rb'))
@@ -1473,50 +2253,114 @@ if __name__ == '__main__':
     # (3) Novelty (proba to sample an activity that has never been proposed):
     # #########################################################################################################@
     if get_novelty_trajectories:
-        novelty_cumu_all_zpdes, novelty_cumu_true_zpdes = get_novelty(cumu_all_episodes), get_novelty(
-            cumu_true_episodes)
-        novelty_cumu_all_baseline, novelty_cumu_true_baseline = get_novelty(cumu_all_episodes_baseline), get_novelty(
-            cumu_true_episodes_baseline)
-        display_mean_zpdes_vs_baseline(novelty_cumu_all_zpdes, novelty_cumu_all_baseline, title='Novelty_all',
-                                       nb_blocks=32)
-        display_mean_zpdes_vs_baseline(novelty_cumu_true_zpdes, novelty_cumu_true_baseline, title='Novelty_true',
-                                       nb_blocks=32)
+        novelty_cumu_all_zpdes, novelty_cumu_true_zpdes = (
+            get_novelty(cumu_all_episodes),
+            get_novelty(cumu_true_episodes),
+        )
+        novelty_cumu_all_baseline, novelty_cumu_true_baseline = (
+            get_novelty(cumu_all_episodes_baseline),
+            get_novelty(cumu_true_episodes_baseline),
+        )
+        display_mean_zpdes_vs_baseline(
+            novelty_cumu_all_zpdes,
+            novelty_cumu_all_baseline,
+            title="Novelty_all",
+            nb_blocks=32,
+        )
+        display_mean_zpdes_vs_baseline(
+            novelty_cumu_true_zpdes,
+            novelty_cumu_true_baseline,
+            title="Novelty_true",
+            nb_blocks=32,
+        )
     # #########################################################################################################@
     # (9) 4 dict to work on: all_episodes, true_episodes, cumu_all_episodes, cumu_true_episodes
     # #########################################################################################################@
     if get_volume:
         hull_volumes_all = get_participants_hypercube_per_session(all_episodes)
         hull_volumes_true = get_participants_hypercube_per_session(true_episodes)
-        hull_volumes_all_baseline = get_participants_hypercube_per_session(baseline_episodes)
-        hull_volumes_true_baseline = get_participants_hypercube_per_session(baseline_true_episodes)
+        hull_volumes_all_baseline = get_participants_hypercube_per_session(
+            baseline_episodes
+        )
+        hull_volumes_true_baseline = get_participants_hypercube_per_session(
+            baseline_true_episodes
+        )
 
-        hull_volumes_cumu_true = get_participants_hypercube_per_session(cumu_true_episodes)
-        hull_volumes_cumu_all = get_participants_hypercube_per_session(cumu_all_episodes)
-        hull_volumes_cumu_true_baseline = get_participants_hypercube_per_session(cumu_true_episodes_baseline)
-        hull_volumes_cumu_all_baseline = get_participants_hypercube_per_session(cumu_all_episodes_baseline)
+        hull_volumes_cumu_true = get_participants_hypercube_per_session(
+            cumu_true_episodes
+        )
+        hull_volumes_cumu_all = get_participants_hypercube_per_session(
+            cumu_all_episodes
+        )
+        hull_volumes_cumu_true_baseline = get_participants_hypercube_per_session(
+            cumu_true_episodes_baseline
+        )
+        hull_volumes_cumu_all_baseline = get_participants_hypercube_per_session(
+            cumu_all_episodes_baseline
+        )
         # hull_volumes_cumu_true_ubx = get_participants_hulls_per_session(cumu_true_episodes_zpdes_ubx)
         # hull_volumes_cumu_all_ubx = get_participants_hulls_per_session(cumu_all_episodes_zpdes_ubx)
 
         # Display volumes:
         # display_hulls(hull_volumes_all, title="All episode - hull per session - baseline", nb_blocks=8)
         # display_hulls(hull_volumes_true, title="True episode - hull per session - baseline", nb_blocks=8)
-        display_volumes(hull_volumes_all_baseline, title="All episode - hypercube per session - baseline",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.1)
-        display_volumes(hull_volumes_true_baseline, title="True episode - hypercube per session - baseline",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.1)
-        display_volumes(hull_volumes_all, title="All episode - hypercube per session - zpdes",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.1)
-        display_volumes(hull_volumes_true, title="True episode - hypercube per session - zpdes",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.1)
+        display_volumes(
+            hull_volumes_all_baseline,
+            title="All episode - hypercube per session - baseline",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.1,
+        )
+        display_volumes(
+            hull_volumes_true_baseline,
+            title="True episode - hypercube per session - baseline",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.1,
+        )
+        display_volumes(
+            hull_volumes_all,
+            title="All episode - hypercube per session - zpdes",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.1,
+        )
+        display_volumes(
+            hull_volumes_true,
+            title="True episode - hypercube per session - zpdes",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.1,
+        )
 
-        display_volumes(hull_volumes_cumu_all, title="Cumu all episode - hypercube per session - zpdes",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.3)
-        display_volumes(hull_volumes_cumu_true, title="Cumu true episode - hypercube per session - zpdes",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.3)
-        display_volumes(hull_volumes_cumu_all_baseline, title="Cumu all episode - hypercube per session - baseline",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.3)
-        display_volumes(hull_volumes_cumu_true_baseline, title="Cumu true episode - hypercube per session - baseline",
-                        nb_episodes=nb_episodes, y_min=0, y_max=0.3)
+        display_volumes(
+            hull_volumes_cumu_all,
+            title="Cumu all episode - hypercube per session - zpdes",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.3,
+        )
+        display_volumes(
+            hull_volumes_cumu_true,
+            title="Cumu true episode - hypercube per session - zpdes",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.3,
+        )
+        display_volumes(
+            hull_volumes_cumu_all_baseline,
+            title="Cumu all episode - hypercube per session - baseline",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.3,
+        )
+        display_volumes(
+            hull_volumes_cumu_true_baseline,
+            title="Cumu true episode - hypercube per session - baseline",
+            nb_episodes=nb_episodes,
+            y_min=0,
+            y_max=0.3,
+        )
         # display_hulls(hull_volumes_cumu_true, participant_hull_ref=hull_volumes_cumu_true_ubx,
         #               title="True episode - cumulative hull - zpdes", nb_episodes=nb_episodes)
         # display_hulls(hull_volumes_cumu_all, participant_hull_ref=hull_volumes_cumu_all_ubx,
@@ -1542,64 +2386,162 @@ if __name__ == '__main__':
     if create_ID_csv:
         # # Get age for each participant
         age_zpdes = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_age(item[0])), all_episodes.items()))),
-            orient='index', columns=['age'])
+            map_keys(
+                dict(
+                    map(lambda item: (item[0], get_age(item[0])), all_episodes.items())
+                )
+            ),
+            orient="index",
+            columns=["age"],
+        )
         age_baseline = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_age(item[0])), baseline_episodes.items()))), orient='index',
-            columns=['age'])
+            map_keys(
+                dict(
+                    map(
+                        lambda item: (item[0], get_age(item[0])),
+                        baseline_episodes.items(),
+                    )
+                )
+            ),
+            orient="index",
+            columns=["age"],
+        )
         # # Get adhd
         adhd_zpdes = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_attention_deficit(item[0])), all_episodes.items()))),
-            orient='index', columns=['adhd'])
+            map_keys(
+                dict(
+                    map(
+                        lambda item: (item[0], get_attention_deficit(item[0])),
+                        all_episodes.items(),
+                    )
+                )
+            ),
+            orient="index",
+            columns=["adhd"],
+        )
         adhd_baseline = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_attention_deficit(item[0])), baseline_episodes.items()))),
-            orient='index',
-            columns=['adhd'])
+            map_keys(
+                dict(
+                    map(
+                        lambda item: (item[0], get_attention_deficit(item[0])),
+                        baseline_episodes.items(),
+                    )
+                )
+            ),
+            orient="index",
+            columns=["adhd"],
+        )
         # # Get nb years of study
         study_zpdes = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_study_duration(item[0])), all_episodes.items()))),
-            orient='index',
-            columns=['study_duration'])
+            map_keys(
+                dict(
+                    map(
+                        lambda item: (item[0], get_study_duration(item[0])),
+                        all_episodes.items(),
+                    )
+                )
+            ),
+            orient="index",
+            columns=["study_duration"],
+        )
         study_baseline = pd.DataFrame.from_dict(
-            map_keys(dict(map(lambda item: (item[0], get_study_duration(item[0])), baseline_episodes.items()))),
-            orient='index',
-            columns=['study_duration'])
+            map_keys(
+                dict(
+                    map(
+                        lambda item: (item[0], get_study_duration(item[0])),
+                        baseline_episodes.items(),
+                    )
+                )
+            ),
+            orient="index",
+            columns=["study_duration"],
+        )
         # Before treating the results, parse all participant object to user_id
         all_episodes = {k.id: v for k, v in all_episodes.items()}
         baseline_episodes = {k.id: v for k, v in baseline_episodes.items()}
         # First idle_time
         idle_zpdes = pd.DataFrame.from_dict(
-            get_feature_from_sessions(all_episodes, feature_extractor=lambda x: x.idle_time / 1000), orient='index',
-            columns=['idle'])
+            get_feature_from_sessions(
+                all_episodes, feature_extractor=lambda x: x.idle_time / 1000
+            ),
+            orient="index",
+            columns=["idle"],
+        )
         idle_baseline = pd.DataFrame.from_dict(
-            get_feature_from_sessions(baseline_episodes, feature_extractor=lambda x: x.idle_time / 1000),
-            orient='index', columns=['idle'])
+            get_feature_from_sessions(
+                baseline_episodes, feature_extractor=lambda x: x.idle_time / 1000
+            ),
+            orient="index",
+            columns=["idle"],
+        )
         # # Get nb_episodes for each participant
         nb_zpdes = pd.DataFrame.from_dict(
-            dict(map(lambda item: (item[0], get_nb_episodes(item[1])), all_episodes.items())), orient='index',
-            columns=['nb_episodes'])
+            dict(
+                map(
+                    lambda item: (item[0], get_nb_episodes(item[1])),
+                    all_episodes.items(),
+                )
+            ),
+            orient="index",
+            columns=["nb_episodes"],
+        )
         nb_baseline = pd.DataFrame.from_dict(
-            dict(map(lambda item: (item[0], get_nb_episodes(item[1])), baseline_episodes.items())), orient='index',
-            columns=['nb_episodes'])
+            dict(
+                map(
+                    lambda item: (item[0], get_nb_episodes(item[1])),
+                    baseline_episodes.items(),
+                )
+            ),
+            orient="index",
+            columns=["nb_episodes"],
+        )
         # Get mean activity of first and last sessions
-        parameters = ['n_targets', 'speed', 'tracking', 'probe', 'radius']
-        act_session_first_zpdes = pd.DataFrame.from_dict(get_dict_mean_activity(all_episodes, session_id=0),
-                                                         orient='index',
-                                                         columns=[f'first_activity_{p}' for p in parameters])
-        act_session_first_baseline = pd.DataFrame.from_dict(get_dict_mean_activity(baseline_episodes, session_id=0),
-                                                            orient='index',
-                                                            columns=[f'first_activity_{p}' for p in parameters])
-        act_session_last_zpdes = pd.DataFrame.from_dict(get_dict_mean_activity(all_episodes, session_id=-1),
-                                                        orient='index',
-                                                        columns=[f'last_activity_{p}' for p in parameters])
-        act_session_last_baseline = pd.DataFrame.from_dict(get_dict_mean_activity(baseline_episodes, session_id=-1),
-                                                           orient='index',
-                                                           columns=[f'last_activity_{p}' for p in parameters])
+        parameters = ["n_targets", "speed", "tracking", "probe", "radius"]
+        act_session_first_zpdes = pd.DataFrame.from_dict(
+            get_dict_mean_activity(all_episodes, session_id=0),
+            orient="index",
+            columns=[f"first_activity_{p}" for p in parameters],
+        )
+        act_session_first_baseline = pd.DataFrame.from_dict(
+            get_dict_mean_activity(baseline_episodes, session_id=0),
+            orient="index",
+            columns=[f"first_activity_{p}" for p in parameters],
+        )
+        act_session_last_zpdes = pd.DataFrame.from_dict(
+            get_dict_mean_activity(all_episodes, session_id=-1),
+            orient="index",
+            columns=[f"last_activity_{p}" for p in parameters],
+        )
+        act_session_last_baseline = pd.DataFrame.from_dict(
+            get_dict_mean_activity(baseline_episodes, session_id=-1),
+            orient="index",
+            columns=[f"last_activity_{p}" for p in parameters],
+        )
         # Merge everything into a single dataframe to export to csv
         df_zpdes = pd.concat(
-            [idle_zpdes, nb_zpdes, age_zpdes, study_zpdes, act_session_first_zpdes, act_session_last_zpdes, adhd_zpdes], axis=1)
-        df_baseline = pd.concat([idle_baseline, nb_baseline, age_baseline, study_baseline, act_session_first_baseline,
-                                 act_session_last_baseline, adhd_baseline], axis=1)
-        df_zpdes['condition'], df_baseline['condition'] = 'zpdes', 'baseline'
+            [
+                idle_zpdes,
+                nb_zpdes,
+                age_zpdes,
+                study_zpdes,
+                act_session_first_zpdes,
+                act_session_last_zpdes,
+                adhd_zpdes,
+            ],
+            axis=1,
+        )
+        df_baseline = pd.concat(
+            [
+                idle_baseline,
+                nb_baseline,
+                age_baseline,
+                study_baseline,
+                act_session_first_baseline,
+                act_session_last_baseline,
+                adhd_baseline,
+            ],
+            axis=1,
+        )
+        df_zpdes["condition"], df_baseline["condition"] = "zpdes", "baseline"
         df = pd.concat([df_zpdes, df_baseline])
         df.to_csv(f"feature_csv_{study}.csv")
